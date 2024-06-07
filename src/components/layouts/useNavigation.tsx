@@ -19,6 +19,12 @@ export const useNavigation = () => {
       sectionName: t("general"),
       items: [
         { name: t("dashboard"), href: "/home", icon: HomeIcon, current: true },
+        {
+          name: t("actionCentre"),
+          href: "/home/actionCentre",
+          icon: TicketIcon,
+          current: true,
+        },
       ],
     },
     {
