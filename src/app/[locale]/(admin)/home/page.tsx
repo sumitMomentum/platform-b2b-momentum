@@ -12,16 +12,28 @@ import { getUserDB } from "@/actions/admin/userModule/get-user-DB";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
+import InfoCard from "@/components/ui/dashboard/InfoCard";
+import { LinkIcon } from "@heroicons/react/24/outline";
+import AllVehicle from "@/components/ui/dashboard/aggregatedDashboard/AllVehicle";
+import VehicleStatus from "@/components/ui/dashboard/aggregatedDashboard/VehicleStatus";
+import Condition from "@/components/ui/dashboard/aggregatedDashboard/Condition";
+import DistanceTravelled from "@/components/ui/dashboard/aggregatedDashboard/DistanceTravelled";
+import BatteryHealth from "@/components/ui/dashboard/aggregatedDashboard/BatteryHealth";
+import AddVehicle from "@/components/ui/dashboard/AddVehicle";
+import { createEnodeWebhook } from "@/actions/admin/dashboardModule/create-enode-webhook";
+
 export const metadata: Metadata = {
   title: "Home",
 };
-
 
 const SuperAdminDashboardPage = async () => {
   const t = await getTranslations("AdminLayout.pages.dashboard");
   const invoicesCount = await getUserInvoicesPendingCount();
   const supportTicketsCounts = await getSupportTicketsActivesCount();
   const user = await getUserDB();
+  const enodeWebhook = await createEnodeWebhook();
+  console.log(enodeWebhook); 
+  
   const actions = [
     {
       title: t("actionOne"),
@@ -41,10 +53,13 @@ const SuperAdminDashboardPage = async () => {
     },
   ];
 
+  //just for now, after fetch vehicle array from store
+  const vehiclesFromStore = true;
+
   return (
     <div>
       <PageName name={t("title")} />
-      <Suspense fallback={<PageLoader />}>
+      {/* <Suspense fallback={<PageLoader />}>
         <Card className=" my-7">
           <Flex>
             <div>
@@ -120,9 +135,63 @@ const SuperAdminDashboardPage = async () => {
             </div>
           ))}
         </div>
-      </Suspense>
+      </Suspense> */}
 
       <AffiliateHandler aff={null} currentUser={user} />
+      <div className="flex gap-6 w-full justify-center items-center pt-2">
+        {vehiclesFromStore ? (
+          <div className="flex gap-6 flex-col w-full">
+            {/* <div className="flex gap-6"> */}
+              {/* <InfoCard
+                titleKey="hello"
+                descriptionKey="description"
+                icon={LinkIcon}
+              />
+              <InfoCard
+                titleKey="hello"
+                descriptionKey="description"
+                icon={LinkIcon}
+              />
+              <InfoCard
+                titleKey="hello"
+                descriptionKey="description"
+                icon={LinkIcon}
+              />
+              <InfoCard
+                titleKey="hello"
+                descriptionKey="description"
+                icon={LinkIcon}
+              /> */}
+            {/* </div> */}
+            <div className="flex gap-6 w-full">
+              {/* <AddVehicle /> */}
+              <AllVehicle />
+              <VehicleStatus />
+              <Condition />
+            </div>
+            <div className="flex gap-6">
+              <DistanceTravelled />
+              <BatteryHealth />
+            </div>
+            {/* <div className="flex gap-6">
+              <InfoCard
+                titleKey="hello"
+                descriptionKey="description"
+                icon={LinkIcon}
+              />
+              <InfoCard
+                titleKey="hello"
+                descriptionKey="description"
+                icon={LinkIcon}
+              />
+            </div> */}
+          </div>
+        ) : (
+          <div className="flex justify-center items-center w-full h-full">
+            Please select a vehicle
+          </div>
+        )}
+      </div>
     </div>
   );
 };

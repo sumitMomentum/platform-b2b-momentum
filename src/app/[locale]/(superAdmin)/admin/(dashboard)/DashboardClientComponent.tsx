@@ -8,8 +8,7 @@ import {
   KpiType,
 } from "@/interfaces/dashboardTypes";
 import { getSuperAdminKpis } from "@/actions/superAdmin/superAdminDashboardModule/get-superadmin-kpis";
- 
- 
+
 const DashboardClientComponent = () => {
   const times = [
     { name: "Last week", value: 7 },
@@ -20,7 +19,6 @@ const DashboardClientComponent = () => {
   ];
   const [timeSelected, setTimeSelected] = useState(times[0]);
   const [statsCount, setStatsCount] = useState<KpiStatType[]>([]);
- 
 
   useEffect(() => {
     getSuperAdminKpis({
@@ -73,7 +71,6 @@ const DashboardClientComponent = () => {
     );
     return nameParsed.join(" ");
   };
-
 
   return (
     <main>
@@ -146,6 +143,7 @@ const DashboardClientComponent = () => {
           </div>
         </div>
       </div>
+
     </main>
   );
 };

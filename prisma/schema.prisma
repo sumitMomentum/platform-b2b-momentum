@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "mysql"
-  url       = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -31,6 +31,7 @@ model User {
   permissions          Permission[]
   AmountsMovements     AdminMovementsAmounts[]
   coupons              Coupon[]
+  vehicles             Vehicle[]
 }
 
 model StripeCustomer {
@@ -422,6 +423,68 @@ model SupportTicketMessageContent {
 
   @@index([messageId])
 }
+
+model EnodeToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Vehicle {
+  id                   String                 @id
+  make                 String
+  model                String
+  year                 Int
+  vin                  String? // Optional field if `vehicle.information.vin` can be null
+  odometer             Float? // Optional field if `vehicle.odometer.distance` can be null
+  batteryCapacity      Float? // Optional field if `vehicle.chargeState.batteryCapacity` can be null
+  ownerId              Int
+  owner                User                   @relation(fields: [ownerId], references: [id])
+  dateOfConnection     DateTime // Store date of connection
+  soc                  Float? // Assuming battery level is always present
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @default(now())
+  VehicleDashboardData VehicleDashboardData[]
+}
+
+model VehicleDashboardData {
+  id                    Int      @id @default(autoincrement())
+  vehicleId             String?  @unique
+  vehicle               Vehicle? @relation(fields: [vehicleId], references: [id])
+  location              String   @default("Banglore")
+  datapointsCollected   Int      @default(1410)
+  totalEnergyConsumed   Float // Total energy consumed in kWh
+  averageSoC            Float // Average State of Charge (%)
+  connectorType         String // Type of connector
+  totalChargingSessions Int // Total charging sessions
+  averageChargingRate   Float // Average charging rate in kW
+  avgDailyKmDriven      Int // Average daily kilometers driven
+  temperatureLow        Int // Low temperature in Celsius
+  temperatureHigh       Int // High temperature in Celsius
+  socRangeMin           Int // Minimum State of Charge (%)
+  socRangeMax           Int // Maximum State of Charge (%)
+  rangeObservedMin      Int // Minimum observed range in km
+  rangeObservedMax      Int // Maximum observed range in km
+  realRangeObserved     Int // Real observed range in km
+  epaProvidedRange      Int
+  batteryHealthSoH      Float // Battery State of Health (%)
+  estimatedDegradation  Float // Estimated battery degradation (%)
+  batteryChemistry      String   @default("Li-ion") // Battery chemistry
+  endOfLife             DateTime // End of life date
+  remainingUsefulLife   Int // Remaining useful life in cycle
+}
+
+// model AggregatedDashboard {
+//   id           Int @id
+//   active       Int
+//   inActive     Int
+//   charging     Int
+//   outOfService Int
+//   critical     Int
+//   satisfactory Int
+//   good         Int
+// }
 
 //Car rental 
 

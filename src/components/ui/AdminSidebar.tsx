@@ -8,6 +8,8 @@ import {
   LifebuoyIcon,
   UsersIcon,
   XMarkIcon,
+  PlusIcon,
+  PlusCircleIcon,
 } from "@heroicons/react/24/outline";
 import { useSidebarState } from "@/states/ui/sidebarState";
 import Navigation from "../core/Navigation";
@@ -18,6 +20,7 @@ import useDarkTheme from "@/app/hooks/useDarkTheme";
 import { constants } from "@/lib/constants";
 import { useNavigation } from "../layouts/useNavigation";
 import { useTranslations } from "next-intl";
+import AddVehicle from "./dashboard/AddVehicle";
 
 const AdminSidebar = () => {
   const { isDarkTheme } = useDarkTheme();
@@ -87,17 +90,22 @@ const AdminSidebar = () => {
                 </Transition.Child>
                 {/* Sidebar component, swap this element with another sidebar if you like */}
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-main text-primary px-6 pb-4">
-                  <div className="flex  my-2 shrink-0 items-center">
+                  <div className="flex h-11 shrink-0 items-center justify-center">
                     <Link href={"/"}>
                       <Image
                         height={145}
                         width={145}
-                        className="w-1/2 h-auto  "
-                        src={isDarkTheme ? constants.logoUrl : constants.logoDarkUrl}
+                        className="pt-5"
+                        src={
+                          isDarkTheme
+                            ? constants.logoUrl
+                            : constants.logoDarkUrl
+                        }
                         alt="Boilerplate"
                       />
                     </Link>
                   </div>
+                  <hr></hr>
                   <div className="relative">
                     <OrganizationSwitcher
                       appearance={{
@@ -117,6 +125,12 @@ const AdminSidebar = () => {
                           <Navigation navigation={adminNavigation} />
                         </ul>
                       </li>
+                      <div className="">
+                        <hr></hr>
+                        <div className="mt-2 w-full">
+                          <AddVehicle />
+                        </div>
+                      </div>
                       <li className="mt-auto -mx-2">
                         <Link
                           onClick={() => toggleSidebarMenu()}
@@ -166,18 +180,19 @@ const AdminSidebar = () => {
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-main text-primary px-6 pb-4">
-          <div className="flex h-16 shrink-0 items-center">
+          <div className="flex h-11 shrink-0 items-center justify-center">
             <Link href={"/"}>
               {" "}
               <Image
                 width={145}
                 height={145}
-                className="h-auto pt-1 w-1/2"
+                className="pt-5"
                 src={isDarkTheme ? constants.logoUrl : constants.logoDarkUrl}
                 alt="Boilerplate"
               />
             </Link>
           </div>
+          <hr></hr>
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
@@ -185,6 +200,13 @@ const AdminSidebar = () => {
                   <Navigation navigation={adminNavigation} />
                 </ul>
               </li>
+
+              <div className="">
+                <hr></hr>
+                <div className="mt-2 w-full">
+                  <AddVehicle />
+                </div>
+              </div>
 
               <li className="mt-auto">
                 <Link

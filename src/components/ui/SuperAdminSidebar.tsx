@@ -155,7 +155,7 @@ const SuperAdminSidebar = () => {
           <Link href={"/"}>
             {" "}
             <span className="text-xl font-bold text-primary">
-              Boilerplate Admin
+              Momentum-E
             </span>
           </Link>
         </div>

@@ -217,6 +217,7 @@ export const handleUserDeleted = async (userData: any) => {
     });
   }
 };
+
 export const handleUserUpdated = async (userData: any, source = "webhook") => {
   const user = await prisma.user.findFirst({
     where: {
