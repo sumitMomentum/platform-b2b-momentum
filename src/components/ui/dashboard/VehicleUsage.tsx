@@ -13,12 +13,12 @@ const VehicleUsage = ({
   realRangeObserved,
   epaProvidedRange,
 }) => {
-  const t = useTranslations();
+  const t = useTranslations("AdminLayout.pages.vehicleDashboard");
   return (
     <Card>
       <Card.Body>
         <Card.Header>
-          <Card.Title>{t("Usage")}</Card.Title>
+          <Card.Title>{t("usage")}</Card.Title>
         </Card.Header>
         <div className="border mb-2">
           <AvgDistanceChart />
@@ -26,36 +26,42 @@ const VehicleUsage = ({
         <div className="flex justify-between">
           <div className="flex flex-col justify-evenly">
             <div className="mb-2">
-              <Card.Description>{t("Avg Daily Km Driven")}</Card.Description>
-              <Card.Description>{t(`${avgDailyKmDriven} km`)}</Card.Description>
+              <Card.Description>{t("averageDailyKmDriven")}</Card.Description>
+              <Card.Description>{avgDailyKmDriven} km</Card.Description>
             </div>
             <div>
-              <Card.Description>{t("Temperature Low/High")}</Card.Description>
+              <Card.Description>{t("temperature")}</Card.Description>
               <Card.Description>
-                {t(`${temperatureLow}\u00B0C / ${temperatureHigh}\u00B0C`)}
+                {`${temperatureLow}\u00B0C / ${temperatureHigh}\u00B0C`}
               </Card.Description>
             </div>
           </div>
           <div className="flex flex-col justify-evenly">
             <div className="mb-2">
-              <Card.Description>{t("SOC Range")}</Card.Description>
-              <Card.Description>{t(`${socRangeMin}% - ${socRangeMax}%`)}</Card.Description>
+              <Card.Description>{t("socRange")}</Card.Description>
+              <Card.Description>
+                {`${socRangeMin}% - ${socRangeMax}%`}
+              </Card.Description>
             </div>
             <div>
-              <Card.Description>{t("Range Observed Min/Max")}</Card.Description>
-              <Card.Description>{t(`${rangeObservedMin} km / ${rangeObservedMax} km`)}</Card.Description>
+              <Card.Description>{t("rangeObservedMinMax")}</Card.Description>
+              <Card.Description>
+                {`${rangeObservedMin} km / ${rangeObservedMax} km`}
+              </Card.Description>
             </div>
           </div>
           <div className="flex flex-col justify-evenly">
             <div className="mb-2">
-              <Card.Description>{t("Real Range Observed")}</Card.Description>
-              <Card.Description>{t(`${realRangeObserved}`)}</Card.Description>
+              <Card.Description>{t("realRangeObserved")}</Card.Description>
+              <Card.Description>{realRangeObserved}</Card.Description>
             </div>
             <div>
               <Card.Description>
-                {t("Observed vs EPA/WLTP Provided")}
+                {t("observedVsEpa")}
               </Card.Description>
-              <Card.Description>{t(`${realRangeObserved} km / ${epaProvidedRange} km`)}</Card.Description>
+              <Card.Description>
+                {`${realRangeObserved} km / ${epaProvidedRange} km`}
+              </Card.Description>
             </div>
           </div>
         </div>

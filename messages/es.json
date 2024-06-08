@@ -39,6 +39,35 @@
         "invoicesInPaid": "Facturas pendientes",
         "tickersActives": "Tickers activos"
       },
+      "vehicleDashboard": {
+        "vehicleInformation": "Información del Vehículo",
+        "odometer": "Odómetro",
+        "manufacturer": "Fabricante",
+        "vehicleModel": "Modelo del Vehículo",
+        "modelYear": "Año del Modelo",
+        "vin": "VIN",
+        "batteryCapacity": "Capacidad de la Batería",
+        "chargingPattern": "Patrón de Carga",
+        "totalEnergyConsumed": "Energía Total Consumida",
+        "averageSoc": "SOC Promedio",
+        "connectorType": "Tipo de Conector",
+        "totalChargingSessions": "Total de Sesiones de Carga",
+        "averageChargingRate": "Tasa Promedio de Carga",
+        "usage": "Uso",
+        "averageDailyKmDriven": "Km Diarios Promedio Conducidos",
+        "temperature": "Temperatura Baja/Alta",
+        "socRange": "Rango de SOC",
+        "realRangeObserved": "Rango Real Observado",
+        "rangeObservedMinMax": "Rango Observado Mín/Máx",
+        "observedVsEpa": "Observado vs EPA/WLTP Proporcionado",
+        "batteryHealth": "Salud de la Batería",
+        "soh": "SoH",
+        "estimatedDegradation": "Degradación Estimada",
+        "batteryChemistry": "Química de la Batería"
+      },
+      "actionCentre": {
+        "title": "Centro de Acción"
+      },
       "wallet": {
         "yourWallet": "Mi billetera",
         "seeMovements": "Ver movimientos",
@@ -99,7 +128,7 @@
         "affiliatePanel": "Panel de afiliados",
         "referralLinkDescription": "Gana dinero recomendando nuestros servicios"
       },
-      "memberships" : {
+      "memberships": {
         "stripePortal": "Accede a tu portal de Stripe"
       },
       "support": {

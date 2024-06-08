@@ -20,7 +20,7 @@ import useDarkTheme from "@/app/hooks/useDarkTheme";
 import { constants } from "@/lib/constants";
 import { useNavigation } from "../layouts/useNavigation";
 import { useTranslations } from "next-intl";
-import AddVehicle from "./dashboard/AddVehicle";
+// import AddVehicle from "./dashboard/AddVehicle";
 
 const AdminSidebar = () => {
   const { isDarkTheme } = useDarkTheme();
@@ -125,12 +125,12 @@ const AdminSidebar = () => {
                           <Navigation navigation={adminNavigation} />
                         </ul>
                       </li>
-                      <div className="">
+                      {/* <div className="">
                         <hr></hr>
                         <div className="mt-2 w-full">
                           <AddVehicle />
                         </div>
-                      </div>
+                      </div> */}
                       <li className="mt-auto -mx-2">
                         <Link
                           onClick={() => toggleSidebarMenu()}
@@ -201,12 +201,12 @@ const AdminSidebar = () => {
                 </ul>
               </li>
 
-              <div className="">
+              {/* <div className="">
                 <hr></hr>
                 <div className="mt-2 w-full">
                   <AddVehicle />
                 </div>
-              </div>
+              </div> */}
 
               <li className="mt-auto">
                 <Link

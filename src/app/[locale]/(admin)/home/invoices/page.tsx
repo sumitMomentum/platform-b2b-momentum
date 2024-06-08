@@ -22,7 +22,10 @@ const AdminBillingInvoicesModule = async ({
 
   return (
     <div>
-      <PageName name={t("invoices")} />
+      <PageName name={t("invoices")} breadcrumbs={[
+          { name: "Home", href: "/home" },
+          { name: "Invoices", href: "/home/invoices" },
+        ]}/>
       <InvoicesList query={query} currentPage={currentPage} />
     </div>
   );

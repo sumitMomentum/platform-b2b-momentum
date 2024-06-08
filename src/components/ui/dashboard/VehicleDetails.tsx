@@ -3,20 +3,20 @@ import { useTranslations } from 'next-intl';
 
 
 const VehicleDetails = ({year, model, make, vin, batteryCapacity, odometer}) => {
-  const t = useTranslations();
+  const t = useTranslations("AdminLayout.pages.vehicleDashboard");
   return (
     <Card>
       <Card.Body>
         <Card.Header>
-          <Card.Title>{t('Vehicle Information')}</Card.Title>
+          <Card.Title>{t('vehicleInformation')}</Card.Title>
         </Card.Header>
         <div>
-          <Card.Description>{t(`Odometer : ${odometer}`)}</Card.Description>
-          <Card.Description>{t(`Manufacturer : ${make}`)}</Card.Description>
-          <Card.Description>{t(`Vehicle Model : ${model}`)}</Card.Description>
-          <Card.Description>{t(`Model Year : ${year}`)}</Card.Description>
-          <Card.Description>{t(`VIN : ${vin}`)}</Card.Description>
-          <Card.Description>{t(`Battery Capacity : ${batteryCapacity}kWh`)}</Card.Description>
+          <Card.Description>{t(`odometer`)} : {odometer}</Card.Description>
+          <Card.Description>{t(`manufacturer`)} : {make}</Card.Description>
+          <Card.Description>{t(`vehicleModel`)} : {model}</Card.Description>
+          <Card.Description>{t(`modelYear`)} : {year}</Card.Description>
+          <Card.Description>{t(`vin`)} : {vin}</Card.Description>
+          <Card.Description>{t(`batteryCapacity`)} : {batteryCapacity}kWh</Card.Description>
         </div>
       </Card.Body>
     </Card>

@@ -6,6 +6,7 @@ import {
   BuildingLibraryIcon,
   TicketIcon,
   UsersIcon,
+  TruckIcon,
 } from "@heroicons/react/24/outline";
 
 import { useTranslations } from "next-intl";
@@ -19,6 +20,12 @@ export const useNavigation = () => {
       sectionName: t("general"),
       items: [
         { name: t("dashboard"), href: "/home", icon: HomeIcon, current: true },
+        {
+          name: t("vehicles"),
+          href: "/home/vehicles",
+          icon: TruckIcon,
+          current: true,
+        },
         {
           name: t("actionCentre"),
           href: "/home/actionCentre",

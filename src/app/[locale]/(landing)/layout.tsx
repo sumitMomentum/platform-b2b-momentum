@@ -5,8 +5,8 @@ import FooterLanding from "./ui/FooterLanding";
 import FloatingWhatsAppButton from "@/components/core/FloatingWhatsAppButton";
 
 export const metadata: Metadata = {
-  title: "Boilerplate in Next",
-  description: "Boilerplate in Next",
+  title: "Momentum-E",
+  description: "Momentum-E",
 };
 
 export default function RootLayout({

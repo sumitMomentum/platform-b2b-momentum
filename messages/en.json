@@ -6,7 +6,7 @@
     "welcome": "Welcome to the ",
     "completeOnboarding": "Complete onboarding",
     "redirecting": "Redirecting",
-    "organizationName": "Project Name"
+    "organizationName": "Organization Name"
   },
   "LocaleSwitcher": {
     "label": "Change language",
@@ -16,6 +16,7 @@
     "navigation": {
       "general": "General",
       "dashboard": "Dashboard",
+      "vehicles": "Vehicles",
       "actionCentre": "Action Centre",
       "examples": "Examples",
       "exampleTitle": "Example Page Title",
@@ -39,6 +40,35 @@
         "exampleActive": "Examples Actives",
         "invoicesInPaid": "Invoices pendings",
         "tickersActives": "Tickers Actives"
+      },
+      "vehicleDashboard": {
+        "vehicleInformation": "Vehicle Information",
+        "odometer": "Odometer",
+        "manufacturer": "Manufacturer",
+        "vehicleModel": "Vehicle Model",
+        "modelYear": "Model Year",
+        "vin": "VIN",
+        "batteryCapacity": "Battery Capacity",
+        "chargingPattern": "Charging Pattern",
+        "totalEnergyConsumed": "Total Energy Consumed",
+        "averageSoc": "Average SOC",
+        "connectorType": "Connector Type",
+        "totalChargingSessions": "Total Charging Sessions",
+        "averageChargingRate": "Average Charging Rate",
+        "usage": "Usage",
+        "averageDailyKmDriven": "Avg Daily Km Driven",
+        "temperature": "Temperature Low/High",
+        "socRange": "SOC Range",
+        "realRangeObserved": "Real Range Observed",
+        "rangeObservedMinMax": "Range Observed Min/Max",
+        "observedVsEpa": "Observed vs EPA/WLTP Provided",
+        "batteryHealth": "Battery Health",
+        "soh": "SoH",
+        "estimatedDegradation": "Estimated Degradation",
+        "batteryChemistry": "Battery Chemistry"
+      },
+      "vehicles": {
+        "title": "Vehicles"
       },
       "actionCentre": {
         "title": "Action Centre"

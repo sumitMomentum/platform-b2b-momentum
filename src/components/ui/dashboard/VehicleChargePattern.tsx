@@ -14,7 +14,7 @@ const VehicleChargePattern = ({
   totalChargingSessions,
   averageChargingRate,
 }) => {
-  const t = useTranslations();
+  const t = useTranslations("AdminLayout.pages.vehicleDashboard");
 
   return (
     <Card>
@@ -22,23 +22,23 @@ const VehicleChargePattern = ({
         <Card.Header>
           <div className="flex justify-between">
             <div className="flex items-start">
-              <Card.Title>{t("Charging Pattern")}</Card.Title>
+              <Card.Title>{t("chargingPattern")}</Card.Title>
             </div>
             <div className="border flex flex-col justify-center items-center p-1">
-              <Card.Description>{t("Total Energy Consumed")}</Card.Description>
-              <Card.Description>{t(`${totalEnergyConsumed} kW`)}</Card.Description>
+              <Card.Description>{t("totalEnergyConsumed")}</Card.Description>
+              <Card.Description>{totalEnergyConsumed} kW</Card.Description>
             </div>
           </div>
         </Card.Header>
         <div className="flex justify-between">
           <div className="flex flex-col justify-evenly">
             <div>
-              <Card.Description>{t("Average SoC")}</Card.Description>
-              <Card.Description>{t(`${averageSoC}%`)}</Card.Description>
+              <Card.Description>{t("averageSoc")}</Card.Description>
+              <Card.Description>{averageSoC}%</Card.Description>
             </div>
             <div>
-              <Card.Description>{t("Connector Type")}</Card.Description>
-              <Card.Description>{t(`${connectorType}`)}</Card.Description>
+              <Card.Description>{t("connectorType")}</Card.Description>
+              <Card.Description>{connectorType}</Card.Description>
             </div>
           </div>
           <div className="border">
@@ -47,13 +47,13 @@ const VehicleChargePattern = ({
           <div className="flex flex-col justify-evenly">
             <div>
               <Card.Description>
-                {t("Total Charging Sessions")}
+                {t("totalChargingSessions")}
               </Card.Description>
-              <Card.Description>{t(`${totalChargingSessions}`)}</Card.Description>
+              <Card.Description>{totalChargingSessions}</Card.Description>
             </div>
             <div>
-              <Card.Description>{t("Average Charging Rate")}</Card.Description>
-              <Card.Description>{t(`${averageChargingRate} kW`)}</Card.Description>
+              <Card.Description>{t("averageChargingRate")}</Card.Description>
+              <Card.Description>{averageChargingRate} kW</Card.Description>
             </div>
           </div>
         </div>

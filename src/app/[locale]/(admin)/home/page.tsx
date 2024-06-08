@@ -58,7 +58,10 @@ const SuperAdminDashboardPage = async () => {
 
   return (
     <div>
-      <PageName name={t("title")} />
+      <PageName name={t("title")} breadcrumbs={[
+          { name: "Home", href: "/home" },
+          { name: "", href: "/home" },
+        ]}/>
       {/* <Suspense fallback={<PageLoader />}>
         <Card className=" my-7">
           <Flex>

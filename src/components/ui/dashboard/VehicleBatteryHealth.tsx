@@ -7,7 +7,7 @@ const VehicleBatteryHealth = ({
   estimatedDegradation,
   batteryChemistry,
 }) => {
-  const t = useTranslations();
+  const t = useTranslations("AdminLayout.pages.vehicleDashboard");
 
   return (
     <Card>
@@ -15,7 +15,7 @@ const VehicleBatteryHealth = ({
         <Card.Header>
           <div className="flex justify-between">
             <div className="flex items-start">
-              <Card.Title>{t("Battery Health")}</Card.Title>
+              <Card.Title>{t("batteryHealth")}</Card.Title>
             </div>
             {/* <div className="border p-1 flex flex-col justify-center items-center">
               <Card.Description>{t('State Of Health')}</Card.Description>
@@ -28,16 +28,16 @@ const VehicleBatteryHealth = ({
         </div>
         <div className="flex justify-between">
           <div className="flex flex-col justify-evenly">
-            <Card.Description>{t("SoH")}</Card.Description>
-            <Card.Description>{t(`${batteryHealthSoH}%`)}</Card.Description>
+            <Card.Description>{t("soh")}</Card.Description>
+            <Card.Description>{`${batteryHealthSoH}%`}</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly">
-            <Card.Description>{t("Estimated Degradation")}</Card.Description>
-            <Card.Description>{t(`${estimatedDegradation}%`)}</Card.Description>
+            <Card.Description>{t("estimatedDegradation")}</Card.Description>
+            <Card.Description>{`${estimatedDegradation}%`}</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly">
-            <Card.Description>{t("Battery Chemistry")}</Card.Description>
-            <Card.Description>{t(`${batteryChemistry}`)}</Card.Description>
+            <Card.Description>{t("batteryChemistry")}</Card.Description>
+            <Card.Description>{batteryChemistry}</Card.Description>
           </div>
         </div>
       </Card.Body>
