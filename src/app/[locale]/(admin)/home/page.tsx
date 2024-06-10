@@ -40,7 +40,7 @@ const SuperAdminDashboardPage = async () => {
       href: "/home/services/buy-service",
       icon: ShoppingBagIcon,
       iconForeground: "text-teal-700",
-      description: t("actionDescription"),
+      description: t("actionOneDescription"),
       iconBackground: "bg-teal-50",
     },
     {

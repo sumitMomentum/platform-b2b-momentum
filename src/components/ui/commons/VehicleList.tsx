@@ -36,8 +36,6 @@ const VehicleList = () => {
 
   return vehicles.length != 0 ? (
     <div className="flex w-full flex-col">
-      {/* <h1>Vehicles</h1> */}
-      {/* <h1 className="p-2 font-semibold">Fleet</h1> */}
       <div className="flex flex-wrap flex-col w-full">
         {vehicles.map((vehicle) => (
           <div

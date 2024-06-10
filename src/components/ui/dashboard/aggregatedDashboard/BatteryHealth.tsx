@@ -1,10 +1,10 @@
 import Card from "@/components/ui/commons/Card";
 import React from "react";
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl";
 import BatteryHealthChart from "./BatteryHealthChart";
 
 const BatteryHealth = () => {
-  const t = useTranslations();
+  // const t = useTranslations();
   return (
     <Card>
       <Card.Body>
@@ -16,18 +16,18 @@ const BatteryHealth = () => {
         </div>
         <div className="flex justify-between">
           <div className="flex flex-col justify-evenly">
-            <Card.Description>{t("Avg SoH")}</Card.Description>
-            <Card.Description>{t("100%")}</Card.Description>
+            <Card.Description>Avg SoH</Card.Description>
+            <Card.Description>100%</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly">
             <Card.Description>
-              {t("Avg Estimated Degradation")}
+              Avg Estimated Degradation
             </Card.Description>
-            <Card.Description>{t("0.00%")}</Card.Description>
+            <Card.Description>0.00%</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly">
-            <Card.Description>{t("Total Batteries")}</Card.Description>
-            <Card.Description>{t("300")}</Card.Description>
+            <Card.Description>Total Batteries</Card.Description>
+            <Card.Description>300</Card.Description>
           </div>
         </div>
         <div className="flex justify-between">

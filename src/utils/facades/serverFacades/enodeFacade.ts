@@ -138,9 +138,9 @@ export const generateAccessToken = async () => {
 
 export const isTokenExpired = (createdAt: Date): boolean => {
   const now = new Date();
-  const twelveHoursAgo = new Date(now.getTime() - 1 * 60 * 60 * 1000); // 1 hours ago
+  const oneHoursAgo = new Date(now.getTime() - 1 * 60 * 60 * 1000); // 1 hours ago
 
-  return createdAt < twelveHoursAgo;
+  return createdAt < oneHoursAgo;
 };
 
 export const createLinkSession = async (userId: number) => {

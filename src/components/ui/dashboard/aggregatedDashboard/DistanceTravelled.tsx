@@ -1,9 +1,9 @@
 import Card from "@/components/ui/commons/Card";
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl";
 import DistanceTravelledChart from "./DistanceTravelledChart";
 
 const DistanceTravelled = () => {
-  const t  = useTranslations();
+  // const t = useTranslations();
   return (
     <Card>
       <Card.Body>
@@ -16,34 +16,32 @@ const DistanceTravelled = () => {
         <div className="flex justify-between">
           <div className="flex flex-col justify-evenly">
             <div className="mb-2">
-              <Card.Description>{t('Avg Daily Km Driven')}</Card.Description>
-              <Card.Description>{t('78 km')}</Card.Description>
+              <Card.Description>Avg Daily Km Driven</Card.Description>
+              <Card.Description>78 km</Card.Description>
             </div>
             <div>
-              <Card.Description>{t('Temperature Low/High')}</Card.Description>
-              <Card.Description>{t('28\u00B0C / 34\u00B0C')}</Card.Description>
+              <Card.Description>Temperature Low/High</Card.Description>
+              <Card.Description>{`28\u00B0C / 34\u00B0C`}</Card.Description>
             </div>
           </div>
           <div className="flex flex-col justify-evenly">
             <div className="mb-2">
-              <Card.Description>{t('SOC Range')}</Card.Description>
-              <Card.Description>{t('30% - 95%')}</Card.Description>
+              <Card.Description>SOC Range</Card.Description>
+              <Card.Description>30% - 95%</Card.Description>
             </div>
             <div>
-              <Card.Description>{t('Range Observed Min/Max')}</Card.Description>
-              <Card.Description>{t('87 km / 110 km')}</Card.Description>
+              <Card.Description>Range Observed Min/Max</Card.Description>
+              <Card.Description>87 km / 110 km</Card.Description>
             </div>
           </div>
           <div className="flex flex-col justify-evenly">
             <div className="mb-2">
-              <Card.Description>{t('Real Range Observed')}</Card.Description>
-              <Card.Description>{t('90 km')}</Card.Description>
+              <Card.Description>Real Range Observed</Card.Description>
+              <Card.Description>90 km</Card.Description>
             </div>
             <div>
-              <Card.Description>
-                {t('Observed vs EPA/WLTP Provided')}
-              </Card.Description>
-              <Card.Description>{t('90 km / 135 km')}</Card.Description>
+              <Card.Description>Observed vs EPA/WLTP Provided</Card.Description>
+              <Card.Description>90 km / 135 km</Card.Description>
             </div>
           </div>
         </div>
