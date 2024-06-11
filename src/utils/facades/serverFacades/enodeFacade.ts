@@ -225,14 +225,14 @@ export const runWebhook = async () => {
     if (
       webhookList.data.length === 1 &&
       webhookList.data[0].isActive === true &&
-      webhookList.data[0].url === `${process.env.NGROK_PUBLIC_URL}/en/api/enode`
+      webhookList.data[0].url === `${process.env.NEXT_PUBLIC_URL}/en/api/enode`
     ) {
       return webhookList;
     } else if (webhookList.data.length === 0) {
       const responseData = await createWebHook();
       console.log("response of runWebHook() function: \n", responseData);
     } else if (
-      webhookList.data[0].url !== `${process.env.NGROK_PUBLIC_URL}/en/api/enode`
+      webhookList.data[0].url !== `${process.env.NEXT_PUBLIC_URL}/en/api/enode`
     ) {
       await updateWebhook(webhookList.data[0].id);
     } else if (webhookList.data[0].isActive === false) {
@@ -256,7 +256,7 @@ export const createWebHook = async () => {
     const accessToken = await getEnodeAccessToken();
     const data = {
       secret: ENODE_WEBHOOK_SECRET,
-      url: `${process.env.NGROK_PUBLIC_URL}/en/api/enode`,
+      url: `${process.env.NEXT_PUBLIC_URL}/en/api/enode`,
       apiVersion: "2024-01-01",
       events: ["*"],
     };
@@ -291,7 +291,7 @@ export const updateWebhook = async (id) => {
 
     const data = {
       secret: ENODE_WEBHOOK_SECRET,
-      url: `${process.env.NGROK_PUBLIC_URL}/en/api/enode`,
+      url: `${process.env.NEXT_PUBLIC_URL}/en/api/enode`,
       apiVersion: "2024-01-01",
       events: ["*"],
     };
