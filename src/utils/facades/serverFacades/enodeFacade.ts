@@ -383,8 +383,8 @@ export const handleWebhook = async (req: Request) => {
     const events = body;
 
     // Process webhook payload
-    events.forEach((event: any) => {
-      handleEvent(event);
+    events.forEach(async (event: any) => {
+      await handleEvent(event);
     });
   } catch (error) {
     console.error("Error handling webhook:", error);
