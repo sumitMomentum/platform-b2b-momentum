@@ -162,7 +162,7 @@ export const createLinkSession = async (userId: number) => {
         "vehicle:control:charging",
       ],
       language: "en-US",
-      redirectUri: `${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/en/home/vehicles`,
+      redirectUri: `https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/en/home/vehicles`,
     };
 
     // Make the API call to create the Link session
