@@ -475,6 +475,26 @@ model VehicleDashboardData {
   remainingUsefulLife   Int // Remaining useful life in cycle
 }
 
+model Car {
+  id                  Int     @id @default(autoincrement())
+  brand               String
+  model               String
+  year                String
+  type                String
+  integration_status  String
+  activation_required String?
+  regions             String
+  reliability         String
+  capabilities        String
+  information         String
+  charge_state        String
+  location            String
+  start_stop_commands String
+  smart_charging      String
+  scheduling          String
+  statistics          String
+}
+
 // model AggregatedDashboard {
 //   id           Int @id
 //   active       Int

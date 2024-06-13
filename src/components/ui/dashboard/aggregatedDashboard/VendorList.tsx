@@ -26,7 +26,7 @@ const VendorList = () => {
         await getVendors();
         setShowDeleteModal(false);
         setSelectedVendor(null);
-        setTimeout(() => {}, 2000);
+        setTimeout(() => {}, 5000);
         window.location.reload();
       } catch (error) {
         console.error("Failed to delete vendor", error);

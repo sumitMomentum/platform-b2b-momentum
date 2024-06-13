@@ -12,14 +12,11 @@ import { getUserDB } from "@/actions/admin/userModule/get-user-DB";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
-import InfoCard from "@/components/ui/dashboard/InfoCard";
-import { LinkIcon } from "@heroicons/react/24/outline";
 import AllVehicle from "@/components/ui/dashboard/aggregatedDashboard/AllVehicle";
 import VehicleStatus from "@/components/ui/dashboard/aggregatedDashboard/VehicleStatus";
 import Condition from "@/components/ui/dashboard/aggregatedDashboard/Condition";
 import DistanceTravelled from "@/components/ui/dashboard/aggregatedDashboard/DistanceTravelled";
 import BatteryHealth from "@/components/ui/dashboard/aggregatedDashboard/BatteryHealth";
-import AddVehicle from "@/components/ui/dashboard/AddVehicle";
 import { createEnodeWebhook } from "@/actions/admin/dashboardModule/create-enode-webhook";
 
 export const metadata: Metadata = {

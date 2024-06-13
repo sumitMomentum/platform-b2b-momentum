@@ -3,11 +3,6 @@
 import prisma from "@/lib/db";
 import crypto from "crypto";
 
-let ENODE_WEBHOOK_SECRET =
-  "24rwetfwertvwcedrterw3456eb5ur5yfw3d4rq456be567wc345tew45xtw45wx34q3";
-const WEBHOOK_SECRET =
-  "24rwetfwertvwcedrterw3456eb5ur5yfw3d4rq456be567wc345tew45xtw45wx34q3";
-
 export const generateEnodeToken = async () => {
   let accessToken = await getEnodeAccessToken();
   return accessToken;
@@ -245,7 +240,7 @@ export const runWebhook = async () => {
     console.error(
       "Error in setWebhook \n",
       error.message,
-      ENODE_WEBHOOK_SECRET
+      process.env.ENODE_WEBHOOK_SECRET
     );
     // throw new Error("Internal Server Error");
   }
@@ -255,7 +250,7 @@ export const createWebHook = async () => {
   try {
     const accessToken = await getEnodeAccessToken();
     const data = {
-      secret: ENODE_WEBHOOK_SECRET,
+      secret: process.env.ENODE_WEBHOOK_SECRET,
       url: `${process.env.NEXT_PUBLIC_URL}/en/api/enode`,
       apiVersion: "2024-01-01",
       events: ["*"],
@@ -290,7 +285,7 @@ export const updateWebhook = async (id) => {
     const accessToken = await getEnodeAccessToken();
 
     const data = {
-      secret: ENODE_WEBHOOK_SECRET,
+      secret: process.env.ENODE_WEBHOOK_SECRET,
       url: `${process.env.NEXT_PUBLIC_URL}/en/api/enode`,
       apiVersion: "2024-01-01",
       events: ["*"],
@@ -313,7 +308,7 @@ export const updateWebhook = async (id) => {
       console.log(
         "Webhook updated successfully",
         responseData,
-        ENODE_WEBHOOK_SECRET
+        process.env.ENODE_WEBHOOK_SECRET
       );
       console.log("webhookId", id);
       return responseData;
@@ -364,12 +359,12 @@ export const handleWebhook = async (req: Request) => {
     console.log("signature", signature);
     const body = await new Response(req.body).json();
     console.log("req.body", body);
-    console.log("webhook secret", WEBHOOK_SECRET);
+    console.log("webhook secret", process.env.ENODE_WEBHOOK_SECRET);
 
     const isValidSignature = await verifySignature(
       body,
       signature,
-      WEBHOOK_SECRET
+      process.env.ENODE_WEBHOOK_SECRET
     );
 
     console.log("isValidSignature", isValidSignature);
