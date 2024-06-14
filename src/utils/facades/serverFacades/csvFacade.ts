@@ -29,6 +29,7 @@ export const getSignedUploadUrl = async (fileName: string, type: string) => {
   return getSignedUrl(s3Client, command);
 };
 
+
 export const getSignedDownloadUrl = async (filename: string) => {
   const S3key = `uploads/${filename}`;
   const command = new GetObjectCommand({
