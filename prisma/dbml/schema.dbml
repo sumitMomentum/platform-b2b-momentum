@@ -1,0 +1,668 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id Int [pk, increment]
+  externalId String [unique]
+  email String
+  name String
+  avatar String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  Amounts UserAmounts [not null]
+  UserSetting UserSetting [not null]
+  refer Referral [not null]
+  referredBy Referral [not null]
+  Notification Notification [not null]
+  Membership Membership [not null]
+  UserStatus UserStatus [not null]
+  UserNotes UserNotes [not null]
+  invoices Invoice [not null]
+  UserCapabilities UserCapabilities [not null]
+  SupportTicket SupportTicket [not null]
+  SupportTicketMessage SupportTicketMessage [not null]
+  StripeCustomer StripeCustomer [not null]
+  permissions Permission [not null]
+  AmountsMovements AdminMovementsAmounts [not null]
+  coupons Coupon [not null]
+  vehicles Vehicle [not null]
+}
+
+Table StripeCustomer {
+  id Int [pk, increment]
+  customerId String [unique, not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user User [not null]
+  userId Int [not null]
+}
+
+Table Invoice {
+  id Int [pk, increment]
+  type InvoiceModelType [not null, default: 'MEMBERSHIP']
+  membershipId Int
+  serviceId Int
+  status InvoiceStatus [not null, default: 'PENDING']
+  userId Int
+  currencyId Int [not null, default: 1]
+  userCustomerExternalId String
+  gateway String
+  gatewayId String
+  details String
+  invoiceUrl String
+  invoicePdfUrl String
+  subscriptionExternalId String
+  paidAt DateTime
+  notifiedAt DateTime
+  dueAt DateTime
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user User
+  Currency AdminCurrencies [not null]
+  Items InvoiceItem [not null]
+  coupons Coupon [not null]
+}
+
+Table Coupon {
+  id Int [pk, increment]
+  userId Int
+  name String [not null]
+  code String [unique, not null]
+  amountOff Float
+  duration CouponDuration [not null, default: 'FOREVER']
+  durationInMonths Int
+  maxRedemptions Int
+  percentOff Float
+  status String [not null, default: 'ACTIVE']
+  user User
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  AdminCurrencies AdminCurrencies
+  adminCurrenciesId Int
+  settings CouponSettings [not null]
+  invoices Invoice [not null]
+}
+
+Table CouponSettings {
+  id Int [pk, increment]
+  couponId Int [not null]
+  coupon Coupon [not null]
+  name String [not null]
+  value String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table PaymentMethod {
+  id Int [pk, increment]
+  name String [not null]
+  description String
+  image String
+  currencies String
+  status String [not null, default: 'ACTIVE']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table InvoiceItem {
+  id Int [pk, increment]
+  invoiceId Int [not null]
+  name String [not null]
+  description String
+  modelType String
+  modelId Int
+  pricingBdId Int
+  pricingId String
+  images String
+  quantity Int [not null]
+  price Float [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  Invoice Invoice [not null]
+}
+
+Table UserStatus {
+  id Int [pk, increment]
+  name String [not null]
+  description String
+  userId Int [not null]
+  user User [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  statusUntil DateTime [not null]
+}
+
+Table Membership {
+  id Int [pk, increment]
+  userId Int [unique, not null]
+  plan Plan [not null]
+  planId Int [not null]
+  pricingId Int
+  pricing Pricing
+  currencyId Int [default: 1]
+  currency AdminCurrencies
+  startDate DateTime [not null]
+  endDateFreeTrial DateTime
+  endDate DateTime [not null]
+  createdAt DateTime [default: `now()`, not null]
+  user User [not null]
+}
+
+Table Plan {
+  id Int [pk, increment]
+  name String [not null]
+  stripeProductId String
+  freeTrialDays Int
+  status String [not null, default: 'ACTIVE']
+  description String
+  Membership Membership [not null]
+  PlanCapabilities PlanCapabilities [not null]
+  Permission Permission [not null]
+  pricing Pricing [not null]
+}
+
+Table Pricing {
+  id Int [pk, increment]
+  frequency frequencyType [not null, default: 'YEARLY']
+  status String [not null, default: 'ACTIVE']
+  price Float [not null]
+  oldPrice Float
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  Plan Plan
+  planId Int
+  serviceId Int
+  settings PricingSetting [not null]
+  Membership Membership [not null]
+}
+
+Table PricingSetting {
+  id Int [pk, increment]
+  settingName String [not null]
+  settingValue String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  Pricing Pricing
+  pricingId Int
+}
+
+Table Module {
+  id Int [pk, increment]
+  name String [not null]
+  scope ScopeType [not null, default: 'SUPERADMIN']
+  status Status [not null, default: 'ACTIVE']
+  description String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  Permission Permission [not null]
+}
+
+Table Permission {
+  id Int [pk, increment]
+  name String [not null]
+  description String
+  users User [not null]
+  Module Module [not null]
+  Plan Plan [not null]
+}
+
+Table AdminKpi {
+  id Int [pk, increment]
+  name String [not null]
+  type String [not null]
+  value Float [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Referral {
+  id Int [pk, increment]
+  refer User [not null]
+  referId Int [not null]
+  referred User [not null]
+  referredId Int [not null]
+}
+
+Table Capabilitie {
+  id Int [pk, increment]
+  name String [not null]
+  title String
+  description String
+  type String [not null, default: 'LIMIT']
+  PlanCapabilities PlanCapabilities [not null]
+  UserCapabilities UserCapabilities [not null]
+}
+
+Table PlanCapabilities {
+  id Int [pk, increment]
+  capabilitieId Int [not null]
+  planId Int [not null]
+  count Int [not null]
+  name String
+  plan Plan [not null]
+  capabilitie Capabilitie [not null]
+}
+
+Table UserCapabilities {
+  id Int [pk, increment]
+  capabilitieId Int [not null]
+  userId Int [not null]
+  count Int [not null]
+  user User [not null]
+  capabilitie Capabilitie [not null]
+}
+
+Table UserSetting {
+  id Int [pk, increment]
+  user User [not null]
+  userId Int [not null]
+  settingName String [not null]
+  settingValue String [not null]
+}
+
+Table SuperAdminSetting {
+  id Int [pk, increment]
+  settingName String [not null]
+  settingValue String [not null]
+}
+
+Table CronJobs {
+  id Int [pk, increment]
+  name String [not null]
+  error String
+  excuteAt DateTime [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table UserNotes {
+  id Int [pk, increment]
+  user User [not null]
+  scope UserNoteScopeType [not null, default: 'PLATFORM']
+  userId Int [not null]
+  noteName String [not null]
+  noteValue String [not null]
+}
+
+Table Notification {
+  id Int [pk, increment]
+  userId Int [not null]
+  content String [not null]
+  image String [not null]
+  viewed Boolean [not null, default: false]
+  type NotificationType [not null]
+  createdAt DateTime [default: `now()`, not null]
+  user User [not null]
+}
+
+Table AdminCurrencies {
+  id Int [pk, increment]
+  name String [not null]
+  main Int [not null, default: 0]
+  code String [not null]
+  rate Float [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  UserAmounts UserAmounts [not null]
+  AdminMovementsAmounts AdminMovementsAmounts [not null]
+  invoices Invoice [not null]
+  Membership Membership [not null]
+  Coupon Coupon [not null]
+}
+
+Table UserAmounts {
+  id Int [pk, increment]
+  user User [not null]
+  userId Int [not null]
+  Currency AdminCurrencies [not null]
+  currencyId Int [not null, default: 1]
+  amount Float [not null, default: 0]
+  amount_pending Float [not null, default: 0]
+  amount_stopad Float [not null, default: 0]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table AdminMovementsAmounts {
+  id BigInt [pk, increment]
+  userId Int
+  user User
+  details String [not null]
+  Currency AdminCurrencies [not null]
+  currencyId Int [not null]
+  amount Float [not null]
+  type MovementAmountType [not null, default: 'CREDIT']
+  status Status [not null, default: 'COMPLETED']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table SupportTicket {
+  id Int [pk, increment]
+  subject String [not null]
+  departament SupportDepartamentType [not null, default: 'SALES']
+  status SupportTicketStatusType [not null, default: 'OPEN']
+  userId Int
+  user User
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  SupportTicketMessage SupportTicketMessage [not null]
+}
+
+Table SupportTicketMessage {
+  id Int [pk, increment]
+  ticketId Int [not null]
+  userId Int
+  ticket SupportTicket [not null]
+  user User
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  SupportTicketMessageContent SupportTicketMessageContent [not null]
+}
+
+Table SupportTicketMessageContent {
+  id Int [pk, increment]
+  messageId Int [not null]
+  type PublicationContentType [not null, default: 'TEXT']
+  ticket SupportTicketMessage [not null]
+  content String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table EnodeToken {
+  id Int [pk, increment]
+  token String [unique, not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+}
+
+Table Vehicle {
+  id String [pk]
+  make String [not null]
+  model String [not null]
+  year Int [not null]
+  vin String
+  odometer Float
+  batteryCapacity Float
+  ownerId Int [not null]
+  owner User [not null]
+  dateOfConnection DateTime [not null]
+  soc Float
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  VehicleDashboardData VehicleDashboardData [not null]
+}
+
+Table VehicleDashboardData {
+  id Int [pk, increment]
+  vehicleId String [unique]
+  vehicle Vehicle
+  location String [not null, default: 'Banglore']
+  datapointsCollected Int [not null, default: 1410]
+  totalEnergyConsumed Float [not null]
+  averageSoC Float [not null]
+  connectorType String [not null]
+  totalChargingSessions Int [not null]
+  averageChargingRate Float [not null]
+  avgDailyKmDriven Int [not null]
+  temperatureLow Int [not null]
+  temperatureHigh Int [not null]
+  socRangeMin Int [not null]
+  socRangeMax Int [not null]
+  rangeObservedMin Int [not null]
+  rangeObservedMax Int [not null]
+  realRangeObserved Int [not null]
+  epaProvidedRange Int [not null]
+  batteryHealthSoH Float [not null]
+  estimatedDegradation Float [not null]
+  batteryChemistry String [not null, default: 'Li-ion']
+  endOfLife DateTime [not null]
+  remainingUsefulLife Int [not null]
+}
+
+Table Car {
+  id Int [pk, increment]
+  brand String [not null]
+  model String [not null]
+  year String [not null]
+  type String [not null]
+  integration_status String [not null]
+  activation_required String
+  regions String [not null]
+  reliability String [not null]
+  capabilities String [not null]
+  information String [not null]
+  charge_state String [not null]
+  location String [not null]
+  start_stop_commands String [not null]
+  smart_charging String [not null]
+  scheduling String [not null]
+  statistics String [not null]
+}
+
+Table PermissionToUser {
+  permissionsId Int [ref: > Permission.id]
+  usersId Int [ref: > User.id]
+}
+
+Table CouponToInvoice {
+  couponsId Int [ref: > Coupon.id]
+  invoicesId Int [ref: > Invoice.id]
+}
+
+Table PermissionToPlan {
+  permissionId Int [ref: > Permission.id]
+  planId Int [ref: > Plan.id]
+}
+
+Table ModuleToPermission {
+  permissionId Int [ref: > Permission.id]
+  moduleId Int [ref: > Module.id]
+}
+
+Enum CouponDuration {
+  FOREVER
+  ONCE
+  REPEATING
+}
+
+Enum SupportDepartamentType {
+  BILLING
+  SALES
+  SUPPORT
+}
+
+Enum SupportTicketStatusType {
+  OPEN
+  UNDER_REVIEW
+  AWAITING_RESPONSE
+  CLOSED
+  REOPENED
+  CANCELED
+}
+
+Enum MarketingEmailListType {
+  PLATFORM
+  CHURCH
+  MINISTRY
+  BUSINESS
+  ARTIST
+  OTHER
+}
+
+Enum MovementAmountType {
+  DEBIT
+  CREDIT
+}
+
+Enum InvoiceModelType {
+  MEMBERSHIP
+  SERVICE
+  DEPOSIT
+}
+
+Enum UserNoteScopeType {
+  PERSON
+  CHURCH
+  MINISTRY
+  BUSINESS
+  ARTIST
+  PLATFORM
+}
+
+Enum NotificationType {
+  MESSAGE
+  MENTION
+  FOLLOW
+  ALERT
+  ACCOUNT
+  PUBLICATION
+}
+
+Enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+  DELETED
+  PENDING
+  INACTIVE
+}
+
+Enum PublicationContentType {
+  TEXT
+  VIDEO
+  GALLERY
+  LINK
+  CUSTOM
+  DISCUSSION
+}
+
+Enum PublicationType {
+  STATUS
+  VIDEO
+  ARTICLE
+  EVENT
+  BIBLE
+  NOTICE
+  ORATION
+  ADS
+  DISCUSSION
+}
+
+Enum PublicationFunctionType {
+  POST
+  COMMENT
+}
+
+Enum Status {
+  ACTIVE
+  INACTIVE
+  PENDING
+  COMPLETED
+  DRAFT
+}
+
+Enum InvoiceStatus {
+  DRAFT
+  PENDING
+  PAID
+  EXPIRED
+}
+
+Enum ScopeType {
+  USER
+  CLIENT
+  ADMIN
+  SUPERADMIN
+}
+
+Enum frequencyType {
+  TRIENNIALLY
+  BIANNUAL
+  QUARTERLY
+  YEARLY
+  SEMIANNUAL
+  MONTHLY
+  BIMONTHLY
+  WEEKLY
+  DAILY
+  LIFETIME
+}
+
+Enum ServiceType {
+  HOSTING
+  VPS
+  LICENSING
+  DOMAIN
+  DEVELOPMENT
+  DESIGN
+  MARKETING
+  CONSULTING
+}
+
+Ref: StripeCustomer.userId > User.id [delete: Cascade]
+
+Ref: Invoice.userId > User.id [delete: Cascade]
+
+Ref: Invoice.currencyId > AdminCurrencies.id
+
+Ref: Coupon.userId > User.id [delete: Cascade]
+
+Ref: Coupon.adminCurrenciesId > AdminCurrencies.id
+
+Ref: CouponSettings.couponId > Coupon.id [delete: Cascade]
+
+Ref: InvoiceItem.invoiceId > Invoice.id [delete: Cascade]
+
+Ref: UserStatus.userId > User.id [delete: Cascade]
+
+Ref: Membership.planId > Plan.id [delete: Cascade]
+
+Ref: Membership.pricingId > Pricing.id [delete: Cascade]
+
+Ref: Membership.currencyId > AdminCurrencies.id
+
+Ref: Membership.userId > User.id [delete: Cascade]
+
+Ref: Pricing.planId > Plan.id [delete: Cascade]
+
+Ref: PricingSetting.pricingId > Pricing.id
+
+Ref: Referral.referId > User.id [delete: Cascade]
+
+Ref: Referral.referredId > User.id [delete: Cascade]
+
+Ref: PlanCapabilities.planId > Plan.id [delete: Cascade]
+
+Ref: PlanCapabilities.capabilitieId > Capabilitie.id [delete: Cascade]
+
+Ref: UserCapabilities.userId > User.id [delete: Cascade]
+
+Ref: UserCapabilities.capabilitieId > Capabilitie.id [delete: Cascade]
+
+Ref: UserSetting.userId > User.id [delete: Cascade]
+
+Ref: UserNotes.userId > User.id [delete: Cascade]
+
+Ref: Notification.userId > User.id [delete: Cascade]
+
+Ref: UserAmounts.userId > User.id [delete: Cascade]
+
+Ref: UserAmounts.currencyId > AdminCurrencies.id
+
+Ref: AdminMovementsAmounts.userId > User.id [delete: Cascade]
+
+Ref: AdminMovementsAmounts.currencyId > AdminCurrencies.id
+
+Ref: SupportTicket.userId > User.id [delete: Cascade]
+
+Ref: SupportTicketMessage.ticketId > SupportTicket.id [delete: Cascade]
+
+Ref: SupportTicketMessage.userId > User.id [delete: Cascade]
+
+Ref: SupportTicketMessageContent.messageId > SupportTicketMessage.id [delete: Cascade]
+
+Ref: Vehicle.ownerId > User.id
+
+Ref: VehicleDashboardData.vehicleId > Vehicle.id
