@@ -74,9 +74,13 @@ const VehiclePage = () => {
     formData.append("file", selectedFile);
 
     try {
+      // const apiEndpoint = isUpdate
+      //   ? "https://demoapi-9d35.onrender.com/api/vehicles/update/excel" // Update endpoint
+      //   : "https://demoapi-9d35.onrender.com/api/vehicles/onboard/excel"; // Onboarding endpoint
+
       const apiEndpoint = isUpdate
-        ? "https://demoapi-9d35.onrender.com/api/vehicles/update/excel" // Update endpoint
-        : "https://demoapi-9d35.onrender.com/api/vehicles/onboard/excel"; // Onboarding endpoint
+        ? "/api/charging/update" // New Update endpoint for charging
+        : "/api/charging/onboard"; // New Onboarding endpoint for charging
 
       const response = await fetch(apiEndpoint, {
         method: "POST",

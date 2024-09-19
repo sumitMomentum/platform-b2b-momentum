@@ -1,7 +1,7 @@
 export const getVehicleActions = async () => {
   try {
     const response = await fetch(
-      "https://demoapi-9d35.onrender.com/api/vehicles/allVehiclesStep3"
+      "/api/vehicleStep/step3"
     );
     if (!response.ok) {
       throw new Error(

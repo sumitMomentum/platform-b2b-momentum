@@ -1,0 +1,61 @@
+const express = require("express");
+const router = express.Router();
+const ChargerTypes = require("../models/chargerTypes"); // Assuming this is ChargerTypes
+const ChargerMaster = require("../models/chargerMaster");
+const VehiclesChargingDetails = require("../models/vehiclesChargingDetails");
+
+// Get all charger details (from ChargerTypes)
+router.get("/allChargerTypes", async (req, res) => {
+  try {
+    const chargers = await ChargerTypes.find();
+
+    if (!chargers.length) {
+      return res.status(404).json({ error: "No chargers found" });
+    }
+
+    res.json(chargers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Get all charger master data
+router.get("/allChargerMaster", async (req, res) => {
+  try {
+    const chargerMasters = await ChargerMaster.find();
+
+    if (!chargerMasters.length) {
+      return res.status(404).json({ error: "No charger master data found" });
+    }
+
+    res.json(chargerMasters);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Get all vehicle charging details
+router.get("/allVehicleChargingDetails", async (req, res) => {
+  try {
+    const chargingDetails = await VehiclesChargingDetails.find();
+
+    if (!chargingDetails.length) {
+      return res
+        .status(404)
+        .json({ error: "No vehicle charging details found" });
+    }
+
+    res.json(chargingDetails);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+module.exports = router;
+const { error } = require("console");
+const { get } = require("http");
+const { Router } = require("next/router");
+const { json } = require("stream/consumers");

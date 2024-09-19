@@ -6,11 +6,18 @@ export const getVehicleDashboardData = async (vehicleId: string) => {
   const userClerk = auth();
   if (!userClerk) throw new Error("client clerk not found");
 
+  // const response2 = await fetch(
+  //   `https://demoapi-9d35.onrender.com/api/vehicles?vehicleId=${vehicleId}&step=details`
+  // );
+  // const response = await fetch(
+  //   `https://demoapi-9d35.onrender.com/api/vehicles?vehicleId=${vehicleId}&step=2`
+  // );
+
   const response2 = await fetch(
-    `https://demoapi-9d35.onrender.com/api/vehicles?vehicleId=${vehicleId}&step=details`
+    `/api/vehicleStep/?vehicleId=${vehicleId}&step=details`
   );
   const response = await fetch(
-    `https://demoapi-9d35.onrender.com/api/vehicles?vehicleId=${vehicleId}&step=2`
+    `/api/vehicleStep/?vehicleId=${vehicleId}&step=2`
   );
 
   if (!response.ok || !response2.ok) {

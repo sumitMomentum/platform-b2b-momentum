@@ -1,0 +1,192 @@
+import { NextResponse } from 'next/server';
+import Step1 from '@/models/step1';
+import Step2 from '@/models/step2';
+import Step3 from '@/models/step3';
+import Step7 from '@/models/step7';
+import VehicleDetails from '@/models/vehicleDetails';
+import xlsx from 'xlsx';
+import { connectToDatabase } from '@/lib/mongodb';
+
+// Helper function to read Excel and trim column titles
+const parseExcelFile = (buffer) => {
+  const workbook = xlsx.read(buffer);
+  const sheetName = workbook.SheetNames[0]; // Assuming you want the first sheet
+  const worksheet = workbook.Sheets[sheetName];
+  const jsonData = xlsx.utils.sheet_to_json(worksheet);
+
+  // Trim leading/trailing spaces from column titles
+  return jsonData.map((row) => {
+    const trimmedRow = {};
+    for (const key in row) {
+      const trimmedKey = key.trim();
+      trimmedRow[trimmedKey] = row[key];
+    }
+    return trimmedRow;
+  });
+};
+
+// Route 1: Fetch data for a specific vehicle and step
+export async function GET(req) {
+  await connectToDatabase();
+  const { vehicleId, step } = req.nextUrl.searchParams;
+
+  if (!vehicleId || !step) {
+    return NextResponse.json({ error: 'Missing vehicleId or step query parameters' }, { status: 400 });
+  }
+
+  let Model;
+  switch (step) {
+    case '1':
+      Model = Step1;
+      break;
+    case '2':
+      Model = Step2;
+      break;
+    case '3':
+      Model = Step3;
+      break;
+    case '7':
+      Model = Step7;
+      break;
+    case 'details':
+      Model = VehicleDetails;
+      break;
+    default:
+      return NextResponse.json({ error: 'Invalid step ID' }, { status: 400 });
+  }
+
+  const data = await Model.find({ vehicleId });
+  if (!data.length) {
+    return NextResponse.json({ error: 'No data found for this vehicle and step' }, { status: 404 });
+  }
+
+  return NextResponse.json(data);
+}
+
+// Route 2: Fetch all vehicles from Step2
+export async function GET(req) {
+  await connectToDatabase();
+  try {
+    const vehicles = await Step2.find();
+    if (!vehicles.length) {
+      return NextResponse.json({ error: 'No vehicles found in Step2' }, { status: 404 });
+    }
+    return NextResponse.json(vehicles);
+  } catch (error) {
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}
+
+// Route 3: Fetch all vehicles from Step3 with a 5 document limit
+export async function GET(req) {
+  await connectToDatabase();
+  try {
+    const allVehicleIds = await Step2.distinct('vehicleId');
+    const vehicles = await Step3.aggregate([
+      { $match: { vehicleId: { $in: allVehicleIds } } },
+      { $group: { _id: '$vehicleId', data: { $push: '$$ROOT' } } },
+      { $project: { _id: 0, vehicleId: '$_id', data: { $slice: ['$data', 5] } } },
+    ]);
+
+    if (!vehicles.length) {
+      return NextResponse.json({ error: 'No vehicles found in Step3' }, { status: 404 });
+    }
+
+    const flattenedVehicles = vehicles.flatMap((v) => v.data);
+    flattenedVehicles.sort((a, b) => new Date(b.ClosedDateTime) - new Date(a.ClosedDateTime));
+
+    return NextResponse.json(flattenedVehicles);
+  } catch (error) {
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}
+
+// Route 4: File Upload (Onboarding via Excel)
+export async function POST(req) {
+  await connectToDatabase();
+
+  const formData = await req.formData();
+  const file = formData.get('file');
+
+  if (!file) {
+    return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
+  }
+
+  const buffer = await file.arrayBuffer();
+  const parsedData = parseExcelFile(Buffer.from(buffer));
+
+  const validationErrors = [];
+  for (const vehicleData of parsedData) {
+    const newVehicle = new VehicleDetails(vehicleData);
+    try {
+      await newVehicle.validate();
+    } catch (validationError) {
+      validationErrors.push({
+        row: parsedData.indexOf(vehicleData) + 1,
+        errors: validationError.errors,
+      });
+    }
+  }
+
+  if (validationErrors.length > 0) {
+    return NextResponse.json({ message: 'Validation errors found', errors: validationErrors }, { status: 400 });
+  }
+
+  await VehicleDetails.insertMany(parsedData);
+  return NextResponse.json({ message: 'Vehicles onboarded successfully' });
+}
+
+// Route 5: File Upload (Update via Excel)
+export async function POST(req) {
+  await connectToDatabase();
+
+  const formData = await req.formData();
+  const file = formData.get('file');
+
+  if (!file) {
+    return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
+  }
+
+  const buffer = await file.arrayBuffer();
+  const parsedData = parseExcelFile(Buffer.from(buffer));
+
+  const validationErrors = [];
+  for (const vehicleData of parsedData) {
+    const vehicleId = vehicleData.vehicleId;
+    delete vehicleData.vehicleId;
+
+    const existingVehicle = await VehicleDetails.findOne({ vehicleId });
+    if (!existingVehicle) {
+      validationErrors.push({ row: parsedData.indexOf(vehicleData) + 1, errors: { vehicleId: 'Vehicle not found' } });
+      continue;
+    }
+
+    const updateData = {};
+    for (const key in vehicleData) {
+      if (vehicleData[key]) updateData[key] = vehicleData[key];
+    }
+
+    const tempVehicle = new VehicleDetails({ ...existingVehicle.toObject(), ...updateData });
+    try {
+      await tempVehicle.validate();
+    } catch (validationError) {
+      validationErrors.push({ row: parsedData.indexOf(vehicleData) + 1, errors: validationError.errors });
+      continue;
+    }
+
+    await VehicleDetails.updateOne({ vehicleId }, { $set: vehicleData });
+  }
+
+  if (validationErrors.length > 0) {
+    return NextResponse.json({ message: 'Validation errors found', errors: validationErrors }, { status: 400 });
+  }
+
+  return NextResponse.json({ message: 'Vehicles updated successfully' });
+}
+import utils from '@mui/material/generateUtilityClass';
+import { data } from 'autoprefixer';
+import { error } from 'console';
+import { read } from 'fs';
+import { get } from 'http';
+import { json, arrayBuffer } from 'stream/consumers';
+import { map, from } from 'svix/dist/openapi/rxjsStub';

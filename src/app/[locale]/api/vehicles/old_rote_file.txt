@@ -1,0 +1,118 @@
+src/app/api/vehicles/route.jsconst express = require("express");
+const multer = require("multer");
+const xlsx = require("xlsx");
+const VehicleDetails = require("../models/vehicleDetails");
+
+const router = express.Router();
+const upload = multer();
+
+// Onboarding Route
+router.post("onboard"), async (req, res) => {
+  try {
+    const workbook = xlsx.read(req.file.buffer);
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+    const jsonData = xlsx.utils.sheet_to_json(worksheet);
+
+    // Validate data using VehicleDetails model
+    const validationErrors = [];
+    for (const vehicleData of jsonData) {
+      const newVehicle = new VehicleDetails(vehicleData);
+      try {
+        await newVehicle.validate();
+      } catch (validationError) {
+        validationErrors.push({
+          row: jsonData.indexOf(vehicleData) + 1, // Excel row number (1-based)
+          errors: validationError.errors,
+        });
+      }
+    }
+
+    if (validationErrors.length > 0) {
+      return res.status(400).json({
+        message: "Validation errors found in the uploaded data",
+        errors: validationErrors,
+      });
+    }
+
+    // Save validated data to MongoDB
+    const vehicles = await VehicleDetails.insertMany(jsonData);
+
+    res.status(200).json({
+      message: "Vehicles onboarded successfully",
+      vehicles,
+    });
+  } catch (error) {
+    console.error("Error onboarding vehicles:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+// Update Route
+router.post("/update/excel", upload.single("file"), async (req, res) => {
+  try {
+    const workbook = xlsx.read(req.file.buffer);
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+    const jsonData = xlsx.utils.sheet_to_json(worksheet);
+
+    const validationErrors = []; // To collect validation errors
+
+    for (const vehicleData of jsonData) {
+      const vehicleId = vehicleData["vehicleId"];
+      delete vehicleData["vehicleId"];
+
+      // 1. Validate that the vehicle ID exists
+      const existingVehicle = await VehicleDetails.findOne({ vehicleId });
+      if (!existingVehicle) {
+        validationErrors.push({
+          row: jsonData.indexOf(vehicleData) + 1,
+          errors: { vehicleId: "Vehicle not found" },
+        });
+        continue;
+      }
+
+      const updateData = {};
+      for (const key in vehicleData) {
+        if (vehicleData[key] !== undefined && vehicleData[key] !== null) {
+          updateData[key] = vehicleData[key];
+        }
+      }
+
+      const tempVehicle = new VehicleDetails({
+        ...existingVehicle.toObject(),
+        ...updateData,
+      });
+      try {
+        await tempVehicle.validate();
+      } catch (validationError) {
+        validationErrors.push({
+          row: jsonData.indexOf(vehicleData) + 1,
+          errors: validationError.errors,
+        });
+        continue;
+      }
+
+      // 3. Perform the update
+      await VehicleDetails.updateOne({ vehicleId }, { $set: vehicleData });
+
+      // Log the change (for audit trail)
+      // ...
+    }
+
+    if (validationErrors.length > 0) {
+      return res.status(400).json({
+        message: "Validation errors found in the uploaded data",
+        errors: validationErrors,
+      });
+    }
+
+    res.status(200).json({ message: "Vehicles updated successfully" });
+  } catch (error) {
+    console.error("Error updating vehicles:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+module.exports = router;
+

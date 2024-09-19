@@ -1,0 +1,297 @@
+const express = require("express");
+const router = express.Router();
+const Step1 = require("../models/step1");
+const Step2 = require("../models/step2");
+const Step3 = require("../models/step3");
+const multer = require("multer");
+// const Step4 = require("../models/step4");
+const Step7 = require("../models/step7");
+const VehicleDetails = require("../models/vehicleDetails");
+const xlsx = require("xlsx");
+const upload = multer();
+
+router.get("/", async (req, res) => {
+  const vehicleId = req.query.vehicleId; // Use req.query for query parameters
+  const stepID = req.query.step;
+
+  try {
+    if (!vehicleId || !stepID) {
+      return res
+        .status(400)
+        .json({ error: "Missing vehicleId or step query parameters" });
+    }
+
+    let data;
+    let Model;
+
+    switch (stepID) {
+      case "1":
+        Model = Step1;
+        break;
+      case "2":
+        Model = Step2;
+        break;
+      case "3":
+        Model = Step3;
+        break;
+      // case "4":
+      //   Model = Step4;
+      //   break;
+      case "7":
+        Model = Step7;
+        break;
+      case "details":
+        Model = vehicleDetails;
+        break;
+      default:
+        return res.status(400).json({ error: "Invalid step ID" });
+    }
+
+    data = await Model.find({ vehicleId }); // Use the dynamically selected model
+
+    if (!data.length) {
+      return res
+        .status(404)
+        .json({ error: "No data found for this vehicle and step" });
+    }
+
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.get("/allVehiclesStep2", async (req, res) => {
+  try {
+    const vehicles = await Step2.find();
+
+    if (!vehicles.length) {
+      return res.status(404).json({ error: "No vehicles found in Step2" });
+    }
+
+    res.json(vehicles);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.get("/allVehiclesStep3", async (req, res) => {
+  try {
+    // Get all unique vehicleIDs from Step2
+    const allVehicleIds = await Step2.distinct("vehicleId");
+
+    // Query Step3 for all the vehicles from Step2, limiting to 5 documents per vehicle
+    const vehicles = await Step3.aggregate([
+      { $match: { vehicleId: { $in: allVehicleIds } } },
+      { $group: { _id: "$vehicleId", data: { $push: "$$ROOT" } } },
+      {
+        $project: { _id: 0, vehicleId: "$_id", data: { $slice: ["$data", 5] } },
+      },
+    ]);
+
+    if (!vehicles.length) {
+      return res.status(404).json({ error: "No vehicles found in Step3" });
+    }
+
+    const flattenedVehicles = vehicles.flatMap((v) => v.data);
+
+    flattenedVehicles.sort((a, b) => b.ClosedDateTime - a.ClosedDateTime);
+
+    res.json(flattenedVehicles);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.get("/allVehiclesStep7", async (req, res) => {
+  try {
+    const vehicles = await Step7.find();
+
+    if (!vehicles.length) {
+      return res.status(404).json({ error: "No vehicles found in Step2" });
+    }
+
+    res.json(vehicles);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.get("/allVehicleDetails", async (req, res) => {
+  try {
+    const vehicles = await VehicleDetails.find();
+
+    if (!vehicles.length) {
+      return res
+        .status(404)
+        .json({ error: "No vehicles found in VehicleDetails" });
+    }
+
+    res.json(vehicles);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Onboarding Route
+router.post("/onboard/excel", upload.single("file"), async (req, res) => {
+  try {
+    // 1. Check if a file was uploaded
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    // 2. Read the Excel file
+    const workbook = xlsx.read(req.file.buffer);
+    const sheetName = workbook.SheetNames[0]; // Assuming you want the first sheet
+    const worksheet = workbook.Sheets[sheetName];
+    const jsonData = xlsx.utils.sheet_to_json(worksheet);
+
+    // 3. Trim leading/trailing spaces from column titles
+    const trimmedJsonData = jsonData.map((row) => {
+      const trimmedRow = {};
+      for (const key in row) {
+        const trimmedKey = key.trim();
+        trimmedRow[trimmedKey] = row[key];
+      }
+      return trimmedRow;
+    });
+
+    // 4. Validate data using VehicleDetails model
+    const validationErrors = [];
+    for (const vehicleData of trimmedJsonData) {
+      const newVehicle = new VehicleDetails(vehicleData);
+      try {
+        await newVehicle.validate();
+      } catch (validationError) {
+        validationErrors.push({
+          row: trimmedJsonData.indexOf(vehicleData) + 1, // Excel row number (1-based)
+          errors: validationError.errors,
+        });
+      }
+    }
+
+    // 5. Handle validation errors
+    if (validationErrors.length > 0) {
+      return res.status(400).json({
+        message: "Validation errors found in the uploaded data",
+        errors: validationErrors,
+      });
+    }
+
+    // 6. Save validated data to MongoDB
+    const vehicles = await VehicleDetails.insertMany(trimmedJsonData);
+
+    // 7. Send success response
+    res.status(200).json({
+      message: "Vehicles onboarded successfully",
+      vehicles,
+    });
+  } catch (error) {
+    // 8. Handle errors and send appropriate responses
+    console.error("Error onboarding vehicles:", error);
+    if (error instanceof multer.MulterError) {
+      res.status(400).json({ error: `File upload error: ${error.message}` });
+    } else if (error.name === "ValidationError") {
+      res
+        .status(400)
+        .json({ error: "Validation failed", details: error.errors });
+    } else {
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+});
+
+// Update Route
+router.post("/update/excel", upload.single("file"), async (req, res) => {
+  try {
+    // 1. Check if a file was uploaded
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    // 2. Read the Excel file
+    const workbook = xlsx.read(req.file.buffer);
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+    const jsonData = xlsx.utils.sheet_to_json(worksheet);
+
+    // 3. Trim leading/trailing spaces from column titles
+    const trimmedJsonData = jsonData.map((row) => {
+      const trimmedRow = {};
+      for (const key in row) {
+        const trimmedKey = key.trim();
+        trimmedRow[trimmedKey] = row[key];
+      }
+      return trimmedRow;
+    });
+
+    const validationErrors = [];
+
+    for (const vehicleData of trimmedJsonData) {
+      const vehicleId = vehicleData["vehicleId"];
+      delete vehicleData["vehicleId"];
+
+      // 1. Validate that the vehicle ID exists
+      const existingVehicle = await VehicleDetails.findOne({ vehicleId });
+      if (!existingVehicle) {
+        validationErrors.push({
+          row: trimmedJsonData.indexOf(vehicleData) + 1,
+          errors: { vehicleId: "Vehicle not found" },
+        });
+        continue;
+      }
+
+      // 2. Prepare data for partial update and validation
+      const updateData = {};
+      for (const key in vehicleData) {
+        if (vehicleData[key] !== undefined && vehicleData[key] !== null) {
+          updateData[key] = vehicleData[key];
+        }
+      }
+
+      // 3. Validate updated data against the schema
+      const tempVehicle = new VehicleDetails({
+        ...existingVehicle.toObject(),
+        ...updateData,
+      });
+      try {
+        await tempVehicle.validate();
+      } catch (validationError) {
+        validationErrors.push({
+          row: trimmedJsonData.indexOf(vehicleData) + 1,
+          errors: validationError.errors,
+        });
+        continue;
+      }
+
+      // 4. Perform the update
+      await VehicleDetails.updateOne({ vehicleId }, { $set: vehicleData });
+
+      // 5. Log the change (for audit trail)
+      // ... (Implement your audit trail logic here)
+    }
+
+    // 6. Handle validation errors
+    if (validationErrors.length > 0) {
+      return res.status(400).json({
+        message: "Validation errors found in the uploaded data",
+        errors: validationErrors,
+      });
+    }
+
+    // 7. Send success response
+    res.status(200).json({ message: "Vehicles updated successfully" });
+  } catch (error) {
+    // 8. Handle errors and send appropriate responses
+    console.error("Error updating vehicles:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+module.exports = router;
