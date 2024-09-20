@@ -74,6 +74,9 @@ const VehiclePage = () => {
     formData.append("file", selectedFile);
 
     try {
+      // const apiEndpoint = isUpdate
+      //   ? "http://localhost:3333/api/vehicles/update/excel" // Update endpoint
+      //   : "http://localhost:3333/api/vehicles/onboard/excel"; // Onboarding endpoint
       const apiEndpoint = isUpdate
         ? "https://demoapi-9d35.onrender.com/api/vehicles/update/excel" // Update endpoint
         : "https://demoapi-9d35.onrender.com/api/vehicles/onboard/excel"; // Onboarding endpoint

@@ -1,8 +1,9 @@
 export const getVehicleActions = async () => {
   try {
     const response = await fetch(
-      "https://demoapi-9d35.onrender.com/api/vehicles/allVehiclesStep3"
+      `${process.env.NEXT_BASE_URL}/api/vehicles/allVehiclesStep3`
     );
+  
     if (!response.ok) {
       throw new Error(
         `Error fetching step 3 data: ${response.status} ${response.statusText}`

@@ -1,7 +1,7 @@
 export const getAllChargerMasterData = async () => {
   try {
     const response = await fetch(
-      "https://demoapi-9d35.onrender.com/api/vehicles/charging/allChargerMaster"
+      `${process.env.NEXT_BASE_URL}/api/vehicles/charging/allChargerMaster`
     );
 
     if (!response.ok) {

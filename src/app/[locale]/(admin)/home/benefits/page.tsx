@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import PageName from "@/components/ui/commons/PageName";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -56,41 +58,47 @@ const Benefits = async () => {
               </tr>
             </thead>
             <tbody>
-              {actionItems.map((actionItem, index) => (
-                <tr key={index} className="text-sm">
-                  <td className="border px-4 py-2">{actionItem.vin}</td>
-                  <td className="border px-4 py-2">
-                    {actionItem.BatteryCycleSavingMonthly}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {actionItem.BatterCycleSavingYearly}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {actionItem.BatteryCycleSavingLifetime}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {actionItem.CostSavingChargingMonthly}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {actionItem.CostSavingChargingYearly}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {actionItem.CostSavingChargingLifeTimeEstimate}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {actionItem.RangeIncreaseMonthly}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {actionItem.RangeIncreaseYearly}
-                  </td>
-                  <td className="border px-4 py-2  bg-green-600 hover:bg-green-800  text-white">
-                    {actionItem.RangeIncreaseLifetimeEstimate}
-                  </td>
-                  <td className="border px-4 py-2  bg-green-600 hover:bg-green-800  text-white">
-                    {actionItem.RevenueIncreaseLifeTime}
-                  </td>
-                </tr>
-              ))}
+              {actionItems
+                .sort((actionItemA, actionItemB) => {
+                  if (actionItemA.vehicleId > actionItemB.vehicleId) return 1;
+                  if (actionItemA.vehicleId < actionItemB.vehicleId) return -1;
+                  return 0;
+                })
+                .map((actionItem, index) => (
+                  <tr key={index} className="text-sm">
+                    <td className="border px-4 py-2">{actionItem.vin}</td>
+                    <td className="border px-4 py-2">
+                      {actionItem.BatteryCycleSavingMonthly}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {actionItem.BatterCycleSavingYearly}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {actionItem.BatteryCycleSavingLifetime}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {actionItem.CostSavingChargingMonthly}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {actionItem.CostSavingChargingYearly}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {actionItem.CostSavingChargingLifeTimeEstimate}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {actionItem.RangeIncreaseMonthly}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {actionItem.RangeIncreaseYearly}
+                    </td>
+                    <td className="border px-4 py-2  bg-green-600 hover:bg-green-800  text-white">
+                      {actionItem.RangeIncreaseLifetimeEstimate}
+                    </td>
+                    <td className="border px-4 py-2  bg-green-600 hover:bg-green-800  text-white">
+                      {actionItem.RevenueIncreaseLifeTime}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
