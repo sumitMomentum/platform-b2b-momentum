@@ -62,11 +62,17 @@ import { getUser } from "@/utils/facades/serverFacades/userFacade";
 export const getUserVehicles = async () => {
   try {
     const response1 = await fetch(
-      `${process.env.NEXT_BASE_URL}/api/vehicles/allVehicleDetails`
+      `https://demoapi-9d35.onrender.com/api/vehicles/allVehicleDetails`
     );
     const response2 = await fetch(
-      `${process.env.NEXT_BASE_URL}/api/vehicles/allVehiclesStep2`
+      `https://demoapi-9d35.onrender.com/api/vehicles/allVehiclesStep2`
     );
+    // const response1 = await fetch(
+    //   `${process.env.BACKEND_URL}/api/vehicles/allVehicleDetails`
+    // );
+    // const response2 = await fetch(
+    //   `${process.env.BACKEND_URL}/api/vehicles/allVehiclesStep2`
+    // );
 
     if (!response1.ok || !response2.ok) {
       throw new Error(

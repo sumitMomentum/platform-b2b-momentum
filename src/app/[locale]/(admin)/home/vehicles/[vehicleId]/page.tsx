@@ -46,7 +46,7 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
      };
 
      fetchData();
-   }, [vehicleId]);
+   }, []);
 
   return (
     dashboardData && (

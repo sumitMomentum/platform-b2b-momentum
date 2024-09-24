@@ -72,9 +72,9 @@ const VehicleUsage = ({
               <Card.Description>{t("rangeObservedMinMax")}</Card.Description>
               <Card.Description>
                 {`${
-                  dashboardData["UsageRangeObservedMin/Max"].split("/")[0]
+                  dashboardData["UsageRangeObservedMinMax"].split("/")[0]
                 } / ${
-                  dashboardData["UsageRangeObservedMin/Max"].split("/")[1]
+                  dashboardData["UsageRangeObservedMinMax"].split("/")[1]
                 } `}
               </Card.Description>
               {/* <Card.Description>

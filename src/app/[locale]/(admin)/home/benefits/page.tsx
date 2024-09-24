@@ -1,17 +1,35 @@
 // @ts-ignore
+"use client";
 
 import PageName from "@/components/ui/commons/PageName";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
+import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 
 const Benefits = async () => {
   // const t = await getTranslations("AdminLayout.pages.benefits");
 
-  const actionItems = await getVehicleBenefits();
+  const vehicleBenifits = await getVehicleBenefits();
+  // const [vehicleBenifits, setVehicleBenifits] = useState([]);
 
-  // console.log(actionItems);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await await getVehicleBenefits();
+  //       // setVehicleBenifits(data);
+  //     } catch (error) {
+  //       console.error("Error fetching vehicle benifits data:", error);
+  //       // Handle the error appropriately (e.g., show an error message)
+  //     }
+  //   };
+
+  //   console.log("Hello")
+
+  //   fetchData();
+  // }, []);
+  // console.log(vehicleBenifits);
 
   return (
     <div>
@@ -58,44 +76,46 @@ const Benefits = async () => {
               </tr>
             </thead>
             <tbody>
-              {actionItems
-                .sort((actionItemA, actionItemB) => {
-                  if (actionItemA.vehicleId > actionItemB.vehicleId) return 1;
-                  if (actionItemA.vehicleId < actionItemB.vehicleId) return -1;
+              {vehicleBenifits
+                .sort((vehicleBenifitsA, vehicleBenifitsB) => {
+                  if (vehicleBenifitsA.vehicleId > vehicleBenifitsB.vehicleId)
+                    return -1;
+                  if (vehicleBenifitsA.vehicleId < vehicleBenifitsB.vehicleId)
+                    return 1;
                   return 0;
                 })
-                .map((actionItem, index) => (
+                .map((vehicleBenifits, index) => (
                   <tr key={index} className="text-sm">
-                    <td className="border px-4 py-2">{actionItem.vin}</td>
+                    <td className="border px-4 py-2">{vehicleBenifits.vin}</td>
                     <td className="border px-4 py-2">
-                      {actionItem.BatteryCycleSavingMonthly}
+                      {vehicleBenifits.BatteryCycleSavingMonthly}
                     </td>
                     <td className="border px-4 py-2">
-                      {actionItem.BatterCycleSavingYearly}
+                      {vehicleBenifits.BatterCycleSavingYearly}
                     </td>
                     <td className="border px-4 py-2">
-                      {actionItem.BatteryCycleSavingLifetime}
+                      {vehicleBenifits.BatteryCycleSavingLifetime}
                     </td>
                     <td className="border px-4 py-2">
-                      {actionItem.CostSavingChargingMonthly}
+                      {vehicleBenifits.CostSavingChargingMonthly}
                     </td>
                     <td className="border px-4 py-2">
-                      {actionItem.CostSavingChargingYearly}
+                      {vehicleBenifits.CostSavingChargingYearly}
                     </td>
                     <td className="border px-4 py-2">
-                      {actionItem.CostSavingChargingLifeTimeEstimate}
+                      {vehicleBenifits.CostSavingChargingLifeTimeEstimate}
                     </td>
                     <td className="border px-4 py-2">
-                      {actionItem.RangeIncreaseMonthly}
+                      {vehicleBenifits.RangeIncreaseMonthly}
                     </td>
                     <td className="border px-4 py-2">
-                      {actionItem.RangeIncreaseYearly}
+                      {vehicleBenifits.RangeIncreaseYearly}
                     </td>
                     <td className="border px-4 py-2  bg-green-600 hover:bg-green-800  text-white">
-                      {actionItem.RangeIncreaseLifetimeEstimate}
+                      {vehicleBenifits.RangeIncreaseLifetimeEstimate}
                     </td>
                     <td className="border px-4 py-2  bg-green-600 hover:bg-green-800  text-white">
-                      {actionItem.RevenueIncreaseLifeTime}
+                      {vehicleBenifits.RevenueIncreaseLifeTime}
                     </td>
                   </tr>
                 ))}

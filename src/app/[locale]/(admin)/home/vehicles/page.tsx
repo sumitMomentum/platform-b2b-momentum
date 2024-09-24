@@ -18,6 +18,7 @@ import useVehicleStore from "@/states/store";
 import { useEffect } from "react"; // Import only useEffect
 import { split } from "postcss/lib/list";
 import { current } from "tailwindcss/colors";
+import { headers } from "next/headers";
 
 // const options = {
 //   apiKey: "free",
@@ -25,92 +26,105 @@ import { current } from "tailwindcss/colors";
 // };
 
 const VehiclePage = () => {
-  const t = useTranslations("AdminLayout.pages.vehicles");
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [isUpdate, setIsUpdate] = useState(false); // To track which action is being performed
-  const [isSuccess, setIsSuccess] = useState(false); // To track which action is being performed
-  const vehicles = useVehicleStore((state) => state.vehicles);
-  const setVehicles = useVehicleStore((state) => state.setVehicles);
-  const fileInputRef = useRef(null);
+const t = useTranslations("AdminLayout.pages.vehicles");
+const [selectedFile, setSelectedFile] = useState(null);
+const [isUpdate, setIsUpdate] = useState(false); // To track which action is being performed
+const [isSuccess, setIsSuccess] = useState(false); // To track successful operations
+const vehicles = useVehicleStore((state) => state.vehicles);
+const setVehicles = useVehicleStore((state) => state.setVehicles);
+const fileInputRef = useRef(null);
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
+const handleFileChange = (event) => {
+  setSelectedFile(event.target.files[0]);
+};
 
-  useEffect(() => {
-    const getVehicles = async () => {
-      if (!vehicles || vehicles.length === 0 || isSuccess) {
-        // Check isSuccess as well
-        const userVehiclesFromDB = await getUserVehicles();
-        setVehicles(userVehiclesFromDB);
-        setIsSuccess(false); // Reset isSuccess after fetching new data
+const getVehicles = async () => {
+  if (!vehicles || vehicles.length === 0 || isSuccess) {
+    const userVehiclesFromDB = await getUserVehicles(); // Fetch updated vehicles list
+    setVehicles(userVehiclesFromDB);
+    setIsSuccess(false); // Reset after fetching
+  }
+};
+
+useEffect(() => {
+  getVehicles();
+}, [isSuccess]); // Re-fetch vehicles when isSuccess is set to true
+
+const handleDelete = async () => {
+  try {
+    const response = await fetch(
+      `https://demoapi-9d35.onrender.com/api/vehicles/tempDelete`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    };
+    );
 
-    getVehicles();
-  }, [isSuccess]);
-
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      alert("Please select a file to upload.");
-      return;
+    if (response.ok) {
+      const data = await response.json();
+      // getVehicles(); // Fetch updated vehicle data after deletion
+      setIsSuccess(true); 
+      alert(`Vehicle with ID ${data.vehicleId} deleted successfully`);
+    } else {
+      const errorData = await response.json();
+      console.error("Error deleting vehicle:", errorData);
+      alert("Error deleting vehicle");
     }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Something went wrong.");
+  }
+};
 
-    const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
-    const allowedExtensions = ["xls", "xlsx"];
-    if (!allowedExtensions.includes(fileExtension)) {
-      alert("Please upload an Excel file (.xls or .xlsx).");
+const handleUpload = async () => {
+  if (!selectedFile) {
+    alert("Please select a file to upload.");
+    return;
+  }
 
-      // Clear the file input
-      if (fileInputRef.current) {
-        fileInputRef.current.value = ""; // Clear the selected file
-      }
-      setSelectedFile(null); // Reset the selectedFile state
+  const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
+  const allowedExtensions = ["xls", "xlsx"];
+  if (!allowedExtensions.includes(fileExtension)) {
+    alert("Please upload an Excel file (.xls or .xlsx).");
 
-      return; // Stop further execution
+    // Clear the file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""; // Clear the selected file
     }
+    setSelectedFile(null); // Reset the selectedFile state
 
-    const formData = new FormData();
-    formData.append("file", selectedFile);
+    return; // Stop further execution
+  }
 
-    try {
-      // const apiEndpoint = isUpdate
-      //   ? "http://localhost:3333/api/vehicles/update/excel" // Update endpoint
-      //   : "http://localhost:3333/api/vehicles/onboard/excel"; // Onboarding endpoint
-      const apiEndpoint = isUpdate
-        ? "https://demoapi-9d35.onrender.com/api/vehicles/update/excel" // Update endpoint
-        : "https://demoapi-9d35.onrender.com/api/vehicles/onboard/excel"; // Onboarding endpoint
+  const formData = new FormData();
+  formData.append("file", selectedFile);
 
-      const response = await fetch(apiEndpoint, {
-        method: "POST",
-        body: formData,
-      });
+  try {
+    const apiEndpoint = isUpdate
+      ? "https://demoapi-9d35.onrender.com/api/vehicles/update/excel"
+      : "https://demoapi-9d35.onrender.com/api/vehicles/onboard/excel";
 
-      console.log(response);
+    const response = await fetch(apiEndpoint, {
+      method: "POST",
+      body: formData,
+    });
 
-      if (response.ok) {
-        const data = await response.json();
-        setIsSuccess(!isSuccess);
-        window.alert(`Upload successful: ${data.message}`); // Use alert for success
-      } else {
-        try {
-          const errorData = await response.json();
-          const errorMessage = errorData.error || response.statusText;
-          window.alert(`Upload failed: ${errorMessage}`);
-        } catch (jsonParseError) {
-          window.alert(`Upload failed: An unexpected error occurred.`);
-        }
-      }
-    } catch (error) {
-      if (error.message.includes("NetworkError")) {
-        window.alert(
-          "Upload failed: Network error. Please check your connection."
-        );
-      } else {
-        window.alert(`Error during upload: ${error.message}`);
-      }
+    if (response.ok) {
+      const data = await response.json();
+      setIsSuccess(true); // Set success flag to re-fetch vehicles
+      window.alert(`Upload successful: ${data.message}`);
+    } else {
+      const errorData = await response.json();
+      const errorMessage = errorData.error || response.statusText;
+      window.alert(`Upload failed: ${errorMessage}`);
     }
-  };
+  } catch (error) {
+    window.alert(`Error during upload: ${error.message}`);
+  }
+};
+
 
   return (
     <div>
@@ -125,6 +139,14 @@ const VehiclePage = () => {
           />
         </div>
         <div className="flex justify-center items-center gap-2">
+          <button
+            className="bg-red-500 w-full p-2 hover:bg-red-700 text-white rounded-md"
+            onClick={() => {
+              handleDelete();
+            }}
+          >
+            Delete
+          </button>
           <AddVehicle />
           {/* <UploadButton
             options={options}

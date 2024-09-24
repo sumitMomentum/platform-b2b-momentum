@@ -7,11 +7,17 @@ export const getVehicleDashboardData = async (vehicleId: string) => {
   if (!userClerk) throw new Error("client clerk not found");
 
   const response2 = await fetch(
-    `${process.env.NEXT_BASE_URL}/api/vehicles?vehicleId=${vehicleId}&step=details`
+    `https://demoapi-9d35.onrender.com/api/vehicles?vehicleId=${vehicleId}&step=details`
   );
   const response = await fetch(
-    `${process.env.NEXT_BASE_URL}/api/vehicles?vehicleId=${vehicleId}&step=2`
+    `https://demoapi-9d35.onrender.com/api/vehicles?vehicleId=${vehicleId}&step=2`
   );
+  // const response2 = await fetch(
+  //   `${process.env.BACKEND_URL}/api/vehicles?vehicleId=${vehicleId}&step=details`
+  // );
+  // const response = await fetch(
+  //   `${process.env.BACKEND_URL}/api/vehicles?vehicleId=${vehicleId}&step=2`
+  // );
 
   if (!response.ok || !response2.ok) {
     // Check if both responses are successful

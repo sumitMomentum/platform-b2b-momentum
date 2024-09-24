@@ -113,7 +113,7 @@ const DistanceTravelled = () => {
                     return (total =
                       total +
                       parseInt(
-                        vehicle["UsageRangeObservedMin/Max"].split("/")[0]
+                        vehicle["UsageRangeObservedMinMax"].split("/")[0]
                       ));
                   }, 0) / 12
                 ).toFixed(2)}{" "}
@@ -123,7 +123,7 @@ const DistanceTravelled = () => {
                     return (total =
                       total +
                       parseInt(
-                        vehicle["UsageRangeObservedMin/Max"].split("/")[1]
+                        vehicle["UsageRangeObservedMinMax"].split("/")[1]
                       ));
                   }, 0) / 12
                 ).toFixed(2)}{" "}
