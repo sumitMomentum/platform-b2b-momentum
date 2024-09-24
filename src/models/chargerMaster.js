@@ -9,5 +9,5 @@ const chargerMasterSchema = new mongoose.Schema({
   chargingPoint: String 
 }, { collection: 'ChargerMaster' }); // Explicit collection name
 
-module.exports = mongoose.model("ChargerMaster", chargerMasterSchema);
+module.exports =  mongoose.models.ChargerMaster || mongoose.model("ChargerMaster", chargerMasterSchema);
 

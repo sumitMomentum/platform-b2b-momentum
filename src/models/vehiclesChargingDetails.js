@@ -18,7 +18,7 @@ const vehiclesChargingDetailsSchema = new mongoose.Schema(
   { collection: "VehiclesChargingDetails" }
 ); // Explicit collection name
 
-module.exports = mongoose.model(
+module.exports =  mongoose.models.vehiclesChargingDetails || mongoose.model(
   "vehiclesChargingDetails",
   vehiclesChargingDetailsSchema
 );

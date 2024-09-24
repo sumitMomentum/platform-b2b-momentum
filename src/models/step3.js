@@ -3,16 +3,16 @@ const mongoose = require("mongoose");
 
 const step3Schema = new mongoose.Schema(
   {
-    vehicleID: { type: String, required: true },
-    severity: String,
-    description: String,
-    bestPractice: String,
-    actionToBeTaken: String,
-    confirm: Number, // Assuming 0/1 for confirmation
-    createdDateTime: String,
-    closedDateTime: String,
+    vehicleId: { type: String, required: true },
+    Severity: String,
+    Description: String,
+    BestPractice: String,
+    ActionToBeTaken: String,
+    Confirm: Number, // Assuming 0/1 for confirmation
+    CreatedDateTime: String,
+    ClosedDateTime: String,
   },
   { collection: "Step3" }
 );
 
-module.exports = mongoose.model("Step3", step3Schema);
+module.exports =  mongoose.models.Step3 ||mongoose.model("Step3", step3Schema);

@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
-import Step1 from '@/models/step1';
-import Step2 from '@/models/step2';
-import Step3 from '@/models/step3';
-import Step7 from '@/models/step7';
-import VehicleDetails from '@/models/vehicleDetails';
+
+var VehicleDetails = require('@/models/vehicleDetails.js');
+var Step1 = require('@/models/step1.js');
+var Step2 = require('@/models/step2.js');
+var Step3 = require('@/models/step3.js');
+var Step7 = require('@/models/step7.js');
 import { connectToDatabase } from "@/lib/mongodb";
 
 export async function GET(req) {

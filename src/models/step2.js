@@ -21,4 +21,4 @@ const step2Schema = new mongoose.Schema(
   { collection: "Step2" }
 ); // Explicit collection name
 
-module.exports = mongoose.model("Step2", step2Schema);
+module.exports =  mongoose.models.Step2 || mongoose.model("Step2", step2Schema);

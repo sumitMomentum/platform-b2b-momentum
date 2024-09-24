@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import xlsx from "xlsx";
-import VehicleDetails from "@/models/vehicleDetails";
+var VehicleDetails = require('@/models/vehicleDetails.js');
 import { connectToDatabase } from "@/lib/mongodb";
 
 // Helper function to parse and trim Excel data

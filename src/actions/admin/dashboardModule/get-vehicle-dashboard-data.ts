@@ -14,10 +14,10 @@ export const getVehicleDashboardData = async (vehicleId: string) => {
   // );
 
   const response2 = await fetch(
-    `/api/vehicleStep/?vehicleId=${vehicleId}&step=details`
+    `${process.env.BASE_API_URL}`+`/api/vehicleStep/?vehicleId=${vehicleId}&step=details`
   );
   const response = await fetch(
-    `/api/vehicleStep/?vehicleId=${vehicleId}&step=2`
+    `${process.env.BASE_API_URL}`+`/api/vehicleStep/?vehicleId=${vehicleId}&step=2`
   );
 
   if (!response.ok || !response2.ok) {

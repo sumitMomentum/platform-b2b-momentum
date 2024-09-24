@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const vehicleDetailsSchema = new mongoose.Schema(
   {
-    _id: mongoose.Schema.Types.ObjectId, // Explicitly define _id as ObjectId
     vin: { type: String, required: true, unique: true },
     vehicleId: { type: String, required: true, unique: true },
     make: String,
@@ -29,4 +28,4 @@ const vehicleDetailsSchema = new mongoose.Schema(
   { collection: "VehicleDetails" }
 ); // Specify the collection name
 
-module.exports = mongoose.model("VehicleDetails", vehicleDetailsSchema);
+module.exports =mongoose.models.VehicleDetails|| mongoose.model("VehicleDetails", vehicleDetailsSchema);

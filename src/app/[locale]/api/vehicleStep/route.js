@@ -1,10 +1,10 @@
 // src/app/api/your-endpoint/route.js
 import { NextResponse } from "next/server";
-import Step1 from "@/models/Step1";
-import Step2 from "@/models/Step2";
-import Step3 from "@/models/Step3";
-import Step7 from "@/models/Step7";
-import vehicleDetails from "@/models/vehicleDetails";
+var vehicleDetails = require('@/models/vehicleDetails.js');
+var Step1 = require('@/models/step1.js');
+var Step2 = require('@/models/step2.js');
+var Step3 = require('@/models/step3.js');
+var Step7 = require('@/models/step7.js');
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);

@@ -62,10 +62,10 @@ import { getUser } from "@/utils/facades/serverFacades/userFacade";
 export const getUserVehicles = async () => {
   try {
     const response1 = await fetch(
-      "/api/vehicleStep/allVehicleDetails"
+      `${process.env.BASE_API_URL}`+"/api/vehicleStep/allVehicleDetails"
     );
     const response2 = await fetch(
-      "/api/vehicleStep/step2"
+      `${process.env.BASE_API_URL}`+"/api/vehicleStep/step2"
     );
     // const response1 = await fetch(
     //   "https://demoapi-9d35.onrender.com/api/vehicles/allVehicleDetails"
@@ -85,6 +85,7 @@ export const getUserVehicles = async () => {
     const vehicleDetailsData = await response1.json();
     const step2Data = await response2.json();
 
+    console.log(vehicleDetailsData, step2Data);
     // Create a map for efficient lookup by vehicleId
     const step2DataMap = new Map(
       step2Data.map((item) => [item.vehicleId, item])

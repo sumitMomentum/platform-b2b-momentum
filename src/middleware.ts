@@ -28,7 +28,7 @@ export default authMiddleware({
     "/api/vehicleStep/step2",
     "/api/vehicleStep/step3",
     "/api/vehicleStep/step7",
-    "/api/vehicleStep/allVehicleDet",
+    "/api/vehicleStep/allVehicleDetails",
     "/api/vehicleStep/step",
     "/:locale",
     "/:locale/api/clerk",
@@ -45,7 +45,7 @@ export default authMiddleware({
     "/:locale/api/vehicleStep/step2",
     "/:locale/api/vehicleStep/step3",
     "/:locale/api/vehicleStep/step7",
-    "/:locale/api/vehicleStep/allVehicleDet",
+    "/:locale/api/vehicleStep/allVehicleDetails",
     "/:locale/api/vehicleStep/step",
   ],
   beforeAuth(request) {

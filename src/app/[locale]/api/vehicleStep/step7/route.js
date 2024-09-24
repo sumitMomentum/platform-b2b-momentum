@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from "@/lib/mongodb";
-import Step7 from '@/models/step7';
+var Step7 = require('@/models/step7.js');
 
 export async function GET() {
   await connectToDatabase();

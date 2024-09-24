@@ -1,15 +1,14 @@
-// app/api/vehicle/allVehicleDetails/route.js
 import { NextResponse } from 'next/server';
-import VehicleDetails from '@/models/vehicleDetails';
 import { connectToDatabase } from '@/lib/mongodb';
 
+var VehicleDetails = require('@/models/vehicleDetails.js');
 // Route to get all vehicle details
-export async function GET(req) {
+export async function GET() {
   await connectToDatabase();
   
   try {
     const vehicles = await VehicleDetails.find();
-
+    //console.log(vehicles);
     if (!vehicles.length) {
       return NextResponse.json({ error: "No vehicles found in VehicleDetails" }, { status: 404 });
     }

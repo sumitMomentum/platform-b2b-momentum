@@ -17,4 +17,4 @@ const step1Schema = new mongoose.Schema(
   { collection: "Step1" }
 );
 
-module.exports = mongoose.model("Step1", step1Schema);
+module.exports =  mongoose.models.Step1 ||mongoose.model("Step1", step1Schema);

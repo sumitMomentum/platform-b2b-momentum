@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import xlsx from "xlsx";
 import formidable from "formidable";
-import VehicleDetails from "@/models/vehicleDetails";
 import { connectToDatabase } from "@/lib/mongodb";
 
+var VehicleDetails = require('@/models/vehicleDetails.js');
 // // Disable body parser for file uploads
 // export const config = {
 //   api: {

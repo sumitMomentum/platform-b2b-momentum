@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import xlsx from 'xlsx';
-import VehicleDetails from '@/models/vehicleDetails';
 import { connectToDatabase } from "@/lib/mongodb";
 
+var VehicleDetails = require('@/models/vehicleDetails.js');
 const parseExcelFile = (buffer) => {
   const workbook = xlsx.read(buffer);
   const sheetName = workbook.SheetNames[0];

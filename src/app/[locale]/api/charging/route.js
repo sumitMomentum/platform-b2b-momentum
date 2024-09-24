@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import ChargerTypes from "@/models/chargerTypes";
-import ChargerMaster from "@/models/chargerMaster";
-import {vehiclesChargingDetails} from "@/models/vehicleChargingDetails.js";
+var ChargerTypes = require('@/models/chargerTypes.js');
+var ChargerMaster = require('@/models/chargerMaster.js');
+var vehiclesChargingDetails = require('@/models/vehicleChargingDetails.js');
+
 import { connectToDatabase } from "@/lib/mongodb";
 
 export async function GET(req) {

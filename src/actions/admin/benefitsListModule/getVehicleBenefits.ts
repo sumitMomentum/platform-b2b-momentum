@@ -1,7 +1,7 @@
 export const getVehicleBenefits = async () => {
   try {
     const response = await fetch(
-      "/api/vehicleStep/step7"
+      `${process.env.BASE_API_URL}`+"/api/vehicleStep/step7"
     );
     // const response = await fetch(
     //   "https://demoapi-9d35.onrender.com/api/vehicles/allVehiclesStep7"

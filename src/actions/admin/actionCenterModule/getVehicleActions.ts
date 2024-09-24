@@ -1,7 +1,7 @@
 export const getVehicleActions = async () => {
   try {
     const response = await fetch(
-      "/api/vehicleStep/step3"
+      `${process.env.BASE_API_URL}`+"/api/vehicleStep/step3"
     );
     if (!response.ok) {
       throw new Error(

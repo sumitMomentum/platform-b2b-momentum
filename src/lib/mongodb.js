@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+require("dotenv").config();
 const MONGO_URI = process.env.MONGO_URI;
 
 if (!MONGO_URI) {
@@ -14,7 +16,7 @@ export async function connectToDatabase() {
   if (cached.conn) {
     return cached.conn;
   }
-
+  console.info("Connection string :", MONGO_URI);
   if (!cached.promise) {
     cached.promise = mongoose
       .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
