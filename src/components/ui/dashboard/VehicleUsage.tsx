@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import Card from "../commons/Card";
 import AvgDistanceChart from "./AvgDistanceChart";
+import { Box, Container } from "@mui/material";
 
 const VehicleUsage = ({
   avgDailyKmDriven,
@@ -21,9 +22,15 @@ const VehicleUsage = ({
         <Card.Header>
           <Card.Title>{t("usage")}</Card.Title>
         </Card.Header>
-        <div className="border mb-2">
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mb: 2,
+          }}
+        >
           <AvgDistanceChart dashboardData={dashboardData} />
-        </div>
+        </Container>
         <div className="flex justify-between">
           <div className="flex flex-col justify-evenly">
             <div className="mb-2">
@@ -39,7 +46,6 @@ const VehicleUsage = ({
                   ) / 12
                 ).toFixed(2)}{" "}
                 kms
-                
               </Card.Description>
             </div>
             <div>

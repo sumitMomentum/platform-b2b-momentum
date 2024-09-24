@@ -104,7 +104,8 @@ const handleUpload = async () => {
   try {
     const apiEndpoint = isUpdate
       ? "https://demoapi-9d35.onrender.com/api/vehicles/update/excel"
-      : "https://demoapi-9d35.onrender.com/api/vehicles/onboard/excel";
+      : "http://localhost:3333/api/vehicles/onboard/excel";
+      // : "https://demoapi-9d35.onrender.com/api/vehicles/onboard/excel";
 
     const response = await fetch(apiEndpoint, {
       method: "POST",
@@ -122,6 +123,8 @@ const handleUpload = async () => {
     }
   } catch (error) {
     window.alert(`Error during upload: ${error.message}`);
+  }finally{
+    setSelectedFile(null)
   }
 };
 

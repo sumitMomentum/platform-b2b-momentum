@@ -34,26 +34,26 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
   // State to store dashboardData
   const [dashboardData, setDashboardData] = useState(null);
 
-   useEffect(() => {
-     const fetchData = async () => {
-       try {
-         const data = await getVehicleDashboardData(vehicleId);
-         setDashboardData(data); // Update state with the fetched 'data'
-         console.log(data);
-       } catch (error) {
-         console.error("Error fetching dashboard data:", error);
-       }
-     };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getVehicleDashboardData(vehicleId);
+        setDashboardData(data); // Update state with the fetched 'data'
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+      }
+    };
 
-     fetchData();
-   }, []);
+    fetchData();
+  }, []);
 
   return (
     dashboardData && (
       <div className="flex gap-6 w-full justify-center items-center">
         {selectedVehicle ? (
           <div className="flex w-full gap-6 flex-col">
-            <div className="flex gap-6">
+            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
               <InfoCard
                 titleKey="Location"
                 descriptionKey={dashboardData.location}
@@ -80,7 +80,7 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
                 icon={ArrowsPointingInIcon}
               />
             </div>
-            <div className="flex gap-6">
+            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
               {/* <VehicleDetails
                 year={selectedVehicle.year}
                 model={selectedVehicle.model}
@@ -107,7 +107,7 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
                 dashboardData={dashboardData}
               />
             </div>
-            <div className="flex gap-6">
+            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
               <VehicleUsage
                 avgDailyKmDriven={dashboardData.avgDailyKmDriven}
                 temperatureLow={dashboardData.temperatureLow}
@@ -127,7 +127,7 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
                 dashboardData={dashboardData}
               />
             </div>
-            <div className="flex gap-6">
+            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
               <InfoCard
                 titleKey="End Of Life"
                 // descriptionKey={dashboardData.endOfLife.toLocaleDateString(
