@@ -15,17 +15,39 @@ const BatteryHealth = () => {
 
   useEffect(() => {
     const getVehicles = async () => {
-      // Make getVehicles async
       if (!vehicles || vehicles.length === 0) {
         const userVehiclesFromDB = await getUserVehicles();
-        // console.log(userVehiclesFromDB);
         setVehicles(userVehiclesFromDB);
       }
     };
 
-    getVehicles(); // Call the async function
+    getVehicles();
   }, [vehicles, setVehicles]);
-  // const t = useTranslations();
+
+  // Safely handle the calculations by checking if vehicles exist
+  const avgSoH =
+    vehicles && vehicles.length > 0
+      ? (
+          vehicles.reduce((total, vehicle) => {
+            const sohValue = parseInt(vehicle["soh "]) || 0; // Handle undefined and empty values
+            return total + sohValue;
+          }, 0) / vehicles.length
+        ) // Use the actual length of vehicles
+          .toFixed(2)
+      : "N/A"; // Fallback for when data is not loaded
+
+  const avgDegradation =
+    vehicles && vehicles.length > 0
+      ? (
+          100 -
+          vehicles.reduce((total, vehicle) => {
+            const sohValue = parseInt(vehicle["soh "]) || 0;
+            return total + sohValue;
+          }, 0) /
+            vehicles.length
+        ).toFixed(2)
+      : "N/A"; // Fallback for when data is not loaded
+
   return (
     <Card>
       <Card.Body>
@@ -40,63 +62,16 @@ const BatteryHealth = () => {
         <div className="flex justify-between">
           <div className="flex flex-col justify-evenly">
             <Card.Description>Avg SoH</Card.Description>
-            <Card.Description>
-              {" "}
-              {(
-                vehicles.reduce((total, vehicle) => {
-                  return (total = total + parseInt(vehicle["soh "]));
-                }, 0) / 12
-              ).toFixed(2)}{" "}
-              %
-            </Card.Description>
-            {/* <Card.Description>100%</Card.Description> */}
+            <Card.Description>{avgSoH} %</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly">
             <Card.Description>Avg Estimated Degradation</Card.Description>
-            <Card.Description>
-              {/* {// Initialize an array to store monthly sums
-              (
-                Array.from({ length: 12 }, () => 0)
-                  .map((_, monthIndex) =>
-                    // Sum degradation for each month across all vehicles
-                    vehicles.reduce((monthSum, vehicle) => {
-                      const degradationValue =
-                        parseFloat(
-                          vehicle["BatteryHealthAverageEstimatedDegradation"][
-                            monthIndex
-                          ]
-                        ) || 0;
-                      return monthSum + degradationValue;
-                    }, 0)
-                  )
-                  // Calculate overall average from the monthly sums
-                  .reduce((total, monthSum) => total + monthSum, 0) / (12*vehicles.length)
-              ).toFixed(2)} */}
-              {100 -
-                (
-                  vehicles.reduce((total, vehicle) => {
-                    return (total = total + parseInt(vehicle["soh "]));
-                  }, 0) / 12
-                ).toFixed(2)}
-              %
-            </Card.Description>
-            {/* <Card.Description>0.00 %</Card.Description> */}
+            <Card.Description>{avgDegradation} %</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly">
             <Card.Description>Total Vehicles</Card.Description>
-            <Card.Description>{vehicles.length}</Card.Description>
-            {/* <Card.Description>300</Card.Description> */}
+            <Card.Description>{vehicles.length || 0}</Card.Description>
           </div>
-        </div>
-        <div className="flex justify-between">
-          {/* <div className="flex flex-col justify-evenly">
-            <Card.Description>{t('')}</Card.Description>
-            <Card.Description>{t('300')}</Card.Description>
-          </div>
-          <div className="flex flex-col justify-evenly">
-            <Card.Description>{t('Battery Condition')}</Card.Description>
-            <Card.Description>{t('')}</Card.Description>
-          </div> */}
         </div>
       </Card.Body>
     </Card>

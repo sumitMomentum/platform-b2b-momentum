@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import { useEffect } from "react";
 import { Box, Container } from "@mui/material";
+import { Description } from "@radix-ui/themes/dist/esm/components/alert-dialog.js";
+import { split } from "postcss/lib/list";
 
 const DistanceTravelled = () => {
   const vehicles = useVehicleStore((state) => state.vehicles);
@@ -33,7 +35,9 @@ const DistanceTravelled = () => {
         <Card.Header>
           <Card.Title>Usage Details of Fleet</Card.Title>
         </Card.Header>
-        <Container sx={{ display:"flex", justifyContent: "center", border:0.5, mb: 2 }}>
+        <Container
+          sx={{ display: "flex", justifyContent: "center", border: 0.5, mb: 2 }}
+        >
           <DistanceTravelledChart />
         </Container>
         <div className="flex justify-between">
@@ -67,15 +71,15 @@ const DistanceTravelled = () => {
               <Card.Description>Temperature Low/High</Card.Description>
               <Card.Description>{`${(
                 vehicles.reduce((total, vehicle) => {
-                  return (total =
-                    total +
-                    parseInt(vehicle.UsageTemperatureLowHigh.split("/")[0]));
+                  const temperatureStr = vehicle.UsageTemperatureLowHigh || ""; // Ensure the string exists
+                  const [low] = temperatureStr.split("/") || [];
+                  return total + (parseInt(low) || 0); // Handle undefined or invalid values
                 }, 0) / 12
               ).toFixed(2)}\u00B0C / ${(
                 vehicles.reduce((total, vehicle) => {
-                  return (total =
-                    total +
-                    parseInt(vehicle.UsageTemperatureLowHigh.split("/")[1]));
+                  const temperatureStr = vehicle.UsageTemperatureLowHigh || ""; // Ensure the string exists
+                  const [, high] = temperatureStr.split("/") || [];
+                  return total + (parseInt(high) || 0); // Handle undefined or invalid values
                 }, 0) / 12
               ).toFixed(2)}\u00B0C`}</Card.Description>
               {/* <Card.Description>{`28\u00B0C / 34\u00B0C`}</Card.Description> */}
@@ -85,19 +89,19 @@ const DistanceTravelled = () => {
             <div className="mb-2">
               <Card.Description>SOC Range</Card.Description>
               <Card.Description>
-                {" "}
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return (total =
-                      total + parseInt(vehicle["UsageSoCRange"].split("/")[0]));
+                    const socRangeStr = vehicle.UsageSoCRange || ""; // Ensure the string exists
+                    const [low] = socRangeStr.split("/") || [];
+                    return total + (parseInt(low) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}
-                {"%"}
-                {" / "}
+                {"% / "}
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return (total =
-                      total + parseInt(vehicle["UsageSoCRange"].split("/")[1]));
+                    const socRangeStr = vehicle.UsageSoCRange || ""; // Ensure the string exists
+                    const [, high] = socRangeStr.split("/") || [];
+                    return total + (parseInt(high) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
                 %
@@ -107,24 +111,21 @@ const DistanceTravelled = () => {
             <div>
               <Card.Description>Range Observed Min/Max</Card.Description>
               <Card.Description>
-                {" "}
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return (total =
-                      total +
-                      parseInt(
-                        vehicle["UsageRangeObservedMinMax"].split("/")[0]
-                      ));
+                    const rangeObservedStr =
+                      vehicle.UsageRangeObservedMinMax || ""; // Ensure the string exists
+                    const [min] = rangeObservedStr.split("/") || [];
+                    return total + (parseInt(min) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
                 {" / "}
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return (total =
-                      total +
-                      parseInt(
-                        vehicle["UsageRangeObservedMinMax"].split("/")[1]
-                      ));
+                    const rangeObservedStr =
+                      vehicle.UsageRangeObservedMinMax || ""; // Ensure the string exists
+                    const [, max] = rangeObservedStr.split("/") || [];
+                    return total + (parseInt(max) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
               </Card.Description>
@@ -135,14 +136,12 @@ const DistanceTravelled = () => {
             <div className="mb-2">
               <Card.Description>Avg Real Range Observed</Card.Description>
               <Card.Description>
-                {" "}
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return (total =
-                      total +
-                      parseInt(
-                        vehicle.UsageObservedvsEPAWLTPProvided.split("/")[0]
-                      ));
+                    const observedRangeStr =
+                      vehicle.UsageObservedvsEPAWLTPProvided || ""; // Ensure the string exists
+                    const [observed] = observedRangeStr.split("/") || [];
+                    return total + (parseInt(observed) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
                 kms
@@ -152,14 +151,11 @@ const DistanceTravelled = () => {
             <div>
               <Card.Description>Average WLTP est. range</Card.Description>
               {/* <Card.Description>
-                {" "}
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return (total =
-                      total +
-                      parseInt(
-                        vehicle.UsageObservedvsEPAWLTPProvided.split("/")[1]
-                      ));
+                    const wltpRangeStr = vehicle.UsageObservedvsEPAWLTPProvided || ""; // Ensure the string exists
+                    const [, wltp] = wltpRangeStr.split("/") || [];
+                    return total + (parseInt(wltp) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
                 kms
