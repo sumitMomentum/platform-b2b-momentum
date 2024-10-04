@@ -4,7 +4,7 @@ import { getChargingSchedule } from "@/actions/admin/chargingSchedule/getChargin
 import PageName from "@/components/ui/commons/PageName";
 import { Button, Container } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
-
+import ScheduleIcon from "@mui/icons-material/Schedule";
 const page = () => {
   const [chargingSchedule, setChargingSchedule] = useState([]);
 
@@ -29,7 +29,14 @@ const page = () => {
         ]}
       />
       <Container sx={{ display: "flex", justifyContent: "right" }}>
-        <Button variant="contained" sx={{m:1}} onClick={handleCreateSchedule}>Create Schedule</Button>
+        <Button
+          startIcon={<ScheduleIcon />}
+          variant="contained"
+          sx={{ m: 1 }}
+          onClick={handleCreateSchedule}
+        >
+          Create Schedule
+        </Button>
       </Container>
       {chargingSchedule && chargingSchedule.length > 0 && (
         <div className="container">

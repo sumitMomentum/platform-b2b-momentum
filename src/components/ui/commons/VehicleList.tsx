@@ -22,7 +22,7 @@ const columns = [
   },
 ];
 
-const paginationModel = { page: 0, pageSize: 5 };
+const paginationModel = { page: 0, pageSize: 10 };
 
 const VehicleList = () => {
   const router = useRouter();

@@ -19,7 +19,10 @@ import { useEffect } from "react"; // Import only useEffect
 import { split } from "postcss/lib/list";
 import { current } from "tailwindcss/colors";
 import { headers } from "next/headers";
-
+import { Button } from "@mui/material";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
+import PublishIcon from "@mui/icons-material/Publish";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 // const options = {
 //   apiKey: "free",
 //   maxFileCount: 1,
@@ -135,15 +138,39 @@ const VehiclePage = () => {
           />
         </div>
         <div className="flex justify-center items-center gap-2">
-          <button
-            className="bg-red-500 w-full p-2 hover:bg-red-700 text-white rounded-md"
+          <AddVehicle />
+          <input type="file" onChange={handleFileChange} />
+          <Button
+            startIcon={<FileUploadIcon />}
+            variant="contained"
+            color="primary"
+            // className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
+            onClick={() => handleUpload(false)}
+          >
+            Onboard
+          </Button>
+          <Button
+            startIcon={<PublishIcon />}
+            variant="contained"
+            color="secondary"
+            // className="bg-blue-500 w-full p-2 hover:bg-blue-700 hover:text-white rounded-md"
+            onClick={() => {
+              handleUpload(true);
+            }}
+          >
+            Update
+          </Button>
+          <Button
+            variant="outlined"
+            color="error"
+            startIcon={<DeleteForeverIcon />}
+            // className="bg-red-500 w-full p-2 hover:bg-red-700 text-white rounded-md"
             onClick={() => {
               handleDelete();
             }}
           >
             Delete
-          </button>
-          <AddVehicle />
+          </Button>
           {/* <UploadButton
             options={options}
             onComplete={(files) =>
@@ -154,21 +181,6 @@ const VehiclePage = () => {
               <button onClick={onClick}>Upload a file...</button>
             )}
           </UploadButton>*/}
-          <input type="file" onChange={handleFileChange} />
-          <button
-            className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
-            onClick={() => handleUpload(false)}
-          >
-            Onboard
-          </button>
-          <button
-            className="bg-blue-500 w-full p-2 hover:bg-blue-700 hover:text-white rounded-md"
-            onClick={() => {
-              handleUpload(true);
-            }}
-          >
-            Update
-          </button>
         </div>
       </div>
       <div className="flex-grow flex flex-col space-y-4">
