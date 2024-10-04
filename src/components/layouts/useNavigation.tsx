@@ -9,6 +9,7 @@ import {
   TruckIcon,
   BoltIcon,
   StarIcon,
+  CalendarDateRangeIcon,
 } from "@heroicons/react/24/outline";
 
 import { useTranslations } from "next-intl";
@@ -44,6 +45,12 @@ export const useNavigation = () => {
           name: t("chargers"),
           href: "/home/chargers",
           icon: BoltIcon,
+          current: true,
+        },
+        {
+          name: t("scheduling"),
+          href: "/home/scheduling",
+          icon: CalendarDateRangeIcon,
           current: true,
         },
       ],

@@ -51,6 +51,7 @@ const useVehicleStore = create<VehicleStore>((set) => ({
   setVehicles: (vehicles) =>
     set((state) => {
       const newState = { ...state, vehicles };
+      
       saveStateToLocalStorage(newState);
       return newState;
     }),

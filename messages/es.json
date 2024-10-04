@@ -27,6 +27,7 @@
       "settings": "Configuración",
       "support": "Soporte",
       "benefits": "Benefits",
+      "scheduling": "Sceduling",
       "chargers": "Chargers"
     },
     "pages": {
@@ -72,6 +73,9 @@
       },
       "benefits": {
         "title": "Benefits"
+      },
+      "scheduling": {
+        "title": "Scheduling"
       },
       "chargers": {
         "title": "Chargers"
@@ -188,7 +192,8 @@
       "support": "Soporte",
       "settings": "Configuración",
       "benefits": "Benefits",
-      "chargers": "Chargers"
-    }
+      "chargers": "Chargers",
+      "scheduling": "Sceduling"
+        }
   }
 }

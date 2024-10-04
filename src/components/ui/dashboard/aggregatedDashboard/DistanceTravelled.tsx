@@ -72,13 +72,13 @@ const DistanceTravelled = () => {
               <Card.Description>{`${(
                 vehicles.reduce((total, vehicle) => {
                   const temperatureStr = vehicle.UsageTemperatureLowHigh || ""; // Ensure the string exists
-                  const [low] = temperatureStr.split("/") || [];
+                  const [low] = temperatureStr?.split("/") || [];
                   return total + (parseInt(low) || 0); // Handle undefined or invalid values
                 }, 0) / 12
               ).toFixed(2)}\u00B0C / ${(
                 vehicles.reduce((total, vehicle) => {
                   const temperatureStr = vehicle.UsageTemperatureLowHigh || ""; // Ensure the string exists
-                  const [, high] = temperatureStr.split("/") || [];
+                  const [, high] = temperatureStr?.split("/") || [];
                   return total + (parseInt(high) || 0); // Handle undefined or invalid values
                 }, 0) / 12
               ).toFixed(2)}\u00B0C`}</Card.Description>
@@ -92,7 +92,7 @@ const DistanceTravelled = () => {
                 {(
                   vehicles.reduce((total, vehicle) => {
                     const socRangeStr = vehicle.UsageSoCRange || ""; // Ensure the string exists
-                    const [low] = socRangeStr.split("/") || [];
+                    const [low] = socRangeStr?.split("/") || [];
                     return total + (parseInt(low) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}
@@ -100,7 +100,7 @@ const DistanceTravelled = () => {
                 {(
                   vehicles.reduce((total, vehicle) => {
                     const socRangeStr = vehicle.UsageSoCRange || ""; // Ensure the string exists
-                    const [, high] = socRangeStr.split("/") || [];
+                    const [, high] = socRangeStr?.split("/") || [];
                     return total + (parseInt(high) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
@@ -115,7 +115,7 @@ const DistanceTravelled = () => {
                   vehicles.reduce((total, vehicle) => {
                     const rangeObservedStr =
                       vehicle.UsageRangeObservedMinMax || ""; // Ensure the string exists
-                    const [min] = rangeObservedStr.split("/") || [];
+                    const [min] = rangeObservedStr?.split("/") || [];
                     return total + (parseInt(min) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
@@ -124,7 +124,7 @@ const DistanceTravelled = () => {
                   vehicles.reduce((total, vehicle) => {
                     const rangeObservedStr =
                       vehicle.UsageRangeObservedMinMax || ""; // Ensure the string exists
-                    const [, max] = rangeObservedStr.split("/") || [];
+                    const [, max] = rangeObservedStr?.split("/") || [];
                     return total + (parseInt(max) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
@@ -140,7 +140,7 @@ const DistanceTravelled = () => {
                   vehicles.reduce((total, vehicle) => {
                     const observedRangeStr =
                       vehicle.UsageObservedvsEPAWLTPProvided || ""; // Ensure the string exists
-                    const [observed] = observedRangeStr.split("/") || [];
+                    const [observed] = observedRangeStr?.split("/") || [];
                     return total + (parseInt(observed) || 0); // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}

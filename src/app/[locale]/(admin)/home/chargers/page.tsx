@@ -2,7 +2,7 @@
 
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 import PageName from "@/components/ui/commons/PageName";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const page = () => {
   const [chargerMasterData, setChargerMasterData] = useState([]);
@@ -22,7 +22,7 @@ const page = () => {
   }, []);
 
   return (
-    <>
+    <Fragment>
       <PageName
         // name={t("title")}
         name={"Chargers"}
@@ -65,7 +65,7 @@ const page = () => {
           </table>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 };
 
