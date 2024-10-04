@@ -66,9 +66,10 @@ export const getVehicleDashboardData = async (vehicleId: string) => {
 
   const completeDashboardData = { ...dashboardData, ...fakeData, ...vehicleDetails};
 
-  console.log(dashboardData);
-  console.log(vehicleDetails);
+  // console.log(dashboardData);
+  // console.log(vehicleDetails);
 
+  console.log({ ...dashboardData, ...fakeData, ...vehicleDetails });
   return completeDashboardData;
 };
 

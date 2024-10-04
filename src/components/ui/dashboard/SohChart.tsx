@@ -6,6 +6,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const SohChart = ({ dashboardData }) => {
   const sohArray = dashboardData.soh;
+  console.log(dashboardData.soh);
   const xLabels = [
     "Jan",
     "Feb",
