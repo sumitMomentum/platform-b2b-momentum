@@ -22,11 +22,17 @@ const SohChart = ({ dashboardData }) => {
     "Dec",
   ];
 
+  // const [series] = useState([
+  //   {
+  //     label: "SoH (%)",
+  //     data: sohArray,
+  //   },
+  // ]);
+
   const [series] = useState([
     {
       label: "SoH (%)",
-      data: sohArray,
-    },
+      data: sohArray.length > 0 ? sohArray : Array(xLabels.length).fill(0), }
   ]);
 
   return (

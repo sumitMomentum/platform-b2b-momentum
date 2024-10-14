@@ -44,7 +44,9 @@ const VehicleChargePattern = ({
             </div>
             <div>
               <Card.Description>{t("connectorType")}</Card.Description>
-              <Card.Description>{connectorType}</Card.Description>
+              <Card.Description>
+                {connectorType == "Public Slow" ? "GBT" : "CCS2"}
+              </Card.Description>
             </div>
           </div>
 
@@ -61,7 +63,10 @@ const VehicleChargePattern = ({
             </div>
             <div>
               <Card.Description>{t("averageChargingRate")}</Card.Description>
-              <Card.Description>{averageChargingRate} kW</Card.Description>
+              <Card.Description>
+                {connectorType == "Public Slow" ? 7.8 : dashboardData.make == "Audi " ? 60 : 22} kW
+              </Card.Description>
+              {/* <Card.Description>{averageChargingRate} kW</Card.Description> */}
             </div>
           </div>
         </div>

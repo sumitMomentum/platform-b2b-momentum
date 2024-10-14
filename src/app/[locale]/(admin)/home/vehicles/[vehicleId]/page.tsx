@@ -38,8 +38,8 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
     const fetchData = async () => {
       try {
         const data = await getVehicleDashboardData(vehicleId);
-        setDashboardData(data); // Update state with the fetched 'data'
-        console.log(data);
+        setDashboardData(data[0]); // Update state with the fetched 'data'
+        console.log(data[0]);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       }
@@ -76,7 +76,7 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
               /> */}
               <InfoCard
                 titleKey="Data Points Collected"
-                descriptionKey={dashboardData.datapointsCollected}
+                descriptionKey={dashboardData.DataPointsCollected}
                 icon={ArrowsPointingInIcon}
               />
             </div>

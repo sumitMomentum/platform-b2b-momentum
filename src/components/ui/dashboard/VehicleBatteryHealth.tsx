@@ -38,19 +38,17 @@ const VehicleBatteryHealth = ({
           <div className="flex flex-col justify-evenly">
             <Card.Description>{t("soh")}</Card.Description>
             {/* <Card.Description>{`${batteryHealthSoH}%`}</Card.Description> */}
-            <Card.Description>{`${
-              dashboardData.soh[dashboardData.soh.length - 1]
-            }%`}</Card.Description>
+            <Card.Description>{`${dashboardData.batteryHealthSoH}%`}</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly ">
             <Card.Description>{t("estimatedDegradation")}</Card.Description>
-            <Card.Description>{`${
-              100 - dashboardData.soh[dashboardData.soh.length - 1]
-            }%`}</Card.Description>
+            <Card.Description>{`${dashboardData.batteryHealthDegradation}%`}</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly ">
             <Card.Description>{t("batteryChemistry")}</Card.Description>
-            <Card.Description>{batteryChemistry}</Card.Description>
+            <Card.Description>
+              {dashboardData.batteryChemistry}
+            </Card.Description>
           </div>
         </div>
       </Card.Body>

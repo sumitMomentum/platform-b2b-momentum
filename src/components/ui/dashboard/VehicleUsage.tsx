@@ -16,6 +16,7 @@ const VehicleUsage = ({
   dashboardData,
 }) => {
   const t = useTranslations("AdminLayout.pages.vehicleDashboard");
+  console.log(dashboardData)
   return (
     <Card>
       <Card.Body>
@@ -51,11 +52,7 @@ const VehicleUsage = ({
             <div>
               <Card.Description>{t("temperature")}</Card.Description>
               <Card.Description>
-                {`${
-                  dashboardData.UsageTemperatureLowHigh.split("/")[0]
-                }\u00B0C / ${
-                  dashboardData.UsageTemperatureLowHigh.split("/")[1]
-                }\u00B0C`}
+                {`${dashboardData.UsageTemperatureLow}\u00B0C / ${dashboardData.UsageTemperatureHigh}\u00B0C`}
               </Card.Description>
               {/* <Card.Description>
                 {`${temperatureLow}\u00B0C / ${temperatureHigh}\u00B0C`}
@@ -66,9 +63,7 @@ const VehicleUsage = ({
             <div className="mb-2">
               <Card.Description>{t("socRange")}</Card.Description>
               <Card.Description>
-                {`${dashboardData.UsageSoCRange.split("/")[0]}% - ${
-                  dashboardData.UsageSoCRange.split("/")[1]
-                }%`}
+                {`${dashboardData.UsageSoCRangeMin}% - ${dashboardData.UsageSoCRangeMax}%`}
               </Card.Description>
               {/* <Card.Description>
                 {`${socRangeMin}% - ${socRangeMax}%`}
@@ -77,11 +72,7 @@ const VehicleUsage = ({
             <div>
               <Card.Description>{t("rangeObservedMinMax")}</Card.Description>
               <Card.Description>
-                {`${
-                  dashboardData["UsageRangeObservedMinMax"].split("/")[0]
-                } / ${
-                  dashboardData["UsageRangeObservedMinMax"].split("/")[1]
-                } `}
+                {`${dashboardData.UsageRangeObservedMin} kms / ${dashboardData.UsageRangeObservedMax} kms`}
               </Card.Description>
               {/* <Card.Description>
                 {`${rangeObservedMin} km / ${rangeObservedMax} km`}
@@ -99,10 +90,7 @@ const VehicleUsage = ({
             <div>
               <Card.Description>{t("observedVsEpa")}</Card.Description>
               <Card.Description>
-                {dashboardData.UsageObservedvsEPAWLTPProvided.split("/").join(
-                  " km / "
-                )}{" "}
-                km
+                {`${dashboardData.RealRangeObserved} kms / ${dashboardData.EPAWLTPProvidedRange} kms"`}
                 {/* {`${realRangeObserved} km / ${epaProvidedRange} km`} */}
               </Card.Description>
             </div>

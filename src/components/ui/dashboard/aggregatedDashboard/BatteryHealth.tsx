@@ -29,7 +29,7 @@ const BatteryHealth = () => {
     vehicles && vehicles.length > 0
       ? (
           vehicles.reduce((total, vehicle) => {
-            const sohValue = parseInt(vehicle["soh "]) || 0; // Handle undefined and empty values
+            const sohValue = parseInt(vehicle["soh"]) || 0; // Handle undefined and empty values
             return total + sohValue;
           }, 0) / vehicles.length
         ) // Use the actual length of vehicles
@@ -41,7 +41,7 @@ const BatteryHealth = () => {
       ? (
           100 -
           vehicles.reduce((total, vehicle) => {
-            const sohValue = parseInt(vehicle["soh "]) || 0;
+            const sohValue = parseInt(vehicle["soh"]) || 0;
             return total + sohValue;
           }, 0) /
             vehicles.length

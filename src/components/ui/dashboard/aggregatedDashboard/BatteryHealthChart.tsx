@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { getVehicleDashboardData } from "@/actions/admin/dashboardModule/get-vehicle-dashboard-data";
+// import { getVehicleDashboardData } from "@/actions/admin/dashboardModule/get-vehicle-dashboard-data";
 import useVehicleStore from "@/states/store";
 import { LineChart } from "@mui/x-charts/LineChart";
 
