@@ -47,7 +47,10 @@ const VehicleBatteryHealth = ({
           <div className="flex flex-col justify-evenly ">
             <Card.Description>{t("batteryChemistry")}</Card.Description>
             <Card.Description>
-              {dashboardData.batteryChemistry}
+              1';'
+              
+              
+              '
             </Card.Description>
           </div>
         </div>
