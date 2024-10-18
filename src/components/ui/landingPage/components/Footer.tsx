@@ -19,7 +19,7 @@ function Copyright() {
     <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
       {'Copyright © '}
       <Link color="text.secondary" href="https://mui.com/">
-        Sitemark
+        Momentech
       </Link>
       &nbsp;
       {new Date().getFullYear()}
@@ -27,7 +27,7 @@ function Copyright() {
   );
 }
 
-export default function Footer() {
+export default function Footer({mode}) {
     const [email, setEmail] = React.useState("");
     const [isSending, setIsSending] = React.useState(false);
 
@@ -102,12 +102,17 @@ export default function Footer() {
             flexDirection: "column",
             gap: 4,
             minWidth: { xs: "100%", sm: "60%" },
+            alignItems: "center",
           }}
         >
           <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
             {/* <SitemarkIcon / */}
             <img
-              src="/assets/img/logo.png"
+              src={
+                mode === "light"
+                  ? "/assets/img/logo_black_nocap.png"
+                  : "/assets/img/logo_white_nocap.png"
+              }
               alt="Logo"
               style={{
                 maxHeight: "100px", // Adjust the maximum height of the logo
@@ -122,12 +127,12 @@ export default function Footer() {
               gutterBottom
               sx={{ fontWeight: 600, mt: 2 }}
             >
-              Lets Chat !
+              GET IN TOUCH WITH US
             </Typography>
             <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>
-              Join the Journey toward Future of EV
+              Get in touch with us to enquire about our product
             </Typography>
-            <InputLabel htmlFor="email-newsletter">Email</InputLabel>
+            {/* <InputLabel htmlFor="email-newsletter">Email</InputLabel> */}
             <Stack direction="row" spacing={1} useFlexGap>
               <TextField
                 id="email-newsletter"
@@ -161,6 +166,26 @@ export default function Footer() {
           </Box>
         </Box>
         <Box
+          sx={{
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
+            gap: 1,
+          }}
+        >
+          <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+            Contact Us
+          </Typography>
+          <Typography color="text.secondary" variant="body2">
+            91 Spring Board,
+          </Typography>
+          <Typography color="text.secondary" variant="body2">
+            Bannerghatta Road
+          </Typography>
+          <Typography color="text.secondary" variant="body2">
+            Bangalore
+          </Typography>
+        </Box>
+        {/* <Box
           sx={{
             display: { xs: "none", sm: "flex" },
             flexDirection: "column",
@@ -225,7 +250,7 @@ export default function Footer() {
           <Link color="text.secondary" variant="body2" href="#">
             Contact
           </Link>
-        </Box>
+        </Box> */}
       </Box>
       <Box
         sx={{

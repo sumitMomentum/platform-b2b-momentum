@@ -11,8 +11,8 @@ export default function Quote2() {
       sx={{
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
-        color: "white",
-        bgcolor: "grey.900",
+        // color: "white",
+        // bgcolor: "grey.900",
       }}
     >
       <Container
@@ -32,12 +32,18 @@ export default function Quote2() {
           }}
         >
           <Stack spacing={3}>
-            <Typography variant="h4" sx={{ color: "#6afef6" }}>
+            <Typography
+              variant="h4"
+              sx={(theme) => ({ color: "primary.main"})}
+            >
               An AI/ML led platform to provide vehicle owners with valuable
               information regarding battery health, performance, real range and
               charging optimization.
             </Typography>
-            <Typography variant="h4" sx={{ color: "#6afef6" }}>
+            <Typography
+              variant="h4"
+              sx={(theme) => ({ color: "primary.main"})}
+            >
               An EV “credit score” to revolutionize the resale of electric
               vehicles in addition to managing the Second life of batteries.
             </Typography>

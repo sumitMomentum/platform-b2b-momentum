@@ -12,6 +12,9 @@ import PowerRoundedIcon from "@mui/icons-material/PowerRounded";
 import FlashOnRoundedIcon from "@mui/icons-material/FlashOnRounded";
 import { title } from "process";
 import { Slide } from "react-awesome-reveal";
+import { dark } from "@clerk/themes";
+import { grey } from "@mui/material/colors";
+import { light } from "@mui/material/styles/createPalette";
 
 const whyChooseUs = [
   {
@@ -43,16 +46,15 @@ const whyChooseUs = [
 export default function WhyChooseUs() {
   return (
     <Box
-      id="highlights"
+      id="whyChooseUs"
       sx={{
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
-        color: "white",
-        bgcolor: "grey.900",
+        // color: "white",
+        // bgcolor: "grey.900",
       }}
     >
       <Container
-        id="whyChooseUs"
         sx={{
           position: "relative",
           display: "flex",
@@ -85,27 +87,73 @@ export default function WhyChooseUs() {
                   component={Card}
                   spacing={1}
                   useFlexGap
-                  sx={{
-                    color: "inherit",
+                  sx={(theme) => ({
+                    boxShadow:5,
                     p: 3,
                     height: "100%",
-                    borderColor: "hsla(220, 25%, 25%, 0.3)",
-                    backgroundColor: "grey.800",
-                  }}
+                    borderColor:
+                      theme.palette.mode === "dark"
+                        ? theme.palette.primary.dark
+                        : "black",
+                    "&:hover": {
+                      backgroundColor:
+                        theme.palette.mode === "dark" ? "black" : "white",
+                    },
+                    // Styling for the icon
+                    "& .icon": {
+                      color: theme.palette.primary.main,
+                    },
+                    // Change icon color on hover
+                    "&:hover .icon .title": {
+                      color:
+                        theme.palette.primary[
+                          theme.palette.mode === "dark" ? "light" : "dark"
+                        ],
+                    },
+                    // Styling for the title
+                    "& .title": {
+                      color: theme.palette.primary.main, // Static color for the title
+                    },
+                    // Title hover remains the same (you can modify it if needed)
+                    "&:hover .title": {
+                      color:
+                        theme.palette.primary[
+                          theme.palette.mode === "dark" ? "light" : "dark"
+                        ],
+                    },
+                    // Styling for the description
+                    "& .desc": {
+                      color: theme.palette.grey[400],
+                    },
+                    // Change description color on hover
+                    "&:hover .desc": {
+                      color:
+                        theme.palette.mode === "dark"
+                          ? theme.palette.primary.dark
+                          : "black",
+                    },
+                  })}
                 >
-                  <Box sx={{ opacity: "50%", textAlign: "center" }}>
+                  <Box className="icon" sx={{ textAlign: "center" }}>
                     {item.icon}
                   </Box>
                   <div>
                     <Typography
+                      className="title"
                       gutterBottom
-                      sx={{ fontWeight: "medium", textAlign: "center" }}
+                      sx={{
+                        fontWeight: "bold",
+                        textAlign: "center",
+                      }}
                     >
                       {item.title}
                     </Typography>
                     <Typography
+                      className="desc"
                       variant="body2"
-                      sx={{ color: "grey.400", textAlign: "center" }}
+                      sx={{
+                        textAlign: "center",
+                      }}
                     >
                       {item.description}
                     </Typography>

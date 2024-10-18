@@ -24,6 +24,7 @@ import style from "styled-jsx/style";
 import { Fade, Flip } from "react-awesome-reveal";
 import Typewriter from "react-typewriter-effect";
 import { transform } from "next/dist/build/swc";
+
 // const StyledBox = styled("div")(({ theme }) => ({
 //   alignSelf: "center",
 //   width: "100%",
@@ -204,9 +205,17 @@ export default function Hero() {
               />
               <Button
                 variant="contained"
-                color="primary"
+                // color="primary"
                 size="small"
-                sx={{ minWidth: "fit-content" }}
+                sx={(theme) => ({
+                  color: "primary.main",
+                  whiteSpace: "nowrap",
+                  minWidth: "fit-content",
+                  ...theme.applyStyles("dark", {
+                    color: "primary.dark",
+                  }),
+                })}
+                // sx={{ minWidth: "fit-content" }}
                 onClick={sendEmail}
                 disabled={isSending}
               >

@@ -18,8 +18,6 @@ interface VendorDto {
 }
 
 export async function GET() {
-
-
     try {
         // // Fetch access token from Enode using code
         // const { data } = await axios.post(authUrl, {

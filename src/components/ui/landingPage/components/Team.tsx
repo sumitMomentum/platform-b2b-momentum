@@ -78,6 +78,7 @@ export default function Team() {
           {members.map((member) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={member.title}>
               <Card
+                // elevation={10}
                 sx={[
                   {
                     p: 2,
@@ -85,17 +86,18 @@ export default function Team() {
                     flexDirection: "column",
                     gap: 4,
                     height: "100%",
+                    borderColor: "primary.main",
+                    boxShadow: 10,
                   },
                 ]}
               >
                 <CardContent>
                   <Box
-                    sx={[
-                      {
-                        display: "flex",
-                        alignItems: "baseline",
-                      },
-                    ]}
+                    sx={{
+                      display: "flex",
+                      alignItems: "baseline",
+                      color: "primary.main",
+                    }}
                   >
                     <Typography component="h4" variant="h4">
                       {member.title}

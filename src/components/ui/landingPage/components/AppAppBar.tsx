@@ -17,8 +17,10 @@ import Sitemark from "./SitemarkIcon";
 import style from "styled-jsx/style";
 import Link from "next/link";
 import BtnBuyService from "../../commons/BtnBuyService";
+import ToggleColorMode from "./ToggleColorMode";
+import { dark } from "@clerk/themes";
 
-export default function AppAppBar() {
+export default function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -69,7 +71,11 @@ export default function AppAppBar() {
           >
             {/* <Sitemark /> */}
             <img
-              src="/assets/img/logo.png"
+              src={
+                mode === "light"
+                  ? "/assets/img/logo_black_nocap.png"
+                  : "/assets/img/logo_white_nocap.png"
+              }
               alt="Logo"
               style={{
                 maxHeight: "100px", // Adjust the maximum height of the logo
@@ -108,8 +114,38 @@ export default function AppAppBar() {
               alignItems: "center",
             }}
           >
+            <ToggleColorMode
+              data-screenshot="toggle-mode"
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+            />
             <Link href={"/home"} passHref>
-              <Button color="primary" variant="contained" size="small">
+              <Button
+                sx={(theme) => ({
+                  // backgroundColor: theme.palette.primary.main,
+                  // color: "black",
+                  // "&:hover": {
+                  //   backgroundColor:
+                  //     theme.palette.mode === "dark" ? "white" : "black",
+                  // },
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? theme.palette.primary.main
+                      : "black",
+                  color:
+                    theme.palette.mode === "dark"
+                      ? "black"
+                      : theme.palette.primary.main,
+                  "&:hover": {
+                    backgroundColor:
+                      theme.palette.mode === "dark"
+                        ? theme.palette.primary.dark
+                        : "rgba(0, 0, 0, 0.87)",
+                  },
+                })}
+                variant="contained"
+                size="small"
+              >
                 Sign in
               </Button>
             </Link>
@@ -152,6 +188,11 @@ export default function AppAppBar() {
                       Sign in
                     </Button>
                   </Link>
+                  <ToggleColorMode
+              data-screenshot="toggle-mode"
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+            />
                 </MenuItem>
               </Box>
             </Drawer>

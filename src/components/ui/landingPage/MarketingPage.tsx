@@ -18,9 +18,10 @@ import WhyChooseUs from "./components/WhyChooseUs";
 import Quote1 from "./components/Quote1";
 import Quote2 from "./components/Quote2";
 import Team from "./components/Team";
+import { light } from "@mui/material/styles/createPalette";
 
 export default function MarketingPage() {
-  const [mode, setMode] = React.useState<PaletteMode>("dark");
+  const [mode, setMode] = React.useState<PaletteMode>("light");
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const MPTheme = createTheme(getMPTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
@@ -50,11 +51,26 @@ export default function MarketingPage() {
     setShowCustomTheme((prev) => !prev);
   };
 
+  // const theme = createTheme({
+  //   palette: {
+  //     primary: {
+  //       main: "#77bc3f",
+  //     },
+  //     secondary: {
+  //       main: "#E0C2FF",
+  //       light: "#F5EBFF",
+  //       // dark: will be calculated from palette.secondary.main,
+  //       contrastText: "#47008F",
+  //     },
+  //   },
+  // });
+
   return (
+    // <ThemeProvider theme={theme}>
     <ThemeProvider theme={showCustomTheme ? MPTheme : defaultTheme}>
       <CssBaseline enableColorScheme />
 
-      <AppAppBar />
+      <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
       <div>
         <LogoCollection />
@@ -69,7 +85,7 @@ export default function MarketingPage() {
         <Divider />
         <Quote2 />
         <Divider />
-        <WhyChooseUs/>
+        <WhyChooseUs />
         <Divider />
         <Team />
         <Divider />
@@ -77,7 +93,7 @@ export default function MarketingPage() {
         <Divider /> */}
         {/* <FAQ />
         <Divider /> */}
-        <Footer />
+        <Footer mode={mode} />
       </div>
     </ThemeProvider>
   );

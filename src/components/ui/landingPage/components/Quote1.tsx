@@ -11,8 +11,8 @@ export default function Quote1() {
       sx={{
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
-        color: "white",
-        bgcolor: "grey.900",
+        // color: "white",
+        // bgcolor: "grey.900",
       }}
     >
       <Container
@@ -34,7 +34,9 @@ export default function Quote1() {
           <Typography component="h2" variant="h3" gutterBottom>
             MAKING EV TRANSITION SEAMLESS
           </Typography>
-          <Typography variant="h4" sx={{ color: "#6afef6" }}>
+          <Typography variant="h4" 
+          sx={(theme) => ({ color: "primary.main"})}
+          >
             Helping EV fleets and financing companies understand battery
             degradation, optimize charging, reduce TCO and build clarity on the
             resale values of vehicles.

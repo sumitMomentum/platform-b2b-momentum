@@ -48,8 +48,8 @@ export default function HowWeHaveHelpedClients() {
       sx={{
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
-        color: "white",
-        bgcolor: "grey.900",
+        // color: "white",
+        // bgcolor: "grey.900",
       }}
     >
       <Container
@@ -86,28 +86,62 @@ export default function HowWeHaveHelpedClients() {
                   component={Card}
                   spacing={1}
                   useFlexGap
-                  sx={{
-                    color: "inherit",
+                  sx={(theme) => ({
+                    boxShadow: 5,
+
                     p: 3,
                     height: "100%",
-                    borderColor: "hsla(220, 25%, 25%, 0.3)",
-                    backgroundColor: "grey.800",
-                  }}
+                    borderColor:
+                      theme.palette.mode === "dark"
+                        ? theme.palette.primary.dark
+                        : "black",
+                    "&:hover": {
+                      backgroundColor:
+                        theme.palette.mode === "dark" ? "black" : "white",
+                    },
+                    // Styling for the icon
+                    "& .title-icon": {
+                      color: theme.palette.primary.main,
+                    },
+                    // Change icon color on hover
+                    "&:hover .title-icon": {
+                      color:
+                        theme.palette.primary[
+                          theme.palette.mode === "dark" ? "light" : "dark"
+                        ],
+                    },
+                    // Styling for the description
+                    "& .desc": {
+                      color: theme.palette.grey[400],
+                    },
+                    // Change description color on hover
+                    "&:hover .desc": {
+                      color:
+                        theme.palette.mode === "dark"
+                          ? theme.palette.primary.dark
+                          : "black",
+                    },
+                  })}
                 >
                   <Box
+                    className="title-icon"
                     sx={{
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-between",
                     }}
                   >
-                    <Typography gutterBottom sx={{ fontWeight: "medium" }}>
+                    <Typography gutterBottom sx={{ fontWeight: "bold" }}>
                       {item.title}
                     </Typography>
-                    <Box sx={{ opacity: "50%" }}>{item.icon}</Box>
+                    <Box>{item.icon}</Box>
                   </Box>
                   <div>
-                    <Typography variant="body2" sx={{ color: "grey.400" }}>
+                    <Typography
+                      className="desc"
+                      variant="body2"
+                      sx={{ color: "grey.400" }}
+                    >
                       {item.description}
                     </Typography>
                   </div>

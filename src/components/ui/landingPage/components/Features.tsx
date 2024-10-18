@@ -26,7 +26,7 @@ const items = [
     title: "Dashboard",
     description:
       "This item could provide a snapshot of the most important metrics or data points related to the full fleet.",
-    // imageLight: 'url("/assets/img/dashboardScreenshot.png")',
+    imageLight: 'url("/assets/img/dashboardScreenshot.png")',
     imageDark: 'url("/assets/img/dashboardScreenshot.png")',
   },
   {
@@ -34,7 +34,7 @@ const items = [
     title: "Vehicle Details",
     description:
       "This feature could provide information about the vehicle stats",
-    // imageLight: 'url("/assets/img/vehicleScreenshot.png")',
+    imageLight: 'url("/assets/img/vehicleScreenshot.png")',
     imageDark: 'url("/assets/img/vehicleScreenshot.png")',
   },
   {

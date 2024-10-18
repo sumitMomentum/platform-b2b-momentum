@@ -72,9 +72,13 @@ const AdminHeader = ({
                   <UpgradeteButton />
                 </div>
               )}
-             
             </div>
             <div className="flex items-center gap-x-4 lg:gap-x-6">
+              {/* {isSuperAdmin && (
+                <Link href="/admin" className="btn-main">
+                  <span>Admin Panel</span>
+                </Link>
+              )} */}
               {isSuperAdmin ? (
                 <Link href="/admin" className="btn-main">
                   <span>Admin Panel</span>
