@@ -164,6 +164,10 @@ export const getDesignTokens = (mode: PaletteMode) => {
           dark: green[700],
         }),
       },
+      default: {
+        main: brand["main"],
+        contrastText: gray[1000],
+      },
       grey: {
         ...gray,
       },

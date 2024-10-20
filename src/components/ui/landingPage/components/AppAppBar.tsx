@@ -121,30 +121,18 @@ export default function AppAppBar({ mode, toggleColorMode }) {
             />
             <Link href={"/home"} passHref>
               <Button
-                sx={(theme) => ({
-                  // backgroundColor: theme.palette.primary.main,
-                  // color: "black",
-                  // "&:hover": {
-                  //   backgroundColor:
-                  //     theme.palette.mode === "dark" ? "white" : "black",
-                  // },
-                  backgroundColor:
-                    theme.palette.mode === "dark"
-                      ? theme.palette.primary.main
-                      : "black",
-                  color:
-                    theme.palette.mode === "dark"
-                      ? "black"
-                      : theme.palette.primary.main,
-                  "&:hover": {
-                    backgroundColor:
-                      theme.palette.mode === "dark"
-                        ? theme.palette.primary.dark
-                        : "rgba(0, 0, 0, 0.87)",
-                  },
-                })}
+                color="default"
                 variant="contained"
                 size="small"
+                sx={(theme) => ({
+                  fontWeight: "medium",
+                  color: "black",
+                  letterSpacing: 1,
+                  "&:hover": {
+                    color: "white",
+                    backgroundColor: theme.palette.primary.dark,
+                  },
+                })}
               >
                 Sign in
               </Button>

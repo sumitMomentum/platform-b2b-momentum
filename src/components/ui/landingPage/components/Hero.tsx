@@ -204,12 +204,19 @@ export default function Hero() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <Button
+                color="default"
                 variant="contained"
-                // color="primary"
                 size="small"
                 sx={(theme) => ({
                   color: "primary.main",
                   whiteSpace: "nowrap",
+                  fontWeight: "medium",
+                  color: "black",
+                  letterSpacing: 1,
+                  "&:hover": {
+                    color: "white",
+                    backgroundColor: theme.palette.primary.dark,
+                  },
                   minWidth: "fit-content",
                   ...theme.applyStyles("dark", {
                     color: "primary.dark",
@@ -278,49 +285,47 @@ export default function Hero() {
   );
 }
 
-
-
-  // <Box
-  //   id="image"
-  //   sx={(theme) => ({
-  //     alignSelf: "center",
-  //     width: "100%",
-  //     height: 400,
-  //     marginTop: theme.spacing(8),
-  //     borderRadius: theme.shape.borderRadius,
-  //     outline: "6px solid",
-  //     outlineColor: "hsla(220, 25%, 80%, 0.2)",
-  //     border: "1px solid",
-  //     borderColor: theme.palette.grey[200],
-  //     boxShadow: "0 0 12px 8px hsla(220, 25%, 80%, 0.2)",
-  //     backgroundColor: "#000", // Set background color for better contrast
-  //     position: "relative", // Ensure iframe can cover the box
-  //     overflow: "hidden", // Prevent overflow from the iframe
-  //     [theme.breakpoints.up("sm")]: {
-  //       marginTop: theme.spacing(10),
-  //       height: 700,
-  //     },
-  //     ...theme.applyStyles("dark", {
-  //       boxShadow: "0 0 24px 12px hsla(210, 100%, 25%, 0.2)",
-  //       outlineColor: "hsla(220, 20%, 42%, 0.1)",
-  //       borderColor: theme.palette.grey[700],
-  //     }),
-  //   })}
-  // >
-  //   <iframe
-  //     src={`https://www.youtube.com/embed/USSNBWtIzlk?autoplay=1&loop=1&playlist=USSNBWtIzlk&controls=0&showinfo=0&modestbranding=1&mute=1&quality=hd1080`} // Add loop and autoplay parameters
-  //     frameBorder="0"
-  //     allow="autoplay; encrypted-media"
-  //     // allowFullScreen
-  //     title="YouTube Video"
-  //     style={{
-  //       position: "absolute",
-  //       top: "25%",
-  //       left: "25%",
-  //       width: "125%",
-  //       height: "125%",
-  //       transform: "translate(-25%, -25%) scale(1)",
-  //       pointerEvents: "none",
-  //     }} // Ensure iframe fits within the box
-  //   />
-  // </Box>;
+// <Box
+//   id="image"
+//   sx={(theme) => ({
+//     alignSelf: "center",
+//     width: "100%",
+//     height: 400,
+//     marginTop: theme.spacing(8),
+//     borderRadius: theme.shape.borderRadius,
+//     outline: "6px solid",
+//     outlineColor: "hsla(220, 25%, 80%, 0.2)",
+//     border: "1px solid",
+//     borderColor: theme.palette.grey[200],
+//     boxShadow: "0 0 12px 8px hsla(220, 25%, 80%, 0.2)",
+//     backgroundColor: "#000", // Set background color for better contrast
+//     position: "relative", // Ensure iframe can cover the box
+//     overflow: "hidden", // Prevent overflow from the iframe
+//     [theme.breakpoints.up("sm")]: {
+//       marginTop: theme.spacing(10),
+//       height: 700,
+//     },
+//     ...theme.applyStyles("dark", {
+//       boxShadow: "0 0 24px 12px hsla(210, 100%, 25%, 0.2)",
+//       outlineColor: "hsla(220, 20%, 42%, 0.1)",
+//       borderColor: theme.palette.grey[700],
+//     }),
+//   })}
+// >
+//   <iframe
+//     src={`https://www.youtube.com/embed/USSNBWtIzlk?autoplay=1&loop=1&playlist=USSNBWtIzlk&controls=0&showinfo=0&modestbranding=1&mute=1&quality=hd1080`} // Add loop and autoplay parameters
+//     frameBorder="0"
+//     allow="autoplay; encrypted-media"
+//     // allowFullScreen
+//     title="YouTube Video"
+//     style={{
+//       position: "absolute",
+//       top: "25%",
+//       left: "25%",
+//       width: "125%",
+//       height: "125%",
+//       transform: "translate(-25%, -25%) scale(1)",
+//       pointerEvents: "none",
+//     }} // Ensure iframe fits within the box
+//   />
+// </Box>;

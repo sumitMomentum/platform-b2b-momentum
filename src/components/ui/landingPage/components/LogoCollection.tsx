@@ -69,7 +69,11 @@ export default function LogoCollection() {
         component="p"
         variant="subtitle2"
         align="center"
-        sx={{ color: "text.secondary", marginBottom: 3 }}
+        sx={{
+          color: "text.primary",
+          marginBottom: 3,
+          fontWeight: "bold",
+        }}
       >
         Powered by Cutting-Edge Technology
       </Typography>
@@ -93,7 +97,11 @@ export default function LogoCollection() {
                 alt={`Technology ${index + 1}`}
                 style={logoStyle}
               />
-              <Typography variant="caption" align="center" sx={{ mt: 1 }}>
+              <Typography
+                variant="caption"
+                align="center"
+                sx={{ mt: 1, textOverflow: "wrap" }}
+              >
                 {logo.name}
               </Typography>
             </Grid>

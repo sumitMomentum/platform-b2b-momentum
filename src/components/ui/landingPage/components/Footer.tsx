@@ -154,9 +154,18 @@ export default function Footer({mode}) {
               />
               <Button
                 variant="contained"
-                color="primary"
+                color="default"
                 size="small"
-                sx={{ flexShrink: 0 }}
+                sx={(theme) => ({
+                  fontWeight: "medium",
+                  color: "black",
+                  flexShrink: 0,
+                  letterSpacing: 1,
+                  "&:hover": {
+                    color: "white",
+                    backgroundColor: theme.palette.primary.dark,
+                  },
+                })}
                 onClick={sendEmail}
                 disabled={isSending}
               >

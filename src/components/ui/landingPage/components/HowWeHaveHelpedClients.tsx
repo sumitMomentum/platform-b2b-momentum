@@ -94,7 +94,7 @@ export default function HowWeHaveHelpedClients() {
                     borderColor:
                       theme.palette.mode === "dark"
                         ? theme.palette.primary.dark
-                        : "black",
+                        : theme.palette.primary.main,
                     "&:hover": {
                       backgroundColor:
                         theme.palette.mode === "dark" ? "black" : "white",
