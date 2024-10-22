@@ -255,17 +255,23 @@ export const getDesignTokens = (mode: PaletteMode) => {
       MuiButton: {
         styleOverrides: {
           root: ({ theme }) => ({
-            textTransform: "none",
-            color: theme.palette.primary.contrastText, // Adjust text color based on the mode
-            backgroundColor: theme.palette.primary.main, // Button background color for both modes
-            "&:hover": {
-              backgroundColor:
-                theme.palette.mode === "dark"
-                  ? theme.palette.primary.dark
-                  : theme.palette.primary.light, // Adjust hover based on light or dark mode
-            },
-            borderRadius: "8px", // Customize the button's border-radius
-            padding: "8px 16px", // Adjust button padding
+            minWidth: "fit-content",
+            whiteSpace: "nowrap",
+            fontWeight: theme.typography.fontWeightMedium,
+            letterSpacing: 1,
+            variants: [
+              {
+                props: { color: "default" }, // for buttons with color="default"
+                style: ({ theme }) => ({
+                  backgroundColor: theme.palette.primary.dark,
+                  color: theme.palette.primary.main,
+                  "&:hover": {
+                    color: "white",
+                    backgroundColor: theme.palette.primary.dark,
+                  },
+                }),
+              },
+            ],
           }),
         },
       },

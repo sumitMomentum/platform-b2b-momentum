@@ -207,22 +207,7 @@ export default function Hero() {
                 color="default"
                 variant="contained"
                 size="small"
-                sx={(theme) => ({
-                  color: "primary.main",
-                  whiteSpace: "nowrap",
-                  fontWeight: "medium",
-                  color: "black",
-                  letterSpacing: 1,
-                  "&:hover": {
-                    color: "white",
-                    backgroundColor: theme.palette.primary.dark,
-                  },
-                  minWidth: "fit-content",
-                  ...theme.applyStyles("dark", {
-                    color: "primary.dark",
-                  }),
-                })}
-                // sx={{ minWidth: "fit-content" }}
+                sx={{ minWidth: "fit-content" }}
                 onClick={sendEmail}
                 disabled={isSending}
               >

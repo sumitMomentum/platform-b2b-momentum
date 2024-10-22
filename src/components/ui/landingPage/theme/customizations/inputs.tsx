@@ -224,6 +224,20 @@ export const inputsCustomizations: Components<Theme> = {
               }),
             },
           },
+          {
+            props: { color: "default" }, // for buttons with color="default"
+            style: ({ theme }) => ({
+              whiteSpace: "nowrap",
+              fontWeight: theme.typography.fontWeightMedium,
+              letterSpacing: 1,
+              backgroundColor: theme.palette.primary,
+              color: "black",
+              "&:hover": {
+                color: "white",
+                backgroundColor: theme.palette.primary.dark,
+              },
+            }),
+          },
         ],
       }),
     },

@@ -1,3 +1,5 @@
+// @ts-ignore
+
 "use client";
 
 import * as React from "react";
@@ -124,15 +126,6 @@ export default function AppAppBar({ mode, toggleColorMode }) {
                 color="default"
                 variant="contained"
                 size="small"
-                sx={(theme) => ({
-                  fontWeight: "medium",
-                  color: "black",
-                  letterSpacing: 1,
-                  "&:hover": {
-                    color: "white",
-                    backgroundColor: theme.palette.primary.dark,
-                  },
-                })}
               >
                 Sign in
               </Button>
