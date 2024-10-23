@@ -1,16 +1,15 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("POSTGRES_DATABASE_URL")
 }
-
 
 generator client {
   provider = "prisma-client-js"
 }
 
-generator dbml {
-  provider = "prisma-dbml-generator"
-}
+// generator dbml {
+//   provider = "prisma-dbml-generator"
+// }
 
 model User {
   id                   Int                     @id @default(autoincrement())
@@ -442,9 +441,9 @@ model EnodeToken {
 //   make                 String
 //   model                String
 //   year                 Int
-//   vin                  String? // Optional field if `vehicle.information.vin` can be null
-//   odometer             Float? // Optional field if `vehicle.odometer.distance` can be null
-//   batteryCapacity      Float? // Optional field if `vehicle.chargeState.batteryCapacity` can be null
+//   vin                  String? // Optional field if "vehicle.information.vin" can be null
+//   odometer             Float? // Optional field if "vehicle.odometer.distance" can be null
+//   batteryCapacity      Float? // Optional field if "vehicle.chargeState.batteryCapacity" can be null
 //   ownerId              Int
 //   owner                User                   @relation(fields: [ownerId], references: [id])
 //   dateOfConnection     DateTime // Store date of connection
@@ -502,128 +501,129 @@ model EnodeToken {
 // }
 
 // { new Schemas for steps, cars and all }
-model VehicleDetail {
-  id                                Int      @id @default(autoincrement()) // Unique ID for each vehicle detail
-  vin                               String   // Vehicle Identification Number
-  vehicleId                         String   // ID of the vehicle
-  model                             String    // Vehicle model
-  year                              Int      // Year of the vehicle
-  batteryCapacity                   Int      // Battery capacity in kWh
-  ownerID                           Int      // Owner ID
-  soc                               Int      // State of Charge percentage
-  dateOfConnection                  DateTime @map("dateOfConnection") // Date of connection
-  odometerFloat                     Float    // Odometer reading
-  usageAverageDailyKmDriven         Float[]  // Array of average daily km driven
-  monthlyUsage                      Float[]  // Array of monthly usage
-  condition                         String   // Condition of the vehicle (e.g., "Good")
-  status                            String   // Status of the vehicle (e.g., "Active")
-  make                              String   // Vehicle make
-  batteryHealthSoH                  Float    // State of Health of the battery
-  batteryHealthDegradation          Float    // Degradation of the battery
-  location                          String   // Location (e.g., "Bangalore, India")
-  soh                               Float[]  // Array of state of health values
+model Vehicle {
+  id                                       Int      @id @default(autoincrement()) // Unique ID for each vehicle detail
+  vin                                      String // Vehicle Identification Number
+  vehicleId                                String // ID of the vehicle
+  model                                    String // Vehicle model
+  year                                     Int // Year of the vehicle
+  batteryCapacity                          Int // Battery capacity in kWh
+  ownerID                                  Int // Owner ID
+  soc                                      Int // State of Charge percentage
+  dateOfConnection                         DateTime @map("dateOfConnection") // Date of connection
+  odometerFloat                            Float // Odometer reading
+  usageAverageDailyKmDriven                Float[] // Array of average daily km driven
+  monthlyUsage                             Float[] // Array of monthly usage
+  condition                                String // Condition of the vehicle (e.g., "Good")
+  status                                   String // Status of the vehicle (e.g., "Active")
+  make                                     String // Vehicle make
+  batteryHealthSoH                         Float // State of Health of the battery
+  batteryHealthDegradation                 Float // Degradation of the battery
+  location                                 String // Location (e.g., "Bangalore, India")
+  soh                                      Float[] // Array of state of health values
   batteryHealthAverageEstimatedDegradation Float[] // Array of estimated degradation values
-  batteryHealthAverageSoC           Float    // Average State of Charge of the battery
-  batteryHealthTotalBatteries       Int      // Total number of batteries
-  connectorType                     String   // Type of connector (e.g., "Rapid")
-  endOfLife                         String   // End of life estimate
-  realRangeObserved                 Int      // Observed real range
-  remainingUsefulLife               String   // Remaining useful life estimate
-  totalChargingSession               Int      // Total number of charging sessions
-  totalEnergyConsumed               String   // Total energy consumed
-  vehicleConditionCritical           Int      // Critical condition count
-  vehicleConditionGood              Int      // Good condition count
-  vehicleConditionSatisfactory      Int      // Satisfactory condition count
-  vehicleStatusActive               Int      // Active status count
-  vehicleStatusCharging             Int      // Charging status count
-  vehicleStatusInUse                Int      // In-use status count
-  vehicleStatusOutOfService         Int      // Out-of-service status count
-  epawltpProvidedRange              Int      // Provided range (EPA WLTP)
-  usageRangeObservedMax            Int      // Maximum observed range
-  usageRangeObservedMin            Int      // Minimum observed range
-  usageSoCRangeMax                 Int      // Maximum state of charge range
-  usageSoCRangeMin                 Int      // Minimum state of charge range
-  usageTemperatureHigh              Int      // Maximum temperature observed
-  usageTemperatureLow               Int      // Minimum temperature observed
-  batteryChemistry                  String   // Chemistry of the battery (e.g., "Lithium-ion")
-  batteryHealthAverageSoH           Float    // Average state of health of the battery
-  dataPointsCollected               Int      // Number of data points collected
-  averageMonthlyUsage               Float    // Average monthly usage
+  batteryHealthAverageSoC                  Float // Average State of Charge of the battery
+  batteryHealthTotalBatteries              Int // Total number of batteries
+  connectorType                            String // Type of connector (e.g., "Rapid")
+  endOfLife                                String // End of life estimate
+  realRangeObserved                        Int // Observed real range
+  remainingUsefulLife                      String // Remaining useful life estimate
+  totalChargingSession                     Int // Total number of charging sessions
+  totalEnergyConsumed                      String // Total energy consumed
+  vehicleConditionCritical                 Int // Critical condition count
+  vehicleConditionGood                     Int // Good condition count
+  vehicleConditionSatisfactory             Int // Satisfactory condition count
+  vehicleStatusActive                      Int // Active status count
+  vehicleStatusCharging                    Int // Charging status count
+  vehicleStatusInUse                       Int // In-use status count
+  vehicleStatusOutOfService                Int // Out-of-service status count
+  epawltpProvidedRange                     Int // Provided range (EPA WLTP)
+  usageRangeObservedMax                    Int // Maximum observed range
+  usageRangeObservedMin                    Int // Minimum observed range
+  usageSoCRangeMax                         Int // Maximum state of charge range
+  usageSoCRangeMin                         Int // Minimum state of charge range
+  usageTemperatureHigh                     Int // Maximum temperature observed
+  usageTemperatureLow                      Int // Minimum temperature observed
+  batteryChemistry                         String // Chemistry of the battery (e.g., "Lithium-ion")
+  batteryHealthAverageSoH                  Float // Average state of health of the battery
+  dataPointsCollected                      Int // Number of data points collected
+  averageMonthlyUsage                      Float // Average monthly usage
+  ownerId                                  Int
+  owner                                    User     @relation(fields: [ownerId], references: [id])
 }
 
 model Benefit {
-  id                               Int      @id @default(autoincrement()) // Unique ID for each benefit
-  vin                              String   // Vehicle Identification Number
-  vehicleId                        String   // ID of the vehicle associated with this benefit
-  batteryCycleSavingMonthly        Float    // Monthly battery cycle savings
-  batteryCycleSavingYearly         Float    // Yearly battery cycle savings
-  batteryCycleSavingLifetime       Float    // Lifetime battery cycle savings
-  costSavingChargingMonthly         Float    // Monthly cost savings from charging
-  costSavingChargingYearly          Float    // Yearly cost savings from charging
-  costSavingChargingLifeTimeEstimate Float    // Lifetime estimated cost savings
-  rangeIncreaseMonthly             Float    // Monthly range increase
-  rangeIncreaseYearly              Float    // Yearly range increase
-  rangeIncreaseLifetimeEstimate     Float    // Lifetime estimated range increase
-  revenueIncreaseLifetime          Float    // Lifetime revenue increase
-  initialSoH                       Float    // Initial state of health
-  ageOfCar                         Int      // Age of the car in years
-  estimatedDegradation             Float    // Estimated degradation percentage
-  actualDegradation                Float    // Actual degradation percentage
-  difference                       Float    // Difference in degradation
-  loss                             Float    // Financial loss associated
-  carType                          String   // Type of car (e.g., "Audi")
+  id                                 Int    @id @default(autoincrement()) // Unique ID for each benefit
+  vin                                String // Vehicle Identification Number
+  vehicleId                          String // ID of the vehicle associated with this benefit
+  batteryCycleSavingMonthly          Float // Monthly battery cycle savings
+  batteryCycleSavingYearly           Float // Yearly battery cycle savings
+  batteryCycleSavingLifetime         Float // Lifetime battery cycle savings
+  costSavingChargingMonthly          Float // Monthly cost savings from charging
+  costSavingChargingYearly           Float // Yearly cost savings from charging
+  costSavingChargingLifeTimeEstimate Float // Lifetime estimated cost savings
+  rangeIncreaseMonthly               Float // Monthly range increase
+  rangeIncreaseYearly                Float // Yearly range increase
+  rangeIncreaseLifetimeEstimate      Float // Lifetime estimated range increase
+  revenueIncreaseLifetime            Float // Lifetime revenue increase
+  initialSoH                         Float // Initial state of health
+  ageOfCar                           Int // Age of the car in years
+  estimatedDegradation               Float // Estimated degradation percentage
+  actualDegradation                  Float // Actual degradation percentage
+  difference                         Float // Difference in degradation
+  loss                               Float // Financial loss associated
+  carType                            String // Type of car (e.g., "Audi")
 }
 
 model ChargerMaster {
   id              Int      @id @default(autoincrement()) // Unique ID for each charger
-  chargerID      Int      @unique
-  chargerLocation String   // Location in "latitude,longitude" format
-  chargerStatus   String    // e.g., "Active" or "Inactive"
+  chargerID       Int      @unique
+  chargerLocation String // Location in "latitude,longitude" format
+  chargerStatus   String // e.g., "Active" or "Inactive"
   dateJoining     DateTime @map("dateJoining") // Date the charger joined
-  chargeType      String    // Type of charging (e.g., "Default")
-  chargingPoint    String    // Charging point (e.g., "Default")
+  chargeType      String // Type of charging (e.g., "Default")
+  chargingPoint   String // Charging point (e.g., "Default")
 }
 
 model ChargerType {
-  id                      Int     @id @default(autoincrement()) // Unique ID for each charger type
-  evConnectorType         String   // Type of EV connector
-  outputCurrentType       String   // Type of output current
-  supplyInput             String   // Supply input details
-  maximumOutputCurrent    String   // Max output current details
-  maximumOutputPower      String   // Max output power details
-  evChargingLevels        String   // Levels of charging (e.g., Level 1, Level 2)
-  primaryCountries        String   // Primary countries where the charger is used
+  id                   Int    @id @default(autoincrement()) // Unique ID for each charger type
+  evConnectorType      String // Type of EV connector
+  outputCurrentType    String // Type of output current
+  supplyInput          String // Supply input details
+  maximumOutputCurrent String // Max output current details
+  maximumOutputPower   String // Max output power details
+  evChargingLevels     String // Levels of charging (e.g., Level 1, Level 2)
+  primaryCountries     String // Primary countries where the charger is used
 }
 
 model Action {
-  id                 Int      @id @default(autoincrement()) // Unique ID for each action
-  vehicleId         String   // ID of the vehicle associated with this action
-  severity          String   // Severity level (e.g., "Medium")
-  description       String   // Description of the action
-  bestPractice      String   // Best practice recommendation
-  actionToBeTaken   String   // Action to be taken
-  confirm           Boolean   // Whether the action is confirmed (1 or 0)
-  createdDateTime   DateTime @map("CreatedDateTime") // Date and time the action was created
-  closedDateTime    DateTime @map("ClosedDateTime") // Date and time the action was closed
-  vin               String   // Vehicle Identification Number
+  id              Int      @id @default(autoincrement()) // Unique ID for each action
+  vehicleId       String // ID of the vehicle associated with this action
+  severity        String // Severity level (e.g., "Medium")
+  description     String // Description of the action
+  bestPractice    String // Best practice recommendation
+  actionToBeTaken String // Action to be taken
+  confirm         Boolean // Whether the action is confirmed (1 or 0)
+  createdDateTime DateTime @map("CreatedDateTime") // Date and time the action was created
+  closedDateTime  DateTime @map("ClosedDateTime") // Date and time the action was closed
+  vin             String // Vehicle Identification Number
 }
 
 model VehicleChargingDetail {
-  id             Int      @id @default(autoincrement()) // Unique ID for each vehicle charging detail
-  model          String   // Vehicle model
-  make           String   // Vehicle make
-  year           Int      // Year of the vehicle
-  chargeType     String   // Type of charge (e.g., "Default")
-  chargingPoint   String   // Type of charging point (e.g., "Default")
-  maxPower       String   // Maximum power details
-  power          String   // Power rating
-  time           String   // Charging time (e.g., "11h30m")
-  rate           String   // Rate of charging (e.g., "44 km/h")
-  range1         Int      // First range value
-  range2         Int      // Second range value
-  rateSocTime    String   // Rate of state of charge time (e.g., "8.69 %/hr")
+  id            Int    @id @default(autoincrement()) // Unique ID for each vehicle charging detail
+  model         String // Vehicle model
+  make          String // Vehicle make
+  year          Int // Year of the vehicle
+  chargeType    String // Type of charge (e.g., "Default")
+  chargingPoint String // Type of charging point (e.g., "Default")
+  maxPower      String // Maximum power details
+  power         String // Power rating
+  time          String // Charging time (e.g., "11h30m")
+  rate          String // Rate of charging (e.g., "44 km/h")
+  range1        Int // First range value
+  range2        Int // Second range value
+  rateSocTime   String // Rate of state of charge time (e.g., "8.69 %/hr")
 }
-
 
 // model AggregatedDashboard {
 //   id           Int @id

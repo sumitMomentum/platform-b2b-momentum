@@ -1,7 +1,32 @@
 "use server";
-import prisma from "@/lib/db";
+
 import { auth } from "@clerk/nextjs";
-import { getUser } from "@/utils/facades/serverFacades/userFacade";
+
+export const getUserVehicles = async () => {
+  const { userId } = auth();
+
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  // Fetch the vehicles data from the API
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicles`
+  ); // Use the correct base URL
+
+  console.log(response)
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch vehicles data");
+  }
+
+  return await response.json();
+};
+
+
+// import prisma from "@/lib/db";
+// import { auth } from "@clerk/nextjs";
+// import { getUser } from "@/utils/facades/serverFacades/userFacade";
 
 // export const getUserVehicles = async () => {
 //   const userClerk = auth();
@@ -59,58 +84,58 @@ import { getUser } from "@/utils/facades/serverFacades/userFacade";
 //   }
 // };
 
-export const getUserVehicles = async () => {
-  try {
-    const response1 = await fetch(
-      `https://demoapi-9d35.onrender.com/api/vehicles/allVehicleDetails`
-    );
-    const response2 = await fetch(
-      `https://demoapi-9d35.onrender.com/api/vehicles/allVehiclesStep2`
-    );
-    // const response1 = await fetch(
-    //   `${process.env.BACKEND_URL}/api/vehicles/allVehicleDetails`
-    // );
-    // const response2 = await fetch(
-    //   `${process.env.BACKEND_URL}/api/vehicles/allVehiclesStep2`
-    // );
+// export const getUserVehicles = async () => {
+//   try {
+//     const response1 = await fetch(
+//       `https://demoapi-9d35.onrender.com/api/vehicles/allVehicleDetails`
+//     );
+//     const response2 = await fetch(
+//       `https://demoapi-9d35.onrender.com/api/vehicles/allVehiclesStep2`
+//     );
+//     // const response1 = await fetch(
+//     //   `${process.env.BACKEND_URL}/api/vehicles/allVehicleDetails`
+//     // );
+//     // const response2 = await fetch(
+//     //   `${process.env.BACKEND_URL}/api/vehicles/allVehiclesStep2`
+//     // );
 
-    if (!response1.ok || !response2.ok) {
-      throw new Error(
-        `Error fetching data: ${response1.status} ${response1.statusText}, ${response2.status} ${response2.statusText}`
-      );
-    }
+//     if (!response1.ok || !response2.ok) {
+//       throw new Error(
+//         `Error fetching data: ${response1.status} ${response1.statusText}, ${response2.status} ${response2.statusText}`
+//       );
+//     }
 
-    const vehicleDetailsData = await response1.json();
-    const step2Data = await response2.json();
+//     const vehicleDetailsData = await response1.json();
+//     const step2Data = await response2.json();
 
-    // Create a map for efficient lookup by vehicleId
-    const step2DataMap = new Map(
-      step2Data.map((item) => [item.vehicleId, item])
-    );
+//     // Create a map for efficient lookup by vehicleId
+//     const step2DataMap = new Map(
+//       step2Data.map((item) => [item.vehicleId, item])
+//     );
 
-    const updatedData = vehicleDetailsData.map((vehicleDetail) => {
-      const step2Vehicle = step2DataMap.get(vehicleDetail.vehicleId);
+//     const updatedData = vehicleDetailsData.map((vehicleDetail) => {
+//       const step2Vehicle = step2DataMap.get(vehicleDetail.vehicleId);
 
-      if (step2Vehicle) {
-        // Merge data, prioritizing Step2 values
-        const mergedVehicle = { ...vehicleDetail, ...(step2Vehicle as object) };
+//       if (step2Vehicle) {
+//         // Merge data, prioritizing Step2 values
+//         const mergedVehicle = { ...vehicleDetail, ...(step2Vehicle as object) };
 
-        // Add fake batteryHealth if not present in either response
-        if (!mergedVehicle.batteryHealth && !mergedVehicle.soh) {
-          mergedVehicle.batteryHealth = Array.from({ length: 12 }, (_, i) =>
-            i < 3 || i > 8 ? Math.floor(Math.random() * 5) + 95 : 0
-          );
-        }
+//         // Add fake batteryHealth if not present in either response
+//         if (!mergedVehicle.batteryHealth && !mergedVehicle.soh) {
+//           mergedVehicle.batteryHealth = Array.from({ length: 12 }, (_, i) =>
+//             i < 3 || i > 8 ? Math.floor(Math.random() * 5) + 95 : 0
+//           );
+//         }
 
-        return mergedVehicle;
-      } else return vehicleDetail;
-    });
+//         return mergedVehicle;
+//       } else return vehicleDetail;
+//     });
 
-    // console.log(updatedData);
+//     // console.log(updatedData);
 
-    return updatedData;
-  } catch (error) {
-    console.error("Error fetching or updating data:", error);
-    return [];
-  }
-};
+//     return updatedData;
+//   } catch (error) {
+//     console.error("Error fetching or updating data:", error);
+//     return [];
+//   }
+// };

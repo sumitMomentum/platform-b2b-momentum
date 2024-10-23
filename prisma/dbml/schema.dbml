@@ -379,67 +379,127 @@ Table EnodeToken {
 }
 
 Table Vehicle {
-  id String [pk]
-  make String [not null]
+  id Int [pk, increment]
+  vin String [not null]
+  vehicleId String [not null]
   model String [not null]
   year Int [not null]
-  vin String
-  odometer Float
-  batteryCapacity Float
-  ownerId Int [not null]
-  owner User [not null]
+  batteryCapacity Int [not null]
+  ownerID Int [not null]
+  soc Int [not null]
   dateOfConnection DateTime [not null]
-  soc Float
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [default: `now()`, not null]
-  VehicleDashboardData VehicleDashboardData [not null]
-}
-
-Table VehicleDashboardData {
-  id Int [pk, increment]
-  vehicleId String [unique]
-  vehicle Vehicle
-  location String [not null, default: 'Banglore']
-  datapointsCollected Int [not null, default: 1410]
-  totalEnergyConsumed Float [not null]
-  averageSoC Float [not null]
-  connectorType String [not null]
-  totalChargingSessions Int [not null]
-  averageChargingRate Float [not null]
-  avgDailyKmDriven Int [not null]
-  temperatureLow Int [not null]
-  temperatureHigh Int [not null]
-  socRangeMin Int [not null]
-  socRangeMax Int [not null]
-  rangeObservedMin Int [not null]
-  rangeObservedMax Int [not null]
-  realRangeObserved Int [not null]
-  epaProvidedRange Int [not null]
+  odometerFloat Float [not null]
+  usageAverageDailyKmDriven Float[] [not null]
+  monthlyUsage Float[] [not null]
+  condition String [not null]
+  status String [not null]
+  make String [not null]
   batteryHealthSoH Float [not null]
-  estimatedDegradation Float [not null]
-  batteryChemistry String [not null, default: 'Li-ion']
-  endOfLife DateTime [not null]
-  remainingUsefulLife Int [not null]
+  batteryHealthDegradation Float [not null]
+  location String [not null]
+  soh Float[] [not null]
+  batteryHealthAverageEstimatedDegradation Float[] [not null]
+  batteryHealthAverageSoC Float [not null]
+  batteryHealthTotalBatteries Int [not null]
+  connectorType String [not null]
+  endOfLife String [not null]
+  realRangeObserved Int [not null]
+  remainingUsefulLife String [not null]
+  totalChargingSession Int [not null]
+  totalEnergyConsumed String [not null]
+  vehicleConditionCritical Int [not null]
+  vehicleConditionGood Int [not null]
+  vehicleConditionSatisfactory Int [not null]
+  vehicleStatusActive Int [not null]
+  vehicleStatusCharging Int [not null]
+  vehicleStatusInUse Int [not null]
+  vehicleStatusOutOfService Int [not null]
+  epawltpProvidedRange Int [not null]
+  usageRangeObservedMax Int [not null]
+  usageRangeObservedMin Int [not null]
+  usageSoCRangeMax Int [not null]
+  usageSoCRangeMin Int [not null]
+  usageTemperatureHigh Int [not null]
+  usageTemperatureLow Int [not null]
+  batteryChemistry String [not null]
+  batteryHealthAverageSoH Float [not null]
+  dataPointsCollected Int [not null]
+  averageMonthlyUsage Float [not null]
+  User User
+  userId Int
 }
 
-Table Car {
+Table Benefit {
   id Int [pk, increment]
-  brand String [not null]
+  vin String [not null]
+  vehicleId String [not null]
+  batteryCycleSavingMonthly Float [not null]
+  batteryCycleSavingYearly Float [not null]
+  batteryCycleSavingLifetime Float [not null]
+  costSavingChargingMonthly Float [not null]
+  costSavingChargingYearly Float [not null]
+  costSavingChargingLifeTimeEstimate Float [not null]
+  rangeIncreaseMonthly Float [not null]
+  rangeIncreaseYearly Float [not null]
+  rangeIncreaseLifetimeEstimate Float [not null]
+  revenueIncreaseLifetime Float [not null]
+  initialSoH Float [not null]
+  ageOfCar Int [not null]
+  estimatedDegradation Float [not null]
+  actualDegradation Float [not null]
+  difference Float [not null]
+  loss Float [not null]
+  carType String [not null]
+}
+
+Table ChargerMaster {
+  id Int [pk, increment]
+  chargerID Int [unique, not null]
+  chargerLocation String [not null]
+  chargerStatus String [not null]
+  dateJoining DateTime [not null]
+  chargeType String [not null]
+  chargingPoint String [not null]
+}
+
+Table ChargerType {
+  id Int [pk, increment]
+  evConnectorType String [not null]
+  outputCurrentType String [not null]
+  supplyInput String [not null]
+  maximumOutputCurrent String [not null]
+  maximumOutputPower String [not null]
+  evChargingLevels String [not null]
+  primaryCountries String [not null]
+}
+
+Table Action {
+  id Int [pk, increment]
+  vehicleId String [not null]
+  severity String [not null]
+  description String [not null]
+  bestPractice String [not null]
+  actionToBeTaken String [not null]
+  confirm Boolean [not null]
+  createdDateTime DateTime [not null]
+  closedDateTime DateTime [not null]
+  vin String [not null]
+}
+
+Table VehicleChargingDetail {
+  id Int [pk, increment]
   model String [not null]
-  year String [not null]
-  type String [not null]
-  integration_status String [not null]
-  activation_required String
-  regions String [not null]
-  reliability String [not null]
-  capabilities String [not null]
-  information String [not null]
-  charge_state String [not null]
-  location String [not null]
-  start_stop_commands String [not null]
-  smart_charging String [not null]
-  scheduling String [not null]
-  statistics String [not null]
+  make String [not null]
+  year Int [not null]
+  chargeType String [not null]
+  chargingPoint String [not null]
+  maxPower String [not null]
+  power String [not null]
+  time String [not null]
+  rate String [not null]
+  range1 Int [not null]
+  range2 Int [not null]
+  rateSocTime String [not null]
 }
 
 Table PermissionToUser {
@@ -663,6 +723,4 @@ Ref: SupportTicketMessage.userId > User.id [delete: Cascade]
 
 Ref: SupportTicketMessageContent.messageId > SupportTicketMessage.id [delete: Cascade]
 
-Ref: Vehicle.ownerId > User.id
-
-Ref: VehicleDashboardData.vehicleId > Vehicle.id
+Ref: Vehicle.userId > User.id

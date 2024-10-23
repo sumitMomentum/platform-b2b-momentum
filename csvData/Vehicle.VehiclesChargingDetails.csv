@@ -1,0 +1,14 @@
+id,model,make ,year,chargeType,chargingPoint,maxPower,power,time,rate,range1,range2,rateSocTime
+1,Audi ,Q4 etron 55 quattro,2020,Default ,Default ,400V / 3x16A,11 kW,11h30m,44 km/h,0,100,8.69 %/hr
+2,Audi ,Q4 etron 55 quattro,2020,Standard 11.0 kW On-Board Charger,Wall Plug (2.3 kW),230V / 1x10A,2.3 kW,54h15m,9 km/h,0,100,1.84 %/hr
+3,Audi ,Q4 etron 55 quattro,2020,Standard 11.0 kW On-Board Charger,1-phase 16A (3.7 kW),230V / 1x16A,3.7 kW,33h45m,15 km/h,0,100,2.96 %/hr
+4,Audi ,Q4 etron 55 quattro,2020,Standard 11.0 kW On-Board Charger,1-phase 32A (7.4 kW),230V / 1x32A,7.4 kW,17 hours,30 km/h,0,100,5.88 %/hr
+5,Audi ,Q4 etron 55 quattro,2020,Standard 11.0 kW On-Board Charger,3-phase 16A (11 kW),400V / 3x16A,11 kW,11h30m,44 km/h,0,100,8.69 %/hr
+6,Audi ,Q4 etron 55 quattro,2020,Optional 22.0kW On-Board Charger *,Wall Plug (2.3 kW),230V / 1x10A,2.3 kW,54h15m,9 km/h,0,100,1.84 %/hr
+7,Audi ,Q4 etron 55 quattro,2020,Optional 22.0kW On-Board Charger *,1-phase 16A (3.7 kW),230V / 1x16A,3.7 kW,33h45m,15 km/h,0,100,2.96 %/hr
+8,Audi ,Q4 etron 55 quattro,2020,Optional 22.0kW On-Board Charger *,1-phase 32A (7.4 kW),230V / 1x32A,7.4 kW,17 hours,30 km/h,0,100,5.88 %/hr
+9,Audi ,Q4 etron 55 quattro,2020,Optional 22.0kW On-Board Charger *,3-phase 16A (11 kW),400V / 3x16A,11 kW,11h30m,44 km/h,0,100,8.69 %/hr
+10,Audi ,Q4 etron 55 quattro,2020,Optional 22.0kW On-Board Charger *,3-phase 32A (22 kW),400V / 3x32A,22 kW †,5h45m,88 km/h,0,100,17.39 %/hr
+11,Audi ,Q4 etron 55 quattro,2020,-,CCS (50 kW DC),50 kW,50 kW,94 min,220 km/h,10,80,75.18 %/hr
+12,Audi ,Q4 etron 55 quattro,2020,-,CCS (175 kW DC),168 kW †,144 kW †,33 min,640 km/h,10,80,333 %/hr
+13,Audi ,Q4 etron 55 quattro,2020,-,CCS (350 kW DC),168 kW †,144 kW †,33 min,640 km/h,10,80,333 %/hr

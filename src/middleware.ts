@@ -18,11 +18,21 @@ export default authMiddleware({
     "/api/stripe",
     "/api/test",
     "/api/cron",
+    "/api/vehicle",
+    "/api/vehicle/[vehicleId]",
+    "/api/benefits",
+    "/api/charger",
+    "/api/vehicleActions",
     "/:locale",
     "/:locale/api/clerk",
     "/:locale/api/stripe",
     "/:locale/api/enode",
     "/:locale/sign-in",
+    "/:locale/api/vehicle",
+    "/:locale/api/vehicle/[vehicleId]",
+    "/:locale/api/benefits",
+    "/:locale/api/charger",
+    "/:locale/api/vehicleActions",
   ],
   beforeAuth(request) {
     return intlMiddleware(request);
@@ -33,10 +43,21 @@ export default authMiddleware({
       .get("host")!
       .replace(".localhost:3000", `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
     const { userId, sessionClaims, orgId } = auth;
-    console.log("userid ",userId,"Session claims",sessionClaims, "Org Id",orgId );
-    
+    console.log(
+      "userid ",
+      userId,
+      "Session claims",
+      sessionClaims,
+      "Org Id",
+      orgId
+    );
+
     // For user visiting /onboarding, don't try and redirect
-    if (userId && req.nextUrl.pathname.includes("onboarding") && !auth.isPublicRoute) {
+    if (
+      userId &&
+      req.nextUrl.pathname.includes("onboarding") &&
+      !auth.isPublicRoute
+    ) {
       return NextResponse.next();
     }
 
@@ -44,11 +65,15 @@ export default authMiddleware({
     if (!userId && !auth.isPublicRoute) {
       return redirectToSignIn({ returnBackUrl: req.url });
     }
-      
 
     // Catch users who doesn't have `onboardingComplete: true` in PublicMetata
     // Redirect them to the /onboading out to complete onboarding
-    if (userId && !orgId && !sessionClaims?.metadata?.onboardingComplete && !auth.isPublicRoute) {
+    if (
+      userId &&
+      !orgId &&
+      !sessionClaims?.metadata?.onboardingComplete &&
+      !auth.isPublicRoute
+    ) {
       const onboardingUrl = new URL("/onboarding", req.url);
       return NextResponse.redirect(onboardingUrl);
     }
