@@ -14,6 +14,7 @@ const page = () => {
     const fetchData = async () => {
       try {
         const data = await getAllChargerMasterData();
+        console.log("from the component:", data)
         if (Array.isArray(data)) {
           // Confirming data is an array
           setChargerMasterData(data);

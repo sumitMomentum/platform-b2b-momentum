@@ -3,7 +3,7 @@
 export const getChargingSchedule = async () => {
   try {
     const chargersRes = await fetch(
-      `https://demoapi-9d35.onrender.com/api/vehicles/charging/allChargerMaster`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/chargers`
     );
     const vehiclesRes = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle`
@@ -14,10 +14,13 @@ export const getChargingSchedule = async () => {
         `Error fetching data: ${chargersRes.status} ${chargersRes.statusText} or ${vehiclesRes.status} ${vehiclesRes.statusText}`
       );
     }
+    console.log("chargers:", chargersRes)
+    console.log("vehicles:", vehiclesRes)
 
     // Parse the JSON data from both responses
     const chargers = await chargersRes.json();
     const vehicles = await vehiclesRes.json();
+
 
     // Sort vehicles by 'soc' (lowest first) and chargers by 'chargerID'
     const sortedVehicles = vehicles.sort((a, b) => a.soc - b.soc);
