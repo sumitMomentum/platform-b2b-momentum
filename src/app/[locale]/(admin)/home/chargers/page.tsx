@@ -2,19 +2,28 @@
 
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 import PageName from "@/components/ui/commons/PageName";
+import { warn } from "console";
 import { Fragment, useEffect, useState } from "react";
+import { isArray } from "util";
 
 const page = () => {
   const [chargerMasterData, setChargerMasterData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getAllChargerMasterData();
-        setChargerMasterData(data);
+        if (Array.isArray(data)) {
+          // Confirming data is an array
+          setChargerMasterData(data);
+        } else {
+          console.warn("Expected data to be an array:", data);
+        }
       } catch (error) {
         console.error("Error fetching charger master data:", error);
-        // Handle the error appropriately (e.g., show an error message)
+      } finally {
+        setIsLoading(false); // Set loading to false once complete
       }
     };
 

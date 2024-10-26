@@ -1,6 +1,8 @@
+"use server"
+
 import { auth } from "@clerk/nextjs";
 
-export const getAllBenefits = async () => {
+export const getVehicleBenefits = async () => {
   const { userId } = auth();
 
   if (!userId) {
@@ -11,6 +13,8 @@ export const getAllBenefits = async () => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/benefits`
   );
+
+  console.log(response)
 
   if (!response.ok) {
     throw new Error("Failed to fetch benefits data");

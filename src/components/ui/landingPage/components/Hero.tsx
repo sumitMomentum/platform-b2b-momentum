@@ -165,6 +165,7 @@ export default function Hero() {
               repeat={1} // Ensure it types only once
             />
           </Typography>
+          {/* increase font size */}
           <Typography
             sx={{
               textAlign: "center",

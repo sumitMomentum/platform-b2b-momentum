@@ -81,11 +81,14 @@ export default function MarketingPage() {
         <Divider />
         {/* <Testimonials />
         <Divider /> */}
-        <HowWeHaveHelpedClients />
-        <Divider />
-        <Quote2 />
         <Divider />
         <WhyChooseUs />
+        <Divider />
+
+        <HowWeHaveHelpedClients />
+        {/* <Divider />
+        <Quote2 /> */}
+
         <Divider />
         <Team />
         <Divider />

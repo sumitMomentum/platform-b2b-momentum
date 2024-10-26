@@ -7,29 +7,29 @@ import { getTranslations } from "next-intl/server";
 import React, { useEffect, useState } from "react";
 import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
+import { log } from "console";
 
 const Benefits = async () => {
   // const t = await getTranslations("AdminLayout.pages.benefits");
 
-  const vehicleBenifits = await getVehicleBenefits();
-  // const [vehicleBenifits, setVehicleBenifits] = useState([]);
+  const [vehicleBenefits, setVehicleBenefits] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await await getVehicleBenefits();
-  //       // setVehicleBenifits(data);
-  //     } catch (error) {
-  //       console.error("Error fetching vehicle benifits data:", error);
-  //       // Handle the error appropriately (e.g., show an error message)
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getVehicleBenefits(); // Ensure this function returns data as expected
+        console.log("Fetched data:", data);
+        setVehicleBenefits(data);
+      } catch (error) {
+        console.error("Error fetching vehicle benefits data:", error);
+      }
+    };
 
-  //   console.log("Hello")
+    fetchData();
+  }, []);
 
-  //   fetchData();
-  // }, []);
-  // console.log(vehicleBenifits);
+  // Check if vehicleBenefits state updates correctly
+  console.log("Vehicle Benefits State:", vehicleBenefits);
 
   return (
     <div>
@@ -76,46 +76,46 @@ const Benefits = async () => {
               </tr>
             </thead>
             <tbody>
-              {vehicleBenifits
-                .sort((vehicleBenifitsA, vehicleBenifitsB) => {
-                  if (vehicleBenifitsA.vehicleId > vehicleBenifitsB.vehicleId)
+              {vehicleBenefits
+                .sort((vehicleBenefitsA, vehicleBenefitsB) => {
+                  if (vehicleBenefitsA.vehicleId > vehicleBenefitsB.vehicleId)
                     return -1;
-                  if (vehicleBenifitsA.vehicleId < vehicleBenifitsB.vehicleId)
+                  if (vehicleBenefitsA.vehicleId < vehicleBenefitsB.vehicleId)
                     return 1;
                   return 0;
                 })
-                .map((vehicleBenifits, index) => (
+                .map((vehicleBenefits, index) => (
                   <tr key={index} className="text-sm">
-                    <td className="border px-4 py-2">{vehicleBenifits.vin}</td>
+                    <td className="border px-4 py-2">{vehicleBenefits.vin}</td>
                     <td className="border px-4 py-2">
-                      {vehicleBenifits.BatteryCycleSavingMonthly}
+                      {vehicleBenefits.batteryCycleSavingMonthly}
                     </td>
                     <td className="border px-4 py-2">
-                      {vehicleBenifits.BatterCycleSavingYearly}
+                      {vehicleBenefits.batteryCycleSavingYearly}
                     </td>
                     <td className="border px-4 py-2">
-                      {vehicleBenifits.BatteryCycleSavingLifetime}
+                      {vehicleBenefits.batteryCycleSavingLifetime}
                     </td>
                     <td className="border px-4 py-2">
-                      {vehicleBenifits.CostSavingChargingMonthly}
+                      {vehicleBenefits.costSavingChargingMonthly}
                     </td>
                     <td className="border px-4 py-2">
-                      {vehicleBenifits.CostSavingChargingYearly}
+                      {vehicleBenefits.costSavingChargingYearly}
                     </td>
                     <td className="border px-4 py-2">
-                      {vehicleBenifits.CostSavingChargingLifeTimeEstimate}
+                      {vehicleBenefits.costSavingChargingLifeTimeEstimate}
                     </td>
                     <td className="border px-4 py-2">
-                      {vehicleBenifits.RangeIncreaseMonthly}
+                      {vehicleBenefits.rangeIncreaseMonthly}
                     </td>
                     <td className="border px-4 py-2">
-                      {vehicleBenifits.RangeIncreaseYearly}
+                      {vehicleBenefits.rangeIncreaseYearly}
                     </td>
                     <td className="border px-4 py-2  bg-green-600 hover:bg-green-800  text-white">
-                      {vehicleBenifits.RangeIncreaseLifetimeEstimate}
+                      {vehicleBenefits.rangeIncreaseLifetimeEstimate}
                     </td>
                     <td className="border px-4 py-2  bg-green-600 hover:bg-green-800  text-white">
-                      {vehicleBenifits.RevenueIncreaseLifeTime}
+                      {vehicleBenefits.revenueIncreaseLifetime}
                     </td>
                   </tr>
                 ))}

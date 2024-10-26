@@ -1,13 +1,15 @@
 import PageName from "@/components/ui/commons/PageName";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import React from "react";
-import { getVehicleActions } from "@/actions/admin/actionCenterModule/getVehicleActions";
+import React  from "react";
+// import React, { toLocaleString } from "react";
+import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 
 const ActionCentre = async () => {
   const t = await getTranslations("AdminLayout.pages.actionCentre");
 
-  const actionItems = await getVehicleActions();
+  const actionItems = await getAllVehicleActions();
+  console.log(actionItems);
   // const actionItems = [
   //   {
   //     vehicleNo: "ABC12378",
@@ -83,22 +85,22 @@ const ActionCentre = async () => {
                   <td className="border px-4 py-2">{actionItem.vin}</td>
                   <td
                     className={`border px-4 py-2 ${
-                      actionItem.Severity === "High"
+                      actionItem.severity === "High"
                         ? "bg-red-500 hover:bg-red-700 text-white"
-                        : actionItem.Severity === "Medium"
+                        : actionItem.severity === "Medium"
                         ? "bg-yellow-400 hover:bg-yellow-600 text-gray-800"
                         : "bg-green-500 hover:bg-green-700 text-white"
                     }`}
                   >
-                    {actionItem.Severity}
+                    {actionItem.severity}
                   </td>
                   {/* <td className="border px-4 py-2">{actionItem.importance}</td> */}
-                  <td className="border px-4 py-2">{actionItem.Description}</td>
+                  <td className="border px-4 py-2">{actionItem.description}</td>
                   <td className="border px-4 py-2">
-                    {actionItem.BestPractice}
+                    {actionItem.bestPractice}
                   </td>
                   <td className="border px-4 py-2">
-                    {actionItem.ActionToBeTaken}
+                    {actionItem.actionToBeTaken}
                   </td>
 
                   {/* <td className="border px-4 py-2">
@@ -106,14 +108,18 @@ const ActionCentre = async () => {
               </td> */}
                   <td className="border flex justify-center items-center">
                     <button className="bg-gray-500 p-2 px-8 hover:bg-gray-800 text-white">
-                      Action Closed
+                      Action {actionItem.confirm ? "Closed" : "Pending"}
                     </button>
                   </td>
                   <td className="border px-4 py-2">
-                    {actionItem.CreatedDateTime}
+                    {new Date(
+                      Date.parse(actionItem.CreatedDateTime)
+                    ).toLocaleString()}
                   </td>
                   <td className="border px-4 py-2 bg-green-600 hover:bg-green-800  text-white">
-                    {actionItem.ClosedDateTime}
+                    {new Date(
+                      Date.parse(actionItem.ClosedDateTime)
+                    ).toLocaleString()}
                   </td>
                   {/* <td className="border px-4 py-2 ">{actionItem.dueDate}</td> */}
                 </tr>

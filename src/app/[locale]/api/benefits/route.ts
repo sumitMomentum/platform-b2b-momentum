@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 import prisma from "@/lib/db";
 
@@ -8,6 +7,9 @@ export async function GET() {
 
     return NextResponse.json(benefits);
   } catch (error) {
-    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Internal server error" },
+      { status: 500 }
+    );
   }
 }

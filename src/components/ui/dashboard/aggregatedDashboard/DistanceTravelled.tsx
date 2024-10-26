@@ -27,7 +27,7 @@ const DistanceTravelled = () => {
     };
 
     getVehicles(); // Call the async function
-  }, [vehicles, setVehicles]);
+  }, []);
 
   return (
     <Card>
@@ -72,11 +72,11 @@ const DistanceTravelled = () => {
               <Card.Description>Temperature Low/High</Card.Description>
               <Card.Description>{`${(
                 vehicles.reduce((total, vehicle) => {
-                  return total + vehicle.UsageTemperatureLow; // Handle undefined or invalid values
+                  return total + vehicle.usageTemperatureLow; // Handle undefined or invalid values
                 }, 0) / 12
               ).toFixed(2)}\u00B0C / ${(
                 vehicles.reduce((total, vehicle) => {
-                  return total + vehicle.UsageTemperatureHigh; // Handle undefined or invalid values
+                  return total + vehicle.usageTemperatureHigh; // Handle undefined or invalid values
                 }, 0) / 12
               ).toFixed(2)}\u00B0C`}</Card.Description>
               {/* <Card.Description>{`28\u00B0C / 34\u00B0C`}</Card.Description> */}
@@ -88,13 +88,13 @@ const DistanceTravelled = () => {
               <Card.Description>
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return total + vehicle.UsageSoCRangeMin; // Handle undefined or invalid values
+                    return total + vehicle.usageSoCRangeMin; // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}
                 {"% / "}
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return total + vehicle.UsageSoCRangeMax; // Handle undefined or invalid values
+                    return total + vehicle.usageSoCRangeMax; // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
                 %
@@ -106,13 +106,13 @@ const DistanceTravelled = () => {
               <Card.Description>
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return total + vehicle.UsageRangeObservedMin; // Handle undefined or invalid values
+                    return total + vehicle.usageRangeObservedMin; // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
                 {"kms / "}
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return total + vehicle.UsageRangeObservedMax; // Handle undefined or invalid values
+                    return total + vehicle.usageRangeObservedMax; // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}
                 {" kms"}
@@ -126,7 +126,7 @@ const DistanceTravelled = () => {
               <Card.Description>
                 {(
                   vehicles.reduce((total, vehicle) => {
-                    return total + vehicle.RealRangeObserved; // Handle undefined or invalid values
+                    return total + vehicle.realRangeObserved; // Handle undefined or invalid values
                   }, 0) / 12
                 ).toFixed(2)}{" "}
                 kms

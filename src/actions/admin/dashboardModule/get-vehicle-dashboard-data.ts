@@ -1,3 +1,4 @@
+"use server";
 
 import { auth } from "@clerk/nextjs";
 
@@ -8,20 +9,22 @@ export const getVehicleDashboardData = async (vehicleId: string) => {
     throw new Error("Unauthorized");
   }
 
-  console.log("Hey")
+  console.log("Hey");
 
   // Fetch the vehicle data from the API
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}` + `/api/vehicle/${vehicleId}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}` + `/api/vehicle/${vehicleId}`
+  );
 
-  console.log(response)
+  console.log(response);
 
   if (!response.ok) {
     throw new Error("Failed to fetch vehicle data");
   }
 
-  return await response.json();
+  const finalResponse = await response.json(); 
+  return finalResponse
 };
-
 
 // "use server";
 // import prisma from "@/lib/db";

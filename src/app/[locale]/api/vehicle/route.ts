@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const vehicles = await prisma.vehicle.findMany(); // Ensure 'vehicle' matches your schema model
-    console.log("we are here")
+    console.log("we are here");
     console.log(vehicles);
     return NextResponse.json(vehicles);
   } catch (error) {

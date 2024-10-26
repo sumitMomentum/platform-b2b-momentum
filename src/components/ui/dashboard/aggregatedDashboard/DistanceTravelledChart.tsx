@@ -40,7 +40,7 @@ const DistanceTravelledChart = () => {
       const monthlyUsage = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(
         (_, index) => {
           return filteredVehicles.reduce((monthTotal, vehicle) => {
-            const distance = parseFloat(vehicle.MonthlyUsage[index]) || 0;
+            const distance = parseFloat(vehicle.monthlyUsage[index]) || 0;
             return monthTotal + distance;
           }, 0);
         }
@@ -52,7 +52,7 @@ const DistanceTravelledChart = () => {
     setSeries(usageData);
     console.log(usageData);
     setLoading(false)
-  }, [vehicles]);
+  }, [vehicles, setVehicles]);
 
   const [series, setSeries] = useState([]);
   const xLabels = [

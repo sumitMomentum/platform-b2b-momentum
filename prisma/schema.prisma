@@ -503,51 +503,51 @@ model EnodeToken {
 // { new Schemas for steps, cars and all }
 model Vehicle {
   id                                       Int      @id @default(autoincrement()) // Unique ID for each vehicle detail
-  vin                                      String // Vehicle Identification Number
-  vehicleId                                String // ID of the vehicle
-  model                                    String // Vehicle model
-  year                                     Int // Year of the vehicle
-  batteryCapacity                          Int // Battery capacity in kWh
-  ownerID                                  Int // Owner ID
-  soc                                      Int // State of Charge percentage
+  vin                                      String? @unique // Vehicle Identification Number
+  vehicleId                                String? @unique// ID of the vehicle
+  model                                    String? // Vehicle model
+  year                                     Int? // Year of the vehicle
+  batteryCapacity                          Int? // Battery capacity in kWh
+  ownerID                                  Int? // Owner ID
+  soc                                      Int? // State of Charge percentage
   dateOfConnection                         DateTime @map("dateOfConnection") // Date of connection
-  odometerFloat                            Float // Odometer reading
+  odometerFloat                            Float? // Odometer reading
   usageAverageDailyKmDriven                Float[] // Array of average daily km driven
   monthlyUsage                             Float[] // Array of monthly usage
-  condition                                String // Condition of the vehicle (e.g., "Good")
-  status                                   String // Status of the vehicle (e.g., "Active")
-  make                                     String // Vehicle make
-  batteryHealthSoH                         Float // State of Health of the battery
-  batteryHealthDegradation                 Float // Degradation of the battery
-  location                                 String // Location (e.g., "Bangalore, India")
+  condition                                String? // Condition of the vehicle (e.g., "Good")
+  status                                   String? // Status of the vehicle (e.g., "Active")
+  make                                     String? // Vehicle make
+  batteryHealthSoH                         Float? // State of Health of the battery
+  batteryHealthDegradation                 Float? // Degradation of the battery
+  location                                 String? // Location (e.g., "Bangalore, India")
   soh                                      Float[] // Array of state of health values
   batteryHealthAverageEstimatedDegradation Float[] // Array of estimated degradation values
-  batteryHealthAverageSoC                  Float // Average State of Charge of the battery
-  batteryHealthTotalBatteries              Int // Total number of batteries
-  connectorType                            String // Type of connector (e.g., "Rapid")
-  endOfLife                                String // End of life estimate
-  realRangeObserved                        Int // Observed real range
-  remainingUsefulLife                      String // Remaining useful life estimate
-  totalChargingSession                     Int // Total number of charging sessions
-  totalEnergyConsumed                      String // Total energy consumed
-  vehicleConditionCritical                 Int // Critical condition count
-  vehicleConditionGood                     Int // Good condition count
-  vehicleConditionSatisfactory             Int // Satisfactory condition count
-  vehicleStatusActive                      Int // Active status count
-  vehicleStatusCharging                    Int // Charging status count
-  vehicleStatusInUse                       Int // In-use status count
-  vehicleStatusOutOfService                Int // Out-of-service status count
-  epawltpProvidedRange                     Int // Provided range (EPA WLTP)
-  usageRangeObservedMax                    Int // Maximum observed range
-  usageRangeObservedMin                    Int // Minimum observed range
-  usageSoCRangeMax                         Int // Maximum state of charge range
-  usageSoCRangeMin                         Int // Minimum state of charge range
-  usageTemperatureHigh                     Int // Maximum temperature observed
-  usageTemperatureLow                      Int // Minimum temperature observed
-  batteryChemistry                         String // Chemistry of the battery (e.g., "Lithium-ion")
-  batteryHealthAverageSoH                  Float // Average state of health of the battery
-  dataPointsCollected                      Int // Number of data points collected
-  averageMonthlyUsage                      Float // Average monthly usage
+  batteryHealthAverageSoC                  Float? // Average State of Charge of the battery
+  batteryHealthTotalBatteries              Int? // Total number of batteries
+  connectorType                            String? // Type of connector (e.g., "Rapid")
+  endOfLife                                String? // End of life estimate
+  realRangeObserved                        Int? // Observed real range
+  remainingUsefulLife                      String? // Remaining useful life estimate
+  totalChargingSession                     Int? // Total number of charging sessions
+  totalEnergyConsumed                      String? // Total energy consumed
+  vehicleConditionCritical                 Int? // Critical condition count
+  vehicleConditionGood                     Int? // Good condition count
+  vehicleConditionSatisfactory             Int? // Satisfactory condition count
+  vehicleStatusActive                      Int? // Active status count
+  vehicleStatusCharging                    Int? // Charging status count
+  vehicleStatusInUse                       Int? // In-use status count
+  vehicleStatusOutOfService                Int? // Out-of-service status count
+  epawltpProvidedRange                     Int? // Provided range (EPA WLTP)
+  usageRangeObservedMax                    Int? // Maximum observed range
+  usageRangeObservedMin                    Int? // Minimum observed range
+  usageSoCRangeMax                         Int? // Maximum state of charge range
+  usageSoCRangeMin                         Int? // Minimum state of charge range
+  usageTemperatureHigh                     Int? // Maximum temperature observed
+  usageTemperatureLow                      Int? // Minimum temperature observed
+  batteryChemistry                         String? // Chemistry of the battery (e.g., "Lithium-ion")
+  batteryHealthAverageSoH                  Float? // Average state of health of the battery
+  dataPointsCollected                      Int? // Number of data points collected
+  averageMonthlyUsage                      Float? // Average monthly usage
   ownerId                                  Int
   owner                                    User     @relation(fields: [ownerId], references: [id])
 }

@@ -131,7 +131,7 @@ export const generateAccessToken = async () => {
   }
 };
 
-export const isTokenExpired = (createdAt: Date): boolean => {
+export const isTokenExpired = async (createdAt: Date) => {
   const now = new Date();
   const oneHoursAgo = new Date(now.getTime() - 1 * 60 * 60 * 1000); // 1 hours ago
 
@@ -424,7 +424,7 @@ export const handleEvent = async (event: any) => {
           model: vehicle.information.model,
           year: vehicle.information.year,
           vin: vehicle.information.vin,
-          odometer: vehicle.odometer.distance,
+          odometerFloat: vehicle.odometer.distance,
           batteryCapacity: vehicle.chargeState.batteryCapacity,
           owner: { connect: { id: parseInt(vehicle.userId) } },
           dateOfConnection: new Date(),
@@ -441,7 +441,7 @@ export const handleEvent = async (event: any) => {
 
         console.log("dashboard data", dashboardData);
 
-        // Update its vehicleId field with the newly saved Vehicle id
+// Update its vehicleId field with the newly saved Vehicle id
         if (dashboardData) {
           const updatedDashboardData = await prisma.vehicleDashboardData.update(
             {
@@ -473,7 +473,7 @@ export const handleEvent = async (event: any) => {
 
       // Compare received vehicle data with existing data
       const hasOdometerChange =
-        updatedVehicle.odometer.distance !== existingVehicle.odometer;
+        updatedVehicle.odometerFloat.distance !== existingVehicle.odometer;
       const hasBatteryCapacityChange =
         updatedVehicle.chargeState.batteryCapacity !==
         existingVehicle.batteryCapacity;

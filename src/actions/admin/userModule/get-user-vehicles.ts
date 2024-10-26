@@ -9,12 +9,14 @@ export const getUserVehicles = async () => {
     throw new Error("Unauthorized");
   }
 
+  console.log(process.env.NEXT_PUBLIC_BASE_URL);
+
   // Fetch the vehicles data from the API
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicles`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle`
   ); // Use the correct base URL
 
-  console.log(response)
+  console.log(response);
 
   if (!response.ok) {
     throw new Error("Failed to fetch vehicles data");
@@ -22,7 +24,6 @@ export const getUserVehicles = async () => {
 
   return await response.json();
 };
-
 
 // import prisma from "@/lib/db";
 // import { auth } from "@clerk/nextjs";

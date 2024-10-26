@@ -136,7 +136,7 @@ export default function HowWeHaveHelpedClients() {
                     </Typography>
                     <Box>{item.icon}</Box>
                   </Box>
-                  <div>
+                  {/* <div>
                     <Typography
                       className="desc"
                       variant="body2"
@@ -144,7 +144,7 @@ export default function HowWeHaveHelpedClients() {
                     >
                       {item.description}
                     </Typography>
-                  </div>
+                  </div> */}
                 </Stack>
               </Grid>
             ))}

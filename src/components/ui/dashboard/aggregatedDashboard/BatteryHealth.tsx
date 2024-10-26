@@ -22,7 +22,7 @@ const BatteryHealth = () => {
     };
 
     getVehicles();
-  }, [vehicles, setVehicles]);
+  }, []);
 
   // Safely handle the calculations by checking if vehicles exist
   const avgSoH =
