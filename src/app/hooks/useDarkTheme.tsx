@@ -18,13 +18,15 @@ const useDarkTheme = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.classList.add("dark");
-      setIsDarkTheme(true);
-    } else {
-      document.documentElement.classList.remove("dark");
-      setIsDarkTheme(false);
-    }
+  //   if (localStorage.getItem("theme") === "dark") {
+  //     document.documentElement.classList.add("dark");
+  //     setIsDarkTheme(true);
+  //   } else {
+  //     document.documentElement.classList.remove("dark");
+  //     setIsDarkTheme(false);
+  //   }
+    localStorage.setItem("theme", "light");
+    setIsDarkTheme(false);
   }, []);
 
   return {
