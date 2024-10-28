@@ -501,16 +501,16 @@ model EnodeToken {
 // }
 
 // { new Schemas for steps, cars and all }
-model Vehicle{
-  id                                       String      @id  // Unique ID for each vehicle detail
-  vin                                      String? @unique // Vehicle Identification Number
-  vehicleId                                String? @unique// ID of the vehicle
+model Vehicle {
+  id                                       String               @id // Unique ID for each vehicle detail
+  vin                                      String?              @unique // Vehicle Identification Number
+  vehicleId                                String?              @unique // ID of the vehicle
   model                                    String? // Vehicle model
   year                                     Int? // Year of the vehicle
   batteryCapacity                          Int? // Battery capacity in kWh
   ownerID                                  Int? // Owner ID
   soc                                      Int? // State of Charge percentage
-  dateOfConnection                         DateTime @map("dateOfConnection") // Date of connection
+  dateOfConnection                         DateTime             @map("dateOfConnection") // Date of connection
   odometerFloat                            Float? // Odometer reading
   usageAverageDailyKmDriven                Float[] // Array of average daily km driven
   monthlyUsage                             Float[] // Array of monthly usage
@@ -549,7 +549,9 @@ model Vehicle{
   dataPointsCollected                      Int? // Number of data points collected
   averageMonthlyUsage                      Float? // Average monthly usage
   ownerId                                  Int
-  owner                                    User     @relation(fields: [ownerId], references: [id])
+  chargingSessions                         ChargingSession[]
+  tripSessions                             VehicleTripSession[]
+  owner                                    User                 @relation(fields: [ownerId], references: [id])
 }
 
 model Benefit {
@@ -576,13 +578,14 @@ model Benefit {
 }
 
 model ChargerMaster {
-  id              Int      @id @default(autoincrement()) // Unique ID for each charger
-  chargerID       Int      @unique
-  chargerLocation String // Location in "latitude,longitude" format
-  chargerStatus   String // e.g., "Active" or "Inactive"
-  dateJoining     DateTime @map("dateJoining") // Date the charger joined
-  chargeType      String // Type of charging (e.g., "Default")
-  chargingPoint   String // Charging point (e.g., "Default")
+  id               Int               @id @default(autoincrement()) // Unique ID for each charger
+  chargerID        Int               @unique
+  chargerLocation  String // Location in "latitude,longitude" format
+  chargerStatus    String // e.g., "Active" or "Inactive"
+  dateJoining      DateTime          @map("dateJoining") // Date the charger joined
+  chargeType       String // Type of charging (e.g., "Default")
+  chargingPoint    String // Charging point (e.g., "Default")
+  chargingSessions ChargingSession[]
 }
 
 model ChargerType {
@@ -623,6 +626,47 @@ model VehicleChargingDetail {
   range1        Int // First range value
   range2        Int // Second range value
   rateSocTime   String // Rate of state of charge time (e.g., "8.69 %/hr")
+}
+
+// Add new ChargingSession model
+model ChargingSession {
+  id                Int           @id @default(autoincrement())
+  charger           ChargerMaster @relation(fields: [chargerId], references: [chargerID])
+  chargerId         Int
+  vehicle           Vehicle       @relation(fields: [vehicleId], references: [id])
+  vehicleId         String
+  chargingDate      DateTime
+  duration          Int // Duration in minutes
+  chargingStartTime DateTime
+  chargingEndTime   DateTime
+  powerConsumed     Float // in kWh
+  vehicleStartSoc   Int // Starting State of Charge percentage
+  vehicleEndSoc     Int // Ending State of Charge percentage
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([chargerId])
+  @@index([vehicleId])
+}
+
+// Add new VehicleTripSession model
+model VehicleTripSession {
+  id                  Int      @id @default(autoincrement())
+  vehicle            Vehicle   @relation(fields: [vehicleId], references: [id])
+  vehicleId          String
+  startTime          DateTime
+  endTime            DateTime
+  tripDuration       Int       // Duration in minutes
+  startSoc           Int       // Starting State of Charge percentage
+  endSoc             Int       // Ending State of Charge percentage
+  chargeConsumed     Float     // in kWh
+  odometerStart      Float     // Starting odometer reading
+  odometerEnd        Float     // Ending odometer reading
+  distanceTravelled  Float     // Distance in kilometers/miles
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([vehicleId])
 }
 
 // model AggregatedDashboard {
