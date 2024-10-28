@@ -435,15 +435,19 @@ export const handleEvent = async (event: any) => {
       // Check if vehicleId is empty
       if (savedVehicle.id) {
         // Find the first VehicleDashboardData entry where vehicleId is empty
-        const dashboardData = await prisma.vehicleDashboardData.findFirst({
+        const dashboardData = await prisma.vehicle.findFirst({
           where: { vehicleId: null },
         });
+        // const dashboardData = await prisma.vehicleDashboardData.findFirst({
+        //   where: { vehicleId: null },
+        // });
 
         console.log("dashboard data", dashboardData);
 
 // Update its vehicleId field with the newly saved Vehicle id
         if (dashboardData) {
-          const updatedDashboardData = await prisma.vehicleDashboardData.update(
+          // const updatedDashboardData = await prisma.vehicleDashboardData.update(
+          const updatedDashboardData = await prisma.vehicle.update(
             {
               where: { id: dashboardData.id },
               data: { vehicleId: savedVehicle.id },
@@ -473,7 +477,7 @@ export const handleEvent = async (event: any) => {
 
       // Compare received vehicle data with existing data
       const hasOdometerChange =
-        updatedVehicle.odometerFloat.distance !== existingVehicle.odometer;
+        updatedVehicle.odometerFloat.distance !== existingVehicle.odometerFloatr;
       const hasBatteryCapacityChange =
         updatedVehicle.chargeState.batteryCapacity !==
         existingVehicle.batteryCapacity;

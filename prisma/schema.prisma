@@ -501,8 +501,8 @@ model EnodeToken {
 // }
 
 // { new Schemas for steps, cars and all }
-model Vehicle {
-  id                                       Int      @id @default(autoincrement()) // Unique ID for each vehicle detail
+model Vehicle{
+  id                                       String      @id  // Unique ID for each vehicle detail
   vin                                      String? @unique // Vehicle Identification Number
   vehicleId                                String? @unique// ID of the vehicle
   model                                    String? // Vehicle model

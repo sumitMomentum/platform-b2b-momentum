@@ -1,23 +1,23 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
-import InputLabel from '@mui/material/InputLabel';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import InputLabel from "@mui/material/InputLabel";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import EmailIcon from "@mui/icons-material/Email";
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/X';
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/X";
 // import SitemarkIcon from './SitemarkIcon';
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import emailjs from "emailjs-com";
 function Copyright() {
   return (
-    <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
-      {'Copyright © '}
+    <Typography variant="body2" sx={{ color: "text.secondary", mt: 1 }}>
+      {"Copyright © "}
       <Link color="text.secondary" href="https://mui.com/">
         Momentech
       </Link>
@@ -27,55 +27,55 @@ function Copyright() {
   );
 }
 
-export default function Footer({mode}) {
-    const [email, setEmail] = React.useState("");
-    const [isSending, setIsSending] = React.useState(false);
+export default function Footer({ mode }) {
+  const [email, setEmail] = React.useState("");
+  const [isSending, setIsSending] = React.useState(false);
 
-    const isValidEmail = (email) => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const sendEmail = () => {
+    if (!email) {
+      toast.error("Please enter a email address.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    setIsSending(true);
+    // EmailJS parameters
+    const templateParams = {
+      user_email: email,
     };
 
-    const sendEmail = () => {
-      if (!email) {
-        toast.error("Please enter a email address.");
-        return;
-      }
-
-      if (!isValidEmail(email)) {
-        toast.error("Please enter a valid email address.");
-        return;
-      }
-
-      setIsSending(true);
-      // EmailJS parameters
-      const templateParams = {
-        user_email: email,
-      };
-
-      // Sending email using EmailJS
-      emailjs
-        .send(
-          "service_f4p1c9i", // Replace with your EmailJS service ID
-          "template_c7efne5", // Replace with your EmailJS template ID
-          templateParams,
-          "D0kRRX7ctwlY-_SHz" // Replace with your EmailJS public key
-        )
-        .then(
-          (response) => {
-            console.log("SUCCESS!", response.status, response.text);
-            toast.success("Email sent successfully!"); // Show success toast
-            setEmail(""); // Clear the email field after sending
-          },
-          (err) => {
-            console.error("FAILED...", err);
-            toast.error("Failed to send email. Please try again."); // Show error toast
-          }
-        )
-        .finally(() => {
-          setIsSending(false); // Re-enable button after operation
-        });
-    };
+    // Sending email using EmailJS
+    emailjs
+      .send(
+        "service_f4p1c9i", // Replace with your EmailJS service ID
+        "template_c7efne5", // Replace with your EmailJS template ID
+        templateParams,
+        "D0kRRX7ctwlY-_SHz" // Replace with your EmailJS public key
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          toast.success("Email sent successfully!"); // Show success toast
+          setEmail(""); // Clear the email field after sending
+        },
+        (err) => {
+          console.error("FAILED...", err);
+          toast.error("Failed to send email. Please try again."); // Show error toast
+        }
+      )
+      .finally(() => {
+        setIsSending(false); // Re-enable button after operation
+      });
+  };
 
   return (
     <Container
@@ -154,7 +154,6 @@ export default function Footer({mode}) {
               />
               <Button
                 variant="contained"
-                color="default"
                 size="small"
                 sx={(theme) => ({
                   fontWeight: "medium",

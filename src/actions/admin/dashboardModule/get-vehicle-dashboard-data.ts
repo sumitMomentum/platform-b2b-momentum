@@ -1,6 +1,14 @@
 "use server";
 
 import { auth } from "@clerk/nextjs";
+import { ok } from "assert";
+import chalk from "chalk";
+import { log } from "console";
+import { url } from "inspector";
+import { headers } from "next/headers";
+import { env } from "process";
+import { cache } from "react";
+import { blue, red } from "tailwindcss/colors";
 
 export const getVehicleDashboardData = async (vehicleId: string) => {
   const { userId } = auth();
@@ -9,51 +17,27 @@ export const getVehicleDashboardData = async (vehicleId: string) => {
     throw new Error("Unauthorized");
   }
 
-  console.log("Hey");
+  console.log(chalk.blue("Attempting to fetch vehicle:", vehicleId));
 
-  // Fetch the vehicle data from the API
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}` + `/api/vehicle/${vehicleId}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle/${vehicleId}`
   );
+  // Log the response URL to check for redirects
+  console.log(chalk.blue("Response URL:", response.url));
 
-  console.log(response);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch vehicle data");
+  if (response.url.includes("sign-in")) {
+    throw new Error("Authentication required");
   }
 
-  const finalResponse = await response.json(); 
-  return finalResponse
+  if (!response.ok) {
+    console.log(chalk.red(`Failed with status: ${response.status}`));
+    const text = await response.text(); // Get the actual response body
+    console.log(chalk.red("Response:", text));
+    throw new Error(`Failed to fetch vehicle data: ${response.status}`);
+  }
+
+  const finalResponse = await response.json();
+  console.log(finalResponse);
+
+  return finalResponse;
 };
-
-// "use server";
-// import prisma from "@/lib/db";
-// import { auth } from "@climport { ok } from "assert";
-
-// export const getVehicleDashboardData = async (vehicleId: string) => {
-//   const userClerk = auth();
-//   if (!userClerk) throw new Error("client clerk not found");
-
-//   let response = await fetch(
-//     `https://demoapi-9d35.onrender.com/api/vehicles?vehicleId=${vehicleId}&step=details`
-//   );
-
-//   if (!response.ok) {
-//     // Check if both responses are successful
-//     throw new Error(
-//       `Error fetching data: ${response.status} ${response.statusText}`
-//     );
-//   }
-
-//   response = await response.json();
-
-//   return response;
-// };
-
-// function getRandomFutureDate(minYears, maxYears) {
-//   const today = new Date();
-//   const yearsToAdd = Math.random() * (maxYears - minYears) + minYears;
-//   const futureDate = new Date(today);
-//   futureDate.setFullYear(futureDate.getFullYear() + yearsToAdd);
-//   return futureDate;
-// }

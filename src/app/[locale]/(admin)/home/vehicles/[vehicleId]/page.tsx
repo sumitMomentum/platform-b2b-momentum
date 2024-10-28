@@ -38,8 +38,8 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
     const fetchData = async () => {
       try {
         const data = await getVehicleDashboardData(vehicleId);
-        setDashboardData(data[0]); // Update state with the fetched 'data'
-        console.log(data[0]);
+        setDashboardData(data); // Update state with the fetched 'data'
+        console.log(data);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       }
@@ -76,7 +76,7 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
               /> */}
               <InfoCard
                 titleKey="Data Points Collected"
-                descriptionKey={dashboardData.DataPointsCollected}
+                descriptionKey={dashboardData.dataPointsCollected}
                 icon={ArrowsPointingInIcon}
               />
             </div>
@@ -95,14 +95,14 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
                 make={dashboardData.make}
                 vin={dashboardData.vin}
                 batteryCapacity={dashboardData.batteryCapacity}
-                odometer={dashboardData["odometerFloat "]}
+                odometer={dashboardData.odometerFloat}
               />
               <VehicleChargePattern
                 soc={selectedVehicle.soc || 0}
-                totalEnergyConsumed={dashboardData.TotalEnergyConsumed}
-                averageSoC={dashboardData.BatteryHealthAverageSoC}
-                connectorType={dashboardData.ConnectorType}
-                totalChargingSessions={dashboardData.TotalChargingSession}
+                totalEnergyConsumed={dashboardData.totalEnergyConsumed}
+                averageSoC={dashboardData.batteryHealthAverageSoC}
+                connectorType={dashboardData.connectorType}
+                totalChargingSessions={dashboardData.totalChargingSession}
                 averageChargingRate={dashboardData.averageChargingRate}
                 dashboardData={dashboardData}
               />
@@ -116,8 +116,8 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
                 socRangeMax={dashboardData.socRangeMax}
                 rangeObservedMin={dashboardData.rangeObservedMin}
                 rangeObservedMax={dashboardData.rangeObservedMax}
-                realRangeObserved={dashboardData.RealRangeObserved}
-                epaProvidedRange={dashboardData.UsageObservedvsEPAWLTPProvided}
+                realRangeObserved={dashboardData.realRangeObserved}
+                epaProvidedRange={dashboardData.epawltpProvidedRange}
                 dashboardData={dashboardData}
               />
               <VehicleBatteryHealth
@@ -134,12 +134,12 @@ const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
                 //   "en-US",
                 //   { month: "short", day: "2-digit", year: "numeric" }
                 // )}
-                descriptionKey={dashboardData.EndofLife}
+                descriptionKey={dashboardData.endOfLife}
                 icon={ArrowTrendingDownIcon}
               />
               <InfoCard
                 titleKey="Remaining Useful Life"
-                descriptionKey={dashboardData.RemainingUsefulLife}
+                descriptionKey={dashboardData.remainingUsefulLife}
                 icon={ArrowPathIcon}
               />
             </div>

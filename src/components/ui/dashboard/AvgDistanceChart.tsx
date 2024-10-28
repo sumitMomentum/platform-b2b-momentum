@@ -7,7 +7,7 @@ import { Average } from 'next/font/google';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 const AvgDistanceChart = ({dashboardData}) => {
-  const arrayOfArrays = dashboardData.MonthlyUsage;
+  const arrayOfArrays = dashboardData.monthlyUsage;
   // const [loading, setLoading] = useState(true);
   
   const randomNumber = Math.floor(Math.random() * 11);

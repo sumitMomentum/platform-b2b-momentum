@@ -205,7 +205,6 @@ export default function Hero() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <Button
-                color="default"
                 variant="contained"
                 size="small"
                 sx={{ minWidth: "fit-content" }}

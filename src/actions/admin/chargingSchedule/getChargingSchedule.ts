@@ -3,7 +3,7 @@
 export const getChargingSchedule = async () => {
   try {
     const chargersRes = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/chargers`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/charger`
     );
     const vehiclesRes = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle`
@@ -14,10 +14,10 @@ export const getChargingSchedule = async () => {
         `Error fetching data: ${chargersRes.status} ${chargersRes.statusText} or ${vehiclesRes.status} ${vehiclesRes.statusText}`
       );
     }
-    console.log("chargers:", chargersRes)
-    console.log("vehicles:", vehiclesRes)
+    // console.log("chargers:", chargersRes.json()[0])
+    // console.log("vehicles:", vehiclesRes.json()[0])
 
-    // Parse the JSON data from both responses
+    // // Parse the JSON data from both responses
     const chargers = await chargersRes.json();
     const vehicles = await vehiclesRes.json();
 

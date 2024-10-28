@@ -1,11 +1,11 @@
 import prisma from "@/lib/db";
 import { NextResponse } from "next/server";
+import chalk from "chalk";
 
 export async function GET() {
   try {
     const vehicles = await prisma.vehicle.findMany(); // Ensure 'vehicle' matches your schema model
-    console.log("we are here");
-    console.log(vehicles);
+    console.log(chalk.blue('Returning Vehicles'))
     return NextResponse.json(vehicles);
   } catch (error) {
     console.error(error); // Log the error for debugging
@@ -15,4 +15,5 @@ export async function GET() {
     );
   }
 }
-import { json } from "stream/consumers";
+import { json } from "stream/consumers";import { blue } from "tailwindcss/colors";
+

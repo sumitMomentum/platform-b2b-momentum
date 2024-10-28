@@ -123,7 +123,6 @@ export default function AppAppBar({ mode, toggleColorMode }) {
             />
             <Link href={"/home"} passHref>
               <Button
-                color="default"
                 variant="contained"
                 size="small"
               >
