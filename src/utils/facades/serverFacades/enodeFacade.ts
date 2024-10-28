@@ -1,7 +1,9 @@
 "use server";
 
+import { brand } from "@/components/ui/landingPage/theme/themePrimitives";
 import prisma from "@/lib/db";
 import crypto from "crypto";
+import { connect } from "http2";
 
 export const generateEnodeToken = async () => {
   let accessToken = await getEnodeAccessToken();
@@ -419,7 +421,7 @@ export const handleEvent = async (event: any) => {
       // Save vehicle information to the database
       const savedVehicle = await prisma.vehicle.create({
         data: {
-          id: vehicle.id,
+          id: String(vehicle.id),
           make: vehicle.information.brand,
           model: vehicle.information.model,
           year: vehicle.information.year,
@@ -444,15 +446,13 @@ export const handleEvent = async (event: any) => {
 
         console.log("dashboard data", dashboardData);
 
-// Update its vehicleId field with the newly saved Vehicle id
+        // Update its vehicleId field with the newly saved Vehicle id
         if (dashboardData) {
           // const updatedDashboardData = await prisma.vehicleDashboardData.update(
-          const updatedDashboardData = await prisma.vehicle.update(
-            {
-              where: { id: dashboardData.id },
-              data: { vehicleId: savedVehicle.id },
-            }
-          );
+          const updatedDashboardData = await prisma.vehicle.update({
+            where: { id: dashboardData.id },
+            data: { vehicleId: savedVehicle.id },
+          });
 
           console.log("updatedDashboardData", updatedDashboardData);
         }
@@ -477,7 +477,8 @@ export const handleEvent = async (event: any) => {
 
       // Compare received vehicle data with existing data
       const hasOdometerChange =
-        updatedVehicle.odometerFloat.distance !== existingVehicle.odometerFloatr;
+        updatedVehicle.odometerFloat.distance !==
+        existingVehicle.odometerFloat;
       const hasBatteryCapacityChange =
         updatedVehicle.chargeState.batteryCapacity !==
         existingVehicle.batteryCapacity;
