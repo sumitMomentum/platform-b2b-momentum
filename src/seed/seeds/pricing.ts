@@ -69,4 +69,4 @@ export const paymentsMethods = [
     currencies: JSON.stringify(["1", "2"]),
     status: "ACTIVE",
   },
-];
+];  
