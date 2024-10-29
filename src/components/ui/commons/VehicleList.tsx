@@ -55,15 +55,17 @@ const VehicleList = () => {
     };
 
     const initializeData = async () => {
-      await Promise.all([getVehicles(), getEnodeVehicles()]);
+      // await Promise.all([getVehicles(), getEnodeVehicles()])
 
-      // Simply combine both arrays
-      const combinedVehicles = [...vehicles, ...enodeVehicles];
-      //  console.log("[...vehicles]", [...vehicles]);
-      console.log("[...enodeVehicles]", [...enodeVehicles]);
-      //  console.log("combinedVehicles", combinedVehicles);
-      setFinalVehicles(combinedVehicles);
-      setLoading(false);
+      // // Simply combine both arrays
+      // const combinedVehicles = [...vehicles, ...enodeVehicles];
+      // //  console.log("[...vehicles]", [...vehicles]);
+      // console.log("[...enodeVehicles]", [...enodeVehicles]);
+      // //  console.log("combinedVehicles", combinedVehicles);
+      // setFinalVehicles(combinedVehicles);
+       await getVehicles();
+       setFinalVehicles(vehicles);
+       setLoading(false);
     };
 
     initializeData();
