@@ -6,7 +6,7 @@ import { warn } from "console";
 import { Fragment, useEffect, useState } from "react";
 import { isArray } from "util";
 
-const page = () => {
+export const page = () => {
   const [chargerMasterData, setChargerMasterData] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
 

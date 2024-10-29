@@ -633,7 +633,7 @@ model ChargingSession {
   id                Int           @id @default(autoincrement())
   charger           ChargerMaster @relation(fields: [chargerId], references: [chargerID])
   chargerId         Int
-  vehicle           Vehicle       @relation(fields: [vehicleId], references: [id])
+  vehicle           Vehicle       @relation(fields: [vehicleId], references: [vehicleId])
   vehicleId         String
   chargingDate      DateTime
   duration          Int // Duration in minutes
@@ -652,7 +652,7 @@ model ChargingSession {
 // Add new VehicleTripSession model
 model VehicleTripSession {
   id                  Int      @id @default(autoincrement())
-  vehicle            Vehicle   @relation(fields: [vehicleId], references: [id])
+  vehicle            Vehicle   @relation(fields: [vehicleId], references: [vehicleId])
   vehicleId          String
   startTime          DateTime
   endTime            DateTime
