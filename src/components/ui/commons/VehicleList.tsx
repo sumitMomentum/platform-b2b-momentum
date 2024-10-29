@@ -4,11 +4,13 @@ import page from "@/app/[locale]/(landing)/page";
 import useVehicleStore from "@/states/store";
 import { useRouter } from "next/navigation";
 import { type } from "os";
-import { useEffect } from "react"; // Import only useEffect
+import { useEffect, useState } from "react"; // Import only useEffect
 import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import { handleEvent } from "@/utils/facades/serverFacades/enodeFacade";
 import { title } from "process";
+import { getUserVehicleEnode } from "@/actions/admin/userModule/get-user-vehicle-enode";
+import { map } from "svix/dist/openapi/rxjsStub";
 
 const columns = [
   { field: "vin", headerName: "VIN", flex: 1 },
@@ -25,9 +27,14 @@ const columns = [
 const paginationModel = { page: 0, pageSize: 10 };
 
 const VehicleList = () => {
+  const [finalVehicles, setFinalVehicles] = useState([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const vehicles = useVehicleStore((state) => state.vehicles);
   const setVehicles = useVehicleStore((state) => state.setVehicles);
+  const [enodeVehicles, setEnodeVehicles] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedVehicleEnode, setSelectedVehicleEnode] = useState(null);
   const setSelectedVehicleId = useVehicleStore(
     (state) => state.setSelectedVehicleId
   );
@@ -35,17 +42,32 @@ const VehicleList = () => {
 
   useEffect(() => {
     const getVehicles = async () => {
-      // Make getVehicles async
       if (!vehicles || vehicles.length === 0) {
         const userVehiclesFromDB = await getUserVehicles();
-        // console.log(userVehiclesFromDB);
         setVehicles(userVehiclesFromDB);
-        setSelectedVehicleId(""); // Clear selected vehicle ID after fetching new data
+        setSelectedVehicleId("");
       }
     };
 
-    getVehicles(); // Call the async function
-  }, [vehicles, setVehicles, setSelectedVehicleId]);
+    const getEnodeVehicles = async () => {
+      const fetchedEnodeVehicles = await getUserVehicleEnode();
+      setEnodeVehicles(fetchedEnodeVehicles.linkedVendors);
+    };
+
+    const initializeData = async () => {
+      await Promise.all([getVehicles(), getEnodeVehicles()]);
+
+      // Simply combine both arrays
+      const combinedVehicles = [...vehicles, ...enodeVehicles];
+      //  console.log("[...vehicles]", [...vehicles]);
+      console.log("[...enodeVehicles]", [...enodeVehicles]);
+      //  console.log("combinedVehicles", combinedVehicles);
+      setFinalVehicles(combinedVehicles);
+      setLoading(false);
+    };
+
+    initializeData();
+  }, [vehicles, setVehicles, setSelectedVehicleId, enodeVehicles]);
 
   const handleEvent: GridEventListener<"rowClick"> = (
     params, // GridRowParams
@@ -56,13 +78,39 @@ const VehicleList = () => {
     router.push(`/home/vehicles/${params.row.vehicleId}`);
   };
 
+  const handleDelete = async () => {
+    if (selectedVehicleEnode) {
+      try {
+        // await deleteUserVehicleEnode(selectedVehicleEnode);
+        // await getEnodeVehicles();
+        setShowDeleteModal(false);
+        setSelectedVehicleEnode(null);
+        setTimeout(() => {}, 5000);
+        window.location.reload();
+      } catch (error) {
+        console.error("Failed to delete vendor", error);
+      }
+    }
+  };
+
+  const handleDeleteClick = (vehicleEnode: string) => {
+    setSelectedVehicleEnode(vehicleEnode);
+    setShowDeleteModal(true);
+  };
+
+  const handleCancel = () => {
+    setShowDeleteModal(false);
+    setSelectedVehicleEnode(null);
+  };
+
   // <div className="flex w-full flex-col overflow-x-auto" id="vehicleTable">
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
+        loading={loading}
         onRowClick={handleEvent}
         getRowId={(row) => row.vehicleId}
-        rows={vehicles}
+        rows={finalVehicles}
         columns={columns}
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10]}
