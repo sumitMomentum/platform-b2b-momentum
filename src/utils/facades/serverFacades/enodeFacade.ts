@@ -2,9 +2,11 @@
 
 import { brand } from "@/components/ui/landingPage/theme/themePrimitives";
 import prisma from "@/lib/db";
+import { range } from "@mui/x-data-grid/internals";
 import { log, error } from "console";
 import crypto from "crypto";
 import { create } from "domain";
+import { read } from "fs";
 import { connect } from "http2";
 
 export const generateEnodeToken = async () => {
@@ -156,9 +158,18 @@ export const createLinkSession = async (userId: number) => {
     const requestBody = {
       vendorType: "vehicle",
       scopes: [
+        "user:vehicle:discovered",
+        "user:vehicle:updated",
+        "user:vehicle:deleted",
+        "user:vehicle:smart-charging-status-updated",
         "vehicle:read:data",
         "vehicle:read:location",
         "vehicle:control:charging",
+        "user:charger:discovered",
+        "user:charger:updated",
+        "user:charger:deleted",
+        "charger:read:data",
+        "charger:control:charging",
       ],
       language: "en-US",
       redirectUri: `${process.env.ENODE_VEHICLE_ADD_REDIRECT}`,
@@ -406,8 +417,10 @@ async function verifySignature(
   );
   const receivedSignature = Buffer.from(signature, "utf8");
 
-  return crypto.timingSafeEqual(new Uint8Array(digest),
-    new Uint8Array(receivedSignature));
+  return crypto.timingSafeEqual(
+    new Uint8Array(digest),
+    new Uint8Array(receivedSignature)
+  );
 }
 
 // Function to handle each event
@@ -416,79 +429,167 @@ export const handleEvent = async (event: any) => {
     console.log("event:", event);
     console.log("event type:", event.event);
 
-    if (event.event === "user:vehicle:discovered") {
-      const vehicle = event.vehicle;
+    switch (event.event) {
+      case "user:vehicle:discovered": {
+        const vehicleData = event.vehicle;
 
-      // Create vehicle with all fields in a single table
-      const savedVehicle = await prisma.vehicle.create({
-        data: {
-          id: String(vehicle.id),
-          make: vehicle.information.brand,
-          model: vehicle.information.model,
-          year: vehicle.information.year,
-          vin: vehicle.information.vin,
-          odometerFloat: vehicle.odometer.distance,
-          batteryCapacity: vehicle.chargeState.batteryCapacity,
-          owner: { connect: { id: parseInt(vehicle.userId) } },
-          dateOfConnection: new Date(),
-          soc: vehicle.chargeState.batteryLevel,
-          // No need for vehicleId since we've merged the tables
-        },
-      });
-
-      console.log("Vehicle information saved:", savedVehicle);
-    } else if (event.event === "user:vehicle:updated") {
-      const updatedVehicle = event.vehicle;
-
-      const existingVehicle = await prisma.vehicle.findUnique({
-        where: { id: updatedVehicle.id },
-      });
-
-      if (!existingVehicle) {
-        console.error("Vehicle not found in the database:", updatedVehicle.id);
-        return;
+        await prisma.vehicle.create({
+          data: {
+            id: vehicleData.id,
+            vin: vehicleData.information.vin,
+            vehicleId: vehicleData.id, // Assuming vehicleId is the same as id
+            model: vehicleData.information.model,
+            year: vehicleData.information.year,
+            batteryCapacity: vehicleData.chargeState.batteryCapacity,
+            ownerID: vehicleData.userId,
+            soc: vehicleData.chargeState.batteryLevel,
+            dateOfConnection: new Date(), // Set to the current date
+            odometerFloat: vehicleData.odometer.distance,
+            usageAverageDailyKmDriven: [], // Populate this as needed
+            monthlyUsage: [], // Populate this as needed
+            condition: "New", // Set an initial condition
+            status: vehicleData.isReachable ? "Active" : "Inactive",
+            make: vehicleData.vendor,
+            batteryHealthSoH: null, // Set as needed
+            batteryHealthDegradation: null, // Set as needed
+            location: `${vehicleData.location.latitude}, ${vehicleData.location.longitude}`, // Or any specific location string
+            soh: [], // Set as needed
+            batteryHealthAverageEstimatedDegradation: [], // Set as needed
+            batteryHealthAverageSoC: null, // Set as needed
+            batteryHealthTotalBatteries: null, // Set as needed
+            connectorType: null, // Set as needed
+            endOfLife: null, // Set as needed
+            realRangeObserved: vehicleData.chargeState.range,
+            remainingUsefulLife: null, // Set as needed
+            totalChargingSession: 0, // Initial count
+            totalEnergyConsumed: null, // Set as needed
+            vehicleConditionCritical: 0, // Initial count
+            vehicleConditionGood: 0, // Initial count
+            vehicleConditionSatisfactory: 0, // Initial count
+            vehicleStatusActive: vehicleData.isReachable ? 1 : 0,
+            vehicleStatusCharging: vehicleData.chargeState.isCharging ? 1 : 0,
+            vehicleStatusInUse: 0, // Set as needed
+            vehicleStatusOutOfService: 0, // Set as needed
+            epawltpProvidedRange: null, // Set as needed
+            usageRangeObservedMax: null, // Set as needed
+            usageRangeObservedMin: null, // Set as needed
+            usageSoCRangeMax: null, // Set as needed
+            usageSoCRangeMin: null, // Set as needed
+            usageTemperatureHigh: null, // Set as needed
+            usageTemperatureLow: null, // Set as needed
+            batteryChemistry: null, // Set as needed
+            batteryHealthAverageSoH: null, // Set as needed
+            dataPointsCollected: 0, // Initial count
+            averageMonthlyUsage: null, // Set as
+            owner: {
+              connect: { id: 2 }, // Instead of ownerID: 2
+            },
+          },
+        });
+        break;
       }
 
-      // Update vehicle data
-      const updatedFields: any = {};
-      
-      if (updatedVehicle.odometer?.distance !== existingVehicle.odometerFloat) {
-        updatedFields.odometerFloat = updatedVehicle.odometer.distance;
-      }
-      if (updatedVehicle.chargeState?.batteryCapacity !== existingVehicle.batteryCapacity) {
-        updatedFields.batteryCapacity = updatedVehicle.chargeState.batteryCapacity;
-      }
-      if (updatedVehicle.chargeState?.batteryLevel !== existingVehicle.soc) {
-        updatedFields.soc = updatedVehicle.chargeState.batteryLevel;
-      }
+      case "user:vehicle:updated": {
+        const updatedVehicle = event.vehicle;
 
-      if (Object.keys(updatedFields).length > 0) {
-        updatedFields.updatedAt = new Date();
-
-        const updatedVehicleData = await prisma.vehicle.update({
+        const existingVehicle = await prisma.vehicle.findUnique({
           where: { id: updatedVehicle.id },
-          data: updatedFields,
         });
 
-        console.log("Vehicle information updated:", updatedVehicleData);
-      } else {
-        console.log("No changes detected for vehicle:", updatedVehicle.id);
+        if (!existingVehicle) {
+          console.error(
+            "Vehicle not found in the database:",
+            updatedVehicle.id
+          );
+          return;
+        }
+
+        // Update vehicle data
+        const updatedFields: any = {};
+
+        if (
+          updatedVehicle.odometer?.distance !== existingVehicle.odometerFloat
+        ) {
+          updatedFields.odometerFloat = updatedVehicle.odometer.distance;
+        }
+        if (
+          updatedVehicle.chargeState?.batteryCapacity !==
+          existingVehicle.batteryCapacity
+        ) {
+          updatedFields.batteryCapacity =
+            updatedVehicle.chargeState.batteryCapacity;
+        }
+        if (updatedVehicle.chargeState?.batteryLevel !== existingVehicle.soc) {
+          updatedFields.soc = updatedVehicle.chargeState.batteryLevel;
+        }
+
+        if (Object.keys(updatedFields).length > 0) {
+          updatedFields.updatedAt = new Date();
+
+          const updatedVehicleData = await prisma.vehicle.update({
+            where: { id: updatedVehicle.id },
+            data: updatedFields,
+          });
+
+          console.log("Vehicle information updated:", updatedVehicleData);
+        } else {
+          console.log("No changes detected for vehicle:", updatedVehicle.id);
+        }
+        break;
       }
-    } else if (event.event === "user:vehicle:deleted") {
-      const vehicle = event.vehicle;
 
-      const deletedVehicle = await prisma.vehicle.delete({
-        where: { id: vehicle.id },
-      });
+      // Delete vehicle from single table
+      case "user:vehicle:deleted": {
+        const vehicle = event.vehicle;
 
-      console.log("Vehicle deleted:", deletedVehicle);
-    } else {
-      console.log("Skipping event:", event.event);
+        const deletedVehicle = await prisma.vehicle.delete({
+          where: { id: vehicle.id },
+        });
+
+        console.log("Vehicle deleted:", deletedVehicle);
+        break;
+      }
+
+      case "user:charger:discovered": {
+        const charger = event.charger;
+
+        const createdCharger = await prisma.chargerMaster.create({
+          data: {
+            chargerID: charger.id,
+            chargerLocation: `${charger.location.latitude},${charger.location.longitude}`, // Ensure location is provided
+            chargerStatus: charger.isReachable ? "Active" : "Inactive",
+            dateJoining: new Date(), // Set the current date as the joining date
+            chargeType: charger.chargeState.isCharging
+              ? "Default"
+              : "Not Available", // Customize based on your requirements
+            chargingPoint: charger.information.model, // Adjust this based on actual data structure
+          },
+        });
+
+        console.log("Charger created:", createdCharger);
+        break;
+      }
+
+      case "user:charger:deleted": {
+        const charger = event.charger;
+
+        const deletedCharger = await prisma.chargerMaster.delete({
+          where: { chargerID: charger.id },
+        });
+
+        console.log("Charger deleted:", deletedCharger);
+        break;
+      }
+
+      default:
+        console.log("Skipping event:", event.event);
+        break;
     }
   } catch (error) {
     console.error("Error handling events:", error);
   }
 };
+
 // export const handleEvent = async (event: any) => {
 //   try {
 //     console.log("event:", event);
