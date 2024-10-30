@@ -8,6 +8,7 @@ import crypto from "crypto";
 import { create } from "domain";
 import { read } from "fs";
 import { connect } from "http2";
+import chalk from "chalk";
 
 export const generateEnodeToken = async () => {
   let accessToken = await getEnodeAccessToken();
@@ -158,18 +159,18 @@ export const createLinkSession = async (userId: number) => {
     const requestBody = {
       vendorType: "vehicle",
       scopes: [
-        "user:vehicle:discovered",
-        "user:vehicle:updated",
-        "user:vehicle:deleted",
-        "user:vehicle:smart-charging-status-updated",
+        // "user:vehicle:discovered",
+        // "user:vehicle:updated",
+        // "user:vehicle:deleted",
+        // "user:vehicle:smart-charging-status-updated",
         "vehicle:read:data",
         "vehicle:read:location",
         "vehicle:control:charging",
-        "user:charger:discovered",
-        "user:charger:updated",
-        "user:charger:deleted",
-        "charger:read:data",
-        "charger:control:charging",
+        // "user:charger:discovered",
+        // "user:charger:updated",
+        // "user:charger:deleted",
+        // "charger:read:data",
+        // "charger:control:charging",
       ],
       language: "en-US",
       redirectUri: `${process.env.ENODE_VEHICLE_ADD_REDIRECT}`,
@@ -187,6 +188,8 @@ export const createLinkSession = async (userId: number) => {
         body: JSON.stringify(requestBody),
       }
     );
+
+    console.log("response", response);
 
     // Check if the response is successful
     if (!response.ok) {
@@ -428,11 +431,11 @@ export const handleEvent = async (event: any) => {
   try {
     console.log("event:", event);
     console.log("event type:", event.event);
-
+    console.log("event", event);
     switch (event.event) {
       case "user:vehicle:discovered": {
         const vehicleData = event.vehicle;
-
+        console.log("vehicleData", vehicleData);
         await prisma.vehicle.create({
           data: {
             id: vehicleData.id,
@@ -441,7 +444,7 @@ export const handleEvent = async (event: any) => {
             model: vehicleData.information.model,
             year: vehicleData.information.year,
             batteryCapacity: vehicleData.chargeState.batteryCapacity,
-            ownerID: vehicleData.userId,
+            ownerID: Number(vehicleData.userId),
             soc: vehicleData.chargeState.batteryLevel,
             dateOfConnection: new Date(), // Set to the current date
             odometerFloat: vehicleData.odometer.distance,
@@ -482,10 +485,12 @@ export const handleEvent = async (event: any) => {
             dataPointsCollected: 0, // Initial count
             averageMonthlyUsage: null, // Set as
             owner: {
-              connect: { id: 2 }, // Instead of ownerID: 2
+              connect: { id: 1 },
             },
           },
         });
+
+        console.log(chalk.green("Vehicle created"));
         break;
       }
 

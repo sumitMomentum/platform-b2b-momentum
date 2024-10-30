@@ -23,6 +23,8 @@ import { Button } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
+import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
 // const options = {
 //   apiKey: "free",
 //   maxFileCount: 1,
@@ -84,45 +86,24 @@ const VehiclePage = () => {
 
   // Handle file upload (for onboarding or updating vehicles)
   const handleUpload = async (isUpdate) => {
-    if (!selectedFile) {
-      alert("Please select a file to upload.");
-      return;
-    }
+   if (!selectedFile) {
+    alert("Please select a file to upload.");
+    return;
+  }
 
-    const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
-    const allowedExtensions = ["xls", "xlsx"];
-    if (!allowedExtensions.includes(fileExtension)) {
-      alert("Please upload an Excel file (.xls or .xlsx).");
-      fileInputRef.current.value = "";
-      setSelectedFile(null);
-      return;
-    }
+  const formData = new FormData();
+  formData.append("file", selectedFile);
 
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-
-    try {
-      const apiEndpoint = isUpdate
-        ? "https://demoapi-9d35.onrender.com/api/vehicles/update/excel"
-        : "https://demoapi-9d35.onrender.com/api/vehicles/onboard/excel";
-
-      const response = await fetch(apiEndpoint, {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setIsSuccess(true); // Set success flag to re-fetch vehicles
-        window.alert(`Upload successful: ${data.message}`);
-      } else {
-        const errorData = await response.json();
-        const errorMessage = errorData.error || response.statusText;
-        window.alert(`Upload failed: ${errorMessage}`);
-      }
-    } catch (error) {
-      window.alert(`Error during upload: ${error.message}`);
-    }
+  try {
+    const result = isUpdate 
+      ? await updateVehiclesFromCSV(formData)
+      : await uploadVehiclesFromCSV(formData);
+    
+    setIsSuccess(true);
+    window.alert(`Upload successful: ${result.message}`);
+  } catch (error: any) {
+    window.alert(`Error during upload: ${error.message}`);
+  }
   };
 
   return (

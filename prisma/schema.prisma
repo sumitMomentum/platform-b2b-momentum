@@ -669,6 +669,8 @@ model VehicleTripSession {
   @@index([vehicleId])
 }
 
+
+
 // model AggregatedDashboard {
 //   id           Int @id
 //   active       Int
