@@ -36,7 +36,7 @@ export default authMiddleware({
       .replace(".localhost:3000", `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
     const { userId, sessionClaims, orgId } = auth;
     console.log(
-      "userid ",
+      "userid",
       userId,
       "Session claims",
       sessionClaims,

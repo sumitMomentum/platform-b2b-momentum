@@ -9,6 +9,7 @@ import { create } from "domain";
 import { read } from "fs";
 import { connect } from "http2";
 import chalk from "chalk";
+import { auth } from "@clerk/nextjs";
 
 export const generateEnodeToken = async () => {
   let accessToken = await getEnodeAccessToken();
@@ -429,9 +430,13 @@ async function verifySignature(
 // Function to handle each event
 export const handleEvent = async (event: any) => {
   try {
+    const authobject = auth(); // Get current user's ID
+    console.log("authobject", authobject);
+    // if (!userId) throw new Error("User not authenticated");
     console.log("event:", event);
     console.log("event type:", event.event);
     console.log("event", event);
+    console.log();
     switch (event.event) {
       case "user:vehicle:discovered": {
         const vehicleData = event.vehicle;
@@ -443,49 +448,59 @@ export const handleEvent = async (event: any) => {
             vehicleId: vehicleData.id, // Assuming vehicleId is the same as id
             model: vehicleData.information.model,
             year: vehicleData.information.year,
-            batteryCapacity: vehicleData.chargeState.batteryCapacity,
+            batteryCapacity: 70, // Set as needed - keep vehicleData.chargeState.batteryCapacity if not needed
             ownerID: Number(vehicleData.userId),
-            soc: vehicleData.chargeState.batteryLevel,
+            soc: 90, // Set as needed - keep vehicleData.chargeState.batteryLevel if not needed
             dateOfConnection: new Date(), // Set to the current date
-            odometerFloat: vehicleData.odometer.distance,
-            usageAverageDailyKmDriven: [], // Populate this as needed
-            monthlyUsage: [], // Populate this as needed
-            condition: "New", // Set an initial condition
+            odometerFloat: 4561, // Set as needed - keep vehicleData.odometer.distance if not needed
+            usageAverageDailyKmDriven: [
+              128, 130, 131, 125, 135, 136, 138, 150, 150, 152, 154, 157,
+            ], // Populate this as  - keep [] if not needed
+            monthlyUsage: [
+              3189, 3241, 3287, 3113, 3364, 3390, 3461, 3750, 3755, 3794, 3855,
+              3926,
+            ], //keep [] if kept for new vehicle // Populate this as needed
+            condition: "Good", // Set an initial condition
             status: vehicleData.isReachable ? "Active" : "Inactive",
             make: vehicleData.vendor,
-            batteryHealthSoH: null, // Set as needed
-            batteryHealthDegradation: null, // Set as needed
-            location: `${vehicleData.location.latitude}, ${vehicleData.location.longitude}`, // Or any specific location string
-            soh: [], // Set as needed
-            batteryHealthAverageEstimatedDegradation: [], // Set as needed
-            batteryHealthAverageSoC: null, // Set as needed
-            batteryHealthTotalBatteries: null, // Set as needed
-            connectorType: null, // Set as needed
-            endOfLife: null, // Set as needed
+            batteryHealthSoH: 96.1, // Set as needed - keep null if not needed
+            batteryHealthDegradation: 3.9, // Set as needed - keep null if not needed
+            location: "Bangalore,India", // `${vehicleData.location.latitude}, ${vehicleData.location.longitude}`, // Or any specific location string
+            soh: [
+              97.9, 96.6, 96.5, 96.5, 96.4, 96.4, 96.3, 96.2, 96.2, 96.1, 96.1,
+              96.1,
+            ], // Set as needed - keep [] if not needed
+            batteryHealthAverageEstimatedDegradation: [
+              2.1, 3.4, 3.8, 4, 3.9, 3.8, 3.7, 3.5, 3.5, 3.3, 3.3, 3.3,
+            ], // Set as needed - keep [] if not needed
+            batteryHealthAverageSoC: 66.51, // Set as needed - keep null if not needed
+            batteryHealthTotalBatteries: 860, // Set as needed - keep null if not needed
+            connectorType: "Rapid", // Set as needed - keep null if not needed
+            endOfLife: "5+Years", // Set as needed - keep null if not needed
             realRangeObserved: vehicleData.chargeState.range,
-            remainingUsefulLife: null, // Set as needed
-            totalChargingSession: 0, // Initial count
-            totalEnergyConsumed: null, // Set as needed
-            vehicleConditionCritical: 0, // Initial count
-            vehicleConditionGood: 0, // Initial count
-            vehicleConditionSatisfactory: 0, // Initial count
+            remainingUsefulLife: "5+Years", // Set as needed - keep null if not needed
+            totalChargingSession: 81, // Initial count
+            totalEnergyConsumed: "2106kWh", // Set as needed - keep null if not needed
+            vehicleConditionCritical: 1, // Initial count 1 for false and 0 for true
+            vehicleConditionGood: 4, // Initial count
+            vehicleConditionSatisfactory: 5, // Initial count
             vehicleStatusActive: vehicleData.isReachable ? 1 : 0,
             vehicleStatusCharging: vehicleData.chargeState.isCharging ? 1 : 0,
-            vehicleStatusInUse: 0, // Set as needed
-            vehicleStatusOutOfService: 0, // Set as needed
-            epawltpProvidedRange: null, // Set as needed
-            usageRangeObservedMax: null, // Set as needed
-            usageRangeObservedMin: null, // Set as needed
-            usageSoCRangeMax: null, // Set as needed
-            usageSoCRangeMin: null, // Set as needed
-            usageTemperatureHigh: null, // Set as needed
-            usageTemperatureLow: null, // Set as needed
-            batteryChemistry: null, // Set as needed
-            batteryHealthAverageSoH: null, // Set as needed
-            dataPointsCollected: 0, // Initial count
-            averageMonthlyUsage: null, // Set as
+            vehicleStatusInUse: 7, // Set as needed
+            vehicleStatusOutOfService: 1, // Set as needed - keep 0 if not needed
+            epawltpProvidedRange: 210, // Set as needed - keep 210 if not needed
+            usageRangeObservedMax: 196, // Set as needed - keep null if not needed
+            usageRangeObservedMin: 156, // Set as needed - keep null if not needed
+            usageSoCRangeMax: 100, // Set as needed - keep null if not needed
+            usageSoCRangeMin: 15, // Set as needed - keep null if not needed
+            usageTemperatureHigh: 37, // Set as needed - keep null if not needed
+            usageTemperatureLow: 24, // Set as needed - keep null if not needed
+            batteryChemistry: "Lithium-ion", // Set as needed - keep "Lithium-ion" if not needed
+            batteryHealthAverageSoH: 96.44166667, // Set as needed - keep null if not needed
+            dataPointsCollected: 1312, // Initial count - keep 0 if not needed
+            averageMonthlyUsage: 3510.4, // Set as needed - keep null if not needed
             owner: {
-              connect: { id: 1 },
+              connect: { id: Number(2) },
             },
           },
         });
