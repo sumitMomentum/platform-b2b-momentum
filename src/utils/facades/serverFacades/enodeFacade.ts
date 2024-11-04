@@ -29,6 +29,8 @@ import { parse, stringify } from "querystring";
 import { url } from "inspector";
 import { get } from "http";
 import { isArray } from "util";
+import useVehicleStore from "@/states/store";
+import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 
 export const generateEnodeToken = async () => {
   console.log(chalk.blue("📡 Initiating Enode token generation..."));
@@ -1034,6 +1036,9 @@ export const handleEvent = async (event: any) => {
         });
 
         console.log(chalk.green("✅ Vehicle created successfully"));
+        // const setVehicles = useVehicleStore((state) => state.setVehicles);
+        // const userVehiclesFromDB = await getUserVehicles();
+        // setVehicles(userVehiclesFromDB);
         break;
       }
 

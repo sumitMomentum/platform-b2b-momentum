@@ -3,16 +3,25 @@ import { getUserVehicleVendors } from "@/actions/admin/userModule/get-user-vehic
 import { deleteUserVendor } from "@/actions/admin/userModule/delete-user-vendor";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
+import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
+import useVehicleStore from "@/states/store";
 
 const VendorList = () => {
   const [vendors, setVendors] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedVendor, setSelectedVendor] = useState(null);
+  const setVehicles = useVehicleStore((state) => state.setVehicles);
 
   const getVendors = async () => {
     const fetchedVendors = await getUserVehicleVendors();
     console.log("fetched vendors", fetchedVendors);
     setVendors(fetchedVendors.linkedVendors);
+  };
+
+  const getVehicles = async () => {
+    const fetchedVehicles = await getUserVehicles();
+    console.log("fetched vehicles", fetchedVehicles);
+    setVehicles(fetchedVehicles);
   };
 
   useEffect(() => {
@@ -24,6 +33,7 @@ const VendorList = () => {
       try {
         await deleteUserVendor(selectedVendor);
         await getVendors();
+        await getVehicles();
         setShowDeleteModal(false);
         setSelectedVendor(null);
         setTimeout(() => {}, 5000);
