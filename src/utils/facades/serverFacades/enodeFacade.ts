@@ -4,19 +4,61 @@ import { brand } from "@/components/ui/landingPage/theme/themePrimitives";
 import prisma from "@/lib/db";
 import { range } from "@mui/x-data-grid/internals";
 import { log, error } from "console";
-import crypto from "crypto";
+import crypto, { createHmac, timingSafeEqual } from "crypto";
 import { create } from "domain";
 import { read } from "fs";
 import { connect } from "http2";
-import chalk from "chalk";
+import chalk, {
+  blue,
+  bold,
+  cyan,
+  green,
+  greenBright,
+  magenta,
+  red,
+  redBright,
+  yellow,
+} from "chalk";
 import { auth } from "@clerk/nextjs";
+import { ok } from "assert";
+import { headers } from "next/headers";
+import { env } from "process";
+import { json, text } from "stream/consumers";
+import { from } from "svix/dist/openapi/rxjsStub";
+import { parse, stringify } from "querystring";
+import { url } from "inspector";
+import { get } from "http";
+import { isArray } from "util";
 
 export const generateEnodeToken = async () => {
-  let accessToken = await getEnodeAccessToken();
-  return accessToken;
+  console.log(chalk.blue("📡 Initiating Enode token generation..."));
+
+  try {
+    let accessToken = await getEnodeAccessToken();
+
+    if (!accessToken) {
+      console.log(chalk.yellow("⚠️ No access token received"));
+      throw new Error("Failed to generate access token");
+    }
+
+    console.log(chalk.green("✅ Enode token generated successfully"));
+    return accessToken;
+  } catch (error) {
+    console.error(
+      chalk.red("❌ Error generating Enode token:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    throw new Error(
+      `Failed to generate Enode token: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
+  }
 };
 
 export const getEnodeAccessToken = async () => {
+  console.log(chalk.blue("🔍 Checking for existing Enode access token..."));
+
   try {
     const token = await prisma.enodeToken.findFirst({
       select: {
@@ -25,7 +67,12 @@ export const getEnodeAccessToken = async () => {
       },
     });
 
-    console.log("getAccessToken", token);
+    console.log(
+      chalk.cyan(
+        "💫 Retrieved token from database:",
+        token ? "✅ Found" : "⚠️ Not found"
+      )
+    );
 
     let accessToken = token?.token || "";
 
@@ -33,20 +80,41 @@ export const getEnodeAccessToken = async () => {
       !accessToken ||
       (token && accessToken && isTokenExpired(token.createdAt))
     ) {
+      console.log(
+        chalk.yellow("⚠️ Token is missing or expired. Generating new token...")
+      );
+
       await prisma.enodeToken.deleteMany();
+      console.log(chalk.blue("🗑️ Cleared old tokens from database"));
+
       accessToken = await generateAccessToken();
-      // Save the access token in the EnodeToken table
+      console.log(chalk.blue("🔄 Generated new access token"));
+
       const savedToken = await prisma.enodeToken.create({
         data: {
           token: accessToken,
         },
       });
+      console.log(chalk.green("✅ New token saved to database"));
+    } else {
+      console.log(chalk.green("✅ Using existing valid token"));
     }
 
     return accessToken;
   } catch (error) {
-    console.error("Error fetching access token:", error);
-    throw new Error("Failed to fetch access token");
+    console.error(
+      chalk.red("❌ Error in getEnodeAccessToken:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    throw new Error(
+      `Failed to fetch access token: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
@@ -94,27 +162,46 @@ export const getEnodeAccessToken = async () => {
 //   }
 // };
 export const generateAccessToken = async () => {
+  console.log(chalk.blue("🔐 Initiating access token generation..."));
+
   try {
     // Check if environment variables are defined and have valid values
     const clientId = process.env.ENODE_CLIENT_ID;
     const clientSecret = process.env.ENODE_CLIENT_SECRET;
     const tokenEndpoint = process.env.ENODE_OAUTH_URL;
 
+    // Validate environment variables
+    console.log(chalk.blue("🔍 Validating environment variables..."));
     if (!clientId || !clientSecret || !tokenEndpoint) {
+      console.error(chalk.red("❌ Missing environment variables:"));
+      if (!clientId) console.error(chalk.red("  • ENODE_CLIENT_ID is missing"));
+      if (!clientSecret)
+        console.error(chalk.red("  • ENODE_CLIENT_SECRET is missing"));
+      if (!tokenEndpoint)
+        console.error(chalk.red("  • ENODE_OAUTH_URL is missing"));
       throw new Error(
         "Client ID, Client Secret, or Token Endpoint is not defined"
       );
     }
 
-    // Ensure both clientId and clientSecret are strings
+    // Validate variable types
+    console.log(chalk.blue("🔍 Validating credential types..."));
     if (
       typeof clientId !== "string" ||
       typeof clientSecret !== "string" ||
       typeof tokenEndpoint !== "string"
     ) {
+      console.error(chalk.red("❌ Invalid credential types:"));
+      if (typeof clientId !== "string")
+        console.error(chalk.red("  • ENODE_CLIENT_ID is not a string"));
+      if (typeof clientSecret !== "string")
+        console.error(chalk.red("  • ENODE_CLIENT_SECRET is not a string"));
+      if (typeof tokenEndpoint !== "string")
+        console.error(chalk.red("  • ENODE_OAUTH_URL is not a string"));
       throw new Error("Invalid Client ID, Client Secret, or Token Endpoint");
     }
 
+    console.log(chalk.blue("📡 Making OAuth request..."));
     const response = await fetch(`${tokenEndpoint}`, {
       method: "POST",
       headers: {
@@ -127,57 +214,114 @@ export const generateAccessToken = async () => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to fetch access token");
+      console.error(
+        chalk.red(`❌ OAuth request failed with status: ${response.status}`)
+      );
+      throw new Error(`Failed to fetch access token: ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log(data);
+    console.log(chalk.cyan("📥 Received OAuth response:"), data);
+
+    if (!data.access_token) {
+      console.error(chalk.red("❌ No access token in response"));
+      throw new Error("Access token missing in response");
+    }
+
+    console.log(chalk.green("✅ Access token generated successfully"));
     return data.access_token;
   } catch (error) {
-    console.error("Error generating access token:", error);
-    throw new Error("Failed to generate access token");
+    console.error(
+      chalk.red("❌ Error generating access token:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    throw new Error(
+      `Failed to generate access token: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
 export const isTokenExpired = async (createdAt: Date) => {
-  const now = new Date();
-  const oneHoursAgo = new Date(now.getTime() - 1 * 60 * 60 * 1000); // 1 hours ago
+  console.log(chalk.blue("⏳ Checking token expiration..."));
 
-  return createdAt < oneHoursAgo;
+  try {
+    const now = new Date();
+    console.log(chalk.cyan("🕒 Current time:", now.toISOString()));
+
+    const oneHoursAgo = new Date(now.getTime() - 1 * 60 * 60 * 1000); // 1 hours ago
+    console.log(
+      chalk.cyan("🕐 Expiration threshold:", oneHoursAgo.toISOString())
+    );
+
+    console.log(chalk.cyan("📅 Token creation time:", createdAt.toISOString()));
+
+    const isExpired = createdAt < oneHoursAgo;
+    console.log(
+      isExpired
+        ? chalk.yellow("⚠️ Token is expired")
+        : chalk.green("✅ Token is still valid")
+    );
+
+    return isExpired;
+  } catch (error) {
+    console.error(
+      chalk.red("❌ Error checking token expiration:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    // In case of error, assume token is expired for safety
+    return true;
+  }
 };
 
 export const createLinkSession = async (userId: number) => {
+  console.log(chalk.blue("🔗 Initiating link session creation..."));
+
   try {
     // Get the access token
+    console.log(chalk.blue("🔑 Fetching access token..."));
     const accessToken = await getEnodeAccessToken();
 
     // Check if access token is missing
     if (!accessToken) {
+      console.error(chalk.red("❌ Access token is missing"));
       throw new Error("Access token missing");
     }
+    console.log(chalk.green("✅ Access token retrieved successfully"));
 
     // Prepare the request body
+    console.log(chalk.blue("📝 Preparing request payload..."));
     const requestBody = {
       vendorType: "vehicle",
       scopes: [
-        // "user:vehicle:discovered",
-        // "user:vehicle:updated",
-        // "user:vehicle:deleted",
-        // "user:vehicle:smart-charging-status-updated",
         "vehicle:read:data",
         "vehicle:read:location",
         "vehicle:control:charging",
-        // "user:charger:discovered",
-        // "user:charger:updated",
-        // "user:charger:deleted",
-        // "charger:read:data",
-        // "charger:control:charging",
       ],
       language: "en-US",
       redirectUri: `${process.env.ENODE_VEHICLE_ADD_REDIRECT}`,
     };
 
+    if (!process.env.ENODE_VEHICLE_ADD_REDIRECT) {
+      console.error(
+        chalk.red("❌ Missing ENODE_VEHICLE_ADD_REDIRECT environment variable")
+      );
+      throw new Error("Missing redirect URI configuration");
+    }
+
     // Make the API call to create the Link session
+    console.log(chalk.blue("📡 Making API request to create link session..."));
+    console.log(chalk.cyan(`👤 Creating link session for user ID: ${userId}`));
+
     const response = await fetch(
       `https://enode-api.sandbox.enode.io/users/${userId}/link`,
       {
@@ -190,90 +334,245 @@ export const createLinkSession = async (userId: number) => {
       }
     );
 
-    console.log("response", response);
-
-    // Check if the response is successful
     if (!response.ok) {
+      console.error(
+        chalk.red(
+          `❌ Failed to create link session - Status: ${response.status}`
+        )
+      );
+      console.error(chalk.red(`📝 Response: ${await response.text()}`));
       throw new Error(`Failed to create Link session: ${response.statusText}`);
     }
 
     // Extract linkUrl from the response
     const responseData = await response.json();
-    const linkUrl = responseData.linkUrl;
 
-    return linkUrl;
+    if (!responseData.linkUrl) {
+      console.error(chalk.red("❌ No linkUrl in response"));
+      throw new Error("Link URL missing in response");
+    }
+
+    console.log(chalk.green("✅ Link session created successfully"));
+    console.log(chalk.cyan("🔗 Link URL generated:", responseData.linkUrl));
+
+    return responseData.linkUrl;
   } catch (error) {
-    console.error("Error creating Link session:", error);
-    throw new Error("Failed to create Link session");
+    console.error(
+      chalk.red("❌ Error creating link session:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    throw new Error(
+      `Failed to create Link session: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
 export const listWebhook = async () => {
-  try {
-    const accessToken = await getEnodeAccessToken();
+  console.log(chalk.magenta.bold("🚀 Starting listWebhook function..."));
+  console.log(chalk.yellow("🪝 Initiating webhook list retrieval..."));
 
+  try {
+    console.log(chalk.cyan("🔑 Attempting to fetch access token..."));
+    const accessToken = await getEnodeAccessToken();
+    console.log(
+      chalk.yellow("🔍 Access Token Status:"),
+      accessToken ? "✅ Received" : "❌ Not Received"
+    );
+
+    if (!accessToken) {
+      console.error(chalk.redBright("❌ Access token is missing"));
+      console.error(
+        chalk.red("📝 Debug: getEnodeAccessToken returned:", accessToken)
+      );
+      throw new Error("Access token is required to list webhooks");
+    }
+    console.log(chalk.greenBright("✅ Access token successfully retrieved"));
+
+    if (!process.env.ENODE_API_URL) {
+      console.error(
+        chalk.redBright("❌ Missing ENODE_API_URL environment variable")
+      );
+      console.error(
+        chalk.red("📝 Available env vars:", Object.keys(process.env))
+      );
+      throw new Error("ENODE_API_URL environment variable is not configured");
+    }
+    console.log(
+      chalk.cyan("🌐 ENODE_API_URL configured:", process.env.ENODE_API_URL)
+    );
+    console.log(
+      chalk.cyan("🌐 final url:", `${process.env.ENODE_API_URL}` + `/webhooks`)
+    );
+
+    console.log(chalk.blue("📡 Making API request to fetch webhooks..."));
     const response = await fetch(`${process.env.ENODE_API_URL}/webhooks`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
+        Accept: "application/json",
+        "Enode-Version": "2024-01-01",
       },
     });
 
+    console.log(chalk.cyan("📥 Response Status:"), response.status);
+    console.log(
+      chalk.cyan("📥 Response Headers:"),
+      Object.fromEntries(response.headers.entries())
+    );
+
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(
+        chalk.redBright(
+          `❌ Failed to fetch webhooks - Status: ${response.status}`
+        )
+      );
+      console.error(chalk.red(`📝 Response: ${errorText}`));
       throw new Error(`Failed to fetch webhooks: ${response.statusText}`);
     }
 
     const responseData = await response.json();
-    console.log(responseData);
+    console.log(chalk.cyan("📥 Received webhooks data:"), responseData);
+
+    if (!responseData.data) {
+      console.log(chalk.yellow("⚠️ No webhook data in response"));
+      return { data: [] };
+    }
+
     return responseData;
   } catch (error) {
-    console.error("Error in listing webhook", error);
+    console.error(
+      chalk.red("❌ Error listing webhooks:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    throw new Error(
+      `Failed to list webhooks: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
 export const runWebhook = async () => {
+  console.log(chalk.blue("🪝 Initiating webhook setup process..."));
+
   try {
+    console.log(chalk.blue("📋 Fetching current webhook list..."));
     const webhookList = await listWebhook();
-    console.log("Webhook List returned", webhookList);
-    if (
-      webhookList.data.length === 1 &&
-      webhookList.data[0].isActive === true &&
-      webhookList.data[0].url === `${process.env.NEXT_PUBLIC_URL}/en/api/enode`
-    ) {
-      return webhookList;
-    } else if (webhookList.data.length === 0) {
-      const responseData = await createWebHook();
-      console.log("response of runWebHook() function: \n", responseData);
-    } else if (
-      webhookList.data[0].url !== `${process.env.NEXT_PUBLIC_URL}/en/api/enode`
-    ) {
-      await updateWebhook(webhookList.data[0].id);
-    } else if (webhookList.data[0].isActive === false) {
-      const responseData = await deleteAndRerunWebHook(webhookList.data[0].id);
-      console.log("response of runWebHook() function: \n", responseData);
+    console.log(chalk.cyan("📥 Webhook list retrieved:", webhookList));
+
+    const expectedUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/en/api/enode`;
+
+    if (!process.env.NEXT_PUBLIC_BASE_URL) {
+      console.error(
+        chalk.red("❌ Missing NEXT_PUBLIC_BASE_URL environment variable")
+      );
+      throw new Error(
+        "NEXT_PUBLIC_BASE_URL environment variable is not configured"
+      );
     }
 
-    return webhookList; // Respond with webhook data
+    // Check webhook conditions
+    if (webhookList.data.length === 1) {
+      const webhook = webhookList.data[0];
+      console.log(chalk.blue("🔍 Analyzing existing webhook..."));
+
+      if (webhook.isActive && webhook.url === expectedUrl) {
+        console.log(chalk.green("✅ Existing webhook is valid and active"));
+        return webhookList;
+      } else if (webhook.url !== expectedUrl) {
+        console.log(chalk.yellow("⚠️ Webhook URL mismatch, updating..."));
+        await updateWebhook(webhook.id);
+      } else if (!webhook.isActive) {
+        console.log(chalk.yellow("⚠️ Webhook is inactive, recreating..."));
+        const responseData = await deleteAndRerunWebHook(webhook.id);
+        console.log(chalk.green("✅ Webhook recreated successfully"));
+        return responseData;
+      }
+    } else if (webhookList.data.length === 0) {
+      console.log(
+        chalk.yellow("⚠️ No webhooks found, creating new webhook...")
+      );
+      const responseData = await createWebHook();
+      console.log(chalk.green("✅ New webhook created successfully"));
+      return responseData;
+    } else {
+      console.log(
+        chalk.yellow("⚠️ Multiple webhooks found, this is unexpected")
+      );
+    }
+
+    return webhookList;
   } catch (error) {
     console.error(
-      "Error in setWebhook \n",
-      error.message,
-      process.env.ENODE_WEBHOOK_SECRET
+      chalk.red("❌ Error in webhook setup:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    // throw new Error("Internal Server Error");
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    if (process.env.ENODE_WEBHOOK_SECRET) {
+      console.log(chalk.yellow("ℹ️ Webhook secret is configured"));
+    } else {
+      console.error(chalk.red("❌ ENODE_WEBHOOK_SECRET is not configured"));
+    }
+    throw new Error(
+      `Webhook setup failed: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
 export const createWebHook = async () => {
+  console.log(chalk.blue("🪝 Initiating webhook creation..."));
+
   try {
+    console.log(chalk.blue("🔑 Fetching access token..."));
     const accessToken = await getEnodeAccessToken();
+
+    if (!accessToken) {
+      console.error(chalk.red("❌ Access token is missing"));
+      throw new Error("Access token required for webhook creation");
+    }
+
+    // Validate environment variables
+    console.log(chalk.blue("🔍 Validating environment variables..."));
+    if (!process.env.ENODE_WEBHOOK_SECRET) {
+      console.error(chalk.red("❌ Missing ENODE_WEBHOOK_SECRET"));
+      throw new Error("Webhook secret is not configured");
+    }
+    if (!process.env.NEXT_PUBLIC_BASE_URL) {
+      console.error(chalk.red("❌ Missing NEXT_PUBLIC_BASE_URL"));
+      throw new Error("Next public URL is not configured");
+    }
+    if (!process.env.ENODE_API_URL) {
+      console.error(chalk.red("❌ Missing ENODE_API_URL"));
+      throw new Error("Enode API URL is not configured");
+    }
+
+    console.log(chalk.blue("📝 Preparing webhook configuration..."));
     const data = {
       secret: process.env.ENODE_WEBHOOK_SECRET,
-      url: `${process.env.NEXT_PUBLIC_URL}/en/api/enode`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/en/api/enode`,
       apiVersion: "2024-01-01",
       events: ["*"],
     };
+    console.log(chalk.cyan("📋 Webhook configuration prepared"));
+
+    console.log(chalk.blue("📡 Making API request to create webhook..."));
     const response = await fetch(`${process.env.ENODE_API_URL}/webhooks`, {
       method: "POST",
       headers: {
@@ -282,34 +581,123 @@ export const createWebHook = async () => {
       },
       body: JSON.stringify(data),
     });
-    return await response.json();
+
+    if (!response.ok) {
+      console.error(
+        chalk.red(`❌ Failed to create webhook - Status: ${response.status}`)
+      );
+      console.error(chalk.red(`📝 Response: ${await response.text()}`));
+      throw new Error(`Failed to create webhook: ${response.statusText}`);
+    }
+
+    const responseData = await response.json();
+    console.log(chalk.green("✅ Webhook created successfully"));
+    console.log(chalk.cyan("📥 Webhook details:", responseData));
+
+    return responseData;
   } catch (error) {
-    console.error("Error in creating webhook", error);
-    throw new Error("Failed to create webhook");
+    console.error(
+      chalk.red("❌ Error creating webhook:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    throw new Error(
+      `Failed to create webhook: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
 export const deleteAndRerunWebHook = async (id: string) => {
+  console.log(chalk.blue("🔄 Initiating webhook recreation process..."));
+
   try {
+    console.log(chalk.yellow(`🗑️ Deleting webhook with ID: ${id}`));
     await deleteWebhook(id);
-    return await runWebhook();
+    console.log(chalk.green("✅ Webhook deleted successfully"));
+
+    console.log(chalk.blue("🪝 Rerunning webhook setup..."));
+    const newWebhook = await runWebhook();
+    console.log(chalk.green("✅ Webhook recreation completed successfully"));
+
+    return newWebhook;
   } catch (error) {
-    console.error("Error in deleting webhook and rerunning", error);
-    throw new Error("Failed to delete webhook and rerun");
+    console.error(
+      chalk.red("❌ Error in deleting webhook and rerunning:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    console.error(chalk.red("🔍 Failed webhook ID:"), id);
+    throw new Error(
+      `Failed to delete webhook and rerun: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
-export const updateWebhook = async (id) => {
+export const updateWebhook = async (id: string) => {
+  console.log(chalk.blue("🔄 Initiating webhook update..."));
+
   try {
+    console.log(chalk.blue("🔑 Fetching access token..."));
     const accessToken = await getEnodeAccessToken();
+
+    if (!accessToken) {
+      console.error(chalk.red("❌ Access token is missing"));
+      throw new Error("Access token required for webhook update");
+    }
+
+    // Validate environment variables
+    console.log(chalk.blue("🔍 Validating environment variables..."));
+    if (!process.env.ENODE_WEBHOOK_SECRET) {
+      console.error(chalk.red("❌ Missing ENODE_WEBHOOK_SECRET"));
+      throw new Error("Webhook secret is not configured");
+    }
+    if (!process.env.NEXT_PUBLIC_BASE_URL) {
+      console.error(chalk.red("❌ Missing NEXT_PUBLIC_BASE_URL"));
+      throw new Error("Next public URL is not configured");
+    }
+    if (!process.env.ENODE_API_URL) {
+      console.error(chalk.red("❌ Missing ENODE_API_URL"));
+      throw new Error("Enode API URL is not configured");
+    }
+
+    console.log(chalk.blue("📝 Preparing webhook update configuration..."));
+
+    if (!process.env.NEXT_PUBLIC_ROOT_DOMAIN) {
+      console.error(chalk.redBright("❌ Missing NEXT_PUBLIC_ROOT_DOMAIN"));
+      throw new Error("Root domain is not configured");
+    }
+
+    const webhookUrl = `https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/en/api/enode`;
+    console.log(chalk.yellow("🔗 Generated webhook URL:"), webhookUrl);
 
     const data = {
       secret: process.env.ENODE_WEBHOOK_SECRET,
-      url: `${process.env.NEXT_PUBLIC_URL}/en/api/enode`,
+      url: webhookUrl,
       apiVersion: "2024-01-01",
       events: ["*"],
     };
 
+    console.log(chalk.cyan("📋 Update configuration prepared"));
+    console.log(chalk.yellow("🔗 Webhook URL:"), data.url);
+
+    console.log(chalk.blue(`📡 Making API request to update webhook ${id}...`));
+
+    console.log(
+      chalk.cyan(
+        "🌐 final url:",
+        `${process.env.ENODE_API_URL}` + `/webhooks/${id}`
+      )
+    );
     const response = await fetch(
       `${process.env.ENODE_API_URL}/webhooks/${id}`,
       {
@@ -322,28 +710,62 @@ export const updateWebhook = async (id) => {
       }
     );
 
-    if (response.ok) {
-      const responseData = await response.json();
-      console.log(
-        "Webhook updated successfully",
-        responseData,
-        process.env.ENODE_WEBHOOK_SECRET
+    if (!response.ok) {
+      console.error(
+        chalk.red(`❌ Failed to update webhook - Status: ${response.status}`)
       );
-      console.log("webhookId", id);
-      return responseData;
-    } else {
-      console.error("Unexpected response:", response.status);
+      console.error(chalk.red(`📝 Response: ${await response.text()}`));
+      throw new Error(`Failed to update webhook: ${response.statusText}`);
     }
+
+    const responseData = await response.json();
+    console.log(chalk.green("✅ Webhook updated successfully"));
+    console.log(chalk.cyan("📥 Updated webhook details:", responseData));
+    console.log(
+      chalk.cyan(
+        "🔐 Webhook secret configured:",
+        !!process.env.ENODE_WEBHOOK_SECRET
+      )
+    );
+    console.log(chalk.cyan("🔍 Updated webhook ID:", id));
+
+    return responseData;
   } catch (error) {
-    console.error("Error in updateWebhook", error);
-    console.log("webhookId", id);
+    console.error(
+      chalk.red("❌ Error updating webhook:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    console.error(chalk.red("🔍 Failed webhook ID:"), id);
+    throw new Error(
+      `Failed to update webhook: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
 export const deleteWebhook = async (id: string) => {
+  console.log(chalk.blue("🗑️ Initiating webhook deletion..."));
+
   try {
+    console.log(chalk.blue("🔑 Fetching access token..."));
     const accessToken = await getEnodeAccessToken();
 
+    if (!accessToken) {
+      console.error(chalk.red("❌ Access token is missing"));
+      throw new Error("Access token required for webhook deletion");
+    }
+
+    if (!process.env.ENODE_API_URL) {
+      console.error(chalk.red("❌ Missing ENODE_API_URL environment variable"));
+      throw new Error("ENODE_API_URL is not configured");
+    }
+
+    console.log(chalk.yellow(`⚠️ Preparing to delete webhook with ID: ${id}`));
     const response = await fetch(
       `${process.env.ENODE_API_URL}/webhooks/${id}`,
       {
@@ -356,53 +778,119 @@ export const deleteWebhook = async (id: string) => {
     );
 
     if (!response.ok) {
-      throw new Error("Failed to delete webhook");
+      console.error(
+        chalk.red(`❌ Failed to delete webhook - Status: ${response.status}`)
+      );
+      console.error(chalk.red(`📝 Response: ${await response.text()}`));
+      throw new Error(`Failed to delete webhook: ${response.statusText}`);
     }
 
     const responseData = await response.json();
+    console.log(chalk.green("✅ Webhook deleted successfully"));
+    console.log(
+      chalk.cyan("📤 Deletion response:", JSON.stringify(responseData))
+    );
+    console.log(chalk.cyan(`🔍 Deleted webhook ID: ${id}`));
 
-    console.log(JSON.stringify(responseData));
-    console.log(`Webhook ${id} deleted successfully`);
+    return responseData;
   } catch (error) {
-    console.error(error);
+    console.error(
+      chalk.red("❌ Error deleting webhook:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    console.error(chalk.red("🔍 Failed webhook ID:"), id);
+    throw new Error(
+      `Failed to delete webhook: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
 export const handleWebhook = async (req: Request) => {
+  console.log(chalk.blue("🪝 Initiating webhook handler..."));
+
   try {
     // Read headers from the request
     const signature = req.headers.get("x-enode-signature") as
       | string
       | undefined;
 
-    console.log("signature", signature);
-    const body = await new Response(req.body).json();
-    console.log("req.body", body);
-    console.log("webhook secret", process.env.ENODE_WEBHOOK_SECRET);
+    if (!signature) {
+      console.error(chalk.red("❌ Missing x-enode-signature header"));
+      throw new Error("Missing webhook signature");
+    }
+    console.log(chalk.cyan("🔐 Received signature:", signature));
 
+    // Parse request body
+    console.log(chalk.blue("📦 Parsing request body..."));
+    const body = await new Response(req.body).json();
+    console.log(
+      chalk.cyan("📥 Webhook payload:", JSON.stringify(body, null, 2))
+    );
+
+    // Validate webhook secret
+    if (!process.env.ENODE_WEBHOOK_SECRET) {
+      console.error(
+        chalk.red("❌ Missing ENODE_WEBHOOK_SECRET environment variable")
+      );
+      throw new Error("Webhook secret is not configured");
+    }
+    console.log(
+      chalk.cyan(
+        "🔑 Webhook secret configured:",
+        !!process.env.ENODE_WEBHOOK_SECRET
+      )
+    );
+
+    // Verify signature
+    console.log(chalk.blue("🔍 Verifying webhook signature..."));
     const isValidSignature = await verifySignature(
       body,
       signature,
       process.env.ENODE_WEBHOOK_SECRET
     );
 
-    console.log("isValidSignature", isValidSignature);
     if (!isValidSignature) {
-      console.error("Invalid signature");
-      // res.status(401).json({ error: "Invalid signature" });
-      return;
+      console.error(chalk.red("❌ Invalid webhook signature"));
+      throw new Error("Invalid signature");
     }
+    console.log(chalk.green("✅ Signature verified successfully"));
 
-    // Parse webhook payload if it's not already parsed
+    // Process webhook events
+    console.log(chalk.blue("⚡ Processing webhook events..."));
     const events = body;
 
-    // Process webhook payload
-    events.forEach(async (event: any) => {
+    if (!Array.isArray(events)) {
+      console.error(chalk.red("❌ Invalid event format - expected array"));
+      throw new Error("Invalid event format");
+    }
+
+    console.log(chalk.cyan(`📊 Processing ${events.length} events...`));
+    for (const event of events) {
+      console.log(chalk.blue(`🔄 Processing event type: ${event.event}`));
       await handleEvent(event);
-    });
+    }
+
+    console.log(chalk.green("✅ Webhook handled successfully"));
   } catch (error) {
-    console.error("Error handling webhook:", error);
-    // res.status(500).json({ error: 'Internal Server Error' });
+    console.error(
+      chalk.red("❌ Error handling webhook:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    throw new Error(
+      `Webhook handling failed: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 };
 
@@ -412,35 +900,75 @@ async function verifySignature(
   signature: string | undefined,
   secret: string
 ) {
-  if (!signature) return false;
+  console.log(chalk.blue("🔐 Initiating signature verification..."));
 
-  const hmac = crypto.createHmac("sha1", secret);
-  const digest = Buffer.from(
-    "sha1=" + hmac.update(JSON.stringify(payload)).digest("hex"),
-    "utf8"
-  );
-  const receivedSignature = Buffer.from(signature, "utf8");
+  try {
+    if (!signature) {
+      console.error(chalk.red("❌ No signature provided"));
+      return false;
+    }
+    console.log(chalk.cyan("📥 Received signature:", signature));
 
-  return crypto.timingSafeEqual(
-    new Uint8Array(digest),
-    new Uint8Array(receivedSignature)
-  );
+    if (!secret) {
+      console.error(chalk.red("❌ No secret provided for verification"));
+      return false;
+    }
+    console.log(chalk.cyan("🔑 Secret available for verification"));
+
+    console.log(chalk.blue("🔄 Creating HMAC..."));
+    const hmac = crypto.createHmac("sha1", secret);
+
+    console.log(chalk.blue("📝 Generating digest..."));
+    const digest = Buffer.from(
+      "sha1=" + hmac.update(JSON.stringify(payload)).digest("hex"),
+      "utf8"
+    );
+
+    console.log(chalk.blue("🔍 Converting received signature..."));
+    const receivedSignature = Buffer.from(signature, "utf8");
+
+    console.log(chalk.blue("⚡ Performing timing-safe comparison..."));
+    const isValid = crypto.timingSafeEqual(
+      new Uint8Array(digest),
+      new Uint8Array(receivedSignature)
+    );
+
+    console.log(
+      isValid
+        ? chalk.green("✅ Signature verified successfully")
+        : chalk.yellow("⚠️ Signature verification failed")
+    );
+
+    return isValid;
+  } catch (error) {
+    console.error(
+      chalk.red("❌ Error verifying signature:"),
+      chalk.red(error instanceof Error ? error.message : "Unknown error")
+    );
+    console.error(
+      chalk.red("📋 Stack trace:"),
+      error instanceof Error ? error.stack : "No stack trace"
+    );
+    return false;
+  }
 }
 
 // Function to handle each event
 export const handleEvent = async (event: any) => {
   try {
-    const authobject = auth(); // Get current user's ID
-    console.log("authobject", authobject);
-    // if (!userId) throw new Error("User not authenticated");
-    console.log("event:", event);
-    console.log("event type:", event.event);
-    console.log("event", event);
-    console.log();
+    const authobject = auth();
+    console.log(chalk.magenta("👤 Auth object retrieved:", authobject));
+
+    console.log(chalk.yellow("📥 Processing event:"));
+    console.log(chalk.magenta("📋 Event type:", event.event));
+    console.log(chalk.yellow("🔍 Event details:"));
+    console.log(event);
+
     switch (event.event) {
       case "user:vehicle:discovered": {
+        console.log(chalk.blue("🚗 Processing vehicle discovery..."));
         const vehicleData = event.vehicle;
-        console.log("vehicleData", vehicleData);
+        console.log(chalk.cyan("📊 Vehicle data:", vehicleData));
         await prisma.vehicle.create({
           data: {
             id: vehicleData.id,
@@ -505,11 +1033,12 @@ export const handleEvent = async (event: any) => {
           },
         });
 
-        console.log(chalk.green("Vehicle created"));
+        console.log(chalk.green("✅ Vehicle created successfully"));
         break;
       }
 
       case "user:vehicle:updated": {
+        console.log(chalk.blue("🔄 Processing vehicle update..."));
         const updatedVehicle = event.vehicle;
 
         const existingVehicle = await prisma.vehicle.findUnique({
@@ -518,32 +1047,35 @@ export const handleEvent = async (event: any) => {
 
         if (!existingVehicle) {
           console.error(
-            "Vehicle not found in the database:",
-            updatedVehicle.id
+            chalk.red(`❌ Vehicle not found in database: ${updatedVehicle.id}`)
           );
           return;
         }
 
-        // Update vehicle data
+        console.log(chalk.blue("📝 Checking for vehicle updates..."));
         const updatedFields: any = {};
 
         if (
           updatedVehicle.odometer?.distance !== existingVehicle.odometerFloat
         ) {
+          console.log(chalk.cyan("🔄 Updating odometer reading"));
           updatedFields.odometerFloat = updatedVehicle.odometer.distance;
         }
         if (
           updatedVehicle.chargeState?.batteryCapacity !==
           existingVehicle.batteryCapacity
         ) {
+          console.log(chalk.cyan("🔋 Updating battery capacity"));
           updatedFields.batteryCapacity =
             updatedVehicle.chargeState.batteryCapacity;
         }
         if (updatedVehicle.chargeState?.batteryLevel !== existingVehicle.soc) {
+          console.log(chalk.cyan("⚡ Updating battery level"));
           updatedFields.soc = updatedVehicle.chargeState.batteryLevel;
         }
 
         if (Object.keys(updatedFields).length > 0) {
+          console.log(chalk.blue("📤 Applying updates to database..."));
           updatedFields.updatedAt = new Date();
 
           const updatedVehicleData = await prisma.vehicle.update({
@@ -551,27 +1083,39 @@ export const handleEvent = async (event: any) => {
             data: updatedFields,
           });
 
-          console.log("Vehicle information updated:", updatedVehicleData);
+          console.log(
+            chalk.green("✅ Vehicle information updated successfully")
+          );
+          console.log(chalk.cyan("📋 Updated fields:", updatedFields));
         } else {
-          console.log("No changes detected for vehicle:", updatedVehicle.id);
+          console.log(
+            chalk.yellow(
+              "ℹ️ No changes detected for vehicle:",
+              updatedVehicle.id
+            )
+          );
         }
         break;
       }
 
       // Delete vehicle from single table
       case "user:vehicle:deleted": {
+        console.log(chalk.blue("🗑️ Processing vehicle deletion..."));
         const vehicle = event.vehicle;
 
         const deletedVehicle = await prisma.vehicle.delete({
           where: { id: vehicle.id },
         });
 
-        console.log("Vehicle deleted:", deletedVehicle);
+        console.log(chalk.green("✅ Vehicle deleted successfully"));
+        console.log(chalk.cyan("🔍 Deleted vehicle ID:", vehicle.id));
         break;
       }
 
       case "user:charger:discovered": {
+        console.log(chalk.blue("⚡ Processing charger discovery..."));
         const charger = event.charger;
+        console.log(chalk.cyan("📊 Charger data:", charger));
 
         const createdCharger = await prisma.chargerMaster.create({
           data: {
@@ -586,18 +1130,20 @@ export const handleEvent = async (event: any) => {
           },
         });
 
-        console.log("Charger created:", createdCharger);
+        console.log(chalk.green("✅ Charger created successfully"));
         break;
       }
 
       case "user:charger:deleted": {
+        console.log(chalk.blue("🗑️ Processing charger deletion..."));
         const charger = event.charger;
 
         const deletedCharger = await prisma.chargerMaster.delete({
           where: { chargerID: charger.id },
         });
 
-        console.log("Charger deleted:", deletedCharger);
+        console.log(chalk.green("✅ Charger deleted successfully"));
+        console.log(chalk.cyan("🔍 Deleted charger ID:", charger.id));
         break;
       }
 
