@@ -1028,7 +1028,7 @@ export const handleEvent = async (event: any) => {
             dataPointsCollected: 1312, // Initial count - keep 0 if not needed
             averageMonthlyUsage: 3510.4, // Set as needed - keep null if not needed
             owner: {
-              connect: { id: Number(2) },
+              connect: { id: Number(1) },
             },
           },
         });
