@@ -25,7 +25,6 @@ export const chargerTypes = [
     maximumOutputPower: "360 kW",
     evChargingLevels: "Level 3 (DC fast charging)",
     primaryCountries: "USA, Canada, South Korea",
-    "Maximum Output Voltage": "1000 Volts DC",
   },
   {
     evConnectorType: "CHAdeMO",
@@ -53,7 +52,6 @@ export const chargerTypes = [
     maximumOutputPower: "360 kW",
     evChargingLevels: "Level 3 (DC fast charging)",
     primaryCountries: "Europe, United Kingdom, Middle East, Africa, Australia",
-    "Maximum Output Voltage": "1000 Volts DC",
   },
   {
     evConnectorType: "GB/T (AC)",
@@ -81,11 +79,5 @@ export const chargerTypes = [
     maximumOutputPower: "250 kW",
     evChargingLevels: "Level 2 / Level 3",
     primaryCountries: "USA, Canada",
-  },
-  {
-    evConnectorType: "BEVC-DC0001",
-    outputCurrentType: "DC (Direct Current)",
-    evChargingLevels: "Level 3 (DC fast charging)",
-    primaryCountries: "India",
   },
 ];

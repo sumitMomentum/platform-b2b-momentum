@@ -11,6 +11,7 @@ import { chargerTypes } from "./seeds/chargerTypes";
 import { vehicleActions } from "./seeds/vehicleActions";
 import { vehicleChargingDetails } from "./seeds/vehiclesChargingDetails";
 import { vehicleDetails } from "./seeds/vehicleDetails";
+import { users } from "./seeds/users";
 import chalk from "chalk";
 
 const prisma = new PrismaClient();
@@ -62,6 +63,7 @@ async function main() {
       chargerTypeCount,
       actionCount,
       vehicleChargingDetailCount,
+      usersCount,
     ] = await Promise.all([
       prisma.permission.count(),
       prisma.module.count(),
@@ -78,72 +80,80 @@ async function main() {
       prisma.chargerType.count(),
       prisma.action.count(),
       prisma.vehicleChargingDetail.count(),
+      prisma.user.count(),
     ]);
 
     log.subHeader("Starting Seeding Process");
 
     await prisma.$transaction(async (tx: any) => {
-      if (permissionCount === 0) {
-        await tx.permission.createMany({ data: permissions });
-        log.success("Seeded permissions");
-      } else {
-        log.warning("Permissions table not empty, skipping...");
-      }
+      // if (permissionCount === 0) {
+      //   await tx.permission.createMany({ data: permissions });
+      //   log.success("Seeded permissions");
+      // } else {
+      //   log.warning("Permissions table not empty, skipping...");
+      // }
 
-      if (moduleCount === 0) {
-        await tx.module.createMany({ data: modules });
-        log.success("Seeded modules");
-      } else {
-        log.warning("Modules table not empty, skipping...");
-      }
+      // if (moduleCount === 0) {
+      //   await tx.module.createMany({ data: modules });
+      //   log.success("Seeded modules");
+      // } else {
+      //   log.warning("Modules table not empty, skipping...");
+      // }
 
-      if (currencyCount === 0) {
-        await tx.adminCurrencies.createMany({ data: currencies });
-        log.success("Seeded currencies");
-      } else {
-        log.warning("Currencies table not empty, skipping...");
-      }
+      // if (currencyCount === 0) {
+      //   await tx.adminCurrencies.createMany({ data: currencies });
+      //   log.success("Seeded currencies");
+      // } else {
+      //   log.warning("Currencies table not empty, skipping...");
+      // }
 
-      if (capabilityCount === 0) {
-        await tx.capabilitie.createMany({ data: capabilities });
-        log.success("Seeded capabilities");
-      } else {
-        log.warning("Capabilities table not empty, skipping...");
-      }
+      // if (capabilityCount === 0) {
+      //   await tx.capabilitie.createMany({ data: capabilities });
+      //   log.success("Seeded capabilities");
+      // } else {
+      //   log.warning("Capabilities table not empty, skipping...");
+      // }
 
-      if (planCount === 0) {
-        await tx.plan.createMany({ data: plans });
-        log.success("Seeded plans");
-      } else {
-        log.warning("Plans table not empty, skipping...");
-      }
+      // if (planCount === 0) {
+      //   await tx.plan.createMany({ data: plans });
+      //   log.success("Seeded plans");
+      // } else {
+      //   log.warning("Plans table not empty, skipping...");
+      // }
 
-      if (planCapabilityCount === 0) {
-        await tx.planCapabilities.createMany({ data: planCapabilities });
-        log.success("Seeded plan capabilities");
-      } else {
-        log.warning("Plan capabilities table not empty, skipping...");
-      }
+      // if (planCapabilityCount === 0) {
+      //   await tx.planCapabilities.createMany({ data: planCapabilities });
+      //   log.success("Seeded plan capabilities");
+      // } else {
+      //   log.warning("Plan capabilities table not empty, skipping...");
+      // }
 
-      if (settingCount === 0) {
-        await tx.superAdminSetting.createMany({ data: settings });
-        log.success("Seeded settings");
-      } else {
-        log.warning("Settings table not empty, skipping...");
-      }
+      // if (settingCount === 0) {
+      //   await tx.superAdminSetting.createMany({ data: settings });
+      //   log.success("Seeded settings");
+      // } else {
+      //   log.warning("Settings table not empty, skipping...");
+      // }
 
-      if (pricingCount === 0) {
-        await tx.pricing.createMany({ data: pricings });
-        log.success("Seeded pricing");
-      } else {
-        log.warning("Pricing table not empty, skipping...");
-      }
+      // if (pricingCount === 0) {
+      //   await tx.pricing.createMany({ data: pricings });
+      //   log.success("Seeded pricing");
+      // } else {
+      //   log.warning("Pricing table not empty, skipping...");
+      // }
 
-      if (paymentMethodCount === 0) {
-        await tx.paymentMethod.createMany({ data: paymentsMethods });
-        log.success("Seeded payment methods");
+      // if (paymentMethodCount === 0) {
+      //   await tx.paymentMethod.createMany({ data: paymentsMethods });
+      //   log.success("Seeded payment methods");
+      // } else {
+      //   log.warning("Payment methods table not empty, skipping...");
+      // }
+
+      if (usersCount === 0) {
+        await tx.user.createMany({ data: users });
+        log.success("Seeded users");
       } else {
-        log.warning("Payment methods table not empty, skipping...");
+        log.warning("Users table not empty, skipping...");
       }
 
       if (vehicleCount === 0) {
@@ -181,14 +191,14 @@ async function main() {
         log.warning("Actions table not empty, skipping...");
       }
 
-      if (vehicleChargingDetailCount === 0) {
-        await tx.vehicleChargingDetail.createMany({
-          data: vehicleChargingDetails,
-        });
-        log.success("Seeded vehicle charging details");
-      } else {
-        log.warning("Vehicle charging details table not empty, skipping...");
-      }
+      // if (vehicleChargingDetailCount === 0) {
+      //   await tx.vehicleChargingDetail.createMany({
+      //     data: vehicleChargingDetails,
+      //   });
+      //   log.success("Seeded vehicle charging details");
+      // } else {
+      //   log.warning("Vehicle charging details table not empty, skipping...");
+      // }
     });
 
     log.header("Database Seeding Completed Successfully! 🎉");
