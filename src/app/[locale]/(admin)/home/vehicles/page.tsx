@@ -85,25 +85,35 @@ const VehiclePage = () => {
   };
 
   // Handle file upload (for onboarding or updating vehicles)
-  const handleUpload = async (isUpdate) => {
-   if (!selectedFile) {
-    alert("Please select a file to upload.");
-    return;
-  }
+  const handleUpload = async (isUpdate: boolean) => {
+    try {
+      if (!selectedFile) {
+        throw new Error("Please select a file to upload.");
+      }
 
-  const formData = new FormData();
-  formData.append("file", selectedFile);
+      const formData = new FormData();
+      formData.append("file", selectedFile);
 
-  try {
-    const result = isUpdate 
-      ? await updateVehiclesFromCSV(formData)
-      : await uploadVehiclesFromCSV(formData);
-    
-    setIsSuccess(true);
-    window.alert(`Upload successful: ${result.message}`);
-  } catch (error: any) {
-    window.alert(`Error during upload: ${error.message}`);
-  }
+      const result = isUpdate
+        ? await updateVehiclesFromCSV(formData)
+        : await uploadVehiclesFromCSV(formData);
+
+      setIsSuccess(true);
+      setSelectedFile(null);
+      if (fileInputRef.current) {
+        (fileInputRef.current as HTMLInputElement).value = "";
+      }
+      window.alert(
+        `${isUpdate ? "Update" : "Upload"} successful: ${result.message}`
+      );
+    } catch (error) {
+      console.error("Upload error:", error);
+      window.alert(
+        `Error: ${
+          error instanceof Error ? error.message : "Something went wrong"
+        }`
+      );
+    }
   };
 
   return (
@@ -120,11 +130,16 @@ const VehiclePage = () => {
         </div>
         <div className="flex justify-center items-center gap-2">
           <AddVehicle />
-          <input type="file" onChange={handleFileChange} />
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            accept=".csv"
+          />
           <Button
             startIcon={<FileUploadIcon />}
             variant="contained"
-            color="primary"
+            color="success"
             // className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
             onClick={() => handleUpload(false)}
           >
@@ -133,7 +148,7 @@ const VehiclePage = () => {
           <Button
             startIcon={<PublishIcon />}
             variant="contained"
-            color="secondary"
+            color="success"
             // className="bg-blue-500 w-full p-2 hover:bg-blue-700 hover:text-white rounded-md"
             onClick={() => {
               handleUpload(true);
@@ -143,7 +158,7 @@ const VehiclePage = () => {
           </Button>
           <Button
             variant="outlined"
-            color="error"
+            color="success"
             startIcon={<DeleteForeverIcon />}
             // className="bg-red-500 w-full p-2 hover:bg-red-700 text-white rounded-md"
             onClick={() => {
