@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "dev": "npx ts-node prisma/seed.ts && next dev",
+    "dev": "npx ts-node src/seed/seed.ts && next dev",
     "build": "npx prisma db push && npx prisma generate && next build",
     "start": "npx ts-node prisma/seed.ts && next start",
     "lint": "next lint"
