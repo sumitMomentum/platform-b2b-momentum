@@ -2,7 +2,9 @@
 
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 import PageName from "@/components/ui/commons/PageName";
+import { GridColDef } from "@mui/x-data-grid";
 import { warn } from "console";
+import { split } from "postcss/lib/list";
 import { Fragment, useEffect, useState } from "react";
 import { isArray } from "util";
 
@@ -10,11 +12,34 @@ const page = () => {
   const [chargerMasterData, setChargerMasterData] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
 
+  const columns: GridColDef[] = [
+    { field: "chargerID", headerName: "Charger ID", width: 130 },
+    {
+      field: "chargerLocation",
+      headerName: "Charger Location",
+      width: 200,
+      valueFormatter: (value: any, row: any) =>
+        `${[
+          Number(value.toString().split(",")[0]).toFixed(2),
+          Number(value.toString().split(",")[1]).toFixed(2),
+        ].join(", ")}`,
+    },
+    { field: "chargerStatus", headerName: "Charger Status", width: 130 },
+    {
+      field: "dateJoining",
+      headerName: "Date Joining",
+      width: 130,
+      valueFormatter: (value, row) => new Date(value).toLocaleDateString(),
+    },
+    { field: "chargeType", headerName: "Charge Type", width: 130 },
+    { field: "chargingPoint", headerName: "Charging Point", width: 130 },
+  ];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getAllChargerMasterData();
-        console.log("from the component:", data)
+        console.log("from the component:", data);
         if (Array.isArray(data)) {
           // Confirming data is an array
           setChargerMasterData(data);

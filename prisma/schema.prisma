@@ -234,7 +234,7 @@ model Module {
 
 model Permission {
   id          Int      @id @default(autoincrement())
-  name        String
+  name        String   
   description String?
   users       User[]
   Module      Module[]
@@ -668,6 +668,8 @@ model VehicleTripSession {
 
   @@index([vehicleId])
 }
+
+
 
 // model AggregatedDashboard {
 //   id           Int @id

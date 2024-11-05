@@ -23,6 +23,8 @@ import { Button } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
+import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
 // const options = {
 //   apiKey: "free",
 //   maxFileCount: 1,
@@ -83,45 +85,34 @@ const VehiclePage = () => {
   };
 
   // Handle file upload (for onboarding or updating vehicles)
-  const handleUpload = async (isUpdate) => {
-    if (!selectedFile) {
-      alert("Please select a file to upload.");
-      return;
-    }
-
-    const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
-    const allowedExtensions = ["xls", "xlsx"];
-    if (!allowedExtensions.includes(fileExtension)) {
-      alert("Please upload an Excel file (.xls or .xlsx).");
-      fileInputRef.current.value = "";
-      setSelectedFile(null);
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-
+  const handleUpload = async (isUpdate: boolean) => {
     try {
-      const apiEndpoint = isUpdate
-        ? "https://demoapi-9d35.onrender.com/api/vehicles/update/excel"
-        : "https://demoapi-9d35.onrender.com/api/vehicles/onboard/excel";
-
-      const response = await fetch(apiEndpoint, {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setIsSuccess(true); // Set success flag to re-fetch vehicles
-        window.alert(`Upload successful: ${data.message}`);
-      } else {
-        const errorData = await response.json();
-        const errorMessage = errorData.error || response.statusText;
-        window.alert(`Upload failed: ${errorMessage}`);
+      if (!selectedFile) {
+        throw new Error("Please select a file to upload.");
       }
+
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+
+      const result = isUpdate
+        ? await updateVehiclesFromCSV(formData)
+        : await uploadVehiclesFromCSV(formData);
+
+      setIsSuccess(true);
+      setSelectedFile(null);
+      if (fileInputRef.current) {
+        (fileInputRef.current as HTMLInputElement).value = "";
+      }
+      window.alert(
+        `${isUpdate ? "Update" : "Upload"} successful: ${result.message}`
+      );
     } catch (error) {
-      window.alert(`Error during upload: ${error.message}`);
+      console.error("Upload error:", error);
+      window.alert(
+        `Error: ${
+          error instanceof Error ? error.message : "Something went wrong"
+        }`
+      );
     }
   };
 
@@ -139,11 +130,16 @@ const VehiclePage = () => {
         </div>
         <div className="flex justify-center items-center gap-2">
           <AddVehicle />
-          <input type="file" onChange={handleFileChange} />
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            accept=".csv"
+          />
           <Button
             startIcon={<FileUploadIcon />}
             variant="contained"
-            color="primary"
+            color="success"
             // className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
             onClick={() => handleUpload(false)}
           >
@@ -152,7 +148,7 @@ const VehiclePage = () => {
           <Button
             startIcon={<PublishIcon />}
             variant="contained"
-            color="secondary"
+            color="success"
             // className="bg-blue-500 w-full p-2 hover:bg-blue-700 hover:text-white rounded-md"
             onClick={() => {
               handleUpload(true);
@@ -162,7 +158,7 @@ const VehiclePage = () => {
           </Button>
           <Button
             variant="outlined"
-            color="error"
+            color="success"
             startIcon={<DeleteForeverIcon />}
             // className="bg-red-500 w-full p-2 hover:bg-red-700 text-white rounded-md"
             onClick={() => {
