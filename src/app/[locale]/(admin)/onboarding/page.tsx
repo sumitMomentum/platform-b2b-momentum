@@ -20,7 +20,7 @@ export default function Example() {
     })
       .then((rJson: any) => {
         const response = JSON.parse(rJson);
-        console.log(response);
+        // console.log(response);
         if (response.message === "ok" && response.organization) {
           isLoaded && setActive({ organization: response.organization.id });
           setIsCompleted(true);

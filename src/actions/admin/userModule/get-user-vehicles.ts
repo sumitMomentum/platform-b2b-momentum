@@ -1,25 +1,51 @@
 "use server";
-import prisma from "@/lib/db";
+
 import { auth } from "@clerk/nextjs";
-import { getUser } from "@/utils/facades/serverFacades/userFacade";
 
 export const getUserVehicles = async () => {
-  const userClerk = auth();
+  const { userId } = auth();
 
-  if (!userClerk) throw new Error("client clerk not found");
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
 
-  const { userId } = await getUser(userClerk);
+  console.log(process.env.NEXT_PUBLIC_BASE_URL);
 
-  const user = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
-    include: {
-      vehicles: true,
-    },
-  });
+  // Fetch the vehicles data from the API
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle`
+  ); // Use the correct base URL
 
-  if (!user) throw new Error("User not found");
+  console.log(response);
 
-  return user.vehicles;
+  if (!response.ok) {
+    throw new Error("Failed to fetch vehicles data");
+  }
+
+  return await response.json();
 };
+
+// import prisma from "@/lib/db";
+// import { auth } from "@clerk/nextjs";
+// import { getUser } from "@/utils/facades/serverFacades/userFacade";
+
+// export const getUserVehicles = async () => {
+//   const userClerk = auth();
+
+//   if (!userClerk) throw new Error("client clerk not found");
+
+//   const { userId } = await getUser(userClerk);
+
+//   const user = await prisma.user.findUnique({
+//     where: {
+//       id: userId,
+//     },
+//     include: {
+//       vehicles: true,
+//     },
+//   });
+
+//   if (!user) throw new Error("User not found");
+
+//   return user.vehicles;
+// };

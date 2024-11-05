@@ -1,44 +1,77 @@
+//@ts-nocheck
+"use client";
+
 import Card from "@/components/ui/commons/Card";
-import React from "react";
+import React, { useEffect } from "react";
 // import { useTranslations } from "next-intl";
 import BatteryHealthChart from "./BatteryHealthChart";
+import useVehicleStore from "@/states/store";
+import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
+import { Container } from "@mui/material";
 
 const BatteryHealth = () => {
-  // const t = useTranslations();
+  const vehicles = useVehicleStore((state) => state.vehicles);
+  const setVehicles = useVehicleStore((state) => state.setVehicles);
+
+  useEffect(() => {
+    const getVehicles = async () => {
+      if (!vehicles || vehicles.length === 0) {
+        const userVehiclesFromDB = await getUserVehicles();
+        setVehicles(userVehiclesFromDB);
+      }
+    };
+
+    getVehicles();
+  }, []);
+
+  // Safely handle the calculations by checking if vehicles exist
+  const avgSoH =
+    vehicles && vehicles.length > 0
+      ? (
+          vehicles.reduce((total, vehicle) => {
+            const sohValue = parseInt(vehicle["soh"]) || 0; // Handle undefined and empty values
+            return total + sohValue;
+          }, 0) / vehicles.length
+        ) // Use the actual length of vehicles
+          .toFixed(2)
+      : "N/A"; // Fallback for when data is not loaded
+
+  const avgDegradation =
+    vehicles && vehicles.length > 0
+      ? (
+          100 -
+          vehicles.reduce((total, vehicle) => {
+            const sohValue = parseInt(vehicle["soh"]) || 0;
+            return total + sohValue;
+          }, 0) /
+            vehicles.length
+        ).toFixed(2)
+      : "N/A"; // Fallback for when data is not loaded
+
   return (
     <Card>
       <Card.Body>
         <Card.Header>
-          <Card.Title>Battery Health</Card.Title>
+          <Card.Title>Battery Health of Fleet</Card.Title>
         </Card.Header>
-        <div className="flex justify-evenly border mb-2">
+        <Container
+          sx={{ display: "flex", justifyContent: "center", border: 0.5, mb: 2 }}
+        >
           <BatteryHealthChart />
-        </div>
+        </Container>
         <div className="flex justify-between">
           <div className="flex flex-col justify-evenly">
             <Card.Description>Avg SoH</Card.Description>
-            <Card.Description>100%</Card.Description>
+            <Card.Description>{avgSoH} %</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly">
-            <Card.Description>
-              Avg Estimated Degradation
-            </Card.Description>
-            <Card.Description>0.00%</Card.Description>
+            <Card.Description>Avg Estimated Degradation</Card.Description>
+            <Card.Description>{avgDegradation} %</Card.Description>
           </div>
           <div className="flex flex-col justify-evenly">
-            <Card.Description>Total Batteries</Card.Description>
-            <Card.Description>300</Card.Description>
+            <Card.Description>Total Vehicles</Card.Description>
+            <Card.Description>{vehicles.length || 0}</Card.Description>
           </div>
-        </div>
-        <div className="flex justify-between">
-          {/* <div className="flex flex-col justify-evenly">
-            <Card.Description>{t('')}</Card.Description>
-            <Card.Description>{t('300')}</Card.Description>
-          </div>
-          <div className="flex flex-col justify-evenly">
-            <Card.Description>{t('Battery Condition')}</Card.Description>
-            <Card.Description>{t('')}</Card.Description>
-          </div> */}
         </div>
       </Card.Body>
     </Card>

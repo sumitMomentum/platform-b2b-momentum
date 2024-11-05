@@ -126,15 +126,15 @@ const AdminSidebar = () => {
                         </ul>
                       </li>
                       
-                      <div className="">
+                      {/* <div className="">
                         <hr></hr>
                         <div className="mt-2 w-full">
                           <UploadCSV />
                         </div>
-                      </div>
+                      </div> */}
 
                       <li className="mt-auto -mx-2">
-                        <Link
+                        {/* <Link
                           onClick={() => toggleSidebarMenu()}
                           href="/home/affiliates/link"
                           className="bg-main group flex gap-x-3 rounded-md p-2  text-primary"
@@ -144,7 +144,7 @@ const AdminSidebar = () => {
                             aria-hidden="true"
                           />
                           {t("affiliatePanel")}
-                        </Link>
+                        </Link> */}
                         <Link
                           onClick={() => toggleSidebarMenu()}
                           href="/home/support"
@@ -203,15 +203,15 @@ const AdminSidebar = () => {
                 </ul>
               </li>
 
-              <div className="">
+              {/* <div className="">
                 <hr></hr>
                 <div className="mt-2 w-full">
                   <UploadCSV />
                 </div>
-              </div>
+              </div> */}
 
               <li className="mt-auto">
-                <Link
+                {/* <Link
                   onClick={() => toggleSidebarMenu()}
                   href="/home/affiliates/link"
                   className="group -mx-4 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6   hover:bg-gray-50 hover:text-indigo-600"
@@ -221,7 +221,7 @@ const AdminSidebar = () => {
                     aria-hidden="true"
                   />
                   {t("affiliatePanel")}
-                </Link>
+                </Link> */}
                 <Link
                   onClick={() => toggleSidebarMenu()}
                   href="/home/support"

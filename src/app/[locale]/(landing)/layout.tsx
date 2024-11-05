@@ -16,11 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <main>
-      <HeaderLanding />
       {children}
-      <FooterLanding />
+      {/* <HeaderLanding /> */}
+      {/* <FooterLanding /> */}
 
-      <FloatingWhatsAppButton />
+      {/* <FloatingWhatsAppButton /> */}
     </main>
   );
 }

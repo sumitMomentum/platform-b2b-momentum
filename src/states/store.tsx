@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 interface Vehicle {
-  id: string;
+  vehicleId: string;
   make: string;
   model: string;
   year: number;
@@ -13,7 +13,6 @@ interface Vehicle {
   soc: number;
   createdAt: Date;
   updatedAt: Date;
-
   // Add any other fields present in your Vehicle model
 }
 
@@ -52,6 +51,7 @@ const useVehicleStore = create<VehicleStore>((set) => ({
   setVehicles: (vehicles) =>
     set((state) => {
       const newState = { ...state, vehicles };
+      
       saveStateToLocalStorage(newState);
       return newState;
     }),

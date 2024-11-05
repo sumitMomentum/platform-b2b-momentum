@@ -29,7 +29,6 @@ export const getSignedUploadUrl = async (fileName: string, type: string) => {
   return getSignedUrl(s3Client, command);
 };
 
-
 export const getSignedDownloadUrl = async (filename: string) => {
   const S3key = `uploads/${filename}`;
   const command = new GetObjectCommand({
@@ -92,24 +91,13 @@ export const storeCSVData = async (csvData) => {
   try {
     //TODO: check what data the csv file has and upload that data to the respective table.
     // await prisma.car.deleteMany({});
-    await prisma.car.createMany({
+    await prisma.vehicle.createMany({
       data: csvData.map((row) => ({
         brand: row.brand,
         model: row.model,
         year: row.year,
         type: row.type,
-        integration_status: row.integration_status,
-        activation_required: row.activation_required,
-        regions: row.regions,
-        reliability: row.reliability,
-        capabilities: row.capabilities,
-        information: row.information,
-        charge_state: row.charge_state,
         location: row.location,
-        start_stop_commands: row.start_stop_commands,
-        smart_charging: row.smart_charging,
-        scheduling: row.scheduling,
-        statistics: row.statistics,
       })),
       skipDuplicates: true,
     });
@@ -118,3 +106,33 @@ export const storeCSVData = async (csvData) => {
     return { success: false, error: error.message };
   }
 };
+// export const storeCSVData = async (csvData) => {
+//   try {
+//     //TODO: check what data the csv file has and upload that data to the respective table.
+//     // await prisma.car.deleteMany({});
+//     await prisma.car.createMany({
+//       data: csvData.map((row) => ({
+//         brand: row.brand,
+//         model: row.model,
+//         year: row.year,
+//         type: row.type,
+//         integration_status: row.integration_status,
+//         activation_required: row.activation_required,
+//         regions: row.regions,
+//         reliability: row.reliability,
+//         capabilities: row.capabilities,
+//         information: row.information,
+//         charge_state: row.charge_state,
+//         location: row.location,
+//         start_stop_commands: row.start_stop_commands,
+//         smart_charging: row.smart_charging,
+//         scheduling: row.scheduling,
+//         statistics: row.statistics,
+//       })),
+//       skipDuplicates: true,
+//     });
+//     return { success: true };
+//   } catch (error) {
+//     return { success: false, error: error.message };
+//   }
+// };

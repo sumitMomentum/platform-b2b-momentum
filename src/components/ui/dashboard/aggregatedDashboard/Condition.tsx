@@ -1,5 +1,6 @@
 import Card from "@/components/ui/commons/Card";
 import ConditionChart from "./ConditionChart";
+import { Container } from "@mui/material";
 
 const Condition = () => {
   return (
@@ -8,9 +9,11 @@ const Condition = () => {
         <Card.Header>
           <Card.Title>Vehicle Condition</Card.Title>
         </Card.Header>
-        <div className="border">
+        <Container
+          sx={{ display: "flex", justifyContent: "center", border: 0.5, mb: 2 }}
+        >
           <ConditionChart />
-        </div>
+        </Container>
       </Card.Body>
     </Card>
   );

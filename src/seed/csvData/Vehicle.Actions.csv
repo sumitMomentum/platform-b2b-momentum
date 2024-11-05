@@ -1,0 +1,465 @@
+id,vehicleId,Severity,Description,BestPractice,ActionToBeTaken,Confirm,CreatedDateTime,ClosedDateTime,vin
+1,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-01-29 15:19,2023-01-29 18:39,VIN5914AUD
+2,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-01-31 01:05,2023-01-31 22:46,VIN5914AUD
+3,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-01-31 17:35,2023-01-31 19:14,VIN5914AUD
+4,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-01-31 13:30,2023-02-01 01:47,VIN5914AUD
+5,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-02-03 18:51,2023-02-04 07:55,VIN5914AUD
+6,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-08 12:35,2023-02-08 15:56,VIN5914AUD
+7,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-08 15:03,2023-02-09 04:10,VIN5914AUD
+8,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-11 02:47,2023-02-11 09:20,VIN5914AUD
+9,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-10 23:14,2023-02-11 18:37,VIN5914AUD
+10,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-11 17:35,2023-02-12 15:18,VIN5914AUD
+11,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-12 13:10,2023-02-12 23:15,VIN5914AUD
+12,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-12 17:37,2023-02-13 17:21,VIN5914AUD
+13,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-13 00:53,2023-02-13 06:19,VIN5914AUD
+14,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-15 13:55,2023-02-16 01:15,VIN5914AUD
+15,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-18 10:36,2023-02-19 05:27,VIN5914AUD
+16,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-18 00:44,2023-02-18 01:33,VIN5914AUD
+17,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-19 00:56,2023-02-19 23:24,VIN5914AUD
+18,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-20 04:49,2023-02-20 14:45,VIN5914AUD
+19,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-20 03:53,2023-02-20 06:35,VIN5914AUD
+20,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-22 15:02,2023-02-23 00:03,VIN5914AUD
+21,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-24 10:59,2023-02-24 18:50,VIN5914AUD
+22,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-02-26 09:28,2023-02-27 04:10,VIN5914AUD
+23,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-26 00:51,2023-02-26 21:31,VIN5914AUD
+24,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-02-27 09:57,2023-02-27 10:56,VIN5914AUD
+25,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-26 12:52,2023-02-27 04:20,VIN5914AUD
+26,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-26 17:43,2023-02-27 01:12,VIN5914AUD
+27,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-28 02:37,2023-03-01 02:21,VIN5914AUD
+28,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-27 13:14,2023-02-27 18:41,VIN5914AUD
+29,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-27 17:36,2023-02-28 01:48,VIN5914AUD
+30,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-02-28 12:30,2023-03-01 11:15,VIN5914AUD
+31,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-03 23:36,2023-03-04 06:15,VIN5914AUD
+32,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-03 21:06,2023-03-04 06:31,VIN5914AUD
+33,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-03-04 23:10,2023-03-05 19:19,VIN5914AUD
+34,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-05 00:58,2023-03-05 13:34,VIN5914AUD
+35,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-05 04:33,2023-03-05 07:44,VIN5914AUD
+36,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-07 00:59,2023-03-07 04:25,VIN5914AUD
+37,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-06 20:54,2023-03-07 16:15,VIN5914AUD
+38,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-06 17:38,2023-03-07 05:16,VIN5914AUD
+39,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-03-07 17:37,2023-03-08 01:33,VIN5914AUD
+40,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-03-07 18:12,2023-03-08 10:54,VIN5914AUD
+41,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-08 19:23,2023-03-09 15:41,VIN5914AUD
+42,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-11 05:15,2023-03-11 06:24,VIN5914AUD
+43,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-11 03:45,2023-03-12 01:35,VIN5914AUD
+44,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-11 00:46,2023-03-11 09:07,VIN5914AUD
+45,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-12 11:34,2023-03-12 12:17,VIN5914AUD
+46,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-14 16:29,2023-03-15 12:04,VIN5914AUD
+47,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-15 11:43,2023-03-16 05:27,VIN5914AUD
+48,KA03AL3782,High,Charging Outside Specified Location - Will incure higher Charges,Charge in the designated charging stations.,Charge in the designated charging stations.,1,2023-03-16 04:29,2023-03-16 08:26,VIN5914AUD
+49,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-18 04:36,2023-03-18 11:11,VIN5914AUD
+50,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-17 21:46,2023-03-18 16:25,VIN5914AUD
+51,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-18 21:08,2023-03-19 10:57,VIN5914AUD
+52,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-18 11:11,2023-03-19 01:06,VIN5914AUD
+53,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-19 01:02,2023-03-19 05:55,VIN5914AUD
+54,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-19 16:20,2023-03-20 15:23,VIN5914AUD
+55,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-21 09:49,2023-03-22 06:57,VIN5914AUD
+56,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-20 21:29,2023-03-21 02:51,VIN5914AUD
+57,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-20 17:36,2023-03-21 05:43,VIN5914AUD
+58,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-21 21:13,2023-03-22 17:33,VIN5914AUD
+59,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-21 12:38,2023-03-22 08:24,VIN5914AUD
+60,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-03-21 21:03,2023-03-22 04:28,VIN5914AUD
+61,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-21 21:13,2023-03-22 06:13,VIN5914AUD
+62,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-25 21:22,2023-03-26 16:11,VIN5914AUD
+63,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-27 00:45,2023-03-27 16:30,VIN5914AUD
+64,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-26 16:22,2023-03-26 21:32,VIN5914AUD
+65,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-26 11:23,2023-03-27 02:59,VIN5914AUD
+66,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-27 16:07,2023-03-27 19:28,VIN5914AUD
+67,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-28 09:32,2023-03-28 21:07,VIN5914AUD
+68,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-28 13:55,2023-03-29 06:53,VIN5914AUD
+69,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-03-28 21:59,2023-03-29 20:48,VIN5914AUD
+70,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-02 00:26,2023-04-02 11:01,VIN5914AUD
+71,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-02 16:26,2023-04-02 22:49,VIN5914AUD
+72,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-02 23:39,2023-04-03 18:54,VIN5914AUD
+73,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-04-03 11:01,2023-04-03 14:14,VIN5914AUD
+74,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-04 21:08,2023-04-05 07:00,VIN5914AUD
+75,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-05 10:58,2023-04-06 06:50,VIN5914AUD
+76,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-08 12:38,2023-04-08 15:32,VIN5914AUD
+77,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-08 14:54,2023-04-09 04:42,VIN5914AUD
+78,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-10 16:34,2023-04-11 00:32,VIN5914AUD
+79,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-04-11 08:47,2023-04-11 15:26,VIN5914AUD
+80,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-14 11:24,2023-04-15 08:32,VIN5914AUD
+81,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-14 20:44,2023-04-15 02:46,VIN5914AUD
+82,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-15 12:00,2023-04-15 13:39,VIN5914AUD
+83,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-16 04:34,2023-04-17 00:57,VIN5914AUD
+84,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-17 09:11,2023-04-18 02:59,VIN5914AUD
+85,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-16 17:37,2023-04-17 09:52,VIN5914AUD
+86,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-16 13:09,2023-04-17 07:10,VIN5914AUD
+87,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-04-16 21:48,2023-04-16 22:09,VIN5914AUD
+88,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-04-17 11:25,2023-04-18 06:43,VIN5914AUD
+89,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-18 20:53,2023-04-19 19:04,VIN5914AUD
+90,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-18 16:38,2023-04-18 18:37,VIN5914AUD
+91,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-18 12:26,2023-04-19 08:04,VIN5914AUD
+92,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-19 11:08,2023-04-19 15:54,VIN5914AUD
+93,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-21 12:50,2023-04-22 00:47,VIN5914AUD
+94,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-04-21 17:46,2023-04-21 23:21,VIN5914AUD
+95,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-22 01:16,2023-04-22 17:27,VIN5914AUD
+96,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-21 17:54,2023-04-22 12:16,VIN5914AUD
+97,KA03AL3782,High,Charging Outside Specified Location - Will incure higher Charges,Charge in the designated charging stations.,Charge in the designated charging stations.,1,2023-04-23 03:38,2023-04-23 22:42,VIN5914AUD
+98,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-23 01:00,2023-04-23 18:50,VIN5914AUD
+99,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-22 15:58,2023-04-23 09:44,VIN5914AUD
+100,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-22 10:48,2023-04-22 16:00,VIN5914AUD
+101,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-23 17:32,2023-04-23 19:05,VIN5914AUD
+102,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-23 13:31,2023-04-23 19:51,VIN5914AUD
+103,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-04-23 11:18,2023-04-23 17:48,VIN5914AUD
+104,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-04-24 11:05,2023-04-24 23:47,VIN5914AUD
+105,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-24 03:07,2023-04-25 02:17,VIN5914AUD
+106,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-24 21:29,2023-04-25 08:14,VIN5914AUD
+107,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-24 13:50,2023-04-25 12:53,VIN5914AUD
+108,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-26 01:53,2023-04-26 18:17,VIN5914AUD
+109,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-26 11:38,2023-04-26 22:05,VIN5914AUD
+110,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-04-29 01:49,2023-04-29 05:17,VIN5914AUD
+111,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-30 02:37,2023-04-30 09:31,VIN5914AUD
+112,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-30 23:38,2023-05-01 02:41,VIN5914AUD
+113,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-30 21:03,2023-05-01 08:30,VIN5914AUD
+114,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-30 17:36,2023-05-01 13:45,VIN5914AUD
+115,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-30 13:22,2023-05-01 02:54,VIN5914AUD
+116,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-04-30 10:44,2023-05-01 07:47,VIN5914AUD
+117,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-01 11:31,2023-05-01 23:53,VIN5914AUD
+118,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-02 21:16,2023-05-03 14:21,VIN5914AUD
+119,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-03 13:46,2023-05-04 12:46,VIN5914AUD
+120,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-03 09:41,2023-05-03 22:47,VIN5914AUD
+121,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-05-06 15:02,2023-05-07 00:40,VIN5914AUD
+122,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-11 08:46,2023-05-11 11:33,VIN5914AUD
+123,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-11 11:14,2023-05-11 22:14,VIN5914AUD
+124,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-13 22:58,2023-05-14 15:28,VIN5914AUD
+125,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-13 19:25,2023-05-14 01:38,VIN5914AUD
+126,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-14 13:46,2023-05-14 19:11,VIN5914AUD
+127,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-15 09:21,2023-05-15 16:49,VIN5914AUD
+128,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-15 13:48,2023-05-16 03:51,VIN5914AUD
+129,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-15 21:04,2023-05-16 04:26,VIN5914AUD
+130,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-18 10:06,2023-05-18 13:31,VIN5914AUD
+131,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-21 06:48,2023-05-22 06:30,VIN5914AUD
+132,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-20 20:56,2023-05-21 00:05,VIN5914AUD
+133,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-21 21:07,2023-05-22 11:01,VIN5914AUD
+134,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-23 01:00,2023-05-23 05:18,VIN5914AUD
+135,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-23 00:04,2023-05-23 18:01,VIN5914AUD
+136,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-25 11:14,2023-05-26 05:56,VIN5914AUD
+137,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-27 07:10,2023-05-27 23:09,VIN5914AUD
+138,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-05-29 05:39,2023-05-29 23:06,VIN5914AUD
+139,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-28 21:03,2023-05-29 13:07,VIN5914AUD
+140,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-05-30 06:09,2023-05-30 08:17,VIN5914AUD
+141,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-29 09:03,2023-05-29 16:57,VIN5914AUD
+142,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-29 13:54,2023-05-29 19:52,VIN5914AUD
+143,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-30 22:49,2023-05-31 05:11,VIN5914AUD
+144,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-30 09:26,2023-05-31 00:25,VIN5914AUD
+145,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-30 13:48,2023-05-30 23:15,VIN5914AUD
+146,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-05-31 08:42,2023-05-31 23:23,VIN5914AUD
+147,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-03 19:47,2023-06-04 12:01,VIN5914AUD
+148,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-03 17:17,2023-06-03 21:04,VIN5914AUD
+149,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-06-04 19:21,2023-06-05 14:57,VIN5914AUD
+150,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-04 21:09,2023-06-05 00:41,VIN5914AUD
+151,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-05 00:44,2023-06-05 17:18,VIN5914AUD
+152,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-06 21:10,2023-06-07 05:37,VIN5914AUD
+153,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-06 17:05,2023-06-07 11:19,VIN5914AUD
+154,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-06 13:50,2023-06-06 23:30,VIN5914AUD
+155,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-06-07 13:48,2023-06-07 16:25,VIN5914AUD
+156,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-06-07 14:23,2023-06-08 06:34,VIN5914AUD
+157,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-08 15:34,2023-06-08 17:33,VIN5914AUD
+158,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-11 01:27,2023-06-11 09:49,VIN5914AUD
+159,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-10 23:56,2023-06-11 01:22,VIN5914AUD
+160,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-10 20:58,2023-06-11 09:56,VIN5914AUD
+161,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-12 07:45,2023-06-12 14:59,VIN5914AUD
+162,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-14 12:40,2023-06-15 11:01,VIN5914AUD
+163,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-15 07:54,2023-06-16 02:44,VIN5914AUD
+164,KA03AL3782,High,Charging Outside Specified Location - Will incure higher Charges,Charge in the designated charging stations.,Charge in the designated charging stations.,1,2023-06-16 00:40,2023-06-16 04:49,VIN5914AUD
+165,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-18 00:47,2023-06-19 00:35,VIN5914AUD
+166,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-17 17:58,2023-06-18 02:05,VIN5914AUD
+167,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-18 17:20,2023-06-19 01:47,VIN5914AUD
+168,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-18 07:23,2023-06-19 03:27,VIN5914AUD
+169,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-18 21:13,2023-06-19 13:35,VIN5914AUD
+170,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-19 12:32,2023-06-20 00:03,VIN5914AUD
+171,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-21 06:01,2023-06-21 06:32,VIN5914AUD
+172,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-20 17:40,2023-06-21 01:58,VIN5914AUD
+173,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-20 13:48,2023-06-21 03:17,VIN5914AUD
+174,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-21 17:24,2023-06-21 19:54,VIN5914AUD
+175,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-21 08:50,2023-06-21 15:22,VIN5914AUD
+176,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-06-21 17:14,2023-06-21 22:49,VIN5914AUD
+177,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-21 17:24,2023-06-22 14:24,VIN5914AUD
+178,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-25 17:33,2023-06-26 14:40,VIN5914AUD
+179,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-26 20:57,2023-06-27 04:09,VIN5914AUD
+180,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-26 12:34,2023-06-26 22:53,VIN5914AUD
+181,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-26 07:34,2023-06-26 10:55,VIN5914AUD
+182,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-27 12:19,2023-06-28 01:28,VIN5914AUD
+183,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-28 05:44,2023-06-29 04:28,VIN5914AUD
+184,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-28 10:07,2023-06-29 09:12,VIN5914AUD
+185,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-06-28 18:11,2023-06-28 21:45,VIN5914AUD
+186,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-02 20:37,2023-07-03 04:49,VIN5914AUD
+187,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-03 12:37,2023-07-04 06:30,VIN5914AUD
+188,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-03 19:51,2023-07-04 11:29,VIN5914AUD
+189,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-07-04 07:12,2023-07-04 13:15,VIN5914AUD
+190,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-05 17:19,2023-07-06 16:23,VIN5914AUD
+191,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-06 07:09,2023-07-06 16:59,VIN5914AUD
+192,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-09 08:49,2023-07-09 15:07,VIN5914AUD
+193,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-09 11:05,2023-07-09 16:24,VIN5914AUD
+194,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-11 12:45,2023-07-12 07:34,VIN5914AUD
+195,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-07-12 04:58,2023-07-12 20:19,VIN5914AUD
+196,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-15 07:35,2023-07-15 20:45,VIN5914AUD
+197,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-15 16:56,2023-07-16 10:13,VIN5914AUD
+198,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-16 08:12,2023-07-17 05:44,VIN5914AUD
+199,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-17 00:45,2023-07-17 14:01,VIN5914AUD
+200,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-18 05:23,2023-07-19 02:39,VIN5914AUD
+201,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-17 13:49,2023-07-18 11:48,VIN5914AUD
+202,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-17 09:21,2023-07-17 11:52,VIN5914AUD
+203,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-07-17 17:59,2023-07-18 02:02,VIN5914AUD
+204,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-07-18 07:36,2023-07-19 04:47,VIN5914AUD
+205,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-19 17:04,2023-07-19 22:17,VIN5914AUD
+206,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-19 12:49,2023-07-19 14:22,VIN5914AUD
+207,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-19 08:37,2023-07-19 21:07,VIN5914AUD
+208,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-20 07:19,2023-07-20 07:56,VIN5914AUD
+209,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-22 09:01,2023-07-23 05:11,VIN5914AUD
+210,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-07-22 13:58,2023-07-23 05:47,VIN5914AUD
+211,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-22 21:28,2023-07-23 04:18,VIN5914AUD
+212,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-22 14:05,2023-07-22 19:48,VIN5914AUD
+213,KA03AL3782,High,Charging Outside Specified Location - Will incure higher Charges,Charge in the designated charging stations.,Charge in the designated charging stations.,1,2023-07-23 23:49,2023-07-24 03:05,VIN5914AUD
+214,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-23 21:12,2023-07-24 03:24,VIN5914AUD
+215,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-23 12:09,2023-07-23 14:02,VIN5914AUD
+216,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-23 07:00,2023-07-23 09:05,VIN5914AUD
+217,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-24 13:44,2023-07-24 21:06,VIN5914AUD
+218,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-24 09:43,2023-07-25 06:55,VIN5914AUD
+219,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-07-24 07:29,2023-07-24 11:46,VIN5914AUD
+220,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-07-25 07:16,2023-07-26 01:09,VIN5914AUD
+221,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-24 23:18,2023-07-25 06:43,VIN5914AUD
+222,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-25 17:40,2023-07-25 20:04,VIN5914AUD
+223,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-25 10:01,2023-07-25 20:30,VIN5914AUD
+224,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-26 22:04,2023-07-27 09:33,VIN5914AUD
+225,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-27 07:49,2023-07-27 08:20,VIN5914AUD
+226,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-07-29 22:00,2023-07-30 12:58,VIN5914AUD
+227,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-30 22:48,2023-07-31 06:09,VIN5914AUD
+228,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-31 19:50,2023-08-01 08:13,VIN5914AUD
+229,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-31 17:14,2023-08-01 06:37,VIN5914AUD
+230,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-31 13:48,2023-07-31 21:05,VIN5914AUD
+231,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-31 09:33,2023-07-31 20:36,VIN5914AUD
+232,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-07-31 06:56,2023-07-31 16:04,VIN5914AUD
+233,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-01 07:42,2023-08-01 11:06,VIN5914AUD
+234,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-02 17:27,2023-08-03 12:42,VIN5914AUD
+235,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-03 09:58,2023-08-03 18:29,VIN5914AUD
+236,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-03 05:52,2023-08-03 14:25,VIN5914AUD
+237,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-08-06 11:14,2023-08-07 09:59,VIN5914AUD
+238,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-11 04:57,2023-08-12 01:45,VIN5914AUD
+239,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-11 07:26,2023-08-11 23:49,VIN5914AUD
+240,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-13 19:10,2023-08-14 01:57,VIN5914AUD
+241,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-13 15:37,2023-08-13 20:35,VIN5914AUD
+242,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-14 09:57,2023-08-15 00:56,VIN5914AUD
+243,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-15 05:33,2023-08-16 03:53,VIN5914AUD
+244,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-15 09:59,2023-08-16 00:27,VIN5914AUD
+245,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-15 17:16,2023-08-15 20:51,VIN5914AUD
+246,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-18 06:18,2023-08-18 21:44,VIN5914AUD
+247,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-21 02:59,2023-08-21 13:12,VIN5914AUD
+248,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-20 17:07,2023-08-21 01:00,VIN5914AUD
+249,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-21 17:18,2023-08-22 05:03,VIN5914AUD
+250,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-22 21:11,2023-08-23 06:55,VIN5914AUD
+251,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-22 20:15,2023-08-23 00:56,VIN5914AUD
+252,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-25 07:25,2023-08-25 08:00,VIN5914AUD
+253,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-27 03:22,2023-08-27 06:27,VIN5914AUD
+254,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-08-29 01:50,2023-08-29 07:24,VIN5914AUD
+255,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-28 17:14,2023-08-29 15:26,VIN5914AUD
+256,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-08-30 02:20,2023-08-30 18:13,VIN5914AUD
+257,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-29 05:15,2023-08-29 21:17,VIN5914AUD
+258,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-29 10:05,2023-08-29 14:00,VIN5914AUD
+259,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-30 19:00,2023-08-31 00:05,VIN5914AUD
+260,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-30 05:37,2023-08-30 16:49,VIN5914AUD
+261,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-30 09:59,2023-08-30 17:09,VIN5914AUD
+262,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-08-31 04:53,2023-08-31 14:12,VIN5914AUD
+263,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-03 15:58,2023-09-04 11:16,VIN5914AUD
+264,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-03 13:29,2023-09-04 00:41,VIN5914AUD
+265,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-09-04 15:33,2023-09-05 02:41,VIN5914AUD
+266,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-04 17:20,2023-09-05 02:22,VIN5914AUD
+267,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-04 20:56,2023-09-05 00:30,VIN5914AUD
+268,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-06 17:22,2023-09-07 11:57,VIN5914AUD
+269,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-06 13:17,2023-09-06 13:37,VIN5914AUD
+270,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-06 10:01,2023-09-07 04:21,VIN5914AUD
+271,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-09-07 09:59,2023-09-07 14:17,VIN5914AUD
+272,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-09-07 10:34,2023-09-07 22:27,VIN5914AUD
+273,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-08 11:46,2023-09-08 12:27,VIN5914AUD
+274,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-10 21:38,2023-09-11 18:19,VIN5914AUD
+275,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-10 20:08,2023-09-10 22:38,VIN5914AUD
+276,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-10 17:09,2023-09-11 03:31,VIN5914AUD
+277,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-12 03:57,2023-09-12 07:02,VIN5914AUD
+278,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-14 08:51,2023-09-14 17:04,VIN5914AUD
+279,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-15 04:06,2023-09-15 11:49,VIN5914AUD
+280,KA03AL3782,High,Charging Outside Specified Location - Will incure higher Charges,Charge in the designated charging stations.,Charge in the designated charging stations.,1,2023-09-15 20:51,2023-09-16 00:42,VIN5914AUD
+281,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-17 20:59,2023-09-18 06:00,VIN5914AUD
+282,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-17 14:09,2023-09-17 20:19,VIN5914AUD
+283,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-18 13:31,2023-09-18 13:43,VIN5914AUD
+284,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-18 03:34,2023-09-18 17:21,VIN5914AUD
+285,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-18 17:24,2023-09-19 07:51,VIN5914AUD
+286,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-19 08:43,2023-09-19 18:21,VIN5914AUD
+287,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-21 02:12,2023-09-21 22:18,VIN5914AUD
+288,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-20 13:52,2023-09-21 03:26,VIN5914AUD
+289,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-20 09:59,2023-09-21 05:09,VIN5914AUD
+290,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-21 13:36,2023-09-22 02:41,VIN5914AUD
+291,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-21 05:01,2023-09-21 14:52,VIN5914AUD
+292,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-09-21 13:25,2023-09-21 17:22,VIN5914AUD
+293,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-21 13:36,2023-09-21 19:48,VIN5914AUD
+294,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-25 13:44,2023-09-26 06:29,VIN5914AUD
+295,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-26 17:08,2023-09-27 12:14,VIN5914AUD
+296,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-26 08:45,2023-09-27 04:31,VIN5914AUD
+297,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-26 03:45,2023-09-26 20:38,VIN5914AUD
+298,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-27 08:30,2023-09-27 22:58,VIN5914AUD
+299,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-28 01:55,2023-09-28 18:13,VIN5914AUD
+300,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-28 06:18,2023-09-28 10:32,VIN5914AUD
+301,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-09-28 14:22,2023-09-29 11:24,VIN5914AUD
+302,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-02 16:49,2023-10-03 00:05,VIN5914AUD
+303,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-03 08:48,2023-10-03 14:23,VIN5914AUD
+304,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-03 16:02,2023-10-03 18:33,VIN5914AUD
+305,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-10-04 03:24,2023-10-04 04:01,VIN5914AUD
+306,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-05 13:30,2023-10-05 14:01,VIN5914AUD
+307,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-06 03:20,2023-10-06 09:44,VIN5914AUD
+308,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-09 05:00,2023-10-10 00:23,VIN5914AUD
+309,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-09 07:17,2023-10-09 22:34,VIN5914AUD
+310,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-11 08:57,2023-10-11 20:42,VIN5914AUD
+311,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-10-12 01:09,2023-10-12 19:55,VIN5914AUD
+312,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-15 03:47,2023-10-15 12:55,VIN5914AUD
+313,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-15 13:07,2023-10-16 09:27,VIN5914AUD
+314,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-16 04:23,2023-10-16 18:42,VIN5914AUD
+315,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-16 20:57,2023-10-17 08:04,VIN5914AUD
+316,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-18 01:34,2023-10-18 09:41,VIN5914AUD
+317,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-17 10:00,2023-10-17 20:13,VIN5914AUD
+318,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-17 05:32,2023-10-17 09:26,VIN5914AUD
+319,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-10-17 14:10,2023-10-17 23:10,VIN5914AUD
+320,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-10-18 03:48,2023-10-18 14:46,VIN5914AUD
+321,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-19 13:15,2023-10-19 22:50,VIN5914AUD
+322,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-19 09:00,2023-10-19 20:34,VIN5914AUD
+323,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-19 04:49,2023-10-19 16:34,VIN5914AUD
+324,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-20 03:31,2023-10-21 02:02,VIN5914AUD
+325,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-22 05:12,2023-10-22 14:12,VIN5914AUD
+326,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-10-22 10:09,2023-10-22 10:30,VIN5914AUD
+327,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-22 17:39,2023-10-23 00:59,VIN5914AUD
+328,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-22 10:16,2023-10-22 16:02,VIN5914AUD
+329,KA03AL3782,High,Charging Outside Specified Location - Will incure higher Charges,Charge in the designated charging stations.,Charge in the designated charging stations.,1,2023-10-23 20:00,2023-10-24 08:44,VIN5914AUD
+330,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-23 17:23,2023-10-23 23:07,VIN5914AUD
+331,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-23 08:20,2023-10-23 23:58,VIN5914AUD
+332,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-23 03:11,2023-10-24 00:49,VIN5914AUD
+333,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-24 09:55,2023-10-24 12:59,VIN5914AUD
+334,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-24 05:54,2023-10-24 23:14,VIN5914AUD
+335,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-10-24 03:41,2023-10-24 21:09,VIN5914AUD
+336,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-10-25 03:27,2023-10-25 21:09,VIN5914AUD
+337,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-24 19:30,2023-10-25 05:19,VIN5914AUD
+338,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-25 13:52,2023-10-25 18:22,VIN5914AUD
+339,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-25 06:13,2023-10-25 18:52,VIN5914AUD
+340,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-26 18:16,2023-10-27 12:47,VIN5914AUD
+341,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-27 04:01,2023-10-27 07:00,VIN5914AUD
+342,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-10-29 18:11,2023-10-29 21:14,VIN5914AUD
+343,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-30 19:00,2023-10-31 09:15,VIN5914AUD
+344,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-31 16:01,2023-11-01 05:54,VIN5914AUD
+345,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-31 13:26,2023-10-31 20:51,VIN5914AUD
+346,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-31 09:59,2023-10-31 16:28,VIN5914AUD
+347,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-31 05:45,2023-10-31 09:20,VIN5914AUD
+348,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-10-31 03:07,2023-11-01 00:15,VIN5914AUD
+349,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-01 03:53,2023-11-01 12:38,VIN5914AUD
+350,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-02 13:39,2023-11-02 22:24,VIN5914AUD
+351,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-03 06:09,2023-11-03 11:57,VIN5914AUD
+352,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-03 02:04,2023-11-03 04:29,VIN5914AUD
+353,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-11-06 07:25,2023-11-06 14:24,VIN5914AUD
+354,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-11 01:09,2023-11-11 21:58,VIN5914AUD
+355,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-11 03:37,2023-11-11 16:57,VIN5914AUD
+356,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-13 15:21,2023-11-14 09:20,VIN5914AUD
+357,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-13 11:48,2023-11-13 18:08,VIN5914AUD
+358,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-14 06:09,2023-11-14 15:51,VIN5914AUD
+359,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-15 01:44,2023-11-15 15:43,VIN5914AUD
+360,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-15 06:11,2023-11-15 19:17,VIN5914AUD
+361,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-15 13:27,2023-11-16 12:33,VIN5914AUD
+362,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-18 02:29,2023-11-18 04:40,VIN5914AUD
+363,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-20 23:10,2023-11-21 00:42,VIN5914AUD
+364,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-20 13:18,2023-11-21 03:47,VIN5914AUD
+365,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-21 13:30,2023-11-21 23:17,VIN5914AUD
+366,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-22 17:23,2023-11-23 10:14,VIN5914AUD
+367,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-22 16:27,2023-11-23 03:42,VIN5914AUD
+368,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-25 03:36,2023-11-25 11:38,VIN5914AUD
+369,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-26 23:33,2023-11-27 02:18,VIN5914AUD
+370,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-11-28 22:02,2023-11-28 22:14,VIN5914AUD
+371,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-28 13:25,2023-11-29 07:00,VIN5914AUD
+372,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-11-29 22:31,2023-11-30 10:55,VIN5914AUD
+373,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-29 01:26,2023-11-29 18:11,VIN5914AUD
+374,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-29 06:17,2023-11-29 13:24,VIN5914AUD
+375,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-30 15:11,2023-12-01 07:27,VIN5914AUD
+376,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-30 01:48,2023-11-30 11:31,VIN5914AUD
+377,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-11-30 06:10,2023-11-30 20:52,VIN5914AUD
+378,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-01 01:04,2023-12-01 03:03,VIN5914AUD
+379,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-04 12:10,2023-12-05 03:41,VIN5914AUD
+380,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-04 09:40,2023-12-04 22:39,VIN5914AUD
+381,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-12-05 11:44,2023-12-06 01:13,VIN5914AUD
+382,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-05 13:32,2023-12-05 15:57,VIN5914AUD
+383,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-05 17:07,2023-12-06 07:43,VIN5914AUD
+384,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-07 13:33,2023-12-08 04:21,VIN5914AUD
+385,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-07 09:28,2023-12-08 06:51,VIN5914AUD
+386,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-07 06:12,2023-12-07 22:17,VIN5914AUD
+387,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2023-12-08 06:11,2023-12-08 13:45,VIN5914AUD
+388,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-12-08 06:46,2023-12-08 23:11,VIN5914AUD
+389,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-09 07:57,2023-12-09 18:13,VIN5914AUD
+390,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-11 17:49,2023-12-12 06:14,VIN5914AUD
+391,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-11 16:19,2023-12-12 01:25,VIN5914AUD
+392,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-11 13:20,2023-12-12 05:23,VIN5914AUD
+393,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-13 00:08,2023-12-13 19:27,VIN5914AUD
+394,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-15 05:03,2023-12-15 08:30,VIN5914AUD
+395,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-16 00:17,2023-12-16 10:39,VIN5914AUD
+396,KA03AL3782,High,Charging Outside Specified Location - Will incure higher Charges,Charge in the designated charging stations.,Charge in the designated charging stations.,1,2023-12-16 17:03,2023-12-17 14:21,VIN5914AUD
+397,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-18 17:10,2023-12-19 09:57,VIN5914AUD
+398,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-18 10:20,2023-12-18 18:34,VIN5914AUD
+399,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-19 09:42,2023-12-20 02:50,VIN5914AUD
+400,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-18 23:45,2023-12-19 14:39,VIN5914AUD
+401,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-19 13:36,2023-12-20 06:20,VIN5914AUD
+402,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-20 04:54,2023-12-20 19:37,VIN5914AUD
+403,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-21 22:23,2023-12-22 03:02,VIN5914AUD
+404,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-21 10:03,2023-12-21 21:08,VIN5914AUD
+405,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-21 06:10,2023-12-21 07:32,VIN5914AUD
+406,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-22 09:47,2023-12-22 19:11,VIN5914AUD
+407,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-22 01:12,2023-12-22 02:13,VIN5914AUD
+408,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2023-12-22 09:37,2023-12-22 11:52,VIN5914AUD
+409,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-22 09:47,2023-12-22 20:21,VIN5914AUD
+410,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-26 09:56,2023-12-27 02:05,VIN5914AUD
+411,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-27 13:19,2023-12-27 17:07,VIN5914AUD
+412,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-27 04:56,2023-12-27 06:37,VIN5914AUD
+413,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-26 23:57,2023-12-27 19:33,VIN5914AUD
+414,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-28 04:41,2023-12-29 01:41,VIN5914AUD
+415,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-28 22:06,2023-12-29 21:15,VIN5914AUD
+416,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-29 02:29,2023-12-29 14:25,VIN5914AUD
+417,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2023-12-29 10:33,2023-12-30 02:30,VIN5914AUD
+418,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-02 13:00,2024-01-02 15:05,VIN5914AUD
+419,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-03 05:00,2024-01-03 15:51,VIN5914AUD
+420,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-03 12:13,2024-01-03 16:37,VIN5914AUD
+421,KA03AL3782,High,Discharging battery below 20% accelerates battery degradation,Maintain battery health above 20%,Charge the vehicle,1,2024-01-03 23:35,2024-01-04 02:08,VIN5914AUD
+422,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-05 09:42,2024-01-06 08:52,VIN5914AUD
+423,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-05 23:32,2024-01-06 03:15,VIN5914AUD
+424,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-09 01:12,2024-01-09 19:55,VIN5914AUD
+425,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-09 03:28,2024-01-09 14:38,VIN5914AUD
+426,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-11 05:08,2024-01-11 17:23,VIN5914AUD
+427,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2024-01-11 21:21,2024-01-11 22:33,VIN5914AUD
+428,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-14 23:58,2024-01-15 22:29,VIN5914AUD
+429,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-15 09:18,2024-01-15 18:51,VIN5914AUD
+430,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-16 00:34,2024-01-16 02:39,VIN5914AUD
+431,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-16 17:08,2024-01-17 05:58,VIN5914AUD
+432,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-17 21:45,2024-01-18 17:40,VIN5914AUD
+433,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-17 06:11,2024-01-17 18:50,VIN5914AUD
+434,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-17 01:43,2024-01-17 21:57,VIN5914AUD
+435,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2024-01-17 10:22,2024-01-18 06:52,VIN5914AUD
+436,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2024-01-17 23:59,2024-01-18 21:14,VIN5914AUD
+437,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-19 09:27,2024-01-20 07:22,VIN5914AUD
+438,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-19 05:12,2024-01-20 03:35,VIN5914AUD
+439,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-19 01:00,2024-01-19 05:27,VIN5914AUD
+440,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-19 23:42,2024-01-20 10:42,VIN5914AUD
+441,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-22 01:24,2024-01-22 18:47,VIN5914AUD
+442,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2024-01-22 06:20,2024-01-22 22:51,VIN5914AUD
+443,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-22 13:50,2024-01-23 09:32,VIN5914AUD
+444,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-22 06:28,2024-01-22 20:45,VIN5914AUD
+445,KA03AL3782,High,Charging Outside Specified Location - Will incure higher Charges,Charge in the designated charging stations.,Charge in the designated charging stations.,1,2024-01-23 16:12,2024-01-23 19:33,VIN5914AUD
+446,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-23 13:34,2024-01-24 06:41,VIN5914AUD
+447,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-23 04:32,2024-01-23 10:59,VIN5914AUD
+448,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-22 23:22,2024-01-23 15:24,VIN5914AUD
+449,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-24 06:06,2024-01-25 00:18,VIN5914AUD
+450,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-24 02:05,2024-01-24 20:39,VIN5914AUD
+451,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2024-01-23 23:52,2024-01-24 00:22,VIN5914AUD
+452,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2024-01-24 23:39,2024-01-25 08:25,VIN5914AUD
+453,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-24 15:41,2024-01-25 12:13,VIN5914AUD
+454,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-25 10:03,2024-01-26 00:00,VIN5914AUD
+455,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-25 02:24,2024-01-25 10:55,VIN5914AUD
+456,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-26 14:27,2024-01-26 23:20,VIN5914AUD
+457,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-27 00:12,2024-01-27 19:42,VIN5914AUD
+458,KA03AL3782,Low,Frequent Charging less than 10% leads to wastage of operation time.,Avoid frequent short charging sessions,Avoid shart charging sessiosn,1,2024-01-29 14:23,2024-01-30 13:32,VIN5914AUD
+459,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-30 15:11,2024-01-30 16:34,VIN5914AUD
+460,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-31 12:12,2024-02-01 00:41,VIN5914AUD
+461,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-31 09:37,2024-02-01 06:36,VIN5914AUD
+462,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-31 06:10,2024-01-31 20:23,VIN5914AUD
+463,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-31 01:56,2024-01-31 20:01,VIN5914AUD
+464,KA03AL3782,Medium,Charging Above 90% will lead to battery damage ,Do not charge the vehicle above 90%,Reduce car battery capacity below 90%,1,2024-01-30 23:18,2024-01-31 08:17,VIN5914AUD

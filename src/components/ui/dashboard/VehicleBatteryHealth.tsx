@@ -1,11 +1,13 @@
 import { useTranslations } from "next-intl";
 import Card from "../commons/Card";
 import SohChart from "./SohChart";
+import { Box, Container } from "@mui/material";
 
 const VehicleBatteryHealth = ({
   batteryHealthSoH,
   estimatedDegradation,
   batteryChemistry,
+  dashboardData,
 }) => {
   const t = useTranslations("AdminLayout.pages.vehicleDashboard");
 
@@ -23,21 +25,33 @@ const VehicleBatteryHealth = ({
             </div> */}
           </div>
         </Card.Header>
-        <div className="border mb-2">
-          <SohChart />
-        </div>
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mb: 2,
+          }}
+        >
+          <SohChart dashboardData={dashboardData} />
+        </Container>
         <div className="flex justify-between">
           <div className="flex flex-col justify-evenly">
             <Card.Description>{t("soh")}</Card.Description>
-            <Card.Description>{`${batteryHealthSoH}%`}</Card.Description>
+            {/* <Card.Description>{`${batteryHealthSoH}%`}</Card.Description> */}
+            <Card.Description>{`${dashboardData.batteryHealthSoH}%`}</Card.Description>
           </div>
-          <div className="flex flex-col justify-evenly">
+          <div className="flex flex-col justify-evenly ">
             <Card.Description>{t("estimatedDegradation")}</Card.Description>
-            <Card.Description>{`${estimatedDegradation}%`}</Card.Description>
+            <Card.Description>{`${dashboardData.batteryHealthDegradation}%`}</Card.Description>
           </div>
-          <div className="flex flex-col justify-evenly">
+          <div className="flex flex-col justify-evenly ">
             <Card.Description>{t("batteryChemistry")}</Card.Description>
-            <Card.Description>{batteryChemistry}</Card.Description>
+            <Card.Description>
+              1';'
+              
+              
+              '
+            </Card.Description>
           </div>
         </div>
       </Card.Body>

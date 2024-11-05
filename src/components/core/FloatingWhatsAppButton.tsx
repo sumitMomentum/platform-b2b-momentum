@@ -34,7 +34,7 @@ const FloatingWhatsAppButton = () => {
     //       return "+777777";
     //   }
     // } else {
-      return "+5541999568376";
+      return "+916005688849";
    // }
   };
 
@@ -42,9 +42,9 @@ const FloatingWhatsAppButton = () => {
     <div>
       <FloatingWhatsApp
         phoneNumber={
-          typeof window !== "undefined" ? getPhoneNumber() : "5541999568376"
+          typeof window !== "undefined" ? getPhoneNumber() : "916005688849"
         }
-        accountName="The Boilerplate Support"
+        accountName="The Momentum-E Support"
         avatar={constants.logoUrl}
         darkMode={false}
         allowEsc

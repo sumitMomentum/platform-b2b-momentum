@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const createNextIntlPlugin = require("next-intl/plugin");
+const { hostname } = require("os");
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -34,6 +35,12 @@ const nextConfig = {
         hostname: "www.gravatar.com",
         port: "",
       },
+    ],
+  },
+  experimental: {
+    serverComponentsExternalPackages: [
+      "@aws-sdk/client-s3",
+      "@aws-sdk/s3-request-presigner",
     ],
   },
 };

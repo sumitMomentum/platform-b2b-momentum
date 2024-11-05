@@ -1,0 +1,10 @@
+id,evConnectorType,Output Current Type,supplyInput,maximumOutputCurrent,maximumOutputPower,evChargingLevel(s),primaryCountries
+1,SAE J1772 (Type 1),AC (Alternate Current),120 Volts or 208/240 Volts (Single-phase only),16 Amps (120 Volts) 80 Amps (208/240 Volts),1.92 kW (120 Volts) 19.2 kW (208/240 Volts),"Level 1, Level 2","USA, Canada, Japan"
+2,Mennekes (Type 2),AC (Alternate Current),230 Volts (Single-Phase) or 400 Volts (three-phase),32 Amps (230 Volts) 32 Amps (400 Volts),7.6 kW (230 Volts) 22 kW (400 Volts),Level 2,"Europe, United Kingdom, Middle East, Africa, Australia"
+3,CCS 1,DC (Direct Current),480 Volts (three-phase),500 Amps,360 kW,Level 3 (DC fast charging),"USA, Canada, South Korea"
+4,CHAdeMO,DC (Direct Current),400 Volts (three-phase),400 Amps,400 kW,Level 3 (DC fast charging),Japan (older model EVs in use globally)
+5,CHAdeMO,DC (Direct Current),400 Volts (three-phase),400 Amps,400 kW,Level 3 (DC fast charging),Japan (older model EVs in use globally)
+6,CCS 2,DC (Direct Current),400 Volts (three-phase),500 Amps,360 kW,Level 3 (DC fast charging),"Europe, United Kingdom, Middle East, Africa, Australia"
+7,GB/T (AC),AC (Alternate Current),250 Volts (three-phase),32 Amps,7.4 kW,Level 2,China
+8,GB/T (DC),DC (Direct Current),440 Volts,250 Amps,237.5 kW,Level 3 (DC fast charging),China
+9,Tesla NACS,AC/DC,Single or three-phase,48 Amps (AC) 400 Amps (DC),250 kW,Level 2 / Level 3,"USA, Canada"

@@ -72,10 +72,14 @@ const AdminHeader = ({
                   <UpgradeteButton />
                 </div>
               )}
-             
             </div>
             <div className="flex items-center gap-x-4 lg:gap-x-6">
-              {isSuperAdmin ? (
+              {isSuperAdmin && (
+                <Link href="/admin" className="btn-main">
+                  <span>Admin Panel</span>
+                </Link>
+              )}
+              {/* {isSuperAdmin ? (
                 <Link href="/admin" className="btn-main">
                   <span>Admin Panel</span>
                 </Link>
@@ -92,9 +96,9 @@ const AdminHeader = ({
                     </button>
                   )}
                 </div>
-              )}
+              )} */}
 
-              {daktThemeSelector}
+              {/* {daktThemeSelector} */}
 
               {/* Notification button */}
               <Link className="relative" href="/home/notifications">

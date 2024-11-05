@@ -2,7 +2,7 @@ import Card from '@/components/ui/commons/Card';
 import { useTranslations } from 'next-intl';
 
 
-const VehicleDetails = ({year, model, make, vin, batteryCapacity, odometer}) => {
+const VehicleDetails = ({year, model, make, vin, batteryCapacity, odometer, }) => {
   const t = useTranslations("AdminLayout.pages.vehicleDashboard");
   return (
     <Card>

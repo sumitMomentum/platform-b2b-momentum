@@ -25,7 +25,10 @@
       "wallet": "Billetera",
       "affiliatePanel": "Panel de afiliados",
       "settings": "Configuración",
-      "support": "Soporte"
+      "support": "Soporte",
+      "benefits": "Benefits",
+      "scheduling": "Sceduling",
+      "chargers": "Chargers"
     },
     "pages": {
       "dashboard": {
@@ -66,7 +69,16 @@
         "batteryChemistry": "Química de la Batería"
       },
       "actionCentre": {
-        "title": "Centro de Acción"
+        "title": "Action Center"
+      },
+      "benefits": {
+        "title": "Benefits"
+      },
+      "scheduling": {
+        "title": "Scheduling"
+      },
+      "chargers": {
+        "title": "Chargers"
       },
       "wallet": {
         "yourWallet": "Mi billetera",
@@ -178,7 +190,10 @@
       "suscriptions": "Suscripciones",
       "coupons": "Cupones",
       "support": "Soporte",
-      "settings": "Configuración"
-    }
+      "settings": "Configuración",
+      "benefits": "Benefits",
+      "chargers": "Chargers",
+      "scheduling": "Sceduling"
+        }
   }
 }

@@ -29,8 +29,8 @@ const SuperAdminDashboardPage = async () => {
   const supportTicketsCounts = await getSupportTicketsActivesCount();
   const user = await getUserDB();
   const enodeWebhook = await createEnodeWebhook();
-  console.log(enodeWebhook); 
-  
+  console.log(enodeWebhook);
+
   const actions = [
     {
       title: t("actionOne"),
@@ -55,10 +55,13 @@ const SuperAdminDashboardPage = async () => {
 
   return (
     <div>
-      <PageName name={t("title")} breadcrumbs={[
+      <PageName
+        name={t("title")}
+        breadcrumbs={[
           { name: "Home", href: "/home" },
           { name: "", href: "/home" },
-        ]}/>
+        ]}
+      />
       {/* <Suspense fallback={<PageLoader />}>
         <Card className=" my-7">
           <Flex>
@@ -142,7 +145,7 @@ const SuperAdminDashboardPage = async () => {
         {vehiclesFromStore ? (
           <div className="flex gap-6 flex-col w-full">
             {/* <div className="flex gap-6"> */}
-              {/* <InfoCard
+            {/* <InfoCard
                 titleKey="hello"
                 descriptionKey="description"
                 icon={LinkIcon}
@@ -163,8 +166,19 @@ const SuperAdminDashboardPage = async () => {
                 icon={LinkIcon}
               /> */}
             {/* </div> */}
-            <div className="flex gap-6 w-full">
-              {/* <AddVehicle /> */}
+            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
+              <AllVehicle />
+              <VehicleStatus />
+              <Condition />
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+              {/* Second row with 2 columns */}
+              <DistanceTravelled />
+              <BatteryHealth />
+            </div>
+
+            {/* <div className="flex gap-6 w-full">
+               <AddVehicle /> 
               <AllVehicle />
               <VehicleStatus />
               <Condition />
@@ -172,7 +186,8 @@ const SuperAdminDashboardPage = async () => {
             <div className="flex gap-6">
               <DistanceTravelled />
               <BatteryHealth />
-            </div>
+            </div> */}
+
             {/* <div className="flex gap-6">
               <InfoCard
                 titleKey="hello"
