@@ -4,6 +4,7 @@ import { currencies } from "./seeds/currenciess";
 import { permissions } from "./seeds/permissions";
 import { modules } from "./seeds/modules";
 import { PrismaClient } from "@prisma/client";
+import dotenv from "dotenv";
 import { paymentsMethods, pricings } from "./seeds/pricing";
 import { benefits } from "./seeds/benefits";
 import { chargers } from "./seeds/chargers";
@@ -14,6 +15,7 @@ import { vehicleDetails } from "./seeds/vehicleDetails";
 import { users } from "./seeds/users";
 import chalk from "chalk";
 
+dotenv.config();
 const prisma = new PrismaClient();
 
 const log = {

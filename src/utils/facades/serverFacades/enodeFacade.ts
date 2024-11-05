@@ -564,11 +564,15 @@ export const createWebHook = async () => {
       console.error(chalk.red("❌ Missing ENODE_API_URL"));
       throw new Error("Enode API URL is not configured");
     }
-
+    
+    const webhookUrl = `https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/en/api/enode`;
+    console.log(chalk.yellow("🔗 Generated webhook URL:"), webhookUrl);
+    // console.log(chalk.magenta(`${process.env.NEXT_PUBLIC_BASE_URL}/en/api/enode`));
     console.log(chalk.blue("📝 Preparing webhook configuration..."));
     const data = {
       secret: process.env.ENODE_WEBHOOK_SECRET,
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/en/api/enode`,
+      url: webhookUrl,
+      // url: `${process.env.NEXT_PUBLIC_BASE_URL}/en/api/enode`,
       apiVersion: "2024-01-01",
       events: ["*"],
     };
