@@ -1,13 +1,16 @@
 "use client";
 import { createEnodeLinkSession } from "@/actions/admin/dashboardModule/create-enode-link-session";
 import { Box, Button, Container } from "@mui/material";
+import { handleEvent } from "@/utils/facades/serverFacades/enodeFacade";
 import { useRouter } from "next/navigation";
 import React from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 const AddVehicle = () => {
   const router = useRouter();
+
   const handleAddVehicle = async () => {
     const url = await createEnodeLinkSession();
+    handleEvent("user:vehicle:discovered");
     console.log("session url", url);
     router.push(url);
   };
@@ -25,7 +28,7 @@ const AddVehicle = () => {
       // className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
       onClick={handleAddVehicle}
     >
-      Add Vehicle
+      Vehicle
     </Button>
   </Box>
   );

@@ -42,7 +42,7 @@ export default async function ClientLayout({
           <div className="mx-auto   px-4  ">{children}</div>
         </div>
       </div>{" "}
-      <FloatingWhatsAppButton />
+      {/* <FloatingWhatsAppButton /> */}
     </main>
   );
 }

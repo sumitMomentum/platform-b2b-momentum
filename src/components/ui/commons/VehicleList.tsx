@@ -71,7 +71,7 @@ const VehicleList = () => {
     initializeData();
   }, [vehicles, setVehicles, setSelectedVehicleId, enodeVehicles]);
 
-  const handleEvent: GridEventListener<"rowClick"> = (
+  const handleRowClickEvent: GridEventListener<"rowClick"> = (
     params, // GridRowParams
     event, // MuiEvent<React.MouseEvent<HTMLElement>>
     details // GridCallbackDetails
@@ -110,7 +110,7 @@ const VehicleList = () => {
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
         loading={loading}
-        onRowClick={handleEvent}
+        onRowClick={handleRowClickEvent}
         getRowId={(row) => row.vehicleId}
         rows={finalVehicles}
         columns={columns}
