@@ -200,14 +200,14 @@ async function main() {
       }
 
       if (chargingSessionCount === 0) {
-        await tx.action.createMany({ data: chargingSessions });
+        await tx.chargingSession.createMany({ data: chargingSessions });
         log.success("Seeded chargingSessions actions");
       } else {
         log.warning("Actions table not empty, skipping...");
       }
 
       if (tripSessionCount === 0) {
-        await tx.action.createMany({ data: tripSessions });
+        await tx.VehicleTripSession.createMany({ data: tripSessions });
         log.success("Seeded tripSessions actions");
       } else {
         log.warning("Actions table not empty, skipping...");
