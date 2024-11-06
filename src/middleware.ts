@@ -52,18 +52,18 @@ const handleError = (error: unknown, context: string) => {
         : "Unknown error occurred";
 
     // Log the error with context and stack trace if available
-    console.error(
+    console.warn(
       chalk.red(`❌ Error in ${context}:`),
       chalk.red(errorMessage)
     );
 
     if (error instanceof Error && error.stack) {
-      console.error(chalk.red("📋 Stack trace:"), error.stack);
+      console.warn(chalk.red("📋 Stack trace:"), error.stack);
     }
 
     // Log additional error details if available
     if (error instanceof Error && (error as any).code) {
-      console.error(chalk.red("🔍 Error code:"), (error as any).code);
+      console.warn(chalk.red("🔍 Error code:"), (error as any).code);
     }
 
     // Create standardized error response
@@ -84,7 +84,7 @@ const handleError = (error: unknown, context: string) => {
     });
   } catch (handlingError) {
     // Fallback error handling in case the main error handling fails
-    console.error(
+    console.warn(
       chalk.red("❌ Critical error in error handler:"),
       chalk.red(
         handlingError instanceof Error ? handlingError.message : "Unknown error"
@@ -134,7 +134,7 @@ export default authMiddleware({
 
       // Validate request object
       if (!request || !request.url) {
-        console.error(chalk.red("❌ Invalid request object"));
+        console.warn(chalk.red("❌ Invalid request object"));
         throw new Error("Invalid request object received");
       }
 
@@ -158,7 +158,7 @@ export default authMiddleware({
       );
       return response;
     } catch (error) {
-      console.error(
+      console.warn(
         chalk.redBright("❌ Error in beforeAuth middleware:"),
         chalk.red(error instanceof Error ? error.message : "Unknown error")
       );
@@ -182,7 +182,7 @@ export default authMiddleware({
       console.log(chalk.yellow("🔍 Validating request headers..."));
       const host = req.headers.get("host");
       if (!host) {
-        console.error(chalk.redBright("❌ Missing host header"));
+        console.warn(chalk.redBright("❌ Missing host header"));
         return new NextResponse(
           JSON.stringify({ error: "Missing host header" }),
           { status: 400 }
@@ -199,7 +199,7 @@ export default authMiddleware({
 
       // Validate environment configuration
       if (!process.env.NEXT_PUBLIC_ROOT_DOMAIN) {
-        console.error(
+        console.warn(
           chalk.redBright(
             "❌ Missing NEXT_PUBLIC_ROOT_DOMAIN environment variable"
           )
@@ -238,7 +238,7 @@ export default authMiddleware({
         try {
           return redirectToSignIn({ returnBackUrl: req.url });
         } catch (error) {
-          console.error(
+          console.warn(
             chalk.redBright("❌ Error during sign-in redirect:"),
             error
           );
@@ -300,11 +300,11 @@ export default authMiddleware({
         console.log(chalk.yellow("📝 Rewriting to:", rewriteUrl.toString()));
         return NextResponse.rewrite(rewriteUrl);
       } catch (error) {
-        console.error(chalk.redBright("❌ Error creating rewrite URL:"), error);
+        console.warn(chalk.redBright("❌ Error creating rewrite URL:"), error);
         return handleError(error, "URL rewrite");
       }
     } catch (error) {
-      console.error(chalk.redBright("❌ Unhandled error in afterAuth:"), error);
+      console.warn(chalk.redBright("❌ Unhandled error in afterAuth:"), error);
       return handleError(error, "afterAuth middleware");
     }
   },
