@@ -26,7 +26,7 @@ const columns = [
 
 const paginationModel = { page: 0, pageSize: 10 };
 
-const VehicleList = () => {
+const VehicleList = (props) => {
   const [finalVehicles, setFinalVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -47,27 +47,19 @@ const VehicleList = () => {
         setVehicles(userVehiclesFromDB);
         setSelectedVehicleId("");
       }
+      setLoading(false); // Move this line outside the condition
     };
-
+  
     const getEnodeVehicles = async () => {
       const fetchedEnodeVehicles = await getUserVehicleEnode();
       setEnodeVehicles(fetchedEnodeVehicles.linkedVendors);
     };
-
+  
     const initializeData = async () => {
-      // await Promise.all([getVehicles(), getEnodeVehicles()])
-
-      // // Simply combine both arrays
-      // const combinedVehicles = [...vehicles, ...enodeVehicles];
-      // //  console.log("[...vehicles]", [...vehicles]);
-      // console.log("[...enodeVehicles]", [...enodeVehicles]);
-      // //  console.log("combinedVehicles", combinedVehicles);
-      // setFinalVehicles(combinedVehicles);
-       await getVehicles();
-       setFinalVehicles(vehicles);
-       setLoading(false);
+      await getVehicles();
+      setFinalVehicles(vehicles);
     };
-
+  
     initializeData();
   }, [vehicles, setVehicles, setSelectedVehicleId, enodeVehicles]);
 

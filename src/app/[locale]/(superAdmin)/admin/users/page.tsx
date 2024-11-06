@@ -23,12 +23,12 @@ const SuperAdminUserModulePage = ({
     <main>
       <PageName name={"Dashboard"} />
       <Search placeholder="Search for a user" />
-      <Suspense
+      {/* <Suspense
         key={query + Math.random}
         fallback={<TableLoaderSkeleton count={10} />}
-      >
+      > */}
         <UserList query={query} currentPage={currentPage} />
-      </Suspense>
+      {/* </Suspense> */}
     </main>
   );
 };

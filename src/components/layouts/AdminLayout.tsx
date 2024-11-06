@@ -15,9 +15,9 @@ export default async function AdminLayout({
     <main className="relative text-primary">
       <AdminSidebar />{" "}
       <div className="lg:pl-72 h-screen overflow-y-auto relative bg-main">
-        <Suspense fallback={null}>
+        {/* <Suspense fallback={null}> */}
           <AdminHeader notificationsCount={notificationsCount} />
-        </Suspense>
+        {/* </Suspense> */}
         <div className="py-3  ">
           <div className="mx-auto   px-4  ">{children}</div>
         </div>

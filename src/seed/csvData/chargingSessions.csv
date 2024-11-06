@@ -1,0 +1,2 @@
+id,chargerId,vehicleId,chargingDate,duration,chargingStartTime,chargingEndTime,powerConsumed,vehicleStartSoc,vehicleEndSoc,createdAt,updatedAt
+2,315548,KA03AL2088,2024-03-14 10:00:00,120,2024-03-14 10:00:00,2024-03-14 12:00:00,45.5,20,80,2024-10-28 11:06:27.985,2024-10-28 11:06:27.985

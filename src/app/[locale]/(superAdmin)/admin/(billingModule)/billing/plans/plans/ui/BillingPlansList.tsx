@@ -17,7 +17,7 @@ const BillingPlansList = async () => {
 
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         {data.length === 0 ? (
           <div className="flex justify-center w-full items-center h-96">
             <NotFound message="No users found" />
@@ -106,7 +106,7 @@ const BillingPlansList = async () => {
             </div>
           </div>
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

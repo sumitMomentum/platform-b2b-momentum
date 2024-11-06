@@ -17,7 +17,7 @@ const CreateNewAffiliate = async () => {
   return (
     <div>
       <PageName name={t("refferals")} isSubPage={true} />
-      <Suspense fallback={<PageLoader />}>
+      {/* <Suspense fallback={<PageLoader />}> */}
         <div className="flex flex-col lg:flex-row gap-7">
           <div className="flex order-2 lg:order-1 flex-1 flex-col">
             <div className="overflow-x-auto">
@@ -76,7 +76,7 @@ const CreateNewAffiliate = async () => {
             </h2>
           </div>
         </div>
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

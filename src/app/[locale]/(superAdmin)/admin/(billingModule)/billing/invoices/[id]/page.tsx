@@ -44,7 +44,7 @@ const SuperAdminViewInvoiceDetails = async ({
 
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <PageName
           name={"Detalles de la factura"}
           breadcrumbs={[
@@ -59,7 +59,7 @@ const SuperAdminViewInvoiceDetails = async ({
         <div className=" ">
           <TabsClientSide tabs={tabs} />
         </div>
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

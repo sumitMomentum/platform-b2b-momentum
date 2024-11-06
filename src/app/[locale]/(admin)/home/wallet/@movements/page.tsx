@@ -18,7 +18,7 @@ const AdminWalletMovements = async ({
       <h2 className="text-subtitle">
        {t("movementIn")} {searchParams?.currency?.toUpperCase() ?? "usd"}
       </h2>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <div>
           <ul role="list" className="divide-y divide-gray-100">
             {movements?.map((movement: any) => (
@@ -42,7 +42,7 @@ const AdminWalletMovements = async ({
             )}
           </ul>
         </div>
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

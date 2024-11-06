@@ -34,9 +34,9 @@ const SuperAdminBillingModuleEditPlanPage = async ({
           },
         ]}
       />
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <UpsertCoupon modelId={Number(params.id)} values={values} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

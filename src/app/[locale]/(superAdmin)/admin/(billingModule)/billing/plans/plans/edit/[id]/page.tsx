@@ -25,7 +25,7 @@ const SuperAdminBillingModuleEditPlanPage = async ({
   return (
     <div>
       <PageName name={"Edit Plan"} isSubPage={true} />
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <UpsertPlan planId={Number(params.id)} values={plan} />
         <UpsertPlanCapabilities planOnEdit={plan} capabilities={capabilities} />
         {plan && (
@@ -33,7 +33,7 @@ const SuperAdminBillingModuleEditPlanPage = async ({
             <PlanPricingSection plan={plan} pricings={plan?.pricing ?? []} />
           </div>
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };
