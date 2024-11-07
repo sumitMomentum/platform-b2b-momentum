@@ -5,7 +5,7 @@ import {
   handleUpdateDataForUser,
 } from "@/utils/facades/serverFacades/clerkFacade";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 export default async function completeOnboarding(payload: any) {
   const userClerk = auth();
@@ -27,7 +27,7 @@ export default async function completeOnboarding(payload: any) {
       console.log("Error creating organization", error);
       throw new Error("Error creating organization");
     });
-    console.log("Create Org Response", response);
+  console.log("Create Org Response", response);
 
   return await handleUpdateDataForUser({
     scope: "publicMetadata",
@@ -38,7 +38,7 @@ export default async function completeOnboarding(payload: any) {
     },
   })
     .then(() => {
-      return  JSON.stringify({
+      return JSON.stringify({
         organization,
         message: "ok",
       });

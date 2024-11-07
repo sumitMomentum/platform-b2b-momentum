@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { ok } from "assert";
 import chalk from "chalk";
 import { log } from "console";

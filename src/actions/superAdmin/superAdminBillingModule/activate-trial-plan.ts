@@ -2,8 +2,8 @@
 import prisma from "@/lib/db";
 import { updateMembership } from "@/utils/facades/serverFacades/membershipFacade";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
- 
+import { auth } from "@clerk/nextjs/server";
+
 export type PlanInvoiceType = {
   currencyId: number;
   priceId: number;

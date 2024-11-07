@@ -1,6 +1,7 @@
 "use server"
 
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+
 
 export const getVehicleBenefits = async () => {
   const { userId } = auth();

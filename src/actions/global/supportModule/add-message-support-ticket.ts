@@ -2,7 +2,7 @@
 import prisma from "@/lib/db";
 import { sendInternalNotificatoin } from "@/utils/facades/serverFacades/notificationFacade";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { PublicationContentType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 export const addMessageSupportTicket = async (args: any) => {

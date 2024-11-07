@@ -1,7 +1,7 @@
 "use server";
 import prisma from "@/lib/db";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { Prisma } from "@prisma/client";
 
 export const getUserInvoices = async ({

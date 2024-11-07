@@ -1,14 +1,15 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/db";
 import chalk from "chalk"; // Move imports to top
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { error } from "console";
 import { json } from "stream/consumers";
 
 export async function GET(
   request: Request,
-  { params }: { params: { vehicleId: string } }
+  props: { params: Promise<{ vehicleId: string }> }
 ) {
+  const params = await props.params;
   const { vehicleId } = params;
   console.log(chalk.red("API Route hit with vehicleId:", vehicleId));
 

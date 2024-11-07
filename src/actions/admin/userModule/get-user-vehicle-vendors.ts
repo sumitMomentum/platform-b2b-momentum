@@ -2,7 +2,7 @@
 
 import { getEnodeAccessToken } from "@/utils/facades/serverFacades/enodeFacade";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 export const getUserVehicleVendors = async () => {
   const userClerk = auth();
@@ -10,7 +10,7 @@ export const getUserVehicleVendors = async () => {
 
   const { userId } = await getUser(userClerk);
   const accessToken = await getEnodeAccessToken();
-//   console.log("fetchUser", accessToken, userId);
+  //   console.log("fetchUser", accessToken, userId);
 
   if (!accessToken) {
     return;

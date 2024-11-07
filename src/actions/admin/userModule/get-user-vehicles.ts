@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 export const getUserVehicles = async () => {
   const { userId } = auth();
@@ -26,7 +26,7 @@ export const getUserVehicles = async () => {
 };
 
 // import prisma from "@/lib/db";
-// import { auth } from "@clerk/nextjs";
+// import { auth } from "@clerk/nextjs/server";
 // import { getUser } from "@/utils/facades/serverFacades/userFacade";
 
 // export const getUserVehicles = async () => {

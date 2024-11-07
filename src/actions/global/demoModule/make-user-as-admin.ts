@@ -2,7 +2,7 @@
 
 import { handleUpdateDataForUser } from "@/utils/facades/serverFacades/clerkFacade";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export const makeUserAsAdmin = async () => {

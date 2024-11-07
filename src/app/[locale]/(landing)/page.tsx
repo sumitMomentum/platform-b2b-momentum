@@ -7,7 +7,6 @@ import dynamic from "next/dynamic";
 
 const MarketingPage = dynamic(
   () => import("@/components/ui/landingPage/MarketingPage"),
-  { ssr: false }
 );
 
 export default function LandingPage() {

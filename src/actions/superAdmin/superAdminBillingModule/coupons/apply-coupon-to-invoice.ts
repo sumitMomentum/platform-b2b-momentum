@@ -1,7 +1,7 @@
 "use server";
 import prisma from "@/lib/db";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 export const applyCouponToInvoice = async ({
@@ -73,7 +73,9 @@ export const applyCouponToInvoice = async ({
     if (
       coupon.user &&
       coupon.user.id !== userId &&
-      organizationsFromUser.map((organization) => organization.id).includes(userId)
+      organizationsFromUser
+        .map((organization) => organization.id)
+        .includes(userId)
     ) {
       throw new Error("Coupon not valid for this user");
     }

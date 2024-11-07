@@ -1,5 +1,5 @@
 "use server";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { CouponDuration } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";

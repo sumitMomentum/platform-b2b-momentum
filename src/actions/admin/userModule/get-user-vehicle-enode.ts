@@ -2,7 +2,7 @@
 
 import { getEnodeAccessToken } from "@/utils/facades/serverFacades/enodeFacade";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 export const getUserVehicleEnode = async () => {
   const userClerk = auth();
@@ -31,7 +31,6 @@ export const getUserVehicleEnode = async () => {
   }
 
   // insert this data into table of postgres
-  
 
   const userData = await userResponse.json();
   console.log(userData);

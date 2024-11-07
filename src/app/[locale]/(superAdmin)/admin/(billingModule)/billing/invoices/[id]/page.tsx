@@ -16,11 +16,12 @@ export const metadata: Metadata = {
   title: "View Invoice Details",
 };
 
-const SuperAdminViewInvoiceDetails = async ({
-  params,
-}: {
-  params: { id: string };
-}) => {
+const SuperAdminViewInvoiceDetails = async (
+  props: {
+    params: Promise<{ id: string }>;
+  }
+) => {
+  const params = await props.params;
   const invoiceStr = params.id || "";
   const invoiceId = parseInt(invoiceStr);
   const invoice = await getInvoiceDetails(invoiceId);

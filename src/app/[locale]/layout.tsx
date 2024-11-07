@@ -1,22 +1,23 @@
 import { NextIntlClientProvider, useMessages } from "next-intl";
-import React from "react";
+import React, { use } from "react";
 
-export default function LocaleLayout({
-  children,
-  params: { locale },
-}: {
+export default function LocaleLayout(props: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const params = use(props.params);
+
+  const { locale } = params;
+
+  const { children } = props;
+
   const messages = useMessages();
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <div>
+      <NextIntlClientProvider messages={messages}>
+        {children}
+      </NextIntlClientProvider>
+    </div>
   );
 }

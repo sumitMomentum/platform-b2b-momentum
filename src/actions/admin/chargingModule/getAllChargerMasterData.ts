@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 export const getAllChargerMasterData = async () => {
   const { userId } = auth();
@@ -18,8 +18,7 @@ export const getAllChargerMasterData = async () => {
     throw new Error("Failed to fetch chargers data");
   }
 
+  const data = await response.json();
 
-  const data = await response.json()
-
-  return data
+  return data;
 };

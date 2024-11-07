@@ -19,7 +19,7 @@ import chalk, {
   redBright,
   yellow,
 } from "chalk";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { ok } from "assert";
 import { headers } from "next/headers";
 import { env } from "process";

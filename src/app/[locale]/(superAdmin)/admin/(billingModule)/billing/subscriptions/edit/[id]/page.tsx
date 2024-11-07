@@ -11,14 +11,15 @@ export const metadata: Metadata = {
   title: "Edit membership",
 };
 
-const EditMembership = async ({
-  params,
-}: {
-  params: {
-    id: string;
-    pricingId: string;
-  };
-}) => {
+const EditMembership = async (
+  props: {
+    params: Promise<{
+      id: string;
+      pricingId: string;
+    }>;
+  }
+) => {
+  const params = await props.params;
   const membership = await getMembershipDetails(Number(params.id));
   const plans = await getAllPlans();
   const currencies = await getAllCurrencies();

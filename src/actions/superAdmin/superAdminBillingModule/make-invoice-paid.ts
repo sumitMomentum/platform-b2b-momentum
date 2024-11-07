@@ -8,7 +8,7 @@ import prisma from "@/lib/db";
 import { InvoiceItem } from "@prisma/client";
 import { checkPermission } from "@/utils/facades/serverFacades/scurityFacade";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 const scope = "superAdmin:billing:upsert";
 
@@ -62,6 +62,6 @@ export const makeInvoicePaid = async (
       throw new Error(error.message);
     });
 
-    revalidatePath("admin/billing/invoices");
-    revalidatePath(`admin/billing/invoices/${invoiceId}`);
+  revalidatePath("admin/billing/invoices");
+  revalidatePath(`admin/billing/invoices/${invoiceId}`);
 };

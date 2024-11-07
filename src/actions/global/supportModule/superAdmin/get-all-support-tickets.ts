@@ -3,8 +3,8 @@
 import prisma from "@/lib/db";
 import { checkPermission } from "@/utils/facades/serverFacades/scurityFacade";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
-const  scope = "superAdmin:support:read";
+import { auth } from "@clerk/nextjs/server";
+const scope = "superAdmin:support:read";
 
 export const getAllSupportTicket = async ({
   args,

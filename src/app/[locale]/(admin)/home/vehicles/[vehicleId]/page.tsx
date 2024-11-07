@@ -14,11 +14,12 @@ import {
   LinkIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 // import { useRouter, useSearchParams } from "next/navigation";
 // import { useEffect } from "react";
 
-const VehicleDashboard = ({ params }: { params: { vehicleId: string } }) => {
+const VehicleDashboard = (props: { params: Promise<{ vehicleId: string }> }) => {
+  const params = use(props.params);
   const vehicleId = params.vehicleId;
   // console.log("vehicle", vehicleId);
   const selectedVehicleId = useVehicleStore((state) => state.selectedVehicleId);

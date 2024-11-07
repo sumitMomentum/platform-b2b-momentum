@@ -12,14 +12,15 @@ export const metadata: Metadata = {
   title: "Edit plan pricing",
 };
 
-const PlanEditPricing = async ({
-  params,
-}: {
-  params: {
-    id: string;
-    pricingId: string;
-  };
-}) => {
+const PlanEditPricing = async (
+  props: {
+    params: Promise<{
+      id: string;
+      pricingId: string;
+    }>;
+  }
+) => {
+  const params = await props.params;
   const plan = await getPlanDetails(Number(params.id));
   const pricing = await getPricingDetails(Number(params.pricingId));
   return (

@@ -1,31 +1,33 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { defaultLocale, localePrefix, locales } from "./i18n";
 import chalk from "chalk";
 chalk.level = 3;
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 /**
  * Internationalization middleware configuration
  * Handles locale detection, routing, and alternate language links
  * @see https://next-intl-docs.vercel.app/docs/routing/middleware
  */
-const intlMiddleware = createMiddleware({
+const createLocaleRoutingMiddleware = createMiddleware({
   // Supported locales configuration
   locales: locales,
-
   // Default locale when no locale is detected
   defaultLocale: "en",
-
   // Enable generation of alternate language links
   alternateLinks: true,
-
-
   // Optional: Locale prefix mode
   localePrefix: "always",
-
   // Optional: Custom locale detection from different sources
   localeDetection: true,
 });
+
+// You would typically fetch these keys from a external store or environment variables.
+// const tenantKeys = {
+//   tenant1: { publishableKey: 'pk_tenant1...', secretKey: 'sk_tenant1...' },
+//   tenant2: { publishableKey: 'pk_tenant2...', secretKey: 'sk_tenant2...' },
+// }
 
 /**
  * Utility function to handle and log errors in middleware
@@ -33,7 +35,7 @@ const intlMiddleware = createMiddleware({
  * @param context - The context where the error occurred (e.g., 'beforeAuth', 'afterAuth')
  * @returns NextResponse with a 500 status code and error message
  */
-const handleError = (error: unknown, context: string) => {
+const handleMiddlewareError = (error: unknown, context: string) => {
   try {
     // Determine the error message based on error type
     const errorMessage =
@@ -91,36 +93,18 @@ const handleError = (error: unknown, context: string) => {
   }
 };
 
-const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
-
-export default clerkMiddleware({
-  publicRoutes: [
-    "/",
-    "/test",
-    "/:locale",
-    "/:locale/api/clerk",
-    "/:locale/api/stripe",
-    "/:locale/api/enode",
-    "/:locale/sign-in",
-    "/:locale/api/vehicle/:vehicleId",
-    "/:locale/api/vehicle/trips",
-    "/:locale/api/vehicle",
-    "/:locale/api/benefits",
-    "/:locale/api/charger/sessions",
-    "/:locale/api/charger",
-    "/:locale/api/vehicleActions",
-  ],
+export default clerkMiddleware(
   /**
    * Middleware that runs before authentication checks
    * Handles internationalization and locale-specific routing
    * @param request - The incoming request object
    * @returns Response from the intl middleware or error response
    */
-  async beforeAuth(request) {
+  async function handleLocaleAndRouting(auth, request, event) {
     try {
       // Log the start of beforeAuth middleware
       console.log(
-        chalk.magenta("🔄 Starting beforeAuth middleware processing...")
+        chalk.magenta("🔄 Starting locale and routing middleware processing...")
       );
 
       // Validate request object
@@ -142,7 +126,7 @@ export default clerkMiddleware({
 
       // Process internationalization middleware
       console.log(chalk.cyan("🔄 Applying internationalization middleware..."));
-      const response = intlMiddleware(request);
+      const response = createLocaleRoutingMiddleware(request);
 
       console.log(
         chalk.greenBright("✅ beforeAuth middleware completed successfully")
@@ -154,8 +138,8 @@ export default clerkMiddleware({
         chalk.red(error instanceof Error ? error.message : "Unknown error")
       );
 
-      // Use the handleError utility for consistent error handling
-      return handleError(error, "beforeAuth middleware");
+      // Use the handleMiddlewareError utility for consistent error handling
+      return handleMiddlewareError(error, "beforeAuth middleware");
     }
   },
   /**
@@ -165,9 +149,11 @@ export default clerkMiddleware({
    * @param req - The incoming request object
    * @returns NextResponse based on authentication status and route requirements
    */
-  async afterAuth(auth, req) {
+  async function handleAuthAndProtection(auth, req, event) {
     try {
-      console.log(chalk.magenta("🔒 Starting afterAuteh middleware..."));
+      console.log(
+        chalk.magenta("🔒 Starting authentication and protection middleware...")
+      );
 
       // Validate required headers and environment variables
       console.log(chalk.yellow("🔍 Validating request headers..."));
@@ -195,14 +181,18 @@ export default clerkMiddleware({
             "❌ Missing NEXT_PUBLIC_ROOT_DOMAIN environment variable"
           )
         );
-        return handleError(
+        return handleMiddlewareError(
           new Error("Missing required environment variable"),
           "environment check"
         );
       }
 
+    if (!isPublicRoute(req)) {
+        await auth.protect();
+      }  
+
       // Extract authentication details
-      const { userId, sessionClaims, orgId } = await auth();
+      const { userId, sessionClaims, orgId, redirectToSignIn } = await auth();
 
       // Log authentication info
       console.log(chalk.yellow("👤 Auth Info:"), {
@@ -215,25 +205,27 @@ export default clerkMiddleware({
       if (
         userId &&
         req.nextUrl.pathname.includes("onboarding") &&
-        !auth.isPublicRoute
+        isPublicRoute(req)
       ) {
         console.log(chalk.greenBright("✅ User accessing onboarding"));
         return NextResponse.next();
       }
 
       // Handle unauthenticated access to protected routes
-      if (!userId && !auth.isPublicRoute) {
-        console.log(
-          chalk.yellowBright("⚠️ Unauthorized access - redirecting to sign-in")
-        );
+      if (!userId && isPublicRoute(req)) {
         try {
+          console.log(
+            chalk.yellowBright(
+              "⚠️ Unauthorized access - redirecting to sign-in"
+            )
+          );
           return redirectToSignIn({ returnBackUrl: req.url });
         } catch (error) {
           console.warn(
             chalk.redBright("❌ Error during sign-in redirect:"),
             error
           );
-          return handleError(error, "sign-in redirect");
+          return handleMiddlewareError(error, "sign-in redirect");
         }
       }
 
@@ -242,7 +234,7 @@ export default clerkMiddleware({
         userId &&
         !orgId &&
         !sessionClaims?.metadata?.onboardingComplete &&
-        !auth.isPublicRoute
+        isPublicRoute(req)
       ) {
         console.log(chalk.yellowBright("⚠️ Onboarding Status:"), {
           hasUserId: !!userId,
@@ -255,15 +247,14 @@ export default clerkMiddleware({
       }
 
       // Handle authorized access to protected routes
-      if (userId && !auth.isPublicRoute) {
+      if (userId && isPublicRoute(req)) {
         console.log(
           chalk.greenBright("✅ Authorized access to protected route")
         );
         return NextResponse.next();
       }
 
-      // Handle public route access
-      if (auth.isPublicRoute) {
+      if (isPublicRoute) {
         console.log(chalk.cyan("ℹ️ Accessing public route"));
         return NextResponse.next();
       }
@@ -292,14 +283,89 @@ export default clerkMiddleware({
         return NextResponse.rewrite(rewriteUrl);
       } catch (error) {
         console.warn(chalk.redBright("❌ Error creating rewrite URL:"), error);
-        return handleError(error, "URL rewrite");
+        return handleMiddlewareError(error, "URL rewrite");
       }
     } catch (error) {
       console.warn(chalk.redBright("❌ Unhandled error in afterAuth:"), error);
-      return handleError(error, "afterAuth middleware");
+      return handleMiddlewareError(error, "afterAuth middleware");
     }
-  },
-});
+  }
+);
+
+const isPublicRoute = createRouteMatcher([
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/",
+  "/test",
+  "/:locale",
+  "/:locale/api(.*)",
+  "/:locale/api/clerk",
+  "/:locale/api/stripe",
+  "/:locale/api/enode",
+  "/:locale/sign-in",
+  "/:locale/api/vehicle/:vehicleId",
+  "/:locale/api/vehicle/trips",
+  "/:locale/api/vehicle",
+  "/:locale/api/benefits",
+  "/:locale/api/charger/sessions",
+  "/:locale/api/charger",
+  "/:locale/api/vehicleActions",
+]);
+
+// async (auth, request) => {
+// ======================================================
+// NOTE: Protect all routes
+// if (!isPublicRoute(req)) {
+// await auth.protect();
+// }
+// ======================================================
+// NOTE: Protect routes based on user authentication status
+// if (isProtectedRoute(req)) {
+//   await auth.protect();
+// }
+// ======================================================
+// NOTE: Protect routes based on user authorization status
+// Restrict admin routes to users with specific permissions
+// if (isProtectedRoute(req)) {
+//   await auth.protect((has) => {
+//     return (
+//       has({ permission: "org:sys_memberships:manage" }) ||
+//       has({ permission: "org:sys_domains_manage" })
+//     );
+//   });
+// }
+// ======================================================
+// NOTE: Protect multiple groups of routes
+// Restrict admin routes to users with specific permissions
+// if (isTenantAdminRoute(req)) {
+//   await auth.protect((has) => {
+//     return (
+//       has({ permission: "org:sys_memberships:manage" }) ||
+//       has({ permission: "org:sys_domains_manage" })
+//     );
+//   });
+// }
+// // Restrict organization routes to signed in users
+// if (isTenantRoute(req)) await auth.protect();
+// }
+// },
+
+// ======================================================
+// NOTE: Protect routes based on user authentication status
+// const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/forum(.*)"]);
+// ======================================================
+// NOTE: Protect routes based on user authorization status
+// const isProtectedRoute = createRouteMatcher(["/admin(.*)"]);
+// ======================================================
+// NOTE: Protect multiple groups of routes
+// const isTenantRoute = createRouteMatcher([
+//   "/organization-selector(.*)",
+//   "/orgid/(.*)",
+// ]);
+// const isTenantAdminRoute = createRouteMatcher([
+//   "/orgId/(.*)/memberships",
+//   "/orgId/(.*)/domain",
+// ]);
 
 /**
  * Middleware configuration for path matching
@@ -314,6 +380,7 @@ export const config = {
   ],
 };
 
+// NOTE: Old matcher
 // export const config = {
 //   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 // };

@@ -1,7 +1,7 @@
 "use server";
 
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import prisma from "@/lib/db";
 
 export const getUserNotifications = async ({
@@ -35,7 +35,7 @@ export const getUserNotifications = async ({
   //Update all notifications to viewed
   await prisma.notification.updateMany({
     where: {
-      userId:  userId,
+      userId: userId,
       viewed: false,
     },
     data: {
@@ -45,7 +45,7 @@ export const getUserNotifications = async ({
 
   const totalCount = await prisma.notification.count({
     where: {
-      userId:   userId,
+      userId: userId,
     },
   });
 

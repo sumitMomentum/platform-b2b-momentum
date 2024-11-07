@@ -12,13 +12,14 @@ export const metadata: Metadata = {
   title: "Edit Plan",
 };
 
-const SuperAdminBillingModuleEditPlanPage = async ({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) => {
+const SuperAdminBillingModuleEditPlanPage = async (
+  props: {
+    params: Promise<{
+      id: string;
+    }>;
+  }
+) => {
+  const params = await props.params;
   const plan = await getPlanDetails(Number(params.id));
   const capabilities = await getAllCapabilities();
 

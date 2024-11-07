@@ -2,7 +2,7 @@ import { WebhookEvent, currentUser } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
 import prisma from "@/lib/db";
-import { clerkClient } from "@clerk/nextjs";
+import { clerkClient } from "@clerk/nextjs/server";
 import {
   handleUserCreated,
   handleUserDeleted,
@@ -13,7 +13,7 @@ const webhookSecret = process.env.NEXT_PUBLIC_CLERK_WEBHOOK_SECRET || ``;
 
 export async function validateClerkRequest(request: Request) {
   const payloadString = await request.text();
-  const headerPayload = headers();
+  const headerPayload = await headers();
 
   const svixHeaders = {
     "svix-id": headerPayload.get("svix-id")!,

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
 import { checkPermission } from "@/utils/facades/serverFacades/scurityFacade";
 const scope = "superAdmin:billing:upsert";
