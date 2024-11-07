@@ -1,17 +1,8 @@
-import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { defaultLocale, localePrefix, locales } from "./i18n";
 import chalk from "chalk";
 chalk.level = 3;
-import { cookies, headers } from "next/headers";
-import { stringify } from "querystring";
-import { error, log } from "console";
-import { get } from "http";
-import next from "next";
-import { redirect } from "next/navigation";
-import { env } from "process";
-import { metadata } from "./app/[locale]/(landing)/layout";
 
 /**
  * Internationalization middleware configuration
@@ -27,6 +18,7 @@ const intlMiddleware = createMiddleware({
 
   // Enable generation of alternate language links
   alternateLinks: true,
+
 
   // Optional: Locale prefix mode
   localePrefix: "always",
@@ -52,10 +44,7 @@ const handleError = (error: unknown, context: string) => {
         : "Unknown error occurred";
 
     // Log the error with context and stack trace if available
-    console.warn(
-      chalk.red(`❌ Error in ${context}:`),
-      chalk.red(errorMessage)
-    );
+    console.warn(chalk.red(`❌ Error in ${context}:`), chalk.red(errorMessage));
 
     if (error instanceof Error && error.stack) {
       console.warn(chalk.red("📋 Stack trace:"), error.stack);
@@ -102,7 +91,9 @@ const handleError = (error: unknown, context: string) => {
   }
 };
 
-export default authMiddleware({
+const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
+
+export default clerkMiddleware({
   publicRoutes: [
     "/",
     "/test",
@@ -125,7 +116,7 @@ export default authMiddleware({
    * @param request - The incoming request object
    * @returns Response from the intl middleware or error response
    */
-  beforeAuth(request) {
+  async beforeAuth(request) {
     try {
       // Log the start of beforeAuth middleware
       console.log(
@@ -174,9 +165,9 @@ export default authMiddleware({
    * @param req - The incoming request object
    * @returns NextResponse based on authentication status and route requirements
    */
-  afterAuth(auth, req) {
+  async afterAuth(auth, req) {
     try {
-      console.log(chalk.magenta("🔒 Starting afterAuth middleware..."));
+      console.log(chalk.magenta("🔒 Starting afterAuteh middleware..."));
 
       // Validate required headers and environment variables
       console.log(chalk.yellow("🔍 Validating request headers..."));
@@ -211,7 +202,7 @@ export default authMiddleware({
       }
 
       // Extract authentication details
-      const { userId, sessionClaims, orgId } = auth;
+      const { userId, sessionClaims, orgId } = await auth();
 
       // Log authentication info
       console.log(chalk.yellow("👤 Auth Info:"), {
@@ -315,5 +306,14 @@ export default authMiddleware({
  * Defines which routes should be processed by the middleware
  */
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Always run for API routes
+    "/(api|trpc)(.*)",
+  ],
 };
+
+// export const config = {
+//   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+// };
