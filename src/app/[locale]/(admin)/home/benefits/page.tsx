@@ -4,12 +4,12 @@ import { getTranslations } from "next-intl/server";
 import BenefitsListComponent from "./BenefitsListComponent";
 
 const Page = async () => {
-  const t = await getTranslations("AdminLayout.pages.benefits");
+  // const t = await getTranslations("AdminLayout.pages.benefits");
 
   return (
     <div>
       <PageName
-        name={t("title")}
+        name={("Benefits")}
         breadcrumbs={[
           { name: "Home", href: "/home" },
           { name: "Benefits", href: "/home/benefits" },

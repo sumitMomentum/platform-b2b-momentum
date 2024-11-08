@@ -43,10 +43,10 @@ const AdminSupportPage = ({
         }
       />
       <Search placeholder={t("searchTicketByID")} />
-      {/* <Suspense */}
+      {/* <Suspense
         key={query + Math.random}
         fallback={<TableLoaderSkeleton count={10} />}
-      >
+      > */}
         <SupportTicketsList query={query} currentPage={currentPage} />
       {/* </Suspense> */}
     </div>

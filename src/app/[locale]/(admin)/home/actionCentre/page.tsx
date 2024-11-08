@@ -20,7 +20,7 @@ const ActionCentre = async () => {
           { name: "Action Centre", href: "/home/actionCentre" },
         ]}
       />
-      <ActionListComponent initialActionItems={actionItems} />
+        <ActionListComponent initialActionItems={actionItems} />
     </div>
   );
 };
