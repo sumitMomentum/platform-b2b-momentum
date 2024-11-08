@@ -3,7 +3,20 @@ import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 import ActionListComponent from './ActionListComponent';
-import { ActionItem } from "@/types"; // Assuming you have defined ActionItem type in a separate file
+
+// Define ActionItem type here
+type ActionItem = {
+  id: number;
+  vin: string;
+  severity: 'High' | 'Medium' | 'Low';
+  description: string;
+  bestPractice: string;
+  actionToBeTaken: string;
+  confirm: boolean;
+  CreatedDateTime: string;
+  ClosedDateTime?: string;
+};
+
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 
 const ActionCentre = async () => {
@@ -20,7 +33,7 @@ const ActionCentre = async () => {
           { name: "Action Centre", href: "/home/actionCentre" },
         ]}
       />
-        <ActionListComponent initialActionItems={actionItems} />
+      <ActionListComponent initialActionItems={actionItems} />
     </div>
   );
 };

@@ -3,7 +3,21 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import { ActionItem } from "@/types"; // Assuming you have defined ActionItem type in a separate file
+
+// Define ActionItem type here
+type ActionItem = {
+  id: number;
+  vin: string;
+  severity: 'High' | 'Medium' | 'Low';
+  description: string;
+  bestPractice: string;
+  actionToBeTaken: string;
+  confirm: boolean;
+  CreatedDateTime: string;
+  ClosedDateTime?: string;
+};
+
+// Import getAllVehicleActions
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 
 interface ActionListComponentProps {
