@@ -1,6 +1,6 @@
 import PageLoader from "@/components/ui/loaders/PageLoader";
-import SuspenseTable from "@/components/suspenseSkeleton/suspenseTable";
-import SuspenseHeader from "@/components/suspenseSkeleton/suspenseHeader";
+import SuspenseTable from "@/components/suspenseSkeleton/SuspenseTable";
+import SuspenseHeader from "@/components/suspenseSkeleton/SuspenseHeader";
 
 export default function Loading() {
   // Or a custom loading skeleton component

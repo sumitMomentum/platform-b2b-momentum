@@ -1,6 +1,6 @@
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
-import SuspenseHeader from './suspenseHeader';
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+import SuspenseHeader from "./SuspenseHeader";
 
 export default function SuspenseDashboard() {
   return (

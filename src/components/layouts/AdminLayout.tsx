@@ -3,7 +3,7 @@ import { ReactNode, Suspense } from "react";
 import AdminSidebar from "../ui/AdminSidebar";
 import { getUserNotificationsUnreadCount } from "@/actions/global/notificationsModule/get-user-notifications";
 import FloatingWhatsAppButton from "../core/FloatingWhatsAppButton";
-import SuspenseTable from "../suspenseSkeleton/suspenseTable";
+import SuspenseTable from "../suspenseSkeleton/SuspenseTable";
 
 export default async function AdminLayout({
   children,
