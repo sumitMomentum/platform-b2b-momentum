@@ -3,13 +3,15 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "npx prisma db push && npx prisma generate && next build",
-    "start": "npx ts-node prisma/seed.ts && next start",
+    "dev": "dotenv -e .env.local -- npx ts-node src/seed/seed.ts && next dev --turbopack",
+    "build:local": "dotenv -e .env.prod -- npx ts-node src/seed/seed.ts && npx prisma generate && next build",
+    "build": "npx prisma generate && next build",
+    "start": "next start",
+    "seed": "dotenv -e .env.local -- npx prisma db seed",
     "lint": "next lint"
   },
   "prisma": {
-    "seed": "ts-node  src/seed/seed.ts"
+    "seed": "ts-node src/seed/seed.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.686.0",

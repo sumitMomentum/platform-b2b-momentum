@@ -44,6 +44,7 @@ const log = {
 };
 
 async function main() {
+  await prisma.$connect();
   try {
     log.header("Starting Database Seeding");
     log.info("Checking table states...");

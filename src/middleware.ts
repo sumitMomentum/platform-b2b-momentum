@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
-import { defaultLocale, localePrefix, locales } from "./i18n";
+import { locales } from "./i18n";
 import chalk from "chalk";
 chalk.level = 3;
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
@@ -29,83 +29,25 @@ const createLocaleRoutingMiddleware = createMiddleware({
 //   tenant2: { publishableKey: 'pk_tenant2...', secretKey: 'sk_tenant2...' },
 // }
 
-/**
- * Utility function to handle and log errors in middleware
- * @param error - The error object or unknown error value
- * @param context - The context where the error occurred (e.g., 'beforeAuth', 'afterAuth')
- * @returns NextResponse with a 500 status code and error message
- */
-const handleMiddlewareError = (error: unknown, context: string) => {
-  try {
-    // Determine the error message based on error type
-    const errorMessage =
-      error instanceof Error
-        ? error.message
-        : typeof error === "string"
-        ? error
-        : "Unknown error occurred";
-
-    // Log the error with context and stack trace if available
-    console.warn(chalk.red(`❌ Error in ${context}:`), chalk.red(errorMessage));
-
-    if (error instanceof Error && error.stack) {
-      console.warn(chalk.red("📋 Stack trace:"), error.stack);
-    }
-
-    // Log additional error details if available
-    if (error instanceof Error && (error as any).code) {
-      console.warn(chalk.red("🔍 Error code:"), (error as any).code);
-    }
-
-    // Create standardized error response
-    const errorResponse = {
-      error: "Internal Server Error",
-      context: context,
-      message: errorMessage,
-      timestamp: new Date().toISOString(),
-    };
-
-    // Return error response with appropriate headers
-    return new NextResponse(JSON.stringify(errorResponse), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json",
-        "X-Error-Context": context,
-      },
-    });
-  } catch (handlingError) {
-    // Fallback error handling in case the main error handling fails
-    console.warn(
-      chalk.red("❌ Critical error in error handler:"),
-      chalk.red(
-        handlingError instanceof Error ? handlingError.message : "Unknown error"
-      )
-    );
-
-    // Return basic error response in case of critical failure
-    return new NextResponse(
-      JSON.stringify({ error: "Critical Internal Server Error" }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  }
-};
-
 export default clerkMiddleware(
   /**
-   * Middleware that runs before authentication checks
-   * Handles internationalization and locale-specific routing
-   * @param request - The incoming request object
-   * @returns Response from the intl middleware or error response
+   * Middleware handler for authentication, localization, and routing
+   *
+   * This middleware performs the following operations in order:
+   * 1. Handles internationalization and locale routing
+   * 2. Protects non-public routes using Clerk authentication
+   * 3. Manages user onboarding flow and redirects
+   * 4. Handles subdomain routing and rewrites
+   *
+   * @param {ClerkMiddlewareAuth} auth - Clerk authentication helper for protecting routes and accessing session data
+   * @param {NextRequest} request - Next.js request object containing URL, headers, and other request data
+   * @param {NextFetchEvent} event - Next.js fetch event for handling response lifecycle
+   * @returns {Promise<NextResponse>} Response object that may contain redirects, rewrites, or the original request
+   * @throws {Error} When required configuration (host, environment variables) is missing
    */
-  async function handleLocaleAndRouting(auth, request, event) {
+  async (auth, request, event) => {
     try {
-      // Log the start of beforeAuth middleware
-      console.log(
-        chalk.magenta("🔄 Starting locale and routing middleware processing...")
-      );
+      console.log(chalk.magenta("🔒 Starting Clerk middleware..."));
 
       // Validate request object
       if (!request || !request.url) {
@@ -117,47 +59,27 @@ export default clerkMiddleware(
       console.log(chalk.yellow("📝 Request details:"), {
         url: request.url,
         method: request.method,
-        headers: Object.fromEntries(request.headers.entries()),
+        headers: Object.fromEntries(request.headers.entries()), // Convert to array instead of using entries()
       });
 
       // Check for locale in URL
-      const url = new URL(request.url);
-      console.log(chalk.magenta("🌐 Processing URL path:"), url.pathname);
+      const urlObject = new URL(request.url);
+      console.log(chalk.magenta("🌐 Processing URL path:"), urlObject.pathname);
 
       // Process internationalization middleware
       console.log(chalk.cyan("🔄 Applying internationalization middleware..."));
-      const response = createLocaleRoutingMiddleware(request);
+      const intlResponse = createLocaleRoutingMiddleware(request);
 
-      console.log(
-        chalk.greenBright("✅ beforeAuth middleware completed successfully")
-      );
-      return response;
-    } catch (error) {
-      console.warn(
-        chalk.redBright("❌ Error in beforeAuth middleware:"),
-        chalk.red(error instanceof Error ? error.message : "Unknown error")
-      );
+      // If the internationalization middleware returns a response, return it
+      if (intlResponse instanceof NextResponse) {
+        return intlResponse;
+      }
 
-      // Use the handleMiddlewareError utility for consistent error handling
-      return handleMiddlewareError(error, "beforeAuth middleware");
-    }
-  },
-  /**
-   * Middleware that runs after authentication checks
-   * Handles user authentication, onboarding status, and route protection
-   * @param auth - The authentication object from Clerk
-   * @param req - The incoming request object
-   * @returns NextResponse based on authentication status and route requirements
-   */
-  async function handleAuthAndProtection(auth, req, event) {
-    try {
-      console.log(
-        chalk.magenta("🔒 Starting authentication and protection middleware...")
-      );
+      console.log(chalk.green("✅ Internationalization middleware complete"));
 
       // Validate required headers and environment variables
       console.log(chalk.yellow("🔍 Validating request headers..."));
-      const host = req.headers.get("host");
+      const host = request.headers.get("host");
       if (!host) {
         console.warn(chalk.redBright("❌ Missing host header"));
         return new NextResponse(
@@ -168,7 +90,7 @@ export default clerkMiddleware(
 
       // Process URL and hostname
       console.log(chalk.cyan("🌐 Processing URL and hostname..."));
-      const url = req.nextUrl;
+      const url = request.nextUrl;
       let hostname = host.replace(
         ".localhost:3000",
         `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
@@ -187,9 +109,9 @@ export default clerkMiddleware(
         );
       }
 
-    if (!isPublicRoute(req)) {
+      if (!isPublicRoute(request)) {
         await auth.protect();
-      }  
+      }
 
       // Extract authentication details
       const { userId, sessionClaims, orgId, redirectToSignIn } = await auth();
@@ -204,22 +126,22 @@ export default clerkMiddleware(
       // Handle onboarding route access
       if (
         userId &&
-        req.nextUrl.pathname.includes("onboarding") &&
-        isPublicRoute(req)
+        request.nextUrl.pathname.includes("onboarding") &&
+        isPublicRoute(request)
       ) {
         console.log(chalk.greenBright("✅ User accessing onboarding"));
         return NextResponse.next();
       }
 
       // Handle unauthenticated access to protected routes
-      if (!userId && isPublicRoute(req)) {
+      if (!userId && !isPublicRoute(request)) {
         try {
           console.log(
             chalk.yellowBright(
               "⚠️ Unauthorized access - redirecting to sign-in"
             )
           );
-          return redirectToSignIn({ returnBackUrl: req.url });
+          return redirectToSignIn({ returnBackUrl: request.url });
         } catch (error) {
           console.warn(
             chalk.redBright("❌ Error during sign-in redirect:"),
@@ -234,7 +156,7 @@ export default clerkMiddleware(
         userId &&
         !orgId &&
         !sessionClaims?.metadata?.onboardingComplete &&
-        isPublicRoute(req)
+        !isPublicRoute(request)
       ) {
         console.log(chalk.yellowBright("⚠️ Onboarding Status:"), {
           hasUserId: !!userId,
@@ -242,26 +164,26 @@ export default clerkMiddleware(
           onboardingComplete: !!sessionClaims?.metadata?.onboardingComplete,
         });
         console.log(chalk.cyan("🔄 Redirecting to onboarding"));
-        const onboardingUrl = new URL("/onboarding", req.url);
+        const onboardingUrl = new URL("/onboarding", request.url);
         return NextResponse.redirect(onboardingUrl);
       }
 
       // Handle authorized access to protected routes
-      if (userId && isPublicRoute(req)) {
+      if (userId && !isPublicRoute(request)) {
         console.log(
           chalk.greenBright("✅ Authorized access to protected route")
         );
         return NextResponse.next();
       }
 
-      if (isPublicRoute) {
+      if (isPublicRoute(request)) {
         console.log(chalk.cyan("ℹ️ Accessing public route"));
         return NextResponse.next();
       }
 
       // Process URL parameters
       console.log(chalk.yellow("🔍 Processing URL parameters..."));
-      const searchParams = req.nextUrl.searchParams.toString();
+      const searchParams = request.nextUrl.searchParams.toString();
       const path = `${url.pathname}${
         searchParams.length > 0 ? `?${searchParams}` : ""
       }`;
@@ -278,7 +200,7 @@ export default clerkMiddleware(
       // Handle subdomain rewrite
       try {
         console.log(chalk.cyan("🔄 Processing subdomain rewrite..."));
-        const rewriteUrl = new URL(`/${hostname}${path}`, req.url);
+        const rewriteUrl = new URL(`/${hostname}${path}`, request.url);
         console.log(chalk.yellow("📝 Rewriting to:", rewriteUrl.toString()));
         return NextResponse.rewrite(rewriteUrl);
       } catch (error) {
@@ -286,16 +208,21 @@ export default clerkMiddleware(
         return handleMiddlewareError(error, "URL rewrite");
       }
     } catch (error) {
-      console.warn(chalk.redBright("❌ Unhandled error in afterAuth:"), error);
-      return handleMiddlewareError(error, "afterAuth middleware");
+      console.warn(
+        chalk.redBright("❌ Unhandled error in Clerk Middleware:"),
+        error
+      );
+      return handleMiddlewareError(error, "Clerk Middleware:");
     }
   }
 );
 
 const isPublicRoute = createRouteMatcher([
+  "",
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/",
+  "/home",
   "/test",
   "/:locale",
   "/:locale/api(.*)",
@@ -371,16 +298,80 @@ const isPublicRoute = createRouteMatcher([
  * Middleware configuration for path matching
  * Defines which routes should be processed by the middleware
  */
-export const config = {
-  matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
-    "/(api|trpc)(.*)",
-  ],
-};
+// export const config = {
+//   matcher: [
+//     // Skip Next.js internals and all static files, unless found in search params
+//     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+//     // Always run for API routes
+//     "/(api|trpc)(.*)",
+//   ],
+// };
 
 // NOTE: Old matcher
-// export const config = {
-//   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
-// };
+export const config = {
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+};
+
+/**
+ * Utility function to handle and log errors in middleware
+ * @param error - The error object or unknown error value
+ * @param context - The context where the error occurred (e.g., 'beforeAuth', 'afterAuth')
+ * @returns NextResponse with a 500 status code and error message
+ */
+const handleMiddlewareError = (error: unknown, context: string) => {
+  try {
+    // Determine the error message based on error type
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : typeof error === "string"
+        ? error
+        : "Unknown error occurred";
+
+    // Log the error with context and stack trace if available
+    console.warn(chalk.red(`❌ Error in ${context}:`), chalk.red(errorMessage));
+
+    if (error instanceof Error && error.stack) {
+      console.warn(chalk.red("📋 Stack trace:"), error.stack);
+    }
+
+    // Log additional error details if available
+    if (error instanceof Error && (error as any).code) {
+      console.warn(chalk.red("🔍 Error code:"), (error as any).code);
+    }
+
+    // Create standardized error response
+    const errorResponse = {
+      error: "Internal Server Error",
+      context: context,
+      message: errorMessage,
+      timestamp: new Date().toISOString(),
+    };
+
+    // Return error response with appropriate headers
+    return new NextResponse(JSON.stringify(errorResponse), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+        "X-Error-Context": context,
+      },
+    });
+  } catch (handlingError) {
+    // Fallback error handling in case the main error handling fails
+    console.warn(
+      chalk.red("❌ Critical error in error handler:"),
+      chalk.red(
+        handlingError instanceof Error ? handlingError.message : "Unknown error"
+      )
+    );
+
+    // Return basic error response in case of critical failure
+    return new NextResponse(
+      JSON.stringify({ error: "Critical Internal Server Error" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+};
