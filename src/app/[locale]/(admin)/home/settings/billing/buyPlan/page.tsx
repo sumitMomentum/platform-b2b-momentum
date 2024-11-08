@@ -26,7 +26,7 @@ const BuyPlanPage = async ({
 
   return (
     <div>
-      <Suspense fallback={<PageLoader />}>
+      {/* <Suspense fallback={<PageLoader />}> */}
         <PlansComponent
           payments={payments}
           plans={plans}
@@ -34,7 +34,7 @@ const BuyPlanPage = async ({
           currencies={currencies}
         />
         <PaymentStatusAlert status={searchParams?.paymentStatus} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

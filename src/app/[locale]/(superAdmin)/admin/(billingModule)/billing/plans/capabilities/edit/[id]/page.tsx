@@ -21,9 +21,9 @@ const SuperAdminBillingModuleEditPlanPage = async ({
   return (
     <div>
       <PageName name={"Edit Capabilitie"} isSubPage={true} />
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <UpsertCapabilitie capabilitieId={Number(params.id)} values={values} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

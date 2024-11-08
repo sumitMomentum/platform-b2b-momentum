@@ -25,7 +25,7 @@ const PlanEditPricing = async ({
   return (
     <div>
       <PageName name={"Edit Plan Price"} isSubPage={true} />
-      <Suspense fallback={<TableLoaderSkeleton count={4} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={4} />}> */}
         <div className="flex items-center py-2 lg:px-7 ">
           <Link href={`/admin/billing/plans/plans/edit/${plan?.id}`}>
             <button className="btn-icon ">
@@ -42,7 +42,7 @@ const PlanEditPricing = async ({
             }}
           />
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

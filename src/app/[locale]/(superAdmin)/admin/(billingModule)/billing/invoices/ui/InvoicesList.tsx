@@ -45,7 +45,7 @@ const InvoicesList = async ({
 
   return (
     <div>
-      <Suspense fallback={<PageLoader />}>
+      {/* <Suspense fallback={<PageLoader />}> */}
         {data.length === 0 ? (
           <div className="flex justify-center items-center h-96">
             <NotFound message="No invoices found" />
@@ -152,7 +152,7 @@ const InvoicesList = async ({
             </div>
           </div>
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

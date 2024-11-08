@@ -24,7 +24,7 @@ const AdminWalletPage = async ({
 
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={5} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={5} />}> */}
         <div className="bg-main rounded-2xl p-3 border-2 ">
           <h2 className="text-subtitle">
             {t("yourWallet")}  
@@ -69,7 +69,7 @@ const AdminWalletPage = async ({
             })}
           </div>
         </div>
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

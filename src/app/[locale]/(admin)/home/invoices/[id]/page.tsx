@@ -23,7 +23,7 @@ const AdminViewInvoiceDetails = async ({
 
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <PageName
           name={t("pages.invoices.viewInvoiceDetails")}
           breadcrumbs={[
@@ -37,7 +37,7 @@ const AdminViewInvoiceDetails = async ({
         />
 
         <ViewInvoiceDetails invoice={invoice as IInvoice} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

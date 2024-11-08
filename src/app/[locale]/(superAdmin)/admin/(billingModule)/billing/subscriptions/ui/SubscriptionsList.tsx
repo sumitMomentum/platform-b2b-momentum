@@ -38,7 +38,7 @@ const SubscriptionsList = async ({
 
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={4} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={4} />}> */}
         {data.length === 0 ? (
           <div className="flex justify-center items-center h-96">
             <NotFound message="No subscription found" />
@@ -110,7 +110,7 @@ const SubscriptionsList = async ({
             </div>
           </div>
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

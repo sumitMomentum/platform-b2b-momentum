@@ -37,20 +37,20 @@ const EditMembership = async ({
           },
         ]}
       />
-      <Suspense
+      {/* <Suspense
         fallback={
           <div>
             <PageLoader />
           </div>
         }
-      >
+      > */}
         <UpsertMembership
           membershipId={Number(params.id)}
           values={membership}
           plans={plans.data}
           currencies={currencies}
         />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };
