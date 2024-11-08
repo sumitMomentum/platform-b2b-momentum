@@ -1,7 +1,7 @@
 import React from "react";
 import { Skeleton } from "@mui/material";
 
-const SuspenseHeader = () => {
+const suspenseHeader = () => {
   return (
     <div>
       <Skeleton animation="wave" width={40} height={30} style={{ display: 'inline-block', marginRight: 8 }} />
@@ -11,4 +11,4 @@ const SuspenseHeader = () => {
   );
 };
 
-export default SuspenseHeader;
+export default suspenseHeader;

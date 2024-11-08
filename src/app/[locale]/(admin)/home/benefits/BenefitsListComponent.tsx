@@ -3,7 +3,22 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import { BenefitItem } from "@/types"; // Assuming you have defined BenefitItem type in a separate file
+
+// Define BenefitItem type here
+type BenefitItem = {
+  vin: string;
+  batteryCycleSavingMonthly: number;
+  batteryCycleSavingYearly: number;
+  batteryCycleSavingLifetime: number;
+  costSavingChargingMonthly: number;
+  costSavingChargingYearly: number;
+  costSavingChargingLifeTimeEstimate: number;
+  rangeIncreaseMonthly: number;
+  rangeIncreaseYearly: number;
+  rangeIncreaseLifetimeEstimate: number;
+  revenueIncreaseLifetime: number;
+};
+
 import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
 
 const BenefitsListComponent: React.FC = () => {

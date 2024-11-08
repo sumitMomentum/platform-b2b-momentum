@@ -1,9 +1,19 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import { ChargerItem } from "@/types"; // Assuming you have defined ChargerItem type in a separate file
+
+// Define ChargerItem type here
+type ChargerItem = {
+  chargerID: string;
+  chargerLocation: string;
+  chargerStatus: string;
+  dateJoining: string;
+  chargeType: string;
+  chargingPoint: string;
+};
+
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 
 interface ChargerListComponentProps {
@@ -39,7 +49,7 @@ const ChargerListComponent: React.FC<ChargerListComponentProps> = ({ initialChar
       field: "chargerLocation",
       headerName: "Charger Location",
       width: 200,
-      valueFormatter: (params) => 
+      valueFormatter: (params: GridRenderCellParams) =>
         `${[
           Number(params.value.toString().split(",")[0]).toFixed(2),
           Number(params.value.toString().split(",")[1]).toFixed(2),
@@ -50,7 +60,7 @@ const ChargerListComponent: React.FC<ChargerListComponentProps> = ({ initialChar
       field: "dateJoining",
       headerName: "Date Joining",
       width: 130,
-      valueFormatter: (params) => new Date(params.value).toLocaleDateString(),
+      valueFormatter: (params: GridRenderCellParams) => new Date(params.value as string).toLocaleDateString(),
     },
     { field: "chargeType", headerName: "Charge Type", width: 130 },
     { field: "chargingPoint", headerName: "Charging Point", width: 130 },

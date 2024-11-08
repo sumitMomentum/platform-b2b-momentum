@@ -2,11 +2,20 @@
 
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 import PageName from "@/components/ui/commons/PageName";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { Fragment, useEffect, useState } from "react";
 
+interface ChargerRow {
+  chargerID: string;
+  chargerLocation: string;
+  chargerStatus: string;
+  dateJoining: string;
+  chargeType: string;
+  chargingPoint: string;
+}
+
 const page = () => {
-  const [chargerMasterData, setChargerMasterData] = useState([]);
+  const [chargerMasterData, setChargerMasterData] = useState<ChargerRow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const columns: GridColDef[] = [
@@ -15,7 +24,7 @@ const page = () => {
       field: "chargerLocation",
       headerName: "Charger Location",
       width: 200,
-      valueFormatter: (params) =>
+      valueFormatter: (params: GridRenderCellParams<any>) =>
         params.value
           ? `${[
               Number(params.value.toString().split(",")[0]).toFixed(2),
@@ -28,7 +37,7 @@ const page = () => {
       field: "dateJoining",
       headerName: "Date Joining",
       width: 130,
-      valueFormatter: (params) =>
+      valueFormatter: (params: GridRenderCellParams<any>) =>
         params.value ? new Date(params.value).toLocaleDateString() : "",
     },
     { field: "chargeType", headerName: "Charge Type", width: 130 },
@@ -70,9 +79,14 @@ const page = () => {
             <DataGrid
               rows={chargerMasterData}
               columns={columns}
-              pageSize={10}
               loading={isLoading}
               autoHeight
+              initialState={{
+                pagination: {
+                  paginationModel: { page: 0, pageSize: 10 },
+                },
+              }}
+              pageSizeOptions={[5, 10]}
             />
           </div>
         </div>
