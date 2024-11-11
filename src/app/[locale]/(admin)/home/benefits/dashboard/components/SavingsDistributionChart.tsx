@@ -10,9 +10,9 @@ import { useTheme } from '@mui/material/styles';
 export default function SavingsDistributionChart() {
   const theme = useTheme();
   const colorPalette = [
-    (theme.vars || theme).palette.primary.dark,
-    (theme.vars || theme).palette.primary.main,
-    (theme.vars || theme).palette.primary.light,
+    (theme.vars || theme).palette.success.dark,  // Dark green
+    (theme.vars || theme).palette.success.main,  // Medium green
+    (theme.vars || theme).palette.success.light, // Light green
   ];
 
   return (
