@@ -77,7 +77,7 @@ export default function MainGrid() {
       </Typography>
       <Grid container spacing={2} columns={12}>
         {/* Data Grid Section */}
-        <Grid item xs={12} lg={9}>
+        <Grid>
           <CustomizedDataGrid />
         </Grid>
       </Grid>
