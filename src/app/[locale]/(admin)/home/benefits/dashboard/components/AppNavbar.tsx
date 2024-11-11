@@ -8,11 +8,11 @@ import { tabsClasses } from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
-import SideMenuMobile from './SideMenuMobile';
-import MenuButton from './MenuButton';
-import ColorModeIconDropdown from '../../shared-theme/ColorModeIconDropdown';
+import SideMenuMobile from './SideMenuMobile'; // Ensure this is imported
+import MenuButton from './MenuButton'; // Ensure this is imported
+import ColorModeIconDropdown from '../../shared-theme/ColorModeIconDropdown'; // Ensure this is imported
 
-const Toolbar = styled(MuiToolbar)({
+const Toolbar = styled(MuiToolbar)(() => ({
   width: '100%',
   padding: '12px',
   display: 'flex',
@@ -23,10 +23,10 @@ const Toolbar = styled(MuiToolbar)({
   flexShrink: 0,
   [`& ${tabsClasses.flexContainer}`]: {
     gap: '8px',
-    p: '8px',
-    pb: 0,
+    padding: '8px',
+    paddingBottom: 0,
   },
-});
+}));
 
 export default function AppNavbar() {
   const [open, setOpen] = React.useState(false);
@@ -48,7 +48,7 @@ export default function AppNavbar() {
         top: 'var(--template-frame-height, 0px)',
       }}
     >
-      <Toolbar variant="regular">
+      <Toolbar>
         <Stack
           direction="row"
           sx={{

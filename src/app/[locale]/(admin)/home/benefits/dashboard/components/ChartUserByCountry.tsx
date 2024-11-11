@@ -56,40 +56,12 @@ interface StyledTextProps {
 
 const StyledText = styled('text', {
   shouldForwardProp: (prop) => prop !== 'variant',
-})<StyledTextProps>(({ theme }) => ({
+})<StyledTextProps>(({ theme, variant }) => ({
   textAnchor: 'middle',
   dominantBaseline: 'central',
   fill: (theme.vars || theme).palette.text.secondary,
-  variants: [
-    {
-      props: {
-        variant: 'primary',
-      },
-      style: {
-        fontSize: theme.typography.h5.fontSize,
-      },
-    },
-    {
-      props: ({ variant }) => variant !== 'primary',
-      style: {
-        fontSize: theme.typography.body2.fontSize,
-      },
-    },
-    {
-      props: {
-        variant: 'primary',
-      },
-      style: {
-        fontWeight: theme.typography.h5.fontWeight,
-      },
-    },
-    {
-      props: ({ variant }) => variant !== 'primary',
-      style: {
-        fontWeight: theme.typography.body2.fontWeight,
-      },
-    },
-  ],
+  fontSize: variant === 'primary' ? theme.typography.h5.fontSize : theme.typography.body2.fontSize,
+  fontWeight: variant === 'primary' ? theme.typography.h5.fontWeight : theme.typography.body2.fontWeight,
 }));
 
 interface PieCenterLabelProps {
@@ -122,6 +94,7 @@ const colors = [
 ];
 
 export default function ChartUserByCountry() {
+
   return (
     <Card
       variant="outlined"

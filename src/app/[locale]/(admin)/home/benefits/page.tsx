@@ -16,8 +16,8 @@ const Page = async () => {
           { name: "Benefits", href: "/home/benefits" },
         ]}
       />
-      {/* <BenefitsListComponent /> */}
-      <BenefitsGraphComponent />
+      <BenefitsListComponent />
+      {/* <BenefitsGraphComponent /> */}
     </div>
   );
 };
