@@ -4,6 +4,9 @@ import { useSidebarState } from "@/states/ui/sidebarState";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { stringify } from "querystring";
+import { map } from "svix/dist/openapi/rxjsStub";
+import { current } from "tailwindcss/colors";
 
 interface NavigationSection {
   sectionName: string;
@@ -41,8 +44,12 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
       };
     });
 
-    setLinks(linksWithStatus);
-  }, [navigation, pathName]);
+    // Check if the new links are different from the current links
+    if (JSON.stringify(linksWithStatus) !== JSON.stringify(links)) {
+      setLinks(linksWithStatus);
+    }
+  }, []);
+  // }, [navigation, pathName]);
 
   return (
     <li>

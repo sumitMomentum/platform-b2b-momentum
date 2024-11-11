@@ -1,33 +1,146 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { locales } from "./i18n";
-import chalk from "chalk";
+import chalk, {
+  cyan,
+  green,
+  greenBright,
+  magenta,
+  red,
+  redBright,
+  yellow,
+  yellowBright,
+} from "chalk";
 chalk.level = 3;
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { get } from "http";
+import { routing } from "./i18n/routing";
 
 /**
  * Internationalization middleware configuration
  * Handles locale detection, routing, and alternate language links
  * @see https://next-intl-docs.vercel.app/docs/routing/middleware
  */
-const createLocaleRoutingMiddleware = createMiddleware({
-  // Supported locales configuration
-  locales: locales,
-  // Default locale when no locale is detected
-  defaultLocale: "en",
-  // Enable generation of alternate language links
-  alternateLinks: true,
-  // Optional: Locale prefix mode
-  localePrefix: "always",
-  // Optional: Custom locale detection from different sources
-  localeDetection: true,
-});
+const createLocaleRoutingMiddleware = createMiddleware(routing);
 
 // You would typically fetch these keys from a external store or environment variables.
 // const tenantKeys = {
 //   tenant1: { publishableKey: 'pk_tenant1...', secretKey: 'sk_tenant1...' },
 //   tenant2: { publishableKey: 'pk_tenant2...', secretKey: 'sk_tenant2...' },
 // }
+
+const handleInternationalization = async (request: NextRequest) => {
+  console.log(chalk.cyan("🔄 Applying internationalization middleware..."));
+
+  const intlResponse = createLocaleRoutingMiddleware(request);
+
+  if (intlResponse instanceof NextResponse) {
+    return intlResponse;
+  }
+
+  console.log(chalk.green("✅ Internationalization middleware complete"));
+  return null;
+};
+
+const validateRequest = async (request: NextRequest) => {
+  console.log(chalk.yellow("🔍 Validating request headers..."));
+  console.log(request.headers);
+
+  const host = await request.headers.get("host");
+  if (!host) {
+    console.warn(chalk.redBright("❌ Missing host header"));
+    return new NextResponse(JSON.stringify({ error: "Missing host header" }), {
+      status: 400,
+    });
+  }
+
+  if (!process.env.NEXT_PUBLIC_ROOT_DOMAIN) {
+    console.warn(
+      chalk.redBright("❌ Missing NEXT_PUBLIC_ROOT_DOMAIN environment variable")
+    );
+    return handleMiddlewareError(
+      new Error("Missing required environment variable"),
+      "environment check"
+    );
+  }
+
+  return null;
+};
+
+const handleAuthentication = async (
+  auth: any,
+  request: NextRequest,
+  userId: string | null,
+  orgId: string | null,
+  sessionClaims: any
+) => {
+  // Handle onboarding route access
+  if (
+    userId &&
+    request.nextUrl.pathname.includes("onboarding") &&
+    isPublicRoute(request)
+  ) {
+    console.log(chalk.greenBright("✅ User accessing onboarding"));
+    return NextResponse.next();
+  }
+
+  // Handle unauthenticated access to protected routes
+  if (!userId && !isPublicRoute(request)) {
+    try {
+      console.log(
+        chalk.yellowBright("⚠️ Unauthorized access - redirecting to sign-in")
+      );
+      return auth.redirectToSignIn({ returnBackUrl: request.url });
+    } catch (error) {
+      console.warn(chalk.redBright("❌ Error during sign-in redirect:"), error);
+      return handleMiddlewareError(error, "sign-in redirect");
+    }
+  }
+
+  // Handle incomplete onboarding
+  if (
+    userId &&
+    !orgId &&
+    !sessionClaims?.metadata?.onboardingComplete &&
+    !isPublicRoute(request)
+  ) {
+    console.log(
+      chalk.yellowBright("⚠️ Redirecting to onboarding - incomplete profile")
+    );
+    const onboardingUrl = new URL("/onboarding", request.url);
+    return NextResponse.redirect(onboardingUrl);
+  }
+
+  return null;
+};
+
+const handleSubdomainRewrite = (request: NextRequest, hostname: string) => {
+  const url = request.nextUrl;
+  const searchParams = request.nextUrl.searchParams.toString();
+  const path = `${url.pathname}${
+    searchParams.length > 0 ? `?${searchParams}` : ""
+  }`;
+
+  // Handle root domain access
+  if (
+    hostname === "localhost:3000" ||
+    hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
+  ) {
+    console.log(chalk.magenta("🏠 Accessing root domain"));
+    return NextResponse.next();
+  }
+
+  // Handle subdomain rewrite
+  try {
+    console.log(chalk.cyan("🔄 Processing subdomain rewrite..."));
+    const rewriteUrl = new URL(`/${hostname}${path}`, request.url);
+    console.log(chalk.yellow("📝 Rewriting to:", rewriteUrl.toString()));
+    return NextResponse.rewrite(rewriteUrl);
+  } catch (error) {
+    console.warn(chalk.redBright("❌ Error creating rewrite URL:"), error);
+    return handleMiddlewareError(error, "URL rewrite");
+  }
+};
 
 export default clerkMiddleware(
   /**
@@ -55,66 +168,35 @@ export default clerkMiddleware(
         throw new Error("Invalid request object received");
       }
 
-      // Log request details for debugging
+      // Log request details
       console.log(chalk.yellow("📝 Request details:"), {
         url: request.url,
         method: request.method,
-        headers: Object.fromEntries(request.headers.entries()), // Convert to array instead of using entries()
+        headers: Object.fromEntries(request.headers.entries()),
       });
 
-      // Check for locale in URL
-      const urlObject = new URL(request.url);
-      console.log(chalk.magenta("🌐 Processing URL path:"), urlObject.pathname);
+      // Handle internationalization
+      const intlResponse = await handleInternationalization(request);
+      if (intlResponse) return intlResponse;
 
-      // Process internationalization middleware
-      console.log(chalk.cyan("🔄 Applying internationalization middleware..."));
-      const intlResponse = createLocaleRoutingMiddleware(request);
+      // Validate request and environment
+      const validationError = validateRequest(request);
+      if (validationError) return validationError;
 
-      // If the internationalization middleware returns a response, return it
-      if (intlResponse instanceof NextResponse) {
-        return intlResponse;
-      }
-
-      console.log(chalk.green("✅ Internationalization middleware complete"));
-
-      // Validate required headers and environment variables
-      console.log(chalk.yellow("🔍 Validating request headers..."));
-      const host = request.headers.get("host");
-      if (!host) {
-        console.warn(chalk.redBright("❌ Missing host header"));
-        return new NextResponse(
-          JSON.stringify({ error: "Missing host header" }),
-          { status: 400 }
-        );
-      }
-
-      // Process URL and hostname
-      console.log(chalk.cyan("🌐 Processing URL and hostname..."));
-      const url = request.nextUrl;
-      let hostname = host.replace(
+      // Process hostname
+      const host = await request.headers.get("host")!;
+      const hostname = host.replace(
         ".localhost:3000",
         `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
       );
 
-      // Validate environment configuration
-      if (!process.env.NEXT_PUBLIC_ROOT_DOMAIN) {
-        console.warn(
-          chalk.redBright(
-            "❌ Missing NEXT_PUBLIC_ROOT_DOMAIN environment variable"
-          )
-        );
-        return handleMiddlewareError(
-          new Error("Missing required environment variable"),
-          "environment check"
-        );
-      }
-
+      // Protect non-public routes
       if (!isPublicRoute(request)) {
         await auth.protect();
       }
 
       // Extract authentication details
-      const { userId, sessionClaims, orgId, redirectToSignIn } = await auth();
+      const { userId, sessionClaims, orgId } = await auth();
 
       // Log authentication info
       console.log(chalk.yellow("👤 Auth Info:"), {
@@ -123,50 +205,15 @@ export default clerkMiddleware(
         orgId: orgId || "no org",
       });
 
-      // Handle onboarding route access
-      if (
-        userId &&
-        request.nextUrl.pathname.includes("onboarding") &&
-        isPublicRoute(request)
-      ) {
-        console.log(chalk.greenBright("✅ User accessing onboarding"));
-        return NextResponse.next();
-      }
-
-      // Handle unauthenticated access to protected routes
-      if (!userId && !isPublicRoute(request)) {
-        try {
-          console.log(
-            chalk.yellowBright(
-              "⚠️ Unauthorized access - redirecting to sign-in"
-            )
-          );
-          return redirectToSignIn({ returnBackUrl: request.url });
-        } catch (error) {
-          console.warn(
-            chalk.redBright("❌ Error during sign-in redirect:"),
-            error
-          );
-          return handleMiddlewareError(error, "sign-in redirect");
-        }
-      }
-
-      // Handle incomplete onboarding
-      if (
-        userId &&
-        !orgId &&
-        !sessionClaims?.metadata?.onboardingComplete &&
-        !isPublicRoute(request)
-      ) {
-        console.log(chalk.yellowBright("⚠️ Onboarding Status:"), {
-          hasUserId: !!userId,
-          hasOrgId: !!orgId,
-          onboardingComplete: !!sessionClaims?.metadata?.onboardingComplete,
-        });
-        console.log(chalk.cyan("🔄 Redirecting to onboarding"));
-        const onboardingUrl = new URL("/onboarding", request.url);
-        return NextResponse.redirect(onboardingUrl);
-      }
+      // Handle authentication flow
+      const authResponse = await handleAuthentication(
+        auth,
+        request,
+        userId,
+        orgId,
+        sessionClaims
+      );
+      if (authResponse) return authResponse;
 
       // Handle authorized access to protected routes
       if (userId && !isPublicRoute(request)) {
@@ -181,32 +228,8 @@ export default clerkMiddleware(
         return NextResponse.next();
       }
 
-      // Process URL parameters
-      console.log(chalk.yellow("🔍 Processing URL parameters..."));
-      const searchParams = request.nextUrl.searchParams.toString();
-      const path = `${url.pathname}${
-        searchParams.length > 0 ? `?${searchParams}` : ""
-      }`;
-
-      // Handle root domain access
-      if (
-        hostname === "localhost:3000" ||
-        hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
-      ) {
-        console.log(chalk.magenta("🏠 Accessing root domain"));
-        return NextResponse.next();
-      }
-
-      // Handle subdomain rewrite
-      try {
-        console.log(chalk.cyan("🔄 Processing subdomain rewrite..."));
-        const rewriteUrl = new URL(`/${hostname}${path}`, request.url);
-        console.log(chalk.yellow("📝 Rewriting to:", rewriteUrl.toString()));
-        return NextResponse.rewrite(rewriteUrl);
-      } catch (error) {
-        console.warn(chalk.redBright("❌ Error creating rewrite URL:"), error);
-        return handleMiddlewareError(error, "URL rewrite");
-      }
+      // Handle subdomain routing
+      return handleSubdomainRewrite(request, hostname);
     } catch (error) {
       console.warn(
         chalk.redBright("❌ Unhandled error in Clerk Middleware:"),
@@ -222,6 +245,8 @@ const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/",
+  "/en/home/vehicles/KA03AL3782(.*)",
+  "/home(.*)",
   "/home",
   "/test",
   "/:locale",
@@ -309,7 +334,12 @@ const isPublicRoute = createRouteMatcher([
 
 // NOTE: Old matcher
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: [
+    "/((?!.+\\.[\\w]+$|_next).*)",
+    "/",
+    "/(en|es|pt)/:path*",
+    "/(api|trpc)(.*)",
+  ],
 };
 
 /**

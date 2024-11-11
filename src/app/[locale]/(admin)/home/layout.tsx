@@ -7,8 +7,8 @@ const AdminRoot = ({ children }: { children: ReactNode }) => {
   return (
     <main>
       <SignedOut>
-        <div className="flex justify-center py-24">
-          <SignIn afterSignUpUrl={"/welcome"} afterSignInUrl={"/home"} />
+        <div className="flex justify-center py-5">
+          <SignIn/>
         </div>
       </SignedOut>
       <SignedIn>

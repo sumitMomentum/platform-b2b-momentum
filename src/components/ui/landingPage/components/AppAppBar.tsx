@@ -121,11 +121,8 @@ export default function AppAppBar({ mode, toggleColorMode }) {
               mode={mode}
               toggleColorMode={toggleColorMode}
             />
-            <Link href={"/home"} passHref>
-              <Button
-                variant="contained"
-                size="small"
-              >
+            <Link href={"/sign-in"} passHref>
+              <Button variant="contained" size="small">
                 Sign in
               </Button>
             </Link>

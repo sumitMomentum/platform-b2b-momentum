@@ -199,7 +199,7 @@ const AdminSidebar = () => {
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" className=" space-y-1">
-                  <Navigation navigation={adminNavigation} />
+                  {/* <Navigation navigation={adminNavigation} /> */}
                 </ul>
               </li>
 
