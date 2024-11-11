@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { SignIn, SignedIn, SignedOut } from "@clerk/nextjs";
 import AdminLayout from "@/components/layouts/AdminLayout";
 import { RedirectSuperAadminInLogin } from "@/utils/facades/frontendFacades/superAdminFrontendFacade";
@@ -12,7 +12,7 @@ const AdminRoot = ({ children }: { children: ReactNode }) => {
         </div>
       </SignedOut>
       <SignedIn>
-        <div>
+        <div> 
           <AdminLayout>{children}</AdminLayout>
         </div>
         <RedirectSuperAadminInLogin url="/admin" />

@@ -242,12 +242,12 @@ const NewForm = ({
     return "";
   };
 
-  if (loading)
-    return (
-      <div>
-        <TableLoaderSkeleton count={4} />
-      </div>
-    );
+  // if (loading)
+  //   return (
+  //     <div>
+  //       <TableLoaderSkeleton count={4} />
+  //     </div>
+  //   );
 
   const getFielLabelInErrorCase = (key: string) => {
     //Parse key, if have language support, remove _lang

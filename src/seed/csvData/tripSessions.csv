@@ -1,0 +1,2 @@
+id,vehicleId,startTime,endTime,tripDuration,startSoc,endSoc,chargeConsumed,odometerStart,odometerEnd,distanceTravelled,createdAt,updatedAt
+1,KA03AL2088,2024-03-14 08:00:00,2024-03-14 09:30:00,90,85,65,15.5,12500,12580,80,2024-10-28 11:08:24.743,2024-10-28 11:08:24.743

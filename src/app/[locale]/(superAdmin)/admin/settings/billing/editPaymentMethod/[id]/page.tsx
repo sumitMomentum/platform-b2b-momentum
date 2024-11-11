@@ -26,12 +26,12 @@ const SuperAdminEditPaymentMethod = async ({
           </button>
         </Link>
       </div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <UpsertPaymentMethod
           paymentMethodId={Number(params.id)}
           values={values}
         />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

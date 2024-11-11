@@ -28,19 +28,19 @@ const AddMembership = async () => {
           },
         ]}
       />
-      <Suspense
+      {/* <Suspense
         fallback={
           <div>
             <PageLoader />
           </div>
         }
-      >
+      > */}
         <UpsertMembership
           values={[]}
           plans={plans.data}
           currencies={currencies}
         />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

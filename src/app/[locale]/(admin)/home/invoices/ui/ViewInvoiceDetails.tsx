@@ -24,7 +24,7 @@ const ViewInvoiceDetails = async ({ invoice }: { invoice: IInvoice }) => {
   const paymentMethods = await getPaymentMethods();
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <main id="invoicePrintDiv">
           <header className="relative isolate pt-16">
             <div
@@ -361,7 +361,7 @@ const ViewInvoiceDetails = async ({ invoice }: { invoice: IInvoice }) => {
             </div>
           </div>
         </main>
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

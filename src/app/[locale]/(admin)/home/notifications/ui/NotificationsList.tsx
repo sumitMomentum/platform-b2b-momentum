@@ -27,7 +27,7 @@ const NotificationsList = async ({
 
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         {data.length === 0 ? (
           <div className="flex justify-center items-center h-96">
             <NotFound message="No notifications found" />
@@ -55,7 +55,7 @@ const NotificationsList = async ({
             </div>
           </div>
         )}{" "}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

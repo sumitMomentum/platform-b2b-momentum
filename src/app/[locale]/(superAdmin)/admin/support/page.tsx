@@ -30,12 +30,12 @@ const SuperAdminSupportPage = ({
         ]}
       />
       <Search placeholder="Search for ticket ID, user name, organization or subject" />
-      <Suspense
+      {/* <Suspense
         key={query + Math.random}
         fallback={<TableLoaderSkeleton count={10} />}
-      >
+      > */}
         <SuperAdminTicketsList query={query} currentPage={currentPage} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };
