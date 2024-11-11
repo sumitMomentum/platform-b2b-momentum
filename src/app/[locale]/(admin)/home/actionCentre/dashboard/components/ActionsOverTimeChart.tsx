@@ -18,48 +18,46 @@ function AreaGradient({ color, id }: { color: string; id: string }) {
   );
 }
 
-function getDaysInMonth(month: number, year: number, numOfDays: number) {
+function getDaysInMonth(month: number, year: number) {
   const date = new Date(year, month, 0);
-  const monthName = date.toLocaleDateString('en-US', {
-    month: 'short',
-  });
+  const monthName = date.toLocaleDateString('en-US', { month: 'short' });
+  const daysInMonth = date.getDate();
   const days = [];
-  let i = 1;
-  while (days.length < numOfDays) {
+  for (let i = 1; i <= daysInMonth; i++) {
     days.push(`${monthName} ${i}`);
-    i += 1;
   }
   return days;
 }
 
-export default function SavingsOverTimeChart({ savingsData = [] }: { savingsData?: number[] }) {
+export default function ActionsClosedOverTimeChart({ month = 4, year = 2024 }: { month: number, year: number }) {
   const theme = useTheme();
-  const daysInMonth = 30; // For April, we have 30 days
-  const data = getDaysInMonth(4, 2024, daysInMonth); // Adjusted to have 30 days for April
+  const [loading, setLoading] = React.useState(false);
 
-  // Updated color palette with green shades
+  const daysInMonth = getDaysInMonth(month, year);
+
+  // Static data representing the number of actions closed each day (simulating the trend)
+  const actionsClosedData = [
+    5, 8, 4, 6, 7, 10, 9, 12, 14, 10, 15, 13, 
+    18, 20, 17, 15, 19, 22, 25, 28, 30, 27, 25, 22, 
+    20, 19, 18, 22, 25, 30
+  ];
+
+  // Calculate total and average actions closed
+  const totalActionsClosed = actionsClosedData.reduce((acc, val) => acc + val, 0);
+  const averageActionsClosed = totalActionsClosed / actionsClosedData.length;
+
+  // Updated color palette with blue shades (to indicate actions being closed)
   const colorPalette = [
-    theme.palette.success.light,  // Light green
-    theme.palette.success.main,   // Medium green
-    theme.palette.success.dark,   // Dark green
+    theme.palette.info.light,   // Light blue
+    theme.palette.info.main,    // Medium blue
+    theme.palette.info.dark,    // Dark blue
   ];
-
-  // Sample savings data for 30 days (adjusting for correct length)
-  const sampleSavingsData = [
-    120, 150, 130, 170, 180, 220, 250, 300, 400, 350, 450, 500, 
-    600, 550, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 
-    1150, 1200, 1250, 1300, 1350, 1400
-  ];
-
-  // Calculate total and average savings
-  const totalSavings = sampleSavingsData.reduce((acc, val) => acc + val, 0);
-  const averageSavings = totalSavings / sampleSavingsData.length;
 
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>
       <CardContent>
         <Typography component="h2" variant="subtitle2" gutterBottom>
-          Savings Over Time
+          Actions Closed Over Time
         </Typography>
         <Stack sx={{ justifyContent: 'space-between' }}>
           <Stack
@@ -71,37 +69,37 @@ export default function SavingsOverTimeChart({ savingsData = [] }: { savingsData
             }}
           >
             <Typography variant="h4" component="p">
-              {totalSavings.toFixed(2)} USD
+              {totalActionsClosed} Actions
             </Typography>
-            <Chip size="small" color="success" label={`+${Math.round(averageSavings)}%`} />
+            <Chip size="small" color="info" label={`+${Math.round(averageActionsClosed)} avg`} />
           </Stack>
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            Total savings per day for the last 30 days
+            Number of actions closed each day for the selected month
           </Typography>
         </Stack>
         <LineChart
           colors={colorPalette}
           xAxis={[{
             scaleType: 'point',
-            data,
+            data: daysInMonth,
             tickInterval: (index, i) => (i + 1) % 5 === 0,
           }]}
           series={[{
-            id: 'savings',
-            label: 'Savings',
+            id: 'actionsClosed',
+            label: 'Actions Closed',
             showMark: false,
             curve: 'linear',
             stack: 'total',
             area: true,
             stackOrder: 'ascending',
-            data: sampleSavingsData, // Use the sample savings data
+            data: actionsClosedData, // Use the static data for actions closed
           }]}
           height={250}
           margin={{ left: 50, right: 20, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}
           sx={{
-            '& .MuiAreaElement-series-savings': {
-              fill: "url('#savings')",  // Apply the green gradient
+            '& .MuiAreaElement-series-actionsClosed': {
+              fill: "url('#actionsClosed')",  // Apply the blue gradient
             },
           }}
           slotProps={{
@@ -110,7 +108,7 @@ export default function SavingsOverTimeChart({ savingsData = [] }: { savingsData
             },
           }}
         >
-          <AreaGradient color={theme.palette.success.dark} id="savings" /> {/* Green gradient */}
+          <AreaGradient color={theme.palette.info.dark} id="actionsClosed" /> {/* Blue gradient */}
         </LineChart>
       </CardContent>
     </Card>

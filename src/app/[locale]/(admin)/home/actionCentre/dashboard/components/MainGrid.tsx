@@ -3,35 +3,52 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Copyright from '../internals/components/Copyright';
-import CustomizedDataGrid from './CustomizedDataGrid';
 import StatCard, { StatCardProps } from './StatCard';
-import SavingsOverTimeChart from './SavingsOverTimeChart';
-import SavingsDistributionChart from './SavingsDistributionChart';
-import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions"; // Make sure this function is correctly imported
+import ActionsClosedOverTimeChart from './ActionsOverTimeChart';
+import SeverityDistributionChart from './SeverityDistributionChart';
+import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions"; // Ensure this is correct
+import CustomizedDataGrid from './CustomizedDataGrid';
 
-// Function to aggregate vehicle data
+// Function to aggregate vehicle actions data
 const aggregateData = (data) => {
-  const totalVehicles = data.length;
+  const totalActions = data.length;
+  let confirmedActions = 0;
+  let totalSeverityValue = 0;
+  let totalTimeToClose = 0;
 
-  // Initialize sum values
-  let totalCostSavingChargingLifeTimeEstimate = 0;
-  let totalCostSavingChargingMonthly = 0;
-  let totalRangeIncreaseMonthly = 0;
-  let totalBatteryCycleSavingMonthly = 0;
+  // Define severity mapping for numerical calculation
+  const severityMapping = {
+    Low: 1,
+    Medium: 2,
+    High: 3
+  };
 
-  // Calculate aggregates, safely handling invalid data
-  data.forEach(vehicle => {
-    totalCostSavingChargingLifeTimeEstimate += vehicle.costSavingChargingLifeTimeEstimate || 0;
-    totalCostSavingChargingMonthly += vehicle.costSavingChargingMonthly || 0;
-    totalRangeIncreaseMonthly += vehicle.rangeIncreaseMonthly || 0;
-    totalBatteryCycleSavingMonthly += vehicle.batteryCycleSavingMonthly || 0;
+  // Calculate aggregates
+  data.forEach(action => {
+    // Count confirmed actions
+    if (action.confirm) {
+      confirmedActions++;
+    }
+
+    // Calculate total severity score
+    totalSeverityValue += severityMapping[action.severity] || 0;
+
+    // Calculate time to close (in hours)
+    const createdDate = new Date(action.createdDateTime);
+    const closedDate = new Date(action.closedDateTime);
+    const timeToClose = (closedDate - createdDate) / (1000 * 60 * 60); // Convert ms to hours
+    totalTimeToClose += timeToClose || 0;
   });
 
+  // Calculate averages
+  const avgSeverity = totalSeverityValue / totalActions || 0;
+  const avgTimeToClose = totalTimeToClose / totalActions || 0;
+
   return {
-    totalCostSavingChargingLifeTimeEstimate: totalCostSavingChargingLifeTimeEstimate / totalVehicles || 0,
-    totalCostSavingChargingMonthly: totalCostSavingChargingMonthly / totalVehicles || 0,
-    totalRangeIncreaseMonthly: totalRangeIncreaseMonthly / totalVehicles || 0,
-    totalBatteryCycleSavingMonthly: totalBatteryCycleSavingMonthly / totalVehicles || 0
+    totalActions,
+    confirmedActions,
+    avgSeverity,
+    avgTimeToClose
   };
 };
 
@@ -42,7 +59,7 @@ export default function MainGrid() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch the actual vehicle data using the function
+        // Fetch the actual vehicle actions data
         const data = await getAllVehicleActions();
         
         // If data is fetched successfully, calculate aggregates
@@ -65,53 +82,49 @@ export default function MainGrid() {
 
   // Aggregate the data for the stat cards
   const {
-    totalCostSavingChargingLifeTimeEstimate,
-    totalCostSavingChargingMonthly,
-    totalRangeIncreaseMonthly,
-    totalBatteryCycleSavingMonthly
+    totalActions,
+    confirmedActions,
+    avgSeverity,
+    avgTimeToClose
   } = aggregateData(vehicleDataItems);
 
   // Data for the Stat Cards
   const statCards: StatCardProps[] = [
     {
-      title: 'Average Savings (Lifetime)',
-      value: `${totalCostSavingChargingLifeTimeEstimate.toFixed(2)} USD`,
-      interval: 'Lifetime Estimate',
-      trend: totalCostSavingChargingLifeTimeEstimate > 10000 ? 'up' : 'neutral',
+      title: 'Total Actions Taken',
+      value: `${totalActions}`,
+      interval: 'All Time',
+      trend: totalActions > 50 ? 'up' : 'neutral',
       data: [
-        totalCostSavingChargingMonthly,
-        totalCostSavingChargingLifeTimeEstimate
-      ], 
+        totalActions
+      ],
     },
     {
-      title: 'Average Monthly Charging Savings',
-      value: `${totalCostSavingChargingMonthly.toFixed(2)} USD`,
-      interval: 'Monthly',
-      trend: totalCostSavingChargingMonthly > 500 ? 'up' : 'neutral',
+      title: 'Confirmed Actions',
+      value: `${confirmedActions}`,
+      interval: 'All Time',
+      trend: confirmedActions > totalActions / 2 ? 'up' : 'neutral',
       data: [
-        totalCostSavingChargingMonthly,
-        totalCostSavingChargingLifeTimeEstimate
-      ], 
+        confirmedActions
+      ],
     },
     {
-      title: 'Average Range Increase (Monthly)',
-      value: `${totalRangeIncreaseMonthly.toFixed(2)} km`,
-      interval: 'Monthly',
-      trend: totalRangeIncreaseMonthly > 400 ? 'up' : 'neutral',
+      title: 'Average Severity Level',
+      value: `${avgSeverity.toFixed(2)}`, // Severity level as a decimal
+      interval: 'All Time',
+      trend: avgSeverity > 2 ? 'up' : 'neutral', // Severity greater than 2 means high
       data: [
-        totalRangeIncreaseMonthly,
-        totalRangeIncreaseMonthly * 12, // Annual estimation
-      ], 
+        avgSeverity
+      ],
     },
     {
-      title: 'Average Battery Cycle Savings (Monthly)',
-      value: `${totalBatteryCycleSavingMonthly.toFixed(2)} USD`,
-      interval: 'Monthly',
-      trend: totalBatteryCycleSavingMonthly > 1.5 ? 'up' : 'neutral',
+      title: 'Average Time to Close (hrs)',
+      value: `${avgTimeToClose.toFixed(2)} hrs`,
+      interval: 'All Time',
+      trend: avgTimeToClose < 24 ? 'down' : 'neutral', // Assuming actions closed in < 24hrs is good
       data: [
-        totalBatteryCycleSavingMonthly,
-        totalBatteryCycleSavingMonthly * 12, // Annual estimation
-      ], 
+        avgTimeToClose
+      ],
     },
   ];
 
@@ -129,13 +142,14 @@ export default function MainGrid() {
           </Grid>
         ))}
 
-        {/* Savings Over Time Chart */}
+        {/* Actions Closed Over Time Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <SavingsOverTimeChart />
+          <ActionsClosedOverTimeChart />
         </Grid>
-        {/* Savings Distribution Chart */}
+
+        {/* Severity Distribution Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <SavingsDistributionChart />
+          <SeverityDistributionChart actionsData={vehicleDataItems} />
         </Grid>
       </Grid>
 
@@ -145,7 +159,7 @@ export default function MainGrid() {
       </Typography>
       <Grid container spacing={2} columns={12}>
         {/* Data Grid Section */}
-        <Grid>
+        <Grid item xs={12}>
           <CustomizedDataGrid />
         </Grid>
       </Grid>
