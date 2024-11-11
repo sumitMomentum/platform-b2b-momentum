@@ -337,7 +337,7 @@ export const config = {
   matcher: [
     "/((?!.+\\.[\\w]+$|_next).*)",
     "/",
-    "/(en|es|pt)/:path*",
+    // "/(en|es|pt)/:path*",
     "/(api|trpc)(.*)",
   ],
 };

@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "dev": "dotenv -e .env.local -- npx next dev --turbopack",
+    "dev": "dotenv -e .env.local -- npx next dev --turbo",
     "build:local": "dotenv -e .env.prod -- npx ts-node src/seed/seed.ts && npx prisma generate && next build",
     "build": "npx prisma generate && next build",
     "start": "next start",
@@ -47,7 +47,7 @@
     "lru-cache": "^11.0.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.11.4",
-    "next": "^15.0.2",
+    "next": "14.2",
     "next-intl": "^3.25.0",
     "prisma-dbml-generator": "^0.12.0",
     "react": "^18.3.1",
