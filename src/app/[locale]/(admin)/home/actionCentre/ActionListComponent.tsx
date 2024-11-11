@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 
-// Define ActionItem type here
 type ActionItem = {
   id: number;
   vin: string;
@@ -13,11 +12,10 @@ type ActionItem = {
   bestPractice: string;
   actionToBeTaken: string;
   confirm: boolean;
-  CreatedDateTime: string;
-  ClosedDateTime?: string;
+  CreatedDateTime: any;
+  ClosedDateTime?: any;
 };
 
-// Import getAllVehicleActions
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 
 interface ActionListComponentProps {
@@ -54,30 +52,22 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
           params.value === 'High' ? 'bg-red-500 hover:bg-red-700 text-white' :
           params.value === 'Medium' ? 'bg-yellow-400 hover:bg-yellow-600 text-gray-800' :
           'bg-green-500 hover:bg-green-700 text-white'
-        } px-2 py-2`}>
-          {params.value}
-        </div>
+        } px-2 py-2`}>{params.value}</div>
       )
     },
-    { field: 'description', headerName: 'Description', flex: 1 },
-    { field: 'bestPractice', headerName: 'Best Practice', flex: 1 },
-    { field: 'actionToBeTaken', headerName: 'Action To be Taken', flex: 1 },
+    { field: 'description', headerName: 'Description', flex: 2 },
+    { field: 'bestPractice', headerName: 'Best Practice', flex: 2 },
+    { field: 'actionToBeTaken', headerName: 'Action To be Taken', flex: 2 },
     { field: 'confirm', headerName: 'Confirm', flex: 1, renderCell: (params) => (
-        <button className="bg-gray-500 p-2 px-8 hover:bg-gray-800 text-white">
-          Action {params.value ? "Closed" : "Pending"}
+        <button className={`${
+          params.value ? 'bg-green-500 hover:bg-green-700' : 'bg-gray-500 hover:bg-gray-800'
+        } p-2 px-8 text-white`}>
+          {params.value ? "Closed" : "Pending"}
         </button>
       )
     },
-    { field: 'CreatedDateTime', headerName: 'Created Date', flex: 1, renderCell: (params) => (
-        new Date(Date.parse(params.value)).toLocaleString()
-      )
-    },
-    { field: 'ClosedDateTime', headerName: 'Closed Date', flex: 1, renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {new Date(Date.parse(params.value)).toLocaleString()}
-        </div>
-      )
-    },
+    { field: 'CreatedDateTime', headerName: 'Created Date', flex: 1, renderCell: (params) => params.value || "N/A" },
+    { field: 'ClosedDateTime', headerName: 'Closed Date', flex: 1, renderCell: (params) => params.value || "N/A" },
   ];
 
   return (
@@ -85,15 +75,13 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
       <DataGrid
         rows={actionItems}
         columns={columns}
-        getRowId={(row) => row.vin}
+        getRowId={(row) => row.id} // Use `id` for row identification
         loading={loading}
         autoHeight
         disableColumnMenu
         pageSizeOptions={[5, 10]}
         initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
-          },
+          pagination: { paginationModel: { page: 0, pageSize: 10 } },
         }}
       />
     </Paper>
