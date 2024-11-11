@@ -5,11 +5,6 @@ import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 // import { LoadingProvider } from "@/contexts/LoadingContext";
-import { routing } from "@/i18n/routing";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import { locales } from "@/i18n";
-import { notFound } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 

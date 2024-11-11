@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
-import { locales } from "./i18n";
+import { defaultLocale, localePrefix, locales } from "./i18n";
 import chalk, {
   cyan,
   green,
@@ -21,7 +21,19 @@ import { routing } from "./i18n/routing";
  * Handles locale detection, routing, and alternate language links
  * @see https://next-intl-docs.vercel.app/docs/routing/middleware
  */
-const createLocaleRoutingMiddleware = createMiddleware(routing);
+// const createLocaleRoutingMiddleware = createMiddleware(routing);
+const createLocaleRoutingMiddleware = createMiddleware({
+  // Supported locales configuration
+  locales: locales,
+  // Default locale when no locale is detected
+  defaultLocale: "en",
+  // Enable generation of alternate language links
+  alternateLinks: true,
+  // Optional: Locale prefix mode
+  localePrefix: "always",
+  // Optional: Custom locale detection from different sources
+  localeDetection: true,
+});
 
 // You would typically fetch these keys from a external store or environment variables.
 // const tenantKeys = {
@@ -337,8 +349,8 @@ export const config = {
   matcher: [
     "/((?!.+\\.[\\w]+$|_next).*)",
     "/",
-    // "/(en|es|pt)/:path*",
     "/(api|trpc)(.*)",
+    // "/(en|es|pt)/:path*",
   ],
 };
 
