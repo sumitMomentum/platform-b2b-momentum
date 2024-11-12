@@ -10,45 +10,49 @@ import SavingsDistributionChart from './SavingsDistributionChart';
 import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
 
 const MainGrid = () => {
-  const [data, setData] = React.useState<StatCardProps[]>([]);
+  const [statCardData, setStatCardData] = React.useState<StatCardProps[]>([]);
+  const [savingsOverTimeData, setSavingsOverTimeData] = React.useState<number[]>([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getVehicleBenefits(); // Fetch data using getVehicleBenefits
+        const response = await getVehicleBenefits();
 
-        // Calculate inferences
+        // Calculate inferences for stat cards
         const totalSavings = response.reduce((acc, item) => acc + item.costSavingChargingMonthly, 0);
         const averageSavings = (totalSavings / response.length) || 0;
         const totalRangeIncrease = response.reduce((acc, item) => acc + item.rangeIncreaseMonthly, 0);
 
-        const formattedData = [
+        const formattedStatCardData = [
           {
             title: 'Total Savings',
             value: `${totalSavings.toFixed(2)} USD`,
             interval: 'Last 30 days',
-            trend: 'up', // This would be calculated based on your logic
-            data: response.map(item => item.costSavingChargingMonthly) // Example data points
+            trend: 'up',
+            data: response.map(item => item.costSavingChargingMonthly)
           },
           {
             title: 'Average Savings',
             value: `${averageSavings.toFixed(2)} USD`,
             interval: 'Last 30 days',
-            trend: 'neutral', // This would be calculated based on your logic
-            data: response.map(item => item.costSavingChargingMonthly) // Example data points
+            trend: 'neutral',
+            data: response.map(item => item.costSavingChargingMonthly)
           },
           {
             title: 'Total Range Increase',
             value: `${totalRangeIncrease.toFixed(2)} km`,
             interval: 'Last 30 days',
-            trend: 'up', // This would be calculated based on your logic
-            data: response.map(item => item.rangeIncreaseMonthly) // Example data points
+            trend: 'up',
+            data: response.map(item => item.rangeIncreaseMonthly)
           }
-          // Add more inferences as needed
         ];
 
-        setData(formattedData);
+        // Savings data over time for the chart
+        const savingsOverTime = response.map(item => item.costSavingChargingMonthly);
+
+        setStatCardData(formattedStatCardData);
+        setSavingsOverTimeData(savingsOverTime);
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch data', error);
@@ -71,15 +75,15 @@ const MainGrid = () => {
       </Typography>
       <Grid container spacing={2} columns={12} sx={{ mb: (theme) => theme.spacing(2) }}>
         {/* Stat Cards */}
-        {data.map((card, index) => (
+        {statCardData.map((card, index) => (
           <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
             <StatCard {...card} />
           </Grid>
         ))}
 
-        {/* Sessions and Page Views Charts */}
+        {/* Savings Over Time Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <SavingsOverTimeChart />
+          <SavingsOverTimeChart savingsData={savingsOverTimeData} />
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
           <SavingsDistributionChart />

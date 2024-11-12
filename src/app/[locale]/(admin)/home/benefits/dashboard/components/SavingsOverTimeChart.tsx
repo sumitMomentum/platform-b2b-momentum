@@ -44,16 +44,9 @@ export default function SavingsOverTimeChart({ savingsData = [] }: { savingsData
     theme.palette.success.dark,   // Dark green
   ];
 
-  // Sample savings data for 30 days (adjusting for correct length)
-  const sampleSavingsData = [
-    120, 150, 130, 170, 180, 220, 250, 300, 400, 350, 450, 500, 
-    600, 550, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 
-    1150, 1200, 1250, 1300, 1350, 1400
-  ];
-
   // Calculate total and average savings
-  const totalSavings = sampleSavingsData.reduce((acc, val) => acc + val, 0);
-  const averageSavings = totalSavings / sampleSavingsData.length;
+  const totalSavings = savingsData.reduce((acc, val) => acc + val, 0);
+  const averageSavings = totalSavings / savingsData.length;
 
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>
@@ -94,7 +87,7 @@ export default function SavingsOverTimeChart({ savingsData = [] }: { savingsData
             stack: 'total',
             area: true,
             stackOrder: 'ascending',
-            data: sampleSavingsData, // Use the sample savings data
+            data: savingsData, // Use the real savings data
           }]}
           height={250}
           margin={{ left: 50, right: 20, top: 20, bottom: 20 }}
