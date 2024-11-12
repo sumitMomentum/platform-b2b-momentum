@@ -7,47 +7,62 @@ import CustomizedDataGrid from './CustomizedDataGrid';
 import StatCard, { StatCardProps } from './StatCard';
 import SavingsOverTimeChart from './SavingsOverTimeChart';
 import SavingsDistributionChart from './SavingsDistributionChart';
+import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
 
-const data: StatCardProps[] = [
-  {
-    title: 'Total Savings',
-    value: '10,000 USD',
-    interval: 'Last 30 days',
-    trend: 'up',
-    data: [
-      2000, 1500, 1800, 2500, 3000, 2200, 1900, 2000, 1500, 1800, 2500, 3000, 3200, 3900, 4200, 4400, 4600
-    ], // 17 data points
-  },
-  {
-    title: 'Average Savings',
-    value: '500 USD',
-    interval: 'Last 30 days',
-    trend: 'neutral',
-    data: [
-      1500, 1200, 1400, 1700, 1800, 1600, 1500, 1400, 1600, 1700, 1500, 1300, 1500, 1600, 1700, 1800, 1900
-    ], // 17 data points
-  },
-  {
-    title: 'Savings in Charging',
-    value: '3,000 USD',
-    interval: 'Last 30 days',
-    trend: 'up',
-    data: [
-      1500, 1200, 1400, 1700, 1800, 1600, 1500, 1600, 1400, 1500, 1600, 1700, 1800, 1900, 1600, 1700, 1800
-    ], // 17 data points
-  },
-  {
-    title: 'Savings in Battery Life',
-    value: '2,500 USD',
-    interval: 'Last 30 days',
-    trend: 'up',
-    data: [
-      1000, 800, 900, 1200, 1300, 1000, 1100, 1200, 1300, 1200, 1000, 1100, 1200, 1300, 1400, 1500, 1600
-    ], // 17 data points
-  },
-];
+const MainGrid = () => {
+  const [data, setData] = React.useState<StatCardProps[]>([]);
+  const [loading, setLoading] = React.useState(true);
 
-export default function MainGrid() {
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getVehicleBenefits(); // Fetch data using getVehicleBenefits
+
+        // Calculate inferences
+        const totalSavings = response.reduce((acc, item) => acc + item.costSavingChargingMonthly, 0);
+        const averageSavings = (totalSavings / response.length) || 0;
+        const totalRangeIncrease = response.reduce((acc, item) => acc + item.rangeIncreaseMonthly, 0);
+
+        const formattedData = [
+          {
+            title: 'Total Savings',
+            value: `${totalSavings.toFixed(2)} USD`,
+            interval: 'Last 30 days',
+            trend: 'up', // This would be calculated based on your logic
+            data: response.map(item => item.costSavingChargingMonthly) // Example data points
+          },
+          {
+            title: 'Average Savings',
+            value: `${averageSavings.toFixed(2)} USD`,
+            interval: 'Last 30 days',
+            trend: 'neutral', // This would be calculated based on your logic
+            data: response.map(item => item.costSavingChargingMonthly) // Example data points
+          },
+          {
+            title: 'Total Range Increase',
+            value: `${totalRangeIncrease.toFixed(2)} km`,
+            interval: 'Last 30 days',
+            trend: 'up', // This would be calculated based on your logic
+            data: response.map(item => item.rangeIncreaseMonthly) // Example data points
+          }
+          // Add more inferences as needed
+        ];
+
+        setData(formattedData);
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch data', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
+
   return (
     <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
       {/* Overview Section */}
@@ -86,4 +101,6 @@ export default function MainGrid() {
       <Copyright sx={{ my: 4 }} />
     </Box>
   );
-}
+};
+
+export default MainGrid;
