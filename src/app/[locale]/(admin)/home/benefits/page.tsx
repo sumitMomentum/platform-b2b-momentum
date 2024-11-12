@@ -11,7 +11,7 @@ const Page = async () => {
       <PageName
         name={("Benefits")}
         breadcrumbs={[
-          { name: "Home", href: "/home" },
+          { name: "Home", href: "/home" }, 
           { name: "Benefits", href: "/home/benefits" },
         ]}
       />

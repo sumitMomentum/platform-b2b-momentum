@@ -20,7 +20,7 @@ import {
   datePickersCustomizations,
   treeViewCustomizations,
 } from './theme/customizations';
-import SuspenseDashboard from '@/components/suspenseSkeleton/SuspenseDashboard';
+import PageName from '@/components/ui/commons/PageName';
 
 const xThemeComponents = {
   ...chartsCustomizations,
@@ -32,6 +32,14 @@ const xThemeComponents = {
 export default function Page(props: { disableCustomTheme?: boolean }) {
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
+      <PageName
+        name={("Action Centre Dashboard")}
+        breadcrumbs={[
+          { name: "Home", href: "/home" }, 
+          { name: "Action Centre", href: "/home/actionCentre" }, 
+          { name: "Action Centre Dashboard", href: "/home/actionCentre/dashboard" },
+        ]}
+      />
       <CssBaseline enableColorScheme />
       <Box sx={{ display: 'flex' }}>
         <Box
