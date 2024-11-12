@@ -2,7 +2,6 @@ import PageName from "@/components/ui/commons/PageName";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import BenefitsListComponent from "./BenefitsListComponent";
-import BenefitsGraphComponent from "./BenefitsGraphComponent";
 
 const Page = async () => {
   // const t = await getTranslations("AdminLayout.pages.benefits");
