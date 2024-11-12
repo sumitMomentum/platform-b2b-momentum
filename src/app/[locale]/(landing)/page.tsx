@@ -3,6 +3,7 @@ import AffiliateHandler from "@/components/core/AffiliateHandler";
 import CTAOffer from "@/components/ui/commons/CTAOffer";
 import TestimonialMultiple from "./ui/TestimonialMultiple";
 import dynamic from "next/dynamic";
+import locale from "date-fns/locale/af";
 // import MarketingPage from "@/components/ui/landingPage/MarketingPage";
 
 const MarketingPage = dynamic(
@@ -10,7 +11,7 @@ const MarketingPage = dynamic(
   { ssr: false }
 );
 
-export default function LandingPage() {
+export default function LandingPage({ params }) {
   return <MarketingPage />;
 }
 
