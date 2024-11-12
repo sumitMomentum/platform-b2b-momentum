@@ -12,6 +12,7 @@ import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicl
 const MainGrid = () => {
   const [statCardData, setStatCardData] = React.useState<StatCardProps[]>([]);
   const [savingsOverTimeData, setSavingsOverTimeData] = React.useState<number[]>([]);
+  const [vehicleBenefits, setVehicleBenefits] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -53,6 +54,7 @@ const MainGrid = () => {
 
         setStatCardData(formattedStatCardData);
         setSavingsOverTimeData(savingsOverTime);
+        setVehicleBenefits(response);
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch data', error);
@@ -86,7 +88,7 @@ const MainGrid = () => {
           <SavingsOverTimeChart savingsData={savingsOverTimeData} />
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
-          <SavingsDistributionChart />
+          <SavingsDistributionChart savingsData={vehicleBenefits} />
         </Grid>
       </Grid>
 
@@ -96,8 +98,8 @@ const MainGrid = () => {
       </Typography>
       <Grid container spacing={2} columns={12}>
         {/* Data Grid Section */}
-        <Grid>
-          <CustomizedDataGrid />
+        <Grid item xs={12}>
+          <CustomizedDataGrid vehicleBenefits={vehicleBenefits} />
         </Grid>
       </Grid>
 

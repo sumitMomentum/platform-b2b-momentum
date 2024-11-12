@@ -6,41 +6,20 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useTheme } from '@mui/material/styles';
-import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
 
-export default function SavingsDistributionChart() {
+export default function SavingsDistributionChart({ savingsData }: { savingsData: any[] }) {
   const theme = useTheme();
-  const [vehicleData, setVehicleData] = React.useState<{ label: string, value: number }[]>([]);
-  const [loading, setLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getVehicleBenefits(); // Fetch data using getVehicleBenefits
-        const data = response.map(item => ({
-          label: item.vehicleId,
-          value: item.costSavingChargingMonthly
-        }));
-        setVehicleData(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Failed to fetch data', error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const vehicleData = savingsData.map(item => ({
+    label: item.vehicleId,
+    value: item.costSavingChargingMonthly
+  }));
 
   const colorPalette = [
     (theme.vars || theme).palette.success.dark,  // Dark green
     (theme.vars || theme).palette.success.main,  // Medium green
     (theme.vars || theme).palette.success.light, // Light green
   ];
-
-  if (loading) {
-    return <Typography>Loading...</Typography>;
-  }
 
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 
@@ -19,27 +19,11 @@ type BenefitItem = {
   revenueIncreaseLifetime: number;
 };
 
-import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
+interface CustomizedDataGridProps {
+  vehicleBenefits: BenefitItem[];
+}
 
-const CustomizedDataGrid: React.FC = () => {
-  const [vehicleBenefits, setVehicleBenefits] = useState<BenefitItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getVehicleBenefits();
-        setVehicleBenefits(data || []);
-      } catch (error) {
-        console.error("Error fetching vehicle benefits data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const CustomizedDataGrid: React.FC<CustomizedDataGridProps> = ({ vehicleBenefits }) => {
   const columns: GridColDef[] = [
     { field: "vin", headerName: "VIN", flex: 1, minWidth: 150 },
     { field: "batteryCycleSavingMonthly", headerName: "Battery Cycle Saving (Monthly)", flex: 1, minWidth: 200 },
@@ -80,7 +64,6 @@ const CustomizedDataGrid: React.FC = () => {
         rows={vehicleBenefits}
         columns={columns}
         getRowId={(row) => row.vin}
-        loading={loading}
         autoHeight
         disableColumnMenu
         pageSizeOptions={[5, 10]}
