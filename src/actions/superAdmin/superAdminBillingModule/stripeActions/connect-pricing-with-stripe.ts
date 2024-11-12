@@ -60,7 +60,7 @@ export const connectPricingWithStripe = async ({
 
       const currency = await prisma.adminCurrencies.findFirst({
         where: {
-          code: currencyCode.toLowerCase() ?? "usd",
+          code: currencyCode?.toLowerCase() ?? "usd",
         },
       });
 
@@ -70,7 +70,7 @@ export const connectPricingWithStripe = async ({
 
       const planPayload: Stripe.PlanCreateParams = {
         amount: Math.round(pricing.price * currency.rate * 100),
-        currency: currencyCode.toLowerCase() ?? "usd",
+        currency: currencyCode?.toLowerCase() ?? "usd",
         interval: intervaltype,
         interval_count: intervalCount,
         product: stripeProductId,
@@ -87,7 +87,10 @@ export const connectPricingWithStripe = async ({
         const pricingSetting = await prisma.pricingSetting.findFirst({
           where: {
             pricingId: pricingId,
-            settingName: "stripePriceId_" + currencyCode.toLowerCase() ?? "usd",
+            settingName:
+              "stripePriceId_" + currencyCode
+                ? currencyCode.toLowerCase()
+                : "usd",
           },
         });
 
@@ -100,7 +103,10 @@ export const connectPricingWithStripe = async ({
           },
           create: {
             pricingId: pricingId,
-            settingName: "stripePriceId_" + currencyCode.toLowerCase() ?? "usd",
+            settingName:
+              "stripePriceId_" + currencyCode
+                ? currencyCode.toLowerCase()
+                : "usd",
             settingValue: stripePrice.id,
           },
         });

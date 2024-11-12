@@ -21,7 +21,7 @@ export async function validateClerkRequest(request: Request) {
     "svix-signature": headerPayload.get("svix-signature")!,
   };
   const wh = new Webhook(webhookSecret);
-  console.log("Secret - ",webhookSecret);
+  console.log("Secret - ", webhookSecret);
   return wh.verify(payloadString, svixHeaders) as WebhookEvent;
 }
 
@@ -57,7 +57,9 @@ const getUserClerkId = async (userId: number) => {
 };
 
 export const getOrganizationMembers = async (organizationId: string) => {
-  return await clerkClient.organizations.getOrganizationMembershipList({
+  return await (
+    await clerkClient()
+  ).organizations.getOrganizationMembershipList({
     organizationId,
   });
 };
@@ -88,11 +90,15 @@ export const handleUpdateDataForUser = async ({
 
   if (scope === "publicMetadata") {
     if (userType === "user") {
-      await clerkClient.users.updateUserMetadata(userId, {
+      await (
+        await clerkClient()
+      ).users.updateUserMetadata(userId, {
         publicMetadata: data,
       });
     } else {
-      await clerkClient.organizations.updateOrganizationMetadata(userId, {
+      await (
+        await clerkClient()
+      ).organizations.updateOrganizationMetadata(userId, {
         publicMetadata: data,
       });
     }
@@ -100,18 +106,24 @@ export const handleUpdateDataForUser = async ({
 
   if (scope === "privateMetadata") {
     if (userType === "user") {
-      await clerkClient.users.updateUserMetadata(userId, {
+      await (
+        await clerkClient()
+      ).users.updateUserMetadata(userId, {
         privateMetadata: data,
       });
     } else {
-      await clerkClient.organizations.updateOrganizationMetadata(userId, {
+      await (
+        await clerkClient()
+      ).organizations.updateOrganizationMetadata(userId, {
         privateMetadata: data,
       });
     }
   }
 
   if (scope === "unsafeMetadata") {
-    await clerkClient.users.updateUserMetadata(userId, {
+    await (
+      await clerkClient()
+    ).users.updateUserMetadata(userId, {
       unsafeMetadata: data,
     });
   }
@@ -124,7 +136,7 @@ export const getUserOrganizations = async (userId: number) => {
 };
 
 export const getClerkUserByExternalId = async (externalId: string) => {
-  return await clerkClient.users.getUser(externalId);
+  return await (await clerkClient()).users.getUser(externalId);
 };
 
 export const getUserInBdByExternalId = async (externalId: string) => {
@@ -143,13 +155,13 @@ export const getUserInClerk = async () => {
 };
 
 export const deleteClerkUser = async (userId: string) => {
-  await clerkClient.users.deleteUser(userId);
+  await (await clerkClient()).users.deleteUser(userId);
 };
 
 export const createClerkUser = async (payload: any) => {
-  return await clerkClient.users.createUser(payload);
+  return await (await clerkClient()).users.createUser(payload);
 };
 
 export const createClerkOrganization = async (payload: any) => {
-  return await clerkClient.organizations.createOrganization(payload);
+  return await (await clerkClient()).organizations.createOrganization(payload);
 };

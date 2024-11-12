@@ -58,7 +58,7 @@ const validateRequest = async (request: NextRequest) => {
   console.log(chalk.yellow("🔍 Validating request headers..."));
   console.log(request.headers);
 
-  const host = await request.headers.get("host");
+  const host = await (await request.headers).get("host");
   if (!host) {
     console.warn(chalk.redBright("❌ Missing host header"));
     return new NextResponse(JSON.stringify({ error: "Missing host header" }), {
@@ -203,7 +203,7 @@ export default clerkMiddleware(
       if (validationError) return validationError;
 
       // Process hostname
-      const host = await request.headers.get("host")!;
+      const host = await (await request.headers).get("host")!;
       const hostname = host.replace(
         ".localhost:3000",
         `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
