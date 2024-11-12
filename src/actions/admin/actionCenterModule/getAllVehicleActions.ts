@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 
 export const getAllVehicleActions = async () => {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) {
     throw new Error("Unauthorized");

@@ -7,7 +7,7 @@ import prisma from "@/lib/db";
 export const getSupportTicketById = async (ticketId: number): Promise<any> => {
   if (!ticketId) throw new Error("Ticket id is required");
 
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
 
   const { userId } = await getUser(userClerk);

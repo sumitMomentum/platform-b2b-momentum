@@ -14,7 +14,7 @@ import chalk, {
 chalk.level = 3;
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { get } from "http";
-import { routing } from "./i18n/routing";
+import { headers } from "next/headers";
 
 /**
  * Internationalization middleware configuration
@@ -184,7 +184,14 @@ export default clerkMiddleware(
       console.log(chalk.yellow("📝 Request details:"), {
         url: request.url,
         method: request.method,
-        headers: Object.fromEntries(request.headers.entries()),
+        headers: {
+          host: request.headers.get("host"),
+          origin: request.headers.get("origin"),
+          referer: request.headers.get("referer"),
+          "user-agent": request.headers.get("user-agent"),
+          "accept-language": request.headers.get("accept-language"),
+          " content-type": request.headers.get("content-type"),
+        },
       });
 
       // Handle internationalization
@@ -204,7 +211,7 @@ export default clerkMiddleware(
 
       // Protect non-public routes
       if (!isPublicRoute(request)) {
-        await auth.protect();
+        auth.protect();
       }
 
       // Extract authentication details
@@ -257,9 +264,9 @@ const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/",
-  "/en/home/vehicles/KA03AL3782(.*)",
-  "/home(.*)",
-  "/home",
+  // "/en/home/vehicles/KA03AL3782(.*)",
+  // "/home(.*)",
+  // "/home",
   "/test",
   "/:locale",
   "/:locale/api(.*)",

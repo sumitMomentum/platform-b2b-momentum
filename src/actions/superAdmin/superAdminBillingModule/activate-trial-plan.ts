@@ -19,7 +19,7 @@ export const activateTrialPlan = async ({
   pricingId: number;
   currencyId: number;
 }) => {
-  const userClerk = auth();
+  const userClerk = await auth();
 
   if (!userClerk) throw new Error("client clerk not found");
 

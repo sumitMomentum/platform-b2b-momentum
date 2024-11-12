@@ -8,7 +8,7 @@ import { createMovementAmountForUser } from "./create-amount-movement";
 import { revalidatePath } from "next/cache";
 import { calculateInvoiceTotal } from "@/utils/facades/serverFacades/paymentFacade";
 export const payInvoiceWitWallet = async (invoiceId: number) => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { userId } = await getUser(userClerk);
 

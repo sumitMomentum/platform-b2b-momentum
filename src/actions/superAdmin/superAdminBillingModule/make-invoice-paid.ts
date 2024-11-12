@@ -16,7 +16,7 @@ export const makeInvoicePaid = async (
   invoiceId: number,
   gateway = "manualAdmin"
 ) => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { permissions } = await getUser(userClerk);
 

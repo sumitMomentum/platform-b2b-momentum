@@ -17,7 +17,7 @@ export const getUserNotifications = async ({
   const limit = args.limit;
   const offset = args.offset;
 
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { userId } = await getUser(userClerk);
 
@@ -55,7 +55,7 @@ export const getUserNotifications = async ({
 };
 
 export const getUserNotificationsUnreadCount = async () => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { userId } = await getUser(userClerk);
 

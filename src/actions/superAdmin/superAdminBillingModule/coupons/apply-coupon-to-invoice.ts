@@ -12,7 +12,7 @@ export const applyCouponToInvoice = async ({
   invoiceId: number;
 }) => {
   try {
-    const userClerk = auth();
+    const userClerk = await auth();
 
     if (!userClerk) throw new Error("client clerk not found");
 

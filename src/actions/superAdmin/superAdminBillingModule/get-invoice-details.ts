@@ -7,7 +7,7 @@ import prisma from "@/lib/db";
 import { hasPermission } from "@/utils/facades/serverFacades/scurityFacade";
 
 export const getInvoiceDetails = async (invoiceId: number) => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
 
   const { userId, permissions } = await getUser(userClerk);

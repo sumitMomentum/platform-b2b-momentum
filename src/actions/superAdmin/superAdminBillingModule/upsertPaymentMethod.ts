@@ -14,7 +14,7 @@ export const upsertPaymentMethod = async ({
   payload: Prisma.PaymentMethodCreateInput | Prisma.PaymentMethodUpdateInput;
 }) => {
   try {
-    const userClerk = auth();
+    const userClerk = await auth();
     if (!userClerk) throw new Error("client clerk not found");
     const { permissions } = await getUser(userClerk);
 

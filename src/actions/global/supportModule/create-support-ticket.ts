@@ -10,7 +10,7 @@ export const createSupportTickets = async (args: any) => {
   await prisma.$transaction(
     async (tx: any) => {
       try {
-        const userClerk = auth();
+        const userClerk = await auth();
 
         if (!userClerk) throw new Error("client clerk not found");
 

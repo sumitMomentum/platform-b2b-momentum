@@ -962,7 +962,7 @@ async function verifySignature(
 // Function to handle each event
 export const handleEvent = async (event: any) => {
   try {
-    const authobject = auth();
+    const authobject = await auth();
     console.log(chalk.magenta("👤 Auth object retrieved:", authobject));
 
     console.log(chalk.yellow("📥 Processing event:"));

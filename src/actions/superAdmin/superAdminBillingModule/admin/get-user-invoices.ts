@@ -16,7 +16,7 @@ export const getUserInvoices = async ({
   const limit = args.limit;
   const offset = args.offset;
 
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { userId } = await getUser(userClerk);
 
@@ -72,7 +72,7 @@ export const getUserInvoices = async ({
 //
 
 export const getUserInvoicesPendingCount = async () => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { userId } = await getUser(userClerk);
 

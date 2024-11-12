@@ -10,7 +10,7 @@ export const deletePlanPrice = async (
   planId: number | undefined,
   priceId: number | undefined
 ) => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { permissions } = await getUser(userClerk);
 

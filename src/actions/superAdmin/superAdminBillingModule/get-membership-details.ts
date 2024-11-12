@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import prisma from "@/lib/db";
 
 export const getMembershipDetails = async (membershipId: number) => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
 
   const membership = await prisma.membership.findFirst({

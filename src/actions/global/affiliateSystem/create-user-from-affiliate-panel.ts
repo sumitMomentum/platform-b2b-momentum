@@ -11,7 +11,7 @@ import { storeAffiliateForUser } from "./store-affiliate-for-user";
 export const createUserFromAffiliatePanel = async (
   payload: any
 ): Promise<any> => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { userId } = await getUser(userClerk);
 

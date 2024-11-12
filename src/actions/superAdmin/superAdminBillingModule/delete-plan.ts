@@ -8,7 +8,7 @@ import { checkPermission } from "@/utils/facades/serverFacades/scurityFacade";
 const scope = "superAdmin:billing:upsert";
 
 export const deletePlan = async (modelId: number) => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { permissions } = await getUser(userClerk);
 

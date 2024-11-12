@@ -17,7 +17,7 @@ export const createInvoiceItemToInvoice = async ({
 }: {
   payload: CreateInvoiceItem;
 }) => {
-  const userClerk = auth();
+  const userClerk = await auth();
 
   if (!userClerk) throw new Error("client clerk not found");
 

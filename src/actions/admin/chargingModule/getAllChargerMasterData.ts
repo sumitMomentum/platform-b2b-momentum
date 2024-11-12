@@ -3,7 +3,7 @@
 import { auth } from "@clerk/nextjs/server";
 
 export const getAllChargerMasterData = async () => {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) {
     throw new Error("Unauthorized");

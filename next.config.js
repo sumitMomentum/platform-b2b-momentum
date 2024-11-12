@@ -37,10 +37,12 @@ const nextConfig = {
       },
     ],
   },
-  serverExternalPackages: [
-    "@aws-sdk/client-s3",
-    "@aws-sdk/s3-request-presigner",
-  ],
+  experimental: {
+    serverComponentsExternalPackages: [
+      "@aws-sdk/client-s3",
+      "@aws-sdk/s3-request-presigner",
+    ],
+  },
 };
 
 module.exports = withNextIntl(nextConfig);
