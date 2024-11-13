@@ -1,21 +1,13 @@
-import { capabilities, planCapabilities, plans } from "./seeds/plans";
-import { settings } from "./seeds/platform";
-import { currencies } from "./seeds/currenciess";
-import { permissions } from "./seeds/permissions";
-import { modules } from "./seeds/modules";
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
-import { paymentsMethods, pricings } from "./seeds/pricing";
-import { benefits } from "./seeds/benefits";
-import { chargers } from "./seeds/chargers";
-import { chargerTypes } from "./seeds/chargerTypes";
-import { vehicleActions } from "./seeds/vehicleActions";
-import { vehicleChargingDetails } from "./seeds/vehiclesChargingDetails";
-import { vehicleDetails } from "./seeds/vehicleDetails";
-import { users } from "./seeds/users";
 import chalk from "chalk";
-import { chargingSessions } from './seeds/chargingSession'
-import { tripSessions } from "./seeds/tripSession";
+import { getChargingSessions, getVehicleTripSessions } from "./extractData";
+import { benefits } from "./seeds/benefits";
+import { users } from "./seeds/users";
+import { vehicleDetails } from "./seeds/vehicleDetails";
+import { chargerTypes } from "./seeds/chargerTypes";
+import { chargers } from "./seeds/chargers";
+import { vehicleActions } from "./seeds/vehicleActions";
 
 dotenv.config();
 const prisma = new PrismaClient();
@@ -45,6 +37,54 @@ const log = {
     ),
 };
 
+// Generate a unique Trip ID if it's missing
+function generateTripID() {
+  return Math.floor(Math.random() * 1000000); // Customize this as needed
+}
+
+async function seedChargingSessions() {
+  const data = await getChargingSessions('df_charge.csv');
+  for (const row of data) {
+    await prisma.chargingSession.create({
+      data: {
+        TripID: row.TripID || generateTripID(),
+        DteStart: row.DteStart,
+        DteEnd: row.DteEnd,
+        BatteryAtStart: row.BatteryAtStart,
+        BatteryAtEnd: row.BatteryAtEnd,
+        DwUpdated: row.DwUpdated,
+        DiffInBat: row.DiffInBat,
+        ChargingType: row.ChargingType,
+        DiffInDte: row.DiffInDte,
+        vehicle: { connect: { vehicleId: row.vehicleId } },
+        charger: { connect: { id: row.chargerId } },
+      },
+    });
+  }
+  log.success('Charging sessions seeded successfully.');
+}
+
+async function seedVehicleTripSessions() {
+  const data = await getVehicleTripSessions('df_trip.csv');
+  for (const row of data) {
+    await prisma.vehicleTripSession.create({
+      data: {
+        TripID: row.TripID || generateTripID(),
+        DteStart: row.DteStart,
+        DteEnd: row.DteEnd,
+        BatteryAtStart: row.BatteryAtStart,
+        BatteryAtEnd: row.BatteryAtEnd,
+        DwUpdated: row.DwUpdated,
+        TripApprovedKilometer: row.TripApprovedKilometer,
+        DiffInBat: row.DiffInBat,
+        DiffInDte: row.DiffInDte,
+        vehicleId: row.vehicleId,
+      },
+    });
+  }
+  log.success('Vehicle trip sessions seeded successfully.');
+}
+
 async function main() {
   try {
     log.header("Starting Database Seeding");
@@ -52,111 +92,28 @@ async function main() {
 
     // Check if tables are empty before seeding
     const [
-      permissionCount,
-      moduleCount,
-      currencyCount,
-      capabilityCount,
-      planCount,
-      planCapabilityCount,
-      settingCount,
-      pricingCount,
-      paymentMethodCount,
+      usersCount,
       vehicleCount,
       benefitCount,
       chargerMasterCount,
       chargerTypeCount,
       actionCount,
-      vehicleChargingDetailCount,
-      usersCount,
       chargingSessionCount,
       tripSessionCount,
     ] = await Promise.all([
-      prisma.permission.count(),
-      prisma.module.count(),
-      prisma.adminCurrencies.count(),
-      prisma.capabilitie.count(),
-      prisma.plan.count(),
-      prisma.planCapabilities.count(),
-      prisma.superAdminSetting.count(),
-      prisma.pricing.count(),
-      prisma.paymentMethod.count(),
+      prisma.user.count(),
       prisma.vehicle.count(),
       prisma.benefit.count(),
       prisma.chargerMaster.count(),
       prisma.chargerType.count(),
       prisma.action.count(),
-      prisma.vehicleChargingDetail.count(),
-      prisma.user.count(),
       prisma.chargingSession.count(),
       prisma.vehicleTripSession.count(),
     ]);
 
     log.subHeader("Starting Seeding Process");
 
-    await prisma.$transaction(async (tx: any) => {
-      // if (permissionCount === 0) {
-      //   await tx.permission.createMany({ data: permissions });
-      //   log.success("Seeded permissions");
-      // } else {
-      //   log.warning("Permissions table not empty, skipping...");
-      // }
-
-      // if (moduleCount === 0) {
-      //   await tx.module.createMany({ data: modules });
-      //   log.success("Seeded modules");
-      // } else {
-      //   log.warning("Modules table not empty, skipping...");
-      // }
-
-      // if (currencyCount === 0) {
-      //   await tx.adminCurrencies.createMany({ data: currencies });
-      //   log.success("Seeded currencies");
-      // } else {
-      //   log.warning("Currencies table not empty, skipping...");
-      // }
-
-      // if (capabilityCount === 0) {
-      //   await tx.capabilitie.createMany({ data: capabilities });
-      //   log.success("Seeded capabilities");
-      // } else {
-      //   log.warning("Capabilities table not empty, skipping...");
-      // }
-
-      // if (planCount === 0) {
-      //   await tx.plan.createMany({ data: plans });
-      //   log.success("Seeded plans");
-      // } else {
-      //   log.warning("Plans table not empty, skipping...");
-      // }
-
-      // if (planCapabilityCount === 0) {
-      //   await tx.planCapabilities.createMany({ data: planCapabilities });
-      //   log.success("Seeded plan capabilities");
-      // } else {
-      //   log.warning("Plan capabilities table not empty, skipping...");
-      // }
-
-      // if (settingCount === 0) {
-      //   await tx.superAdminSetting.createMany({ data: settings });
-      //   log.success("Seeded settings");
-      // } else {
-      //   log.warning("Settings table not empty, skipping...");
-      // }
-
-      // if (pricingCount === 0) {
-      //   await tx.pricing.createMany({ data: pricings });
-      //   log.success("Seeded pricing");
-      // } else {
-      //   log.warning("Pricing table not empty, skipping...");
-      // }
-
-      // if (paymentMethodCount === 0) {
-      //   await tx.paymentMethod.createMany({ data: paymentsMethods });
-      //   log.success("Seeded payment methods");
-      // } else {
-      //   log.warning("Payment methods table not empty, skipping...");
-      // }
-
+    await prisma.$transaction(async (tx) => {
       if (usersCount === 0) {
         await tx.user.createMany({ data: users });
         log.success("Seeded users");
@@ -179,7 +136,7 @@ async function main() {
       }
 
       if (chargerMasterCount === 0) {
-        await tx.chargerMaster.createMany({ data: chargers });
+        await tx.chargerMaster.createMany({ data: chargers.map(c => ({ ...c, chargerId: c.chargerID })) });
         log.success("Seeded charger masters");
       } else {
         log.warning("Charger masters table not empty, skipping...");
@@ -200,33 +157,22 @@ async function main() {
       }
 
       if (chargingSessionCount === 0) {
-        await tx.chargingSession.createMany({ data: chargingSessions });
-        log.success("Seeded chargingSessions actions");
+        await seedChargingSessions();
       } else {
-        log.warning("Actions table not empty, skipping...");
+        log.warning("Charging sessions table not empty, skipping...");
       }
 
       if (tripSessionCount === 0) {
-        await tx.VehicleTripSession.createMany({ data: tripSessions });
-        log.success("Seeded tripSessions actions");
+        await seedVehicleTripSessions();
       } else {
-        log.warning("Actions table not empty, skipping...");
+        log.warning("Trip sessions table not empty, skipping...");
       }
-
-      // if (vehicleChargingDetailCount === 0) {
-      //   await tx.vehicleChargingDetail.createMany({
-      //     data: vehicleChargingDetails,
-      //   });
-      //   log.success("Seeded vehicle charging details");
-      // } else {
-      //   log.warning("Vehicle charging details table not empty, skipping...");
-      // }
     });
 
     log.header("Database Seeding Completed Successfully! 🎉");
     log.info(`
       Summary of operations:
-      - Checked 15 tables
+      - Checked tables
       - Seeded empty tables
       - Skipped existing data
       - All operations completed successfully
