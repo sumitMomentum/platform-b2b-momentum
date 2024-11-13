@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 import chalk from "chalk";
-import { getChargingSessions, getVehicleTripSessions } from "./extractData";
+import { data as chargingSessions } from "./seeds/chargingSessions";
+import { data as tripSessions } from "./seeds/vehicleTripSessions";
 import { benefits } from "./seeds/benefits";
 import { users } from "./seeds/users";
 import { vehicleDetails } from "./seeds/vehicleDetails";
@@ -43,8 +44,7 @@ function generateTripID() {
 }
 
 async function seedChargingSessions() {
-  const data = await getChargingSessions('df_charge.csv');
-  for (const row of data) {
+  for (const row of chargingSessions) {
     await prisma.chargingSession.create({
       data: {
         TripID: row.TripID || generateTripID(),
@@ -65,8 +65,7 @@ async function seedChargingSessions() {
 }
 
 async function seedVehicleTripSessions() {
-  const data = await getVehicleTripSessions('df_trip.csv');
-  for (const row of data) {
+  for (const row of tripSessions) {
     await prisma.vehicleTripSession.create({
       data: {
         TripID: row.TripID || generateTripID(),
