@@ -27,7 +27,7 @@ export const useNavigation = () => {
         { name: t("dashboard"), href: "/home", icon: HomeIcon, current: true },
         {
           name: t("vehicles"),
-          href: "/home/vehicles",
+          href: "/home/vehicles/list",
           icon: TruckIcon,
           current: true,
         },

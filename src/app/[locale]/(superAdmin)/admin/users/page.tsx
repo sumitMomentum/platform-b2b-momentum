@@ -8,14 +8,15 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Users"
 };
-const SuperAdminUserModulePage = ({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) => {
+const SuperAdminUserModulePage = async (
+  props: {
+    searchParams?: Promise<{
+      query?: string;
+      page?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
 

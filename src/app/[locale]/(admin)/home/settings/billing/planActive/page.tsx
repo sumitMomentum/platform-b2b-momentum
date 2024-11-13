@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, use } from "react";
 import { getPlanByName } from "@/actions/superAdmin/superAdminBillingModule/get-plan-by-name";
 import { useRouter } from "next/navigation";
 import { useOrganization, useUser } from "@clerk/nextjs";
@@ -7,13 +7,14 @@ import PlanActive from "./ui/PlanActive";
 import PaymentStatusAlert from "../../ui/PaymentStatusAlert";
 import { getUserCapabilities } from "@/actions/admin/userModule/get-user-capabilities";
 
-const AdminPlanActive = ({
-  searchParams,
-}: {
-  searchParams?: {
-    paymentStatus?: string;
-  };
-}) => {
+const AdminPlanActive = (
+  props: {
+    searchParams?: Promise<{
+      paymentStatus?: string;
+    }>;
+  }
+) => {
+  const searchParams = use(props.searchParams);
   const router = useRouter();
   const [planCapabilities, setPlanCapabilities] = React.useState<any[]>([]);
   const [capacitiesUsed, setCapacitiesUsed] = React.useState<any[]>([]);

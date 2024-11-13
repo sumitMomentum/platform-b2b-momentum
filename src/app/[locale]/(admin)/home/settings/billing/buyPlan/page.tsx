@@ -12,13 +12,14 @@ export const metadata: Metadata = {
   title: "Buy Plan",
 };
 
-const BuyPlanPage = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    paymentStatus?: string;
-  };
-}) => {
+const BuyPlanPage = async (
+  props: {
+    searchParams?: Promise<{
+      paymentStatus?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const { data: payments } = await getPaymentSettings();
   const { data: plans } = await getAllPlans();
   const currencies = await getAllCurrencies();

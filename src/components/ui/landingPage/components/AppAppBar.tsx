@@ -21,6 +21,7 @@ import Link from "next/link";
 import BtnBuyService from "../../commons/BtnBuyService";
 import ToggleColorMode from "./ToggleColorMode";
 import { dark } from "@clerk/themes";
+import { SignInButton } from "@clerk/nextjs";
 
 export default function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
@@ -121,13 +122,12 @@ export default function AppAppBar({ mode, toggleColorMode }) {
               mode={mode}
               toggleColorMode={toggleColorMode}
             />
-            <Link href={"/home"} passHref>
-              <Button
-                variant="contained"
-                size="small"
-              >
+            <Link href={"/sign-in"} passHref>
+            {/* <SignInButton> */}
+              <Button variant="contained" size="small">
                 Sign in
               </Button>
+            {/* </SignInButton> */}
             </Link>
             {/* <Button color="primary" variant="contained" size="small">
               Sign up

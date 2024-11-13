@@ -7,16 +7,16 @@ const AdminRoot = ({ children }: { children: React.ReactNode }) => {
   return (
     <main>
       <SignedOut>
-        <div className="flex justify-center py-24">
+        <div className="flex justify-center py-5">
           <SignIn />
         </div>
-      </SignedOut>
+      </SignedOut> 
       <SignedIn>
-        <div>
-          <SuperAdminMiddleware>
-            <SuperAdminLayout>{children}</SuperAdminLayout>
-          </SuperAdminMiddleware>
-        </div>
+      <div>
+        <SuperAdminMiddleware>
+          <SuperAdminLayout>{children}</SuperAdminLayout>
+        </SuperAdminMiddleware>
+      </div>
       </SignedIn>
     </main>
   );

@@ -8,19 +8,21 @@ import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default async function RootLayout({
-  children,
-  params: { locale },
-}: {
+export default async function RootLayout(props: {
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
+  const { children } = props;
+
   return (
     <html lang={locale} className="antialiased">
-      <ClerkProvider afterSignUpUrl="/home" afterSignInUrl="/home">
+      <ClerkProvider>
         {/* <LoadingProvider> */}
-          <body className={inter.className}>{children}</body>
-          <Toaster richColors={true} position="top-center" />
+        <body className={inter.className}>{children}</body>
         {/* </LoadingProvider> */}
       </ClerkProvider>
       <Analytics />

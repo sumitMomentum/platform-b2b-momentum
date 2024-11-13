@@ -8,14 +8,15 @@ export const metadata: Metadata = {
   title: "Coupons",
 };
 
-const SuperAdminBillingCouponsModule = ({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) => {
+const SuperAdminBillingCouponsModule = async (
+  props: {
+    searchParams?: Promise<{
+      query?: string;
+      page?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
 
