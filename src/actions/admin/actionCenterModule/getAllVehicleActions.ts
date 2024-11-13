@@ -1,5 +1,4 @@
 "use server"
-
 import { auth } from "@clerk/nextjs/server";
 
 export const getAllVehicleActions = async () => {
