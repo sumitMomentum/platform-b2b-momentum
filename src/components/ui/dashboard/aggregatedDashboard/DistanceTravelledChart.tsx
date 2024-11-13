@@ -11,7 +11,6 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const DistanceTravelledChart = () => {
   const vehicles = useVehicleStore((state) => state.vehicles);
-  const setVehicles = useVehicleStore((state) => state.setVehicles);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -44,7 +43,7 @@ const DistanceTravelledChart = () => {
     setSeries(usageData);
     console.log(usageData);
     setLoading(false);
-  }, [vehicles, setVehicles]);
+  }, [vehicles]);
 
   const [series, setSeries] = useState([]);
   const xLabels = [

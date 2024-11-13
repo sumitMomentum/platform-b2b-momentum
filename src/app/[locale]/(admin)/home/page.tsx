@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { createContext, Suspense, useEffect, useState } from "react";
 import { LifebuoyIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { classNames } from "@/utils/facades/serverFacades/strFacade";
 import PageName from "@/components/ui/commons/PageName";
@@ -22,10 +22,16 @@ import { createEnodeWebhook } from "@/actions/admin/dashboardModule/create-enode
 import { getUserVehicleEnode } from "@/actions/admin/userModule/get-user-vehicle-enode";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import useVehicleStore from "@/states/store";
+import loading from "./actionCentre/loading";
 
 // export const metadata: Metadata = {
 //   title: "Home",
 // };
+export const allVehicleDataLoadingContext =  createContext<{
+  loading: boolean;
+  startLoading: () => void;
+  stopLoading: () => void;
+}>(null);
 
 const SuperAdminDashboardPage = () => {
   // const t = await getTranslations("AdminLayout.pages.dashboard");
@@ -41,6 +47,9 @@ const SuperAdminDashboardPage = () => {
     (state) => state.setSelectedVehicleId
   );
 
+  const startLoading = () => setLoading(true);
+  const stopLoading = () => setLoading(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const invoices = await getUserInvoicesPendingCount();
@@ -50,7 +59,7 @@ const SuperAdminDashboardPage = () => {
       setInvoicesCount(invoices);
       setSupportTicketsCounts(supportTickets);
       setUser(userData);
-      setLoading(false);
+      stopLoading();
       setEnodeWebhook(enodeWebhook);
     };
 
@@ -101,7 +110,10 @@ const SuperAdminDashboardPage = () => {
           { name: "", href: "/home" },
         ]}
       />
-      {/* <Suspense fallback={<PageLoader />}>
+      <allVehicleDataLoadingContext.Provider
+        value={{ loading, startLoading, stopLoading }}
+      >
+        {/* <Suspense fallback={<PageLoader />}>
         <Card className=" my-7">
           <Flex>
             <div>
@@ -179,12 +191,12 @@ const SuperAdminDashboardPage = () => {
         </div>
       </Suspense> */}
 
-      <AffiliateHandler aff={null} currentUser={user} />
-      <div className="flex gap-6 w-full justify-center items-center pt-2">
-        {vehiclesFromStore ? (
-          <div className="flex gap-6 flex-col w-full">
-            {/* <div className="flex gap-6"> */}
-            {/* <InfoCard
+        <AffiliateHandler aff={null} currentUser={user} />
+        <div className="flex gap-6 w-full justify-center items-center pt-2">
+          {vehiclesFromStore ? (
+            <div className="flex gap-6 flex-col w-full">
+              {/* <div className="flex gap-6"> */}
+              {/* <InfoCard
                 titleKey="hello"
                 descriptionKey="description"
                 icon={LinkIcon}
@@ -204,19 +216,19 @@ const SuperAdminDashboardPage = () => {
                 descriptionKey="description"
                 icon={LinkIcon}
               /> */}
-            {/* </div> */}
-            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
-              <AllVehicle />
-              <VehicleStatus />
-              <Condition />
-            </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              {/* Second row with 2 columns */}
-              <DistanceTravelled />
-              <BatteryHealth />
-            </div>
+              {/* </div> */}
+              <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
+                <AllVehicle />
+                <VehicleStatus />
+                <Condition />
+              </div>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+                {/* Second row with 2 columns */}
+                <DistanceTravelled />
+                <BatteryHealth />
+              </div>
 
-            {/* <div className="flex gap-6 w-full">
+              {/* <div className="flex gap-6 w-full">
                <AddVehicle /> 
               <AllVehicle />
               <VehicleStatus />
@@ -227,7 +239,7 @@ const SuperAdminDashboardPage = () => {
               <BatteryHealth />
             </div> */}
 
-            {/* <div className="flex gap-6">
+              {/* <div className="flex gap-6">
               <InfoCard
                 titleKey="hello"
                 descriptionKey="description"
@@ -239,13 +251,14 @@ const SuperAdminDashboardPage = () => {
                 icon={LinkIcon}
               />
             </div> */}
-          </div>
-        ) : (
-          <div className="flex justify-center items-center w-full h-full">
-            Please select a vehicle
-          </div>
-        )}
-      </div>
+            </div>
+          ) : (
+            <div className="flex justify-center items-center w-full h-full">
+              Please select a vehicle
+            </div>
+          )}
+        </div>
+      </allVehicleDataLoadingContext.Provider>
     </div>
   );
 };

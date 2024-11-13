@@ -48,7 +48,7 @@ const ConditionChart = () => {
 
     fetchData();
     console.log(series);
-  }, []);
+  }, [vehicles]);
 
   const options = {
     labels: ["Critical", "Satisfactory", "Good"],

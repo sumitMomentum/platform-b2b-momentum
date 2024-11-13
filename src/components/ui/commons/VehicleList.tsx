@@ -1,9 +1,10 @@
 "use client";
 import useVehicleStore from "@/states/store";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react"; // Import only useEffect
+import { useContext, useEffect, useState } from "react"; // Import only useEffect
 import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
+import { allVehicleDataLoadingContext } from "@/app/[locale]/(admin)/home/page";
 
 const columns = [
   { field: "vin", headerName: "VIN", flex: 1 },
@@ -20,7 +21,6 @@ const columns = [
 const paginationModel = { page: 0, pageSize: 10 };
 
 const VehicleList = (props) => {
-  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const vehicles = useVehicleStore((state) => state.vehicles);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -28,9 +28,7 @@ const VehicleList = (props) => {
     (state) => state.setSelectedVehicleId
   );
 
-  useEffect(() => {
-    vehicles && setLoading(false);
-  }, []);
+ const { loading, startLoading, stopLoading } = useContext(allVehicleDataLoadingContext);
 
   const handleRowClickEvent: GridEventListener<"rowClick"> = (
     params, // GridRowParams
