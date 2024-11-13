@@ -22,6 +22,8 @@ import BtnBuyService from "../../commons/BtnBuyService";
 import ToggleColorMode from "./ToggleColorMode";
 import { dark } from "@clerk/themes";
 import { SignInButton } from "@clerk/nextjs";
+import loading from "@/components/suspenseSkeleton/loading";
+import src from "@emotion/styled";
 
 export default function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
@@ -80,6 +82,7 @@ export default function AppAppBar({ mode, toggleColorMode }) {
                   : "/assets/img/logo_white_nocap.png"
               }
               alt="Logo"
+              loading="lazy" // Lazy load the image
               style={{
                 maxHeight: "100px", // Adjust the maximum height of the logo
                 maxWidth: "100px", // Adjust the maximum width of the logo
@@ -87,6 +90,7 @@ export default function AppAppBar({ mode, toggleColorMode }) {
                 width: "auto",
                 height: "auto",
               }}
+              sizes="(max-width: 600px) 50px, (max-width: 900px) 75px, 100px" // Responsive sizes
             />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               {/*<Button variant="text" color="info" size="small">
@@ -123,11 +127,11 @@ export default function AppAppBar({ mode, toggleColorMode }) {
               toggleColorMode={toggleColorMode}
             />
             <Link href={"/sign-in"} passHref>
-            {/* <SignInButton> */}
+              {/* <SignInButton> */}
               <Button variant="contained" size="small">
                 Sign in
               </Button>
-            {/* </SignInButton> */}
+              {/* </SignInButton> */}
             </Link>
             {/* <Button color="primary" variant="contained" size="small">
               Sign up
