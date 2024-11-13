@@ -135,7 +135,7 @@ async function main() {
       }
 
       if (chargerMasterCount === 0) {
-        await tx.chargerMaster.createMany({ data: chargers.map(c => ({ ...c, chargerId: c.chargerID })) });
+        await tx.chargerMaster.createMany({ data: chargers });
         log.success("Seeded charger masters");
       } else {
         log.warning("Charger masters table not empty, skipping...");

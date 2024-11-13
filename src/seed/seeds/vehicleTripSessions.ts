@@ -8,7 +8,8 @@ export const data = [
     "DwUpdated": "2023-11-17T07:48:45.000Z",
     "TripApprovedKilometer": 34.599998474121,
     "DiffInBat": 20,
-    "DiffInDte": 34
+    "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2414946,
@@ -19,7 +20,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 28.8999996185302,
     "DiffInBat": 10,
-    "DiffInDte": 28
+    "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2418999,
@@ -30,7 +32,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 36.2000007629394,
     "DiffInBat": 7,
-    "DiffInDte": 25
+    "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2419792,
@@ -41,7 +44,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 53.7000007629394,
     "DiffInBat": 10,
-    "DiffInDte": 22
+    "DiffInDte": 22,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2426429,
@@ -52,7 +56,8 @@ export const data = [
     "DwUpdated": "2023-11-22T14:18:50.000Z",
     "TripApprovedKilometer": 27.7000007629394,
     "DiffInBat": 8,
-    "DiffInDte": 18
+    "DiffInDte": 18,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2425980,
@@ -63,7 +68,8 @@ export const data = [
     "DwUpdated": "2023-11-22T14:18:50.000Z",
     "TripApprovedKilometer": 35.099998474121,
     "DiffInBat": 13,
-    "DiffInDte": 25
+    "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2429017,
@@ -74,7 +80,8 @@ export const data = [
     "DwUpdated": "2023-11-22T20:18:49.000Z",
     "TripApprovedKilometer": 32.7000007629394,
     "DiffInBat": 9,
-    "DiffInDte": 12
+    "DiffInDte": 12,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2444608,
@@ -85,7 +92,8 @@ export const data = [
     "DwUpdated": "2023-12-19T21:45:21.000Z",
     "TripApprovedKilometer": 50.9000015258789,
     "DiffInBat": 11,
-    "DiffInDte": 58
+    "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2448200,
@@ -96,7 +104,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 33.8,
     "DiffInBat": 8,
-    "DiffInDte": 1
+    "DiffInDte": 1,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2449622,
@@ -107,7 +116,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 18.3,
     "DiffInBat": 9,
-    "DiffInDte": 1
+    "DiffInDte": 1,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2451617,
@@ -118,7 +128,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 28,
     "DiffInBat": 6,
-    "DiffInDte": 5
+    "DiffInDte": 5,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2452261,
@@ -129,7 +140,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 30.4,
     "DiffInBat": 6,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2454014,
@@ -140,7 +152,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 37.7,
     "DiffInBat": 8,
-    "DiffInDte": 33
+    "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2454878,
@@ -151,7 +164,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 31.2,
     "DiffInBat": 10,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2460686,
@@ -162,7 +176,8 @@ export const data = [
     "DwUpdated": "2023-12-26T20:01:16.000Z",
     "TripApprovedKilometer": 31.5,
     "DiffInBat": 14,
-    "DiffInDte": 37
+    "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2461291,
@@ -173,7 +188,8 @@ export const data = [
     "DwUpdated": "2023-12-26T20:01:16.000Z",
     "TripApprovedKilometer": 29.6,
     "DiffInBat": 28,
-    "DiffInDte": 62
+    "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2466456,
@@ -184,7 +200,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 49.9000015258789,
     "DiffInBat": 11,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2464753,
@@ -195,7 +212,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.2000007629394,
     "DiffInBat": 14,
-    "DiffInDte": 19
+    "DiffInDte": 19,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468055,
@@ -206,7 +224,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.8,
     "DiffInBat": 22,
-    "DiffInDte": 41
+    "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468498,
@@ -217,7 +236,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.8,
     "DiffInBat": 16,
-    "DiffInDte": 58
+    "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2469312,
@@ -228,7 +248,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.7,
     "DiffInBat": 13,
-    "DiffInDte": 4
+    "DiffInDte": 4,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468876,
@@ -239,7 +260,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 37.7,
     "DiffInBat": 26,
-    "DiffInDte": 66
+    "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2469892,
@@ -250,7 +272,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 34.6,
     "DiffInBat": 17,
-    "DiffInDte": 53
+    "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2470249,
@@ -261,7 +284,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30,
     "DiffInBat": 19,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2471689,
@@ -272,7 +296,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 50.599998474121,
     "DiffInBat": 24,
-    "DiffInDte": 46
+    "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2471304,
@@ -283,7 +308,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 21.2999992370605,
     "DiffInBat": 13,
-    "DiffInDte": 48
+    "DiffInDte": 48,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2473188,
@@ -294,7 +320,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 52.2,
     "DiffInBat": 21,
-    "DiffInDte": 55
+    "DiffInDte": 55,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2473500,
@@ -305,7 +332,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 14,
     "DiffInBat": 8,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2472801,
@@ -316,7 +344,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.8,
     "DiffInBat": 15,
-    "DiffInDte": 54
+    "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474626,
@@ -327,7 +356,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.4,
     "DiffInBat": 11,
-    "DiffInDte": 38
+    "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474888,
@@ -338,7 +368,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 17,
     "DiffInBat": 9,
-    "DiffInDte": 10
+    "DiffInDte": 10,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474320,
@@ -349,7 +380,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.8,
     "DiffInBat": 9,
-    "DiffInDte": 36
+    "DiffInDte": 36,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474123,
@@ -360,7 +392,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 34,
     "DiffInBat": 19,
-    "DiffInDte": 50
+    "DiffInDte": 50,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2476293,
@@ -371,7 +404,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 10.6000003814697,
     "DiffInBat": 7,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2475954,
@@ -382,7 +416,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.5,
     "DiffInBat": 11,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2475646,
@@ -393,7 +428,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.9,
     "DiffInBat": 17,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2476515,
@@ -404,7 +440,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.8999996185302,
     "DiffInBat": 14,
-    "DiffInDte": 2
+    "DiffInDte": 2,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2477080,
@@ -415,7 +452,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.8999996185302,
     "DiffInBat": 16,
-    "DiffInDte": 69
+    "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2477475,
@@ -426,7 +464,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.7,
     "DiffInBat": 31,
-    "DiffInDte": 78
+    "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2478661,
@@ -437,7 +476,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30.3999996185302,
     "DiffInBat": 18,
-    "DiffInDte": 59
+    "DiffInDte": 59,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2479935,
@@ -448,7 +488,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 7.09999990463256,
     "DiffInBat": 6,
-    "DiffInDte": 8
+    "DiffInDte": 8,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2481528,
@@ -459,7 +500,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.099998474121,
     "DiffInBat": 12,
-    "DiffInDte": 32
+    "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2480819,
@@ -470,7 +512,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30.7999992370605,
     "DiffInBat": 14,
-    "DiffInDte": 42
+    "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2481203,
@@ -481,7 +524,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 42.7999992370605,
     "DiffInBat": 16,
-    "DiffInDte": 23
+    "DiffInDte": 23,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482093,
@@ -492,7 +536,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 31.5,
     "DiffInBat": 15,
-    "DiffInDte": 27
+    "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482837,
@@ -503,7 +548,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.6000003814697,
     "DiffInBat": 6,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482449,
@@ -514,7 +560,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.6,
     "DiffInBat": 17,
-    "DiffInDte": 39
+    "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2484512,
@@ -525,7 +572,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.1,
     "DiffInBat": 12,
-    "DiffInDte": 24
+    "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2483615,
@@ -536,7 +584,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.5,
     "DiffInBat": 15,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2483941,
@@ -547,7 +596,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 33.7,
     "DiffInBat": 27,
-    "DiffInDte": 49
+    "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2485753,
@@ -558,7 +608,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 35.9,
     "DiffInBat": 22,
-    "DiffInDte": 56
+    "DiffInDte": 56,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2485327,
@@ -569,7 +620,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.5,
     "DiffInBat": 15,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2486895,
@@ -580,7 +632,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 24.2999992370605,
     "DiffInBat": 13,
-    "DiffInDte": 43
+    "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2487577,
@@ -591,7 +644,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.3,
     "DiffInBat": 10,
-    "DiffInDte": 9
+    "DiffInDte": 9,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2487297,
@@ -602,7 +656,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 53.7,
     "DiffInBat": 26,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489084,
@@ -613,7 +668,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 18.8999996185302,
     "DiffInBat": 12,
-    "DiffInDte": 61
+    "DiffInDte": 61,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2488433,
@@ -624,7 +680,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.7999992370605,
     "DiffInBat": 17,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2488269,
@@ -635,7 +692,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.1000003814697,
     "DiffInBat": 17,
-    "DiffInDte": 78
+    "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489959,
@@ -646,7 +704,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 22.4,
     "DiffInBat": 12,
-    "DiffInDte": 37
+    "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489730,
@@ -657,7 +716,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 24.4,
     "DiffInBat": 14,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491243,
@@ -668,7 +728,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 34.9000015258789,
     "DiffInBat": 18,
-    "DiffInDte": 53
+    "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491938,
@@ -679,7 +740,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 13.8,
     "DiffInBat": 6,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491633,
@@ -690,7 +752,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 29.1,
     "DiffInBat": 17,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2493402,
@@ -701,7 +764,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:50:38.000Z",
     "TripApprovedKilometer": 18,
     "DiffInBat": 9,
-    "DiffInDte": 60
+    "DiffInDte": 60,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494460,
@@ -712,7 +776,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 34.4000015258789,
     "DiffInBat": 16,
-    "DiffInDte": 39
+    "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494169,
@@ -723,7 +788,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 11.5,
     "DiffInBat": 6,
-    "DiffInDte": 27
+    "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494274,
@@ -734,7 +800,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 18.8999996185302,
     "DiffInBat": 8,
-    "DiffInDte": 24
+    "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494699,
@@ -745,7 +812,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 39.5,
     "DiffInBat": 20,
-    "DiffInDte": 33
+    "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2495940,
@@ -756,7 +824,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 32.5,
     "DiffInBat": 20,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2496416,
@@ -767,7 +836,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 21.2999992370605,
     "DiffInBat": 11,
-    "DiffInDte": 38
+    "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2495555,
@@ -778,7 +848,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 28.2999992370605,
     "DiffInBat": 18,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2497021,
@@ -789,7 +860,8 @@ export const data = [
     "DwUpdated": "2024-02-09T02:30:09.000Z",
     "TripApprovedKilometer": 32,
     "DiffInBat": 18,
-    "DiffInDte": 46
+    "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2497412,
@@ -800,7 +872,8 @@ export const data = [
     "DwUpdated": "2024-02-09T02:30:09.000Z",
     "TripApprovedKilometer": 19.1000003814697,
     "DiffInBat": 13,
-    "DiffInDte": 32
+    "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2402765,
@@ -811,7 +884,8 @@ export const data = [
     "DwUpdated": "2023-11-17T07:48:45.000Z",
     "TripApprovedKilometer": 34.599998474121,
     "DiffInBat": 20,
-    "DiffInDte": 34
+    "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2414946,
@@ -822,7 +896,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 28.8999996185302,
     "DiffInBat": 10,
-    "DiffInDte": 28
+    "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2418999,
@@ -833,7 +908,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 36.2000007629394,
     "DiffInBat": 7,
-    "DiffInDte": 25
+    "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2419792,
@@ -844,7 +920,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 53.7000007629394,
     "DiffInBat": 10,
-    "DiffInDte": 22
+    "DiffInDte": 22,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2426429,
@@ -855,7 +932,8 @@ export const data = [
     "DwUpdated": "2023-11-22T14:18:50.000Z",
     "TripApprovedKilometer": 27.7000007629394,
     "DiffInBat": 8,
-    "DiffInDte": 18
+    "DiffInDte": 18,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2425980,
@@ -866,7 +944,8 @@ export const data = [
     "DwUpdated": "2023-11-22T14:18:50.000Z",
     "TripApprovedKilometer": 35.099998474121,
     "DiffInBat": 13,
-    "DiffInDte": 25
+    "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2429017,
@@ -877,7 +956,8 @@ export const data = [
     "DwUpdated": "2023-11-22T20:18:49.000Z",
     "TripApprovedKilometer": 32.7000007629394,
     "DiffInBat": 9,
-    "DiffInDte": 12
+    "DiffInDte": 12,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2444608,
@@ -888,7 +968,8 @@ export const data = [
     "DwUpdated": "2023-12-19T21:45:21.000Z",
     "TripApprovedKilometer": 50.9000015258789,
     "DiffInBat": 11,
-    "DiffInDte": 58
+    "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2448200,
@@ -899,7 +980,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 33.8,
     "DiffInBat": 8,
-    "DiffInDte": 1
+    "DiffInDte": 1,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2449622,
@@ -910,7 +992,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 18.3,
     "DiffInBat": 9,
-    "DiffInDte": 1
+    "DiffInDte": 1,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2451617,
@@ -921,7 +1004,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 28,
     "DiffInBat": 6,
-    "DiffInDte": 5
+    "DiffInDte": 5,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2452261,
@@ -932,7 +1016,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 30.4,
     "DiffInBat": 6,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2454014,
@@ -943,7 +1028,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 37.7,
     "DiffInBat": 8,
-    "DiffInDte": 33
+    "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2454878,
@@ -954,7 +1040,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 31.2,
     "DiffInBat": 10,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2460686,
@@ -965,7 +1052,8 @@ export const data = [
     "DwUpdated": "2023-12-26T20:01:16.000Z",
     "TripApprovedKilometer": 31.5,
     "DiffInBat": 14,
-    "DiffInDte": 37
+    "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2461291,
@@ -976,7 +1064,8 @@ export const data = [
     "DwUpdated": "2023-12-26T20:01:16.000Z",
     "TripApprovedKilometer": 29.6,
     "DiffInBat": 28,
-    "DiffInDte": 62
+    "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2466456,
@@ -987,7 +1076,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 49.9000015258789,
     "DiffInBat": 11,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2464753,
@@ -998,7 +1088,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.2000007629394,
     "DiffInBat": 14,
-    "DiffInDte": 19
+    "DiffInDte": 19,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468055,
@@ -1009,7 +1100,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.8,
     "DiffInBat": 22,
-    "DiffInDte": 41
+    "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468498,
@@ -1020,7 +1112,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.8,
     "DiffInBat": 16,
-    "DiffInDte": 58
+    "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2469312,
@@ -1031,7 +1124,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.7,
     "DiffInBat": 13,
-    "DiffInDte": 4
+    "DiffInDte": 4,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468876,
@@ -1042,7 +1136,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 37.7,
     "DiffInBat": 26,
-    "DiffInDte": 66
+    "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2469892,
@@ -1053,7 +1148,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 34.6,
     "DiffInBat": 17,
-    "DiffInDte": 53
+    "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2470249,
@@ -1064,7 +1160,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30,
     "DiffInBat": 19,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2471689,
@@ -1075,7 +1172,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 50.599998474121,
     "DiffInBat": 24,
-    "DiffInDte": 46
+    "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2471304,
@@ -1086,7 +1184,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 21.2999992370605,
     "DiffInBat": 13,
-    "DiffInDte": 48
+    "DiffInDte": 48,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2473188,
@@ -1097,7 +1196,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 52.2,
     "DiffInBat": 21,
-    "DiffInDte": 55
+    "DiffInDte": 55,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2473500,
@@ -1108,7 +1208,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 14,
     "DiffInBat": 8,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2472801,
@@ -1119,7 +1220,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.8,
     "DiffInBat": 15,
-    "DiffInDte": 54
+    "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474626,
@@ -1130,7 +1232,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.4,
     "DiffInBat": 11,
-    "DiffInDte": 38
+    "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474888,
@@ -1141,7 +1244,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 17,
     "DiffInBat": 9,
-    "DiffInDte": 10
+    "DiffInDte": 10,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474320,
@@ -1152,7 +1256,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.8,
     "DiffInBat": 9,
-    "DiffInDte": 36
+    "DiffInDte": 36,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474123,
@@ -1163,7 +1268,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 34,
     "DiffInBat": 19,
-    "DiffInDte": 50
+    "DiffInDte": 50,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2476293,
@@ -1174,7 +1280,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 10.6000003814697,
     "DiffInBat": 7,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2475954,
@@ -1185,7 +1292,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.5,
     "DiffInBat": 11,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2475646,
@@ -1196,7 +1304,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.9,
     "DiffInBat": 17,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2476515,
@@ -1207,7 +1316,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.8999996185302,
     "DiffInBat": 14,
-    "DiffInDte": 2
+    "DiffInDte": 2,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2477080,
@@ -1218,7 +1328,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.8999996185302,
     "DiffInBat": 16,
-    "DiffInDte": 69
+    "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2477475,
@@ -1229,7 +1340,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.7,
     "DiffInBat": 31,
-    "DiffInDte": 78
+    "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2478661,
@@ -1240,7 +1352,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30.3999996185302,
     "DiffInBat": 18,
-    "DiffInDte": 59
+    "DiffInDte": 59,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2479935,
@@ -1251,7 +1364,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 7.09999990463256,
     "DiffInBat": 6,
-    "DiffInDte": 8
+    "DiffInDte": 8,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2481528,
@@ -1262,7 +1376,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.099998474121,
     "DiffInBat": 12,
-    "DiffInDte": 32
+    "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2480819,
@@ -1273,7 +1388,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30.7999992370605,
     "DiffInBat": 14,
-    "DiffInDte": 42
+    "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2481203,
@@ -1284,7 +1400,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 42.7999992370605,
     "DiffInBat": 16,
-    "DiffInDte": 23
+    "DiffInDte": 23,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482093,
@@ -1295,7 +1412,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 31.5,
     "DiffInBat": 15,
-    "DiffInDte": 27
+    "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482837,
@@ -1306,7 +1424,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.6000003814697,
     "DiffInBat": 6,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482449,
@@ -1317,7 +1436,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.6,
     "DiffInBat": 17,
-    "DiffInDte": 39
+    "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2484512,
@@ -1328,7 +1448,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.1,
     "DiffInBat": 12,
-    "DiffInDte": 24
+    "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2483615,
@@ -1339,7 +1460,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.5,
     "DiffInBat": 15,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2483941,
@@ -1350,7 +1472,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 33.7,
     "DiffInBat": 27,
-    "DiffInDte": 49
+    "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2485753,
@@ -1361,7 +1484,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 35.9,
     "DiffInBat": 22,
-    "DiffInDte": 56
+    "DiffInDte": 56,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2485327,
@@ -1372,7 +1496,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.5,
     "DiffInBat": 15,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2486895,
@@ -1383,7 +1508,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 24.2999992370605,
     "DiffInBat": 13,
-    "DiffInDte": 43
+    "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2487577,
@@ -1394,7 +1520,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.3,
     "DiffInBat": 10,
-    "DiffInDte": 9
+    "DiffInDte": 9,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2487297,
@@ -1405,7 +1532,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 53.7,
     "DiffInBat": 26,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489084,
@@ -1416,7 +1544,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 18.8999996185302,
     "DiffInBat": 12,
-    "DiffInDte": 61
+    "DiffInDte": 61,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2488433,
@@ -1427,7 +1556,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.7999992370605,
     "DiffInBat": 17,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2488269,
@@ -1438,7 +1568,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.1000003814697,
     "DiffInBat": 17,
-    "DiffInDte": 78
+    "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489959,
@@ -1449,7 +1580,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 22.4,
     "DiffInBat": 12,
-    "DiffInDte": 37
+    "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489730,
@@ -1460,7 +1592,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 24.4,
     "DiffInBat": 14,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491243,
@@ -1471,7 +1604,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 34.9000015258789,
     "DiffInBat": 18,
-    "DiffInDte": 53
+    "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491938,
@@ -1482,7 +1616,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 13.8,
     "DiffInBat": 6,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491633,
@@ -1493,7 +1628,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 29.1,
     "DiffInBat": 17,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2493402,
@@ -1504,7 +1640,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:50:38.000Z",
     "TripApprovedKilometer": 18,
     "DiffInBat": 9,
-    "DiffInDte": 60
+    "DiffInDte": 60,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494460,
@@ -1515,7 +1652,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 34.4000015258789,
     "DiffInBat": 16,
-    "DiffInDte": 39
+    "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494169,
@@ -1526,7 +1664,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 11.5,
     "DiffInBat": 6,
-    "DiffInDte": 27
+    "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494274,
@@ -1537,7 +1676,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 18.8999996185302,
     "DiffInBat": 8,
-    "DiffInDte": 24
+    "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494699,
@@ -1548,7 +1688,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 39.5,
     "DiffInBat": 20,
-    "DiffInDte": 33
+    "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2495940,
@@ -1559,7 +1700,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 32.5,
     "DiffInBat": 20,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2496416,
@@ -1570,7 +1712,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 21.2999992370605,
     "DiffInBat": 11,
-    "DiffInDte": 38
+    "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2495555,
@@ -1581,7 +1724,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 28.2999992370605,
     "DiffInBat": 18,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2497021,
@@ -1592,7 +1736,8 @@ export const data = [
     "DwUpdated": "2024-02-09T02:30:09.000Z",
     "TripApprovedKilometer": 32,
     "DiffInBat": 18,
-    "DiffInDte": 46
+    "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2497412,
@@ -1603,7 +1748,8 @@ export const data = [
     "DwUpdated": "2024-02-09T02:30:09.000Z",
     "TripApprovedKilometer": 19.1000003814697,
     "DiffInBat": 13,
-    "DiffInDte": 32
+    "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2402765,
@@ -1614,7 +1760,8 @@ export const data = [
     "DwUpdated": "2023-11-17T07:48:45.000Z",
     "TripApprovedKilometer": 34.599998474121,
     "DiffInBat": 20,
-    "DiffInDte": 34
+    "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2414946,
@@ -1625,7 +1772,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 28.8999996185302,
     "DiffInBat": 10,
-    "DiffInDte": 28
+    "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2418999,
@@ -1636,7 +1784,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 36.2000007629394,
     "DiffInBat": 7,
-    "DiffInDte": 25
+    "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2419792,
@@ -1647,7 +1796,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 53.7000007629394,
     "DiffInBat": 10,
-    "DiffInDte": 22
+    "DiffInDte": 22,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2426429,
@@ -1658,7 +1808,8 @@ export const data = [
     "DwUpdated": "2023-11-22T14:18:50.000Z",
     "TripApprovedKilometer": 27.7000007629394,
     "DiffInBat": 8,
-    "DiffInDte": 18
+    "DiffInDte": 18,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2425980,
@@ -1669,7 +1820,8 @@ export const data = [
     "DwUpdated": "2023-11-22T14:18:50.000Z",
     "TripApprovedKilometer": 35.099998474121,
     "DiffInBat": 13,
-    "DiffInDte": 25
+    "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2429017,
@@ -1680,7 +1832,8 @@ export const data = [
     "DwUpdated": "2023-11-22T20:18:49.000Z",
     "TripApprovedKilometer": 32.7000007629394,
     "DiffInBat": 9,
-    "DiffInDte": 12
+    "DiffInDte": 12,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2444608,
@@ -1691,7 +1844,8 @@ export const data = [
     "DwUpdated": "2023-12-19T21:45:21.000Z",
     "TripApprovedKilometer": 50.9000015258789,
     "DiffInBat": 11,
-    "DiffInDte": 58
+    "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2448200,
@@ -1702,7 +1856,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 33.8,
     "DiffInBat": 8,
-    "DiffInDte": 1
+    "DiffInDte": 1,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2449622,
@@ -1713,7 +1868,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 18.3,
     "DiffInBat": 9,
-    "DiffInDte": 1
+    "DiffInDte": 1,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2451617,
@@ -1724,7 +1880,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 28,
     "DiffInBat": 6,
-    "DiffInDte": 5
+    "DiffInDte": 5,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2452261,
@@ -1735,7 +1892,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 30.4,
     "DiffInBat": 6,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2454014,
@@ -1746,7 +1904,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 37.7,
     "DiffInBat": 8,
-    "DiffInDte": 33
+    "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2454878,
@@ -1757,7 +1916,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 31.2,
     "DiffInBat": 10,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2460686,
@@ -1768,7 +1928,8 @@ export const data = [
     "DwUpdated": "2023-12-26T20:01:16.000Z",
     "TripApprovedKilometer": 31.5,
     "DiffInBat": 14,
-    "DiffInDte": 37
+    "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2461291,
@@ -1779,7 +1940,8 @@ export const data = [
     "DwUpdated": "2023-12-26T20:01:16.000Z",
     "TripApprovedKilometer": 29.6,
     "DiffInBat": 28,
-    "DiffInDte": 62
+    "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2466456,
@@ -1790,7 +1952,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 49.9000015258789,
     "DiffInBat": 11,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2464753,
@@ -1801,7 +1964,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.2000007629394,
     "DiffInBat": 14,
-    "DiffInDte": 19
+    "DiffInDte": 19,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468055,
@@ -1812,7 +1976,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.8,
     "DiffInBat": 22,
-    "DiffInDte": 41
+    "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468498,
@@ -1823,7 +1988,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.8,
     "DiffInBat": 16,
-    "DiffInDte": 58
+    "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2469312,
@@ -1834,7 +2000,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.7,
     "DiffInBat": 13,
-    "DiffInDte": 4
+    "DiffInDte": 4,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468876,
@@ -1845,7 +2012,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 37.7,
     "DiffInBat": 26,
-    "DiffInDte": 66
+    "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2469892,
@@ -1856,7 +2024,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 34.6,
     "DiffInBat": 17,
-    "DiffInDte": 53
+    "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2470249,
@@ -1867,7 +2036,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30,
     "DiffInBat": 19,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2471689,
@@ -1878,7 +2048,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 50.599998474121,
     "DiffInBat": 24,
-    "DiffInDte": 46
+    "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2471304,
@@ -1889,7 +2060,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 21.2999992370605,
     "DiffInBat": 13,
-    "DiffInDte": 48
+    "DiffInDte": 48,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2473188,
@@ -1900,7 +2072,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 52.2,
     "DiffInBat": 21,
-    "DiffInDte": 55
+    "DiffInDte": 55,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2473500,
@@ -1911,7 +2084,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 14,
     "DiffInBat": 8,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2472801,
@@ -1922,7 +2096,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.8,
     "DiffInBat": 15,
-    "DiffInDte": 54
+    "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474626,
@@ -1933,7 +2108,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.4,
     "DiffInBat": 11,
-    "DiffInDte": 38
+    "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474888,
@@ -1944,7 +2120,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 17,
     "DiffInBat": 9,
-    "DiffInDte": 10
+    "DiffInDte": 10,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474320,
@@ -1955,7 +2132,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.8,
     "DiffInBat": 9,
-    "DiffInDte": 36
+    "DiffInDte": 36,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474123,
@@ -1966,7 +2144,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 34,
     "DiffInBat": 19,
-    "DiffInDte": 50
+    "DiffInDte": 50,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2476293,
@@ -1977,7 +2156,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 10.6000003814697,
     "DiffInBat": 7,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2475954,
@@ -1988,7 +2168,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.5,
     "DiffInBat": 11,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2475646,
@@ -1999,7 +2180,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.9,
     "DiffInBat": 17,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2476515,
@@ -2010,7 +2192,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.8999996185302,
     "DiffInBat": 14,
-    "DiffInDte": 2
+    "DiffInDte": 2,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2477080,
@@ -2021,7 +2204,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.8999996185302,
     "DiffInBat": 16,
-    "DiffInDte": 69
+    "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2477475,
@@ -2032,7 +2216,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.7,
     "DiffInBat": 31,
-    "DiffInDte": 78
+    "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2478661,
@@ -2043,7 +2228,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30.3999996185302,
     "DiffInBat": 18,
-    "DiffInDte": 59
+    "DiffInDte": 59,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2479935,
@@ -2054,7 +2240,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 7.09999990463256,
     "DiffInBat": 6,
-    "DiffInDte": 8
+    "DiffInDte": 8,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2481528,
@@ -2065,7 +2252,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.099998474121,
     "DiffInBat": 12,
-    "DiffInDte": 32
+    "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2480819,
@@ -2076,7 +2264,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30.7999992370605,
     "DiffInBat": 14,
-    "DiffInDte": 42
+    "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2481203,
@@ -2087,7 +2276,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 42.7999992370605,
     "DiffInBat": 16,
-    "DiffInDte": 23
+    "DiffInDte": 23,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482093,
@@ -2098,7 +2288,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 31.5,
     "DiffInBat": 15,
-    "DiffInDte": 27
+    "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482837,
@@ -2109,7 +2300,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.6000003814697,
     "DiffInBat": 6,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482449,
@@ -2120,7 +2312,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.6,
     "DiffInBat": 17,
-    "DiffInDte": 39
+    "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2484512,
@@ -2131,7 +2324,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.1,
     "DiffInBat": 12,
-    "DiffInDte": 24
+    "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2483615,
@@ -2142,7 +2336,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.5,
     "DiffInBat": 15,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2483941,
@@ -2153,7 +2348,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 33.7,
     "DiffInBat": 27,
-    "DiffInDte": 49
+    "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2485753,
@@ -2164,7 +2360,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 35.9,
     "DiffInBat": 22,
-    "DiffInDte": 56
+    "DiffInDte": 56,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2485327,
@@ -2175,7 +2372,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.5,
     "DiffInBat": 15,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2486895,
@@ -2186,7 +2384,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 24.2999992370605,
     "DiffInBat": 13,
-    "DiffInDte": 43
+    "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2487577,
@@ -2197,7 +2396,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.3,
     "DiffInBat": 10,
-    "DiffInDte": 9
+    "DiffInDte": 9,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2487297,
@@ -2208,7 +2408,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 53.7,
     "DiffInBat": 26,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489084,
@@ -2219,7 +2420,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 18.8999996185302,
     "DiffInBat": 12,
-    "DiffInDte": 61
+    "DiffInDte": 61,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2488433,
@@ -2230,7 +2432,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.7999992370605,
     "DiffInBat": 17,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2488269,
@@ -2241,7 +2444,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.1000003814697,
     "DiffInBat": 17,
-    "DiffInDte": 78
+    "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489959,
@@ -2252,7 +2456,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 22.4,
     "DiffInBat": 12,
-    "DiffInDte": 37
+    "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489730,
@@ -2263,7 +2468,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 24.4,
     "DiffInBat": 14,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491243,
@@ -2274,7 +2480,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 34.9000015258789,
     "DiffInBat": 18,
-    "DiffInDte": 53
+    "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491938,
@@ -2285,7 +2492,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 13.8,
     "DiffInBat": 6,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491633,
@@ -2296,7 +2504,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 29.1,
     "DiffInBat": 17,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2493402,
@@ -2307,7 +2516,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:50:38.000Z",
     "TripApprovedKilometer": 18,
     "DiffInBat": 9,
-    "DiffInDte": 60
+    "DiffInDte": 60,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494460,
@@ -2318,7 +2528,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 34.4000015258789,
     "DiffInBat": 16,
-    "DiffInDte": 39
+    "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494169,
@@ -2329,7 +2540,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 11.5,
     "DiffInBat": 6,
-    "DiffInDte": 27
+    "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494274,
@@ -2340,7 +2552,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 18.8999996185302,
     "DiffInBat": 8,
-    "DiffInDte": 24
+    "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494699,
@@ -2351,7 +2564,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 39.5,
     "DiffInBat": 20,
-    "DiffInDte": 33
+    "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2495940,
@@ -2362,7 +2576,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 32.5,
     "DiffInBat": 20,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2496416,
@@ -2373,7 +2588,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 21.2999992370605,
     "DiffInBat": 11,
-    "DiffInDte": 38
+    "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2495555,
@@ -2384,7 +2600,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 28.2999992370605,
     "DiffInBat": 18,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2497021,
@@ -2395,7 +2612,8 @@ export const data = [
     "DwUpdated": "2024-02-09T02:30:09.000Z",
     "TripApprovedKilometer": 32,
     "DiffInBat": 18,
-    "DiffInDte": 46
+    "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2497412,
@@ -2406,7 +2624,8 @@ export const data = [
     "DwUpdated": "2024-02-09T02:30:09.000Z",
     "TripApprovedKilometer": 19.1000003814697,
     "DiffInBat": 13,
-    "DiffInDte": 32
+    "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2402765,
@@ -2417,7 +2636,8 @@ export const data = [
     "DwUpdated": "2023-11-17T07:48:45.000Z",
     "TripApprovedKilometer": 34.599998474121,
     "DiffInBat": 20,
-    "DiffInDte": 34
+    "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2414946,
@@ -2428,7 +2648,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 28.8999996185302,
     "DiffInBat": 10,
-    "DiffInDte": 28
+    "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2418999,
@@ -2439,7 +2660,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 36.2000007629394,
     "DiffInBat": 7,
-    "DiffInDte": 25
+    "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2419792,
@@ -2450,7 +2672,8 @@ export const data = [
     "DwUpdated": "2023-11-20T23:13:34.000Z",
     "TripApprovedKilometer": 53.7000007629394,
     "DiffInBat": 10,
-    "DiffInDte": 22
+    "DiffInDte": 22,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2426429,
@@ -2461,7 +2684,8 @@ export const data = [
     "DwUpdated": "2023-11-22T14:18:50.000Z",
     "TripApprovedKilometer": 27.7000007629394,
     "DiffInBat": 8,
-    "DiffInDte": 18
+    "DiffInDte": 18,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2425980,
@@ -2472,7 +2696,8 @@ export const data = [
     "DwUpdated": "2023-11-22T14:18:50.000Z",
     "TripApprovedKilometer": 35.099998474121,
     "DiffInBat": 13,
-    "DiffInDte": 25
+    "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2429017,
@@ -2483,7 +2708,8 @@ export const data = [
     "DwUpdated": "2023-11-22T20:18:49.000Z",
     "TripApprovedKilometer": 32.7000007629394,
     "DiffInBat": 9,
-    "DiffInDte": 12
+    "DiffInDte": 12,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2444608,
@@ -2494,7 +2720,8 @@ export const data = [
     "DwUpdated": "2023-12-19T21:45:21.000Z",
     "TripApprovedKilometer": 50.9000015258789,
     "DiffInBat": 11,
-    "DiffInDte": 58
+    "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2448200,
@@ -2505,7 +2732,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 33.8,
     "DiffInBat": 8,
-    "DiffInDte": 1
+    "DiffInDte": 1,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2449622,
@@ -2516,7 +2744,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 18.3,
     "DiffInBat": 9,
-    "DiffInDte": 1
+    "DiffInDte": 1,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2451617,
@@ -2527,7 +2756,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 28,
     "DiffInBat": 6,
-    "DiffInDte": 5
+    "DiffInDte": 5,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2452261,
@@ -2538,7 +2768,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 30.4,
     "DiffInBat": 6,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2454014,
@@ -2549,7 +2780,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 37.7,
     "DiffInBat": 8,
-    "DiffInDte": 33
+    "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2454878,
@@ -2560,7 +2792,8 @@ export const data = [
     "DwUpdated": "2023-12-19T15:45:22.000Z",
     "TripApprovedKilometer": 31.2,
     "DiffInBat": 10,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2460686,
@@ -2571,7 +2804,8 @@ export const data = [
     "DwUpdated": "2023-12-26T20:01:16.000Z",
     "TripApprovedKilometer": 31.5,
     "DiffInBat": 14,
-    "DiffInDte": 37
+    "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2461291,
@@ -2582,7 +2816,8 @@ export const data = [
     "DwUpdated": "2023-12-26T20:01:16.000Z",
     "TripApprovedKilometer": 29.6,
     "DiffInBat": 28,
-    "DiffInDte": 62
+    "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2466456,
@@ -2593,7 +2828,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 49.9000015258789,
     "DiffInBat": 11,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2464753,
@@ -2604,7 +2840,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.2000007629394,
     "DiffInBat": 14,
-    "DiffInDte": 19
+    "DiffInDte": 19,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468055,
@@ -2615,7 +2852,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.8,
     "DiffInBat": 22,
-    "DiffInDte": 41
+    "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468498,
@@ -2626,7 +2864,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.8,
     "DiffInBat": 16,
-    "DiffInDte": 58
+    "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2469312,
@@ -2637,7 +2876,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.7,
     "DiffInBat": 13,
-    "DiffInDte": 4
+    "DiffInDte": 4,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2468876,
@@ -2648,7 +2888,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 37.7,
     "DiffInBat": 26,
-    "DiffInDte": 66
+    "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2469892,
@@ -2659,7 +2900,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 34.6,
     "DiffInBat": 17,
-    "DiffInDte": 53
+    "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2470249,
@@ -2670,7 +2912,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30,
     "DiffInBat": 19,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2471689,
@@ -2681,7 +2924,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 50.599998474121,
     "DiffInBat": 24,
-    "DiffInDte": 46
+    "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2471304,
@@ -2692,7 +2936,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 21.2999992370605,
     "DiffInBat": 13,
-    "DiffInDte": 48
+    "DiffInDte": 48,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2473188,
@@ -2703,7 +2948,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 52.2,
     "DiffInBat": 21,
-    "DiffInDte": 55
+    "DiffInDte": 55,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2473500,
@@ -2714,7 +2960,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 14,
     "DiffInBat": 8,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2472801,
@@ -2725,7 +2972,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.8,
     "DiffInBat": 15,
-    "DiffInDte": 54
+    "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474626,
@@ -2736,7 +2984,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.4,
     "DiffInBat": 11,
-    "DiffInDte": 38
+    "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474888,
@@ -2747,7 +2996,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 17,
     "DiffInBat": 9,
-    "DiffInDte": 10
+    "DiffInDte": 10,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474320,
@@ -2758,7 +3008,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.8,
     "DiffInBat": 9,
-    "DiffInDte": 36
+    "DiffInDte": 36,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2474123,
@@ -2769,7 +3020,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 34,
     "DiffInBat": 19,
-    "DiffInDte": 50
+    "DiffInDte": 50,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2476293,
@@ -2780,7 +3032,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 10.6000003814697,
     "DiffInBat": 7,
-    "DiffInDte": 21
+    "DiffInDte": 21,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2475954,
@@ -2791,7 +3044,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.5,
     "DiffInBat": 11,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2475646,
@@ -2802,7 +3056,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.9,
     "DiffInBat": 17,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2476515,
@@ -2813,7 +3068,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.8999996185302,
     "DiffInBat": 14,
-    "DiffInDte": 2
+    "DiffInDte": 2,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2477080,
@@ -2824,7 +3080,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.8999996185302,
     "DiffInBat": 16,
-    "DiffInDte": 69
+    "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2477475,
@@ -2835,7 +3092,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.7,
     "DiffInBat": 31,
-    "DiffInDte": 78
+    "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2478661,
@@ -2846,7 +3104,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30.3999996185302,
     "DiffInBat": 18,
-    "DiffInDte": 59
+    "DiffInDte": 59,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2479935,
@@ -2857,7 +3116,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 7.09999990463256,
     "DiffInBat": 6,
-    "DiffInDte": 8
+    "DiffInDte": 8,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2481528,
@@ -2868,7 +3128,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.099998474121,
     "DiffInBat": 12,
-    "DiffInDte": 32
+    "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2480819,
@@ -2879,7 +3140,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 30.7999992370605,
     "DiffInBat": 14,
-    "DiffInDte": 42
+    "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2481203,
@@ -2890,7 +3152,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 42.7999992370605,
     "DiffInBat": 16,
-    "DiffInDte": 23
+    "DiffInDte": 23,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482093,
@@ -2901,7 +3164,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 31.5,
     "DiffInBat": 15,
-    "DiffInDte": 27
+    "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482837,
@@ -2912,7 +3176,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 19.6000003814697,
     "DiffInBat": 6,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2482449,
@@ -2923,7 +3188,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.6,
     "DiffInBat": 17,
-    "DiffInDte": 39
+    "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2484512,
@@ -2934,7 +3200,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.1,
     "DiffInBat": 12,
-    "DiffInDte": 24
+    "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2483615,
@@ -2945,7 +3212,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.5,
     "DiffInBat": 15,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2483941,
@@ -2956,7 +3224,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 33.7,
     "DiffInBat": 27,
-    "DiffInDte": 49
+    "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2485753,
@@ -2967,7 +3236,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 35.9,
     "DiffInBat": 22,
-    "DiffInDte": 56
+    "DiffInDte": 56,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2485327,
@@ -2978,7 +3248,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 29.5,
     "DiffInBat": 15,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2486895,
@@ -2989,7 +3260,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 24.2999992370605,
     "DiffInBat": 13,
-    "DiffInDte": 43
+    "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2487577,
@@ -3000,7 +3272,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 28.3,
     "DiffInBat": 10,
-    "DiffInDte": 9
+    "DiffInDte": 9,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2487297,
@@ -3011,7 +3284,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 53.7,
     "DiffInBat": 26,
-    "DiffInDte": 47
+    "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489084,
@@ -3022,7 +3296,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 18.8999996185302,
     "DiffInBat": 12,
-    "DiffInDte": 61
+    "DiffInDte": 61,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2488433,
@@ -3033,7 +3308,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 32.7999992370605,
     "DiffInBat": 17,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2488269,
@@ -3044,7 +3320,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:18:18.000Z",
     "TripApprovedKilometer": 26.1000003814697,
     "DiffInBat": 17,
-    "DiffInDte": 78
+    "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489959,
@@ -3055,7 +3332,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 22.4,
     "DiffInBat": 12,
-    "DiffInDte": 37
+    "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2489730,
@@ -3066,7 +3344,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 24.4,
     "DiffInBat": 14,
-    "DiffInDte": 26
+    "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491243,
@@ -3077,7 +3356,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 34.9000015258789,
     "DiffInBat": 18,
-    "DiffInDte": 53
+    "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491938,
@@ -3088,7 +3368,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 13.8,
     "DiffInBat": 6,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2491633,
@@ -3099,7 +3380,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 29.1,
     "DiffInBat": 17,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2493402,
@@ -3110,7 +3392,8 @@ export const data = [
     "DwUpdated": "2024-01-28T18:50:38.000Z",
     "TripApprovedKilometer": 18,
     "DiffInBat": 9,
-    "DiffInDte": 60
+    "DiffInDte": 60,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494460,
@@ -3121,7 +3404,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 34.4000015258789,
     "DiffInBat": 16,
-    "DiffInDte": 39
+    "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494169,
@@ -3132,7 +3416,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 11.5,
     "DiffInBat": 6,
-    "DiffInDte": 27
+    "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494274,
@@ -3143,7 +3428,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 18.8999996185302,
     "DiffInBat": 8,
-    "DiffInDte": 24
+    "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2494699,
@@ -3154,7 +3440,8 @@ export const data = [
     "DwUpdated": "2024-02-08T07:15:52.000Z",
     "TripApprovedKilometer": 39.5,
     "DiffInBat": 20,
-    "DiffInDte": 33
+    "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2495940,
@@ -3165,7 +3452,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 32.5,
     "DiffInBat": 20,
-    "DiffInDte": 45
+    "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2496416,
@@ -3176,7 +3464,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 21.2999992370605,
     "DiffInBat": 11,
-    "DiffInDte": 38
+    "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2495555,
@@ -3187,7 +3476,8 @@ export const data = [
     "DwUpdated": "2024-02-08T13:15:51.000Z",
     "TripApprovedKilometer": 28.2999992370605,
     "DiffInBat": 18,
-    "DiffInDte": 35
+    "DiffInDte": 35,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2497021,
@@ -3198,7 +3488,8 @@ export const data = [
     "DwUpdated": "2024-02-09T02:30:09.000Z",
     "TripApprovedKilometer": 32,
     "DiffInBat": 18,
-    "DiffInDte": 46
+    "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id"
   },
   {
     "TripID": 2497412,
@@ -3209,6 +3500,7 @@ export const data = [
     "DwUpdated": "2024-02-09T02:30:09.000Z",
     "TripApprovedKilometer": 19.1000003814697,
     "DiffInBat": 13,
-    "DiffInDte": 32
+    "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id"
   }
 ];

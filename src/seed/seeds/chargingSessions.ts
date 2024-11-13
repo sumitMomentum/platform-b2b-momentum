@@ -1,6 +1,6 @@
 export const data = [
   {
-    "TripID": 626964,
+    "TripID": 794629,
     "DteStart": 179,
     "DteEnd": 225,
     "BatteryAtStart": 77,
@@ -9,10 +9,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 557615,
+    "TripID": 506449,
     "DteStart": 214,
     "DteEnd": 244,
     "BatteryAtStart": 89,
@@ -21,10 +22,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 30,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 978792,
+    "TripID": 221941,
     "DteStart": 110,
     "DteEnd": 228,
     "BatteryAtStart": 45,
@@ -33,10 +35,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 118,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 664747,
+    "TripID": 38750,
     "DteStart": 201,
     "DteEnd": 221,
     "BatteryAtStart": 83,
@@ -45,10 +48,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "SLOW",
     "DiffInDte": 20,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 218305,
+    "TripID": 48060,
     "DteStart": 174,
     "DteEnd": 212,
     "BatteryAtStart": 76,
@@ -57,10 +61,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 896166,
+    "TripID": 241122,
     "DteStart": 59,
     "DteEnd": 187,
     "BatteryAtStart": 27,
@@ -69,10 +74,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 128,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 700920,
+    "TripID": 294982,
     "DteStart": 77,
     "DteEnd": 167,
     "BatteryAtStart": 42,
@@ -81,10 +87,11 @@ export const data = [
     "DiffInBat": 48,
     "ChargingType": "FAST",
     "DiffInDte": 90,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 387817,
+    "TripID": 864502,
     "DteStart": 40,
     "DteEnd": 132,
     "BatteryAtStart": 27,
@@ -93,10 +100,11 @@ export const data = [
     "DiffInBat": 59,
     "ChargingType": "FAST",
     "DiffInDte": 92,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 553674,
+    "TripID": 502159,
     "DteStart": 58,
     "DteEnd": 131,
     "BatteryAtStart": 29,
@@ -105,10 +113,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 73,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 298648,
+    "TripID": 440745,
     "DteStart": 123,
     "DteEnd": 152,
     "BatteryAtStart": 66,
@@ -117,10 +126,11 @@ export const data = [
     "DiffInBat": 16,
     "ChargingType": "FAST",
     "DiffInDte": 29,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 506639,
+    "TripID": 555372,
     "DteStart": 163,
     "DteEnd": 187,
     "BatteryAtStart": 75,
@@ -129,10 +139,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 889573,
+    "TripID": 668940,
     "DteStart": 101,
     "DteEnd": 159,
     "BatteryAtStart": 52,
@@ -141,10 +152,11 @@ export const data = [
     "DiffInBat": 29,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 506066,
+    "TripID": 3642,
     "DteStart": 120,
     "DteEnd": 202,
     "BatteryAtStart": 56,
@@ -153,10 +165,11 @@ export const data = [
     "DiffInBat": 37,
     "ChargingType": "FAST",
     "DiffInDte": 82,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 663789,
+    "TripID": 381590,
     "DteStart": 113,
     "DteEnd": 189,
     "BatteryAtStart": 54,
@@ -165,10 +178,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 76,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 865933,
+    "TripID": 757507,
     "DteStart": 112,
     "DteEnd": 188,
     "BatteryAtStart": 55,
@@ -177,10 +191,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 76,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 885276,
+    "TripID": 670938,
     "DteStart": 69,
     "DteEnd": 192,
     "BatteryAtStart": 33,
@@ -189,10 +204,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 123,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 463330,
+    "TripID": 855486,
     "DteStart": 125,
     "DteEnd": 166,
     "BatteryAtStart": 65,
@@ -201,10 +217,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 137824,
+    "TripID": 569965,
     "DteStart": 103,
     "DteEnd": 169,
     "BatteryAtStart": 50,
@@ -213,10 +230,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 734167,
+    "TripID": 190778,
     "DteStart": 122,
     "DteEnd": 147,
     "BatteryAtStart": 50,
@@ -225,10 +243,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 512227,
+    "TripID": 570016,
     "DteStart": 174,
     "DteEnd": 191,
     "BatteryAtStart": 71,
@@ -237,10 +256,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 204868,
+    "TripID": 281140,
     "DteStart": 131,
     "DteEnd": 196,
     "BatteryAtStart": 58,
@@ -249,10 +269,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 65,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 797874,
+    "TripID": 720130,
     "DteStart": 101,
     "DteEnd": 196,
     "BatteryAtStart": 48,
@@ -261,10 +282,11 @@ export const data = [
     "DiffInBat": 42,
     "ChargingType": "FAST",
     "DiffInDte": 95,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 764329,
+    "TripID": 51702,
     "DteStart": 138,
     "DteEnd": 183,
     "BatteryAtStart": 64,
@@ -273,10 +295,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 482147,
+    "TripID": 524756,
     "DteStart": 127,
     "DteEnd": 185,
     "BatteryAtStart": 60,
@@ -285,10 +308,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 128257,
+    "TripID": 532070,
     "DteStart": 182,
     "DteEnd": 202,
     "BatteryAtStart": 90,
@@ -297,10 +321,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "SLOW",
     "DiffInDte": 20,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 907872,
+    "TripID": 161212,
     "DteStart": 89,
     "DteEnd": 180,
     "BatteryAtStart": 45,
@@ -309,10 +334,11 @@ export const data = [
     "DiffInBat": 44,
     "ChargingType": "FAST",
     "DiffInDte": 91,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 198723,
+    "TripID": 813536,
     "DteStart": 156,
     "DteEnd": 199,
     "BatteryAtStart": 74,
@@ -321,10 +347,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 443781,
+    "TripID": 772733,
     "DteStart": 114,
     "DteEnd": 154,
     "BatteryAtStart": 67,
@@ -333,10 +360,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 40,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 428956,
+    "TripID": 165358,
     "DteStart": 157,
     "DteEnd": 180,
     "BatteryAtStart": 78,
@@ -345,10 +373,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 23,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 817446,
+    "TripID": 447063,
     "DteStart": 65,
     "DteEnd": 148,
     "BatteryAtStart": 37,
@@ -357,10 +386,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 83,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 15823,
+    "TripID": 521394,
     "DteStart": 119,
     "DteEnd": 136,
     "BatteryAtStart": 59,
@@ -369,10 +399,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "FAST",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 27809,
+    "TripID": 93082,
     "DteStart": 25,
     "DteEnd": 72,
     "BatteryAtStart": 15,
@@ -381,10 +412,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 208482,
+    "TripID": 658045,
     "DteStart": 152,
     "DteEnd": 176,
     "BatteryAtStart": 78,
@@ -393,10 +425,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 737927,
+    "TripID": 863601,
     "DteStart": 180,
     "DteEnd": 197,
     "BatteryAtStart": 92,
@@ -405,10 +438,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "SLOW",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 479206,
+    "TripID": 175487,
     "DteStart": 159,
     "DteEnd": 209,
     "BatteryAtStart": 68,
@@ -417,10 +451,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 50,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 443205,
+    "TripID": 813993,
     "DteStart": 136,
     "DteEnd": 190,
     "BatteryAtStart": 64,
@@ -429,10 +464,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 934435,
+    "TripID": 288631,
     "DteStart": 142,
     "DteEnd": 157,
     "BatteryAtStart": 66,
@@ -441,10 +477,11 @@ export const data = [
     "DiffInBat": 14,
     "ChargingType": "FAST",
     "DiffInDte": 15,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 714520,
+    "TripID": 703068,
     "DteStart": 121,
     "DteEnd": 175,
     "BatteryAtStart": 64,
@@ -453,10 +490,11 @@ export const data = [
     "DiffInBat": 28,
     "ChargingType": "FAST",
     "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 769535,
+    "TripID": 467785,
     "DteStart": 179,
     "DteEnd": 192,
     "BatteryAtStart": 94,
@@ -465,10 +503,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "SLOW",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 811341,
+    "TripID": 869401,
     "DteStart": 112,
     "DteEnd": 165,
     "BatteryAtStart": 58,
@@ -477,10 +516,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 41339,
+    "TripID": 493271,
     "DteStart": 159,
     "DteEnd": 177,
     "BatteryAtStart": 78,
@@ -489,10 +529,11 @@ export const data = [
     "DiffInBat": 9,
     "ChargingType": "SLOW",
     "DiffInDte": 18,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 443238,
+    "TripID": 271351,
     "DteStart": 116,
     "DteEnd": 142,
     "BatteryAtStart": 57,
@@ -501,10 +542,11 @@ export const data = [
     "DiffInBat": 13,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 242038,
+    "TripID": 558991,
     "DteStart": 173,
     "DteEnd": 186,
     "BatteryAtStart": 84,
@@ -513,10 +555,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 48962,
+    "TripID": 123835,
     "DteStart": 191,
     "DteEnd": 219,
     "BatteryAtStart": 83,
@@ -525,10 +568,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 608139,
+    "TripID": 64749,
     "DteStart": 105,
     "DteEnd": 203,
     "BatteryAtStart": 49,
@@ -537,10 +581,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 98,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 655098,
+    "TripID": 468600,
     "DteStart": 171,
     "DteEnd": 220,
     "BatteryAtStart": 71,
@@ -549,10 +594,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 456113,
+    "TripID": 484097,
     "DteStart": 153,
     "DteEnd": 196,
     "BatteryAtStart": 65,
@@ -561,10 +607,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 839649,
+    "TripID": 376739,
     "DteStart": 154,
     "DteEnd": 193,
     "BatteryAtStart": 71,
@@ -573,10 +620,11 @@ export const data = [
     "DiffInBat": 17,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 607120,
+    "TripID": 778593,
     "DteStart": 151,
     "DteEnd": 185,
     "BatteryAtStart": 67,
@@ -585,10 +633,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 711082,
+    "TripID": 302414,
     "DteStart": 125,
     "DteEnd": 187,
     "BatteryAtStart": 56,
@@ -597,10 +646,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 225558,
+    "TripID": 545418,
     "DteStart": 191,
     "DteEnd": 225,
     "BatteryAtStart": 85,
@@ -609,10 +659,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "SLOW",
     "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 52327,
+    "TripID": 889152,
     "DteStart": 145,
     "DteEnd": 178,
     "BatteryAtStart": 70,
@@ -621,10 +672,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 148012,
+    "TripID": 832398,
     "DteStart": 107,
     "DteEnd": 210,
     "BatteryAtStart": 50,
@@ -633,10 +685,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 103,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 411497,
+    "TripID": 779699,
     "DteStart": 127,
     "DteEnd": 167,
     "BatteryAtStart": 61,
@@ -645,10 +698,11 @@ export const data = [
     "DiffInBat": 28,
     "ChargingType": "FAST",
     "DiffInDte": 40,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 240469,
+    "TripID": 956304,
     "DteStart": 138,
     "DteEnd": 176,
     "BatteryAtStart": 63,
@@ -657,10 +711,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 941617,
+    "TripID": 265570,
     "DteStart": 140,
     "DteEnd": 208,
     "BatteryAtStart": 63,
@@ -669,10 +724,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 68,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 660814,
+    "TripID": 205665,
     "DteStart": 116,
     "DteEnd": 163,
     "BatteryAtStart": 63,
@@ -681,10 +737,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 844918,
+    "TripID": 315554,
     "DteStart": 132,
     "DteEnd": 156,
     "BatteryAtStart": 70,
@@ -693,10 +750,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 872264,
+    "TripID": 251189,
     "DteStart": 127,
     "DteEnd": 172,
     "BatteryAtStart": 65,
@@ -705,10 +763,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 728591,
+    "TripID": 970850,
     "DteStart": 94,
     "DteEnd": 109,
     "BatteryAtStart": 48,
@@ -717,10 +776,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "FAST",
     "DiffInDte": 15,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 989005,
+    "TripID": 229182,
     "DteStart": 107,
     "DteEnd": 185,
     "BatteryAtStart": 53,
@@ -729,10 +789,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 788760,
+    "TripID": 621664,
     "DteStart": 169,
     "DteEnd": 195,
     "BatteryAtStart": 77,
@@ -741,10 +802,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 220452,
+    "TripID": 570931,
     "DteStart": 109,
     "DteEnd": 211,
     "BatteryAtStart": 46,
@@ -753,10 +815,11 @@ export const data = [
     "DiffInBat": 43,
     "ChargingType": "FAST",
     "DiffInDte": 102,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 610821,
+    "TripID": 216373,
     "DteStart": 148,
     "DteEnd": 180,
     "BatteryAtStart": 67,
@@ -765,10 +828,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 578329,
+    "TripID": 685440,
     "DteStart": 127,
     "DteEnd": 218,
     "BatteryAtStart": 52,
@@ -777,10 +841,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 91,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 257644,
+    "TripID": 195758,
     "DteStart": 132,
     "DteEnd": 191,
     "BatteryAtStart": 63,
@@ -789,10 +854,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 59,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 496760,
+    "TripID": 534466,
     "DteStart": 139,
     "DteEnd": 178,
     "BatteryAtStart": 61,
@@ -801,10 +867,11 @@ export const data = [
     "DiffInBat": 16,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 286076,
+    "TripID": 573132,
     "DteStart": 171,
     "DteEnd": 219,
     "BatteryAtStart": 70,
@@ -813,10 +880,11 @@ export const data = [
     "DiffInBat": 19,
     "ChargingType": "FAST",
     "DiffInDte": 48,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 745255,
+    "TripID": 89947,
     "DteStart": 119,
     "DteEnd": 190,
     "BatteryAtStart": 56,
@@ -825,10 +893,11 @@ export const data = [
     "DiffInBat": 33,
     "ChargingType": "FAST",
     "DiffInDte": 71,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 864690,
+    "TripID": 286,
     "DteStart": 55,
     "DteEnd": 182,
     "BatteryAtStart": 26,
@@ -837,10 +906,11 @@ export const data = [
     "DiffInBat": 57,
     "ChargingType": "FAST",
     "DiffInDte": 127,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 872514,
+    "TripID": 307420,
     "DteStart": 146,
     "DteEnd": 212,
     "BatteryAtStart": 61,
@@ -849,10 +919,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 823764,
+    "TripID": 666586,
     "DteStart": 214,
     "DteEnd": 241,
     "BatteryAtStart": 89,
@@ -861,10 +932,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "SLOW",
     "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 358298,
+    "TripID": 651852,
     "DteStart": 145,
     "DteEnd": 217,
     "BatteryAtStart": 64,
@@ -873,10 +945,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 72,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 350843,
+    "TripID": 813844,
     "DteStart": 82,
     "DteEnd": 202,
     "BatteryAtStart": 36,
@@ -885,10 +958,11 @@ export const data = [
     "DiffInBat": 44,
     "ChargingType": "FAST",
     "DiffInDte": 120,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 622107,
+    "TripID": 314021,
     "DteStart": 127,
     "DteEnd": 178,
     "BatteryAtStart": 59,
@@ -897,10 +971,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 51,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 451392,
+    "TripID": 391346,
     "DteStart": 180,
     "DteEnd": 227,
     "BatteryAtStart": 74,
@@ -909,10 +984,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 112992,
+    "TripID": 245210,
     "DteStart": 160,
     "DteEnd": 218,
     "BatteryAtStart": 66,
@@ -921,10 +997,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 971234,
+    "TripID": 636940,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -933,10 +1010,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 93295,
+    "TripID": 640916,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -945,10 +1023,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 983509,
+    "TripID": 514477,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -957,10 +1036,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 255131,
+    "TripID": 834913,
     "DteStart": 177,
     "DteEnd": 228,
     "BatteryAtStart": 78,
@@ -969,10 +1049,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 51,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 774025,
+    "TripID": 524274,
     "DteStart": 153,
     "DteEnd": 222,
     "BatteryAtStart": 70,
@@ -981,10 +1062,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 876098,
+    "TripID": 159364,
     "DteStart": 208,
     "DteEnd": 235,
     "BatteryAtStart": 81,
@@ -993,10 +1075,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 521236,
+    "TripID": 834381,
     "DteStart": 135,
     "DteEnd": 178,
     "BatteryAtStart": 52,
@@ -1005,10 +1088,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 607133,
+    "TripID": 869340,
     "DteStart": 177,
     "DteEnd": 233,
     "BatteryAtStart": 68,
@@ -1017,10 +1101,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "SLOW",
     "DiffInDte": 56,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 842295,
+    "TripID": 20268,
     "DteStart": 170,
     "DteEnd": 232,
     "BatteryAtStart": 67,
@@ -1029,10 +1114,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 68708,
+    "TripID": 971705,
     "DteStart": 84,
     "DteEnd": 193,
     "BatteryAtStart": 41,
@@ -1041,10 +1127,11 @@ export const data = [
     "DiffInBat": 52,
     "ChargingType": "FAST",
     "DiffInDte": 109,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 505744,
+    "TripID": 468469,
     "DteStart": 138,
     "DteEnd": 196,
     "BatteryAtStart": 63,
@@ -1053,10 +1140,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 837537,
+    "TripID": 461840,
     "DteStart": 98,
     "DteEnd": 202,
     "BatteryAtStart": 47,
@@ -1065,10 +1153,11 @@ export const data = [
     "DiffInBat": 49,
     "ChargingType": "FAST",
     "DiffInDte": 104,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 884940,
+    "TripID": 369954,
     "DteStart": 127,
     "DteEnd": 179,
     "BatteryAtStart": 58,
@@ -1077,10 +1166,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 52,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 881744,
+    "TripID": 252864,
     "DteStart": 144,
     "DteEnd": 221,
     "BatteryAtStart": 65,
@@ -1089,10 +1179,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 77,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 458962,
+    "TripID": 875865,
     "DteStart": 105,
     "DteEnd": 174,
     "BatteryAtStart": 52,
@@ -1101,10 +1192,11 @@ export const data = [
     "DiffInBat": 33,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 372774,
+    "TripID": 22049,
     "DteStart": 180,
     "DteEnd": 223,
     "BatteryAtStart": 81,
@@ -1113,10 +1205,11 @@ export const data = [
     "DiffInBat": 19,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 850420,
+    "TripID": 959403,
     "DteStart": 101,
     "DteEnd": 164,
     "BatteryAtStart": 47,
@@ -1125,10 +1218,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 63,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 629446,
+    "TripID": 944288,
     "DteStart": 138,
     "DteEnd": 208,
     "BatteryAtStart": 62,
@@ -1137,10 +1231,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 70,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 827016,
+    "TripID": 990995,
     "DteStart": 100,
     "DteEnd": 216,
     "BatteryAtStart": 47,
@@ -1149,10 +1244,11 @@ export const data = [
     "DiffInBat": 53,
     "ChargingType": "FAST",
     "DiffInDte": 116,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 762573,
+    "TripID": 82922,
     "DteStart": 133,
     "DteEnd": 174,
     "BatteryAtStart": 64,
@@ -1161,10 +1257,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 607385,
+    "TripID": 956748,
     "DteStart": 143,
     "DteEnd": 171,
     "BatteryAtStart": 68,
@@ -1173,10 +1270,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 316668,
+    "TripID": 907118,
     "DteStart": 134,
     "DteEnd": 147,
     "BatteryAtStart": 63,
@@ -1185,10 +1283,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 59122,
+    "TripID": 255465,
     "DteStart": 88,
     "DteEnd": 192,
     "BatteryAtStart": 40,
@@ -1197,10 +1296,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 104,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 20469,
+    "TripID": 607474,
     "DteStart": 119,
     "DteEnd": 206,
     "BatteryAtStart": 53,
@@ -1209,10 +1309,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 87,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 874542,
+    "TripID": 960093,
     "DteStart": 77,
     "DteEnd": 226,
     "BatteryAtStart": 35,
@@ -1221,10 +1322,11 @@ export const data = [
     "DiffInBat": 65,
     "ChargingType": "FAST",
     "DiffInDte": 149,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 911708,
+    "TripID": 766160,
     "DteStart": 99,
     "DteEnd": 162,
     "BatteryAtStart": 50,
@@ -1233,10 +1335,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 63,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 591133,
+    "TripID": 719113,
     "DteStart": 150,
     "DteEnd": 217,
     "BatteryAtStart": 66,
@@ -1245,10 +1348,11 @@ export const data = [
     "DiffInBat": 29,
     "ChargingType": "FAST",
     "DiffInDte": 67,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 984605,
+    "TripID": 46261,
     "DteStart": 134,
     "DteEnd": 198,
     "BatteryAtStart": 63,
@@ -1257,10 +1361,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 64,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 399360,
+    "TripID": 686408,
     "DteStart": 89,
     "DteEnd": 199,
     "BatteryAtStart": 41,
@@ -1269,10 +1374,11 @@ export const data = [
     "DiffInBat": 58,
     "ChargingType": "FAST",
     "DiffInDte": 110,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 17594,
+    "TripID": 102048,
     "DteStart": 106,
     "DteEnd": 148,
     "BatteryAtStart": 57,
@@ -1281,10 +1387,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 568514,
+    "TripID": 560831,
     "DteStart": 116,
     "DteEnd": 187,
     "BatteryAtStart": 57,
@@ -1293,10 +1400,11 @@ export const data = [
     "DiffInBat": 43,
     "ChargingType": "FAST",
     "DiffInDte": 71,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 698288,
+    "TripID": 575308,
     "DteStart": 112,
     "DteEnd": 164,
     "BatteryAtStart": 56,
@@ -1305,10 +1413,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 52,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 724242,
+    "TripID": 863340,
     "DteStart": 91,
     "DteEnd": 233,
     "BatteryAtStart": 40,
@@ -1317,10 +1426,11 @@ export const data = [
     "DiffInBat": 60,
     "ChargingType": "FAST",
     "DiffInDte": 142,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 214001,
+    "TripID": 85473,
     "DteStart": 122,
     "DteEnd": 182,
     "BatteryAtStart": 56,
@@ -1329,10 +1439,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 60,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 403456,
+    "TripID": 115733,
     "DteStart": 176,
     "DteEnd": 198,
     "BatteryAtStart": 82,
@@ -1341,10 +1452,11 @@ export const data = [
     "DiffInBat": 9,
     "ChargingType": "FAST",
     "DiffInDte": 22,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 569795,
+    "TripID": 418360,
     "DteStart": 136,
     "DteEnd": 201,
     "BatteryAtStart": 62,
@@ -1353,10 +1465,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 65,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 382381,
+    "TripID": 909369,
     "DteStart": 133,
     "DteEnd": 161,
     "BatteryAtStart": 62,
@@ -1365,10 +1478,11 @@ export const data = [
     "DiffInBat": 13,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 857499,
+    "TripID": 269433,
     "DteStart": 126,
     "DteEnd": 218,
     "BatteryAtStart": 55,
@@ -1377,10 +1491,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 92,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 192570,
+    "TripID": 977309,
     "DteStart": 100,
     "DteEnd": 266,
     "BatteryAtStart": 38,
@@ -1389,10 +1504,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 166,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 849886,
+    "TripID": 470862,
     "DteStart": 155,
     "DteEnd": 221,
     "BatteryAtStart": 63,
@@ -1401,10 +1517,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 726549,
+    "TripID": 511959,
     "DteStart": 131,
     "DteEnd": 218,
     "BatteryAtStart": 60,
@@ -1413,10 +1530,11 @@ export const data = [
     "DiffInBat": 40,
     "ChargingType": "FAST",
     "DiffInDte": 87,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 531121,
+    "TripID": 749713,
     "DteStart": 148,
     "DteEnd": 206,
     "BatteryAtStart": 68,
@@ -1425,10 +1543,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 198679,
+    "TripID": 476829,
     "DteStart": 151,
     "DteEnd": 190,
     "BatteryAtStart": 72,
@@ -1437,10 +1556,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 755092,
+    "TripID": 478723,
     "DteStart": 160,
     "DteEnd": 209,
     "BatteryAtStart": 70,
@@ -1449,10 +1569,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 582594,
+    "TripID": 696970,
     "DteStart": 187,
     "DteEnd": 213,
     "BatteryAtStart": 80,
@@ -1461,10 +1582,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 996998,
+    "TripID": 958505,
     "DteStart": 120,
     "DteEnd": 202,
     "BatteryAtStart": 54,
@@ -1473,10 +1595,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 82,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 878967,
+    "TripID": 853154,
     "DteStart": 180,
     "DteEnd": 249,
     "BatteryAtStart": 65,
@@ -1485,10 +1608,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 510837,
+    "TripID": 187749,
     "DteStart": 123,
     "DteEnd": 170,
     "BatteryAtStart": 60,
@@ -1497,10 +1621,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 403064,
+    "TripID": 259529,
     "DteStart": 121,
     "DteEnd": 223,
     "BatteryAtStart": 55,
@@ -1509,10 +1634,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 102,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 859819,
+    "TripID": 635013,
     "DteStart": 113,
     "DteEnd": 150,
     "BatteryAtStart": 57,
@@ -1521,10 +1647,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 440544,
+    "TripID": 133227,
     "DteStart": 119,
     "DteEnd": 224,
     "BatteryAtStart": 54,
@@ -1533,10 +1660,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 105,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 275609,
+    "TripID": 344539,
     "DteStart": 87,
     "DteEnd": 202,
     "BatteryAtStart": 44,
@@ -1545,10 +1673,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 115,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 81878,
+    "TripID": 347640,
     "DteStart": 147,
     "DteEnd": 189,
     "BatteryAtStart": 65,
@@ -1557,10 +1686,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 104801,
+    "TripID": 717812,
     "DteStart": 179,
     "DteEnd": 225,
     "BatteryAtStart": 77,
@@ -1569,10 +1699,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 931143,
+    "TripID": 658715,
     "DteStart": 214,
     "DteEnd": 244,
     "BatteryAtStart": 89,
@@ -1581,10 +1712,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 30,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 677241,
+    "TripID": 382045,
     "DteStart": 110,
     "DteEnd": 228,
     "BatteryAtStart": 45,
@@ -1593,10 +1725,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 118,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 572841,
+    "TripID": 523188,
     "DteStart": 201,
     "DteEnd": 221,
     "BatteryAtStart": 83,
@@ -1605,10 +1738,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "SLOW",
     "DiffInDte": 20,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 979560,
+    "TripID": 135851,
     "DteStart": 174,
     "DteEnd": 212,
     "BatteryAtStart": 76,
@@ -1617,10 +1751,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 316239,
+    "TripID": 839170,
     "DteStart": 59,
     "DteEnd": 187,
     "BatteryAtStart": 27,
@@ -1629,10 +1764,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 128,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 636370,
+    "TripID": 944516,
     "DteStart": 77,
     "DteEnd": 167,
     "BatteryAtStart": 42,
@@ -1641,10 +1777,11 @@ export const data = [
     "DiffInBat": 48,
     "ChargingType": "FAST",
     "DiffInDte": 90,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 407448,
+    "TripID": 838119,
     "DteStart": 40,
     "DteEnd": 132,
     "BatteryAtStart": 27,
@@ -1653,10 +1790,11 @@ export const data = [
     "DiffInBat": 59,
     "ChargingType": "FAST",
     "DiffInDte": 92,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 101228,
+    "TripID": 237391,
     "DteStart": 58,
     "DteEnd": 131,
     "BatteryAtStart": 29,
@@ -1665,10 +1803,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 73,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 89239,
+    "TripID": 250394,
     "DteStart": 123,
     "DteEnd": 152,
     "BatteryAtStart": 66,
@@ -1677,10 +1816,11 @@ export const data = [
     "DiffInBat": 16,
     "ChargingType": "FAST",
     "DiffInDte": 29,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 19685,
+    "TripID": 29095,
     "DteStart": 163,
     "DteEnd": 187,
     "BatteryAtStart": 75,
@@ -1689,10 +1829,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 629846,
+    "TripID": 454359,
     "DteStart": 101,
     "DteEnd": 159,
     "BatteryAtStart": 52,
@@ -1701,10 +1842,11 @@ export const data = [
     "DiffInBat": 29,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 910861,
+    "TripID": 313309,
     "DteStart": 120,
     "DteEnd": 202,
     "BatteryAtStart": 56,
@@ -1713,10 +1855,11 @@ export const data = [
     "DiffInBat": 37,
     "ChargingType": "FAST",
     "DiffInDte": 82,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 49387,
+    "TripID": 12235,
     "DteStart": 113,
     "DteEnd": 189,
     "BatteryAtStart": 54,
@@ -1725,10 +1868,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 76,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 407700,
+    "TripID": 740994,
     "DteStart": 112,
     "DteEnd": 188,
     "BatteryAtStart": 55,
@@ -1737,10 +1881,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 76,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 658826,
+    "TripID": 259667,
     "DteStart": 69,
     "DteEnd": 192,
     "BatteryAtStart": 33,
@@ -1749,10 +1894,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 123,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 370242,
+    "TripID": 634099,
     "DteStart": 125,
     "DteEnd": 166,
     "BatteryAtStart": 65,
@@ -1761,10 +1907,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 256895,
+    "TripID": 447895,
     "DteStart": 103,
     "DteEnd": 169,
     "BatteryAtStart": 50,
@@ -1773,10 +1920,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 247091,
+    "TripID": 504573,
     "DteStart": 122,
     "DteEnd": 147,
     "BatteryAtStart": 50,
@@ -1785,10 +1933,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 330322,
+    "TripID": 234532,
     "DteStart": 174,
     "DteEnd": 191,
     "BatteryAtStart": 71,
@@ -1797,10 +1946,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 394404,
+    "TripID": 39368,
     "DteStart": 131,
     "DteEnd": 196,
     "BatteryAtStart": 58,
@@ -1809,10 +1959,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 65,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 317552,
+    "TripID": 123216,
     "DteStart": 101,
     "DteEnd": 196,
     "BatteryAtStart": 48,
@@ -1821,10 +1972,11 @@ export const data = [
     "DiffInBat": 42,
     "ChargingType": "FAST",
     "DiffInDte": 95,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 230218,
+    "TripID": 244528,
     "DteStart": 138,
     "DteEnd": 183,
     "BatteryAtStart": 64,
@@ -1833,10 +1985,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 613209,
+    "TripID": 333141,
     "DteStart": 127,
     "DteEnd": 185,
     "BatteryAtStart": 60,
@@ -1845,10 +1998,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 158246,
+    "TripID": 19486,
     "DteStart": 182,
     "DteEnd": 202,
     "BatteryAtStart": 90,
@@ -1857,10 +2011,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "SLOW",
     "DiffInDte": 20,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 480569,
+    "TripID": 584816,
     "DteStart": 89,
     "DteEnd": 180,
     "BatteryAtStart": 45,
@@ -1869,10 +2024,11 @@ export const data = [
     "DiffInBat": 44,
     "ChargingType": "FAST",
     "DiffInDte": 91,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 423006,
+    "TripID": 141999,
     "DteStart": 156,
     "DteEnd": 199,
     "BatteryAtStart": 74,
@@ -1881,10 +2037,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 399817,
+    "TripID": 311313,
     "DteStart": 114,
     "DteEnd": 154,
     "BatteryAtStart": 67,
@@ -1893,10 +2050,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 40,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 177776,
+    "TripID": 179178,
     "DteStart": 157,
     "DteEnd": 180,
     "BatteryAtStart": 78,
@@ -1905,10 +2063,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 23,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 963765,
+    "TripID": 359571,
     "DteStart": 65,
     "DteEnd": 148,
     "BatteryAtStart": 37,
@@ -1917,10 +2076,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 83,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 683587,
+    "TripID": 396924,
     "DteStart": 119,
     "DteEnd": 136,
     "BatteryAtStart": 59,
@@ -1929,10 +2089,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "FAST",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 677239,
+    "TripID": 966911,
     "DteStart": 25,
     "DteEnd": 72,
     "BatteryAtStart": 15,
@@ -1941,10 +2102,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 980062,
+    "TripID": 383821,
     "DteStart": 152,
     "DteEnd": 176,
     "BatteryAtStart": 78,
@@ -1953,10 +2115,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 268498,
+    "TripID": 519899,
     "DteStart": 180,
     "DteEnd": 197,
     "BatteryAtStart": 92,
@@ -1965,10 +2128,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "SLOW",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 375049,
+    "TripID": 809878,
     "DteStart": 159,
     "DteEnd": 209,
     "BatteryAtStart": 68,
@@ -1977,10 +2141,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 50,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 328131,
+    "TripID": 800172,
     "DteStart": 136,
     "DteEnd": 190,
     "BatteryAtStart": 64,
@@ -1989,10 +2154,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 775602,
+    "TripID": 617455,
     "DteStart": 142,
     "DteEnd": 157,
     "BatteryAtStart": 66,
@@ -2001,10 +2167,11 @@ export const data = [
     "DiffInBat": 14,
     "ChargingType": "FAST",
     "DiffInDte": 15,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 982175,
+    "TripID": 61795,
     "DteStart": 121,
     "DteEnd": 175,
     "BatteryAtStart": 64,
@@ -2013,10 +2180,11 @@ export const data = [
     "DiffInBat": 28,
     "ChargingType": "FAST",
     "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 170167,
+    "TripID": 981829,
     "DteStart": 179,
     "DteEnd": 192,
     "BatteryAtStart": 94,
@@ -2025,10 +2193,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "SLOW",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 423602,
+    "TripID": 116001,
     "DteStart": 112,
     "DteEnd": 165,
     "BatteryAtStart": 58,
@@ -2037,10 +2206,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 827013,
+    "TripID": 667079,
     "DteStart": 159,
     "DteEnd": 177,
     "BatteryAtStart": 78,
@@ -2049,10 +2219,11 @@ export const data = [
     "DiffInBat": 9,
     "ChargingType": "SLOW",
     "DiffInDte": 18,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 702583,
+    "TripID": 282287,
     "DteStart": 116,
     "DteEnd": 142,
     "BatteryAtStart": 57,
@@ -2061,10 +2232,11 @@ export const data = [
     "DiffInBat": 13,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 40314,
+    "TripID": 520286,
     "DteStart": 173,
     "DteEnd": 186,
     "BatteryAtStart": 84,
@@ -2073,10 +2245,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 98594,
+    "TripID": 485664,
     "DteStart": 191,
     "DteEnd": 219,
     "BatteryAtStart": 83,
@@ -2085,10 +2258,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 74400,
+    "TripID": 407092,
     "DteStart": 105,
     "DteEnd": 203,
     "BatteryAtStart": 49,
@@ -2097,10 +2271,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 98,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 968326,
+    "TripID": 250188,
     "DteStart": 171,
     "DteEnd": 220,
     "BatteryAtStart": 71,
@@ -2109,10 +2284,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 420718,
+    "TripID": 785660,
     "DteStart": 153,
     "DteEnd": 196,
     "BatteryAtStart": 65,
@@ -2121,10 +2297,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 845928,
+    "TripID": 706074,
     "DteStart": 154,
     "DteEnd": 193,
     "BatteryAtStart": 71,
@@ -2133,10 +2310,11 @@ export const data = [
     "DiffInBat": 17,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 571875,
+    "TripID": 551695,
     "DteStart": 151,
     "DteEnd": 185,
     "BatteryAtStart": 67,
@@ -2145,10 +2323,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 158312,
+    "TripID": 451980,
     "DteStart": 125,
     "DteEnd": 187,
     "BatteryAtStart": 56,
@@ -2157,10 +2336,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 629755,
+    "TripID": 733800,
     "DteStart": 191,
     "DteEnd": 225,
     "BatteryAtStart": 85,
@@ -2169,10 +2349,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "SLOW",
     "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 539763,
+    "TripID": 322866,
     "DteStart": 145,
     "DteEnd": 178,
     "BatteryAtStart": 70,
@@ -2181,10 +2362,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 270078,
+    "TripID": 869212,
     "DteStart": 107,
     "DteEnd": 210,
     "BatteryAtStart": 50,
@@ -2193,10 +2375,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 103,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 885484,
+    "TripID": 695426,
     "DteStart": 127,
     "DteEnd": 167,
     "BatteryAtStart": 61,
@@ -2205,10 +2388,11 @@ export const data = [
     "DiffInBat": 28,
     "ChargingType": "FAST",
     "DiffInDte": 40,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 680055,
+    "TripID": 743534,
     "DteStart": 138,
     "DteEnd": 176,
     "BatteryAtStart": 63,
@@ -2217,10 +2401,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 15142,
+    "TripID": 899621,
     "DteStart": 140,
     "DteEnd": 208,
     "BatteryAtStart": 63,
@@ -2229,10 +2414,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 68,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 831127,
+    "TripID": 564770,
     "DteStart": 116,
     "DteEnd": 163,
     "BatteryAtStart": 63,
@@ -2241,10 +2427,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 621380,
+    "TripID": 188344,
     "DteStart": 132,
     "DteEnd": 156,
     "BatteryAtStart": 70,
@@ -2253,10 +2440,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 505306,
+    "TripID": 902884,
     "DteStart": 127,
     "DteEnd": 172,
     "BatteryAtStart": 65,
@@ -2265,10 +2453,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 512536,
+    "TripID": 26157,
     "DteStart": 94,
     "DteEnd": 109,
     "BatteryAtStart": 48,
@@ -2277,10 +2466,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "FAST",
     "DiffInDte": 15,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 426883,
+    "TripID": 810558,
     "DteStart": 107,
     "DteEnd": 185,
     "BatteryAtStart": 53,
@@ -2289,10 +2479,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 173940,
+    "TripID": 174082,
     "DteStart": 169,
     "DteEnd": 195,
     "BatteryAtStart": 77,
@@ -2301,10 +2492,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 759814,
+    "TripID": 380560,
     "DteStart": 109,
     "DteEnd": 211,
     "BatteryAtStart": 46,
@@ -2313,10 +2505,11 @@ export const data = [
     "DiffInBat": 43,
     "ChargingType": "FAST",
     "DiffInDte": 102,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 360578,
+    "TripID": 231769,
     "DteStart": 148,
     "DteEnd": 180,
     "BatteryAtStart": 67,
@@ -2325,10 +2518,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 307851,
+    "TripID": 8809,
     "DteStart": 127,
     "DteEnd": 218,
     "BatteryAtStart": 52,
@@ -2337,10 +2531,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 91,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 864105,
+    "TripID": 854280,
     "DteStart": 132,
     "DteEnd": 191,
     "BatteryAtStart": 63,
@@ -2349,10 +2544,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 59,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 265496,
+    "TripID": 573257,
     "DteStart": 139,
     "DteEnd": 178,
     "BatteryAtStart": 61,
@@ -2361,10 +2557,11 @@ export const data = [
     "DiffInBat": 16,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 320315,
+    "TripID": 861339,
     "DteStart": 171,
     "DteEnd": 219,
     "BatteryAtStart": 70,
@@ -2373,10 +2570,11 @@ export const data = [
     "DiffInBat": 19,
     "ChargingType": "FAST",
     "DiffInDte": 48,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 982257,
+    "TripID": 367388,
     "DteStart": 119,
     "DteEnd": 190,
     "BatteryAtStart": 56,
@@ -2385,10 +2583,11 @@ export const data = [
     "DiffInBat": 33,
     "ChargingType": "FAST",
     "DiffInDte": 71,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 642386,
+    "TripID": 974206,
     "DteStart": 55,
     "DteEnd": 182,
     "BatteryAtStart": 26,
@@ -2397,10 +2596,11 @@ export const data = [
     "DiffInBat": 57,
     "ChargingType": "FAST",
     "DiffInDte": 127,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 1410,
+    "TripID": 598081,
     "DteStart": 146,
     "DteEnd": 212,
     "BatteryAtStart": 61,
@@ -2409,10 +2609,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 327458,
+    "TripID": 969,
     "DteStart": 214,
     "DteEnd": 241,
     "BatteryAtStart": 89,
@@ -2421,10 +2622,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "SLOW",
     "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 344004,
+    "TripID": 963245,
     "DteStart": 145,
     "DteEnd": 217,
     "BatteryAtStart": 64,
@@ -2433,10 +2635,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 72,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 999467,
+    "TripID": 206806,
     "DteStart": 82,
     "DteEnd": 202,
     "BatteryAtStart": 36,
@@ -2445,10 +2648,11 @@ export const data = [
     "DiffInBat": 44,
     "ChargingType": "FAST",
     "DiffInDte": 120,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 825459,
+    "TripID": 696068,
     "DteStart": 127,
     "DteEnd": 178,
     "BatteryAtStart": 59,
@@ -2457,10 +2661,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 51,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 439799,
+    "TripID": 477642,
     "DteStart": 180,
     "DteEnd": 227,
     "BatteryAtStart": 74,
@@ -2469,10 +2674,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 885625,
+    "TripID": 718496,
     "DteStart": 160,
     "DteEnd": 218,
     "BatteryAtStart": 66,
@@ -2481,10 +2687,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 892764,
+    "TripID": 939626,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -2493,10 +2700,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 567913,
+    "TripID": 558240,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -2505,10 +2713,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 972648,
+    "TripID": 950690,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -2517,10 +2726,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 375218,
+    "TripID": 602404,
     "DteStart": 177,
     "DteEnd": 228,
     "BatteryAtStart": 78,
@@ -2529,10 +2739,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 51,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 706872,
+    "TripID": 374619,
     "DteStart": 153,
     "DteEnd": 222,
     "BatteryAtStart": 70,
@@ -2541,10 +2752,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 339498,
+    "TripID": 65777,
     "DteStart": 208,
     "DteEnd": 235,
     "BatteryAtStart": 81,
@@ -2553,10 +2765,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 360271,
+    "TripID": 553594,
     "DteStart": 135,
     "DteEnd": 178,
     "BatteryAtStart": 52,
@@ -2565,10 +2778,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 229822,
+    "TripID": 561234,
     "DteStart": 177,
     "DteEnd": 233,
     "BatteryAtStart": 68,
@@ -2577,10 +2791,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "SLOW",
     "DiffInDte": 56,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 93417,
+    "TripID": 999220,
     "DteStart": 170,
     "DteEnd": 232,
     "BatteryAtStart": 67,
@@ -2589,10 +2804,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 94217,
+    "TripID": 458259,
     "DteStart": 84,
     "DteEnd": 193,
     "BatteryAtStart": 41,
@@ -2601,10 +2817,11 @@ export const data = [
     "DiffInBat": 52,
     "ChargingType": "FAST",
     "DiffInDte": 109,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 910954,
+    "TripID": 988578,
     "DteStart": 138,
     "DteEnd": 196,
     "BatteryAtStart": 63,
@@ -2613,10 +2830,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 84009,
+    "TripID": 549140,
     "DteStart": 98,
     "DteEnd": 202,
     "BatteryAtStart": 47,
@@ -2625,10 +2843,11 @@ export const data = [
     "DiffInBat": 49,
     "ChargingType": "FAST",
     "DiffInDte": 104,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 999619,
+    "TripID": 424749,
     "DteStart": 127,
     "DteEnd": 179,
     "BatteryAtStart": 58,
@@ -2637,10 +2856,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 52,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 285246,
+    "TripID": 508582,
     "DteStart": 144,
     "DteEnd": 221,
     "BatteryAtStart": 65,
@@ -2649,10 +2869,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 77,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 816093,
+    "TripID": 199424,
     "DteStart": 105,
     "DteEnd": 174,
     "BatteryAtStart": 52,
@@ -2661,10 +2882,11 @@ export const data = [
     "DiffInBat": 33,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 81948,
+    "TripID": 583840,
     "DteStart": 180,
     "DteEnd": 223,
     "BatteryAtStart": 81,
@@ -2673,10 +2895,11 @@ export const data = [
     "DiffInBat": 19,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 494070,
+    "TripID": 976280,
     "DteStart": 101,
     "DteEnd": 164,
     "BatteryAtStart": 47,
@@ -2685,10 +2908,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 63,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 919246,
+    "TripID": 721296,
     "DteStart": 138,
     "DteEnd": 208,
     "BatteryAtStart": 62,
@@ -2697,10 +2921,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 70,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 738446,
+    "TripID": 369037,
     "DteStart": 100,
     "DteEnd": 216,
     "BatteryAtStart": 47,
@@ -2709,10 +2934,11 @@ export const data = [
     "DiffInBat": 53,
     "ChargingType": "FAST",
     "DiffInDte": 116,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 877056,
+    "TripID": 359191,
     "DteStart": 133,
     "DteEnd": 174,
     "BatteryAtStart": 64,
@@ -2721,10 +2947,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 785233,
+    "TripID": 194460,
     "DteStart": 143,
     "DteEnd": 171,
     "BatteryAtStart": 68,
@@ -2733,10 +2960,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 546021,
+    "TripID": 195894,
     "DteStart": 134,
     "DteEnd": 147,
     "BatteryAtStart": 63,
@@ -2745,10 +2973,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 328068,
+    "TripID": 595662,
     "DteStart": 88,
     "DteEnd": 192,
     "BatteryAtStart": 40,
@@ -2757,10 +2986,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 104,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 69077,
+    "TripID": 874957,
     "DteStart": 119,
     "DteEnd": 206,
     "BatteryAtStart": 53,
@@ -2769,10 +2999,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 87,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 113070,
+    "TripID": 445593,
     "DteStart": 77,
     "DteEnd": 226,
     "BatteryAtStart": 35,
@@ -2781,10 +3012,11 @@ export const data = [
     "DiffInBat": 65,
     "ChargingType": "FAST",
     "DiffInDte": 149,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 200769,
+    "TripID": 627272,
     "DteStart": 99,
     "DteEnd": 162,
     "BatteryAtStart": 50,
@@ -2793,10 +3025,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 63,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 14639,
+    "TripID": 836596,
     "DteStart": 150,
     "DteEnd": 217,
     "BatteryAtStart": 66,
@@ -2805,10 +3038,11 @@ export const data = [
     "DiffInBat": 29,
     "ChargingType": "FAST",
     "DiffInDte": 67,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 342297,
+    "TripID": 501985,
     "DteStart": 134,
     "DteEnd": 198,
     "BatteryAtStart": 63,
@@ -2817,10 +3051,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 64,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 888947,
+    "TripID": 693909,
     "DteStart": 89,
     "DteEnd": 199,
     "BatteryAtStart": 41,
@@ -2829,10 +3064,11 @@ export const data = [
     "DiffInBat": 58,
     "ChargingType": "FAST",
     "DiffInDte": 110,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 470442,
+    "TripID": 146719,
     "DteStart": 106,
     "DteEnd": 148,
     "BatteryAtStart": 57,
@@ -2841,10 +3077,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 538277,
+    "TripID": 656705,
     "DteStart": 116,
     "DteEnd": 187,
     "BatteryAtStart": 57,
@@ -2853,10 +3090,11 @@ export const data = [
     "DiffInBat": 43,
     "ChargingType": "FAST",
     "DiffInDte": 71,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 957684,
+    "TripID": 377720,
     "DteStart": 112,
     "DteEnd": 164,
     "BatteryAtStart": 56,
@@ -2865,10 +3103,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 52,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 843323,
+    "TripID": 785184,
     "DteStart": 91,
     "DteEnd": 233,
     "BatteryAtStart": 40,
@@ -2877,10 +3116,11 @@ export const data = [
     "DiffInBat": 60,
     "ChargingType": "FAST",
     "DiffInDte": 142,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 469706,
+    "TripID": 892866,
     "DteStart": 122,
     "DteEnd": 182,
     "BatteryAtStart": 56,
@@ -2889,10 +3129,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 60,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 475249,
+    "TripID": 399901,
     "DteStart": 176,
     "DteEnd": 198,
     "BatteryAtStart": 82,
@@ -2901,10 +3142,11 @@ export const data = [
     "DiffInBat": 9,
     "ChargingType": "FAST",
     "DiffInDte": 22,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 277777,
+    "TripID": 394360,
     "DteStart": 136,
     "DteEnd": 201,
     "BatteryAtStart": 62,
@@ -2913,10 +3155,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 65,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 387302,
+    "TripID": 740951,
     "DteStart": 133,
     "DteEnd": 161,
     "BatteryAtStart": 62,
@@ -2925,10 +3168,11 @@ export const data = [
     "DiffInBat": 13,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 143421,
+    "TripID": 977739,
     "DteStart": 126,
     "DteEnd": 218,
     "BatteryAtStart": 55,
@@ -2937,10 +3181,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 92,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 861153,
+    "TripID": 739342,
     "DteStart": 100,
     "DteEnd": 266,
     "BatteryAtStart": 38,
@@ -2949,10 +3194,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 166,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 898574,
+    "TripID": 514206,
     "DteStart": 155,
     "DteEnd": 221,
     "BatteryAtStart": 63,
@@ -2961,10 +3207,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 164705,
+    "TripID": 187134,
     "DteStart": 131,
     "DteEnd": 218,
     "BatteryAtStart": 60,
@@ -2973,10 +3220,11 @@ export const data = [
     "DiffInBat": 40,
     "ChargingType": "FAST",
     "DiffInDte": 87,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 408881,
+    "TripID": 379304,
     "DteStart": 148,
     "DteEnd": 206,
     "BatteryAtStart": 68,
@@ -2985,10 +3233,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 795856,
+    "TripID": 931367,
     "DteStart": 151,
     "DteEnd": 190,
     "BatteryAtStart": 72,
@@ -2997,10 +3246,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 583359,
+    "TripID": 569739,
     "DteStart": 160,
     "DteEnd": 209,
     "BatteryAtStart": 70,
@@ -3009,10 +3259,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 299169,
+    "TripID": 395792,
     "DteStart": 187,
     "DteEnd": 213,
     "BatteryAtStart": 80,
@@ -3021,10 +3272,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 498692,
+    "TripID": 281149,
     "DteStart": 120,
     "DteEnd": 202,
     "BatteryAtStart": 54,
@@ -3033,10 +3285,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 82,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 211939,
+    "TripID": 230453,
     "DteStart": 180,
     "DteEnd": 249,
     "BatteryAtStart": 65,
@@ -3045,10 +3298,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 836819,
+    "TripID": 261041,
     "DteStart": 123,
     "DteEnd": 170,
     "BatteryAtStart": 60,
@@ -3057,10 +3311,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 398810,
+    "TripID": 775537,
     "DteStart": 121,
     "DteEnd": 223,
     "BatteryAtStart": 55,
@@ -3069,10 +3324,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 102,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 315782,
+    "TripID": 428876,
     "DteStart": 113,
     "DteEnd": 150,
     "BatteryAtStart": 57,
@@ -3081,10 +3337,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 757600,
+    "TripID": 788129,
     "DteStart": 119,
     "DteEnd": 224,
     "BatteryAtStart": 54,
@@ -3093,10 +3350,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 105,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 834975,
+    "TripID": 663279,
     "DteStart": 87,
     "DteEnd": 202,
     "BatteryAtStart": 44,
@@ -3105,10 +3363,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 115,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 211769,
+    "TripID": 78430,
     "DteStart": 147,
     "DteEnd": 189,
     "BatteryAtStart": 65,
@@ -3117,10 +3376,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 293781,
+    "TripID": 450631,
     "DteStart": 179,
     "DteEnd": 225,
     "BatteryAtStart": 77,
@@ -3129,10 +3389,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 405549,
+    "TripID": 44451,
     "DteStart": 214,
     "DteEnd": 244,
     "BatteryAtStart": 89,
@@ -3141,10 +3402,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 30,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 176819,
+    "TripID": 719463,
     "DteStart": 110,
     "DteEnd": 228,
     "BatteryAtStart": 45,
@@ -3153,10 +3415,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 118,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 478962,
+    "TripID": 943131,
     "DteStart": 201,
     "DteEnd": 221,
     "BatteryAtStart": 83,
@@ -3165,10 +3428,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "SLOW",
     "DiffInDte": 20,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 239760,
+    "TripID": 702885,
     "DteStart": 174,
     "DteEnd": 212,
     "BatteryAtStart": 76,
@@ -3177,10 +3441,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 871523,
+    "TripID": 896932,
     "DteStart": 59,
     "DteEnd": 187,
     "BatteryAtStart": 27,
@@ -3189,10 +3454,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 128,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 726885,
+    "TripID": 568534,
     "DteStart": 77,
     "DteEnd": 167,
     "BatteryAtStart": 42,
@@ -3201,10 +3467,11 @@ export const data = [
     "DiffInBat": 48,
     "ChargingType": "FAST",
     "DiffInDte": 90,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 311351,
+    "TripID": 997300,
     "DteStart": 40,
     "DteEnd": 132,
     "BatteryAtStart": 27,
@@ -3213,10 +3480,11 @@ export const data = [
     "DiffInBat": 59,
     "ChargingType": "FAST",
     "DiffInDte": 92,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 768687,
+    "TripID": 174878,
     "DteStart": 58,
     "DteEnd": 131,
     "BatteryAtStart": 29,
@@ -3225,10 +3493,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 73,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 982165,
+    "TripID": 888547,
     "DteStart": 123,
     "DteEnd": 152,
     "BatteryAtStart": 66,
@@ -3237,10 +3506,11 @@ export const data = [
     "DiffInBat": 16,
     "ChargingType": "FAST",
     "DiffInDte": 29,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 828853,
+    "TripID": 152384,
     "DteStart": 163,
     "DteEnd": 187,
     "BatteryAtStart": 75,
@@ -3249,10 +3519,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 980466,
+    "TripID": 463955,
     "DteStart": 101,
     "DteEnd": 159,
     "BatteryAtStart": 52,
@@ -3261,10 +3532,11 @@ export const data = [
     "DiffInBat": 29,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 637094,
+    "TripID": 221530,
     "DteStart": 120,
     "DteEnd": 202,
     "BatteryAtStart": 56,
@@ -3273,10 +3545,11 @@ export const data = [
     "DiffInBat": 37,
     "ChargingType": "FAST",
     "DiffInDte": 82,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 445835,
+    "TripID": 832264,
     "DteStart": 113,
     "DteEnd": 189,
     "BatteryAtStart": 54,
@@ -3285,10 +3558,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 76,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 429427,
+    "TripID": 704811,
     "DteStart": 112,
     "DteEnd": 188,
     "BatteryAtStart": 55,
@@ -3297,10 +3571,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 76,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 21727,
+    "TripID": 330145,
     "DteStart": 69,
     "DteEnd": 192,
     "BatteryAtStart": 33,
@@ -3309,10 +3584,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 123,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 25277,
+    "TripID": 364633,
     "DteStart": 125,
     "DteEnd": 166,
     "BatteryAtStart": 65,
@@ -3321,10 +3597,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 965890,
+    "TripID": 505360,
     "DteStart": 103,
     "DteEnd": 169,
     "BatteryAtStart": 50,
@@ -3333,10 +3610,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 119420,
+    "TripID": 541615,
     "DteStart": 122,
     "DteEnd": 147,
     "BatteryAtStart": 50,
@@ -3345,10 +3623,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 971741,
+    "TripID": 763721,
     "DteStart": 174,
     "DteEnd": 191,
     "BatteryAtStart": 71,
@@ -3357,10 +3636,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 885548,
+    "TripID": 357416,
     "DteStart": 131,
     "DteEnd": 196,
     "BatteryAtStart": 58,
@@ -3369,10 +3649,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 65,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 122034,
+    "TripID": 557977,
     "DteStart": 101,
     "DteEnd": 196,
     "BatteryAtStart": 48,
@@ -3381,10 +3662,11 @@ export const data = [
     "DiffInBat": 42,
     "ChargingType": "FAST",
     "DiffInDte": 95,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 901292,
+    "TripID": 885175,
     "DteStart": 138,
     "DteEnd": 183,
     "BatteryAtStart": 64,
@@ -3393,10 +3675,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 80400,
+    "TripID": 445838,
     "DteStart": 127,
     "DteEnd": 185,
     "BatteryAtStart": 60,
@@ -3405,10 +3688,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 677340,
+    "TripID": 163350,
     "DteStart": 182,
     "DteEnd": 202,
     "BatteryAtStart": 90,
@@ -3417,10 +3701,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "SLOW",
     "DiffInDte": 20,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 181514,
+    "TripID": 554156,
     "DteStart": 89,
     "DteEnd": 180,
     "BatteryAtStart": 45,
@@ -3429,10 +3714,11 @@ export const data = [
     "DiffInBat": 44,
     "ChargingType": "FAST",
     "DiffInDte": 91,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 406749,
+    "TripID": 903405,
     "DteStart": 156,
     "DteEnd": 199,
     "BatteryAtStart": 74,
@@ -3441,10 +3727,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 936790,
+    "TripID": 318811,
     "DteStart": 114,
     "DteEnd": 154,
     "BatteryAtStart": 67,
@@ -3453,10 +3740,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 40,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 229016,
+    "TripID": 277269,
     "DteStart": 157,
     "DteEnd": 180,
     "BatteryAtStart": 78,
@@ -3465,10 +3753,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 23,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 923436,
+    "TripID": 896318,
     "DteStart": 65,
     "DteEnd": 148,
     "BatteryAtStart": 37,
@@ -3477,10 +3766,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 83,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 425959,
+    "TripID": 490839,
     "DteStart": 119,
     "DteEnd": 136,
     "BatteryAtStart": 59,
@@ -3489,10 +3779,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "FAST",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 388848,
+    "TripID": 325329,
     "DteStart": 25,
     "DteEnd": 72,
     "BatteryAtStart": 15,
@@ -3501,10 +3792,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 467270,
+    "TripID": 297638,
     "DteStart": 152,
     "DteEnd": 176,
     "BatteryAtStart": 78,
@@ -3513,10 +3805,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 478721,
+    "TripID": 289293,
     "DteStart": 180,
     "DteEnd": 197,
     "BatteryAtStart": 92,
@@ -3525,10 +3818,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "SLOW",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 985380,
+    "TripID": 93845,
     "DteStart": 159,
     "DteEnd": 209,
     "BatteryAtStart": 68,
@@ -3537,10 +3831,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 50,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 21156,
+    "TripID": 595332,
     "DteStart": 136,
     "DteEnd": 190,
     "BatteryAtStart": 64,
@@ -3549,10 +3844,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 921074,
+    "TripID": 641383,
     "DteStart": 142,
     "DteEnd": 157,
     "BatteryAtStart": 66,
@@ -3561,10 +3857,11 @@ export const data = [
     "DiffInBat": 14,
     "ChargingType": "FAST",
     "DiffInDte": 15,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 420335,
+    "TripID": 387614,
     "DteStart": 121,
     "DteEnd": 175,
     "BatteryAtStart": 64,
@@ -3573,10 +3870,11 @@ export const data = [
     "DiffInBat": 28,
     "ChargingType": "FAST",
     "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 450601,
+    "TripID": 577561,
     "DteStart": 179,
     "DteEnd": 192,
     "BatteryAtStart": 94,
@@ -3585,10 +3883,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "SLOW",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 487844,
+    "TripID": 276395,
     "DteStart": 112,
     "DteEnd": 165,
     "BatteryAtStart": 58,
@@ -3597,10 +3896,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 83112,
+    "TripID": 232832,
     "DteStart": 159,
     "DteEnd": 177,
     "BatteryAtStart": 78,
@@ -3609,10 +3909,11 @@ export const data = [
     "DiffInBat": 9,
     "ChargingType": "SLOW",
     "DiffInDte": 18,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 98207,
+    "TripID": 483130,
     "DteStart": 116,
     "DteEnd": 142,
     "BatteryAtStart": 57,
@@ -3621,10 +3922,11 @@ export const data = [
     "DiffInBat": 13,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 139053,
+    "TripID": 921908,
     "DteStart": 173,
     "DteEnd": 186,
     "BatteryAtStart": 84,
@@ -3633,10 +3935,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 879631,
+    "TripID": 275656,
     "DteStart": 191,
     "DteEnd": 219,
     "BatteryAtStart": 83,
@@ -3645,10 +3948,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 438457,
+    "TripID": 551784,
     "DteStart": 105,
     "DteEnd": 203,
     "BatteryAtStart": 49,
@@ -3657,10 +3961,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 98,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 298368,
+    "TripID": 616429,
     "DteStart": 171,
     "DteEnd": 220,
     "BatteryAtStart": 71,
@@ -3669,10 +3974,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 835137,
+    "TripID": 171188,
     "DteStart": 153,
     "DteEnd": 196,
     "BatteryAtStart": 65,
@@ -3681,10 +3987,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 189694,
+    "TripID": 748742,
     "DteStart": 154,
     "DteEnd": 193,
     "BatteryAtStart": 71,
@@ -3693,10 +4000,11 @@ export const data = [
     "DiffInBat": 17,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 969606,
+    "TripID": 347313,
     "DteStart": 151,
     "DteEnd": 185,
     "BatteryAtStart": 67,
@@ -3705,10 +4013,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 268220,
+    "TripID": 725972,
     "DteStart": 125,
     "DteEnd": 187,
     "BatteryAtStart": 56,
@@ -3717,10 +4026,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 918616,
+    "TripID": 445630,
     "DteStart": 191,
     "DteEnd": 225,
     "BatteryAtStart": 85,
@@ -3729,10 +4039,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "SLOW",
     "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 439860,
+    "TripID": 200582,
     "DteStart": 145,
     "DteEnd": 178,
     "BatteryAtStart": 70,
@@ -3741,10 +4052,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 492175,
+    "TripID": 362705,
     "DteStart": 107,
     "DteEnd": 210,
     "BatteryAtStart": 50,
@@ -3753,10 +4065,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 103,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 411485,
+    "TripID": 117988,
     "DteStart": 127,
     "DteEnd": 167,
     "BatteryAtStart": 61,
@@ -3765,10 +4078,11 @@ export const data = [
     "DiffInBat": 28,
     "ChargingType": "FAST",
     "DiffInDte": 40,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 181895,
+    "TripID": 701347,
     "DteStart": 138,
     "DteEnd": 176,
     "BatteryAtStart": 63,
@@ -3777,10 +4091,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 700557,
+    "TripID": 429365,
     "DteStart": 140,
     "DteEnd": 208,
     "BatteryAtStart": 63,
@@ -3789,10 +4104,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 68,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 58762,
+    "TripID": 928399,
     "DteStart": 116,
     "DteEnd": 163,
     "BatteryAtStart": 63,
@@ -3801,10 +4117,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 103511,
+    "TripID": 58843,
     "DteStart": 132,
     "DteEnd": 156,
     "BatteryAtStart": 70,
@@ -3813,10 +4130,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 394808,
+    "TripID": 387825,
     "DteStart": 127,
     "DteEnd": 172,
     "BatteryAtStart": 65,
@@ -3825,10 +4143,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 623537,
+    "TripID": 91177,
     "DteStart": 94,
     "DteEnd": 109,
     "BatteryAtStart": 48,
@@ -3837,10 +4156,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "FAST",
     "DiffInDte": 15,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 518040,
+    "TripID": 364014,
     "DteStart": 107,
     "DteEnd": 185,
     "BatteryAtStart": 53,
@@ -3849,10 +4169,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 707020,
+    "TripID": 132542,
     "DteStart": 169,
     "DteEnd": 195,
     "BatteryAtStart": 77,
@@ -3861,10 +4182,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 741320,
+    "TripID": 561889,
     "DteStart": 109,
     "DteEnd": 211,
     "BatteryAtStart": 46,
@@ -3873,10 +4195,11 @@ export const data = [
     "DiffInBat": 43,
     "ChargingType": "FAST",
     "DiffInDte": 102,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 856203,
+    "TripID": 956042,
     "DteStart": 148,
     "DteEnd": 180,
     "BatteryAtStart": 67,
@@ -3885,10 +4208,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 37497,
+    "TripID": 916648,
     "DteStart": 127,
     "DteEnd": 218,
     "BatteryAtStart": 52,
@@ -3897,10 +4221,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 91,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 935208,
+    "TripID": 288383,
     "DteStart": 132,
     "DteEnd": 191,
     "BatteryAtStart": 63,
@@ -3909,10 +4234,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 59,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 825514,
+    "TripID": 269910,
     "DteStart": 139,
     "DteEnd": 178,
     "BatteryAtStart": 61,
@@ -3921,10 +4247,11 @@ export const data = [
     "DiffInBat": 16,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 727388,
+    "TripID": 859835,
     "DteStart": 171,
     "DteEnd": 219,
     "BatteryAtStart": 70,
@@ -3933,10 +4260,11 @@ export const data = [
     "DiffInBat": 19,
     "ChargingType": "FAST",
     "DiffInDte": 48,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 300468,
+    "TripID": 393711,
     "DteStart": 119,
     "DteEnd": 190,
     "BatteryAtStart": 56,
@@ -3945,10 +4273,11 @@ export const data = [
     "DiffInBat": 33,
     "ChargingType": "FAST",
     "DiffInDte": 71,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 346927,
+    "TripID": 983938,
     "DteStart": 55,
     "DteEnd": 182,
     "BatteryAtStart": 26,
@@ -3957,10 +4286,11 @@ export const data = [
     "DiffInBat": 57,
     "ChargingType": "FAST",
     "DiffInDte": 127,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 318966,
+    "TripID": 929235,
     "DteStart": 146,
     "DteEnd": 212,
     "BatteryAtStart": 61,
@@ -3969,10 +4299,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 953513,
+    "TripID": 476174,
     "DteStart": 214,
     "DteEnd": 241,
     "BatteryAtStart": 89,
@@ -3981,10 +4312,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "SLOW",
     "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 46599,
+    "TripID": 985947,
     "DteStart": 145,
     "DteEnd": 217,
     "BatteryAtStart": 64,
@@ -3993,10 +4325,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 72,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 365024,
+    "TripID": 216166,
     "DteStart": 82,
     "DteEnd": 202,
     "BatteryAtStart": 36,
@@ -4005,10 +4338,11 @@ export const data = [
     "DiffInBat": 44,
     "ChargingType": "FAST",
     "DiffInDte": 120,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 160632,
+    "TripID": 842642,
     "DteStart": 127,
     "DteEnd": 178,
     "BatteryAtStart": 59,
@@ -4017,10 +4351,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 51,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 439608,
+    "TripID": 481071,
     "DteStart": 180,
     "DteEnd": 227,
     "BatteryAtStart": 74,
@@ -4029,10 +4364,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 873514,
+    "TripID": 42137,
     "DteStart": 160,
     "DteEnd": 218,
     "BatteryAtStart": 66,
@@ -4041,10 +4377,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 595190,
+    "TripID": 179533,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -4053,10 +4390,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 820715,
+    "TripID": 335178,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -4065,10 +4403,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 546734,
+    "TripID": 60999,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -4077,10 +4416,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 491320,
+    "TripID": 911324,
     "DteStart": 177,
     "DteEnd": 228,
     "BatteryAtStart": 78,
@@ -4089,10 +4429,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 51,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 215370,
+    "TripID": 72658,
     "DteStart": 153,
     "DteEnd": 222,
     "BatteryAtStart": 70,
@@ -4101,10 +4442,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 354530,
+    "TripID": 991198,
     "DteStart": 208,
     "DteEnd": 235,
     "BatteryAtStart": 81,
@@ -4113,10 +4455,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 720400,
+    "TripID": 911265,
     "DteStart": 135,
     "DteEnd": 178,
     "BatteryAtStart": 52,
@@ -4125,10 +4468,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 596438,
+    "TripID": 447288,
     "DteStart": 177,
     "DteEnd": 233,
     "BatteryAtStart": 68,
@@ -4137,10 +4481,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "SLOW",
     "DiffInDte": 56,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 319701,
+    "TripID": 640689,
     "DteStart": 170,
     "DteEnd": 232,
     "BatteryAtStart": 67,
@@ -4149,10 +4494,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 217588,
+    "TripID": 141591,
     "DteStart": 84,
     "DteEnd": 193,
     "BatteryAtStart": 41,
@@ -4161,10 +4507,11 @@ export const data = [
     "DiffInBat": 52,
     "ChargingType": "FAST",
     "DiffInDte": 109,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 239046,
+    "TripID": 166183,
     "DteStart": 138,
     "DteEnd": 196,
     "BatteryAtStart": 63,
@@ -4173,10 +4520,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 358325,
+    "TripID": 455828,
     "DteStart": 98,
     "DteEnd": 202,
     "BatteryAtStart": 47,
@@ -4185,10 +4533,11 @@ export const data = [
     "DiffInBat": 49,
     "ChargingType": "FAST",
     "DiffInDte": 104,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 15963,
+    "TripID": 694082,
     "DteStart": 127,
     "DteEnd": 179,
     "BatteryAtStart": 58,
@@ -4197,10 +4546,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 52,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 517609,
+    "TripID": 386168,
     "DteStart": 144,
     "DteEnd": 221,
     "BatteryAtStart": 65,
@@ -4209,10 +4559,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 77,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 854676,
+    "TripID": 935169,
     "DteStart": 105,
     "DteEnd": 174,
     "BatteryAtStart": 52,
@@ -4221,10 +4572,11 @@ export const data = [
     "DiffInBat": 33,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 753686,
+    "TripID": 143726,
     "DteStart": 180,
     "DteEnd": 223,
     "BatteryAtStart": 81,
@@ -4233,10 +4585,11 @@ export const data = [
     "DiffInBat": 19,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 617172,
+    "TripID": 721305,
     "DteStart": 101,
     "DteEnd": 164,
     "BatteryAtStart": 47,
@@ -4245,10 +4598,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 63,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 237378,
+    "TripID": 938184,
     "DteStart": 138,
     "DteEnd": 208,
     "BatteryAtStart": 62,
@@ -4257,10 +4611,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 70,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 762800,
+    "TripID": 868053,
     "DteStart": 100,
     "DteEnd": 216,
     "BatteryAtStart": 47,
@@ -4269,10 +4624,11 @@ export const data = [
     "DiffInBat": 53,
     "ChargingType": "FAST",
     "DiffInDte": 116,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 996100,
+    "TripID": 740474,
     "DteStart": 133,
     "DteEnd": 174,
     "BatteryAtStart": 64,
@@ -4281,10 +4637,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 786386,
+    "TripID": 244671,
     "DteStart": 143,
     "DteEnd": 171,
     "BatteryAtStart": 68,
@@ -4293,10 +4650,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 444647,
+    "TripID": 613527,
     "DteStart": 134,
     "DteEnd": 147,
     "BatteryAtStart": 63,
@@ -4305,10 +4663,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 658818,
+    "TripID": 544781,
     "DteStart": 88,
     "DteEnd": 192,
     "BatteryAtStart": 40,
@@ -4317,10 +4676,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 104,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 119643,
+    "TripID": 181205,
     "DteStart": 119,
     "DteEnd": 206,
     "BatteryAtStart": 53,
@@ -4329,10 +4689,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 87,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 37745,
+    "TripID": 240742,
     "DteStart": 77,
     "DteEnd": 226,
     "BatteryAtStart": 35,
@@ -4341,10 +4702,11 @@ export const data = [
     "DiffInBat": 65,
     "ChargingType": "FAST",
     "DiffInDte": 149,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 808738,
+    "TripID": 355835,
     "DteStart": 99,
     "DteEnd": 162,
     "BatteryAtStart": 50,
@@ -4353,10 +4715,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 63,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 210507,
+    "TripID": 348809,
     "DteStart": 150,
     "DteEnd": 217,
     "BatteryAtStart": 66,
@@ -4365,10 +4728,11 @@ export const data = [
     "DiffInBat": 29,
     "ChargingType": "FAST",
     "DiffInDte": 67,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 909260,
+    "TripID": 504116,
     "DteStart": 134,
     "DteEnd": 198,
     "BatteryAtStart": 63,
@@ -4377,10 +4741,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 64,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 973689,
+    "TripID": 829630,
     "DteStart": 89,
     "DteEnd": 199,
     "BatteryAtStart": 41,
@@ -4389,10 +4754,11 @@ export const data = [
     "DiffInBat": 58,
     "ChargingType": "FAST",
     "DiffInDte": 110,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 999994,
+    "TripID": 912803,
     "DteStart": 106,
     "DteEnd": 148,
     "BatteryAtStart": 57,
@@ -4401,10 +4767,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 47508,
+    "TripID": 999731,
     "DteStart": 116,
     "DteEnd": 187,
     "BatteryAtStart": 57,
@@ -4413,10 +4780,11 @@ export const data = [
     "DiffInBat": 43,
     "ChargingType": "FAST",
     "DiffInDte": 71,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 158447,
+    "TripID": 281020,
     "DteStart": 112,
     "DteEnd": 164,
     "BatteryAtStart": 56,
@@ -4425,10 +4793,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 52,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 843058,
+    "TripID": 522839,
     "DteStart": 91,
     "DteEnd": 233,
     "BatteryAtStart": 40,
@@ -4437,10 +4806,11 @@ export const data = [
     "DiffInBat": 60,
     "ChargingType": "FAST",
     "DiffInDte": 142,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 726244,
+    "TripID": 522362,
     "DteStart": 122,
     "DteEnd": 182,
     "BatteryAtStart": 56,
@@ -4449,10 +4819,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 60,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 140472,
+    "TripID": 774475,
     "DteStart": 176,
     "DteEnd": 198,
     "BatteryAtStart": 82,
@@ -4461,10 +4832,11 @@ export const data = [
     "DiffInBat": 9,
     "ChargingType": "FAST",
     "DiffInDte": 22,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 555186,
+    "TripID": 485280,
     "DteStart": 136,
     "DteEnd": 201,
     "BatteryAtStart": 62,
@@ -4473,10 +4845,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 65,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 928299,
+    "TripID": 313915,
     "DteStart": 133,
     "DteEnd": 161,
     "BatteryAtStart": 62,
@@ -4485,10 +4858,11 @@ export const data = [
     "DiffInBat": 13,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 769540,
+    "TripID": 286260,
     "DteStart": 126,
     "DteEnd": 218,
     "BatteryAtStart": 55,
@@ -4497,10 +4871,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 92,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 708538,
+    "TripID": 818536,
     "DteStart": 100,
     "DteEnd": 266,
     "BatteryAtStart": 38,
@@ -4509,10 +4884,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 166,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 435610,
+    "TripID": 588713,
     "DteStart": 155,
     "DteEnd": 221,
     "BatteryAtStart": 63,
@@ -4521,10 +4897,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 950909,
+    "TripID": 708594,
     "DteStart": 131,
     "DteEnd": 218,
     "BatteryAtStart": 60,
@@ -4533,10 +4910,11 @@ export const data = [
     "DiffInBat": 40,
     "ChargingType": "FAST",
     "DiffInDte": 87,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 85673,
+    "TripID": 980930,
     "DteStart": 148,
     "DteEnd": 206,
     "BatteryAtStart": 68,
@@ -4545,10 +4923,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 484471,
+    "TripID": 678003,
     "DteStart": 151,
     "DteEnd": 190,
     "BatteryAtStart": 72,
@@ -4557,10 +4936,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 823149,
+    "TripID": 315461,
     "DteStart": 160,
     "DteEnd": 209,
     "BatteryAtStart": 70,
@@ -4569,10 +4949,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 86816,
+    "TripID": 717696,
     "DteStart": 187,
     "DteEnd": 213,
     "BatteryAtStart": 80,
@@ -4581,10 +4962,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 396068,
+    "TripID": 548389,
     "DteStart": 120,
     "DteEnd": 202,
     "BatteryAtStart": 54,
@@ -4593,10 +4975,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 82,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 32940,
+    "TripID": 673325,
     "DteStart": 180,
     "DteEnd": 249,
     "BatteryAtStart": 65,
@@ -4605,10 +4988,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 166406,
+    "TripID": 197911,
     "DteStart": 123,
     "DteEnd": 170,
     "BatteryAtStart": 60,
@@ -4617,10 +5001,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 37577,
+    "TripID": 266698,
     "DteStart": 121,
     "DteEnd": 223,
     "BatteryAtStart": 55,
@@ -4629,10 +5014,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 102,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 649182,
+    "TripID": 544520,
     "DteStart": 113,
     "DteEnd": 150,
     "BatteryAtStart": 57,
@@ -4641,10 +5027,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 75325,
+    "TripID": 591420,
     "DteStart": 119,
     "DteEnd": 224,
     "BatteryAtStart": 54,
@@ -4653,10 +5040,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 105,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 311257,
+    "TripID": 590619,
     "DteStart": 87,
     "DteEnd": 202,
     "BatteryAtStart": 44,
@@ -4665,10 +5053,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 115,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 298208,
+    "TripID": 774540,
     "DteStart": 147,
     "DteEnd": 189,
     "BatteryAtStart": 65,
@@ -4677,10 +5066,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 501469,
+    "TripID": 243806,
     "DteStart": 179,
     "DteEnd": 225,
     "BatteryAtStart": 77,
@@ -4689,10 +5079,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 46,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 842935,
+    "TripID": 341797,
     "DteStart": 214,
     "DteEnd": 244,
     "BatteryAtStart": 89,
@@ -4701,10 +5092,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 30,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 237658,
+    "TripID": 700465,
     "DteStart": 110,
     "DteEnd": 228,
     "BatteryAtStart": 45,
@@ -4713,10 +5105,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 118,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 99171,
+    "TripID": 544764,
     "DteStart": 201,
     "DteEnd": 221,
     "BatteryAtStart": 83,
@@ -4725,10 +5118,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "SLOW",
     "DiffInDte": 20,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 7575,
+    "TripID": 338636,
     "DteStart": 174,
     "DteEnd": 212,
     "BatteryAtStart": 76,
@@ -4737,10 +5131,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 179427,
+    "TripID": 99873,
     "DteStart": 59,
     "DteEnd": 187,
     "BatteryAtStart": 27,
@@ -4749,10 +5144,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 128,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 395863,
+    "TripID": 673849,
     "DteStart": 77,
     "DteEnd": 167,
     "BatteryAtStart": 42,
@@ -4761,10 +5157,11 @@ export const data = [
     "DiffInBat": 48,
     "ChargingType": "FAST",
     "DiffInDte": 90,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 984409,
+    "TripID": 865041,
     "DteStart": 40,
     "DteEnd": 132,
     "BatteryAtStart": 27,
@@ -4773,10 +5170,11 @@ export const data = [
     "DiffInBat": 59,
     "ChargingType": "FAST",
     "DiffInDte": 92,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 234,
+    "TripID": 204813,
     "DteStart": 58,
     "DteEnd": 131,
     "BatteryAtStart": 29,
@@ -4785,10 +5183,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 73,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 296567,
+    "TripID": 615953,
     "DteStart": 123,
     "DteEnd": 152,
     "BatteryAtStart": 66,
@@ -4797,10 +5196,11 @@ export const data = [
     "DiffInBat": 16,
     "ChargingType": "FAST",
     "DiffInDte": 29,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 931569,
+    "TripID": 237214,
     "DteStart": 163,
     "DteEnd": 187,
     "BatteryAtStart": 75,
@@ -4809,10 +5209,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 844951,
+    "TripID": 179506,
     "DteStart": 101,
     "DteEnd": 159,
     "BatteryAtStart": 52,
@@ -4821,10 +5222,11 @@ export const data = [
     "DiffInBat": 29,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 814107,
+    "TripID": 680699,
     "DteStart": 120,
     "DteEnd": 202,
     "BatteryAtStart": 56,
@@ -4833,10 +5235,11 @@ export const data = [
     "DiffInBat": 37,
     "ChargingType": "FAST",
     "DiffInDte": 82,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 970793,
+    "TripID": 410621,
     "DteStart": 113,
     "DteEnd": 189,
     "BatteryAtStart": 54,
@@ -4845,10 +5248,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 76,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 392629,
+    "TripID": 131612,
     "DteStart": 112,
     "DteEnd": 188,
     "BatteryAtStart": 55,
@@ -4857,10 +5261,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 76,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 345766,
+    "TripID": 813969,
     "DteStart": 69,
     "DteEnd": 192,
     "BatteryAtStart": 33,
@@ -4869,10 +5274,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 123,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 765678,
+    "TripID": 248757,
     "DteStart": 125,
     "DteEnd": 166,
     "BatteryAtStart": 65,
@@ -4881,10 +5287,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 351796,
+    "TripID": 290837,
     "DteStart": 103,
     "DteEnd": 169,
     "BatteryAtStart": 50,
@@ -4893,10 +5300,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 986701,
+    "TripID": 255468,
     "DteStart": 122,
     "DteEnd": 147,
     "BatteryAtStart": 50,
@@ -4905,10 +5313,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 25,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 468403,
+    "TripID": 735835,
     "DteStart": 174,
     "DteEnd": 191,
     "BatteryAtStart": 71,
@@ -4917,10 +5326,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 721535,
+    "TripID": 360894,
     "DteStart": 131,
     "DteEnd": 196,
     "BatteryAtStart": 58,
@@ -4929,10 +5339,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 65,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 150882,
+    "TripID": 82657,
     "DteStart": 101,
     "DteEnd": 196,
     "BatteryAtStart": 48,
@@ -4941,10 +5352,11 @@ export const data = [
     "DiffInBat": 42,
     "ChargingType": "FAST",
     "DiffInDte": 95,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 334907,
+    "TripID": 248258,
     "DteStart": 138,
     "DteEnd": 183,
     "BatteryAtStart": 64,
@@ -4953,10 +5365,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 757042,
+    "TripID": 221955,
     "DteStart": 127,
     "DteEnd": 185,
     "BatteryAtStart": 60,
@@ -4965,10 +5378,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 224330,
+    "TripID": 916083,
     "DteStart": 182,
     "DteEnd": 202,
     "BatteryAtStart": 90,
@@ -4977,10 +5391,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "SLOW",
     "DiffInDte": 20,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 419820,
+    "TripID": 503949,
     "DteStart": 89,
     "DteEnd": 180,
     "BatteryAtStart": 45,
@@ -4989,10 +5404,11 @@ export const data = [
     "DiffInBat": 44,
     "ChargingType": "FAST",
     "DiffInDte": 91,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 267888,
+    "TripID": 816532,
     "DteStart": 156,
     "DteEnd": 199,
     "BatteryAtStart": 74,
@@ -5001,10 +5417,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 981630,
+    "TripID": 449195,
     "DteStart": 114,
     "DteEnd": 154,
     "BatteryAtStart": 67,
@@ -5013,10 +5430,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 40,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 362657,
+    "TripID": 39288,
     "DteStart": 157,
     "DteEnd": 180,
     "BatteryAtStart": 78,
@@ -5025,10 +5443,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 23,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 701013,
+    "TripID": 124020,
     "DteStart": 65,
     "DteEnd": 148,
     "BatteryAtStart": 37,
@@ -5037,10 +5456,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 83,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 932571,
+    "TripID": 921136,
     "DteStart": 119,
     "DteEnd": 136,
     "BatteryAtStart": 59,
@@ -5049,10 +5469,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "FAST",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 872645,
+    "TripID": 175214,
     "DteStart": 25,
     "DteEnd": 72,
     "BatteryAtStart": 15,
@@ -5061,10 +5482,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 484845,
+    "TripID": 529311,
     "DteStart": 152,
     "DteEnd": 176,
     "BatteryAtStart": 78,
@@ -5073,10 +5495,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 904670,
+    "TripID": 798920,
     "DteStart": 180,
     "DteEnd": 197,
     "BatteryAtStart": 92,
@@ -5085,10 +5508,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "SLOW",
     "DiffInDte": 17,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 146260,
+    "TripID": 110035,
     "DteStart": 159,
     "DteEnd": 209,
     "BatteryAtStart": 68,
@@ -5097,10 +5521,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 50,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 608347,
+    "TripID": 112191,
     "DteStart": 136,
     "DteEnd": 190,
     "BatteryAtStart": 64,
@@ -5109,10 +5534,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 417595,
+    "TripID": 811411,
     "DteStart": 142,
     "DteEnd": 157,
     "BatteryAtStart": 66,
@@ -5121,10 +5547,11 @@ export const data = [
     "DiffInBat": 14,
     "ChargingType": "FAST",
     "DiffInDte": 15,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 931965,
+    "TripID": 6059,
     "DteStart": 121,
     "DteEnd": 175,
     "BatteryAtStart": 64,
@@ -5133,10 +5560,11 @@ export const data = [
     "DiffInBat": 28,
     "ChargingType": "FAST",
     "DiffInDte": 54,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 947463,
+    "TripID": 271268,
     "DteStart": 179,
     "DteEnd": 192,
     "BatteryAtStart": 94,
@@ -5145,10 +5573,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "SLOW",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 82160,
+    "TripID": 863034,
     "DteStart": 112,
     "DteEnd": 165,
     "BatteryAtStart": 58,
@@ -5157,10 +5586,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 53,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 883732,
+    "TripID": 618917,
     "DteStart": 159,
     "DteEnd": 177,
     "BatteryAtStart": 78,
@@ -5169,10 +5599,11 @@ export const data = [
     "DiffInBat": 9,
     "ChargingType": "SLOW",
     "DiffInDte": 18,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 955761,
+    "TripID": 198833,
     "DteStart": 116,
     "DteEnd": 142,
     "BatteryAtStart": 57,
@@ -5181,10 +5612,11 @@ export const data = [
     "DiffInBat": 13,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 786220,
+    "TripID": 657073,
     "DteStart": 173,
     "DteEnd": 186,
     "BatteryAtStart": 84,
@@ -5193,10 +5625,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 542448,
+    "TripID": 767551,
     "DteStart": 191,
     "DteEnd": 219,
     "BatteryAtStart": 83,
@@ -5205,10 +5638,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 407248,
+    "TripID": 201425,
     "DteStart": 105,
     "DteEnd": 203,
     "BatteryAtStart": 49,
@@ -5217,10 +5651,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 98,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 602566,
+    "TripID": 406712,
     "DteStart": 171,
     "DteEnd": 220,
     "BatteryAtStart": 71,
@@ -5229,10 +5664,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "FAST",
     "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 344802,
+    "TripID": 806329,
     "DteStart": 153,
     "DteEnd": 196,
     "BatteryAtStart": 65,
@@ -5241,10 +5677,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 728396,
+    "TripID": 554467,
     "DteStart": 154,
     "DteEnd": 193,
     "BatteryAtStart": 71,
@@ -5253,10 +5690,11 @@ export const data = [
     "DiffInBat": 17,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 481766,
+    "TripID": 891747,
     "DteStart": 151,
     "DteEnd": 185,
     "BatteryAtStart": 67,
@@ -5265,10 +5703,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 58257,
+    "TripID": 991974,
     "DteStart": 125,
     "DteEnd": 187,
     "BatteryAtStart": 56,
@@ -5277,10 +5716,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 363635,
+    "TripID": 234713,
     "DteStart": 191,
     "DteEnd": 225,
     "BatteryAtStart": 85,
@@ -5289,10 +5729,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "SLOW",
     "DiffInDte": 34,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 510598,
+    "TripID": 101972,
     "DteStart": 145,
     "DteEnd": 178,
     "BatteryAtStart": 70,
@@ -5301,10 +5742,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 33,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 28027,
+    "TripID": 972884,
     "DteStart": 107,
     "DteEnd": 210,
     "BatteryAtStart": 50,
@@ -5313,10 +5755,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 103,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 259476,
+    "TripID": 633065,
     "DteStart": 127,
     "DteEnd": 167,
     "BatteryAtStart": 61,
@@ -5325,10 +5768,11 @@ export const data = [
     "DiffInBat": 28,
     "ChargingType": "FAST",
     "DiffInDte": 40,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 973380,
+    "TripID": 458369,
     "DteStart": 138,
     "DteEnd": 176,
     "BatteryAtStart": 63,
@@ -5337,10 +5781,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 38,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 655881,
+    "TripID": 446970,
     "DteStart": 140,
     "DteEnd": 208,
     "BatteryAtStart": 63,
@@ -5349,10 +5794,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 68,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 49298,
+    "TripID": 82460,
     "DteStart": 116,
     "DteEnd": 163,
     "BatteryAtStart": 63,
@@ -5361,10 +5807,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 629797,
+    "TripID": 1942,
     "DteStart": 132,
     "DteEnd": 156,
     "BatteryAtStart": 70,
@@ -5373,10 +5820,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 24,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 666608,
+    "TripID": 326054,
     "DteStart": 127,
     "DteEnd": 172,
     "BatteryAtStart": 65,
@@ -5385,10 +5833,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 45,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 749112,
+    "TripID": 142722,
     "DteStart": 94,
     "DteEnd": 109,
     "BatteryAtStart": 48,
@@ -5397,10 +5846,11 @@ export const data = [
     "DiffInBat": 8,
     "ChargingType": "FAST",
     "DiffInDte": 15,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 763265,
+    "TripID": 309964,
     "DteStart": 107,
     "DteEnd": 185,
     "BatteryAtStart": 53,
@@ -5409,10 +5859,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 78,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 433315,
+    "TripID": 151840,
     "DteStart": 169,
     "DteEnd": 195,
     "BatteryAtStart": 77,
@@ -5421,10 +5872,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 768646,
+    "TripID": 628167,
     "DteStart": 109,
     "DteEnd": 211,
     "BatteryAtStart": 46,
@@ -5433,10 +5885,11 @@ export const data = [
     "DiffInBat": 43,
     "ChargingType": "FAST",
     "DiffInDte": 102,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 335931,
+    "TripID": 951412,
     "DteStart": 148,
     "DteEnd": 180,
     "BatteryAtStart": 67,
@@ -5445,10 +5898,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 32,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 236900,
+    "TripID": 96126,
     "DteStart": 127,
     "DteEnd": 218,
     "BatteryAtStart": 52,
@@ -5457,10 +5911,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 91,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 514679,
+    "TripID": 313363,
     "DteStart": 132,
     "DteEnd": 191,
     "BatteryAtStart": 63,
@@ -5469,10 +5924,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 59,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 595751,
+    "TripID": 486912,
     "DteStart": 139,
     "DteEnd": 178,
     "BatteryAtStart": 61,
@@ -5481,10 +5937,11 @@ export const data = [
     "DiffInBat": 16,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 347028,
+    "TripID": 170624,
     "DteStart": 171,
     "DteEnd": 219,
     "BatteryAtStart": 70,
@@ -5493,10 +5950,11 @@ export const data = [
     "DiffInBat": 19,
     "ChargingType": "FAST",
     "DiffInDte": 48,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 210643,
+    "TripID": 74995,
     "DteStart": 119,
     "DteEnd": 190,
     "BatteryAtStart": 56,
@@ -5505,10 +5963,11 @@ export const data = [
     "DiffInBat": 33,
     "ChargingType": "FAST",
     "DiffInDte": 71,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 305696,
+    "TripID": 198674,
     "DteStart": 55,
     "DteEnd": 182,
     "BatteryAtStart": 26,
@@ -5517,10 +5976,11 @@ export const data = [
     "DiffInBat": 57,
     "ChargingType": "FAST",
     "DiffInDte": 127,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 445001,
+    "TripID": 178983,
     "DteStart": 146,
     "DteEnd": 212,
     "BatteryAtStart": 61,
@@ -5529,10 +5989,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 38657,
+    "TripID": 767220,
     "DteStart": 214,
     "DteEnd": 241,
     "BatteryAtStart": 89,
@@ -5541,10 +6002,11 @@ export const data = [
     "DiffInBat": 11,
     "ChargingType": "SLOW",
     "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 900664,
+    "TripID": 440213,
     "DteStart": 145,
     "DteEnd": 217,
     "BatteryAtStart": 64,
@@ -5553,10 +6015,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 72,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 630356,
+    "TripID": 314635,
     "DteStart": 82,
     "DteEnd": 202,
     "BatteryAtStart": 36,
@@ -5565,10 +6028,11 @@ export const data = [
     "DiffInBat": 44,
     "ChargingType": "FAST",
     "DiffInDte": 120,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 330120,
+    "TripID": 572162,
     "DteStart": 127,
     "DteEnd": 178,
     "BatteryAtStart": 59,
@@ -5577,10 +6041,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 51,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 696138,
+    "TripID": 767757,
     "DteStart": 180,
     "DteEnd": 227,
     "BatteryAtStart": 74,
@@ -5589,10 +6054,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 439306,
+    "TripID": 80806,
     "DteStart": 160,
     "DteEnd": 218,
     "BatteryAtStart": 66,
@@ -5601,10 +6067,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 786660,
+    "TripID": 818390,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -5613,10 +6080,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 739281,
+    "TripID": 764542,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -5625,10 +6093,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 881991,
+    "TripID": 723097,
     "DteStart": 81,
     "DteEnd": 218,
     "BatteryAtStart": 38,
@@ -5637,10 +6106,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 137,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 969541,
+    "TripID": 914159,
     "DteStart": 177,
     "DteEnd": 228,
     "BatteryAtStart": 78,
@@ -5649,10 +6119,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 51,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 858954,
+    "TripID": 126461,
     "DteStart": 153,
     "DteEnd": 222,
     "BatteryAtStart": 70,
@@ -5661,10 +6132,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 897656,
+    "TripID": 255492,
     "DteStart": 208,
     "DteEnd": 235,
     "BatteryAtStart": 81,
@@ -5673,10 +6145,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 27,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 422604,
+    "TripID": 73714,
     "DteStart": 135,
     "DteEnd": 178,
     "BatteryAtStart": 52,
@@ -5685,10 +6158,11 @@ export const data = [
     "DiffInBat": 15,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 869925,
+    "TripID": 298763,
     "DteStart": 177,
     "DteEnd": 233,
     "BatteryAtStart": 68,
@@ -5697,10 +6171,11 @@ export const data = [
     "DiffInBat": 20,
     "ChargingType": "SLOW",
     "DiffInDte": 56,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 595643,
+    "TripID": 924477,
     "DteStart": 170,
     "DteEnd": 232,
     "BatteryAtStart": 67,
@@ -5709,10 +6184,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 62,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 380244,
+    "TripID": 257781,
     "DteStart": 84,
     "DteEnd": 193,
     "BatteryAtStart": 41,
@@ -5721,10 +6197,11 @@ export const data = [
     "DiffInBat": 52,
     "ChargingType": "FAST",
     "DiffInDte": 109,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 211540,
+    "TripID": 816008,
     "DteStart": 138,
     "DteEnd": 196,
     "BatteryAtStart": 63,
@@ -5733,10 +6210,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 216919,
+    "TripID": 424131,
     "DteStart": 98,
     "DteEnd": 202,
     "BatteryAtStart": 47,
@@ -5745,10 +6223,11 @@ export const data = [
     "DiffInBat": 49,
     "ChargingType": "FAST",
     "DiffInDte": 104,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 878836,
+    "TripID": 202905,
     "DteStart": 127,
     "DteEnd": 179,
     "BatteryAtStart": 58,
@@ -5757,10 +6236,11 @@ export const data = [
     "DiffInBat": 23,
     "ChargingType": "FAST",
     "DiffInDte": 52,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 904208,
+    "TripID": 725460,
     "DteStart": 144,
     "DteEnd": 221,
     "BatteryAtStart": 65,
@@ -5769,10 +6249,11 @@ export const data = [
     "DiffInBat": 35,
     "ChargingType": "FAST",
     "DiffInDte": 77,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 530965,
+    "TripID": 580102,
     "DteStart": 105,
     "DteEnd": 174,
     "BatteryAtStart": 52,
@@ -5781,10 +6262,11 @@ export const data = [
     "DiffInBat": 33,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 105229,
+    "TripID": 88714,
     "DteStart": 180,
     "DteEnd": 223,
     "BatteryAtStart": 81,
@@ -5793,10 +6275,11 @@ export const data = [
     "DiffInBat": 19,
     "ChargingType": "FAST",
     "DiffInDte": 43,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 245660,
+    "TripID": 144511,
     "DteStart": 101,
     "DteEnd": 164,
     "BatteryAtStart": 47,
@@ -5805,10 +6288,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 63,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 145000,
+    "TripID": 365476,
     "DteStart": 138,
     "DteEnd": 208,
     "BatteryAtStart": 62,
@@ -5817,10 +6301,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 70,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 647246,
+    "TripID": 483394,
     "DteStart": 100,
     "DteEnd": 216,
     "BatteryAtStart": 47,
@@ -5829,10 +6314,11 @@ export const data = [
     "DiffInBat": 53,
     "ChargingType": "FAST",
     "DiffInDte": 116,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 502108,
+    "TripID": 44245,
     "DteStart": 133,
     "DteEnd": 174,
     "BatteryAtStart": 64,
@@ -5841,10 +6327,11 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 41,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 6841,
+    "TripID": 674707,
     "DteStart": 143,
     "DteEnd": 171,
     "BatteryAtStart": 68,
@@ -5853,10 +6340,11 @@ export const data = [
     "DiffInBat": 12,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 677708,
+    "TripID": 145859,
     "DteStart": 134,
     "DteEnd": 147,
     "BatteryAtStart": 63,
@@ -5865,10 +6353,11 @@ export const data = [
     "DiffInBat": 6,
     "ChargingType": "FAST",
     "DiffInDte": 13,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 475721,
+    "TripID": 74596,
     "DteStart": 88,
     "DteEnd": 192,
     "BatteryAtStart": 40,
@@ -5877,10 +6366,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 104,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 229998,
+    "TripID": 734874,
     "DteStart": 119,
     "DteEnd": 206,
     "BatteryAtStart": 53,
@@ -5889,10 +6379,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 87,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 481860,
+    "TripID": 917280,
     "DteStart": 77,
     "DteEnd": 226,
     "BatteryAtStart": 35,
@@ -5901,10 +6392,11 @@ export const data = [
     "DiffInBat": 65,
     "ChargingType": "FAST",
     "DiffInDte": 149,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 228007,
+    "TripID": 799098,
     "DteStart": 99,
     "DteEnd": 162,
     "BatteryAtStart": 50,
@@ -5913,10 +6405,11 @@ export const data = [
     "DiffInBat": 31,
     "ChargingType": "FAST",
     "DiffInDte": 63,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 16066,
+    "TripID": 915468,
     "DteStart": 150,
     "DteEnd": 217,
     "BatteryAtStart": 66,
@@ -5925,10 +6418,11 @@ export const data = [
     "DiffInBat": 29,
     "ChargingType": "FAST",
     "DiffInDte": 67,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 309147,
+    "TripID": 237725,
     "DteStart": 134,
     "DteEnd": 198,
     "BatteryAtStart": 63,
@@ -5937,10 +6431,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 64,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 152930,
+    "TripID": 767976,
     "DteStart": 89,
     "DteEnd": 199,
     "BatteryAtStart": 41,
@@ -5949,10 +6444,11 @@ export const data = [
     "DiffInBat": 58,
     "ChargingType": "FAST",
     "DiffInDte": 110,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 982871,
+    "TripID": 138117,
     "DteStart": 106,
     "DteEnd": 148,
     "BatteryAtStart": 57,
@@ -5961,10 +6457,11 @@ export const data = [
     "DiffInBat": 30,
     "ChargingType": "FAST",
     "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 621904,
+    "TripID": 122637,
     "DteStart": 116,
     "DteEnd": 187,
     "BatteryAtStart": 57,
@@ -5973,10 +6470,11 @@ export const data = [
     "DiffInBat": 43,
     "ChargingType": "FAST",
     "DiffInDte": 71,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 975731,
+    "TripID": 932999,
     "DteStart": 112,
     "DteEnd": 164,
     "BatteryAtStart": 56,
@@ -5985,10 +6483,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 52,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 181201,
+    "TripID": 533096,
     "DteStart": 91,
     "DteEnd": 233,
     "BatteryAtStart": 40,
@@ -5997,10 +6496,11 @@ export const data = [
     "DiffInBat": 60,
     "ChargingType": "FAST",
     "DiffInDte": 142,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 527590,
+    "TripID": 942710,
     "DteStart": 122,
     "DteEnd": 182,
     "BatteryAtStart": 56,
@@ -6009,10 +6509,11 @@ export const data = [
     "DiffInBat": 27,
     "ChargingType": "FAST",
     "DiffInDte": 60,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 806094,
+    "TripID": 538544,
     "DteStart": 176,
     "DteEnd": 198,
     "BatteryAtStart": 82,
@@ -6021,10 +6522,11 @@ export const data = [
     "DiffInBat": 9,
     "ChargingType": "FAST",
     "DiffInDte": 22,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 585697,
+    "TripID": 277553,
     "DteStart": 136,
     "DteEnd": 201,
     "BatteryAtStart": 62,
@@ -6033,10 +6535,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 65,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 245570,
+    "TripID": 761697,
     "DteStart": 133,
     "DteEnd": 161,
     "BatteryAtStart": 62,
@@ -6045,10 +6548,11 @@ export const data = [
     "DiffInBat": 13,
     "ChargingType": "FAST",
     "DiffInDte": 28,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 421347,
+    "TripID": 797114,
     "DteStart": 126,
     "DteEnd": 218,
     "BatteryAtStart": 55,
@@ -6057,10 +6561,11 @@ export const data = [
     "DiffInBat": 38,
     "ChargingType": "FAST",
     "DiffInDte": 92,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 277866,
+    "TripID": 130118,
     "DteStart": 100,
     "DteEnd": 266,
     "BatteryAtStart": 38,
@@ -6069,10 +6574,11 @@ export const data = [
     "DiffInBat": 62,
     "ChargingType": "FAST",
     "DiffInDte": 166,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 733774,
+    "TripID": 733319,
     "DteStart": 155,
     "DteEnd": 221,
     "BatteryAtStart": 63,
@@ -6081,10 +6587,11 @@ export const data = [
     "DiffInBat": 25,
     "ChargingType": "FAST",
     "DiffInDte": 66,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 736434,
+    "TripID": 352438,
     "DteStart": 131,
     "DteEnd": 218,
     "BatteryAtStart": 60,
@@ -6093,10 +6600,11 @@ export const data = [
     "DiffInBat": 40,
     "ChargingType": "FAST",
     "DiffInDte": 87,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 445261,
+    "TripID": 74919,
     "DteStart": 148,
     "DteEnd": 206,
     "BatteryAtStart": 68,
@@ -6105,10 +6613,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 58,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 326000,
+    "TripID": 207257,
     "DteStart": 151,
     "DteEnd": 190,
     "BatteryAtStart": 72,
@@ -6117,10 +6626,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 39,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 499618,
+    "TripID": 850188,
     "DteStart": 160,
     "DteEnd": 209,
     "BatteryAtStart": 70,
@@ -6129,10 +6639,11 @@ export const data = [
     "DiffInBat": 21,
     "ChargingType": "FAST",
     "DiffInDte": 49,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 313992,
+    "TripID": 907120,
     "DteStart": 187,
     "DteEnd": 213,
     "BatteryAtStart": 80,
@@ -6141,10 +6652,11 @@ export const data = [
     "DiffInBat": 10,
     "ChargingType": "FAST",
     "DiffInDte": 26,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 483303,
+    "TripID": 324905,
     "DteStart": 120,
     "DteEnd": 202,
     "BatteryAtStart": 54,
@@ -6153,10 +6665,11 @@ export const data = [
     "DiffInBat": 36,
     "ChargingType": "FAST",
     "DiffInDte": 82,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 644468,
+    "TripID": 331309,
     "DteStart": 180,
     "DteEnd": 249,
     "BatteryAtStart": 65,
@@ -6165,10 +6678,11 @@ export const data = [
     "DiffInBat": 24,
     "ChargingType": "FAST",
     "DiffInDte": 69,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 442186,
+    "TripID": 320297,
     "DteStart": 123,
     "DteEnd": 170,
     "BatteryAtStart": 60,
@@ -6177,10 +6691,11 @@ export const data = [
     "DiffInBat": 22,
     "ChargingType": "FAST",
     "DiffInDte": 47,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 39876,
+    "TripID": 76450,
     "DteStart": 121,
     "DteEnd": 223,
     "BatteryAtStart": 55,
@@ -6189,10 +6704,11 @@ export const data = [
     "DiffInBat": 45,
     "ChargingType": "FAST",
     "DiffInDte": 102,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 600385,
+    "TripID": 633399,
     "DteStart": 113,
     "DteEnd": 150,
     "BatteryAtStart": 57,
@@ -6201,10 +6717,11 @@ export const data = [
     "DiffInBat": 26,
     "ChargingType": "FAST",
     "DiffInDte": 37,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 947927,
+    "TripID": 507555,
     "DteStart": 119,
     "DteEnd": 224,
     "BatteryAtStart": 54,
@@ -6213,10 +6730,11 @@ export const data = [
     "DiffInBat": 46,
     "ChargingType": "FAST",
     "DiffInDte": 105,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 289570,
+    "TripID": 60957,
     "DteStart": 87,
     "DteEnd": 202,
     "BatteryAtStart": 44,
@@ -6225,10 +6743,11 @@ export const data = [
     "DiffInBat": 56,
     "ChargingType": "FAST",
     "DiffInDte": 115,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   },
   {
-    "TripID": 690113,
+    "TripID": 926847,
     "DteStart": 147,
     "DteEnd": 189,
     "BatteryAtStart": 65,
@@ -6237,6 +6756,7 @@ export const data = [
     "DiffInBat": 18,
     "ChargingType": "FAST",
     "DiffInDte": 42,
+    "vehicleId": "sample_vehicle_id",
     "chargerId": null
   }
 ];
