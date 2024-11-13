@@ -1,27 +1,6 @@
-"use client"
-
 import React, { ReactNode, useEffect, useState } from "react";
 
 const Layout = ({ children }: { children: ReactNode }) => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean | null>(null);
-
-  // Detect system theme preference on client-side only
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    setIsDarkMode(mediaQuery.matches); // Set initial theme based on system preference
-
-    // Listen for theme changes
-    mediaQuery.addEventListener("change", (e) => setIsDarkMode(e.matches));
-
-    return () => {
-      mediaQuery.removeEventListener("change", () => {}); // Cleanup listener
-    };
-  }, []);
-
-  if (isDarkMode === null) {
-    return null; // Wait until the theme is detected
-  }
-
   return (
     <div
       style={{
@@ -41,11 +20,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: isDarkMode ? "#333" : "#fff", // Background color based on theme
           zIndex: -3, // Set background behind everything
+          // backgroundColor: isDarkMode ? "#333" : "#fff", // Background color based on theme
         }}
       />
-
       {/* Green Circle Layer */}
       <div
         style={{
@@ -58,10 +36,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
           borderRadius: "50%", // Make it a circle
           backgroundColor: "#77bc3f", // Green circle color
           filter: "blur(100px)", // Apply blur effect to the whole circle
-          boxShadow: `0 0 30px ${
-            isDarkMode ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)"
-          }`, // Adjust box-shadow for dark/light modes
           zIndex: -2, // Put the circle behind the content
+          // boxShadow: `0 0 30px ${
+          //   isDarkMode ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)"
+          // }`, // Adjust box-shadow for dark/light modes
         }}
       />
 

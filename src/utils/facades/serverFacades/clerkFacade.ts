@@ -9,7 +9,7 @@ import {
   handleUserUpdated,
 } from "./userFacade";
 
-const webhookSecret = process.env.NEXT_PUBLIC_CLERK_WEBHOOK_SECRET || ``;
+const webhookSecret = process.env.CLERK_WEBHOOK_SECRET || ``;
 
 export async function validateClerkRequest(request: Request) {
   const payloadString = await request.text();
