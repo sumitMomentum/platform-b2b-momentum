@@ -14,10 +14,10 @@ function SuspenseClerk() {
       <Backdrop sx={{ color: "#fff", zIndex: 100 }} open={true}>
         <Box sx={{ width: "50%" }}>
           <Typography variant="h3" gutterBottom>
-            Authetication in Progress
+            Authentication in Progress
           </Typography>
           <Typography variant="subtitle2" gutterBottom>
-            Sorry for inconvenience
+            Sorry for the inconvenience
           </Typography>
           <LinearProgress color="success" />
         </Box>

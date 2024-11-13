@@ -15,23 +15,10 @@ const DistanceTravelledChart = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getVehicles = async () => {
-      // Make getVehicles async
-      if (!vehicles || vehicles.length === 0) {
-        const userVehiclesFromDB = await getUserVehicles();
-        // console.log(userVehiclesFromDB);
-        setVehicles(userVehiclesFromDB);
-      }
-    };
-
-    getVehicles(); // Call the async function
-  }, [vehicles, setVehicles]);
-
-  useEffect(() => {
     // Get unique makes from the vehicles array
-    setLoading(true)
+    setLoading(true);
     const uniqueMakes = [...new Set(vehicles.map((vehicle) => vehicle.make))];
-    
+
     // Calculate monthly usage for each make
     const usageData = uniqueMakes.map((make) => {
       const filteredVehicles = vehicles.filter(
@@ -46,12 +33,17 @@ const DistanceTravelledChart = () => {
         }
       );
 
-      return { label: make, data: monthlyUsage, id: make + "Id" , stack: "total" };
+      return {
+        label: make,
+        data: monthlyUsage,
+        id: make + "Id",
+        stack: "total",
+      };
     });
 
     setSeries(usageData);
     console.log(usageData);
-    setLoading(false)
+    setLoading(false);
   }, [vehicles, setVehicles]);
 
   const [series, setSeries] = useState([]);
@@ -71,7 +63,13 @@ const DistanceTravelledChart = () => {
   ];
 
   return (
-          <BarChart loading={loading} width={700} height={300} series={series} xAxis={[{data: xLabels, scaleType: "band"}]} />
+    <BarChart
+      loading={loading}
+      width={700}
+      height={300}
+      series={series}
+      xAxis={[{ data: xLabels, scaleType: "band" }]}
+    />
   );
 };
 

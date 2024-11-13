@@ -14,40 +14,47 @@ import {
   LinkIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
+import { log } from "console";
 import { useEffect, useState, use } from "react";
 // import { useRouter, useSearchParams } from "next/navigation";
 // import { useEffect } from "react";
 
 const VehicleDashboard = (props: { params: Promise<{ vehicleId: string }> }) => {
-  const params = use(props.params);
-  const vehicleId = params.vehicleId;
-  // console.log("vehicle", vehicleId);
+  const [vehicleId, setVehicleId] = useState<string | null>(null);
   const selectedVehicleId = useVehicleStore((state) => state.selectedVehicleId);
-  // console.log("selectedVehicleId", selectedVehicleId);
   const vehiclesFromStore = useVehicleStore((state) => state.vehicles);
 
   // Find the selected vehicle based on selectedVehicleId
   const selectedVehicle = vehiclesFromStore.find(
     (vehicle) => vehicle.vehicleId === selectedVehicleId
   );
-  // console.log("selectedVehicle", selectedVehicle);
 
   // State to store dashboardData
   const [dashboardData, setDashboardData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      const resolvedParams = await props.params; // Await the promise here
+      setVehicleId(resolvedParams.vehicleId); // Set the vehicleId state
+    };
+    fetchData();
+  }, [props.params]);
+
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const data = await getVehicleDashboardData(vehicleId);
-        setDashboardData(data); // Update state with the fetched 'data'
-        console.log(data);
+        if (vehicleId) {
+          const data = await getVehicleDashboardData(vehicleId);
+          setDashboardData(data); // Update state with the fetched 'data'
+          console.log(data);
+        }
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [vehicleId]); // Add vehicleId as a dependency
 
   return (
     dashboardData && (

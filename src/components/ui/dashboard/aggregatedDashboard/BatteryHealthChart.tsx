@@ -16,17 +16,6 @@ const BatteryHealthChart = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getVehicles = async () => {
-      if (!vehicles || vehicles.length === 0) {
-        const userVehiclesFromDB = await getUserVehicles();
-        setVehicles(userVehiclesFromDB);
-      }
-    };
-
-    getVehicles();
-  }, [vehicles, setVehicles]);
-
-  useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
       try {

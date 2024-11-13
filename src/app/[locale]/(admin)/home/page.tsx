@@ -1,4 +1,6 @@
-import React, { Suspense } from "react";
+"use client";
+
+import React, { Suspense, useEffect, useState } from "react";
 import { LifebuoyIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { classNames } from "@/utils/facades/serverFacades/strFacade";
 import PageName from "@/components/ui/commons/PageName";
@@ -11,42 +13,79 @@ import AffiliateHandler from "@/components/core/AffiliateHandler";
 import { getUserDB } from "@/actions/admin/userModule/get-user-DB";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-
 import AllVehicle from "@/components/ui/dashboard/aggregatedDashboard/AllVehicle";
 import VehicleStatus from "@/components/ui/dashboard/aggregatedDashboard/VehicleStatus";
 import Condition from "@/components/ui/dashboard/aggregatedDashboard/Condition";
 import DistanceTravelled from "@/components/ui/dashboard/aggregatedDashboard/DistanceTravelled";
 import BatteryHealth from "@/components/ui/dashboard/aggregatedDashboard/BatteryHealth";
 import { createEnodeWebhook } from "@/actions/admin/dashboardModule/create-enode-webhook";
+import { getUserVehicleEnode } from "@/actions/admin/userModule/get-user-vehicle-enode";
+import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
+import useVehicleStore from "@/states/store";
 
-export const metadata: Metadata = {
-  title: "Home",
-};
+// export const metadata: Metadata = {
+//   title: "Home",
+// };
 
-const SuperAdminDashboardPage = async () => {
-  const t = await getTranslations("AdminLayout.pages.dashboard");
-  const invoicesCount = await getUserInvoicesPendingCount();
-  const supportTicketsCounts = await getSupportTicketsActivesCount();
-  const user = await getUserDB();
-  const enodeWebhook = await createEnodeWebhook();
-  console.log(enodeWebhook);
+const SuperAdminDashboardPage = () => {
+  // const t = await getTranslations("AdminLayout.pages.dashboard");
+  const [invoicesCount, setInvoicesCount] = useState(0);
+  const [supportTicketsCounts, setSupportTicketsCounts] = useState(0);
+  const [user, setUser] = useState(null);
+  const [enodeWebhook, setEnodeWebhook] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const vehicles = useVehicleStore((state) => state.vehicles);
+  const setVehicles = useVehicleStore((state) => state.setVehicles);
+  const [enodeVehicles, setEnodeVehicles] = useState([]);
+  const setSelectedVehicleId = useVehicleStore(
+    (state) => state.setSelectedVehicleId
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const invoices = await getUserInvoicesPendingCount();
+      const supportTickets = await getSupportTicketsActivesCount();
+      const userData = await getUserDB();
+      const enodeWebhook = await createEnodeWebhook();
+      setInvoicesCount(invoices);
+      setSupportTicketsCounts(supportTickets);
+      setUser(userData);
+      setLoading(false);
+      setEnodeWebhook(enodeWebhook);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const getVehicles = async () => {
+      if (!vehicles || vehicles.length === 0) {
+        const userVehiclesFromDB = await getUserVehicles();
+        setVehicles(userVehiclesFromDB);
+        setSelectedVehicleId("");
+      }
+      setLoading(false);
+    };
+
+    getVehicles();
+  }, [vehicles]);
 
   const actions = [
     {
-      title: t("actionOne"),
+      title: "actionOne",
       href: "/home/services/buy-service",
       icon: ShoppingBagIcon,
       iconForeground: "text-teal-700",
-      description: t("actionOneDescription"),
+      description: "actionOneDescription",
       iconBackground: "bg-teal-50",
     },
     {
-      title: t("actionTwo"),
+      title: "actionTwo",
       href: "/home/support",
       icon: LifebuoyIcon,
       iconForeground: "text-purple-700",
       iconBackground: "bg-purple-50",
-      description: t("actionTwoDescription"),
+      description: "actionTwoDescription",
     },
   ];
 
@@ -56,7 +95,7 @@ const SuperAdminDashboardPage = async () => {
   return (
     <div>
       <PageName
-        name={t("title")}
+        name={"Dashboard"}
         breadcrumbs={[
           { name: "Home", href: "/home" },
           { name: "", href: "/home" },
@@ -67,19 +106,19 @@ const SuperAdminDashboardPage = async () => {
           <Flex>
             <div>
               <Link href={"/home/services"}>
-                <Text color="sky">{t("exampleActive")}</Text>
+                <Text color="sky">{"eampleActive")}</Text>
               </Link>
               <Metric> 3 </Metric>{" "}
             </div>
             <div>
               <Link href={"/home/invoices"}>
-                <Text color="sky"> {t("invoicesInPaid")}</Text>
+                <Text color="sky"> {"ivoicesInPaid")}</Text>
               </Link>
               <Metric>{invoicesCount}</Metric>
             </div>
             <div>
               <Link href={"/home/support"}>
-                <Text color="sky">{t("tickersActives")}</Text>
+                <Text color="sky">{"tckersActives")}</Text>
               </Link>
               <Metric>{supportTicketsCounts}</Metric>
             </div>

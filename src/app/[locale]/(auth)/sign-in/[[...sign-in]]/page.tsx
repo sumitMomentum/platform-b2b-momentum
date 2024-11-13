@@ -11,7 +11,7 @@ export default function Page() {
       alignItems="center"
       height="100vh" // Full viewport height to center vertically
     >
-      <SignIn path={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL}/>
+      <SignIn/>
     </Box>
   );
 }

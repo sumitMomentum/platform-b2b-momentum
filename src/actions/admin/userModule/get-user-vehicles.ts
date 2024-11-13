@@ -9,8 +9,6 @@ export const getUserVehicles = async () => {
     throw new Error("Unauthorized");
   }
 
-  console.log(process.env.NEXT_PUBLIC_BASE_URL);
-
   // Fetch the vehicles data from the API
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle`
