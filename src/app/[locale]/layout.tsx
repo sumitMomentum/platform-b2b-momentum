@@ -1,6 +1,9 @@
 import React, { ReactNode, use } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import AdminLayout from "@/components/layouts/AdminLayout";
+import { ClerkLoading } from "@clerk/nextjs";
+import SuspenseClerk from "@/components/suspenseSkeleton/SuspenseClerk";
 // import { notFound } from "next/navigation";
 // import { routing } from "@/i18n/routing";
 
@@ -28,6 +31,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
+      
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
