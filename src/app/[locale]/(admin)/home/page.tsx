@@ -27,11 +27,11 @@ import loading from "./actionCentre/loading";
 // export const metadata: Metadata = {
 //   title: "Home",
 // };
-export const allVehicleDataLoadingContext =  createContext<{
-  loading: boolean;
-  startLoading: () => void;
-  stopLoading: () => void;
-}>(null);
+// export const allVehicleDataLoadingContext =  createContext<{
+//   loading: boolean;
+//   startLoading: () => void;
+//   stopLoading: () => void;
+// }>(null);
 
 const SuperAdminDashboardPage = () => {
   // const t = await getTranslations("AdminLayout.pages.dashboard");
@@ -110,9 +110,9 @@ const SuperAdminDashboardPage = () => {
           { name: "", href: "/home" },
         ]}
       />
-      <allVehicleDataLoadingContext.Provider
+      {/* <allVehicleDataLoadingContext.Provider
         value={{ loading, startLoading, stopLoading }}
-      >
+      > */}
         {/* <Suspense fallback={<PageLoader />}>
         <Card className=" my-7">
           <Flex>
@@ -258,7 +258,7 @@ const SuperAdminDashboardPage = () => {
             </div>
           )}
         </div>
-      </allVehicleDataLoadingContext.Provider>
+      {/* </allVehicleDataLoadingContext.Provider> */}
     </div>
   );
 };

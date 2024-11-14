@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react"; // Import only useEffect
 import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import { allVehicleDataLoadingContext } from "@/app/[locale]/(admin)/home/page";
+// import { allVehicleDataLoadingContext } from "@/app/[locale]/(admin)/home/page";
 
 const columns = [
   { field: "vin", headerName: "VIN", flex: 1 },
@@ -28,7 +28,7 @@ const VehicleList = (props) => {
     (state) => state.setSelectedVehicleId
   );
 
- const { loading, startLoading, stopLoading } = useContext(allVehicleDataLoadingContext);
+  //  const { loading, startLoading, stopLoading } = useContext(allVehicleDataLoadingContext);
 
   const handleRowClickEvent: GridEventListener<"rowClick"> = (
     params, // GridRowParams
@@ -51,7 +51,7 @@ const VehicleList = (props) => {
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
-        loading={loading}
+        // loading={loading}
         onRowClick={handleRowClickEvent}
         getRowId={(row) => row.vehicleId}
         rows={vehicles}
