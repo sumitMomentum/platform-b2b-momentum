@@ -4,10 +4,10 @@ import prisma from "@/lib/db"; // Adjust the import based on your Prisma setup
 export async function GET() {
   try {
     // Fetch all charging sessions
-    const chargingSessions = await prisma.chargingSession.findMany();
+    const chargingSessions = await prisma.chargerMaster.findMany();
 
     // Optionally log the results for debugging
-    console.log("Fetched Charging Sessions:", chargingSessions); 
+    console.log("Fetched Charging Sessions:", chargingSessions);
 
     // Return the charging sessions as a response
     return NextResponse.json(chargingSessions);

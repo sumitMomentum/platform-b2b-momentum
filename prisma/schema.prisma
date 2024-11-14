@@ -1,15 +1,11 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_DATABASE_URL")
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-// generator dbml {
-//   provider = "prisma-dbml-generator"
-// }
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_DATABASE_URL")
+}
 
 model User {
   id                   Int                     @id @default(autoincrement())
@@ -19,23 +15,23 @@ model User {
   avatar               String?                 @db.VarChar(255)
   createdAt            DateTime                @default(now())
   updatedAt            DateTime                @updatedAt
-  Amounts              UserAmounts[]
-  UserSetting          UserSetting[]
-  refer                Referral[]              @relation("refer")
-  referredBy           Referral[]              @relation("referred")
-  Notification         Notification[]
-  Membership           Membership[]
-  UserStatus           UserStatus[]
-  UserNotes            UserNotes[]
-  invoices             Invoice[]
-  UserCapabilities     UserCapabilities[]
-  SupportTicket        SupportTicket[]
-  SupportTicketMessage SupportTicketMessage[]
-  StripeCustomer       StripeCustomer[]
-  permissions          Permission[]
   AmountsMovements     AdminMovementsAmounts[]
   coupons              Coupon[]
+  invoices             Invoice[]
+  Membership           Membership?
+  Notification         Notification[]
+  refer                Referral[]              @relation("refer")
+  referredBy           Referral[]              @relation("referred")
+  StripeCustomer       StripeCustomer[]
+  SupportTicket        SupportTicket[]
+  SupportTicketMessage SupportTicketMessage[]
+  Amounts              UserAmounts[]
+  UserCapabilities     UserCapabilities[]
+  UserNotes            UserNotes[]
+  UserSetting          UserSetting[]
+  UserStatus           UserStatus[]
   vehicles             Vehicle[]
+  permissions          Permission[]            @relation("PermissionToUser")
 }
 
 model StripeCustomer {
@@ -43,8 +39,8 @@ model StripeCustomer {
   customerId String   @unique
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -69,10 +65,10 @@ model Invoice {
   dueAt                  DateTime?
   createdAt              DateTime         @default(now())
   updatedAt              DateTime         @updatedAt
-  user                   User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
   Currency               AdminCurrencies  @relation(fields: [currencyId], references: [id])
+  user                   User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
   Items                  InvoiceItem[]
-  coupons                Coupon[]
+  coupons                Coupon[]         @relation("CouponToInvoice")
 
   @@index([userId, currencyId, serviceId])
 }
@@ -88,13 +84,13 @@ model Coupon {
   maxRedemptions    Int?
   percentOff        Float?
   status            String           @default("ACTIVE")
-  user              User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
-  AdminCurrencies   AdminCurrencies? @relation(fields: [adminCurrenciesId], references: [id])
   adminCurrenciesId Int?
+  AdminCurrencies   AdminCurrencies? @relation(fields: [adminCurrenciesId], references: [id])
+  user              User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
   settings          CouponSettings[]
-  invoices          Invoice[]
+  invoices          Invoice[]        @relation("CouponToInvoice")
 
   @@index([userId])
 }
@@ -102,19 +98,13 @@ model Coupon {
 model CouponSettings {
   id        Int      @id @default(autoincrement())
   couponId  Int
-  coupon    Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
   name      String
-  value     String   @db.Text
+  value     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  coupon    Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
 
   @@index([couponId])
-}
-
-enum CouponDuration {
-  FOREVER
-  ONCE
-  REPEATING
 }
 
 model PaymentMethod {
@@ -122,7 +112,7 @@ model PaymentMethod {
   name        String
   description String?
   image       String?
-  currencies  String?  @db.Text
+  currencies  String?
   status      String   @default("ACTIVE")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -137,7 +127,7 @@ model InvoiceItem {
   modelId     Int?
   pricingBdId Int?
   pricingId   String?
-  images      String?  @db.Text
+  images      String?
   quantity    Int
   price       Float
   createdAt   DateTime @default(now())
@@ -152,10 +142,10 @@ model UserStatus {
   name        String   @db.VarChar(255)
   description String?  @db.VarChar(512)
   userId      Int
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   statusUntil DateTime
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -163,16 +153,16 @@ model UserStatus {
 model Membership {
   id               Int              @id @default(autoincrement())
   userId           Int              @unique
-  plan             Plan             @relation(fields: [planId], references: [id], onDelete: Cascade)
   planId           Int
   pricingId        Int?
-  pricing          Pricing?         @relation(fields: [pricingId], references: [id], onDelete: Cascade)
   currencyId       Int?             @default(1)
-  currency         AdminCurrencies? @relation(fields: [currencyId], references: [id])
   startDate        DateTime
   endDateFreeTrial DateTime?
   endDate          DateTime
   createdAt        DateTime         @default(now())
+  currency         AdminCurrencies? @relation(fields: [currencyId], references: [id])
+  plan             Plan             @relation(fields: [planId], references: [id], onDelete: Cascade)
+  pricing          Pricing?         @relation(fields: [pricingId], references: [id], onDelete: Cascade)
   user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, pricingId])
@@ -184,11 +174,11 @@ model Plan {
   stripeProductId  String?
   freeTrialDays    Int?
   status           String             @default("ACTIVE")
-  description      String?            @db.Text
+  description      String?
   Membership       Membership[]
   PlanCapabilities PlanCapabilities[]
-  Permission       Permission[]
   pricing          Pricing[]
+  Permission       Permission[]       @relation("PermissionToPlan")
 }
 
 model Pricing {
@@ -199,11 +189,11 @@ model Pricing {
   oldPrice   Float?
   createdAt  DateTime         @default(now())
   updatedAt  DateTime         @updatedAt
-  Plan       Plan?            @relation(fields: [planId], references: [id], onDelete: Cascade)
   planId     Int?
   serviceId  Int?
-  settings   PricingSetting[]
   Membership Membership[]
+  Plan       Plan?            @relation(fields: [planId], references: [id], onDelete: Cascade)
+  settings   PricingSetting[]
 
   @@index([planId, serviceId])
 }
@@ -214,13 +204,12 @@ model PricingSetting {
   settingValue String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  Pricing      Pricing? @relation(fields: [pricingId], references: [id])
   pricingId    Int?
+  Pricing      Pricing? @relation(fields: [pricingId], references: [id])
 
   @@index([pricingId])
 }
 
-//*************************** ACL ***************************// 
 model Module {
   id          Int          @id @default(autoincrement())
   name        String
@@ -229,19 +218,18 @@ model Module {
   description String?
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  Permission  Permission[]
+  Permission  Permission[] @relation("ModuleToPermission")
 }
 
 model Permission {
   id          Int      @id @default(autoincrement())
   name        String
   description String?
-  users       User[]
-  Module      Module[]
-  Plan        Plan[]
+  Module      Module[] @relation("ModuleToPermission")
+  Plan        Plan[]   @relation("PermissionToPlan")
+  users       User[]   @relation("PermissionToUser")
 }
 
-//*************************** END ACL ***************************//
 model AdminKpi {
   id        Int      @id @default(autoincrement())
   name      String
@@ -253,10 +241,10 @@ model AdminKpi {
 
 model Referral {
   id         Int  @id @default(autoincrement())
-  refer      User @relation("refer", fields: [referId], references: [id], onDelete: Cascade)
   referId    Int
-  referred   User @relation("referred", fields: [referredId], references: [id])
   referredId Int
+  refer      User @relation("refer", fields: [referId], references: [id], onDelete: Cascade)
+  referred   User @relation("referred", fields: [referredId], references: [id])
 
   @@index([referId, referredId])
 }
@@ -265,7 +253,7 @@ model Capabilitie {
   id               Int                @id @default(autoincrement())
   name             String
   title            String?
-  description      String?            @db.Text
+  description      String?
   type             String             @default("LIMIT")
   PlanCapabilities PlanCapabilities[]
   UserCapabilities UserCapabilities[]
@@ -277,8 +265,8 @@ model PlanCapabilities {
   planId        Int
   count         Int
   name          String?
-  plan          Plan        @relation(fields: [planId], references: [id], onDelete: Cascade)
   capabilitie   Capabilitie @relation(fields: [capabilitieId], references: [id], onDelete: Cascade)
+  plan          Plan        @relation(fields: [planId], references: [id], onDelete: Cascade)
 
   @@index([planId, capabilitieId])
 }
@@ -288,18 +276,18 @@ model UserCapabilities {
   capabilitieId Int
   userId        Int
   count         Int
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   capabilitie   Capabilitie @relation(fields: [capabilitieId], references: [id], onDelete: Cascade)
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, capabilitieId])
 }
 
 model UserSetting {
   id           Int    @id @default(autoincrement())
-  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       Int
   settingName  String @db.VarChar(128)
-  settingValue String @db.Text
+  settingValue String
+  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -307,13 +295,13 @@ model UserSetting {
 model SuperAdminSetting {
   id           Int    @id @default(autoincrement())
   settingName  String @db.VarChar(128)
-  settingValue String @db.Text
+  settingValue String
 }
 
 model CronJobs {
   id        Int      @id @default(autoincrement())
   name      String
-  error     String?  @db.Text
+  error     String?
   excuteAt  DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -321,11 +309,11 @@ model CronJobs {
 
 model UserNotes {
   id        Int               @id @default(autoincrement())
-  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   scope     UserNoteScopeType @default(PLATFORM)
   userId    Int
   noteName  String            @db.VarChar(128)
   noteValue String
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -349,24 +337,24 @@ model AdminCurrencies {
   rate                  Float
   createdAt             DateTime                @default(now())
   updatedAt             DateTime                @updatedAt
-  UserAmounts           UserAmounts[]
   AdminMovementsAmounts AdminMovementsAmounts[]
+  Coupon                Coupon[]
   invoices              Invoice[]
   Membership            Membership[]
-  Coupon                Coupon[]
+  UserAmounts           UserAmounts[]
 }
 
 model UserAmounts {
   id             Int             @id @default(autoincrement())
-  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         Int
-  Currency       AdminCurrencies @relation(fields: [currencyId], references: [id])
   currencyId     Int             @default(1)
   amount         Float           @default(0)
   amount_pending Float           @default(0)
   amount_stopad  Float           @default(0)
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
+  Currency       AdminCurrencies @relation(fields: [currencyId], references: [id])
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([currencyId])
@@ -375,29 +363,28 @@ model UserAmounts {
 model AdminMovementsAmounts {
   id         BigInt             @id @default(autoincrement())
   userId     Int?
-  user       User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
   details    String             @db.VarChar(128)
-  Currency   AdminCurrencies    @relation(fields: [currencyId], references: [id])
   currencyId Int
   amount     Float
   type       MovementAmountType @default(CREDIT)
   status     Status             @default(COMPLETED)
   createdAt  DateTime           @default(now())
   updatedAt  DateTime           @updatedAt
+  Currency   AdminCurrencies    @relation(fields: [currencyId], references: [id])
+  user       User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([currencyId])
 }
 
 model SupportTicket {
-  id          Int                     @id @default(autoincrement())
-  subject     String
-  departament SupportDepartamentType  @default(SALES)
-  status      SupportTicketStatusType @default(OPEN)
-  userId      Int?
-  user        User?                   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime                @default(now())
-  updatedAt   DateTime                @updatedAt
-
+  id                   Int                     @id @default(autoincrement())
+  subject              String
+  departament          SupportDepartamentType  @default(SALES)
+  status               SupportTicketStatusType @default(OPEN)
+  userId               Int?
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+  user                 User?                   @relation(fields: [userId], references: [id], onDelete: Cascade)
   SupportTicketMessage SupportTicketMessage[]
 
   @@index([userId])
@@ -407,10 +394,10 @@ model SupportTicketMessage {
   id                          Int                           @id @default(autoincrement())
   ticketId                    Int
   userId                      Int?
-  ticket                      SupportTicket                 @relation(fields: [ticketId], references: [id], onDelete: Cascade)
-  user                        User?                         @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt                   DateTime                      @default(now())
   updatedAt                   DateTime                      @updatedAt
+  ticket                      SupportTicket                 @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  user                        User?                         @relation(fields: [userId], references: [id], onDelete: Cascade)
   SupportTicketMessageContent SupportTicketMessageContent[]
 
   @@index([ticketId, userId])
@@ -420,10 +407,10 @@ model SupportTicketMessageContent {
   id        Int                    @id @default(autoincrement())
   messageId Int
   type      PublicationContentType @default(TEXT)
-  ticket    SupportTicketMessage   @relation(fields: [messageId], references: [id], onDelete: Cascade)
-  content   String                 @db.Text
+  content   String
   createdAt DateTime               @default(now())
   updatedAt DateTime               @updatedAt
+  ticket    SupportTicketMessage   @relation(fields: [messageId], references: [id], onDelete: Cascade)
 
   @@index([messageId])
 }
@@ -435,205 +422,191 @@ model EnodeToken {
   updatedAt DateTime @default(now())
 }
 
-// { new Schemas for steps, cars and all }
 model Vehicle {
-  id                          String   @id
-  vin                         String?  @unique
-  vehicleId                   String?  @unique
-  model                       String?
-  year                        Int?
-  batteryCapacity             Int?
-  ownerID                     Int?
-  soc                         Int?
-  dateOfConnection            DateTime @map("dateOfConnection")
-  odometerReading             Float?
-  avgDailyKmDriven            Float[]
-  monthlyUsage                Float[]
-  condition                   String?
-  status                      String?
-  make                        String?
-  batteryHealthSoH            Float?
-  batteryHealthDegradation    Float?
-  location                    String?
-  soh                         Float[]
-  avgEstimatedDegradation     Float[]
-  avgSoC                      Float?
-  totalBatteries              Int?
-  connectorType               String?
-  endOfLifeEstimate           String?
-  observedRange               Int?
-  remainingUsefulLife         String?
-  totalChargingSessions       Int?
-  totalEnergyConsumed         String?
-  criticalConditionCount      Int?
-  goodConditionCount          Int?
-  satisfactoryConditionCount  Int?
-  activeStatusCount           Int?
-  chargingStatusCount         Int?
-  inUseStatusCount            Int?
-  outOfServiceStatusCount     Int?
-  providedRangeEPAWLTP        Int?
-  maxObservedRange            Int?
-  minObservedRange            Int?
-  maxSoCRange                 Int?
-  minSoCRange                 Int?
-  maxTemperature              Int?
-  minTemperature              Int?
-  batteryChemistry            String?
-  avgBatteryHealthSoH         Float?
-  dataPointsCollected         Int?
-  avgMonthlyUsage             Float?
-  vehicleConditionCritical    Int?
-  vehicleConditionGood        Int?
-  vehicleConditionSatisfactory Int?
-  vehicleStatusActive         Int?
-  vehicleStatusCharging       Int?
-  vehicleStatusInUse          Int?
-  vehicleStatusOutOfService   Int?
-  averageMonthlyUsage         Float?
+  id                                       String   @id
+  vin                                      String?  @unique
+  vehicleId                                String?  @unique
+  model                                    String?
+  year                                     Int?
+  batteryCapacity                          Int?
+  ownerID                                  Int?
+  soc                                      Int?
+  dateOfConnection                         DateTime @map("dateOfConnection")
+  odometerFloat                            Float?
+  usageAverageDailyKmDriven                Float[]
+  monthlyUsage                             Float[]
+  condition                                String?
+  status                                   String?
+  make                                     String?
+  batteryHealthSoH                         Float?
+  batteryHealthDegradation                 Float?
+  location                                 String?
+  soh                                      Float[]
   batteryHealthAverageEstimatedDegradation Float[]
-  batteryHealthAverageSoC     Float?
-  batteryHealthAverageSoH     Float?
-  batteryHealthTotalBatteries Int?
-  endOfLife                   String?
-  epawltpProvidedRange        Int?
-  odometerFloat               Float?
-  realRangeObserved           Int?
-  totalChargingSession        Int?
-  usageAverageDailyKmDriven   Float[]
-  usageRangeObservedMax       Int?
-  usageRangeObservedMin       Int?
-  usageSoCRangeMax            Int?
-  usageSoCRangeMin            Int?
-  usageTemperatureHigh        Int?
-  usageTemperatureLow         Int?
-
-  owner                       User     @relation(fields: [ownerId], references: [id])
-  ownerId                     Int
+  batteryHealthAverageSoC                  Float?
+  batteryHealthTotalBatteries              Int?
+  connectorType                            String?
+  endOfLife                                String?
+  realRangeObserved                        Int?
+  remainingUsefulLife                      String?
+  totalChargingSession                     Int?
+  totalEnergyConsumed                      String?
+  vehicleConditionCritical                 Int?
+  vehicleConditionGood                     Int?
+  vehicleConditionSatisfactory             Int?
+  vehicleStatusActive                      Int?
+  vehicleStatusCharging                    Int?
+  vehicleStatusInUse                       Int?
+  vehicleStatusOutOfService                Int?
+  epawltpProvidedRange                     Int?
+  usageRangeObservedMax                    Int?
+  usageRangeObservedMin                    Int?
+  usageSoCRangeMax                         Int?
+  usageSoCRangeMin                         Int?
+  usageTemperatureHigh                     Int?
+  usageTemperatureLow                      Int?
+  batteryChemistry                         String?
+  batteryHealthAverageSoH                  Float?
+  dataPointsCollected                      Int?
+  averageMonthlyUsage                      Float?
+  ownerId                                  Int
+  activeStatusCount                        Int?
+  avgBatteryHealthSoH                      Float?
+  avgDailyKmDriven                         Float[]
+  avgEstimatedDegradation                  Float[]
+  avgMonthlyUsage                          Float?
+  avgSoC                                   Float?
+  chargingStatusCount                      Int?
+  criticalConditionCount                   Int?
+  endOfLifeEstimate                        String?
+  goodConditionCount                       Int?
+  inUseStatusCount                         Int?
+  maxObservedRange                         Int?
+  maxSoCRange                              Int?
+  maxTemperature                           Int?
+  minObservedRange                         Int?
+  minSoCRange                              Int?
+  minTemperature                           Int?
+  observedRange                            Int?
+  odometerReading                          Float?
+  outOfServiceStatusCount                  Int?
+  providedRangeEPAWLTP                     Int?
+  satisfactoryConditionCount               Int?
+  totalBatteries                           Int?
+  totalChargingSessions                    Int?
+  owner                                    User     @relation(fields: [ownerId], references: [id])
 }
 
 model VehicleTripSession {
-  id                   Int      @id @default(autoincrement())
-  DteStart             Int?
-  DteEnd               Int?
-  BatteryAtStart       Int?
-  BatteryAtEnd         Int?
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
-  TripID               Float?
+  id                    Int       @id @default(autoincrement())
+  vehicleId             String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  BatteryAtEnd          Int?
+  BatteryAtStart        Int?
+  DiffInBat             Int?
+  DiffInDte             Int?
+  DteEnd                Int?
+  DteStart              Int?
+  DwUpdated             DateTime?
   TripApprovedKilometer Float?
-  DiffInBat            Int?
-  DiffInDte            Int?
-  DwUpdated            DateTime?
-
-  vehicleId            String?   // Foreign key to Vehicle
+  TripID                Float?
 }
 
 model ChargerMaster {
-  id                   Int      @id @default(autoincrement())
-  chargerId            Int      @unique
-  chargerLocation      String?
-  chargerStatus        String?
-  dateJoining          DateTime?
-  chargeType           String?
-  chargingPoint        String
-
-  @@unique([chargerId], map: "unique_chargerId_chargerMaster")
+  id              Int       @id @default(autoincrement())
+  chargingPoint   String
+  chargerId       Int       @unique
+  chargeType      String?
+  chargerLocation String?
+  chargerStatus   String?
+  dateJoining     DateTime?
 }
 
 model ChargingSession {
-  id                   Int      @id @default(autoincrement())
-  DteStart             Int?
-  DteEnd               Int?
-  BatteryAtStart       Int?
-  BatteryAtEnd         Int?
-  updatedAt            DateTime? @default(now())
-  ChargingType         String?
-  vehicleId            String?   // Foreign key to Vehicle
-  chargerId            Int?      // Foreign key to ChargerMaster
-  TripID               Float?
-  DiffInBat            Int?
-  DiffInDte            Int?
-  DwUpdated            DateTime?
+  id             Int       @id @default(autoincrement())
+  BatteryAtEnd   Int?
+  BatteryAtStart Int?
+  ChargingType   String?
+  DiffInBat      Int?
+  DiffInDte      Int?
+  DteEnd         Int?
+  DteStart       Int?
+  DwUpdated      DateTime?
+  TripID         Float?
+  chargerId      Int?
+  updatedAt      DateTime? @default(now())
+  vehicleId      String?
 }
 
 model ChargerType {
-  id                   Int    @id @default(autoincrement()) // Unique ID for each charger type
-  evConnectorType      String // Type of EV connector
-  outputCurrentType    String // Type of output current
-  supplyInput          String // Supply input details
-  maximumOutputCurrent String // Max output current details
-  maximumOutputPower   String // Max output power details
-  evChargingLevels     String // Levels of charging (e.g., Level 1, Level 2)
-  primaryCountries     String // Primary countries where the charger is used
+  id                   Int    @id @default(autoincrement())
+  evConnectorType      String
+  outputCurrentType    String
+  supplyInput          String
+  maximumOutputCurrent String
+  maximumOutputPower   String
+  evChargingLevels     String
+  primaryCountries     String
 }
 
 model Action {
-  id              Int      @id @default(autoincrement()) // Unique ID for each action
-  vehicleId       String // ID of the vehicle associated with this action
-  severity        String // Severity level (e.g., "Medium")
-  description     String // Description of the action
-  bestPractice    String // Best practice recommendation
-  actionToBeTaken String // Action to be taken
-  confirm         Boolean // Whether the action is confirmed (1 or 0)
-  createdDateTime DateTime @map("CreatedDateTime") // Date and time the action was created
-  closedDateTime  DateTime @map("ClosedDateTime") // Date and time the action was closed
-  vin             String // Vehicle Identification Number
+  id              Int      @id @default(autoincrement())
+  vehicleId       String
+  severity        String
+  description     String
+  bestPractice    String
+  actionToBeTaken String
+  confirm         Boolean
+  createdDateTime DateTime @map("CreatedDateTime")
+  closedDateTime  DateTime @map("ClosedDateTime")
+  vin             String
 }
 
 model Benefit {
-  id                                 Int    @id @default(autoincrement()) // Unique ID for each benefit
-  vin                                String // Vehicle Identification Number
-  vehicleId                          String // ID of the vehicle associated with this benefit
-  batteryCycleSavingMonthly          Float // Monthly battery cycle savings
-  batteryCycleSavingYearly           Float // Yearly battery cycle savings
-  batteryCycleSavingLifetime         Float // Lifetime battery cycle savings
-  costSavingChargingMonthly          Float // Monthly cost savings from charging
-  costSavingChargingYearly           Float // Yearly cost savings from charging
-  costSavingChargingLifeTimeEstimate Float // Lifetime estimated cost savings
-  rangeIncreaseMonthly               Float // Monthly range increase
-  rangeIncreaseYearly                Float // Yearly range increase
-  rangeIncreaseLifetimeEstimate      Float // Lifetime estimated range increase
-  revenueIncreaseLifetime            Float // Lifetime revenue increase
-  initialSoH                         Float // Initial state of health
-  ageOfCar                           Int // Age of the car in years
-  estimatedDegradation               Float // Estimated degradation percentage
-  actualDegradation                  Float // Actual degradation percentage
-  difference                         Float // Difference in degradation
-  loss                               Float // Financial loss associated
-  carType                            String // Type of car (e.g., "Audi")
+  id                                 Int    @id @default(autoincrement())
+  vin                                String
+  vehicleId                          String
+  batteryCycleSavingMonthly          Float
+  batteryCycleSavingYearly           Float
+  batteryCycleSavingLifetime         Float
+  costSavingChargingMonthly          Float
+  costSavingChargingYearly           Float
+  costSavingChargingLifeTimeEstimate Float
+  rangeIncreaseMonthly               Float
+  rangeIncreaseYearly                Float
+  rangeIncreaseLifetimeEstimate      Float
+  revenueIncreaseLifetime            Float
+  initialSoH                         Float
+  ageOfCar                           Int
+  estimatedDegradation               Float
+  actualDegradation                  Float
+  difference                         Float
+  loss                               Float
+  carType                            String
 }
 
 model VehicleChargingDetail {
-  id            Int    @id @default(autoincrement()) // Unique ID for each vehicle charging detail
-  model         String // Vehicle model
-  make          String // Vehicle make
-  year          Int // Year of the vehicle
-  chargeType    String // Type of charge (e.g., "Default")
-  chargingPoint String // Type of charging point (e.g., "Default")
-  maxPower      String // Maximum power details
-  power         String // Power rating
-  time          String // Charging time (e.g., "11h30m")
-  rate          String // Rate of charging (e.g., "44 km/h")
-  range1        Int // First range value
-  range2        Int // Second range value
-  rateSocTime   String // Rate of state of charge time (e.g., "8.69 %/hr")
+  id            Int    @id @default(autoincrement())
+  model         String
+  make          String
+  year          Int
+  chargeType    String
+  chargingPoint String
+  maxPower      String
+  power         String
+  time          String
+  rate          String
+  range1        Int
+  range2        Int
+  rateSocTime   String
 }
 
-// Add new ChargingSession model
-
-// model AggregatedDashboard {
-//   id           Int @id
-//   active       Int
-//   inActive     Int
-//   charging     Int
-//   outOfService Int
-//   critical     Int
-//   satisfactory Int
-//   good         Int
-// }
-
-//Car rental 
+enum CouponDuration {
+  FOREVER
+  ONCE
+  REPEATING
+}
 
 enum SupportDepartamentType {
   BILLING

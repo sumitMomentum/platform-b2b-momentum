@@ -6,7 +6,8 @@ import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { Fragment, useEffect, useState } from "react";
 
 interface ChargerRow {
-  chargerID: string;
+  id: number;
+  chargerId: number;
   chargerLocation: string;
   chargerStatus: string;
   dateJoining: string;
@@ -14,32 +15,16 @@ interface ChargerRow {
   chargingPoint: string;
 }
 
-const page = () => {
+const Page = () => {
   const [chargerMasterData, setChargerMasterData] = useState<ChargerRow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const columns: GridColDef[] = [
-    { field: "chargerID", headerName: "Charger ID", width: 130 },
-    {
-      field: "chargerLocation",
-      headerName: "Charger Location",
-      width: 200,
-      valueFormatter: (params: GridRenderCellParams<any>) =>
-        params.value
-          ? `${[
-              Number(params.value.toString().split(",")[0]).toFixed(2),
-              Number(params.value.toString().split(",")[1]).toFixed(2),
-            ].join(", ")}`
-          : "",
-    },
+    { field: "id", headerName: "ID", width: 70 },
+    { field: "chargerId", headerName: "Charger ID", width: 130 },
+    { field: "chargerLocation", headerName: "Charger Location", width: 200 },
     { field: "chargerStatus", headerName: "Charger Status", width: 130 },
-    {
-      field: "dateJoining",
-      headerName: "Date Joining",
-      width: 130,
-      valueFormatter: (params: GridRenderCellParams<any>) =>
-        params.value ? new Date(params.value).toLocaleDateString() : "",
-    },
+    { field: "dateJoining", headerName: "Date Joining", width: 130 },
     { field: "chargeType", headerName: "Charge Type", width: 130 },
     { field: "chargingPoint", headerName: "Charging Point", width: 130 },
   ];
@@ -95,4 +80,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

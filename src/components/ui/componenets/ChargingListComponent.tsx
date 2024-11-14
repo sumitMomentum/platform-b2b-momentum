@@ -3,7 +3,7 @@
 import { getChargingSessions } from "@/actions/admin/chargingModule/getAllChargingSessions";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 
 // Define the interface for the Charging Session
@@ -22,17 +22,9 @@ interface ChargingSession {
   chargerReference: number;
 }
 
-const columns = [
-  {
-    field: "vehicleReference",
-    headerName: "Vehicle ID",
-    flex: 1,
-  },
-  {
-    field: "TripID",
-    headerName: "Trip ID",
-    flex: 1,
-  },
+const columns: GridColDef[] = [
+  { field: "vehicleReference", headerName: "Vehicle ID", flex: 1 },
+  { field: "TripID", headerName: "Trip ID", flex: 1 },
   {
     field: "DteStart",
     headerName: "Start Date",
@@ -45,64 +37,64 @@ const columns = [
     flex: 1,
     valueFormatter: (params) => `Day ${params.value}`, // Format as needed
   },
-  {
-    field: "BatteryAtStart",
-    headerName: "Battery Start (%)",
-    flex: 1,
-  },
-  {
-    field: "BatteryAtEnd",
-    headerName: "Battery End (%)",
-    flex: 1,
-  },
+  { field: "BatteryAtStart", headerName: "Battery Start (%)", flex: 1 },
+  { field: "BatteryAtEnd", headerName: "Battery End (%)", flex: 1 },
   {
     field: "DiffInBat",
     headerName: "Battery Difference (%)",
     flex: 1,
     valueGetter: (params) => `${params.row.BatteryAtEnd - params.row.BatteryAtStart}%`,
   },
-  {
-    field: "ChargingType",
-    headerName: "Charging Type",
-    flex: 1,
-  },
-  {
-    field: "DiffInDte",
-    headerName: "Duration (Days)",
-    flex: 1,
-  },
+  { field: "ChargingType", headerName: "Charging Type", flex: 1 },
+  { field: "DiffInDte", headerName: "Duration (Days)", flex: 1 },
   {
     field: "DwUpdated",
     headerName: "Last Updated",
     flex: 1,
     valueFormatter: (params) => new Date(params.value).toLocaleString(),
   },
-  {
-    field: "chargerReference",
-    headerName: "Charger ID",
-    flex: 1,
-  },
+  { field: "chargerReference", headerName: "Charger ID", flex: 1 },
 ];
 
-const paginationModel = { page: 0, pageSize: 10 };
-
-const ChargingList = ({
-  chargingSessions,
-  loading,
-}: {
-  chargingSessions: ChargingSession[];
-  loading: boolean;
-}) => {
+const ChargingList = () => {
+  const [chargingSessions, setChargingSessions] = useState<ChargingSession[]>([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getChargingSessions();
+        console.log("from the component:", data);
+        if (Array.isArray(data)) {
+          setChargingSessions(data);
+        } else {
+          console.warn("Expected data to be an array:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching charging sessions data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <Paper sx={{ height: 400, width: "100%" }}>
+    <Paper sx={{ height: 600, width: "100%" }}>
       <DataGrid
         loading={loading}
         rows={chargingSessions}
         columns={columns}
         pageSizeOptions={[5, 10, 25]}
-        paginationModel={paginationModel}
+        pagination
+        autoHeight
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 10 },
+          },
+        }}
         sx={{ border: 0 }}
       />
     </Paper>
