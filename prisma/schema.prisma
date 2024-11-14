@@ -575,10 +575,9 @@ model Action {
   description     String // Description of the action
   bestPractice    String // Best practice recommendation
   actionToBeTaken String // Action to be taken
-  confirm         Boolean // Whether the action is confirmed (1 or 0)
+  confirm         Int // Whether the action is confirmed (1 or 0)
   createdDateTime DateTime @map("CreatedDateTime") // Date and time the action was created
   closedDateTime  DateTime @map("ClosedDateTime") // Date and time the action was closed
-  vin             String // Vehicle Identification Number
 }
 
 model Benefit {
