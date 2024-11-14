@@ -13,7 +13,6 @@ const ChargingSessionsPage = () => {
     const fetchData = async () => {
       try {
         const data = await getChargingSessions();
-        console.log("Charging sessions data:", data);
         if (data && data.sessions) {
           setChargingSessions(data.sessions);
         } else {
@@ -40,10 +39,7 @@ const ChargingSessionsPage = () => {
       />
       <div className="container">
         <div className="max-h-screen overflow-y-auto p-4">
-          <ChargingList
-            loading={isLoading}
-            chargingSessions={chargingSessions}
-          />
+          <ChargingList loading={isLoading} chargingSessions={chargingSessions} />
         </div>
       </div>
     </Fragment>
