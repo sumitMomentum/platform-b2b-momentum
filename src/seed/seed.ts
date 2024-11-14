@@ -43,43 +43,50 @@ function generateTripID() {
   return Math.floor(Math.random() * 1000000); // Customize this as needed
 }
 
-async function seedChargingSessions() {
+async function seedChargingSessions(createdChargers, createdVehicles) {
   for (const row of chargingSessions) {
-    await prisma.chargingSession.create({
-      data: {
-        TripID: row.TripID,
-        DteStart: row.DteStart,
-        DteEnd: row.DteEnd,
-        BatteryAtStart: row.BatteryAtStart,
-        BatteryAtEnd: row.BatteryAtEnd,
-        DwUpdated: row.DwUpdated,
-        DiffInBat: row.DiffInBat,
-        ChargingType: row.ChargingType, // Corrected to match the schema
-        DiffInDte: row.DiffInDte,
-        chargerId: row.chargerId, // Updated field name
-        vehicleId: row.vehicleId, // Updated field name
-      },
-    });        
+    const charger = createdChargers.find(charger => charger.chargerId === row.chargerId);
+    const vehicle = createdVehicles.find(vehicle => vehicle.vehicleId === row.vehicleId);
+    if (charger && vehicle) {
+      await prisma.chargingSession.create({
+        data: {
+          TripID: row.TripID,
+          DteStart: row.DteStart,
+          DteEnd: row.DteEnd,
+          BatteryAtStart: row.BatteryAtStart,
+          BatteryAtEnd: row.BatteryAtEnd,
+          DwUpdated: row.DwUpdated,
+          DiffInBat: row.DiffInBat,
+          ChargingType: row.ChargingType, // Corrected to match the schema
+          DiffInDte: row.DiffInDte,
+          chargerId: charger.id,
+          vehicleId: vehicle.id,
+        },
+      });
+    }
   }
   log.success('Charging sessions seeded successfully.');
 }
 
-async function seedVehicleTripSessions() {
+async function seedVehicleTripSessions(createdVehicles) {
   for (const row of tripSessions) {
-    await prisma.vehicleTripSession.create({
-      data: {
-        TripID: row.TripID || generateTripID(),
-        DteStart: row.DteStart,
-        DteEnd: row.DteEnd,
-        BatteryAtStart: row.BatteryAtStart,
-        BatteryAtEnd: row.BatteryAtEnd,
-        DwUpdated: row.DwUpdated,
-        TripApprovedKilometer: row.TripApprovedKilometer,
-        DiffInBat: row.DiffInBat,
-        DiffInDte: row.DiffInDte,
-        vehicleId: row.vehicleId, // Updated to match the schema
-      },
-    });        
+    const vehicle = createdVehicles.find(vehicle => vehicle.vehicleId === row.vehicleId);
+    if (vehicle) {
+      await prisma.vehicleTripSession.create({
+        data: {
+          TripID: row.TripID || generateTripID(),
+          DteStart: row.DteStart,
+          DteEnd: row.DteEnd,
+          BatteryAtStart: row.BatteryAtStart,
+          BatteryAtEnd: row.BatteryAtEnd,
+          DwUpdated: row.DwUpdated,
+          TripApprovedKilometer: row.TripApprovedKilometer,
+          DiffInBat: row.DiffInBat,
+          DiffInDte: row.DiffInDte,
+          vehicleId: vehicle.id,
+        },
+      });
+    }
   }
   log.success('Vehicle trip sessions seeded successfully.');
 }
@@ -103,28 +110,38 @@ async function main() {
 
     log.subHeader("Starting Seeding Process");
 
-    await prisma.$transaction(async (tx) => {
-      await tx.user.createMany({ data: users });
-      log.success("Seeded users");
+    const createdUsers = await prisma.user.createMany({ data: users });
+    log.success("Seeded users");
 
-      await tx.vehicle.createMany({ data: vehicleDetails });
-      log.success("Seeded vehicles");
+    const createdVehicles = [];
+    for (const vehicle of vehicleDetails) {
+      const createdVehicle = await prisma.vehicle.create({
+        data: vehicle
+      });
+      createdVehicles.push(createdVehicle);
+    }
+    log.success("Seeded vehicles");
 
-      await tx.benefit.createMany({ data: benefits });
-      log.success("Seeded benefits");
+    const createdBenefits = await prisma.benefit.createMany({ data: benefits });
+    log.success("Seeded benefits");
 
-      await tx.chargerMaster.createMany({ data: chargers });
-      log.success("Seeded charger masters");
+    const createdChargers = [];
+    for (const charger of chargers) {
+      const createdCharger = await prisma.chargerMaster.create({
+        data: charger
+      });
+      createdChargers.push(createdCharger);
+    }
+    log.success("Seeded charger masters");
 
-      await tx.chargerType.createMany({ data: chargerTypes });
-      log.success("Seeded charger types");
+    const createdChargerTypes = await prisma.chargerType.createMany({ data: chargerTypes });
+    log.success("Seeded charger types");
 
-      await tx.action.createMany({ data: vehicleActions });
-      log.success("Seeded vehicle actions");
+    const createdActions = await prisma.action.createMany({ data: vehicleActions });
+    log.success("Seeded vehicle actions");
 
-      await seedChargingSessions();
-      await seedVehicleTripSessions();
-    });
+    await seedChargingSessions(createdChargers, createdVehicles);
+    await seedVehicleTripSessions(createdVehicles);
 
     log.header("Database Seeding Completed Successfully! 🎉");
     log.info(`
@@ -152,4 +169,3 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
-  

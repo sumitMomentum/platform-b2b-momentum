@@ -437,144 +437,126 @@ model EnodeToken {
 
 // { new Schemas for steps, cars and all }
 model Vehicle {
-  id                                       String   @id
-  vin                                      String?  @unique
-  vehicleId                                String?  @unique
-  model                                    String?
-  year                                     Int?
-  batteryCapacity                          Int?
-  ownerID                                  Int?
-  soc                                      Int?
-  dateOfConnection                         DateTime @map("dateOfConnection")
-  odometerReading                          Float?
-  avgDailyKmDriven                         Float[]
-  monthlyUsage                             Float[]
-  condition                                String?
-  status                                   String?
-  make                                     String?
-  batteryHealthSoH                         Float?
-  batteryHealthDegradation                 Float?
-  location                                 String?
-  soh                                      Float[]
-  avgEstimatedDegradation                  Float[]
-  avgSoC                                   Float?
-  totalBatteries                           Int?
-  connectorType                            String?
-  endOfLifeEstimate                        String?
-  observedRange                            Int?
-  remainingUsefulLife                      String?
-  totalChargingSessions                    Int?
-  totalEnergyConsumed                      String?
-  criticalConditionCount                   Int?
-  goodConditionCount                       Int?
-  satisfactoryConditionCount               Int?
-  activeStatusCount                        Int?
-  chargingStatusCount                      Int?
-  inUseStatusCount                         Int?
-  outOfServiceStatusCount                  Int?
-  providedRangeEPAWLTP                     Int?
-  maxObservedRange                         Int?
-  minObservedRange                         Int?
-  maxSoCRange                              Int?
-  minSoCRange                              Int?
-  maxTemperature                           Int?
-  minTemperature                           Int?
-  batteryChemistry                         String?
-  avgBatteryHealthSoH                      Float?
-  dataPointsCollected                      Int?
-  avgMonthlyUsage                          Float?
-  vehicleConditionCritical                 Int?
-  vehicleConditionGood                     Int?
-  vehicleConditionSatisfactory             Int?
-  vehicleStatusActive                      Int?
-  vehicleStatusCharging                    Int?
-  vehicleStatusInUse                       Int?
-  vehicleStatusOutOfService                Int?
-  averageMonthlyUsage                      Float?
+  id                          String   @id
+  vin                         String?  @unique
+  vehicleId                   String?  @unique
+  model                       String?
+  year                        Int?
+  batteryCapacity             Int?
+  ownerID                     Int?
+  soc                         Int?
+  dateOfConnection            DateTime @map("dateOfConnection")
+  odometerReading             Float?
+  avgDailyKmDriven            Float[]
+  monthlyUsage                Float[]
+  condition                   String?
+  status                      String?
+  make                        String?
+  batteryHealthSoH            Float?
+  batteryHealthDegradation    Float?
+  location                    String?
+  soh                         Float[]
+  avgEstimatedDegradation     Float[]
+  avgSoC                      Float?
+  totalBatteries              Int?
+  connectorType               String?
+  endOfLifeEstimate           String?
+  observedRange               Int?
+  remainingUsefulLife         String?
+  totalChargingSessions       Int?
+  totalEnergyConsumed         String?
+  criticalConditionCount      Int?
+  goodConditionCount          Int?
+  satisfactoryConditionCount  Int?
+  activeStatusCount           Int?
+  chargingStatusCount         Int?
+  inUseStatusCount            Int?
+  outOfServiceStatusCount     Int?
+  providedRangeEPAWLTP        Int?
+  maxObservedRange            Int?
+  minObservedRange            Int?
+  maxSoCRange                 Int?
+  minSoCRange                 Int?
+  maxTemperature              Int?
+  minTemperature              Int?
+  batteryChemistry            String?
+  avgBatteryHealthSoH         Float?
+  dataPointsCollected         Int?
+  avgMonthlyUsage             Float?
+  vehicleConditionCritical    Int?
+  vehicleConditionGood        Int?
+  vehicleConditionSatisfactory Int?
+  vehicleStatusActive         Int?
+  vehicleStatusCharging       Int?
+  vehicleStatusInUse          Int?
+  vehicleStatusOutOfService   Int?
+  averageMonthlyUsage         Float?
   batteryHealthAverageEstimatedDegradation Float[]
-  batteryHealthAverageSoC                  Float?
-  batteryHealthAverageSoH                  Float?
-  batteryHealthTotalBatteries              Int?
-  endOfLife                                String?
-  epawltpProvidedRange                     Int?
-  odometerFloat                            Float?
-  realRangeObserved                        Int?
-  totalChargingSession                     Int?
-  usageAverageDailyKmDriven                Float[]
-  usageRangeObservedMax                    Int?
-  usageRangeObservedMin                    Int?
-  usageSoCRangeMax                         Int?
-  usageSoCRangeMin                         Int?
-  usageTemperatureHigh                     Int?
-  usageTemperatureLow                      Int?
-  
-  chargingSessions                         ChargingSession[]
-  tripSessions                             VehicleTripSession[]
+  batteryHealthAverageSoC     Float?
+  batteryHealthAverageSoH     Float?
+  batteryHealthTotalBatteries Int?
+  endOfLife                   String?
+  epawltpProvidedRange        Int?
+  odometerFloat               Float?
+  realRangeObserved           Int?
+  totalChargingSession        Int?
+  usageAverageDailyKmDriven   Float[]
+  usageRangeObservedMax       Int?
+  usageRangeObservedMin       Int?
+  usageSoCRangeMax            Int?
+  usageSoCRangeMin            Int?
+  usageTemperatureHigh        Int?
+  usageTemperatureLow         Int?
 
-  owner                                    User     @relation(fields: [ownerId], references: [id])
-  ownerId                                  Int
+  owner                       User     @relation(fields: [ownerId], references: [id])
+  ownerId                     Int
 }
 
 model VehicleTripSession {
-  id                      Int       @id @default(autoincrement())
-  tripId                  Float?
-  DteStart                Int?       // Distance to end start
-  DteEnd                  Int?       // Distance to end end
-  BatteryAtStart          Int?      // Distance to end start
-  BatteryAtEnd            Int?      // Distance to end end
-  approvedKm              Float?
-  batteryDifference       Int?
-  DteDifference           Int?       // Distance to end difference
-  createdAt               DateTime  @default(now())
-  updatedAt               DateTime  @updatedAt
-  TripID                  Float?
-  TripApprovedKilometer   Float?
-  DiffInBat               Int?
-  DiffInDte               Int?
-  DwUpdated               DateTime?
-  vehicleReference        String?
+  id                   Int      @id @default(autoincrement())
+  DteStart             Int?
+  DteEnd               Int?
+  BatteryAtStart       Int?
+  BatteryAtEnd         Int?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  TripID               Float?
+  TripApprovedKilometer Float?
+  DiffInBat            Int?
+  DiffInDte            Int?
+  DwUpdated            DateTime?
 
-  vehicleId               String?
-
-  vehicle                 Vehicle?  @relation(fields: [vehicleId], references: [vehicleId])
+  vehicleId            String?   // Foreign key to Vehicle
 }
 
 model ChargerMaster {
-  id                      Int       @id @default(autoincrement())
-  chargerId               Int       @unique
-  chargerLocation         String?
-  chargerStatus           String?
-  dateJoining             DateTime?
-  chargeType              String?
-  chargingPoint           String
-
-  chargingSessions        ChargingSession[]
+  id                   Int      @id @default(autoincrement())
+  chargerId            Int      @unique
+  chargerLocation      String?
+  chargerStatus        String?
+  dateJoining          DateTime?
+  chargeType           String?
+  chargingPoint        String
 
   @@unique([chargerId], map: "unique_chargerId_chargerMaster")
 }
 
 model ChargingSession {
-  id                      Int       @id @default(autoincrement())
-  tripId                  Int?
-  DteStart                Int?
-  DteEnd                  Int?
-  BatteryAtStart          Int?
-  BatteryAtEnd            Int?
-  updatedAt               DateTime? @default(now())
-  batteryDifference       Int?
-  ChargingType            String?
-  DteDifference           Int?
-  vehicleId               String?
-  chargerId               Int?
-  TripID                  Float?
-  DiffInBat               Int?
-  DiffInDte               Int?
-  DwUpdated               DateTime?
-  vehicleReference        String?
-  chargerReference        String?
-
-  vehicle                 Vehicle?       @relation(fields: [vehicleId], references: [vehicleId])
-  charger                 ChargerMaster? @relation(fields: [chargerId], references: [chargerId])
+  id                   Int      @id @default(autoincrement())
+  DteStart             Int?
+  DteEnd               Int?
+  BatteryAtStart       Int?
+  BatteryAtEnd         Int?
+  updatedAt            DateTime? @default(now())
+  batteryDifference    Int?
+  ChargingType         String?
+  DteDifference        Int?
+  vehicleId            String?   // Foreign key to Vehicle
+  chargerId            Int?      // Foreign key to ChargerMaster
+  TripID               Float?
+  DiffInBat            Int?
+  DiffInDte            Int?
+  DwUpdated            DateTime?
 }
 
 model ChargerType {
