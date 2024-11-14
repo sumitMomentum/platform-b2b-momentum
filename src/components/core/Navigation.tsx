@@ -42,6 +42,12 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
     });
 
     setLinks(linksWithStatus);
+
+    // // Check if the new links are different from the current links
+    // if (JSON.stringify(linksWithStatus) !== JSON.stringify(links)) {
+    //   setLinks(linksWithStatus);
+    // }
+    // }, []);
   }, [navigation, pathName]);
 
   return (

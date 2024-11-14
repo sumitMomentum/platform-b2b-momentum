@@ -11,13 +11,14 @@ export const metadata: Metadata = {
   title: "Wallet",
 };
 
-const AdminWalletPage = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    currency?: string;
-  };
-}) => {
+const AdminWalletPage = async (
+  props: {
+    searchParams?: Promise<{
+      currency?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const user = await getUserDB();
   const currencySelected = searchParams?.currency;
   const t = await getTranslations("AdminLayout.pages.wallet");

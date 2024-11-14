@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
 import { getPostData, getSiteData } from "@/lib/fetchers";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { domain: string; slug: string };
-}) {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ domain: string; slug: string }>;
+  }
+) {
+  const params = await props.params;
   const domain = decodeURIComponent(params.domain);
   const slug = decodeURIComponent(params.slug);
 
@@ -13,7 +14,7 @@ export async function generateMetadata({
     getPostData(domain, slug),
     getSiteData(domain),
   ]);
-  
+
   if (!data || !siteData) {
     return null;
   }
@@ -86,11 +87,12 @@ export async function generateStaticParams() {
   return allPaths;
 }
 
-export default async function SitePostPage({
-  params,
-}: {
-  params: { domain: string; slug: string };
-}) {
+export default async function SitePostPage(
+  props: {
+    params: Promise<{ domain: string; slug: string }>;
+  }
+) {
+  const params = await props.params;
   const domain = decodeURIComponent(params.domain);
   const slug = decodeURIComponent(params.slug);
   const data = await getPostData(domain, slug);

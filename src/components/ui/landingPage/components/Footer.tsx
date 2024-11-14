@@ -14,6 +14,7 @@ import TwitterIcon from "@mui/icons-material/X";
 // import SitemarkIcon from './SitemarkIcon';
 import { toast } from "sonner";
 import emailjs from "emailjs-com";
+
 function Copyright() {
   return (
     <Typography variant="body2" sx={{ color: "text.secondary", mt: 1 }}>
@@ -56,10 +57,10 @@ export default function Footer({ mode }) {
     // Sending email using EmailJS
     emailjs
       .send(
-        "service_f4p1c9i", // Replace with your EmailJS service ID
-        "template_c7efne5", // Replace with your EmailJS template ID
+        process.env.EMAILJS_SERVICE_ID!,
+        process.env.EMAILJS_TEMPLATE_ID!,
         templateParams,
-        "D0kRRX7ctwlY-_SHz" // Replace with your EmailJS public key
+        process.env.EMAILJS_PUBLIC_KEY!
       )
       .then(
         (response) => {

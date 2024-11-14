@@ -11,18 +11,6 @@ import { Container } from "@mui/material";
 
 const BatteryHealth = () => {
   const vehicles = useVehicleStore((state) => state.vehicles);
-  const setVehicles = useVehicleStore((state) => state.setVehicles);
-
-  useEffect(() => {
-    const getVehicles = async () => {
-      if (!vehicles || vehicles.length === 0) {
-        const userVehiclesFromDB = await getUserVehicles();
-        setVehicles(userVehiclesFromDB);
-      }
-    };
-
-    getVehicles();
-  }, []);
 
   // Safely handle the calculations by checking if vehicles exist
   const avgSoH =

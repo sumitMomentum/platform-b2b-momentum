@@ -1,10 +1,12 @@
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import Card from "@/components/ui/commons/Card";
+import useVehicleStore from "@/states/store";
 import React from "react";
 
-const VehicleStatus = async () => {
-  const vehicles = await getUserVehicles();
-  // console.log(vehicles);
+const VehicleStatus =  () => {
+  const vehicles = useVehicleStore((state) => state.vehicles);
+  // const vehicles = await getUserVehicles();
+
   return (
     <Card>
       <Card.Body>

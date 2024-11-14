@@ -4,13 +4,14 @@ import TableLoaderSkeleton from "@/components/ui/loaders/TableLoaderSkeleton";
 import { MovementRow } from "../ui/MovementRow";
 import { getTranslations } from "next-intl/server";
 
-const AdminWalletMovements = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    currency?: string;
-  };
-}) => {
+const AdminWalletMovements = async (
+  props: {
+    searchParams?: Promise<{
+      currency?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const movements = await getAmountMovements(searchParams?.currency ?? "usd");
   const t = await getTranslations("AdminLayout.pages.wallet");
   return (

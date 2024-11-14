@@ -29,7 +29,19 @@ const columns: GridColDef[] = [
     field: "DteStart",
     headerName: "Start Date",
     flex: 1,
-    valueFormatter: (params) => `Day ${params.value}`, // Format as needed
+    valueGetter: (value, row) => `${row.vehicleId}`,
+  },
+  // {
+  //   field: "chargerLocation",
+  //   headerName: "Charger Location",
+  //   flex: 1,
+  //   valueGetter: (value, row) => row.charger.chargerLocation,
+  // },
+  {
+    field: "chargingStartTime",
+    headerName: "Start Time",
+    flex: 1,
+    valueFormatter: (value, row) => new Date(value).toLocaleString(),
   },
   {
     field: "DteEnd",

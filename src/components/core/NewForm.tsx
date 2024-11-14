@@ -275,7 +275,7 @@ const NewForm = ({
                   <li key={index} className="text-red-500">
                     {getFielLabelInErrorCase(key)}:{" "}
                     {errors[key]?.message ? (
-                      <span>{String(errors[key]?.message)}</span>  
+                      <span>{String(errors[key]?.message)}</span>
                     ) : (
                       "Required"
                     )}

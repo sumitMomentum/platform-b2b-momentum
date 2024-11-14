@@ -1,6 +1,7 @@
 "use client";
 
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
+import useVehicleStore from "@/states/store";
 import { PieChart } from "@mui/x-charts";
 import { log } from "console";
 import dynamic from "next/dynamic";
@@ -10,14 +11,13 @@ import colors from "tailwindcss/colors";
 // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const ConditionChart = () => {
+  const vehicles = useVehicleStore((state) => state.vehicles);
   const [series, setSeries] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     async function fetchData() {
-      const vehicles = await getUserVehicles();
-
       // Initialize an object to store counts for each condition
       const conditionCounts = {
         Critical: 0,
@@ -48,7 +48,7 @@ const ConditionChart = () => {
 
     fetchData();
     console.log(series);
-  }, []);
+  }, [vehicles]);
 
   const options = {
     labels: ["Critical", "Satisfactory", "Good"],
