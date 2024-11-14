@@ -89,83 +89,41 @@ async function main() {
     log.header("Starting Database Seeding");
     log.info("Checking table states...");
 
-    // Check if tables are empty before seeding
-    const [
-      usersCount,
-      vehicleCount,
-      benefitCount,
-      chargerMasterCount,
-      chargerTypeCount,
-      actionCount,
-      chargingSessionCount,
-      tripSessionCount,
-    ] = await Promise.all([
-      prisma.user.count(),
-      prisma.vehicle.count(),
-      prisma.benefit.count(),
-      prisma.chargerMaster.count(),
-      prisma.chargerType.count(),
-      prisma.action.count(),
-      prisma.chargingSession.count(),
-      prisma.vehicleTripSession.count(),
+    // Empty the tables before seeding
+    await prisma.$transaction([
+      prisma.chargingSession.deleteMany(),
+      prisma.vehicleTripSession.deleteMany(),
+      prisma.action.deleteMany(),
+      prisma.chargerType.deleteMany(),
+      prisma.chargerMaster.deleteMany(),
+      prisma.benefit.deleteMany(),
+      prisma.vehicle.deleteMany(),
+      prisma.user.deleteMany(),
     ]);
 
     log.subHeader("Starting Seeding Process");
 
     await prisma.$transaction(async (tx) => {
-      if (usersCount === 0) {
-        await tx.user.createMany({ data: users });
-        log.success("Seeded users");
-      } else {
-        log.warning("Users table not empty, skipping...");
-      }
+      await tx.user.createMany({ data: users });
+      log.success("Seeded users");
 
-      if (vehicleCount === 0) {
-        await tx.vehicle.createMany({ data: vehicleDetails });
-        log.success("Seeded vehicles");
-      } else {
-        log.warning("Vehicles table not empty, skipping...");
-      }
+      await tx.vehicle.createMany({ data: vehicleDetails });
+      log.success("Seeded vehicles");
 
-      if (benefitCount === 0) {
-        await tx.benefit.createMany({ data: benefits });
-        log.success("Seeded benefits");
-      } else {
-        log.warning("Benefits table not empty, skipping...");
-      }
+      await tx.benefit.createMany({ data: benefits });
+      log.success("Seeded benefits");
 
-      if (chargerMasterCount === 0) {
-        await tx.chargerMaster.createMany({ data: chargers });
-        log.success("Seeded charger masters");
-      } else {
-        log.warning("Charger masters table not empty, skipping...");
-      }
+      await tx.chargerMaster.createMany({ data: chargers });
+      log.success("Seeded charger masters");
 
-      if (chargerTypeCount === 0) {
-        await tx.chargerType.createMany({ data: chargerTypes });
-        log.success("Seeded charger types");
-      } else {
-        log.warning("Charger types table not empty, skipping...");
-      }
+      await tx.chargerType.createMany({ data: chargerTypes });
+      log.success("Seeded charger types");
 
-      if (actionCount === 0) {
-        await tx.action.createMany({ data: vehicleActions });
-        log.success("Seeded vehicle actions");
-      } else {
-        log.warning("Actions table not empty, skipping...");
-      }
+      await tx.action.createMany({ data: vehicleActions });
+      log.success("Seeded vehicle actions");
 
-      if (chargingSessionCount === 0) {
-        await seedChargingSessions();
-      } else {
-        log.warning("Charging sessions table not empty, skipping...");
-      }
-
-      if (tripSessionCount === 0) {
-        await seedVehicleTripSessions();
-      } else {
-        log.warning("Trip sessions table not empty, skipping...");
-      }
+      await seedChargingSessions();
+      await seedVehicleTripSessions();
     });
 
     log.header("Database Seeding Completed Successfully! 🎉");
@@ -194,3 +152,4 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+  
