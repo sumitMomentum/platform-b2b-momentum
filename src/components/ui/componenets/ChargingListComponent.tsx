@@ -1,9 +1,8 @@
 "use client";
 
-import { getChargingSessions } from "@/actions/admin/chargingModule/getAllChargingSessions";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 
 // Define the interface for the Charging Session
@@ -22,7 +21,7 @@ interface ChargingSession {
   chargerReference: number;
 }
 
-const columns = [
+const columns: GridColDef[] = [
   {
     field: "vehicleReference",
     headerName: "Vehicle ID",
@@ -35,15 +34,15 @@ const columns = [
   },
   {
     field: "DteStart",
-    headerName: "Start Date",
+    headerName: "Start Dte",
     flex: 1,
-    valueFormatter: (params) => `Day ${params.value}`, // Format as needed
+    valueFormatter: (params) => `Day ${params}`, // Format as needed
   },
   {
     field: "DteEnd",
-    headerName: "End Date",
+    headerName: "End Dte",
     flex: 1,
-    valueFormatter: (params) => `Day ${params.value}`, // Format as needed
+    valueFormatter: (params) => `Day ${params}`, // Format as needed
   },
   {
     field: "BatteryAtStart",
@@ -59,7 +58,7 @@ const columns = [
     field: "DiffInBat",
     headerName: "Battery Difference (%)",
     flex: 1,
-    valueGetter: (params) => `${params.row.BatteryAtEnd - params.row.BatteryAtStart}%`,
+    valueGetter: (params) => `${params}%`,
   },
   {
     field: "ChargingType",
@@ -75,7 +74,7 @@ const columns = [
     field: "DwUpdated",
     headerName: "Last Updated",
     flex: 1,
-    valueFormatter: (params) => new Date(params.value).toLocaleString(),
+    valueFormatter: (params) => new Date(params).toLocaleString(),
   },
   {
     field: "chargerReference",
@@ -83,8 +82,6 @@ const columns = [
     flex: 1,
   },
 ];
-
-const paginationModel = { page: 0, pageSize: 10 };
 
 const ChargingList = ({
   chargingSessions,
@@ -94,6 +91,8 @@ const ChargingList = ({
   loading: boolean;
 }) => {
   const router = useRouter();
+  const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
 
   return (
     <Paper sx={{ height: 400, width: "100%" }}>
@@ -101,8 +100,12 @@ const ChargingList = ({
         loading={loading}
         rows={chargingSessions}
         columns={columns}
-        pageSizeOptions={[5, 10, 25]}
-        paginationModel={paginationModel}
+        pageSize={pageSize}
+        rowsPerPageOptions={[5, 10, 25]}
+        pagination
+        page={page}
+        onPageChange={(newPage) => setPage(newPage)}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         sx={{ border: 0 }}
       />
     </Paper>
