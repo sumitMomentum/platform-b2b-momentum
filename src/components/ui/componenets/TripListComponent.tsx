@@ -15,7 +15,7 @@ const columns = [
     headerName: "Start Time",
     flex: 1,
     valueFormatter: (params) => {
-      const date = new Date(params.value * 1000); // Assuming DteStart is in Unix timestamp
+      const date = new Date(params); // Assuming DteStart is in Unix timestamp
       return date.toLocaleString();
     },
   },
@@ -24,7 +24,7 @@ const columns = [
     headerName: "End Time",
     flex: 1,
     valueFormatter: (params) => {
-      const date = new Date(params.value * 1000); // Assuming DteEnd is in Unix timestamp
+      const date = new Date(params); // Assuming DteEnd is in Unix timestamp
       return date.toLocaleString();
     },
   },
@@ -58,7 +58,7 @@ const columns = [
     field: "DwUpdated",
     headerName: "Last Update",
     flex: 1,
-    valueFormatter: (params) => new Date(params.value).toLocaleString(),
+    valueFormatter: (params) => new Date(params).toLocaleString(),
   },
 ];
 
