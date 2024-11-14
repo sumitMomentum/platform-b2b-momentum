@@ -1,12 +1,11 @@
 import prisma from "@/lib/db";
 import { NextResponse } from "next/server";
-import { json } from "stream/consumers";
 
 export async function GET(request: Request) {
   try {
     const sessions = await prisma.chargingSession.findMany({
       orderBy: {
-        chargingDate: "desc",
+        DteStart: "desc",
       },
     });
 

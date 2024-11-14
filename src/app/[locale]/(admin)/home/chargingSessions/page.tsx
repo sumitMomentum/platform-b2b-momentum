@@ -44,13 +44,6 @@ const ChargingSessionsPage = () => {
             loading={isLoading}
             chargingSessions={chargingSessions}
           />
-          {/* {isLoading ? (
-            <div className="flex justify-center items-center h-64">
-              <span>Loading charging sessions...</span>
-            </div>
-          ) : (
-            <ChargingList />
-          )} */}
         </div>
       </div>
     </Fragment>

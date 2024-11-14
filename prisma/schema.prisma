@@ -484,8 +484,8 @@ model Vehicle {
   dataPointsCollected                      Int? // Number of data points collected
   averageMonthlyUsage                      Float? // Average monthly usage
   ownerId                                  Int
-  chargingSessions                         ChargingSession[]
-  tripSessions                             VehicleTripSession[]
+//  chargingSessions                         ChargingSession[]
+//  tripSessions                             VehicleTripSession[]
   owner                                    User                 @relation(fields: [ownerId], references: [id])
 }
 
@@ -504,9 +504,8 @@ model VehicleTripSession {
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
-  vehicleReference String? // Renamed field, no foreign key relation
-  Vehicle          Vehicle? @relation(fields: [vehicleId], references: [id])
-  vehicleId        String?
+  vehicleReference String?      // Kept as a reference field, no foreign key relation
+  vehicleId        String?      // Optional field, no foreign key relation
 }
 
 model ChargerMaster {
@@ -517,7 +516,7 @@ model ChargerMaster {
   chargerStatus    String?
   dateJoining      DateTime?
   chargeType       String?
-  chargingSessions ChargingSession[]
+//  chargingSessions ChargingSession[]
 
   @@unique([chargerId], map: "unique_chargerId_chargerMaster")
 }
@@ -534,8 +533,8 @@ model ChargerType {
 }
 
 model ChargingSession {
-  id               Int            @id @default(autoincrement())
-  TripID           Int?           @unique
+  id               Int        @id @default(autoincrement())
+  TripID           Int?       // Removed @unique constraint
   DteStart         Int
   DteEnd           Int
   BatteryAtStart   Int
@@ -544,13 +543,10 @@ model ChargingSession {
   DiffInBat        Int
   ChargingType     String
   DiffInDte        Int
-  vehicleReference String? // Renamed field, no foreign key relation
-  chargerReference Int? // No foreign key relation, used instead of chargerId
-  Vehicle          Vehicle?       @relation(fields: [vehicleId], references: [id])
-  vehicleId        String?
-  ChargerMaster    ChargerMaster? @relation(fields: [chargerMasterId], references: [id])
-  chargerMasterId  Int?
+  vehicleReference String?    // Field kept, no foreign key relation
+  chargerReference Int?       // Field kept, no foreign key relation
 }
+
 
 model Action {
   id              Int      @id @default(autoincrement()) // Unique ID for each action
