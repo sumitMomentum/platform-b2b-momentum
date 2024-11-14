@@ -17,13 +17,13 @@ interface ChargingSession {
   DiffInBat: number;
   ChargingType: string;
   DiffInDte: number;
-  vehicleReference: string;
-  chargerReference: number;
+  vehicleId: string;
+  chargerId: number;
 }
 
 const columns: GridColDef[] = [
   {
-    field: "vehicleReference",
+    field: "vehicleId",
     headerName: "Vehicle ID",
     flex: 1,
   },
@@ -77,7 +77,7 @@ const columns: GridColDef[] = [
     valueFormatter: (params) => new Date(params).toLocaleString(),
   },
   {
-    field: "chargerReference",
+    field: "chargerId",
     headerName: "Charger ID",
     flex: 1,
   },
