@@ -54,12 +54,12 @@ async function seedChargingSessions() {
         BatteryAtEnd: row.BatteryAtEnd,
         DwUpdated: row.DwUpdated,
         DiffInBat: row.DiffInBat,
-        ChargingType: row.ChargingType,
+        ChargingType: row.ChargingType, // Corrected to match the schema
         DiffInDte: row.DiffInDte,
-        chargerReference: row.chargerId, // Updated field name
-        vehicleReference: row.vehicleId, // Updated field name
+        chargerId: row.chargerId, // Updated field name
+        vehicleId: row.vehicleId, // Updated field name
       },
-    });    
+    });        
   }
   log.success('Charging sessions seeded successfully.');
 }
@@ -77,9 +77,9 @@ async function seedVehicleTripSessions() {
         TripApprovedKilometer: row.TripApprovedKilometer,
         DiffInBat: row.DiffInBat,
         DiffInDte: row.DiffInDte,
-        vehicleReference: row.vehicleId, // Updated to match the schema
+        vehicleId: row.vehicleId, // Updated to match the schema
       },
-    });    
+    });        
   }
   log.success('Vehicle trip sessions seeded successfully.');
 }
