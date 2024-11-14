@@ -29,16 +29,33 @@ interface VehicleTripSessionData {
   vehicleId: string;
 }
 
+const CHARGER_IDS = [
+  315548, 352481, 987512, 357216, 547954, 984752,
+  654812, 518652, 974805, 221421, 304571, 621904
+];
+
+const VEHICLE_IDS = [
+  "KA03AL9215", "KA03AL3782", "KA05AM1248", "KA03AL3783",
+  "KA03AL2098", "KA03AL2123", "KA03AL3800", "KA03AL2127",
+  "KA03AL3781", "KA03AL3797", "KA03AL2088"
+];
+
 function generateTripID() {
   return Math.floor(Math.random() * 1000000); // Customize this as needed
 }
 
-function readCSV(filePath: string, transformer: Function, outputFilePath: string, vehicleId: string) {
+function getRandomElementFromArray(array) {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+}
+
+function readCSV(filePath: string, transformer: Function, outputFilePath: string) {
   return new Promise<void>((resolve, reject) => {
     const results: any[] = [];
     fs.createReadStream(filePath)
       .pipe(csv())
       .on('data', (data) => {
+        const vehicleId = getRandomElementFromArray(VEHICLE_IDS);
         results.push(transformer(data, vehicleId));
       })
       .on('end', () => {
@@ -48,14 +65,6 @@ function readCSV(filePath: string, transformer: Function, outputFilePath: string
       })
       .on('error', reject);
   });
-}
-
-const CHARGER_ID_RANGE = { min: 100000, max: 999999 }; // Define range or array of valid charger IDs
-
-function getRandomChargerId() {
-  return Math.floor(
-    Math.random() * (CHARGER_ID_RANGE.max - CHARGER_ID_RANGE.min + 1) + CHARGER_ID_RANGE.min
-  );
 }
 
 const chargingSessionTransformer = (data: any, vehicleId: string): ChargingSessionData => ({
@@ -69,9 +78,8 @@ const chargingSessionTransformer = (data: any, vehicleId: string): ChargingSessi
   ChargingType: data['Charging Type'],
   DiffInDte: parseInt(data['Diff in Dte']),
   vehicleId, // Apply the same vehicleId to each entry
-  chargerId: data['chargerId'] ? parseInt(data['chargerId']) : getRandomChargerId(), // Random chargerId if null
+  chargerId: getRandomElementFromArray(CHARGER_IDS), // Random chargerId from specified values
 });
-
 
 const vehicleTripSessionTransformer = (data: any, vehicleId: string): VehicleTripSessionData => ({
   TripID: data['Trip ID'] ? parseFloat(data['Trip ID']) : generateTripID(),
@@ -87,20 +95,16 @@ const vehicleTripSessionTransformer = (data: any, vehicleId: string): VehicleTri
 });
 
 async function main() {
-  const vehicleId = "sample_vehicle_id"; // Set a consistent vehicleId here
-
   try {
     await readCSV(
       './csvData/df_charge.csv',
       chargingSessionTransformer,
-      path.join(__dirname, 'seeds', 'chargingSessions.ts'),
-      vehicleId
+      path.join(__dirname, 'seeds', 'chargingSessions.ts')
     );
     await readCSV(
       './csvData/df_trip.csv',
       vehicleTripSessionTransformer,
-      path.join(__dirname, 'seeds', 'vehicleTripSessions.ts'),
-      vehicleId
+      path.join(__dirname, 'seeds', 'vehicleTripSessions.ts')
     );
     console.log('Data extraction completed successfully!');
   } catch (error) {
