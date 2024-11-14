@@ -42,7 +42,7 @@ const DistanceTravelledChart = () => {
 
     setSeries(usageData);
     console.log(usageData);
-    setLoading(false);
+    vehicles.length && setLoading(false);
   }, [vehicles]);
 
   const [series, setSeries] = useState([]);

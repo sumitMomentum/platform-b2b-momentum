@@ -20,8 +20,12 @@ interface ChargerListComponentProps {
   initialChargerMasterData: ChargerItem[];
 }
 
-const ChargerListComponent: React.FC<ChargerListComponentProps> = ({ initialChargerMasterData }) => {
-  const [chargerMasterData, setChargerMasterData] = useState<ChargerItem[]>(initialChargerMasterData);
+const ChargerListComponent: React.FC<ChargerListComponentProps> = ({
+  initialChargerMasterData,
+}) => {
+  const [chargerMasterData, setChargerMasterData] = useState<ChargerItem[]>(
+    initialChargerMasterData
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,24 +54,26 @@ const ChargerListComponent: React.FC<ChargerListComponentProps> = ({ initialChar
       headerName: "Charger Location",
       width: 200,
       valueFormatter: (params: GridRenderCellParams) =>
-        `${[
-          Number(params.value.toString().split(",")[0]).toFixed(2),
-          Number(params.value.toString().split(",")[1]).toFixed(2),
-        ].join(", ")}`,
+        // `${[
+        //   Number(params.value.toString().split(",")[0]).toFixed(2),
+        //   Number(params.value.toString().split(",")[1]).toFixed(2),
+        // ].join(", ")}`,
+        `${params.value}`,
     },
     { field: "chargerStatus", headerName: "Charger Status", width: 130 },
     {
       field: "dateJoining",
       headerName: "Date Joining",
       width: 130,
-      valueFormatter: (params: GridRenderCellParams) => new Date(params.value as string).toLocaleDateString(),
+      valueFormatter: (params: GridRenderCellParams) =>
+        new Date(params.value as string).toLocaleDateString(),
     },
     { field: "chargeType", headerName: "Charge Type", width: 130 },
     { field: "chargingPoint", headerName: "Charging Point", width: 130 },
   ];
 
   return (
-    <Paper sx={{ height: 'auto', width: '100%' }}>
+    <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
         rows={chargerMasterData}
         columns={columns}

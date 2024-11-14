@@ -23,6 +23,7 @@ import { getUserVehicleEnode } from "@/actions/admin/userModule/get-user-vehicle
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import useVehicleStore from "@/states/store";
 import loading from "./actionCentre/loading";
+import SuspenseDashboard from "@/components/suspenseSkeleton/SuspenseDashboard";
 
 // export const metadata: Metadata = {
 //   title: "Home",
@@ -101,7 +102,11 @@ const SuperAdminDashboardPage = () => {
   //just for now, after fetch vehicle array from store
   const vehiclesFromStore = true;
 
-  return (
+  return loading ? (
+    <div>
+      <SuspenseDashboard />
+    </div>
+  ) : (
     <div>
       <PageName
         name={"Dashboard"}
@@ -113,7 +118,7 @@ const SuperAdminDashboardPage = () => {
       {/* <allVehicleDataLoadingContext.Provider
         value={{ loading, startLoading, stopLoading }}
       > */}
-        {/* <Suspense fallback={<PageLoader />}>
+      {/* <Suspense fallback={<PageLoader />}>
         <Card className=" my-7">
           <Flex>
             <div>
@@ -191,12 +196,12 @@ const SuperAdminDashboardPage = () => {
         </div>
       </Suspense> */}
 
-        <AffiliateHandler aff={null} currentUser={user} />
-        <div className="flex gap-6 w-full justify-center items-center pt-2">
-          {vehiclesFromStore ? (
-            <div className="flex gap-6 flex-col w-full">
-              {/* <div className="flex gap-6"> */}
-              {/* <InfoCard
+      <AffiliateHandler aff={null} currentUser={user} />
+      <div className="flex gap-6 w-full justify-center items-center pt-2">
+        {vehiclesFromStore ? (
+          <div className="flex gap-6 flex-col w-full">
+            {/* <div className="flex gap-6"> */}
+            {/* <InfoCard
                 titleKey="hello"
                 descriptionKey="description"
                 icon={LinkIcon}
@@ -216,19 +221,19 @@ const SuperAdminDashboardPage = () => {
                 descriptionKey="description"
                 icon={LinkIcon}
               /> */}
-              {/* </div> */}
-              <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
-                <AllVehicle />
-                <VehicleStatus />
-                <Condition />
-              </div>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-                {/* Second row with 2 columns */}
-                <DistanceTravelled />
-                <BatteryHealth />
-              </div>
+            {/* </div> */}
+            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
+              <AllVehicle />
+              <VehicleStatus />
+              <Condition />
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+              {/* Second row with 2 columns */}
+              <DistanceTravelled />
+              <BatteryHealth />
+            </div>
 
-              {/* <div className="flex gap-6 w-full">
+            {/* <div className="flex gap-6 w-full">
                <AddVehicle /> 
               <AllVehicle />
               <VehicleStatus />
@@ -239,7 +244,7 @@ const SuperAdminDashboardPage = () => {
               <BatteryHealth />
             </div> */}
 
-              {/* <div className="flex gap-6">
+            {/* <div className="flex gap-6">
               <InfoCard
                 titleKey="hello"
                 descriptionKey="description"
@@ -251,13 +256,13 @@ const SuperAdminDashboardPage = () => {
                 icon={LinkIcon}
               />
             </div> */}
-            </div>
-          ) : (
-            <div className="flex justify-center items-center w-full h-full">
-              Please select a vehicle
-            </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="flex justify-center items-center w-full h-full">
+            Please select a vehicle
+          </div>
+        )}
+      </div>
       {/* </allVehicleDataLoadingContext.Provider> */}
     </div>
   );

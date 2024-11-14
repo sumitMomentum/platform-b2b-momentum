@@ -49,7 +49,7 @@ const BatteryHealthChart = () => {
     };
 
     fetchData();
-    setLoading(false);
+    vehicles.length && setLoading(false);
   }, [vehicles]); // Dependency on 'vehicles'// Dependency on 'vehicles'
 
   const xLabels = [
