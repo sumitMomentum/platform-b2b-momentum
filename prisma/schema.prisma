@@ -548,9 +548,7 @@ model ChargingSession {
   BatteryAtStart       Int?
   BatteryAtEnd         Int?
   updatedAt            DateTime? @default(now())
-  batteryDifference    Int?
   ChargingType         String?
-  DteDifference        Int?
   vehicleId            String?   // Foreign key to Vehicle
   chargerId            Int?      // Foreign key to ChargerMaster
   TripID               Float?
