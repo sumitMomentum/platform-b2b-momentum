@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import * as React from 'react';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
@@ -11,6 +11,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import MainGrid from './components/MainGrid';
 import AppTheme from '../shared-theme/AppTheme';
+import Link from 'next/link';
+import Button from '@mui/material/Button';
+
 import {
   chartsCustomizations,
   dataGridCustomizations,
@@ -29,14 +32,6 @@ const xThemeComponents = {
 export default function Page(props: { disableCustomTheme?: boolean }) {
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
-      <PageName
-        name={("Benefits Dashboard")}
-        breadcrumbs={[
-          { name: "Home", href: "/home" }, 
-          { name: "Benefits", href: "/benefits" }, 
-          { name: "Benefits Dashboard", href: "/home/benefits/dashboard" },
-        ]}
-      />
       <CssBaseline enableColorScheme />
       <Box sx={{ display: 'flex' }}>
         <Box
@@ -49,6 +44,31 @@ export default function Page(props: { disableCustomTheme?: boolean }) {
             overflow: 'auto',
           })}
         >
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+              alignItems: 'center',
+              mx: 3,
+              pb: 5,
+              mt: { xs: 8, md: 0 },
+              justifyContent: 'space-between',
+            }}
+          >
+            <PageName
+              name={("Benefits Dashboard")}
+              breadcrumbs={[
+                { name: "Home", href: "/home" }, 
+                { name: "Benefits", href: "/benefits" }, 
+                { name: "Benefits Dashboard", href: "/home/benefits/dashboard" },
+              ]}
+            />
+            <Link href="/home/benefits" passHref>
+              <Button variant="contained" sx={{ backgroundColor: 'grey' }}>
+                View Tabular
+              </Button>
+            </Link>
+          </Stack>
           <Stack
             spacing={2}
             sx={{

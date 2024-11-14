@@ -47,7 +47,7 @@ async function seedChargingSessions() {
   for (const row of chargingSessions) {
     await prisma.chargingSession.create({
       data: {
-        TripID: row.TripID || generateTripID(),
+        TripID: row.TripID,
         DteStart: row.DteStart,
         DteEnd: row.DteEnd,
         BatteryAtStart: row.BatteryAtStart,
@@ -56,10 +56,10 @@ async function seedChargingSessions() {
         DiffInBat: row.DiffInBat,
         ChargingType: row.ChargingType,
         DiffInDte: row.DiffInDte,
-        vehicle: { connect: { vehicleId: row.vehicleId } },
-        charger: { connect: { id: row.chargerId } },
+        chargerReference: row.chargerId, // Updated field name
+        vehicleReference: row.vehicleId, // Updated field name
       },
-    });
+    });    
   }
   log.success('Charging sessions seeded successfully.');
 }
@@ -77,9 +77,9 @@ async function seedVehicleTripSessions() {
         TripApprovedKilometer: row.TripApprovedKilometer,
         DiffInBat: row.DiffInBat,
         DiffInDte: row.DiffInDte,
-        vehicleId: row.vehicleId,
+        vehicleReference: row.vehicleId, // Updated to match the schema
       },
-    });
+    });    
   }
   log.success('Vehicle trip sessions seeded successfully.');
 }

@@ -234,7 +234,7 @@ model Module {
 
 model Permission {
   id          Int      @id @default(autoincrement())
-  name        String   
+  name        String
   description String?
   users       User[]
   Module      Module[]
@@ -435,71 +435,6 @@ model EnodeToken {
   updatedAt DateTime @default(now())
 }
 
-// { Currently Using Different Schema }
-// model Vehicle {
-//   id                   String                 @id
-//   make                 String
-//   model                String
-//   year                 Int
-//   vin                  String? // Optional field if "vehicle.information.vin" can be null
-//   odometer             Float? // Optional field if "vehicle.odometer.distance" can be null
-//   batteryCapacity      Float? // Optional field if "vehicle.chargeState.batteryCapacity" can be null
-//   ownerId              Int
-//   owner                User                   @relation(fields: [ownerId], references: [id])
-//   dateOfConnection     DateTime // Store date of connection
-//   soc                  Float? // Assuming battery level is always present
-//   createdAt            DateTime               @default(now())
-//   updatedAt            DateTime               @default(now())
-//   VehicleDashboardData VehicleDashboardData[]
-// }
-
-// model VehicleDashboardData {
-//   id                    Int      @id @default(autoincrement())
-//   vehicleId             String?  @unique
-//   vehicle               Vehicle? @relation(fields: [vehicleId], references: [id])
-//   location              String   @default("Banglore")
-//   datapointsCollected   Int      @default(1410)
-//   totalEnergyConsumed   Float // Total energy consumed in kWh
-//   averageSoC            Float // Average State of Charge (%)
-//   connectorType         String // Type of connector
-//   totalChargingSessions Int // Total charging sessions
-//   averageChargingRate   Float // Average charging rate in kW
-//   avgDailyKmDriven      Int // Average daily kilometers driven
-//   temperatureLow        Int // Low temperature in Celsius
-//   temperatureHigh       Int // High temperature in Celsius
-//   socRangeMin           Int // Minimum State of Charge (%)
-//   socRangeMax           Int // Maximum State of Charge (%)
-//   rangeObservedMin      Int // Minimum observed range in km
-//   rangeObservedMax      Int // Maximum observed range in km
-//   realRangeObserved     Int // Real observed range in km
-//   epaProvidedRange      Int
-//   batteryHealthSoH      Float // Battery State of Health (%)
-//   estimatedDegradation  Float // Estimated battery degradation (%)
-//   batteryChemistry      String   @default("Li-ion") // Battery chemistry
-//   endOfLife             DateTime // End of life date
-//   remainingUsefulLife   Int // Remaining useful life in cycle
-// }
-
-// model Car {
-//   id                  Int     @id @default(autoincrement())
-//   brand               String
-//   model               String
-//   year                String
-//   type                String
-//   integration_status  String
-//   activation_required String?
-//   regions             String
-//   reliability         String
-//   capabilities        String
-//   information         String
-//   charge_state        String
-//   location            String
-//   start_stop_commands String
-//   smart_charging      String
-//   scheduling          String
-//   statistics          String
-// }
-
 // { new Schemas for steps, cars and all }
 model Vehicle {
   id                                       String               @id // Unique ID for each vehicle detail
@@ -554,6 +489,82 @@ model Vehicle {
   owner                                    User                 @relation(fields: [ownerId], references: [id])
 }
 
+// Add new VehicleTripSession model
+model VehicleTripSession {
+  id                    Int       @id @default(autoincrement())
+  TripID                Float?
+  DteStart              Int?
+  DteEnd                Int?
+  BatteryAtStart        Int?
+  BatteryAtEnd          Int?
+  DwUpdated             DateTime?
+  TripApprovedKilometer Float?
+  DiffInBat             Int?
+  DiffInDte             Int?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  vehicleReference String? // Renamed field, no foreign key relation
+  Vehicle          Vehicle? @relation(fields: [vehicleId], references: [id])
+  vehicleId        String?
+}
+
+model ChargerMaster {
+  id               Int               @id @default(autoincrement())
+  chargerId        Int               @unique
+  chargingPoint    String
+  chargerLocation  String? // Optional if not always provided
+  chargerStatus    String?
+  dateJoining      DateTime?
+  chargeType       String?
+  chargingSessions ChargingSession[]
+
+  @@unique([chargerId], map: "unique_chargerId_chargerMaster")
+}
+
+model ChargerType {
+  id                   Int    @id @default(autoincrement()) // Unique ID for each charger type
+  evConnectorType      String // Type of EV connector
+  outputCurrentType    String // Type of output current
+  supplyInput          String // Supply input details
+  maximumOutputCurrent String // Max output current details
+  maximumOutputPower   String // Max output power details
+  evChargingLevels     String // Levels of charging (e.g., Level 1, Level 2)
+  primaryCountries     String // Primary countries where the charger is used
+}
+
+model ChargingSession {
+  id               Int            @id @default(autoincrement())
+  TripID           Int?           @unique
+  DteStart         Int
+  DteEnd           Int
+  BatteryAtStart   Int
+  BatteryAtEnd     Int
+  DwUpdated        DateTime
+  DiffInBat        Int
+  ChargingType     String
+  DiffInDte        Int
+  vehicleReference String? // Renamed field, no foreign key relation
+  chargerReference Int? // No foreign key relation, used instead of chargerId
+  Vehicle          Vehicle?       @relation(fields: [vehicleId], references: [id])
+  vehicleId        String?
+  ChargerMaster    ChargerMaster? @relation(fields: [chargerMasterId], references: [id])
+  chargerMasterId  Int?
+}
+
+model Action {
+  id              Int      @id @default(autoincrement()) // Unique ID for each action
+  vehicleId       String // ID of the vehicle associated with this action
+  severity        String // Severity level (e.g., "Medium")
+  description     String // Description of the action
+  bestPractice    String // Best practice recommendation
+  actionToBeTaken String // Action to be taken
+  confirm         Boolean // Whether the action is confirmed (1 or 0)
+  createdDateTime DateTime @map("CreatedDateTime") // Date and time the action was created
+  closedDateTime  DateTime @map("ClosedDateTime") // Date and time the action was closed
+  vin             String // Vehicle Identification Number
+}
+
 model Benefit {
   id                                 Int    @id @default(autoincrement()) // Unique ID for each benefit
   vin                                String // Vehicle Identification Number
@@ -577,41 +588,6 @@ model Benefit {
   carType                            String // Type of car (e.g., "Audi")
 }
 
-model ChargerMaster {
-  id               Int               @id @default(autoincrement()) // Unique ID for each charger
-  chargerID        Int               @unique
-  chargerLocation  String // Location in "latitude,longitude" format
-  chargerStatus    String // e.g., "Active" or "Inactive"
-  dateJoining      DateTime          @map("dateJoining") // Date the charger joined
-  chargeType       String // Type of charging (e.g., "Default")
-  chargingPoint    String // Charging point (e.g., "Default")
-  chargingSessions ChargingSession[]
-}
-
-model ChargerType {
-  id                   Int    @id @default(autoincrement()) // Unique ID for each charger type
-  evConnectorType      String // Type of EV connector
-  outputCurrentType    String // Type of output current
-  supplyInput          String // Supply input details
-  maximumOutputCurrent String // Max output current details
-  maximumOutputPower   String // Max output power details
-  evChargingLevels     String // Levels of charging (e.g., Level 1, Level 2)
-  primaryCountries     String // Primary countries where the charger is used
-}
-
-model Action {
-  id              Int      @id @default(autoincrement()) // Unique ID for each action
-  vehicleId       String // ID of the vehicle associated with this action
-  severity        String // Severity level (e.g., "Medium")
-  description     String // Description of the action
-  bestPractice    String // Best practice recommendation
-  actionToBeTaken String // Action to be taken
-  confirm         Boolean // Whether the action is confirmed (1 or 0)
-  createdDateTime DateTime @map("CreatedDateTime") // Date and time the action was created
-  closedDateTime  DateTime @map("ClosedDateTime") // Date and time the action was closed
-  vin             String // Vehicle Identification Number
-}
-
 model VehicleChargingDetail {
   id            Int    @id @default(autoincrement()) // Unique ID for each vehicle charging detail
   model         String // Vehicle model
@@ -629,47 +605,6 @@ model VehicleChargingDetail {
 }
 
 // Add new ChargingSession model
-model ChargingSession {
-  id                Int           @id @default(autoincrement())
-  charger           ChargerMaster @relation(fields: [chargerId], references: [chargerID])
-  chargerId         Int
-  vehicle           Vehicle       @relation(fields: [vehicleId], references: [vehicleId])
-  vehicleId         String
-  chargingDate      DateTime
-  duration          Int // Duration in minutes
-  chargingStartTime DateTime
-  chargingEndTime   DateTime
-  powerConsumed     Float // in kWh
-  vehicleStartSoc   Int // Starting State of Charge percentage
-  vehicleEndSoc     Int // Ending State of Charge percentage
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @updatedAt
-
-  @@index([chargerId])
-  @@index([vehicleId])
-}
-
-// Add new VehicleTripSession model
-model VehicleTripSession {
-  id                  Int      @id @default(autoincrement())
-  vehicle            Vehicle   @relation(fields: [vehicleId], references: [vehicleId])
-  vehicleId          String
-  startTime          DateTime
-  endTime            DateTime
-  tripDuration       Int       // Duration in minutes
-  startSoc           Int       // Starting State of Charge percentage
-  endSoc             Int       // Ending State of Charge percentage
-  chargeConsumed     Float     // in kWh
-  odometerStart      Float     // Starting odometer reading
-  odometerEnd        Float     // Ending odometer reading
-  distanceTravelled  Float     // Distance in kilometers/miles
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-
-  @@index([vehicleId])
-}
-
-
 
 // model AggregatedDashboard {
 //   id           Int @id

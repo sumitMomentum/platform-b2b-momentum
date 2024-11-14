@@ -50,6 +50,14 @@ function readCSV(filePath: string, transformer: Function, outputFilePath: string
   });
 }
 
+const CHARGER_ID_RANGE = { min: 100000, max: 999999 }; // Define range or array of valid charger IDs
+
+function getRandomChargerId() {
+  return Math.floor(
+    Math.random() * (CHARGER_ID_RANGE.max - CHARGER_ID_RANGE.min + 1) + CHARGER_ID_RANGE.min
+  );
+}
+
 const chargingSessionTransformer = (data: any, vehicleId: string): ChargingSessionData => ({
   TripID: data['Trip ID'] ? parseFloat(data['Trip ID']) : generateTripID(),
   DteStart: parseInt(data['Dte Start']),
@@ -61,8 +69,9 @@ const chargingSessionTransformer = (data: any, vehicleId: string): ChargingSessi
   ChargingType: data['Charging Type'],
   DiffInDte: parseInt(data['Diff in Dte']),
   vehicleId, // Apply the same vehicleId to each entry
-  chargerId: parseInt(data['chargerId']),
+  chargerId: data['chargerId'] ? parseInt(data['chargerId']) : getRandomChargerId(), // Random chargerId if null
 });
+
 
 const vehicleTripSessionTransformer = (data: any, vehicleId: string): VehicleTripSessionData => ({
   TripID: data['Trip ID'] ? parseFloat(data['Trip ID']) : generateTripID(),
