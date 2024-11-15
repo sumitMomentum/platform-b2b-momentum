@@ -12,20 +12,22 @@ const columns = [
   },
   {
     field: "DteStart",
-    headerName: "Start Time",
+    headerName: "Dte Start",
     flex: 1,
     valueFormatter: (params) => {
-      const date = new Date(params); // Assuming DteStart is in Unix timestamp
-      return date.toLocaleString();
+      // const date = new Date(params); // Assuming DteStart is in Unix timestamp
+      // return date.toLocaleString();
+      return params;
     },
   },
   {
     field: "DteEnd",
-    headerName: "End Time",
+    headerName: "Dte End",
     flex: 1,
     valueFormatter: (params) => {
-      const date = new Date(params); // Assuming DteEnd is in Unix timestamp
-      return date.toLocaleString();
+      // const date = new Date(params); // Assuming DteEnd is in Unix timestamp
+      // return date.toLocaleString();
+      return params;
     },
   },
   {

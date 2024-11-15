@@ -36,13 +36,13 @@ const columns: GridColDef[] = [
     field: "DteStart",
     headerName: "Start Dte",
     flex: 1,
-    valueFormatter: (params) => `Day ${params}`, // Format as needed
+    valueFormatter: (params) => `${params}`, // Format as needed
   },
   {
     field: "DteEnd",
     headerName: "End Dte",
     flex: 1,
-    valueFormatter: (params) => `Day ${params}`, // Format as needed
+    valueFormatter: (params) => `${params}`, // Format as needed
   },
   {
     field: "BatteryAtStart",

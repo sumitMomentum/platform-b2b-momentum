@@ -61,9 +61,9 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
     { field: 'actionToBeTaken', headerName: 'Action To be Taken', flex: 2 },
     { field: 'confirm', headerName: 'Confirm', flex: 1, renderCell: (params) => (
         <button className={`${
-          params.value ? 'bg-green-500 hover:bg-green-700' : 'bg-gray-500 hover:bg-gray-800'
+          params.value ? 'bg-red-500 hover:bg-green-700' : 'bg-gray-500 hover:bg-gray-800'
         } p-2 px-8 text-white`}>
-          {params.value ? "Closed" : "Pending"}
+          {params.value ?  "Pending" : "Closed"}
         </button>
       )
     },
