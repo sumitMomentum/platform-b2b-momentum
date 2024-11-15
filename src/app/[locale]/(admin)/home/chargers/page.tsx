@@ -3,6 +3,9 @@
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 import PageName from "@/components/ui/commons/PageName";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { join, parse } from "path";
+import { split } from "postcss/lib/list";
+import React from "react";
 import { Fragment, useEffect, useState } from "react";
 
 interface ChargerRow {
@@ -15,8 +18,29 @@ interface ChargerRow {
 }
 
 const page = () => {
-  const [chargerMasterData, setChargerMasterData] = useState<ChargerRow[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [chargerMasterData, setChargerMasterData] = useState<ChargerRow[]>([]);
+  // const [isLoading, setIsLoading] = useState(true);
+
+  const [chargerMasterData, setChargerMasterData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAllChargerMasterData();
+        console.log("Fetched Data:", data); // Log the fetched data
+        setChargerMasterData(data || []);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching charger master data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+    chargerMasterData.length && setLoading(false);
+    console.log(chargerMasterData);
+  }, []);
 
   const columns: GridColDef[] = [
     { field: "chargerID", headerName: "Charger ID", width: 130 },
@@ -24,45 +48,42 @@ const page = () => {
       field: "chargerLocation",
       headerName: "Charger Location",
       width: 200,
-      valueFormatter: (params: GridRenderCellParams<any>) =>
-        params.value
-          ? `${[
-              Number(params.value.toString().split(",")[0]).toFixed(2),
-              Number(params.value.toString().split(",")[1]).toFixed(2),
-            ].join(", ")}`
-          : "",
+      valueFormatter: (value: any, row: any) =>
+        `${[
+          Number(value.toString().split(",")[0]).toFixed(2),
+          Number(value.toString().split(",")[1]).toFixed(2),
+        ].join(", ")}`,
     },
     { field: "chargerStatus", headerName: "Charger Status", width: 130 },
     {
       field: "dateJoining",
       headerName: "Date Joining",
       width: 130,
-      valueFormatter: (params: GridRenderCellParams<any>) =>
-        params.value ? new Date(params.value).toLocaleDateString() : "",
+      valueFormatter: (value, row) => new Date(value).toLocaleDateString(),
     },
     { field: "chargeType", headerName: "Charge Type", width: 130 },
     { field: "chargingPoint", headerName: "Charging Point", width: 130 },
   ];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getAllChargerMasterData();
-        console.log("from the component:", data);
-        if (Array.isArray(data)) {
-          setChargerMasterData(data);
-        } else {
-          console.warn("Expected data to be an array:", data);
-        }
-      } catch (error) {
-        console.error("Error fetching charger master data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getAllChargerMasterData();
+  //       console.log("from the component:", data);
+  //       if (Array.isArray(data)) {
+  //         setChargerMasterData(data);
+  //       } else {
+  //         console.warn("Expected data to be an array:", data);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching charger master data:", error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <Fragment>
@@ -79,14 +100,16 @@ const page = () => {
             <DataGrid
               rows={chargerMasterData}
               columns={columns}
-              loading={isLoading}
-              autoHeight
+              getRowId={(row) => row.chargerID}
+              loading={loading}
+              autoHeight={true}
+              disableColumnMenu
+              pageSizeOptions={[5, 10]}
               initialState={{
                 pagination: {
                   paginationModel: { page: 0, pageSize: 10 },
                 },
               }}
-              pageSizeOptions={[5, 10]}
             />
           </div>
         </div>

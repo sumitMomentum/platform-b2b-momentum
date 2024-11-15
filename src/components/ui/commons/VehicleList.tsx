@@ -1,7 +1,7 @@
 "use client";
 import useVehicleStore from "@/states/store";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react"; // Import only useEffect
+import { useEffect, useState } from "react"; // Import only useEffect
 import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";

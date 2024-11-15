@@ -18,6 +18,7 @@ import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllCh
 import { join } from "path";
 import { split } from "postcss/lib/list";
 import { log } from "console";
+import page from "../page";
 
 // interface ChargerListComponentProps {
 //   initialChargerMasterData: ChargerItem[];
@@ -41,9 +42,8 @@ function ChargerListComponent() {
     };
 
     fetchData();
-    chargerMasterData.length && setLoading(false);
-    console.log(chargerMasterData);
-  }, [chargerMasterData]);
+    console.log("chargerMasterData :", chargerMasterData);
+  }, []);
 
   const columns: GridColDef[] = [
     { field: "chargerID", headerName: "Charger ID", width: 130 },
@@ -51,11 +51,11 @@ function ChargerListComponent() {
       field: "chargerLocation",
       headerName: "Charger Location",
       width: 200,
-      valueGetter: (params: GridRenderCellParams, row) => {
-        return `${[
-          Number(row.chargerLocation.toString().split(",")[0]).toFixed(2),
-          Number(row.chargerLocation.toString().split(",")[1]).toFixed(2),
-        ].join(", ")}`;
+      valueGetter: (params: GridRenderCellParams) => {
+        const coords = params.row.chargerLocation.split(",");
+        return `${Number(coords[0]).toFixed(6)}, ${Number(coords[1]).toFixed(
+          6
+        )}`;
       },
     },
     { field: "chargerStatus", headerName: "Charger Status", width: 130 },
@@ -63,8 +63,9 @@ function ChargerListComponent() {
       field: "dateJoining",
       headerName: "Date Joining",
       width: 130,
-      valueFormatter: (params: GridRenderCellParams) =>
-        new Date(params.value as string).toLocaleDateString(),
+      valueFormatter: (params: GridRenderCellParams) => {
+        return new Date(params.value).toLocaleDateString(); // Format the date
+      },
     },
     { field: "chargeType", headerName: "Charge Type", width: 130 },
     { field: "chargingPoint", headerName: "Charging Point", width: 130 },
@@ -77,7 +78,7 @@ function ChargerListComponent() {
         columns={columns}
         getRowId={(row) => row.chargerID}
         loading={loading}
-        // autoHeight
+        autoHeight={true}
         disableColumnMenu
         pageSizeOptions={[5, 10]}
         initialState={{
