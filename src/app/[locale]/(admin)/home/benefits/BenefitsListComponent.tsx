@@ -138,9 +138,9 @@ const BenefitsListComponent: React.FC = () => {
   ];
 
   return (
-    <Paper sx={{ height: "auto", width: "100%" }}>
+    <Paper sx={{ height: "auto", width: "100%", p: 3 }}>
       <Typography variant="h5" sx={{ margin: 3, fontWeight: "bold" }}>
-        Overall P&L:
+        Overall Profit and Loss
       </Typography>
       <DataGrid
         rows={

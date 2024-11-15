@@ -4,6 +4,14 @@ import { useSidebarState } from "@/states/ui/sidebarState";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import { map } from "svix/dist/openapi/rxjsStub";
 
 interface NavigationSection {
   sectionName: string;
@@ -58,19 +66,20 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
             <span className="text-xs font-semibold leading-6 text-primary">
               {section.sectionName}
             </span>
-            <ul role="list" className="-mx-2 mt-2 space-y-1">
+            <List>
               {section.items.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    onClick={() => toggleSidebarMenu()}
-                    className={classNames(
-                      item.href === pathNameWithoutLand
-                        ? "bg-main-selected text-primary-selected"
-                        : " bg-main-hover",
-                      "group flex gap-x-3 rounded-md p-2  text-primary"
-                    )}
-                  >
+                <ListItemButton
+                  key={item.name}
+                  component={Link} // Use MUI's Link component
+                  href={item.href}
+                  onClick={() => toggleSidebarMenu()}
+                  className={classNames(
+                    item.href === pathNameWithoutLand
+                      ? "bg-main-selected text-primary-selected"
+                      : "bg-main-hover"
+                  )}
+                >
+                  <ListItemIcon>
                     <item.icon
                       className={classNames(
                         item.href === pathNameWithoutLand
@@ -80,11 +89,11 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
                       )}
                       aria-hidden="true"
                     />
-                    <span>{item.name}</span>
-                  </Link>
-                </li>
+                  </ListItemIcon>
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
               ))}
-            </ul>
+            </List>
           </div>
         ))}
       </ul>

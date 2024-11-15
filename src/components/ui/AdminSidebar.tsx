@@ -125,7 +125,7 @@ const AdminSidebar = () => {
                           <Navigation navigation={adminNavigation} />
                         </ul>
                       </li>
-                      
+
                       {/* <div className="">
                         <hr></hr>
                         <div className="mt-2 w-full">
@@ -222,7 +222,7 @@ const AdminSidebar = () => {
                   />
                   {t("affiliatePanel")}
                 </Link> */}
-                <Link
+                {/* <Link
                   onClick={() => toggleSidebarMenu()}
                   href="/home/support"
                   className="group -mx-4 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6   hover:bg-gray-50 hover:text-indigo-600"
@@ -232,7 +232,7 @@ const AdminSidebar = () => {
                     aria-hidden="true"
                   />
                   {t("support")}
-                </Link>
+                </Link> */}
                 <Link
                   onClick={() => toggleSidebarMenu()}
                   href="/home/settings/profile

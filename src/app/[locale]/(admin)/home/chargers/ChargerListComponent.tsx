@@ -15,23 +15,24 @@ type ChargerItem = {
 };
 
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
+import { join } from "path";
+import { split } from "postcss/lib/list";
+import { log } from "console";
 
-interface ChargerListComponentProps {
-  initialChargerMasterData: ChargerItem[];
-}
+// interface ChargerListComponentProps {
+//   initialChargerMasterData: ChargerItem[];
+// }
 
-const ChargerListComponent: React.FC<ChargerListComponentProps> = ({
-  initialChargerMasterData,
-}) => {
-  const [chargerMasterData, setChargerMasterData] = useState<ChargerItem[]>(
-    initialChargerMasterData
-  );
+
+function ChargerListComponent() {
+  const [chargerMasterData, setChargerMasterData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getAllChargerMasterData();
+        console.log("Fetched Data:", data); // Log the fetched data
         setChargerMasterData(data || []);
         setLoading(false);
       } catch (error) {
@@ -40,12 +41,10 @@ const ChargerListComponent: React.FC<ChargerListComponentProps> = ({
       }
     };
 
-    if (initialChargerMasterData.length === 0) {
-      fetchData();
-    } else {
-      setLoading(false);
-    }
-  }, [initialChargerMasterData]);
+    fetchData();
+    chargerMasterData.length && setLoading(false);
+    console.log(chargerMasterData);
+  }, [chargerMasterData]);
 
   const columns: GridColDef[] = [
     { field: "chargerID", headerName: "Charger ID", width: 130 },
@@ -53,12 +52,12 @@ const ChargerListComponent: React.FC<ChargerListComponentProps> = ({
       field: "chargerLocation",
       headerName: "Charger Location",
       width: 200,
-      valueFormatter: (params: GridRenderCellParams) =>
-        // `${[
-        //   Number(params.value.toString().split(",")[0]).toFixed(2),
-        //   Number(params.value.toString().split(",")[1]).toFixed(2),
-        // ].join(", ")}`,
-        `${params.value}`,
+      valueGetter: (params: GridRenderCellParams, row) => {
+        return `${[
+          Number(row.chargerLocation.toString().split(",")[0]).toFixed(2),
+          Number(row.chargerLocation.toString().split(",")[1]).toFixed(2),
+        ].join(", ")}`;
+      },
     },
     { field: "chargerStatus", headerName: "Charger Status", width: 130 },
     {
@@ -79,7 +78,7 @@ const ChargerListComponent: React.FC<ChargerListComponentProps> = ({
         columns={columns}
         getRowId={(row) => row.chargerID}
         loading={loading}
-        autoHeight
+        // autoHeight
         disableColumnMenu
         pageSizeOptions={[5, 10]}
         initialState={{
