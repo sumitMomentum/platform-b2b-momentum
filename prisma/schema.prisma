@@ -551,16 +551,15 @@ model ChargerType {
 }
 
 model Action {
-  id              Int      @id @default(autoincrement())
-  vehicleId       String
-  severity        String
-  description     String
-  bestPractice    String
-  actionToBeTaken String
-  confirm         Boolean
-  createdDateTime DateTime @map("CreatedDateTime")
-  closedDateTime  DateTime @map("ClosedDateTime")
-  vin             String
+  id              Int      @id @default(autoincrement()) // Unique ID for each action
+  vehicleId       String // ID of the vehicle associated with this action
+  severity        String // Severity level (e.g., "Medium")
+  description     String // Description of the action
+  bestPractice    String // Best practice recommendation
+  actionToBeTaken String // Action to be taken
+  confirm         Int // Whether the action is confirmed (1 or 0)
+  createdDateTime DateTime @map("CreatedDateTime") // Date and time the action was created
+  closedDateTime  DateTime @map("ClosedDateTime") // Date and time the action was closed
 }
 
 model Benefit {

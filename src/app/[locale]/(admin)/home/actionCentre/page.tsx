@@ -9,16 +9,17 @@ import Box from '@mui/material/Box';
 
 // Define ActionItem type here
 type ActionItem = {
-  id: number;
-  vin: string;
-  severity: 'High' | 'Medium' | 'Low';
-  description: string;
-  bestPractice: string;
-  actionToBeTaken: string;
-  confirm: boolean;
-  CreatedDateTime: string;
-  ClosedDateTime?: string;
+  id: number; // Unique ID for each action
+  vehicleId: string; // ID of the vehicle associated with this action
+  severity: 'High' | 'Medium' | 'Low'; // Severity level (e.g., "Medium")
+  description: string; // Description of the action
+  bestPractice: string; // Best practice recommendation
+  actionToBeTaken: string; // Action to be taken
+  confirm: boolean; // Whether the action is confirmed (true or false)
+  CreatedDateTime: string; // Date and time the action was created
+  ClosedDateTime?: string; // Date and time the action was closed
 };
+
 
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 

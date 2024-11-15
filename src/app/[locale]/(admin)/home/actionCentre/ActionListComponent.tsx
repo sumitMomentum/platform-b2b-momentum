@@ -5,15 +5,15 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 
 type ActionItem = {
-  id: number;
-  vin: string;
-  severity: 'High' | 'Medium' | 'Low';
-  description: string;
-  bestPractice: string;
-  actionToBeTaken: string;
-  confirm: boolean;
-  CreatedDateTime: any;
-  ClosedDateTime?: any;
+  id: number; // Unique ID for each action
+  vehicleId: string; // ID of the vehicle associated with this action
+  severity: 'High' | 'Medium' | 'Low'; // Severity level (e.g., "Medium")
+  description: string; // Description of the action
+  bestPractice: string; // Best practice recommendation
+  actionToBeTaken: string; // Action to be taken
+  confirm: number; // Confirmation count (integer)
+  CreatedDateTime: string; // Date and time the action was created
+  ClosedDateTime?: string; // Date and time the action was closed
 };
 
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
@@ -40,13 +40,14 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
 
     if (initialActionItems.length === 0) {
       fetchData();
+      console.log(actionItems)
     } else {
       setLoading(false);
     }
   }, [initialActionItems]);
 
   const columns: GridColDef[] = [
-    { field: 'vin', headerName: 'VIN', flex: 1 },
+    { field: 'vehicleId', headerName: 'Vehicle ID', flex: 1 },
     { field: 'severity', headerName: 'Severity', flex: 1, renderCell: (params) => (
         <div className={`${
           params.value === 'High' ? 'bg-red-500 hover:bg-red-700 text-white' :
@@ -60,14 +61,14 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
     { field: 'actionToBeTaken', headerName: 'Action To be Taken', flex: 2 },
     { field: 'confirm', headerName: 'Confirm', flex: 1, renderCell: (params) => (
         <button className={`${
-          params.value ? 'bg-green-500 hover:bg-green-700' : 'bg-gray-500 hover:bg-gray-800'
+          params.value ? 'bg-red-500 hover:bg-green-700' : 'bg-gray-500 hover:bg-gray-800'
         } p-2 px-8 text-white`}>
-          {params.value ? "Closed" : "Pending"}
+          {params.value ?  "Pending" : "Closed"}
         </button>
       )
     },
-    { field: 'CreatedDateTime', headerName: 'Created Date', flex: 1, renderCell: (params) => params.value || "N/A" },
-    { field: 'ClosedDateTime', headerName: 'Closed Date', flex: 1, renderCell: (params) => params.value || "N/A" },
+    { field: 'createdDateTime', headerName: 'Created Date', flex: 1 },
+    { field: 'closedDateTime', headerName: 'Closed Date', flex: 1 },
   ];
 
   return (

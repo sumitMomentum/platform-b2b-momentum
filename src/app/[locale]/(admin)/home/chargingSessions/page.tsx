@@ -14,6 +14,7 @@ const ChargingSessionsPage = () => {
       try {
         const data = await getChargingSessions();
         if (data && data.sessions) {
+          console.log(data.sessions)
           setChargingSessions(data.sessions);
         } else {
           console.warn("Expected data to contain sessions:", data);
