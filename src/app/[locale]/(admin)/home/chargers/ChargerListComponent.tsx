@@ -23,7 +23,6 @@ import { log } from "console";
 //   initialChargerMasterData: ChargerItem[];
 // }
 
-
 function ChargerListComponent() {
   const [chargerMasterData, setChargerMasterData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -89,6 +88,6 @@ function ChargerListComponent() {
       />
     </Paper>
   );
-};
+}
 
 export default ChargerListComponent;

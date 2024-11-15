@@ -10,6 +10,7 @@ import AdminLayout from "@/components/layouts/AdminLayout";
 import { RedirectSuperAadminInLogin } from "@/utils/facades/frontendFacades/superAdminFrontendFacade";
 import SuspenseClerk from "@/components/suspenseSkeleton/SuspenseClerk";
 import { default as NextIntlClientProvider } from "next-intl";
+import SuspenseNavigation from "@/components/suspenseSkeleton/SuspenseNavigation";
 
 const AdminRoot = ({ children }: { children: ReactNode }) => {
   return (
