@@ -1,11 +1,11 @@
 import PageName from "@/components/ui/commons/PageName";
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ActionListComponent from './ActionListComponent';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
 import Box from '@mui/material/Box';
+import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 
 // Define ActionItem type here
 type ActionItem = {
@@ -20,13 +20,17 @@ type ActionItem = {
   ClosedDateTime?: string; // Date and time the action was closed
 };
 
+const ActionCentre = () => {
+  const t = useTranslations("AdminLayout.pages.actionCentre");
+  const [actionItems, setActionItems] = useState<ActionItem[]>([]);
 
-import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
-
-const ActionCentre = async () => {
-  const t = await getTranslations("AdminLayout.pages.actionCentre");
-
-  const actionItems: ActionItem[] = await getAllVehicleActions();
+  useEffect(() => {
+    const fetchActions = async () => {
+      const actions = await getAllVehicleActions();
+      setActionItems(actions);
+    };
+    fetchActions();
+  }, []);
 
   return (
     <div>

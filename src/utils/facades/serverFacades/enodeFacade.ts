@@ -1128,7 +1128,7 @@ export const handleEvent = async (event: any) => {
 
         const createdCharger = await prisma.chargerMaster.create({
           data: {
-            chargerID: charger.id,
+            chargerId: charger.id,
             chargerLocation: `${charger.location.latitude},${charger.location.longitude}`, // Ensure location is provided
             chargerStatus: charger.isReachable ? "Active" : "Inactive",
             dateJoining: new Date(), // Set the current date as the joining date

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
+import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 
 type ActionItem = {
   id: number; // Unique ID for each action
@@ -12,11 +13,9 @@ type ActionItem = {
   bestPractice: string; // Best practice recommendation
   actionToBeTaken: string; // Action to be taken
   confirm: number; // Confirmation count (integer)
-  CreatedDateTime: string; // Date and time the action was created
-  ClosedDateTime?: string; // Date and time the action was closed
+  createdDateTime: string; // Date and time the action was created
+  closedDateTime?: string; // Date and time the action was closed
 };
-
-import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 
 interface ActionListComponentProps {
   initialActionItems: ActionItem[];
@@ -40,7 +39,6 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
 
     if (initialActionItems.length === 0) {
       fetchData();
-      console.log(actionItems)
     } else {
       setLoading(false);
     }
@@ -61,7 +59,7 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
     { field: 'actionToBeTaken', headerName: 'Action To be Taken', flex: 2 },
     { field: 'confirm', headerName: 'Confirm', flex: 1, renderCell: (params) => (
         <button className={`${
-          params.value ? 'bg-red-500 hover:bg-green-700' : 'bg-gray-500 hover:bg-gray-800'
+          params.value ? 'bg-gray-500 hover:bg-gray-800' : 'bg-green-500 hover:bg-green-700'
         } p-2 px-8 text-white`}>
           {params.value ?  "Pending" : "Closed"}
         </button>

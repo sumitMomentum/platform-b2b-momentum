@@ -50,7 +50,7 @@ async function seedChargingSessions(createdChargers, createdVehicles) {
     if (charger && vehicle) {
       await prisma.chargingSession.create({
         data: {
-          TripID: row.TripID,
+          TripId: row.TripID,
           DteStart: row.DteStart,
           DteEnd: row.DteEnd,
           BatteryAtStart: row.BatteryAtStart,
