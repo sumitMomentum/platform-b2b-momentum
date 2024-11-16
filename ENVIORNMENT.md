@@ -66,7 +66,6 @@ Here are the environment variables that are defined in the `.env` files and thei
 - **`NEXT_PUBLIC_DEMO_MODE`**: Boolean value to enable or disable demo mode in the application.
 - **`NEXT_PUBLIC_ROOT_DOMAIN`**: The root domain for the application (e.g., `example.com`).
 - **`NEXT_PUBLIC_BASE_URL`**: The base URL used in the app for API calls, e.g., `http://localhost:3000`.
-- **`BACKEND_URL`**: The backend URL used for API calls to the server.
 
 #### **Clerk Config**
 
