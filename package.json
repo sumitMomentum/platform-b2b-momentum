@@ -3,12 +3,17 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "dev": "dotenv -e .env.local -- npx next dev --turbo",
-    "build:local": "dotenv -e .env.prod -- npx ts-node src/seed/seed.ts && npx prisma generate && next build",
+    "clean": "rimraf .next node_modules package-lock.json yarn.lock pnpm-lock.yaml && npm cache clean --force && npx prisma generate",
+    "dev": "node load-env.js && npx next dev --turbo",
     "build": "npx prisma generate && next build",
     "start": "next start",
-    "seed": "dotenv -e .env.local -- npx prisma db seed",
-    "lint": "next lint"
+    "build:local": "node load-env.js && npx prisma generate && next build",
+    "start:local": "node load-env.js && next start",
+    "seed": "node load-env.js && npx prisma db seed",
+    "lint": "next lint",
+    "generate:prisma": "npx prisma generate",
+    "migrate:dev": "dotenv -e .env.local -- npx prisma migrate dev",
+    "migrate:prod": "dotenv -e .env.production -- npx prisma migrate deploy"
   },
   "prisma": {
     "seed": "ts-node src/seed/seed.ts"
@@ -76,12 +81,14 @@
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.13",
     "autoprefixer": "^10.0.1",
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "15.0.2",
     "ink": "^4.4.1",
     "ink-big-text": "^2.0.0",
     "postcss": "^8",
     "prisma": "^5.21.1",
+    "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.14",
     "ts-node": "^10.9.2",
     "typescript": "^5"
