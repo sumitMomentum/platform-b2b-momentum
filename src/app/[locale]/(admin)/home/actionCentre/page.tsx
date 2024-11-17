@@ -1,3 +1,5 @@
+"use client"
+
 import PageName from "@/components/ui/commons/PageName";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
