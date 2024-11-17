@@ -1,10 +1,10 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("POSTGRES_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
 }
 
 model User {
@@ -15,23 +15,24 @@ model User {
   avatar               String?                 @db.VarChar(255)
   createdAt            DateTime                @default(now())
   updatedAt            DateTime                @updatedAt
-  AmountsMovements     AdminMovementsAmounts[]
-  coupons              Coupon[]
-  invoices             Invoice[]
-  Membership           Membership?
-  Notification         Notification[]
+  Amounts              UserAmounts[]
+  UserSetting          UserSetting[]
   refer                Referral[]              @relation("refer")
   referredBy           Referral[]              @relation("referred")
-  StripeCustomer       StripeCustomer[]
+  Notification         Notification[]
+  Membership           Membership[]
+  UserStatus           UserStatus[]
+  UserNotes            UserNotes[]
+  invoices             Invoice[]
+  UserCapabilities     UserCapabilities[]
   SupportTicket        SupportTicket[]
   SupportTicketMessage SupportTicketMessage[]
-  Amounts              UserAmounts[]
-  UserCapabilities     UserCapabilities[]
-  UserNotes            UserNotes[]
-  UserSetting          UserSetting[]
-  UserStatus           UserStatus[]
+  StripeCustomer       StripeCustomer[]
+  permissions          Permission[]
+  AmountsMovements     AdminMovementsAmounts[]
+  coupons              Coupon[]
   vehicles             Vehicle[]
-  permissions          Permission[]            @relation("PermissionToUser")
+ 
 }
 
 model StripeCustomer {
@@ -39,8 +40,8 @@ model StripeCustomer {
   customerId String   @unique
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  userId     Int
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
 
   @@index([userId])
 }
@@ -65,10 +66,10 @@ model Invoice {
   dueAt                  DateTime?
   createdAt              DateTime         @default(now())
   updatedAt              DateTime         @updatedAt
-  Currency               AdminCurrencies  @relation(fields: [currencyId], references: [id])
   user                   User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Currency               AdminCurrencies  @relation(fields: [currencyId], references: [id])
   Items                  InvoiceItem[]
-  coupons                Coupon[]         @relation("CouponToInvoice")
+  coupons                Coupon[]
 
   @@index([userId, currencyId, serviceId])
 }
@@ -84,13 +85,13 @@ model Coupon {
   maxRedemptions    Int?
   percentOff        Float?
   status            String           @default("ACTIVE")
+  user              User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
-  adminCurrenciesId Int?
   AdminCurrencies   AdminCurrencies? @relation(fields: [adminCurrenciesId], references: [id])
-  user              User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  adminCurrenciesId Int?
   settings          CouponSettings[]
-  invoices          Invoice[]        @relation("CouponToInvoice")
+  invoices          Invoice[]
 
   @@index([userId])
 }
@@ -98,13 +99,19 @@ model Coupon {
 model CouponSettings {
   id        Int      @id @default(autoincrement())
   couponId  Int
+  coupon    Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
   name      String
-  value     String
+  value     String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  coupon    Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
 
   @@index([couponId])
+}
+
+enum CouponDuration {
+  FOREVER
+  ONCE
+  REPEATING
 }
 
 model PaymentMethod {
@@ -112,7 +119,7 @@ model PaymentMethod {
   name        String
   description String?
   image       String?
-  currencies  String?
+  currencies  String?  @db.Text
   status      String   @default("ACTIVE")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -127,7 +134,7 @@ model InvoiceItem {
   modelId     Int?
   pricingBdId Int?
   pricingId   String?
-  images      String?
+  images      String?  @db.Text
   quantity    Int
   price       Float
   createdAt   DateTime @default(now())
@@ -142,10 +149,10 @@ model UserStatus {
   name        String   @db.VarChar(255)
   description String?  @db.VarChar(512)
   userId      Int
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   statusUntil DateTime
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -153,16 +160,16 @@ model UserStatus {
 model Membership {
   id               Int              @id @default(autoincrement())
   userId           Int              @unique
+  plan             Plan             @relation(fields: [planId], references: [id], onDelete: Cascade)
   planId           Int
   pricingId        Int?
+  pricing          Pricing?         @relation(fields: [pricingId], references: [id], onDelete: Cascade)
   currencyId       Int?             @default(1)
+  currency         AdminCurrencies? @relation(fields: [currencyId], references: [id])
   startDate        DateTime
   endDateFreeTrial DateTime?
   endDate          DateTime
   createdAt        DateTime         @default(now())
-  currency         AdminCurrencies? @relation(fields: [currencyId], references: [id])
-  plan             Plan             @relation(fields: [planId], references: [id], onDelete: Cascade)
-  pricing          Pricing?         @relation(fields: [pricingId], references: [id], onDelete: Cascade)
   user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, pricingId])
@@ -174,11 +181,11 @@ model Plan {
   stripeProductId  String?
   freeTrialDays    Int?
   status           String             @default("ACTIVE")
-  description      String?
+  description      String?            @db.Text
   Membership       Membership[]
   PlanCapabilities PlanCapabilities[]
+  Permission       Permission[]
   pricing          Pricing[]
-  Permission       Permission[]       @relation("PermissionToPlan")
 }
 
 model Pricing {
@@ -189,11 +196,11 @@ model Pricing {
   oldPrice   Float?
   createdAt  DateTime         @default(now())
   updatedAt  DateTime         @updatedAt
+  Plan       Plan?            @relation(fields: [planId], references: [id], onDelete: Cascade)
   planId     Int?
   serviceId  Int?
-  Membership Membership[]
-  Plan       Plan?            @relation(fields: [planId], references: [id], onDelete: Cascade)
   settings   PricingSetting[]
+  Membership Membership[]
 
   @@index([planId, serviceId])
 }
@@ -204,12 +211,13 @@ model PricingSetting {
   settingValue String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  pricingId    Int?
   Pricing      Pricing? @relation(fields: [pricingId], references: [id])
+  pricingId    Int?
 
   @@index([pricingId])
 }
 
+//*************************** ACL ***************************// 
 model Module {
   id          Int          @id @default(autoincrement())
   name        String
@@ -218,18 +226,19 @@ model Module {
   description String?
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  Permission  Permission[] @relation("ModuleToPermission")
+  Permission  Permission[]
 }
 
 model Permission {
   id          Int      @id @default(autoincrement())
-  name        String
+  name        String   
   description String?
-  Module      Module[] @relation("ModuleToPermission")
-  Plan        Plan[]   @relation("PermissionToPlan")
-  users       User[]   @relation("PermissionToUser")
+  users       User[]
+  Module      Module[]
+  Plan        Plan[]
 }
 
+//*************************** END ACL ***************************//
 model AdminKpi {
   id        Int      @id @default(autoincrement())
   name      String
@@ -241,10 +250,10 @@ model AdminKpi {
 
 model Referral {
   id         Int  @id @default(autoincrement())
-  referId    Int
-  referredId Int
   refer      User @relation("refer", fields: [referId], references: [id], onDelete: Cascade)
+  referId    Int
   referred   User @relation("referred", fields: [referredId], references: [id])
+  referredId Int
 
   @@index([referId, referredId])
 }
@@ -253,7 +262,7 @@ model Capabilitie {
   id               Int                @id @default(autoincrement())
   name             String
   title            String?
-  description      String?
+  description      String?            @db.Text
   type             String             @default("LIMIT")
   PlanCapabilities PlanCapabilities[]
   UserCapabilities UserCapabilities[]
@@ -265,8 +274,8 @@ model PlanCapabilities {
   planId        Int
   count         Int
   name          String?
-  capabilitie   Capabilitie @relation(fields: [capabilitieId], references: [id], onDelete: Cascade)
   plan          Plan        @relation(fields: [planId], references: [id], onDelete: Cascade)
+  capabilitie   Capabilitie @relation(fields: [capabilitieId], references: [id], onDelete: Cascade)
 
   @@index([planId, capabilitieId])
 }
@@ -276,18 +285,18 @@ model UserCapabilities {
   capabilitieId Int
   userId        Int
   count         Int
-  capabilitie   Capabilitie @relation(fields: [capabilitieId], references: [id], onDelete: Cascade)
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  capabilitie   Capabilitie @relation(fields: [capabilitieId], references: [id], onDelete: Cascade)
 
   @@index([userId, capabilitieId])
 }
 
 model UserSetting {
   id           Int    @id @default(autoincrement())
+  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       Int
   settingName  String @db.VarChar(128)
-  settingValue String
-  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  settingValue String @db.Text
 
   @@index([userId])
 }
@@ -295,13 +304,13 @@ model UserSetting {
 model SuperAdminSetting {
   id           Int    @id @default(autoincrement())
   settingName  String @db.VarChar(128)
-  settingValue String
+  settingValue String @db.Text
 }
 
 model CronJobs {
   id        Int      @id @default(autoincrement())
   name      String
-  error     String?
+  error     String?  @db.Text
   excuteAt  DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -309,11 +318,11 @@ model CronJobs {
 
 model UserNotes {
   id        Int               @id @default(autoincrement())
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   scope     UserNoteScopeType @default(PLATFORM)
   userId    Int
   noteName  String            @db.VarChar(128)
   noteValue String
-  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -337,24 +346,24 @@ model AdminCurrencies {
   rate                  Float
   createdAt             DateTime                @default(now())
   updatedAt             DateTime                @updatedAt
+  UserAmounts           UserAmounts[]
   AdminMovementsAmounts AdminMovementsAmounts[]
-  Coupon                Coupon[]
   invoices              Invoice[]
   Membership            Membership[]
-  UserAmounts           UserAmounts[]
+  Coupon                Coupon[]
 }
 
 model UserAmounts {
   id             Int             @id @default(autoincrement())
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         Int
+  Currency       AdminCurrencies @relation(fields: [currencyId], references: [id])
   currencyId     Int             @default(1)
   amount         Float           @default(0)
   amount_pending Float           @default(0)
   amount_stopad  Float           @default(0)
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
-  Currency       AdminCurrencies @relation(fields: [currencyId], references: [id])
-  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([currencyId])
@@ -363,28 +372,29 @@ model UserAmounts {
 model AdminMovementsAmounts {
   id         BigInt             @id @default(autoincrement())
   userId     Int?
+  user       User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
   details    String             @db.VarChar(128)
+  Currency   AdminCurrencies    @relation(fields: [currencyId], references: [id])
   currencyId Int
   amount     Float
   type       MovementAmountType @default(CREDIT)
   status     Status             @default(COMPLETED)
   createdAt  DateTime           @default(now())
   updatedAt  DateTime           @updatedAt
-  Currency   AdminCurrencies    @relation(fields: [currencyId], references: [id])
-  user       User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([currencyId])
 }
 
 model SupportTicket {
-  id                   Int                     @id @default(autoincrement())
-  subject              String
-  departament          SupportDepartamentType  @default(SALES)
-  status               SupportTicketStatusType @default(OPEN)
-  userId               Int?
-  createdAt            DateTime                @default(now())
-  updatedAt            DateTime                @updatedAt
-  user                 User?                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          Int                     @id @default(autoincrement())
+  subject     String
+  departament SupportDepartamentType  @default(SALES)
+  status      SupportTicketStatusType @default(OPEN)
+  userId      Int?
+  user        User?                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime                @default(now())
+  updatedAt   DateTime                @updatedAt
+
   SupportTicketMessage SupportTicketMessage[]
 
   @@index([userId])
@@ -394,10 +404,10 @@ model SupportTicketMessage {
   id                          Int                           @id @default(autoincrement())
   ticketId                    Int
   userId                      Int?
-  createdAt                   DateTime                      @default(now())
-  updatedAt                   DateTime                      @updatedAt
   ticket                      SupportTicket                 @relation(fields: [ticketId], references: [id], onDelete: Cascade)
   user                        User?                         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt                   DateTime                      @default(now())
+  updatedAt                   DateTime                      @updatedAt
   SupportTicketMessageContent SupportTicketMessageContent[]
 
   @@index([ticketId, userId])
@@ -407,10 +417,10 @@ model SupportTicketMessageContent {
   id        Int                    @id @default(autoincrement())
   messageId Int
   type      PublicationContentType @default(TEXT)
-  content   String
+  ticket    SupportTicketMessage   @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  content   String                 @db.Text
   createdAt DateTime               @default(now())
   updatedAt DateTime               @updatedAt
-  ticket    SupportTicketMessage   @relation(fields: [messageId], references: [id], onDelete: Cascade)
 
   @@index([messageId])
 }
@@ -583,28 +593,6 @@ model Benefit {
   difference                         Float
   loss                               Float
   carType                            String
-}
-
-model VehicleChargingDetail {
-  id            Int    @id @default(autoincrement())
-  model         String
-  make          String
-  year          Int
-  chargeType    String
-  chargingPoint String
-  maxPower      String
-  power         String
-  time          String
-  rate          String
-  range1        Int
-  range2        Int
-  rateSocTime   String
-}
-
-enum CouponDuration {
-  FOREVER
-  ONCE
-  REPEATING
 }
 
 enum SupportDepartamentType {
