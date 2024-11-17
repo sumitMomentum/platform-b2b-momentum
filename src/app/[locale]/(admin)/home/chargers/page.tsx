@@ -95,23 +95,21 @@ const page = () => {
         ]}
       />
       <div className="container">
-        <div className="max-h-screen overflow-y-auto">
-          <div style={{ height: 600, width: "100%" }}>
-            <DataGrid
-              rows={chargerMasterData}
-              columns={columns}
-              getRowId={(row) => row.chargerID}
-              loading={loading}
-              autoHeight={true}
-              disableColumnMenu
-              pageSizeOptions={[5, 10]}
-              initialState={{
-                pagination: {
-                  paginationModel: { page: 0, pageSize: 10 },
-                },
-              }}
-            />
-          </div>
+        <div className="max-h-screen overflow-y-auto p-4">
+          <DataGrid
+            rows={chargerMasterData}
+            columns={columns}
+            getRowId={(row) => row.chargerID}
+            loading={loading}
+            autoHeight={true}
+            disableColumnMenu
+            pageSizeOptions={[5, 10]}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+          />
         </div>
       </div>
     </Fragment>
