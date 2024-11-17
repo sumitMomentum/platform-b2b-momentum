@@ -3,7 +3,7 @@ import { classNames } from "@/utils/facades/serverFacades/strFacade";
 import { useSidebarState } from "@/states/ui/sidebarState";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   List,
   ListItem,
@@ -47,8 +47,8 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
     setLinks(updatedLinks);
   }, [navigation, pathName]);
 
-  const handleClick = (href: string) => {
-    toggleSidebarMenu(); // Toggle the sidebar menu
+  const handleListItemClick = (href: string) => {
+    // toggleSidebarMenu(); // Toggle the sidebar menu
     router.push(href); // Use router.push for navigation
   };
 
@@ -63,14 +63,15 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
             <List>
               {section.items.map((item) => (
                 <ListItemButton
+                  selected={item.href === pathName.replace("/en", "")}
                   key={item.name}
                   component="div"
-                  onClick={() => handleClick(item.href)} // Use the optimized click handler
-                  className={classNames(
-                    item.href === pathName
-                      ? "bg-main-selected text-primary-selected"
-                      : "bg-main-hover"
-                  )}
+                  onClick={(event) => handleListItemClick(item.href)}
+                  sx={{
+                    "&& .Mui-selected": {
+                      backgroundColor: "pink",
+                    },
+                  }}
                 >
                   <ListItemIcon>
                     <item.icon

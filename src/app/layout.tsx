@@ -7,7 +7,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { default as NextIntlClientProvider } from "next-intl";
 import React from "react";
 import SuspenseClerk from "@/components/suspenseSkeleton/SuspenseClerk";
-// import { LoadingProvider } from "@/contexts/LoadingContext";
 
 const inter = Inter({ subsets: ["latin"] });
 

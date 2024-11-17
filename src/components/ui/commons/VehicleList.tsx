@@ -6,7 +6,6 @@ import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import React from "react";
-// import { allVehicleDataLoadingContext } from "@/app/[locale]/(admin)/home/page";
 
 const columns = [
   { field: "vin", headerName: "VIN", flex: 1 },
@@ -44,7 +43,6 @@ const VehicleList = (props) => {
 
     getVehicles();
   }, [vehicles]);
-  //  const { loading, startLoading, stopLoading } = useContext(allVehicleDataLoadingContext);
 
   const handleRowClickEvent: GridEventListener<"rowClick"> = (
     params, // GridRowParams
