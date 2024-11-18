@@ -25,7 +25,6 @@ export default function MarketingPage() {
   const [mounted, setMounted] = React.useState(false);
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
 
-
   // This code only runs on the client side, to determine the system color preference
   React.useEffect(() => {
     setMounted(true);

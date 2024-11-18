@@ -7,7 +7,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { default as NextIntlClientProvider } from "next-intl";
 import React from "react";
 import SuspenseClerk from "@/components/suspenseSkeleton/SuspenseClerk";
-
+import { PaletteMode, ThemeProvider } from "@mui/material/styles";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import customTheme from "@/theme/customTheme";
 const inter = Inter({ subsets: ["latin"] });
 
 export default async function RootLayout(props: {
@@ -15,10 +17,9 @@ export default async function RootLayout(props: {
   params: Promise<{ locale: string }>;
 }) {
   const params = await props.params;
-
   const { locale } = params;
-
   const { children } = props;
+  const [mode, setMode] = React.useState<PaletteMode>("light");
 
   return (
     <ClerkProvider>
@@ -28,9 +29,11 @@ export default async function RootLayout(props: {
             <SuspenseClerk />
           </ClerkLoading>
           <ClerkLoaded> */}
-            {/* <LoadingProvider> */}
-            {children}
-            {/* </LoadingProvider> */}
+          {/* <LoadingProvider> */}
+          <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+            <ThemeProvider theme={customTheme}>{children}</ThemeProvider>
+          </AppRouterCacheProvider>
+          {/* </LoadingProvider> */}
           {/* </ClerkLoaded> */}
         </body>
         <Analytics />
