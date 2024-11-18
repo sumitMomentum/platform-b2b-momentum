@@ -34,15 +34,19 @@ export default function RootLayout(props: {
   React.useEffect(() => {
     // Check if there is a preferred mode in localStorage
     const savedMode = localStorage.getItem("themeMode") as PaletteMode | null;
-    if (savedMode) {
-      setMode(savedMode);
-    } else {
-      // If no preference is found, it uses system preference
-      const systemPrefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      setMode(systemPrefersDark ? "dark" : "light");
-    }
+
+
+    // Intentionally made dark mode permanant
+    
+    // if (savedMode) {
+    //   setMode(savedMode);
+    // } else {
+    //   // If no preference is found, it uses system preference
+    //   const systemPrefersDark = window.matchMedia(
+    //     "(prefers-color-scheme: dark)"
+    //   ).matches;
+    //   setMode(systemPrefersDark ? "dark" : "light");
+    // }
   }, []);
 
   const MPTheme = createTheme(getMPTheme(mode));
@@ -68,7 +72,7 @@ export default function RootLayout(props: {
           <ClerkLoaded> */}
           {/* <LoadingProvider> */}
           <AppRouterCacheProvider>
-            <ThemeProvider theme={true ? MPTheme : defaultTheme}>
+            <ThemeProvider theme={showCustomTheme ? MPTheme : defaultTheme}>
               {children}
             </ThemeProvider>
           </AppRouterCacheProvider>
