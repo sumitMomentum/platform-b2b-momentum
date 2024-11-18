@@ -73,11 +73,8 @@ const TripListComponent = ({ tripSessions, loading }: { tripSessions: any[]; loa
         loading={loading}
         rows={tripSessions}  // Use the tripSessions prop directly
         columns={columns}
-        pageSize={paginationModel.pageSize}
-        page={paginationModel.page}
         pagination
         getRowId={(row) => row.TripID} // Ensure TripID is unique for rows
-        rowsPerPageOptions={[5, 10, 25]}
         sx={{ border: 0 }}
       />
     </Paper>

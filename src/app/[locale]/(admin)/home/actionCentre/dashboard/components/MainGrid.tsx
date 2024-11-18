@@ -36,9 +36,10 @@ const aggregateData = (data) => {
     // Calculate time to close (in hours)
     const createdDate = new Date(action.createdDateTime);
     const closedDate = new Date(action.closedDateTime);
-    const timeToClose = (closedDate - createdDate) / (1000 * 60 * 60); // Convert ms to hours
+    const timeToClose = (closedDate.getTime() - createdDate.getTime()) / (1000 * 60 * 60); // Convert ms to hours
+ // Convert ms to hours
     totalTimeToClose += timeToClose || 0;
-  });
+  }); 
 
   // Calculate averages
   const avgSeverity = totalSeverityValue / totalActions || 0;
@@ -144,7 +145,7 @@ export default function MainGrid() {
 
         {/* Actions Closed Over Time Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <ActionsClosedOverTimeChart />
+          <ActionsClosedOverTimeChart month={4} year={2024} />
         </Grid>
 
         {/* Severity Distribution Chart */}

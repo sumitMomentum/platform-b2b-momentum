@@ -67,7 +67,7 @@ const Page = () => {
             rows={chargerMasterData}
             columns={columns}
             getRowId={(row) => row.chargerID}
-            loading={loading}
+            loading={isLoading}
             autoHeight={true}
             disableColumnMenu
             pageSizeOptions={[5, 10]}

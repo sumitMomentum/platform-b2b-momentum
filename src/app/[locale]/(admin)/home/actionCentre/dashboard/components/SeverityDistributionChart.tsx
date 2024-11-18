@@ -79,23 +79,22 @@ export default function SeverityDistributionChart({ actionsData = [] }) {
           borderRadius={8}
           colors={colorPalette}
           xAxis={[{
-            scaleType: 'band',
-            categoryGapRatio: 0.5,
-            data: ['Low', 'Medium', 'High'],
+              scaleType: 'band',
+              data: ['Low', 'Medium', 'High'],
           }]}
           series={[{
-            id: 'severity',
-            label: 'Severity',
-            data: [low, medium, high],  // Data for severity counts
-            stack: 'A',
+              id: 'severity',
+              label: 'Severity',
+              data: [low, medium, high],  // Data for severity counts
+              stack: 'A',
           }]}
           height={250}
           margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}
           slotProps={{
-            legend: {
-              hidden: true,
-            },
+              legend: {
+                  hidden: true,
+              },
           }}
         />
       </CardContent>

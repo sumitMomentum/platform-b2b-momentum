@@ -51,7 +51,7 @@ export default function SavingsDistributionChart({ savingsData }: { savingsData:
           xAxis={[
             {
               scaleType: 'band',
-              categoryGapRatio: 0.5,
+              // categoryGapRatio: 0.5,
               data: vehicleData.map(item => item.label),
             },
           ]}

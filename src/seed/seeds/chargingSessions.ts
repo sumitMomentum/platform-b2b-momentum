@@ -1,4 +1,4 @@
-export const data = [
+export const chargingSessions = [
   {
     "TripID": 256636,
     "DteStart": 179,

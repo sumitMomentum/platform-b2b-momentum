@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 import chalk from "chalk";
-import { data as chargingSessions } from "./seeds/chargingSessions";
-import { data as tripSessions } from "./seeds/vehicleTripSessions";
+import { chargingSessions } from "./seeds/chargingSessions";
+import { vehicleTripSessions } from "./seeds/vehicleTripSessions";
 import { benefits } from "./seeds/benefits";
 import { users } from "./seeds/users";
 import { vehicleDetails } from "./seeds/vehicleDetails";
@@ -50,7 +50,7 @@ async function seedChargingSessions(createdChargers, createdVehicles) {
     if (charger && vehicle) {
       await prisma.chargingSession.create({
         data: {
-          TripId: row.TripID,
+          TripID: row.TripID,
           DteStart: row.DteStart,
           DteEnd: row.DteEnd,
           BatteryAtStart: row.BatteryAtStart,
@@ -69,7 +69,7 @@ async function seedChargingSessions(createdChargers, createdVehicles) {
 }
 
 async function seedVehicleTripSessions(createdVehicles) {
-  for (const row of tripSessions) {
+  for (const row of vehicleTripSessions) {
     const vehicle = createdVehicles.find(vehicle => vehicle.vehicleId === row.vehicleId);
     if (vehicle) {
       await prisma.vehicleTripSession.create({

@@ -5,8 +5,24 @@ import PageName from "@/components/ui/commons/PageName";
 import ChargingList from "@/components/ui/componenets/ChargingListComponent";
 import { Fragment, useEffect, useState } from "react";
 
-const ChargingSessionsPage = () => {
-  const [chargingSessions, setChargingSessions] = useState([]);
+// Define the interface for the Charging Session
+interface ChargingSession {
+  id: number;
+  TripID: number;
+  DteStart: string;
+  DteEnd: string;
+  BatteryAtStart: number;
+  BatteryAtEnd: number;
+  DwUpdated: string; // ISO date string
+  DiffInBat: number;
+  ChargingType: string;
+  DiffInDte: number;
+  vehicleId: string;
+  chargerId: number;
+}
+
+const ChargingSessionsPage: React.FC = () => {
+  const [chargingSessions, setChargingSessions] = useState<ChargingSession[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -14,7 +30,7 @@ const ChargingSessionsPage = () => {
       try {
         const data = await getChargingSessions();
         if (data && data.sessions) {
-          console.log(data.sessions)
+          console.log(data.sessions);
           setChargingSessions(data.sessions);
         } else {
           console.warn("Expected data to contain sessions:", data);
@@ -32,7 +48,7 @@ const ChargingSessionsPage = () => {
   return (
     <Fragment>
       <PageName
-        name={"Charging Sessions"}
+        name="Charging Sessions"
         breadcrumbs={[
           { name: "Home", href: "/home" },
           { name: "Charging Sessions", href: "/home/chargingSessions" },

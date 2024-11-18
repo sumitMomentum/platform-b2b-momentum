@@ -25,7 +25,7 @@ const MainGrid = () => {
         const averageSavings = (totalSavings / response.length) || 0;
         const totalRangeIncrease = response.reduce((acc, item) => acc + item.rangeIncreaseMonthly, 0);
 
-        const formattedStatCardData = [
+        const formattedStatCardData: StatCardProps[] = [
           {
             title: 'Total Savings',
             value: `${totalSavings.toFixed(2)} USD`,

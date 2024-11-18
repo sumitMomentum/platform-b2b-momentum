@@ -17,12 +17,8 @@ type ActionItem = {
   closedDateTime?: string; // Date and time the action was closed
 };
 
-interface ActionListComponentProps {
-  initialActionItems: ActionItem[];
-}
-
-const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialActionItems }) => {
-  const [actionItems, setActionItems] = useState<ActionItem[]>(initialActionItems);
+const ActionListComponent = () => {
+  const [actionItems, setActionItems] = useState<ActionItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -37,12 +33,8 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
       }
     };
 
-    if (initialActionItems.length === 0) {
-      fetchData();
-    } else {
-      setLoading(false);
-    }
-  }, [initialActionItems]);
+    fetchData();
+  }, []); // Empty dependency array to fetch data on component mount
 
   const columns: GridColDef[] = [
     { field: 'vehicleId', headerName: 'Vehicle ID', flex: 1 },

@@ -1,4 +1,4 @@
-export const data = [
+export const vehicleTripSessions = [
   {
     "TripID": 2402765,
     "DteStart": 177,

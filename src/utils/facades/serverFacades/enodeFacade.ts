@@ -1148,7 +1148,7 @@ export const handleEvent = async (event: any) => {
         const charger = event.charger;
 
         const deletedCharger = await prisma.chargerMaster.delete({
-          where: { chargerID: charger.id },
+          where: { chargerId: charger.id },
         });
 
         console.log(chalk.green("✅ Charger deleted successfully"));
