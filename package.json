@@ -72,6 +72,7 @@
     "react-slick": "^0.30.1",
     "react-typewriter-effect": "^1.1.0",
     "react-use": "^17.5.1",
+    "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",
     "sonner": "^1.7.0",
     "stripe": "^14.10.0",
