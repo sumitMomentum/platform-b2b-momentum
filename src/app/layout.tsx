@@ -1,3 +1,5 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -5,21 +7,56 @@ import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { default as NextIntlClientProvider } from "next-intl";
-import React from "react";
 import SuspenseClerk from "@/components/suspenseSkeleton/SuspenseClerk";
-import { PaletteMode, ThemeProvider } from "@mui/material/styles";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-import customTheme from "@/theme/customTheme";
+import getMPTheme from "@/themes/getMPTheme";
 const inter = Inter({ subsets: ["latin"] });
+import { PaletteMode, ThemeProvider, createTheme } from "@mui/material/styles";
 
-export default async function RootLayout(props: {
+export default function RootLayout(props: {
   children: ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const params = await props.params;
-  const { locale } = params;
+  const [locale, setLocale] = React.useState<string | undefined>(undefined); // State for locale
+
+  React.useEffect(() => {
+    const fetchParams = async () => {
+      const params = await props.params; // Await the params promise
+      setLocale(params.locale); // Set the locale state
+    };
+    fetchParams();
+  }, [props.params]);
+
   const { children } = props;
   const [mode, setMode] = React.useState<PaletteMode>("light");
+  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+
+  React.useEffect(() => {
+    // Check if there is a preferred mode in localStorage
+    const savedMode = localStorage.getItem("themeMode") as PaletteMode | null;
+    if (savedMode) {
+      setMode(savedMode);
+    } else {
+      // If no preference is found, it uses system preference
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setMode(systemPrefersDark ? "dark" : "light");
+    }
+  }, []);
+
+  const MPTheme = createTheme(getMPTheme(mode));
+  const defaultTheme = createTheme({ palette: { mode } });
+
+  const toggleColorMode = () => {
+    const newMode = mode === "dark" ? "light" : "dark";
+    setMode(newMode);
+    localStorage.setItem("themeMode", newMode); // Save the selected mode to localStorage
+  };
+
+  const toggleCustomTheme = () => {
+    setShowCustomTheme((prev) => !prev);
+  };
 
   return (
     <ClerkProvider>
@@ -30,8 +67,10 @@ export default async function RootLayout(props: {
           </ClerkLoading>
           <ClerkLoaded> */}
           {/* <LoadingProvider> */}
-          <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-            <ThemeProvider theme={customTheme}>{children}</ThemeProvider>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={true ? MPTheme : defaultTheme}>
+              {children}
+            </ThemeProvider>
           </AppRouterCacheProvider>
           {/* </LoadingProvider> */}
           {/* </ClerkLoaded> */}
