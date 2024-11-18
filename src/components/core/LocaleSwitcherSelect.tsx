@@ -12,7 +12,7 @@ type Props = {
 
 export default function LocaleSwitcherSelect({
   children,
-  defaultValue,
+  defaultValue, 
   label
 }: Props) {
   const router = useRouter();
