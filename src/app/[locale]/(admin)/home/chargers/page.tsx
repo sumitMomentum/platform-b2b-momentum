@@ -3,6 +3,9 @@
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 import PageName from "@/components/ui/commons/PageName";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { join, parse } from "path";
+import { split } from "postcss/lib/list";
+import React from "react";
 import { Fragment, useEffect, useState } from "react";
 
 interface ChargerRow {
@@ -29,25 +32,25 @@ const Page = () => {
     { field: "chargingPoint", headerName: "Charging Point", width: 130 },
   ];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getAllChargerMasterData();
-        console.log("from the component:", data);
-        if (Array.isArray(data)) {
-          setChargerMasterData(data);
-        } else {
-          console.warn("Expected data to be an array:", data);
-        }
-      } catch (error) {
-        console.error("Error fetching charger master data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getAllChargerMasterData();
+  //       console.log("from the component:", data);
+  //       if (Array.isArray(data)) {
+  //         setChargerMasterData(data);
+  //       } else {
+  //         console.warn("Expected data to be an array:", data);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching charger master data:", error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <Fragment>
@@ -59,21 +62,21 @@ const Page = () => {
         ]}
       />
       <div className="container">
-        <div className="max-h-screen overflow-y-auto">
-          <div style={{ height: 600, width: "100%" }}>
-            <DataGrid
-              rows={chargerMasterData}
-              columns={columns}
-              loading={isLoading}
-              autoHeight
-              initialState={{
-                pagination: {
-                  paginationModel: { page: 0, pageSize: 10 },
-                },
-              }}
-              pageSizeOptions={[5, 10]}
-            />
-          </div>
+        <div className="max-h-screen overflow-y-auto p-4">
+          <DataGrid
+            rows={chargerMasterData}
+            columns={columns}
+            getRowId={(row) => row.chargerID}
+            loading={loading}
+            autoHeight={true}
+            disableColumnMenu
+            pageSizeOptions={[5, 10]}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+          />
         </div>
       </div>
     </Fragment>

@@ -2,8 +2,17 @@
 import { classNames } from "@/utils/facades/serverFacades/strFacade";
 import { useSidebarState } from "@/states/ui/sidebarState";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import { map } from "svix/dist/openapi/rxjsStub";
+import { current } from "tailwindcss/colors";
 
 interface NavigationSection {
   sectionName: string;
@@ -18,37 +27,30 @@ type NavigationItem = {
 };
 
 const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
+  const router = useRouter();
   const { toggleSidebarMenu } = useSidebarState(({ toggleSidebarMenu }) => ({
     toggleSidebarMenu,
   }));
 
   const pathName = usePathname();
-  let seg = pathName.split("/");
-  let pathNameWithoutLand = "/" + seg.slice(2).join("/");
-  const [links, setLinks] = useState<NavigationSection[]>([]);
-  console.log(pathNameWithoutLand);
+  const [links, setLinks] = useState<NavigationSection[]>(navigation);
 
   useEffect(() => {
-    const linksWithStatus = navigation.map((section) => {
-      return {
-        ...section,
-        items: section.items.map((item) => {
-          return {
-            ...item,
-            current: item.href === location.pathname,
-          };
-        }),
-      };
-    });
-
-    setLinks(linksWithStatus);
-
-    // // Check if the new links are different from the current links
-    // if (JSON.stringify(linksWithStatus) !== JSON.stringify(links)) {
-    //   setLinks(linksWithStatus);
-    // }
-    // }, []);
+    // Update links based on the current pathname
+    const updatedLinks = navigation.map((section) => ({
+      ...section,
+      items: section.items.map((item) => ({
+        ...item,
+        current: item.href === pathName,
+      })),
+    }));
+    setLinks(updatedLinks);
   }, [navigation, pathName]);
+
+  const handleListItemClick = (href: string) => {
+    // toggleSidebarMenu(); // Toggle the sidebar menu
+    router.push(href); // Use router.push for navigation
+  };
 
   return (
     <li>
@@ -58,33 +60,34 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
             <span className="text-xs font-semibold leading-6 text-primary">
               {section.sectionName}
             </span>
-            <ul role="list" className="-mx-2 mt-2 space-y-1">
+            <List>
               {section.items.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    onClick={() => toggleSidebarMenu()}
-                    className={classNames(
-                      item.href === pathNameWithoutLand
-                        ? "bg-main-selected text-primary-selected"
-                        : " bg-main-hover",
-                      "group flex gap-x-3 rounded-md p-2  text-primary"
-                    )}
-                  >
+                <ListItemButton
+                  selected={item.href === pathName.replace("/en", "")}
+                  key={item.name}
+                  component="div"
+                  onClick={(event) => handleListItemClick(item.href)}
+                  sx={{
+                    "&& .Mui-selected": {
+                      backgroundColor: "pink",
+                    },
+                  }}
+                >
+                  <ListItemIcon>
                     <item.icon
                       className={classNames(
-                        item.href === pathNameWithoutLand
+                        item.href === pathName
                           ? "text-primary-selected"
                           : "text-primary",
                         "h-6 w-6 shrink-0 text-primary-hover"
                       )}
                       aria-hidden="true"
                     />
-                    <span>{item.name}</span>
-                  </Link>
-                </li>
+                  </ListItemIcon>
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
               ))}
-            </ul>
+            </List>
           </div>
         ))}
       </ul>

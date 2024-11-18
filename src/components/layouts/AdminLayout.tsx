@@ -4,6 +4,7 @@ import AdminSidebar from "../ui/AdminSidebar";
 import { getUserNotificationsUnreadCount } from "@/actions/global/notificationsModule/get-user-notifications";
 import FloatingWhatsAppButton from "../core/FloatingWhatsAppButton";
 import SuspenseTable from "../suspenseSkeleton/SuspenseTable";
+import SuspenseNavigation from "../suspenseSkeleton/SuspenseNavigation";
 
 export default async function AdminLayout({
   children,

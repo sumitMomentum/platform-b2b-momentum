@@ -43,7 +43,7 @@ const ConditionChart = () => {
         { label: "Satisfactory", value: conditionCounts.Satisfactory },
         { label: "Good", value: conditionCounts.Good },
       ]);
-      setLoading(false);
+      vehicles && setLoading(false);
     }
 
     fetchData();

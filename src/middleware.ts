@@ -276,6 +276,7 @@ const isPublicRoute = createRouteMatcher([
   "/:locale/sign-in",
   "/:locale/api/vehicle/:vehicleId",
   "/:locale/api/vehicle/trips",
+  "/:locale/api/vehicle/list",
   "/:locale/api/vehicle",
   "/:locale/api/benefits",
   "/:locale/api/charger/sessions",
