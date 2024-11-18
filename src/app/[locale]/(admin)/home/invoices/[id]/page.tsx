@@ -11,11 +11,12 @@ export const metadata: Metadata = {
   title: "View Invoice Details",
 };
 
-const AdminViewInvoiceDetails = async ({
-  params,
-}: {
-  params: { id: string };
-}) => {
+const AdminViewInvoiceDetails = async (
+  props: {
+    params: Promise<{ id: string }>;
+  }
+) => {
+  const params = await props.params;
   const invoiceStr = params.id || "";
   const invoiceId = parseInt(invoiceStr);
   const invoice = await getInvoiceDetails(invoiceId);
@@ -23,7 +24,7 @@ const AdminViewInvoiceDetails = async ({
 
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <PageName
           name={t("pages.invoices.viewInvoiceDetails")}
           breadcrumbs={[
@@ -37,7 +38,7 @@ const AdminViewInvoiceDetails = async ({
         />
 
         <ViewInvoiceDetails invoice={invoice as IInvoice} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

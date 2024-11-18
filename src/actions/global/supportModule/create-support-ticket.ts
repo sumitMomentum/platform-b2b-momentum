@@ -1,16 +1,16 @@
 "use server";
 import { notifyToSuperAdmin } from "@/utils/facades/serverFacades/notificationFacade";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { PublicationContentType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import prisma from '@/lib/db';
+import prisma from "@/lib/db";
 
 export const createSupportTickets = async (args: any) => {
   await prisma.$transaction(
     async (tx: any) => {
       try {
-        const userClerk = auth();
+        const userClerk = await auth();
 
         if (!userClerk) throw new Error("client clerk not found");
 

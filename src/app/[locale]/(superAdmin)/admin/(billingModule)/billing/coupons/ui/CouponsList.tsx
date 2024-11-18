@@ -45,7 +45,7 @@ const CouponsList = async ({
 
   return (
     <div>
-      <Suspense fallback={<PageLoader />}>
+      {/* <Suspense fallback={<PageLoader />}> */}
         {data.length === 0 ? (
           <div className="flex justify-center items-center h-96">
             <NotFound message="No coupons found" />
@@ -169,7 +169,7 @@ const CouponsList = async ({
             </div>
           </div>
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

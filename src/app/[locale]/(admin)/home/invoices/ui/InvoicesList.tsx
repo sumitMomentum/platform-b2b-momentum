@@ -45,13 +45,13 @@ const InvoicesList = async ({
 
   return (
     <div>
-      <Suspense
+      {/* <Suspense
         fallback={
           <div>
             <PageLoader />
           </div>
         }
-      >
+      > */}
         {data.length === 0 ? (
           <div className="flex justify-center items-center h-96">
             <NotFound message={t("notInvoiceFound")} />
@@ -140,24 +140,24 @@ const InvoicesList = async ({
               </TableBody>
             </Table>
             <div className="flex mt-7 justify-between">
-              <Suspense
+              {/* <Suspense
                 fallback={
                   <div>
                     <PageLoader />
                   </div>
                 }
-              >
+              > */}
                 <Pagination
                   offset={offset}
                   dataLength={data.length}
                   totalCount={totalCount}
                   totalPages={totalPages}
                 />
-              </Suspense>
+              {/* </Suspense> */}
             </div>
           </div>
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

@@ -1,10 +1,10 @@
 "use server";
 import prisma from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
 
 export const getUserDB = async (): Promise<any> => {
-  const userClerk = auth();
+  const userClerk = await auth();
 
   if (!userClerk) throw new Error("client clerk not found");
 

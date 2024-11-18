@@ -6,15 +6,16 @@ export const metadata: Metadata = {
   title: "Notificaciones",
 };
 
-const NotificationsPage = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-    paymentStatus?: string;
-  };
-}) => {
+const NotificationsPage = async (
+  props: {
+    searchParams?: Promise<{
+      query?: string;
+      page?: string;
+      paymentStatus?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
 

@@ -19,11 +19,13 @@
 2. Create an application (give it any relevant name).
 3. Enable organization creation under **Configure > Organization Settings**.
 4. Customize the session token under **Configure > Sessions**, click **Edit**, and set the value as:
+
    ```json
    {"metadata": "{{user.public_metadata}}"}
    ```
 5. Create a webhook under **Configure > Webhooks**.
 6. Set the custom URL to:
+
    ```text
    https://<Serverdomain>/en/api/clerk
    ```
@@ -63,9 +65,9 @@ Set the following environment variables in your `.env` file:
   mysql://host_name:host_password@localhost:port_number/db_name
   ```
 - `NEXT_PUBLIC_DEMO_MODE`Set to `true`.
-- `NEXT_PUBLIC_CLERK_WEBHOOK_SECRET`Copy the **Signing Secret** from **Clerk > Configure > Webhooks**.
+- `CLERK_WEBHOOK_SECRET`Copy the **Signing Secret** from **Clerk > Configure > Webhooks**.
 - `NEXT_PUBLIC_ROOT_DOMAIN`Copy your NGROK domain (the text between `--domain=` and `port_number`).
-- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`Copy from **Clerk > Developers > API Keys**.
+- `CLERK_PUBLISHABLE_KEY`Copy from **Clerk > Developers > API Keys**.
 - `CLERK_SECRET_KEY`Copy from **Clerk > Developers > API Keys**.
 - `ENODE_OAUTH_URL`Copy from **Enode Dashboard > client_name > Settings > API Credentials**.
 - `ENODE_CLIENT_ID`Copy from **Enode Dashboard > client_name > Settings > API Credentials**.
@@ -127,7 +129,6 @@ Open the terminal and run:
 ```bash
 npm run dev
 ```
-
 
 # Prisma Migration Guide
 

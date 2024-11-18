@@ -9,13 +9,14 @@ export const metadata: Metadata = {
   title: "Edit Coupon",
 };
 
-const SuperAdminBillingModuleEditPlanPage = async ({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) => {
+const SuperAdminBillingModuleEditPlanPage = async (
+  props: {
+    params: Promise<{
+      id: string;
+    }>;
+  }
+) => {
+  const params = await props.params;
   const values = await getCouponDetails(Number(params.id));
 
   return (
@@ -34,9 +35,9 @@ const SuperAdminBillingModuleEditPlanPage = async ({
           },
         ]}
       />
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <UpsertCoupon modelId={Number(params.id)} values={values} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

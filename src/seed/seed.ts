@@ -14,6 +14,8 @@ import { vehicleChargingDetails } from "./seeds/vehiclesChargingDetails";
 import { vehicleDetails } from "./seeds/vehicleDetails";
 import { users } from "./seeds/users";
 import chalk from "chalk";
+import { chargingSessions } from './seeds/chargingSession'
+import { tripSessions } from "./seeds/tripSession";
 
 dotenv.config();
 const prisma = new PrismaClient();
@@ -44,6 +46,7 @@ const log = {
 };
 
 async function main() {
+  await prisma.$connect();
   try {
     log.header("Starting Database Seeding");
     log.info("Checking table states...");
@@ -66,6 +69,8 @@ async function main() {
       actionCount,
       vehicleChargingDetailCount,
       usersCount,
+      chargingSessionCount,
+      tripSessionCount,
     ] = await Promise.all([
       prisma.permission.count(),
       prisma.module.count(),
@@ -83,6 +88,8 @@ async function main() {
       prisma.action.count(),
       prisma.vehicleChargingDetail.count(),
       prisma.user.count(),
+      prisma.chargingSession.count(),
+      prisma.vehicleTripSession.count(),
     ]);
 
     log.subHeader("Starting Seeding Process");
@@ -189,6 +196,20 @@ async function main() {
       if (actionCount === 0) {
         await tx.action.createMany({ data: vehicleActions });
         log.success("Seeded vehicle actions");
+      } else {
+        log.warning("Actions table not empty, skipping...");
+      }
+
+      if (chargingSessionCount === 0) {
+        await tx.chargingSession.createMany({ data: chargingSessions });
+        log.success("Seeded chargingSessions actions");
+      } else {
+        log.warning("Actions table not empty, skipping...");
+      }
+
+      if (tripSessionCount === 0) {
+        await tx.VehicleTripSession.createMany({ data: tripSessions });
+        log.success("Seeded tripSessions actions");
       } else {
         log.warning("Actions table not empty, skipping...");
       }

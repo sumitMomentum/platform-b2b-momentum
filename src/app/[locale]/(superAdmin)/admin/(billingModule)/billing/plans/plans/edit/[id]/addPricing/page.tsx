@@ -11,18 +11,19 @@ export const metadata: Metadata = {
   title: "Plan New Pricing",
 };
 
-const PlanNewPricing = async ({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) => {
+const PlanNewPricing = async (
+  props: {
+    params: Promise<{
+      id: string;
+    }>;
+  }
+) => {
+  const params = await props.params;
   const plan = await getPlanDetails(Number(params.id));
 
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={4} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={4} />}> */}
         <PageName name={"New Plan Price"} isSubPage={true} />
         <div className="flex items-center py-2 lg:px-7 ">
           <Link href={`/admin/billing/plans/plans/edit/${plan?.id}`}>
@@ -36,7 +37,7 @@ const PlanNewPricing = async ({
             planId: plan?.id.toString(),
           }}
         />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

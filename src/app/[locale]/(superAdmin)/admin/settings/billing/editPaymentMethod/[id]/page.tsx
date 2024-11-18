@@ -7,13 +7,14 @@ import Link from "next/link";
 import { getPaymentMethodDetails } from "@/actions/superAdmin/superAdminBillingModule/get-payment-method-details";
 import UpsertPaymentMethod from "../../ui/UpsertPaymentMethod";
 
-const SuperAdminEditPaymentMethod = async ({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) => {
+const SuperAdminEditPaymentMethod = async (
+  props: {
+    params: Promise<{
+      id: string;
+    }>;
+  }
+) => {
+  const params = await props.params;
   const values = await getPaymentMethodDetails(Number(params.id));
 
   return (
@@ -26,12 +27,12 @@ const SuperAdminEditPaymentMethod = async ({
           </button>
         </Link>
       </div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <UpsertPaymentMethod
           paymentMethodId={Number(params.id)}
           values={values}
         />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

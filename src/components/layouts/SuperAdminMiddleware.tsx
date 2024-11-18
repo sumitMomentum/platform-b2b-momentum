@@ -2,7 +2,7 @@
 import useSuperAdmin from "@/app/hooks/useSuperAdmin";
 import { ReactNode } from "react";
 import ForbiddenPage from "./errors/ForbiddenPage";
-import PageLoader from "../ui/loaders/PageLoader";
+// import PageLoader from "../ui/loaders/PageLoader";
 
 export default function SuperAdminMiddleware({
   children,
@@ -11,13 +11,13 @@ export default function SuperAdminMiddleware({
 }) {
   const { isSuperAdmin, loadingIsSuperAdmin } = useSuperAdmin();
 
-  if (loadingIsSuperAdmin) {
-    return (
-      <div className="p-14">
-        <PageLoader />
-      </div>
-    );
-  }
+  // if (loadingIsSuperAdmin) {
+  //   return (
+  //     <div className="p-14">
+  //       {/* <PageLoader /> */}
+  //     </div>
+  //   );
+  // }
 
   
 

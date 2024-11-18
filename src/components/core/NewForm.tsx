@@ -242,12 +242,12 @@ const NewForm = ({
     return "";
   };
 
-  if (loading)
-    return (
-      <div>
-        <TableLoaderSkeleton count={4} />
-      </div>
-    );
+  // if (loading)
+  //   return (
+  //     <div>
+  //       <TableLoaderSkeleton count={4} />
+  //     </div>
+  //   );
 
   const getFielLabelInErrorCase = (key: string) => {
     //Parse key, if have language support, remove _lang
@@ -275,7 +275,7 @@ const NewForm = ({
                   <li key={index} className="text-red-500">
                     {getFielLabelInErrorCase(key)}:{" "}
                     {errors[key]?.message ? (
-                      <span>{String(errors[key]?.message)}</span>  
+                      <span>{String(errors[key]?.message)}</span>
                     ) : (
                       "Required"
                     )}

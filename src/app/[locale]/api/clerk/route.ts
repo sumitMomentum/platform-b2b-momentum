@@ -7,7 +7,6 @@ export async function POST(request: Request) {
   const payload = await validateClerkRequest(request);
   
   try {
-    
     await handleEventWebhook(payload);
   } catch (error) {
     console.log(error);

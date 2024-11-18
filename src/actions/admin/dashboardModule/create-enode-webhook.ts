@@ -2,7 +2,7 @@
 import { runWebhook } from "@/utils/facades/serverFacades/enodeFacade";
 
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 export const createEnodeWebhook = async () => {
   const userClerk = auth();

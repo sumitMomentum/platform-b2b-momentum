@@ -9,14 +9,15 @@ export const metadata: Metadata = {
   title: "Support",
 };
 
-const SuperAdminSupportPage = ({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) => {
+const SuperAdminSupportPage = async (
+  props: {
+    searchParams?: Promise<{
+      query?: string;
+      page?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
 
@@ -30,12 +31,12 @@ const SuperAdminSupportPage = ({
         ]}
       />
       <Search placeholder="Search for ticket ID, user name, organization or subject" />
-      <Suspense
+      {/* <Suspense
         key={query + Math.random}
         fallback={<TableLoaderSkeleton count={10} />}
-      >
+      > */}
         <SuperAdminTicketsList query={query} currentPage={currentPage} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };
