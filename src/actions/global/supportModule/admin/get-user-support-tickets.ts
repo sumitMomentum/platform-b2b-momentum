@@ -1,7 +1,7 @@
 "use server";
 import prisma from "@/lib/db";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { Prisma } from "@prisma/client";
 
 export const getUserSupportTickets = async ({
@@ -15,7 +15,7 @@ export const getUserSupportTickets = async ({
 }) => {
   const { offset, limit } = args;
 
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { userId } = await getUser(userClerk);
 
@@ -69,7 +69,7 @@ export const getUserSupportTickets = async ({
 };
 
 export const getSupportTicketsActivesCount = async () => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { userId } = await getUser(userClerk);
 

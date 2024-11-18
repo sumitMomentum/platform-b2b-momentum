@@ -21,7 +21,7 @@ export const connectCouponWithStripe = async ({
     try {
       const currency = await prisma.adminCurrencies.findFirst({
         where: {
-          code: currencyCode.toLowerCase() ?? "usd",
+          code: currencyCode?.toLowerCase() ?? "usd",
         },
       });
 
@@ -30,7 +30,7 @@ export const connectCouponWithStripe = async ({
       }
 
       let couponPayload: Stripe.CouponCreateParams = {
-        currency: currencyCode.toLowerCase() ?? "usd",
+        currency: currencyCode?.toLowerCase() ?? "usd",
         name: coupon.name,
       };
 
@@ -48,12 +48,14 @@ export const connectCouponWithStripe = async ({
         }
       );
 
-
       if (stripeCoupon) {
         const couponSetting = await prisma.couponSettings.findFirst({
           where: {
             couponId: coupon.id,
-            name: "stripeCouponId_" + currencyCode.toLowerCase() ?? "usd",
+            name:
+              "stripeCouponId_" + currencyCode
+                ? "usd"
+                : currencyCode.toLowerCase(),
           },
         });
 
@@ -66,7 +68,10 @@ export const connectCouponWithStripe = async ({
           },
           create: {
             couponId: coupon.id,
-            name: "stripeCouponId_" + currencyCode.toLowerCase() ?? "usd",
+            name:
+              "stripeCouponId_" + currencyCode
+                ? "usd"
+                : currencyCode.toLowerCase(),
             value: stripeCoupon.id,
           },
         });

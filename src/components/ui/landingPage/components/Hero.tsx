@@ -15,7 +15,7 @@ import { styled } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
 import { breakpoints } from "@radix-ui/themes/dist/esm/props/prop-def.js";
 import { error, log } from "console";
-import { send, title } from "process";
+import { env, send, title } from "process";
 import { toast } from "sonner";
 import { text } from "stream/consumers";
 import emailjs from "emailjs-com";
@@ -79,10 +79,10 @@ export default function Hero() {
     // Sending email using EmailJS
     emailjs
       .send(
-        "service_f4p1c9i", // Replace with your EmailJS service ID
-        "template_c7efne5", // Replace with your EmailJS template ID
+        process.env.EMAILJS_SERVICE_ID!,
+        process.env.EMAILJS_TEMPLATE_ID!,
         templateParams,
-        "D0kRRX7ctwlY-_SHz" // Replace with your EmailJS public key
+        process.env.EMAILJS_PUBLIC_KEY!
       )
       .then(
         (response) => {
@@ -167,6 +167,7 @@ export default function Hero() {
           </Typography>
           {/* increase font size */}
           <Typography
+            component="div"
             sx={{
               textAlign: "center",
               color: "text.secondary",

@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   title: "View Ticket",
 };
 
-const SuperAdminViewTicket = async ({ params }: { params: { id: string } }) => {
+const SuperAdminViewTicket = async (props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   const ticketIdStr = params.id || "";
   const ticketId = parseInt(ticketIdStr);
   const ticket = await getSupportTicketDetails(ticketId);

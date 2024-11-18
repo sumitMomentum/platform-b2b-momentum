@@ -10,43 +10,39 @@ import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import { Container } from "@mui/material";
 
 const BatteryHealth = () => {
+  const [loading, setLoading] = React.useState(true);
+  const [avgSoH, setavgSoH] = React.useState(0);
+  const [avgDegradation, setavgDegradation] = React.useState(0);
   const vehicles = useVehicleStore((state) => state.vehicles);
-  const setVehicles = useVehicleStore((state) => state.setVehicles);
 
   useEffect(() => {
-    const getVehicles = async () => {
-      if (!vehicles || vehicles.length === 0) {
-        const userVehiclesFromDB = await getUserVehicles();
-        setVehicles(userVehiclesFromDB);
-      }
-    };
+    const avgSoH =
+      vehicles && vehicles.length > 0
+        ? (
+            vehicles.reduce((total, vehicle) => {
+              const sohValue = parseInt(vehicle["soh"]) || 0; // Handle undefined and empty values
+              return total + sohValue;
+            }, 0) / vehicles.length
+          ) // Use the actual length of vehicles
+            .toFixed(2)
+        : "N/A"; // Fallback for when data is not loaded
 
-    getVehicles();
+    const avgDegradation =
+      vehicles && vehicles.length > 0
+        ? (
+            100 -
+            vehicles.reduce((total, vehicle) => {
+              const sohValue = parseInt(vehicle["soh"]) || 0;
+              return total + sohValue;
+            }, 0) /
+              vehicles.length
+          ).toFixed(2)
+        : "N/A"; // Fallback for when data is not loaded
+
+    setLoading(false);
   }, []);
 
   // Safely handle the calculations by checking if vehicles exist
-  const avgSoH =
-    vehicles && vehicles.length > 0
-      ? (
-          vehicles.reduce((total, vehicle) => {
-            const sohValue = parseInt(vehicle["soh"]) || 0; // Handle undefined and empty values
-            return total + sohValue;
-          }, 0) / vehicles.length
-        ) // Use the actual length of vehicles
-          .toFixed(2)
-      : "N/A"; // Fallback for when data is not loaded
-
-  const avgDegradation =
-    vehicles && vehicles.length > 0
-      ? (
-          100 -
-          vehicles.reduce((total, vehicle) => {
-            const sohValue = parseInt(vehicle["soh"]) || 0;
-            return total + sohValue;
-          }, 0) /
-            vehicles.length
-        ).toFixed(2)
-      : "N/A"; // Fallback for when data is not loaded
 
   return (
     <Card>

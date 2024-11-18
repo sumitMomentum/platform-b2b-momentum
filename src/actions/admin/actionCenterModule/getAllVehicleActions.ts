@@ -1,14 +1,17 @@
-import { auth } from "@clerk/nextjs";
+"use server"
+import { auth } from "@clerk/nextjs/server";
 
 export const getAllVehicleActions = async () => {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) {
     throw new Error("Unauthorized");
   }
 
   // Fetch the vehicle actions data from the API
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicleActions`); // Use the correct base URL
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicleActions`
+  ); // Use the correct base URL
 
   if (!response.ok) {
     throw new Error("Failed to fetch vehicle actions data");
@@ -16,8 +19,6 @@ export const getAllVehicleActions = async () => {
 
   return await response.json();
 };
-
-
 
 // export const getVehicleActions =import { ok } from "assert";
 //   try {

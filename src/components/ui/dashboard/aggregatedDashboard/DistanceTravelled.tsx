@@ -14,20 +14,6 @@ import { split } from "postcss/lib/list";
 
 const DistanceTravelled = () => {
   const vehicles = useVehicleStore((state) => state.vehicles);
-  const setVehicles = useVehicleStore((state) => state.setVehicles);
-
-  useEffect(() => {
-    const getVehicles = async () => {
-      // Make getVehicles async
-      if (!vehicles || vehicles.length === 0) {
-        const userVehiclesFromDB = await getUserVehicles();
-        // console.log(userVehiclesFromDB);
-        setVehicles(userVehiclesFromDB);
-      }
-    };
-
-    getVehicles(); // Call the async function
-  }, []);
 
   return (
     <Card>

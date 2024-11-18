@@ -1,5 +1,5 @@
 "use server";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { CouponDuration } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
@@ -13,7 +13,7 @@ export const upsertCoupon = async ({
   modelId?: number;
   payload: any;
 }) => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { permissions } = await getUser(userClerk);
   checkPermission(permissions, scope);

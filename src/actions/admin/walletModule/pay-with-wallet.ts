@@ -2,13 +2,13 @@
 import { makeInvoicePaid } from "@/actions/superAdmin/superAdminBillingModule/make-invoice-paid";
 import prisma from "@/lib/db";
 import { getUser } from "@/utils/facades/serverFacades/userFacade";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { MovementAmountType } from "@prisma/client";
 import { createMovementAmountForUser } from "./create-amount-movement";
 import { revalidatePath } from "next/cache";
 import { calculateInvoiceTotal } from "@/utils/facades/serverFacades/paymentFacade";
 export const payInvoiceWitWallet = async (invoiceId: number) => {
-  const userClerk = auth();
+  const userClerk = await auth();
   if (!userClerk) throw new Error("client clerk not found");
   const { userId } = await getUser(userClerk);
 

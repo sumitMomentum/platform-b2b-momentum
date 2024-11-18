@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { ok } from "assert";
 import chalk from "chalk";
 import { log } from "console";
@@ -11,7 +11,7 @@ import { cache } from "react";
 import { blue, red } from "tailwindcss/colors";
 
 export const getVehicleDashboardData = async (vehicleId: string) => {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) {
     throw new Error("Unauthorized");

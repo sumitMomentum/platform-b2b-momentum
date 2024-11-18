@@ -119,6 +119,7 @@ const AdminHeader = ({
               {/* Profile dropdown */}
               <div className="pr-7">
                 <UserButton
+                  showName
                   appearance={{
                     baseTheme: isDarkTheme ? dark : undefined,
                   }}

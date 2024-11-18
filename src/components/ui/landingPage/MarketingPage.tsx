@@ -22,12 +22,13 @@ import { light } from "@mui/material/styles/createPalette";
 
 export default function MarketingPage() {
   const [mode, setMode] = React.useState<PaletteMode>("light");
+  const [mounted, setMounted] = React.useState(false);
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
-  const MPTheme = createTheme(getMPTheme(mode));
-  const defaultTheme = createTheme({ palette: { mode } });
+
 
   // This code only runs on the client side, to determine the system color preference
   React.useEffect(() => {
+    setMounted(true);
     // Check if there is a preferred mode in localStorage
     const savedMode = localStorage.getItem("themeMode") as PaletteMode | null;
     if (savedMode) {
@@ -40,6 +41,14 @@ export default function MarketingPage() {
       setMode(systemPrefersDark ? "dark" : "light");
     }
   }, []);
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
+
+  const MPTheme = createTheme(getMPTheme(mode));
+  const defaultTheme = createTheme({ palette: { mode } });
 
   const toggleColorMode = () => {
     const newMode = mode === "dark" ? "light" : "dark";

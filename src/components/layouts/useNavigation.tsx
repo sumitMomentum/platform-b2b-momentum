@@ -11,7 +11,7 @@ import {
   StarIcon,
   CalendarDateRangeIcon,
   Battery50Icon,
-  RocketLaunchIcon
+  RocketLaunchIcon,
 } from "@heroicons/react/24/outline";
 
 import { useTranslations } from "next-intl";
@@ -24,48 +24,48 @@ export const useNavigation = () => {
     {
       sectionName: t("general"),
       items: [
-        { name: t("dashboard"), href: "/home", icon: HomeIcon, current: true },
+        { name: t("dashboard"), href: "/home", icon: HomeIcon, current: false },
         {
           name: t("vehicles"),
-          href: "/home/vehicles",
+          href: "/home/vehicles/list",
           icon: TruckIcon,
-          current: true,
+          current: false,
         },
         {
           name: t("actionCentre"),
           href: "/home/actionCentre",
           icon: TicketIcon,
-          current: true,
+          current: false,
         },
         {
           name: t("benefits"),
           href: "/home/benefits",
           icon: StarIcon,
-          current: true,
+          current: false,
         },
         {
           name: t("chargers"),
           href: "/home/chargers",
           icon: BoltIcon,
-          current: true,
+          current: false,
         },
         {
           name: t("scheduling"),
           href: "/home/scheduling",
           icon: CalendarDateRangeIcon,
-          current: true,
+          current: false,
         },
         {
           name: "Charging Sessions",
           href: "/home/chargingSessions",
           icon: Battery50Icon,
-          current: true,
+          current: false,
         },
         {
           name: "Trip Sessions",
           href: "/home/tripSessions",
           icon: RocketLaunchIcon,
-          current: true,
+          current: false,
         },
       ],
     },
