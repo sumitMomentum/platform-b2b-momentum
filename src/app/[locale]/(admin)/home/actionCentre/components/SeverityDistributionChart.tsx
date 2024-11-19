@@ -69,7 +69,7 @@ export default function SeverityDistributionChart({ actionsData = [] }) {
             <Typography variant="h4" component="p">
               {low + medium + high} Actions
             </Typography>
-            <Chip size="small" color="info" label={`+${Math.round((medium + high) / (low + medium + high) * 100)}%`} />
+            <Chip size="small" color="success" label={`+${Math.round((medium + high) / (low + medium + high) * 100)}%`} /> {/* Change Chip color to green */}
           </Stack>
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
             Distribution of severity levels in the actions
