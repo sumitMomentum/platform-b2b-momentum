@@ -29,12 +29,14 @@ const SohChart = ({ dashboardData }) => {
   //   },
   // ]);
 
+  const [color, setColor] = React.useState("#4e79a7");
   const [series] = useState([
     {
       label: "SoH (%)",
-      data: sohArray.length > 0 ? sohArray : Array(xLabels.length).fill(0), }
+      data: sohArray.length > 0 ? sohArray : Array(xLabels.length).fill(0),
+      color: color,
+    },
   ]);
-
   return (
     <LineChart
       width={700}
