@@ -13,7 +13,6 @@ import Features from "./components/Features";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
-import getMPTheme from "./theme/getMPTheme";
 import WhyChooseUs from "./components/WhyChooseUs";
 import Quote1 from "./components/Quote1";
 import Quote2 from "./components/Quote2";

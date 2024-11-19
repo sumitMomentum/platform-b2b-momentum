@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { LineChart } from "@mui/x-charts/LineChart";
+import { chartColorTheme } from "@/themes/ChartPalettes";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const SohChart = ({ dashboardData }) => {
@@ -29,12 +30,10 @@ const SohChart = ({ dashboardData }) => {
   //   },
   // ]);
 
-  const [color, setColor] = React.useState("#4e79a7");
   const [series] = useState([
     {
       label: "SoH (%)",
       data: sohArray.length > 0 ? sohArray : Array(xLabels.length).fill(0),
-      color: color,
     },
   ]);
   return (
@@ -42,6 +41,7 @@ const SohChart = ({ dashboardData }) => {
       width={700}
       height={300}
       series={series}
+      colors={chartColorTheme}
       xAxis={[{ scaleType: "point", data: xLabels }]}
     />
   );
