@@ -3,7 +3,7 @@
 import PageName from "@/components/ui/commons/PageName";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
-import ActionListComponent from './ActionListComponent';
+import ActionListComponent from '../ActionListComponent';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
 import Box from '@mui/material/Box';

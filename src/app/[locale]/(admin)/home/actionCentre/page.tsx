@@ -20,6 +20,7 @@ import {
 } from './theme/customizations';
 import PageName from '@/components/ui/commons/PageName';
 import Button from '@mui/material/Button';
+import ActionListComponent from './ActionListComponent';
 import Link from 'next/link';
 
 const xThemeComponents = {
@@ -30,6 +31,8 @@ const xThemeComponents = {
 };
 
 export default function Page(props: { disableCustomTheme?: boolean }) {
+  const [isTabular, setIsTabular] = React.useState<boolean>(false);
+  const toggleIsTabular = () => { setIsTabular(prevState => !prevState); };
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />
@@ -61,11 +64,17 @@ export default function Page(props: { disableCustomTheme?: boolean }) {
                 { name: "Action Centre", href: "/home/actionCentre" },
               ]}
             />
-            <Link href="/home/actionCentre/tabular" passHref>
-              <Button variant="contained" sx={{ backgroundColor: 'grey' }}>
+            {isTabular ? ( 
+              <Button variant="contained" sx={{ backgroundColor: 'grey' }} onClick={()=>{setIsTabular(false)}}>
+                View Graphically
+              </Button>
+            ) 
+              :
+            ( 
+              <Button variant="contained" color="primary"  onClick={()=>{setIsTabular(true)}}>
                 View Tabular
               </Button>
-            </Link>
+            )}
           </Stack>
           <Stack
             spacing={2}
@@ -76,7 +85,14 @@ export default function Page(props: { disableCustomTheme?: boolean }) {
               mt: { xs: 8, md: 0 },
             }}
           >
-            <MainGrid />
+
+            {isTabular ? ( 
+              <ActionListComponent />
+            ) 
+              :
+            ( 
+              <MainGrid />
+            )}
           </Stack>
         </Box>
       </Box>
