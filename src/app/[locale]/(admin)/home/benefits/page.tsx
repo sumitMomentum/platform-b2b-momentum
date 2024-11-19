@@ -21,6 +21,7 @@ import {
   treeViewCustomizations,
 } from './theme/customizations';
 import PageName from '@/components/ui/commons/PageName';
+import BenefitsListComponent from './BenefitsListComponent';
 
 const xThemeComponents = {
   ...chartsCustomizations,
@@ -30,6 +31,8 @@ const xThemeComponents = {
 };
 
 export default function Page(props: { disableCustomTheme?: boolean }) {
+  const [isTabular, setIsTabular] = React.useState<boolean>(false);
+
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />
@@ -61,11 +64,17 @@ export default function Page(props: { disableCustomTheme?: boolean }) {
                 { name: "Benefits", href: "/benefits" },
               ]}
             />
-            <Link href="/home/benefits/tabular" passHref>
-              <Button variant="contained" sx={{ backgroundColor: 'grey' }}>
+            {isTabular ? ( 
+              <Button variant="contained" onClick={()=>{setIsTabular(false)}} >
+                View Graphically
+              </Button>
+            ) 
+              : 
+            ( 
+              <Button variant="contained" onClick={()=>{setIsTabular(true)}} >
                 View Tabular
               </Button>
-            </Link>
+            )}
           </Stack>
           <Stack
             spacing={2}
@@ -76,7 +85,7 @@ export default function Page(props: { disableCustomTheme?: boolean }) {
               mt: { xs: 8, md: 0 },
             }}
           >
-            <MainGrid />
+            {isTabular ? ( <BenefitsListComponent /> ) : ( <MainGrid /> ) }
           </Stack>
         </Box>
       </Box>
