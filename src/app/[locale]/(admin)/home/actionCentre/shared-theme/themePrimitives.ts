@@ -266,7 +266,7 @@ export const colorSchemes = {
       success: {
         light: green[300],
         main: green[400],
-        dark: green[800],
+        dark: green[700],
       },
       grey: {
         ...gray,
