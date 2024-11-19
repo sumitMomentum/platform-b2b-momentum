@@ -2,11 +2,8 @@
 
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 import PageName from "@/components/ui/commons/PageName";
-import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { join, parse } from "path";
-import { split } from "postcss/lib/list";
-import React from "react";
-import { Fragment, useEffect, useState } from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import React, { Fragment, useEffect, useState } from "react";
 
 interface ChargerRow {
   id: number;
@@ -32,25 +29,25 @@ const Page = () => {
     { field: "chargingPoint", headerName: "Charging Point", width: 130 },
   ];
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await getAllChargerMasterData();
-  //       console.log("from the component:", data);
-  //       if (Array.isArray(data)) {
-  //         setChargerMasterData(data);
-  //       } else {
-  //         console.warn("Expected data to be an array:", data);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching charger master data:", error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAllChargerMasterData();
+        console.log("from the component:", data);
+        if (Array.isArray(data)) {
+          setChargerMasterData(data);
+        } else {
+          console.warn("Expected data to be an array:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching charger master data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   return (
     <Fragment>
@@ -66,7 +63,7 @@ const Page = () => {
           <DataGrid
             rows={chargerMasterData}
             columns={columns}
-            getRowId={(row) => row.chargerID}
+            getRowId={(row) => row.id}  // Ensure the row ID is unique
             loading={isLoading}
             autoHeight={true}
             disableColumnMenu
