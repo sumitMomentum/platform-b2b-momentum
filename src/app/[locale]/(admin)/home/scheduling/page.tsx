@@ -22,7 +22,7 @@ const page = () => {
     <Fragment>
       <PageName
         // name={t("title")}
-        name={"Charge Scheduling"}
+        // name={"Charge Scheduling"}
         breadcrumbs={[
           { name: "Home", href: "/home" },
           { name: "Scheduling", href: "/home/scheduling" },

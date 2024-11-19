@@ -15,6 +15,7 @@ import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
 import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
+import {Typography} from "@mui/material";
 // const options = {
 //   apiKey: "free",
 //   maxFileCount: 1,
@@ -111,7 +112,7 @@ const VehiclePage = () => {
       <div className="flex">
         <div className="w-full">
           <PageName
-            name={t("title")}
+            // name={t("title")}
             breadcrumbs={[
               { name: "Home", href: "/home" },
               { name: "Vehicles", href: "/home/vehicles/list" },

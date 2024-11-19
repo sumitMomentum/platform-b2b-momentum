@@ -26,14 +26,14 @@ interface ChargingListProps {
 const columns: GridColDef[] = [
   { field: "vehicleId", headerName: "Vehicle ID", flex: 1 },
   { field: "TripID", headerName: "Trip ID", flex: 1 },
-  { field: "DteStart", headerName: "Start Date", flex: 1, valueFormatter: ({ value }) => new Date(value).toLocaleString() },
-  { field: "DteEnd", headerName: "End Date", flex: 1, valueFormatter: ({ value }) => new Date(value).toLocaleString() },
+  { field: "DteStart", headerName: "Start DTE", flex: 1 },
+  { field: "DteEnd", headerName: "End DTE", flex: 1 },
   { field: "BatteryAtStart", headerName: "Battery Start (%)", flex: 1 },
   { field: "BatteryAtEnd", headerName: "Battery End (%)", flex: 1 },
   { field: "DiffInBat", headerName: "Battery Difference (%)", flex: 1, valueGetter: ({ value }) => `${value}%` },
   { field: "ChargingType", headerName: "Charging Type", flex: 1 },
-  { field: "DiffInDte", headerName: "Duration (Days)", flex: 1 },
-  { field: "DwUpdated", headerName: "Last Updated", flex: 1, valueFormatter: ({ value }) => new Date(value).toLocaleString() },
+  { field: "DiffInDte", headerName: "Difference in DTE", flex: 1 },
+  { field: "DwUpdated", headerName: "Last Updated", flex: 1 },
   { field: "chargerId", headerName: "Charger ID", flex: 1 },
 ];
 

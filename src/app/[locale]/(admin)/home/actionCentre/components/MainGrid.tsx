@@ -118,9 +118,9 @@ export default function MainGrid() {
   return (
     <Box sx={{ width: "100%", maxWidth: { sm: "100%", md: "1700px" } }}>
       {/* Overview Section */}
-      <Typography component="h4" variant="h2" sx={{ mb: 2 }}>
+      {/* <Typography component="h4" variant="h2" sx={{ mb: 2 }}>
         Actions Overview
-      </Typography>
+      </Typography> */}
       <Grid
         container
         spacing={1}

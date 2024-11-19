@@ -53,7 +53,7 @@ const Page = () => {
   return (
     <div>
       <PageName
-        name={"Trip Sessions"}
+        // name={"Trip Sessions"}
         breadcrumbs={[
           { name: "Home", href: "/home" },
           { name: "Trip Sessions", href: "/home/tripSessions" },
