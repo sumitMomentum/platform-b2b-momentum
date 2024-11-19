@@ -1,104 +1,54 @@
-"use client";
-import { getChargingSessions } from "@/actions/admin/chargingModule/getAllChargingSessions";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import React, { useState } from 'react';
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 
+// Define the interface for the Charging Session
 interface ChargingSession {
   id: number;
-  chargerId: number;
+  TripID: number;
+  DteStart: string; // Assuming these are ISO date strings
+  DteEnd: string;
+  BatteryAtStart: number;
+  BatteryAtEnd: number;
+  DwUpdated: string; // ISO date string
+  DiffInBat: number;
+  ChargingType: string;
+  DiffInDte: number;
   vehicleId: string;
-  chargingDate: Date;
-  duration: number;
-  chargingStartTime: Date;
-  chargingEndTime: Date;
-  powerConsumed: number;
-  vehicleStartSoc: number;
-  vehicleEndSoc: number;
-  // charger: {
-  //   chargerID: number;
-  //   chargerLocation: string;
-  //   chargerStatus: string;
-  // };
-  // vehicle: {
-  //   model: string | null;
-  //   make: string | null;
-  //   vin: string | null;
-  // };
+  chargerId: number;
 }
 
-const columns = [
-  {
-    field: "vehicle",
-    headerName: "Vehicle",
-    flex: 1,
-    valueGetter: (value, row) => `${row.vehicleId}`,
-  },
-  // {
-  //   field: "chargerLocation",
-  //   headerName: "Charger Location",
-  //   flex: 1,
-  //   valueGetter: (value, row) => row.charger.chargerLocation,
-  // },
-  {
-    field: "chargingStartTime",
-    headerName: "Start Time",
-    flex: 1,
-    valueFormatter: (value, row) => new Date(value).toLocaleString(),
-  },
-  {
-    field: "chargingEndTime",
-    headerName: "End Time",
-    flex: 1,
-    valueFormatter: (value, row) => new Date(value).toLocaleString(),
-  },
-  {
-    field: "duration",
-    headerName: "Duration",
-    flex: 1,
-    valueFormatter: (value, row) => `${Math.floor(value / 60)}h ${value % 60}m`,
-  },
-  {
-    field: "powerConsumed",
-    headerName: "Energy Used",
-    flex: 1,
-    valueFormatter: (value, row) => `${value.toFixed(2)} kWh`,
-  },
-  {
-    field: "socChange",
-    headerName: "SoC Change",
-    flex: 1,
-    valueGetter: (value, row) =>
-      `${row.vehicleStartSoc}% → ${row.vehicleEndSoc}%`,
-  },
-  // {
-  //   field: "chargerStatus",
-  //   headerName: "Charger Status",
-  //   flex: 1,
-  //   valueGetter: (value, row) => row.charger.chargerStatus,
-  // },
+interface ChargingListProps {
+  loading: boolean;
+  chargingSessions: ChargingSession[];
+}
+
+const columns: GridColDef[] = [
+  { field: "vehicleId", headerName: "Vehicle ID", flex: 1 },
+  { field: "TripID", headerName: "Trip ID", flex: 1 },
+  { field: "DteStart", headerName: "Start DTE", flex: 1 },
+  { field: "DteEnd", headerName: "End DTE", flex: 1 },
+  { field: "BatteryAtStart", headerName: "Battery Start (%)", flex: 1 },
+  { field: "BatteryAtEnd", headerName: "Battery End (%)", flex: 1 },
+  { field: "DiffInBat", headerName: "Battery Difference (%)", flex: 1, valueGetter: ({ value }) => `${value}%` },
+  { field: "ChargingType", headerName: "Charging Type", flex: 1 },
+  { field: "DiffInDte", headerName: "Difference in DTE", flex: 1 },
+  { field: "DwUpdated", headerName: "Last Updated", flex: 1 },
+  { field: "chargerId", headerName: "Charger ID", flex: 1 },
 ];
 
-const paginationModel = { page: 0, pageSize: 10 };
-
-const ChargingList = ({
-  chargingSessions,
-  loading,
-}: {
-  chargingSessions: ChargingSession[];
-  loading: boolean;
-}) => {
-  const router = useRouter();
+const ChargingList: React.FC<ChargingListProps> = ({ loading, chargingSessions }) => {
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 });
 
   return (
-    <Paper sx={{ height: 400, width: "100%" }}>
+    <Paper sx={{ height: 600, width: "100%" }}>
       <DataGrid
         loading={loading}
         rows={chargingSessions}
         columns={columns}
-        // initialState={{ pagination: { paginationModel } }}
-        pageSizeOptions={[5, 10, 25]}
+        pagination
+        paginationModel={paginationModel}
+        onPaginationModelChange={setPaginationModel}
         sx={{ border: 0 }}
       />
     </Paper>

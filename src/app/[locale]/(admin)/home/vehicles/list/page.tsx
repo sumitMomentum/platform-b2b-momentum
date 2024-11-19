@@ -15,6 +15,7 @@ import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
 import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
+import {Typography} from "@mui/material";
 // const options = {
 //   apiKey: "free",
 //   maxFileCount: 1,
@@ -23,7 +24,7 @@ import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-
 const VehiclePage = () => {
   const t = useTranslations("AdminLayout.pages.vehicles");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [isSuccess, setIsSuccess] = useState(false); // To track successful operations
+  const [isSuccess, setIsSuccess] = useState(false);
   const vehicles = useVehicleStore((state) => state.vehicles);
   const setVehicles = useVehicleStore((state) => state.setVehicles);
   const fileInputRef = useRef(null);
@@ -33,7 +34,7 @@ const VehiclePage = () => {
     if (!vehicles || vehicles.length === 0 || isSuccess) {
       const userVehiclesFromDB = await getUserVehicles();
       setVehicles(userVehiclesFromDB);
-      setIsSuccess(false);
+      setIsSuccess(true); // This is a major glitch causing infite fethcing
     }
   };
 
@@ -111,7 +112,7 @@ const VehiclePage = () => {
       <div className="flex">
         <div className="w-full">
           <PageName
-            name={t("title")}
+            // name={t("title")}
             breadcrumbs={[
               { name: "Home", href: "/home" },
               { name: "Vehicles", href: "/home/vehicles/list" },

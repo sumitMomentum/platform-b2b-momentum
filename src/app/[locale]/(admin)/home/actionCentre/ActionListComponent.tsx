@@ -3,29 +3,22 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-
-// Define ActionItem type here
-type ActionItem = {
-  id: number;
-  vin: string;
-  severity: 'High' | 'Medium' | 'Low';
-  description: string;
-  bestPractice: string;
-  actionToBeTaken: string;
-  confirm: boolean;
-  CreatedDateTime: string;
-  ClosedDateTime?: string;
-};
-
-// Import getAllVehicleActions
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 
-interface ActionListComponentProps {
-  initialActionItems: ActionItem[];
-}
+type ActionItem = {
+  id: number; // Unique ID for each action
+  vehicleId: string; // ID of the vehicle associated with this action
+  severity: 'High' | 'Medium' | 'Low'; // Severity level (e.g., "Medium")
+  description: string; // Description of the action
+  bestPractice: string; // Best practice recommendation
+  actionToBeTaken: string; // Action to be taken
+  confirm: number; // Confirmation count (integer)
+  createdDateTime: string; // Date and time the action was created
+  closedDateTime?: string; // Date and time the action was closed
+};
 
-const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialActionItems }) => {
-  const [actionItems, setActionItems] = useState<ActionItem[]>(initialActionItems);
+const ActionListComponent = () => {
+  const [actionItems, setActionItems] = useState<ActionItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -40,44 +33,32 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
       }
     };
 
-    if (initialActionItems.length === 0) {
-      fetchData();
-    } else {
-      setLoading(false);
-    }
-  }, [initialActionItems]);
+    fetchData();
+  }, []); // Empty dependency array to fetch data on component mount
 
   const columns: GridColDef[] = [
-    { field: 'vin', headerName: 'VIN', flex: 1 },
+    { field: 'vehicleId', headerName: 'Vehicle ID', flex: 1 },
     { field: 'severity', headerName: 'Severity', flex: 1, renderCell: (params) => (
         <div className={`${
           params.value === 'High' ? 'bg-red-500 hover:bg-red-700 text-white' :
           params.value === 'Medium' ? 'bg-yellow-400 hover:bg-yellow-600 text-gray-800' :
           'bg-green-500 hover:bg-green-700 text-white'
-        } px-2 py-2`}>
-          {params.value}
-        </div>
+        } px-2 py-2`}>{params.value}</div>
       )
     },
-    { field: 'description', headerName: 'Description', flex: 1 },
-    { field: 'bestPractice', headerName: 'Best Practice', flex: 1 },
-    { field: 'actionToBeTaken', headerName: 'Action To be Taken', flex: 1 },
+    { field: 'description', headerName: 'Description', flex: 2 },
+    { field: 'bestPractice', headerName: 'Best Practice', flex: 2 },
+    { field: 'actionToBeTaken', headerName: 'Action To be Taken', flex: 2 },
     { field: 'confirm', headerName: 'Confirm', flex: 1, renderCell: (params) => (
-        <button className="bg-gray-500 p-2 px-8 hover:bg-gray-800 text-white">
-          Action {params.value ? "Closed" : "Pending"}
+        <button className={`${
+          params.value ? 'bg-gray-500 hover:bg-gray-800' : 'bg-green-500 hover:bg-green-700'
+        } p-2 px-8 text-white`}>
+          {params.value ?  "Pending" : "Closed"}
         </button>
       )
     },
-    { field: 'CreatedDateTime', headerName: 'Created Date', flex: 1, renderCell: (params) => (
-        new Date(Date.parse(params.value)).toLocaleString()
-      )
-    },
-    { field: 'ClosedDateTime', headerName: 'Closed Date', flex: 1, renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {new Date(Date.parse(params.value)).toLocaleString()}
-        </div>
-      )
-    },
+    { field: 'createdDateTime', headerName: 'Created Date', flex: 1 },
+    { field: 'closedDateTime', headerName: 'Closed Date', flex: 1 },
   ];
 
   return (
@@ -85,15 +66,13 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialAction
       <DataGrid
         rows={actionItems}
         columns={columns}
-        getRowId={(row) => row.vin}
+        getRowId={(row) => row.id} // Use `id` for row identification
         loading={loading}
         autoHeight
         disableColumnMenu
         pageSizeOptions={[5, 10]}
         initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
-          },
+          pagination: { paginationModel: { page: 0, pageSize: 10 } },
         }}
       />
     </Paper>

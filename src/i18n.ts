@@ -21,11 +21,18 @@ export const defaultLocale = "en" as const;
 // });
 
 export default getRequestConfig(async ({ locale }) => {
-
-  if(!locales.includes(locale as any)) notFound();
+  // Ensure the locale is a string
+  const localeString = locale?.toString();
+  
+  // Check if the locale is supported
+  if (!localeString || !locales.includes(localeString)) {
+    return {
+      messages: (await import(`../messages/${defaultLocale}.json`)).default,
+    };
+  }
 
   return {
-    messages: (await import(`../messages/${locale}.json`)).default,
+    messages: (await import(`../messages/${localeString}.json`)).default,
   };
 });
 
