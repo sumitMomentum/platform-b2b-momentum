@@ -103,6 +103,104 @@ This document outlines the Git workflow used for managing our project. It includ
 
 ---
 
+## **Cleaning Up Local Branches**
+
+### Purpose
+
+As part of maintaining a clean local development environment, it's essential to remove local branches that no longer have corresponding remote branches. These branches are usually orphaned when their remote counterparts are deleted after merging or during repository cleanup.
+
+### Command to Remove Orphaned Branches
+
+Use the following command to delete all local branches that no longer exist on the remote repository:
+
+```bash
+git fetch --prune && \
+for branch in $(git branch --format '%(refname:short)' --merged | grep -vE '^(main|production|development)$'); do
+  if ! git show-ref --verify --quiet refs/remotes/origin/"$branch"; then
+    git branch -d "$branch"
+  fi
+done
+```
+
+### Steps:
+
+1. **Fetch and Prune:**
+
+   - `git fetch --prune` ensures that outdated references to remote branches are removed from your local repository.
+2. **Filter Local Branches:**
+
+   - The `git branch --format '%(refname:short)' --merged` command lists all local branches merged into the current branch.
+3. **Check Remote Existence:**
+
+   - For each branch, the script verifies whether a corresponding remote branch exists using `git show-ref`.
+4. **Delete Orphaned Branches:**
+
+   - If the branch does not exist on the remote, it is deleted locally with `git branch -d`.
+
+### Notes:
+
+- **Protected Branches:** The script avoids deleting essential branches like `main`, `production`, and `development`.
+- **Merged Branches Only:** Only branches that have been merged into the current branch will be considered for deletion.
+- **Safety:** This approach ensures that no unmerged or active branches are removed.
+
+---
+
+
+## **Synchronizing Remote Branches to Local Repository**
+
+### Purpose
+
+To ensure your local repository is updated with the latest branches created on the remote (`origin`), follow these steps. This helps you stay in sync with your team's work and access newly created branches.
+
+---
+
+### Steps to Fetch and Sync Remote Branches
+
+1. **Fetch All Remote Branches**To update your local repository with all remote branches, run:
+
+   ```bash
+   git fetch --all
+   ```
+
+   This command fetches the latest references, including new branches, from all remotes.
+2. **List Remote Branches**To view all branches available on the remote repository:
+
+   ```bash
+   git branch -r
+   ```
+3. **Check Out a Specific Remote Branch Locally**To create a local branch that tracks a specific remote branch:
+
+   ```bash
+   git checkout -b <branch-name> origin/<branch-name>
+   ```
+
+   Replace `<branch-name>` with the name of the remote branch you want to check out.
+4. **Optional: Pull Updates for All Branches**To ensure all local branches are updated with the latest changes from their remote counterparts:
+
+   ```bash
+   git pull --all
+   ```
+5. **Optional: Track All Remote Branches Locally**
+   To create local tracking branches for all remote branches automatically:
+
+   ```bash
+   git fetch --all
+   for branch in $(git branch -r | grep -v '\->'); do
+     git branch --track "${branch#origin/}" "$branch" 2>/dev/null || true
+   done
+   ```
+
+---
+
+### Notes
+
+- **Tracking Branches:**When you create a local branch using `git checkout -b <branch-name> origin/<branch-name>`, the branch is set to track its remote counterpart, making it easier to pull updates in the future.
+- **Selective Branch Creation:**Instead of creating local branches for all remote branches, fetch only the branches you need to minimize clutter.
+- **Conflict Avoidance:**
+  Ensure that the branch you are tracking does not conflict with an existing local branch of the same name.
+
+---
+
 ## **GitHub Projects Integration**
 
 - When managing tasks/issues through GitHub Projects:

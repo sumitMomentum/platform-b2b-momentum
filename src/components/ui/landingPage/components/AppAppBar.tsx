@@ -76,11 +76,12 @@ export default function AppAppBar({ mode, toggleColorMode }) {
           >
             {/* <Sitemark /> */}
             <img
-              src={
-                mode === "light"
-                  ? "/assets/img/logo_black_nocap.png"
-                  : "/assets/img/logo_white_nocap.png"
-              }
+              src={"/assets/img/logo_black_nocap.png"}
+              // src={
+              //   mode === "light"
+              //     ? "/assets/img/logo_black_nocap.png"
+              //     : "/assets/img/logo_white_nocap.png"
+              // }
               alt="Logo"
               loading="lazy" // Lazy load the image
               style={{
@@ -121,11 +122,11 @@ export default function AppAppBar({ mode, toggleColorMode }) {
               alignItems: "center",
             }}
           >
-            <ToggleColorMode
+            {/* <ToggleColorMode
               data-screenshot="toggle-mode"
               mode={mode}
               toggleColorMode={toggleColorMode}
-            />
+            /> */}
             <Link href={"/sign-in"} passHref>
               {/* <SignInButton> */}
               <Button variant="contained" size="small">
