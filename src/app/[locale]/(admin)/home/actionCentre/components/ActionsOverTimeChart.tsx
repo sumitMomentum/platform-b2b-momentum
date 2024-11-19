@@ -48,9 +48,9 @@ export default function ActionsClosedOverTimeChart({ month = 4, year = 2024 }: {
 
   // Updated color palette with blue shades (to indicate actions being closed)
   const colorPalette = [
-    theme.palette.info.dark,   // Light blue
-    theme.palette.info.main,    // Medium blue
-    theme.palette.info.main,    // Dark blue
+    theme.palette.success.dark,   // Light blue
+    theme.palette.success.main,    // Medium blue
+    theme.palette.success.main,    // Dark blue
   ];
 
   return (
