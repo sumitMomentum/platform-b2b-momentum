@@ -39,9 +39,9 @@ export default function SavingsOverTimeChart({ savingsData = [] }: { savingsData
 
   // Updated color palette with green shades
   const colorPalette = [
-    theme.palette.success.light,  // Light green
+    theme.palette.success.dark,  // Light green
     theme.palette.success.main,   // Medium green
-    theme.palette.success.dark,   // Dark green
+    theme.palette.success.light,   // Dark green
   ];
 
   // Calculate total and average savings

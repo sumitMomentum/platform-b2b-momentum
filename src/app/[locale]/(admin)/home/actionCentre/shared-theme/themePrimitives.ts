@@ -248,9 +248,9 @@ export const colorSchemes = {
         contrastText: brand[50],
       },
       info: {
-        light: brand[100],
-        main: brand[300],
-        dark: brand[600],
+        light: green[100],
+        main: green[600],
+        dark: green[600],
         contrastText: gray[50],
       },
       warning: {

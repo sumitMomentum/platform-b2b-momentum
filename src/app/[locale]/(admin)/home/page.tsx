@@ -22,10 +22,8 @@ import { createEnodeWebhook } from "@/actions/admin/dashboardModule/create-enode
 import { getUserVehicleEnode } from "@/actions/admin/userModule/get-user-vehicle-enode";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import useVehicleStore from "@/states/store";
-import loading from "./actionCentre/loading";
+import loading from "./actionCentre/dashboard/temp/loading";
 import SuspenseDashboard from "@/components/suspenseSkeleton/SuspenseDashboard";
-
-
 
 const SuperAdminDashboardPage = () => {
   // const t = await getTranslations("AdminLayout.pages.dashboard");

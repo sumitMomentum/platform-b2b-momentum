@@ -149,8 +149,8 @@ export const getDesignTokens = (mode: PaletteMode) => {
         }),
       },
       success: {
-        light: green[300],
-        main: green[400],
+        light: green[200],
+        main: green[600],
         dark: green[800],
         ...(mode === 'dark' && {
           light: green[400],

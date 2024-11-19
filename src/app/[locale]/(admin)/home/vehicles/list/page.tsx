@@ -23,7 +23,7 @@ import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-
 const VehiclePage = () => {
   const t = useTranslations("AdminLayout.pages.vehicles");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [isSuccess, setIsSuccess] = useState(false); // To track successful operations
+  const [isSuccess, setIsSuccess] = useState(false);
   const vehicles = useVehicleStore((state) => state.vehicles);
   const setVehicles = useVehicleStore((state) => state.setVehicles);
   const fileInputRef = useRef(null);
@@ -33,7 +33,7 @@ const VehiclePage = () => {
     if (!vehicles || vehicles.length === 0 || isSuccess) {
       const userVehiclesFromDB = await getUserVehicles();
       setVehicles(userVehiclesFromDB);
-      setIsSuccess(false);
+      setIsSuccess(true); // This is a major glitch causing infite fethcing
     }
   };
 
