@@ -2,6 +2,7 @@
 
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 import PageName from "@/components/ui/commons/PageName";
+import { Box } from "@mui/material";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { join, parse } from "path";
 import { split } from "postcss/lib/list";
@@ -43,26 +44,26 @@ const page = () => {
   }, []);
 
   const columns: GridColDef[] = [
-    { field: "chargerID", headerName: "Charger ID", width: 130 },
+    { field: "chargerID", headerName: "Charger ID", minWidth: 130 },
     {
       field: "chargerLocation",
       headerName: "Charger Location",
-      width: 200,
+      minWidth: 200,
       valueFormatter: (value: any, row: any) =>
         `${[
           Number(value.toString().split(",")[0]).toFixed(2),
           Number(value.toString().split(",")[1]).toFixed(2),
         ].join(", ")}`,
     },
-    { field: "chargerStatus", headerName: "Charger Status", width: 130 },
+    { field: "chargerStatus", headerName: "Charger Status", minWidth: 130 },
     {
       field: "dateJoining",
       headerName: "Date Joining",
-      width: 130,
+      minWidth: 130,
       valueFormatter: (value, row) => new Date(value).toLocaleDateString(),
     },
-    { field: "chargeType", headerName: "Charge Type", width: 130 },
-    { field: "chargingPoint", headerName: "Charging Point", width: 130 },
+    { field: "chargeType", headerName: "Charge Type", minWidth: 130 },
+    { field: "chargingPoint", headerName: "Charging Point", minWidth: 130 },
   ];
 
   // useEffect(() => {
@@ -95,12 +96,13 @@ const page = () => {
         ]}
       />
       <div className="container">
-        <div className="max-h-screen overflow-y-auto p-4">
+        <Box style={{ display: "flex", width: "100%", height: "70vh" }}>
           <DataGrid
             rows={chargerMasterData}
             columns={columns}
             getRowId={(row) => row.chargerID}
             loading={loading}
+            autosizeOnMount
             autoHeight={true}
             disableColumnMenu
             pageSizeOptions={[5, 10]}
@@ -109,8 +111,17 @@ const page = () => {
                 paginationModel: { page: 0, pageSize: 10 },
               },
             }}
+            sx={{
+              ".MuiDataGrid-columnHeaders": {
+                fontWeight: "bold",
+                fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+              },
+              ".MuiDataGrid-columnHeaderTitle": {
+                fontWeight: "bold", // Ensures header titles specifically are bold
+              },
+            }}
           />
-        </div>
+        </Box>
       </div>
     </Fragment>
   );

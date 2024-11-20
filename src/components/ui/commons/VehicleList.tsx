@@ -128,13 +128,20 @@ const VehicleList = (props) => {
 
   // <div className="flex w-full flex-col overflow-x-auto" id="vehicleTable">
   return (
-    <Box sx={{ height: "100%", width: "100%", minHeight: 300 }}>
+    <Box
+      sx={
+        pathName.replace("/en", "") === "/home/vehicles/list"
+          ? { display: "flex", width: "100%", height: "50vh" }
+          : { height: "100%", width: "100%", minHeight: 300 }
+      }
+    >
       <DataGrid
         // loading={loading}
         onRowClick={handleRowClickEvent}
         getRowId={(row) => row.vehicleId}
         rows={vehicles}
         columns={columns}
+        loading={loading}
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[3, 5, 10]}
         // checkboxSelection

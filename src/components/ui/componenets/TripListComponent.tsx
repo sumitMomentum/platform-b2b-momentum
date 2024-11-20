@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
+import React from "react";
 
 export interface TripSession {
   chargeConsumed: number;
@@ -83,7 +84,16 @@ const TripList = ({
         columns={columns}
         // initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10, 25]}
-        sx={{ border: 0 }}
+        sx={{
+          backgroundColor: "white",
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
+          },
+        }}
       />
     </Paper>
   );

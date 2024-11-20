@@ -125,6 +125,7 @@ const ActionListComponent: React.FC = () => {
           },
         }}
         sx={{
+          backgroundColor: "white",
           ".MuiDataGrid-columnHeaders": {
             fontWeight: "bold",
             fontSize: "0.9rem", // Optional: Adjust font size for better visibility
