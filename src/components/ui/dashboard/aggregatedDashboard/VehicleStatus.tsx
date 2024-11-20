@@ -33,9 +33,9 @@ const VehicleStatus = () => {
 
   return (
     <Card sx={{ backgroundColor: "white" }}>
-      <CardHeader title="Vehicle Status" />
+      <CardHeader title="Vehicle Status" gutterBottom sx={{marginBottom: 3}}/>
       <CardContent>
-        <Stack spacing={2} p={2}>
+        <Stack spacing={3} p={2}>
           {statuses.map(({ label, color, status }) => (
             <Stack key={status} direction="row" alignItems="center">
               <Chip variant="outlined" label={label} color={color} />

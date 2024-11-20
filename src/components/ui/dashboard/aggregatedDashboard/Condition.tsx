@@ -1,6 +1,6 @@
 import Card from "@/components/ui/commons/Card";
 import ConditionChart from "./ConditionChart";
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import CardContent from "@mui/material/CardContent"; // Added import
 import CardHeader from "@mui/material/CardHeader"; // Added import
 import Typography from "@mui/material/Typography"; // Added import
@@ -11,16 +11,16 @@ const Condition = () => {
     <Card>
       <CardHeader title="Vehicle Condition" sx={{ margin: 2 }} />
       <CardContent>
-        <Container
+        <Box
           sx={{
             display: "flex",
             justifyContent: "center",
-            mb: 2,
-            p: 2,
+            height: "100%",
+            alignContent: "center",
           }} // Added padding
         >
           <ConditionChart />
-        </Container>
+        </Box>
       </CardContent>
     </Card>
   );

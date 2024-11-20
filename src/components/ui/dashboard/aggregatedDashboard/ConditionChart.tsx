@@ -51,17 +51,6 @@ const ConditionChart = () => {
     console.log(series);
   }, [vehicles]);
 
-  const options = {
-    labels: ["Good", "Satisfactory", "Critical"],
-    colors: ["success", "warning", "wrror"],
-    dataLabels: {
-      enabled: true,
-      formatter: function (val, opts) {
-        return opts.w.config.series[opts.seriesIndex];
-      },
-    },
-  };
-
   return (
     <PieChart
       loading={loading}
@@ -72,7 +61,15 @@ const ConditionChart = () => {
         sevierityChartsPalette.error,
       ]}
       width={400}
-      height={200}
+      height={250}
+      margin={{ top: 50 }}
+      slotProps={{
+        legend: {
+          direction: "row",
+          position: { vertical: "top", horizontal: "middle" },
+          padding: 0,
+        },
+      }}
     />
   );
 };

@@ -5,6 +5,7 @@ import { handleEvent } from "@/utils/facades/serverFacades/enodeFacade";
 import { useRouter } from "next/navigation";
 import React from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import HubIcon from "@mui/icons-material/Hub";
 const AddVehicle = () => {
   const router = useRouter();
 
@@ -16,21 +17,14 @@ const AddVehicle = () => {
   };
 
   return (
-    <Box>
     <Button
       variant="contained"
-      color="success"
-      startIcon={<AddBoxIcon />}
-      sx={{
-        width: "150px",
-        // padding: "8px 16px",
-      }}
-      // className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
+      color="primary"
+      startIcon={<HubIcon />}
       onClick={handleAddVehicle}
     >
-      Vehicle
+      Enode Add Vehicle
     </Button>
-  </Box>
   );
 };
 

@@ -9,12 +9,13 @@ import React, { useRef, useState } from "react";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import useVehicleStore from "@/states/store";
 import { useEffect } from "react"; // Import only useEffect
-import { Button } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
 import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
+import { type } from "os";
 // const options = {
 //   apiKey: "free",
 //   maxFileCount: 1,
@@ -107,19 +108,33 @@ const VehiclePage = () => {
   };
 
   return (
-    <div>
-      <div className="flex">
-        <div className="w-full">
-          <PageName
-            name={t("title")}
-            breadcrumbs={[
-              { name: "Home", href: "/home" },
-              { name: "Vehicles", href: "/home/vehicles/list" },
-            ]}
-          />
-        </div>
-        <div className="flex justify-center items-center gap-2">
-          <AddVehicle />
+    <Box>
+      <div className="w-full">
+        <PageName
+          name={t("title")}
+          breadcrumbs={[
+            { name: "Home", href: "/home" },
+            { name: "Vehicles", href: "/home/vehicles/list" },
+          ]}
+        />
+      </div>
+      <Box
+        sx={{
+          display: "flex", // Corrected spelling from "disply" to "display"
+          justifyContent: "space-between", // Space between AddVehicle and the right group
+          alignItems: "center", // Align all items vertically in the center
+          gap: 2, // Optional: Add gap between items if needed
+          margin: 2,
+        }}
+      >
+        <AddVehicle />
+        <Box
+          sx={{
+            display: "flex", // Corrected spelling from "disply" to "display"
+            gap: 2, // Adds spacing between buttons and input
+            alignItems: "center", // Align items vertically in the center
+          }}
+        >
           <input
             type="file"
             ref={fileInputRef}
@@ -129,8 +144,7 @@ const VehiclePage = () => {
           <Button
             startIcon={<FileUploadIcon />}
             variant="contained"
-            color="success"
-            // className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
+            color="primary"
             onClick={() => handleUpload(false)}
           >
             Onboard
@@ -138,46 +152,34 @@ const VehiclePage = () => {
           <Button
             startIcon={<PublishIcon />}
             variant="contained"
-            color="success"
-            // className="bg-blue-500 w-full p-2 hover:bg-blue-700 hover:text-white rounded-md"
-            onClick={() => {
-              handleUpload(true);
-            }}
+            color="primary"
+            onClick={() => handleUpload(true)}
           >
             Update
           </Button>
           <Button
             variant="outlined"
-            color="success"
+            color="error"
             startIcon={<DeleteForeverIcon />}
-            // className="bg-red-500 w-full p-2 hover:bg-red-700 text-white rounded-md"
-            onClick={() => {
-              handleDelete();
-            }}
+            onClick={() => handleDelete()}
           >
             Delete
           </Button>
-          {/* <UploadButton
-            options={options}
-            onComplete={(files) =>
-              alert(files.map((x) => x.fileUrl).join("\n"))
-            }
-          >
-            {({ onClick }) => (
-              <button onClick={onClick}>Upload a file...</button>
-            )}
-          </UploadButton>*/}
-        </div>
-      </div>
+        </Box>
+      </Box>
+
       <div className="flex-grow flex flex-col space-y-4">
-        <div className="flex-grow h-[calc(50%-1rem)] overflow-auto">
+        <Box
+          className="flex flex-grow overflow-auto"
+          sx={{ minHeight: "50vh" }}
+        >
           <VehicleList />
-        </div>
-        <div className="flex-grow h-[calc(50%-1rem)] overflow-auto">
+        </Box>
+        <Box className="flex-grow h-50vh overflow-auto">
           <VendorList />
-        </div>
+        </Box>
       </div>
-    </div>
+    </Box>
   );
 };
 
