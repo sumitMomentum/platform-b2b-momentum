@@ -1,4 +1,4 @@
-import Card from "@/components/ui/commons/Card";
+import Card from "@mui/material/Card";
 import ConditionChart from "./ConditionChart";
 import { Box, Container } from "@mui/material";
 import CardContent from "@mui/material/CardContent"; // Added import

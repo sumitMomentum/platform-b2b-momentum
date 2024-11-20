@@ -1,7 +1,6 @@
 //@ts-nocheck
 "use client";
 
-import Card from "@/components/ui/commons/Card";
 // import { useTranslations } from "next-intl";
 import DistanceTravelledChart from "./DistanceTravelledChart";
 import useVehicleStore from "@/states/store";
@@ -10,6 +9,7 @@ import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import { useEffect } from "react";
 import {
   Box,
+  Card,
   CardContent,
   CardHeader,
   Container,

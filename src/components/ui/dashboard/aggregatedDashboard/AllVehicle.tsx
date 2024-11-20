@@ -1,4 +1,4 @@
-import Card from "@/components/ui/commons/Card";
+import Card from "@mui/material/Card";
 import VehicleList from "@/components/ui/commons/VehicleList";
 import { Container } from "@mui/material"; // Added import
 import CardContent from "@mui/material/CardContent"; // Added import

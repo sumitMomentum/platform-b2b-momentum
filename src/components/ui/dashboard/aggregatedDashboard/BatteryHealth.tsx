@@ -1,12 +1,17 @@
 //@ts-nocheck
 "use client";
 
-import Card from "@/components/ui/commons/Card";
-
 import React, { useEffect } from "react";
 import BatteryHealthChart from "./BatteryHealthChart";
 import useVehicleStore from "@/states/store";
-import { Box, CardContent, CardHeader, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  CardContent,
+  CardHeader,
+  Grid,
+  Typography,
+  Card,
+} from "@mui/material";
 
 const BatteryHealth = () => {
   const [loading, setLoading] = React.useState(true);

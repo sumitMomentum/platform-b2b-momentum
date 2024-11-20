@@ -63,9 +63,10 @@ export const surfacesCustomizations: Components<Theme> = {
           padding: 16,
           gap: 16,
           transition: "all 100ms ease",
-          backgroundColor: gray[50],
+          // backgroundColor: gray[50],
+          backgroundColor: "#ffffff",
           borderRadius: theme.shape.borderRadius,
-          border: `1px solid ${theme.palette.divider}`,
+          border: `1px solid ${theme.palette.primary}`,
           boxShadow: "none",
           ...theme.applyStyles("dark", {
             backgroundColor: gray[800],
@@ -119,5 +120,5 @@ export const surfacesCustomizations: Components<Theme> = {
         fontWeight: "bold",
       },
     },
-  }
+  },
 };

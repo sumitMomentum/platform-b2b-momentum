@@ -32,8 +32,12 @@ const VehicleStatus = () => {
   ];
 
   return (
-    <Card sx={{ backgroundColor: "white" }}>
-      <CardHeader title="Vehicle Status" gutterBottom sx={{marginBottom: 3}}/>
+    <Card>
+      <CardHeader
+        title="Vehicle Status"
+        gutterBottom
+        sx={{ marginBottom: 3 }}
+      />
       <CardContent>
         <Stack spacing={3} p={2}>
           {statuses.map(({ label, color, status }) => (
