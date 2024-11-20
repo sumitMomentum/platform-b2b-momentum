@@ -5,7 +5,7 @@ import { DataGrid, GridEventListener, GridToolbar } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import React from "react";
-import { Chip, Toolbar } from "@mui/material";
+import { Box, Chip, Toolbar } from "@mui/material";
 import zIndex from "@mui/material/styles/zIndex";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -128,7 +128,7 @@ const VehicleList = (props) => {
 
   // <div className="flex w-full flex-col overflow-x-auto" id="vehicleTable">
   return (
-    <Paper sx={{ height: "100%", width: "100%", minHeight: 300 }}>
+    <Box sx={{ height: "100%", width: "100%", minHeight: 300 }}>
       <DataGrid
         // loading={loading}
         onRowClick={handleRowClickEvent}
@@ -160,9 +160,16 @@ const VehicleList = (props) => {
             // maxHeight: "300px", // Set a max height for the scrolling area of rows
             minHeight: vehicles.length < 5 ? "300px" : "auto",
           },
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
+          },
         }}
       />
-    </Paper>
+    </Box>
   );
 };
 

@@ -63,10 +63,10 @@ export const surfacesCustomizations: Components<Theme> = {
           padding: 16,
           gap: 16,
           transition: "all 100ms ease",
+          border: `1.5px solid ${theme.palette.primary}`,
           // backgroundColor: gray[50],
           backgroundColor: "#ffffff",
           borderRadius: theme.shape.borderRadius,
-          border: `1px solid ${theme.palette.primary}`,
           boxShadow: "none",
           ...theme.applyStyles("dark", {
             backgroundColor: gray[800],

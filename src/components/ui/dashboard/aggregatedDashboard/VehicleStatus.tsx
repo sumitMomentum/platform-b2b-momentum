@@ -36,7 +36,7 @@ const VehicleStatus = () => {
       <CardHeader
         title="Vehicle Status"
         gutterBottom
-        sx={{ marginBottom: 3 }}
+        sx={{ marginBottom: 3, margin: 2 }}
       />
       <CardContent>
         <Stack spacing={3} p={2}>

@@ -25,8 +25,6 @@ import useVehicleStore from "@/states/store";
 import loading from "./actionCentre/loading";
 import SuspenseDashboard from "@/components/suspenseSkeleton/SuspenseDashboard";
 
-
-
 const SuperAdminDashboardPage = () => {
   // const t = await getTranslations("AdminLayout.pages.dashboard");
   const [invoicesCount, setInvoicesCount] = useState(0);
