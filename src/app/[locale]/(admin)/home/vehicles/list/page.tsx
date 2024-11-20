@@ -9,18 +9,30 @@ import React, { useRef, useState } from "react";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import useVehicleStore from "@/states/store";
 import { useEffect } from "react"; // Import only useEffect
-import { Box, Button, Container } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Input,
+  InputAdornment,
+  TextField,
+  Tooltip,
+} from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
 import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
 import { type } from "os";
+import style from "styled-jsx/style";
+import { current } from "tailwindcss/colors";
 // const options = {
 //   apiKey: "free",
 //   maxFileCount: 1,
 // };
-
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { title } from "process";
 const VehiclePage = () => {
   const t = useTranslations("AdminLayout.pages.vehicles");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -107,6 +119,10 @@ const VehiclePage = () => {
     }
   };
 
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
   return (
     <Box>
       <div className="w-full">
@@ -135,12 +151,70 @@ const VehiclePage = () => {
             alignItems: "center", // Align items vertically in the center
           }}
         >
-          <input
+          {/* <input
             type="file"
             ref={fileInputRef}
             onChange={handleFileChange}
             accept=".csv"
-          />
+          /> */}
+          {/* <TextField
+            type="file"
+            inputRef={fileInputRef}
+            onChange={handleFileChange}
+            // inputProps={{ accept: ".csv" }}
+            placeholder="Select a csv file"
+          /> */}
+          <Box display="flex" alignItems="center" gap={2}>
+            <TextField
+              fullWidth
+              label="Choose a .csv File"
+              variant="outlined"
+              color="primary"
+              placeholder="Select a csv file"
+              sx={{
+                "& .Mui-disabled": {
+                  color: "black", // Ensures the disabled input text remains black
+                },
+              }}
+              value={fileInputRef.current?.files?.[0]?.name || ""}
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Tooltip
+                        title="Browse"
+                        placement="left"
+                        color="primary"
+                        slotProps={{
+                          tooltip: {
+                            sx: {
+                              bgcolor: "primary.main",
+                              "& .MuiTooltip-arrow": {
+                                color: "primary.main",
+                              },
+                            },
+                          },
+                        }}
+                      >
+                        <IconButton color="primary" onClick={handleButtonClick}>
+                          <AddCircleIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </InputAdornment>
+                  ),
+                  readOnly: true,
+                },
+              }}
+              disabled
+            />
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept=".csv"
+              style={{ display: "none" }}
+            />
+          </Box>
           <Button
             startIcon={<FileUploadIcon />}
             variant="contained"

@@ -20,10 +20,10 @@ const AddVehicle = () => {
     <Button
       variant="contained"
       color="primary"
-      startIcon={<HubIcon />}
+      startIcon={<AddBoxIcon />}
       onClick={handleAddVehicle}
     >
-      Enode Add Vehicle
+      Add
     </Button>
   );
 };
