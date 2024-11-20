@@ -57,9 +57,9 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
       <ul role="list" className="-mx-2 space-y-1">
         {links.map((section) => (
           <div key={section.sectionName}>
-            <span className="text-xs font-semibold leading-6 text-primary">
+            {/* <span className="text-xs font-semibold leading-6 text-primary">
               {section.sectionName}
-            </span>
+            </span> */}
             <List sx={{ width: "100%", maxWidth: 360 }} component="nav">
               {section.items.map((item) => (
                 <ListItemButton
