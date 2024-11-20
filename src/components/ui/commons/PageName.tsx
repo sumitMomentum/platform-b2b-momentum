@@ -65,7 +65,7 @@ const PageName = ({
                 ))}
               </ol>
             </nav>
-            <div className="flex">
+            {/* <div className="flex">
               <h1
                 className={`${
                   isSubPage ? "text-subtitle py-4" : "text-title"
@@ -73,7 +73,7 @@ const PageName = ({
               >
                 {name}
               </h1>
-            </div>
+            </div> */}
           </div>
           <div className="flex space-x-3 items-center">
             {btn1 &&

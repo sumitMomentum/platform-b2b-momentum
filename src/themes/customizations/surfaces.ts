@@ -1,5 +1,6 @@
 import { alpha, Theme, Components } from "@mui/material/styles";
 import { gray } from "../themePrimitives";
+import { root } from "postcss";
 
 /* eslint-disable import/prefer-default-export */
 export const surfacesCustomizations: Components<Theme> = {
@@ -110,4 +111,13 @@ export const surfacesCustomizations: Components<Theme> = {
       },
     },
   },
+  MuiChip: {
+    styleOverrides: {
+      root: {
+        fontSize: "0.8rem", // Increase text size
+        letterSpacing: "0.05em", // Add letter spacing
+        fontWeight: "bold",
+      },
+    },
+  }
 };

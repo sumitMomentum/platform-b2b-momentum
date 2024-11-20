@@ -22,7 +22,7 @@ import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllV
 const ActionCentre = async () => {
   const t = await getTranslations("AdminLayout.pages.actionCentre");
 
-  const actionItems: ActionItem[] = await getAllVehicleActions();
+  // const actionItems: ActionItem[] = await getAllVehicleActions();
 
   return (
     <div>
@@ -33,7 +33,7 @@ const ActionCentre = async () => {
           { name: "Action Centre", href: "/home/actionCentre" },
         ]}
       />
-      <ActionListComponent initialActionItems={actionItems} />
+      <ActionListComponent />
     </div>
   );
 };
