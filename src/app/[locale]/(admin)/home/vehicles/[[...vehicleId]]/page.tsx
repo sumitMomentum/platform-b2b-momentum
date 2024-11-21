@@ -1,23 +1,13 @@
 "use client";
 import { getVehicleDashboardData } from "@/actions/admin/dashboardModule/get-vehicle-dashboard-data";
-// import { createEnodeWebhook } from "@/actions/admin/dashboardModule/create-enode-webhook";
-import InfoCard from "@/components/ui/dashboard/InfoCard";
 import VehicleBatteryHealth from "@/components/ui/dashboard/VehicleBatteryHealth";
 import VehicleChargePattern from "@/components/ui/dashboard/VehicleChargePattern";
 import VehicleDetails from "@/components/ui/dashboard/VehicleDetails";
 import VehicleUsage from "@/components/ui/dashboard/VehicleUsage";
 import useVehicleStore from "@/states/store";
-import {
-  ArrowPathIcon,
-  ArrowsPointingInIcon,
-  ArrowTrendingDownIcon,
-  LinkIcon,
-  MapPinIcon,
-} from "@heroicons/react/24/outline";
-import { log } from "console";
-import { useEffect, useState, use } from "react";
-// import { useRouter, useSearchParams } from "next/navigation";
-// import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
+import { Grid, Box, Typography } from "@mui/material";
 
 const VehicleDashboard = (props: {
   params: Promise<{ vehicleId: string }>;
@@ -60,60 +50,47 @@ const VehicleDashboard = (props: {
 
   return (
     dashboardData && (
-      <div className="flex gap-6 w-full justify-center items-center">
+      <Box
+        sx={{
+          display: "flex",
+          gap: 6,
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
         {selectedVehicle ? (
-          <div className="flex w-full gap-6 flex-col">
-            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              <VehicleDetails
-                dashboardData={dashboardData}
-              />
-              <VehicleChargePattern
-                dashboardData={dashboardData}
-              />
-            </div>
-            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              <VehicleUsage
-                dashboardData={dashboardData}
-              />
-              <VehicleBatteryHealth
-                dashboardData={dashboardData}
-              />
-            </div>
-            {/* <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              <InfoCard
-                titleKey="Location"
-                descriptionKey={dashboardData.location}
-                icon={MapPinIcon}
-              />
-              <InfoCard
-                titleKey="Data Points Collected"
-                descriptionKey={dashboardData.dataPointsCollected}
-                icon={ArrowsPointingInIcon}
-              />
-            </div> */}
-            {/* <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              <InfoCard
-                titleKey="End Of Life"
-                // descriptionKey={dashboardData.endOfLife.toLocaleDateString(
-                //   "en-US",
-                //   { month: "short", day: "2-digit", year: "numeric" }
-                // )}
-                descriptionKey={dashboardData.endOfLife}
-                icon={ArrowTrendingDownIcon}
-              />
-              <InfoCard
-                titleKey="Remaining Useful Life"
-                descriptionKey={dashboardData.remainingUsefulLife}
-                icon={ArrowPathIcon}
-              />
-            </div> */}
-          </div>
+          <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+            <Grid container spacing={6} sx={{ width: "100%" }}>
+              <Grid item xs={12} md={12} lg={6}>
+                <VehicleDetails dashboardData={dashboardData} />
+              </Grid>
+              <Grid item xs={12} md={12} lg={6}>
+                <VehicleChargePattern dashboardData={dashboardData} />
+              </Grid>
+            </Grid>
+            <Grid container spacing={6} sx={{ width: "100%" }}>
+              <Grid item xs={12} md={12} lg={6}>
+                <VehicleUsage dashboardData={dashboardData} />
+              </Grid>
+              <Grid item xs={12} md={12} lg={6}>
+                <VehicleBatteryHealth dashboardData={dashboardData} />
+              </Grid>
+            </Grid>
+          </Box>
         ) : (
-          <div className="flex justify-center items-center w-full h-full">
-            Please select a vehicle
-          </div>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <Typography>Please select a vehicle</Typography>
+          </Box>
         )}
-      </div>
+      </Box>
     )
   );
 };

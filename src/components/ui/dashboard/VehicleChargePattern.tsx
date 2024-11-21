@@ -9,6 +9,11 @@ import {
 } from "@mui/material";
 import SocChart from "./SocChart";
 import { useTranslations } from "next-intl";
+import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
+import { transform } from "next/dist/build/swc";
+import { split } from "postcss/lib/list";
+import { text } from "stream/consumers";
+import { map } from "svix/dist/openapi/rxjsStub";
 
 const VehicleChargePattern = ({ dashboardData }) => {
   const t = useTranslations("AdminLayout.pages.vehicleDashboard");
@@ -38,17 +43,24 @@ const VehicleChargePattern = ({ dashboardData }) => {
           <Grid
             item
             xs={12}
+            md={4}
             lg={4}
             container
-            direction="column"
+            sx={{
+              flexDirection: { xs: "row", md: "column" }, // Row on small screens, column on medium and above
+            }}
             justifyContent="space-around"
           >
             <Box>
-              <Typography variant="subtitle2">{t("averageSoc")}</Typography>
+              <Typography variant="subtitle2" fontWeight="bold">
+                {t("averageSoc")}
+              </Typography>
               <Typography>{dashboardData.batteryHealthAverageSoC}%</Typography>
             </Box>
             <Box>
-              <Typography variant="subtitle2">{t("connectorType")}</Typography>
+              <Typography variant="subtitle2" fontWeight="bold">
+                {t("connectorType")}
+              </Typography>
               <Typography>
                 {dashboardData.connectorType === "Public Slow" ? "GBT" : "CCS2"}
               </Typography>
@@ -56,30 +68,58 @@ const VehicleChargePattern = ({ dashboardData }) => {
           </Grid>
 
           {/* Center Chart */}
-          <Grid item xs={12} lg={4}>
-            <Box display="flex" justifyContent="center">
-              <SocChart soc={dashboardData.soc} />
-            </Box>
+          <Grid
+            item
+            container
+            xs={12}
+            md={4}
+            lg={4}
+            sx={{
+              height: { xs: 250, md: 300 }, // Responsive height
+            }}
+          >
+            <Gauge
+              value={dashboardData.soc}
+              // width={width}
+              // height={height}
+              startAngle={0}
+              endAngle={360}
+              innerRadius="70%"
+              outerRadius="100%"
+              sx={{
+                [`& .${gaugeClasses.valueText}`]: {
+                  transform: "translate(0px, 0px)",
+                  fontSize: "1.5rem",
+                  textAlign: "center",
+                  lineHeight: "1.2",
+                },
+              }}
+              text={({ value }) => `${value}%`} // Add line breaks in text
+            />
           </Grid>
 
           {/* Third Column */}
           <Grid
             item
             xs={12}
+            md={4}
             lg={4}
             container
-            direction="column"
-            justifyContent="space-around"
-            alignItems="flex-end"
+            sx={{
+              flexDirection: { xs: "row", md: "column" }, // Row on small screens, column on medium and above
+              textAlign: { xs: "left", md: "right" },
+              justifyContent: "space-around",
+              alignItems: "flex-end",
+            }}
           >
-            <Box textAlign="right">
-              <Typography variant="subtitle2">
+            <Box>
+              <Typography variant="subtitle2" fontWeight="bold">
                 {t("totalChargingSessions")}
               </Typography>
               <Typography>{dashboardData.totalChargingSession}</Typography>
             </Box>
-            <Box textAlign="right">
-              <Typography variant="subtitle2">
+            <Box>
+              <Typography variant="subtitle2" fontWeight="bold">
                 {t("averageChargingRate")}
               </Typography>
               <Typography>

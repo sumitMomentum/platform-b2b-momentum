@@ -1,36 +1,9 @@
 "use server";
 
-import { brand } from "@/components/ui/landingPage/theme/themePrimitives";
 import prisma from "@/lib/db";
-import { range } from "@mui/x-data-grid/internals";
-import { log, error } from "console";
-import crypto, { createHmac, timingSafeEqual } from "crypto";
-import { create } from "domain";
-import { read } from "fs";
-import { connect } from "http2";
-import chalk, {
-  blue,
-  bold,
-  cyan,
-  green,
-  greenBright,
-  magenta,
-  red,
-  redBright,
-  yellow,
-} from "chalk";
+import crypto from "crypto";
+import chalk from "chalk";
 import { auth } from "@clerk/nextjs/server";
-import { ok } from "assert";
-import { headers } from "next/headers";
-import { env } from "process";
-import { json, text } from "stream/consumers";
-import { from } from "svix/dist/openapi/rxjsStub";
-import { parse, stringify } from "querystring";
-import { url } from "inspector";
-import { get } from "http";
-import { isArray } from "util";
-import useVehicleStore from "@/states/store";
-import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 
 export const generateEnodeToken = async () => {
   console.log(chalk.blue("📡 Initiating Enode token generation..."));

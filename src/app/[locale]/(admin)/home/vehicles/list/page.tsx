@@ -24,6 +24,7 @@ import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
 import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import { type } from "os";
 import style from "styled-jsx/style";
 import { current } from "tailwindcss/colors";
@@ -170,34 +171,45 @@ const VehiclePage = () => {
               label="Choose a .csv File"
               variant="outlined"
               color="primary"
-              placeholder="Select a csv file"
+              // placeholder="File name ..."
+              size="small"
               sx={{
-                "& .Mui-disabled": {
-                  color: "black", // Ensures the disabled input text remains black
+                "& .MuiInputBase-input": {
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
                 },
               }}
               value={fileInputRef.current?.files?.[0]?.name || ""}
               slotProps={{
                 input: {
-                  startAdornment: (
+                  endAdornment: (
                     <InputAdornment position="start">
                       <Tooltip
-                        title="Browse"
-                        placement="left"
+                        title={selectedFile ? "Change File" : "Browse"}
+                        placement="top"
                         color="primary"
                         slotProps={{
                           tooltip: {
                             sx: {
                               bgcolor: "primary.main",
                               "& .MuiTooltip-arrow": {
-                                color: "primary.main",
+                                color: "primary",
                               },
                             },
                           },
                         }}
                       >
-                        <IconButton color="primary" onClick={handleButtonClick}>
-                          <AddCircleIcon />
+                        <IconButton
+                          color="primary"
+                          onClick={handleButtonClick}
+                          size="small"
+                        >
+                          {selectedFile ? (
+                            <ChangeCircleIcon />
+                          ) : (
+                            <AddCircleIcon />
+                          )}
                         </IconButton>
                       </Tooltip>
                     </InputAdornment>
@@ -205,7 +217,7 @@ const VehiclePage = () => {
                   readOnly: true,
                 },
               }}
-              disabled
+              // disabled
             />
             <input
               type="file"
