@@ -26,11 +26,9 @@ const VehiclePage = () => {
 
   // Fetch user vehicles if necessary
   const getVehicles = async () => {
-    if (!vehicles || vehicles.length === 0 || isSuccess) {
-      const userVehiclesFromDB = await getUserVehicles();
-      setVehicles(userVehiclesFromDB);
-      setIsSuccess(true); // This is a major glitch causing infinite fetching
-    }
+    const userVehiclesFromDB = await getUserVehicles();
+    setVehicles(userVehiclesFromDB);
+    setIsSuccess(false);
   };
 
   useEffect(() => {
@@ -43,11 +41,12 @@ const VehiclePage = () => {
   };
 
   // Handle deletion of vehicles
-  const handleDelete = async (vehicleId) => {
+  const handleDelete = async (vehicleId: string) => {
     try {
       const result = await deleteVehicleById(vehicleId);
       setIsSuccess(true);
-      alert(`Vehicle with ID ${result.vehicleId} deleted successfully`);
+      alert(`Vehicle with ID ${vehicleId} deleted successfully`);
+      getVehicles(); // Re-fetch vehicles after deletion
     } catch (error) {
       console.error("Error deleting vehicle:", error);
       alert("Error deleting vehicle");
@@ -110,7 +109,6 @@ const VehiclePage = () => {
             startIcon={<FileUploadIcon />}
             variant="contained"
             color="success"
-            // className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
             onClick={() => handleUpload(false)}
           >
             Onboard
@@ -119,7 +117,6 @@ const VehiclePage = () => {
             startIcon={<PublishIcon />}
             variant="contained"
             color="success"
-            // className="bg-blue-500 w-full p-2 hover:bg-blue-700 hover:text-white rounded-md"
             onClick={() => {
               handleUpload(true);
             }}
@@ -131,22 +128,12 @@ const VehiclePage = () => {
             color="success"
             startIcon={<DeleteForeverIcon />}
             onClick={() => {
-              const vehicleId = "VIN4290AUD";
+              const vehicleId = "22";
               handleDelete(vehicleId);
             }}
           >
             Delete
           </Button>
-          {/* <UploadButton
-            options={options}
-            onComplete={(files) =>
-              alert(files.map((x) => x.fileUrl).join("\n"))
-            }
-          >
-            {({ onClick }) => (
-              <button onClick={onClick}>Upload a file...</button>
-            )}
-          </UploadButton>*/}
         </div>
       </div>
       <div className="flex-grow flex flex-col space-y-4">
