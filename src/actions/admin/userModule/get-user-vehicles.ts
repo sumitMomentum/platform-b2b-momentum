@@ -16,7 +16,7 @@ export const getUserVehicles = async () => {
 
   console.log(response);
 
-  if (!response.ok) {
+  if (!response.ok) {a
     throw new Error("Failed to fetch vehicles data");
   }
 

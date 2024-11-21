@@ -5,21 +5,16 @@ import VehicleList from "@/components/ui/commons/VehicleList";
 import AddVehicle from "@/components/ui/dashboard/AddVehicle";
 import VendorList from "@/components/ui/dashboard/aggregatedDashboard/VendorList";
 import { useTranslations } from "next-intl";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
+import { deleteVehicleById } from "@/actions/admin/userModule/delete-vehicle";
 import useVehicleStore from "@/states/store";
-import { useEffect } from "react"; // Import only useEffect
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
 import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
-import {Typography} from "@mui/material";
-// const options = {
-//   apiKey: "free",
-//   maxFileCount: 1,
-// };
 
 const VehiclePage = () => {
   const t = useTranslations("AdminLayout.pages.vehicles");
@@ -34,7 +29,7 @@ const VehiclePage = () => {
     if (!vehicles || vehicles.length === 0 || isSuccess) {
       const userVehiclesFromDB = await getUserVehicles();
       setVehicles(userVehiclesFromDB);
-      setIsSuccess(true); // This is a major glitch causing infite fethcing
+      setIsSuccess(true); // This is a major glitch causing infinite fetching
     }
   };
 
@@ -48,35 +43,19 @@ const VehiclePage = () => {
   };
 
   // Handle deletion of vehicles
-  const handleDelete = async () => {
+  const handleDelete = async (vehicleId) => {
     try {
-      const response = await fetch(
-        `https://demoapi-9d35.onrender.com/api/vehicles/tempDelete`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        setIsSuccess(true);
-        alert(`Vehicle with ID ${data.vehicleId} deleted successfully`);
-      } else {
-        const errorData = await response.json();
-        console.error("Error deleting vehicle:", errorData);
-        alert("Error deleting vehicle");
-      }
+      const result = await deleteVehicleById(vehicleId);
+      setIsSuccess(true);
+      alert(`Vehicle with ID ${result.vehicleId} deleted successfully`);
     } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong.");
+      console.error("Error deleting vehicle:", error);
+      alert("Error deleting vehicle");
     }
   };
 
   // Handle file upload (for onboarding or updating vehicles)
-  const handleUpload = async (isUpdate: boolean) => {
+  const handleUpload = async (isUpdate) => {
     try {
       if (!selectedFile) {
         throw new Error("Please select a file to upload.");
@@ -92,7 +71,7 @@ const VehiclePage = () => {
       setIsSuccess(true);
       setSelectedFile(null);
       if (fileInputRef.current) {
-        (fileInputRef.current as HTMLInputElement).value = "";
+        fileInputRef.current.value = "";
       }
       window.alert(
         `${isUpdate ? "Update" : "Upload"} successful: ${result.message}`
@@ -151,9 +130,9 @@ const VehiclePage = () => {
             variant="outlined"
             color="success"
             startIcon={<DeleteForeverIcon />}
-            // className="bg-red-500 w-full p-2 hover:bg-red-700 text-white rounded-md"
             onClick={() => {
-              handleDelete();
+              const vehicleId = "VIN4290AUD";
+              handleDelete(vehicleId);
             }}
           >
             Delete
