@@ -54,7 +54,7 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
 
   return (
     <li>
-      <ul role="list" className="-mx-2 space-y-1">
+      <ul role="list">
         {links.map((section) => (
           <div key={section.sectionName}>
             {/* <span className="text-xs font-semibold leading-6 text-primary">
