@@ -3,7 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-
+import GppGoodIcon from "@mui/icons-material/GppGood";
+import GppMaybeIcon from "@mui/icons-material/GppMaybe";
+import GppBadIcon from "@mui/icons-material/GppBad";
+import VerifiedIcon from "@mui/icons-material/Verified";
 // Define ActionItem type here
 type ActionItem = {
   id: number;
@@ -64,6 +67,15 @@ const ActionListComponent: React.FC = () => {
               ? "warning"
               : "success"
           }
+          icon={
+            params.value === "High" ? (
+              <GppGoodIcon />
+            ) : params.value === "Medium" ? (
+              <GppMaybeIcon />
+            ) : (
+              <GppBadIcon />
+            )
+          }
         />
       ),
     },
@@ -76,7 +88,12 @@ const ActionListComponent: React.FC = () => {
       flex: 1,
       renderCell: (params) =>
         params.value ? (
-          <Chip label="Action Closed" color="success" variant="outlined" />
+          <Chip
+            label="Action Closed"
+            color="success"
+            variant="outlined"
+            icon={<VerifiedIcon />}
+          />
         ) : (
           <Button variant="contained" color="primary">
             Take Action
@@ -115,7 +132,7 @@ const ActionListComponent: React.FC = () => {
         getRowId={(row) => row.vin}
         loading={loading || actionItems.length == 0}
         autoHeight
-        disableColumnMenu
+        // disableColumnMenu
         disableRowSelectionOnClick
         disableColumnSelector
         pageSizeOptions={[5, 10]}

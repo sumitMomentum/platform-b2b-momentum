@@ -8,6 +8,22 @@ import React from "react";
 import { Box, Chip, Toolbar } from "@mui/material";
 import zIndex from "@mui/material/styles/zIndex";
 import { usePathname, useRouter } from "next/navigation";
+import BatteryAlertIcon from "@mui/icons-material/BatteryAlert";
+import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
+import Battery1BarIcon from "@mui/icons-material/Battery1Bar";
+import Battery2BarIcon from "@mui/icons-material/Battery2Bar";
+import Battery3BarIcon from "@mui/icons-material/Battery3Bar";
+import Battery4BarIcon from "@mui/icons-material/Battery4Bar";
+import Battery5BarIcon from "@mui/icons-material/Battery5Bar";
+import Battery6BarIcon from "@mui/icons-material/Battery6Bar";
+import BatteryStdIcon from "@mui/icons-material/BatteryStd";
+import ToggleOffIcon from "@mui/icons-material/ToggleOff";
+import ToggleOnIcon from "@mui/icons-material/ToggleOn";
+import ChargingStationIcon from "@mui/icons-material/ChargingStation";
+import InfoIcon from "@mui/icons-material/Info";
+import GppGoodIcon from "@mui/icons-material/GppGood";
+import GppMaybeIcon from "@mui/icons-material/GppMaybe";
+import GppBadIcon from "@mui/icons-material/GppBad";
 
 // Get the current route using useRouter
 
@@ -29,6 +45,27 @@ const baseColumns = [
             : params.value >= 40
             ? "warning"
             : "error"
+        }
+        icon={
+          params.value >= 100 ? (
+            <BatteryStdIcon />
+          ) : params.value >= 85 ? (
+            <Battery6BarIcon />
+          ) : params.value >= 65 ? (
+            <Battery5BarIcon />
+          ) : params.value >= 50 ? (
+            <Battery4BarIcon />
+          ) : params.value >= 40 ? (
+            <Battery3BarIcon />
+          ) : params.value >= 30 ? (
+            <Battery2BarIcon />
+          ) : params.value >= 20 ? (
+            <Battery1BarIcon />
+          ) : params.value >= 10 ? (
+            <Battery0BarIcon />
+          ) : (
+            <BatteryAlertIcon />
+          )
         }
       />
     ),
@@ -54,6 +91,17 @@ const optionalColumns = [
             ? "error"
             : "info"
         }
+        icon={
+          params.value === "Active" ? (
+            <ToggleOnIcon />
+          ) : params.value === "Charging" ? (
+            <ChargingStationIcon />
+          ) : params.value === "Inactive" ? (
+            <ToggleOffIcon />
+          ) : (
+            <InfoIcon />
+          )
+        }
       />
     ),
   },
@@ -71,6 +119,15 @@ const optionalColumns = [
             : params.value === "Satisfactory"
             ? "warning"
             : "error"
+        }
+        icon={
+          params.value === "Good" ? (
+            <GppGoodIcon />
+          ) : params.value === "Satisfactory" ? (
+            <GppMaybeIcon />
+          ) : (
+            <GppBadIcon />
+          )
         }
       />
     ),

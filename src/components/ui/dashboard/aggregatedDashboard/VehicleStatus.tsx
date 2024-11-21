@@ -9,7 +9,10 @@ import React from "react";
 import { Stack, Chip } from "@mui/material";
 import { title } from "process";
 import { map } from "svix/dist/openapi/rxjsStub";
-
+import ToggleOffIcon from "@mui/icons-material/ToggleOff";
+import ToggleOnIcon from "@mui/icons-material/ToggleOn";
+import ChargingStationIcon from "@mui/icons-material/ChargingStation";
+import InfoIcon from "@mui/icons-material/Info";
 const VehicleStatus = () => {
   const vehicles = useVehicleStore((state) => state.vehicles);
 
@@ -28,7 +31,7 @@ const VehicleStatus = () => {
     { label: "Active", color: "success", status: "Active" },
     { label: "Inactive", color: "error", status: "Inactive" },
     { label: "Charging", color: "warning", status: "Charging" },
-    { label: "Out Of Service", color: "default", status: "Out of Service" }, // Changed "grey" to "default"
+    { label: "Out Of Service", color: "info", status: "Out of Service" }, // Changed "grey" to "default"
   ];
 
   return (
@@ -42,7 +45,22 @@ const VehicleStatus = () => {
         <Stack spacing={3} p={2}>
           {statuses.map(({ label, color, status }) => (
             <Stack key={status} direction="row" alignItems="center">
-              <Chip variant="outlined" label={label} color={color} />
+              <Chip
+                variant="outlined"
+                label={label}
+                color={color}
+                icon={
+                  label === "Active" ? (
+                    <ToggleOnIcon />
+                  ) : label === "Charging" ? (
+                    <ChargingStationIcon />
+                  ) : label === "Inactive" ? (
+                    <ToggleOffIcon />
+                  ) : (
+                    <InfoIcon />
+                  )
+                }
+              />
               <Chip
                 label={vehicles.reduce(
                   (count, vehicle) =>

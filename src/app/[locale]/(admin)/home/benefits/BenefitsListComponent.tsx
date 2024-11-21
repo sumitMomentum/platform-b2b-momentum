@@ -20,13 +20,15 @@ type BenefitItem = {
   rangeIncreaseLifetimeEstimate: number;
   revenueIncreaseLifetime: number;
 };
-
+import TrendingUpSharpIcon from "@mui/icons-material/TrendingUpSharp";
+import TrendingDownSharpIcon from "@mui/icons-material/TrendingDownSharp";
 import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
 import { Typography } from "@mui/material";
 import ThumbDownAlt from "@mui/icons-material/ThumbDownAlt";
 import ThumbUpAlt from "@mui/icons-material/ThumbUpAlt";
 import { map } from "svix/dist/openapi/rxjsStub";
 import page from "../page";
+import style from "styled-jsx/style";
 
 const BenefitsListComponent: React.FC = () => {
   const [vehicleBenefits, setVehicleBenefits] = useState<BenefitItem[]>([]);
@@ -53,7 +55,17 @@ const BenefitsListComponent: React.FC = () => {
       headerName: "VIN",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => <div>{params.value}</div>,
+      renderCell: (params) => (
+        <>
+          {params.value === "Total Loss" && (
+            <TrendingDownSharpIcon color="error" />
+          )}
+          {params.value === "Total Gains" && (
+            <TrendingUpSharpIcon color="success" />
+          )}
+          <span style={{ marginLeft: 8 }}>{params.value}</span>
+        </>
+      ),
     },
     {
       field: "batteryCycleSavingMonthly",
@@ -145,9 +157,11 @@ const BenefitsListComponent: React.FC = () => {
         Overall Profit and Loss
       </Typography>
       <DataGrid
-        rows={vehicleBenefits.filter(
-          (vehicle) => vehicle.vehicleId === "xxxxxxxxxx"
-        )}
+        rows={vehicleBenefits
+          .filter((vehicle) => vehicle.vehicleId === "xxxxxxxxxx")
+          .sort((a, b) => {
+            return a.vin > b.vin ? 1 : -1; // Sort by vin in ascending order
+          })}
         columns={columns}
         getRowId={(row) => row.vin}
         loading={loading}
