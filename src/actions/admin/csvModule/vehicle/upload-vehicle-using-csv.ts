@@ -2,6 +2,7 @@
 import prisma from "@/lib/db";
 import csv from 'csv-parser';
 import { Readable } from 'stream';
+import { updateBenefits } from "@/utils/calculateBenefits"; 
 
 export async function uploadVehiclesFromCSV(formData: FormData) {
   try {
@@ -23,19 +24,18 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
     });
 
     // Function to convert date string to Date object or set a default date
-    const parseDate = (dateString) => {
+    const parseDate = (dateString: string) => {
       if (!dateString) {
         return new Date("2000-01-01"); // Default date if dateString is undefined
       }
 
       const dateParts = dateString.split("-");
-      // Create a new Date object using the parts of the date string
       const dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
       return isNaN(dateObject.getTime()) ? new Date("2000-01-01") : dateObject;
     };
 
     // Function to convert ownerID to a number if it is a string
-    const convertOwnerId = (ownerId) => {
+    const convertOwnerId = (ownerId: string | number) => {
       return typeof ownerId === 'string' ? parseInt(ownerId, 10) : ownerId;
     };
 
@@ -120,12 +120,16 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
       })
     );
 
+    // Update benefits for all vehicles
+    const benefits = await updateBenefits();
+
     return {
-      message: `Successfully uploaded ${vehicles.length} vehicles`,
+      message: `Successfully uploaded ${vehicles.length} vehicles and updated benefits for ${benefits.length} vehicles`,
       vehicles,
+      benefits,
     };
   } catch (error) {
     console.error('Error uploading vehicles:', error);
-    throw new Error(error.message || 'Failed to upload vehicles');
+    throw new Error(error.message || 'Failed to upload vehicles and update benefits');
   }
 }
