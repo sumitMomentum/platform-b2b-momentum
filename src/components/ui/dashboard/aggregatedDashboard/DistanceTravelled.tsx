@@ -32,7 +32,9 @@ const DistanceTravelled = () => {
         </Box>
         <Grid container spacing={2} sx={{ padding: 2 }}>
           <Grid item xs={4}>
-            <Typography variant="bold">Avg Monthly Km Driven</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">
+              Avg Monthly Km Driven
+            </Typography>
             <Typography>
               {(
                 vehicles.reduce((totalDistance, vehicle) => {
@@ -44,7 +46,9 @@ const DistanceTravelled = () => {
             </Typography>
           </Grid>
           <Grid item xs={4}>
-            <Typography variant="bold">Temperature Low/High</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">
+              Temperature Low/High
+            </Typography>
             <Typography>{`${(
               vehicles.reduce((total, vehicle) => {
                 return total + vehicle.usageTemperatureLow;
@@ -56,7 +60,9 @@ const DistanceTravelled = () => {
             ).toFixed(2)}\u00B0C`}</Typography>
           </Grid>
           <Grid item xs={4}>
-            <Typography variant="bold">SOC Range</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">
+              SOC Range
+            </Typography>
             <Typography>
               {(
                 vehicles.reduce((total, vehicle) => {
@@ -73,7 +79,9 @@ const DistanceTravelled = () => {
             </Typography>
           </Grid>
           <Grid item xs={4}>
-            <Typography variant="bold">Range Observed Min/Max</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">
+              Range Observed Min/Max
+            </Typography>
             <Typography>
               {(
                 vehicles.reduce((total, vehicle) => {
@@ -90,7 +98,9 @@ const DistanceTravelled = () => {
             </Typography>
           </Grid>
           <Grid item xs={4}>
-            <Typography variant="bold">Avg Real Range Observed</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">
+              Avg Real Range Observed
+            </Typography>
             <Typography>
               {(
                 vehicles.reduce((total, vehicle) => {
@@ -101,7 +111,9 @@ const DistanceTravelled = () => {
             </Typography>
           </Grid>
           <Grid item xs={4}>
-            <Typography variant="bold">Average WLTP est. range</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">
+              Average WLTP est. range
+            </Typography>
             <Typography>277 kms</Typography>
           </Grid>
         </Grid>

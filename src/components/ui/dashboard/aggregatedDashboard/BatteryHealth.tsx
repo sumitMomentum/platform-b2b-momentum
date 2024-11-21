@@ -57,17 +57,23 @@ const BatteryHealth = () => {
 
         <Grid container spacing={2} sx={{ padding: 2 }}>
           <Grid item xs={4}>
-            <Typography variant="bold">Avg SoH</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">
+              Avg SoH
+            </Typography>
             <Typography>{avgSoH} %</Typography>
           </Grid>
 
           <Grid item xs={4}>
-            <Typography variant="bold">Avg Estimated Degradation</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">
+              Avg Estimated Degradation
+            </Typography>
             <Typography>{avgDegradation} %</Typography>
           </Grid>
 
           <Grid item xs={4}>
-            <Typography variant="bold">Total Vehicles</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">
+              Total Vehicles
+            </Typography>
             <Typography>{vehicles.length || 0}</Typography>
           </Grid>
         </Grid>

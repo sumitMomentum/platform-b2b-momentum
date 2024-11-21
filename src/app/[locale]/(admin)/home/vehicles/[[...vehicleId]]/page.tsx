@@ -19,7 +19,9 @@ import { useEffect, useState, use } from "react";
 // import { useRouter, useSearchParams } from "next/navigation";
 // import { useEffect } from "react";
 
-const VehicleDashboard = (props: { params: Promise<{ vehicleId: string }> }) => {
+const VehicleDashboard = (props: {
+  params: Promise<{ vehicleId: string }>;
+}) => {
   const [vehicleId, setVehicleId] = useState<string | null>(null);
   const selectedVehicleId = useVehicleStore((state) => state.selectedVehicleId);
   const vehiclesFromStore = useVehicleStore((state) => state.vehicles);
@@ -62,80 +64,34 @@ const VehicleDashboard = (props: { params: Promise<{ vehicleId: string }> }) => 
         {selectedVehicle ? (
           <div className="flex w-full gap-6 flex-col">
             <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              <InfoCard
-                titleKey="Location"
-                descriptionKey={dashboardData.location}
-                icon={MapPinIcon}
-              />
-              {/* <InfoCard
-                titleKey="Date Of Connection"
-                descriptionKey={
-                  selectedVehicle.dateOfConnection
-                    ? new Date(
-                        selectedVehicle.dateOfConnection
-                      ).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "2-digit",
-                        year: "numeric",
-                      })
-                    : "N/A"
-                }
-                icon={LinkIcon}
-              /> */}
-              <InfoCard
-                titleKey="Data Points Collected"
-                descriptionKey={dashboardData.dataPointsCollected}
-                icon={ArrowsPointingInIcon}
-              />
-            </div>
-            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              {/* <VehicleDetails
-                year={selectedVehicle.year}
-                model={selectedVehicle.model}
-                make={selectedVehicle.make}
-                vin={selectedVehicle.vin}
-                batteryCapacity={selectedVehicle.batteryCapacity}
-                odometer={selectedVehicle.odometer}
-              /> */}
               <VehicleDetails
-                year={dashboardData["year "]}
-                model={dashboardData.model}
-                make={dashboardData.make}
-                vin={dashboardData.vin}
-                batteryCapacity={dashboardData.batteryCapacity}
-                odometer={dashboardData.odometerFloat}
+                dashboardData={dashboardData}
               />
               <VehicleChargePattern
-                soc={selectedVehicle.soc || 0}
-                totalEnergyConsumed={dashboardData.totalEnergyConsumed}
-                averageSoC={dashboardData.batteryHealthAverageSoC}
-                connectorType={dashboardData.connectorType}
-                totalChargingSessions={dashboardData.totalChargingSession}
-                averageChargingRate={dashboardData.averageChargingRate}
                 dashboardData={dashboardData}
               />
             </div>
             <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
               <VehicleUsage
-                avgDailyKmDriven={dashboardData.avgDailyKmDriven}
-                temperatureLow={dashboardData.temperatureLow}
-                temperatureHigh={dashboardData.temperatureHigh}
-                socRangeMin={dashboardData.socRangeMin}
-                socRangeMax={dashboardData.socRangeMax}
-                rangeObservedMin={dashboardData.rangeObservedMin}
-                rangeObservedMax={dashboardData.rangeObservedMax}
-                realRangeObserved={dashboardData.realRangeObserved}
-                epaProvidedRange={dashboardData.epawltpProvidedRange}
                 dashboardData={dashboardData}
               />
               <VehicleBatteryHealth
-                batteryHealthSoH={dashboardData.batteryHealthSoH}
-                estimatedDegradation={dashboardData.estimatedDegradation}
-                batteryChemistry={dashboardData.batteryChemistry}
                 dashboardData={dashboardData}
               />
             </div>
-            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+            {/* <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+              <InfoCard
+                titleKey="Location"
+                descriptionKey={dashboardData.location}
+                icon={MapPinIcon}
+              />
+              <InfoCard
+                titleKey="Data Points Collected"
+                descriptionKey={dashboardData.dataPointsCollected}
+                icon={ArrowsPointingInIcon}
+              />
+            </div> */}
+            {/* <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
               <InfoCard
                 titleKey="End Of Life"
                 // descriptionKey={dashboardData.endOfLife.toLocaleDateString(
@@ -150,7 +106,7 @@ const VehicleDashboard = (props: { params: Promise<{ vehicleId: string }> }) => 
                 descriptionKey={dashboardData.remainingUsefulLife}
                 icon={ArrowPathIcon}
               />
-            </div>
+            </div> */}
           </div>
         ) : (
           <div className="flex justify-center items-center w-full h-full">

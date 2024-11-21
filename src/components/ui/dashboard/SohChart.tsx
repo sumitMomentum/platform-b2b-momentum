@@ -6,8 +6,6 @@ import { chartColorTheme } from "@/themes/ChartPalettes";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const SohChart = ({ dashboardData }) => {
-  const sohArray = dashboardData.soh;
-  console.log(dashboardData.soh);
   const xLabels = [
     "Jan",
     "Feb",
@@ -23,19 +21,17 @@ const SohChart = ({ dashboardData }) => {
     "Dec",
   ];
 
-  // const [series] = useState([
-  //   {
-  //     label: "SoH (%)",
-  //     data: sohArray,
-  //   },
-  // ]);
-
-  const [series] = useState([
+  const series = [
     {
       label: "SoH (%)",
-      data: sohArray.length > 0 ? sohArray : Array(xLabels.length).fill(0),
+      data:
+        dashboardData.soh.length > 0
+          ? dashboardData.soh
+          : Array(xLabels.length).fill(0),
+      color: "#77bc3f",
     },
-  ]);
+  ];
+
   return (
     <LineChart
       width={700}

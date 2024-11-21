@@ -44,7 +44,7 @@ const SocChart = ({ soc }) => {
         hollow: {
           margin: 0,
           size: "70%",
-          background: "#293450",
+          background: "`​#77bc3f`",
         },
         track: {
           dropShadow: {

@@ -10,12 +10,6 @@ import { Title } from "@tremor/react";
 // import { useEffect } from 'react';
 
 const VehicleChargePattern = ({
-  soc,
-  totalEnergyConsumed,
-  averageSoC,
-  connectorType,
-  totalChargingSessions,
-  averageChargingRate,
   dashboardData
 }) => {
   const t = useTranslations("AdminLayout.pages.vehicleDashboard");
@@ -30,7 +24,9 @@ const VehicleChargePattern = ({
             </div>
             <div className="border flex flex-col justify-center items-center p-2 col-span-1 lg:col-span-1">
               <Card.Description>{t("totalEnergyConsumed")}</Card.Description>
-              <Card.Description>{totalEnergyConsumed} kW</Card.Description>
+              <Card.Description>
+                {dashboardData.totalEnergyConsumed} kW
+              </Card.Description>
             </div>
           </div>
         </Card.Header>
@@ -40,31 +36,40 @@ const VehicleChargePattern = ({
           <div className="flex flex-col justify-evenly gap-4 col-span-1">
             <div>
               <Card.Description>{t("averageSoc")}</Card.Description>
-              <Card.Description>{averageSoC}%</Card.Description>
+              <Card.Description>
+                {dashboardData.batteryHealthAverageSoC}%
+              </Card.Description>
             </div>
             <div>
               <Card.Description>{t("connectorType")}</Card.Description>
               <Card.Description>
-                {connectorType == "Public Slow" ? "GBT" : "CCS2"}
+                {dashboardData.connectorType == "Public Slow" ? "GBT" : "CCS2"}
               </Card.Description>
             </div>
           </div>
 
           {/* Center Chart */}
           <div className="flex justify-center col-span-1">
-            <SocChart soc={soc} />
+            <SocChart soc={dashboardData.soc} />
           </div>
 
           {/* Third Column */}
           <div className="flex flex-col justify-evenly gap-4 col-span-1 text-right">
             <div>
               <Card.Description>{t("totalChargingSessions")}</Card.Description>
-              <Card.Description>{totalChargingSessions}</Card.Description>
+              <Card.Description>
+                {dashboardData.totalChargingSession}
+              </Card.Description>
             </div>
             <div>
               <Card.Description>{t("averageChargingRate")}</Card.Description>
               <Card.Description>
-                {connectorType == "Public Slow" ? 7.8 : dashboardData.make == "Audi " ? 60 : 22} kW
+                {dashboardData.connectorType == "Public Slow"
+                  ? 7.8
+                  : dashboardData.make == "Audi "
+                  ? 60
+                  : 22}{" "}
+                kW
               </Card.Description>
               {/* <Card.Description>{averageChargingRate} kW</Card.Description> */}
             </div>
