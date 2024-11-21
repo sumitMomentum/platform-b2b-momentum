@@ -132,6 +132,7 @@ const VehiclePage = () => {
           breadcrumbs={[
             { name: "Home", href: "/home" },
             { name: "Vehicles", href: "/home/vehicles/list" },
+            { name: "Vehicles", href: "/home/vehicles/list" },
           ]}
         />
       </div>
