@@ -1,81 +1,99 @@
-import Card from "@/components/ui/commons/Card";
-// import { useTranslation } from 'react-i18next';
-
-import { useTranslations } from "next-intl";
+import React from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Grid,
+  Typography,
+  Box,
+} from "@mui/material";
 import SocChart from "./SocChart";
-import { Description } from "@radix-ui/themes/dist/esm/components/alert-dialog.js";
-import { Header } from "@radix-ui/themes/dist/esm/components/table.js";
-import { Title } from "@tremor/react";
-// import useVehicleStore from 'store/store';
-// import { useEffect } from 'react';
+import { useTranslations } from "next-intl";
 
-const VehicleChargePattern = ({
-  dashboardData
-}) => {
+const VehicleChargePattern = ({ dashboardData }) => {
   const t = useTranslations("AdminLayout.pages.vehicleDashboard");
 
   return (
     <Card>
-      <Card.Body>
-        <Card.Header>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-            <div className="flex items-start col-span-1 lg:col-span-1">
-              <Card.Title>{t("chargingPattern")}</Card.Title>
-            </div>
-            <div className="border flex flex-col justify-center items-center p-2 col-span-1 lg:col-span-1">
-              <Card.Description>{t("totalEnergyConsumed")}</Card.Description>
-              <Card.Description>
-                {dashboardData.totalEnergyConsumed} kW
-              </Card.Description>
-            </div>
-          </div>
-        </Card.Header>
+      <CardHeader
+        title={
+          <Typography variant="h6" component="div">
+            {t("chargingPattern")}
+          </Typography>
+        }
+      />
+      <CardContent>
+        {/* First Row */}
+        <Box textAlign="center" p={2} borderRadius={1}>
+          <Typography variant="subtitle2">
+            {t("totalEnergyConsumed")}
+          </Typography>
+          <Typography variant="h6">
+            {dashboardData.totalEnergyConsumed} kW
+          </Typography>
+        </Box>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <Grid container spacing={4}>
           {/* First Column */}
-          <div className="flex flex-col justify-evenly gap-4 col-span-1">
-            <div>
-              <Card.Description>{t("averageSoc")}</Card.Description>
-              <Card.Description>
-                {dashboardData.batteryHealthAverageSoC}%
-              </Card.Description>
-            </div>
-            <div>
-              <Card.Description>{t("connectorType")}</Card.Description>
-              <Card.Description>
-                {dashboardData.connectorType == "Public Slow" ? "GBT" : "CCS2"}
-              </Card.Description>
-            </div>
-          </div>
+          <Grid
+            item
+            xs={12}
+            lg={4}
+            container
+            direction="column"
+            justifyContent="space-around"
+          >
+            <Box>
+              <Typography variant="subtitle2">{t("averageSoc")}</Typography>
+              <Typography>{dashboardData.batteryHealthAverageSoC}%</Typography>
+            </Box>
+            <Box>
+              <Typography variant="subtitle2">{t("connectorType")}</Typography>
+              <Typography>
+                {dashboardData.connectorType === "Public Slow" ? "GBT" : "CCS2"}
+              </Typography>
+            </Box>
+          </Grid>
 
           {/* Center Chart */}
-          <div className="flex justify-center col-span-1">
-            <SocChart soc={dashboardData.soc} />
-          </div>
+          <Grid item xs={12} lg={4}>
+            <Box display="flex" justifyContent="center">
+              <SocChart soc={dashboardData.soc} />
+            </Box>
+          </Grid>
 
           {/* Third Column */}
-          <div className="flex flex-col justify-evenly gap-4 col-span-1 text-right">
-            <div>
-              <Card.Description>{t("totalChargingSessions")}</Card.Description>
-              <Card.Description>
-                {dashboardData.totalChargingSession}
-              </Card.Description>
-            </div>
-            <div>
-              <Card.Description>{t("averageChargingRate")}</Card.Description>
-              <Card.Description>
-                {dashboardData.connectorType == "Public Slow"
+          <Grid
+            item
+            xs={12}
+            lg={4}
+            container
+            direction="column"
+            justifyContent="space-around"
+            alignItems="flex-end"
+          >
+            <Box textAlign="right">
+              <Typography variant="subtitle2">
+                {t("totalChargingSessions")}
+              </Typography>
+              <Typography>{dashboardData.totalChargingSession}</Typography>
+            </Box>
+            <Box textAlign="right">
+              <Typography variant="subtitle2">
+                {t("averageChargingRate")}
+              </Typography>
+              <Typography>
+                {dashboardData.connectorType === "Public Slow"
                   ? 7.8
-                  : dashboardData.make == "Audi "
+                  : dashboardData.make === "Audi "
                   ? 60
                   : 22}{" "}
                 kW
-              </Card.Description>
-              {/* <Card.Description>{averageChargingRate} kW</Card.Description> */}
-            </div>
-          </div>
-        </div>
-      </Card.Body>
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </CardContent>
     </Card>
   );
 };
