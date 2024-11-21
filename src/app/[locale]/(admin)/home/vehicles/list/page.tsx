@@ -132,7 +132,6 @@ const VehiclePage = () => {
           breadcrumbs={[
             { name: "Home", href: "/home" },
             { name: "Vehicles", href: "/home/vehicles/list" },
-            { name: "Vehicles", href: "/home/vehicles/list" },
           ]}
         />
       </div>
@@ -153,19 +152,6 @@ const VehiclePage = () => {
             alignItems: "center", // Align items vertically in the center
           }}
         >
-          {/* <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            accept=".csv"
-          /> */}
-          {/* <TextField
-            type="file"
-            inputRef={fileInputRef}
-            onChange={handleFileChange}
-            // inputProps={{ accept: ".csv" }}
-            placeholder="Select a csv file"
-          /> */}
           <Box display="flex" alignItems="center" gap={2}>
             <TextField
               fullWidth

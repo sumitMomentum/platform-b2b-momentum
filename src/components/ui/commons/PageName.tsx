@@ -30,16 +30,14 @@ const PageName = ({
   breadcrumbs,
   isSubPage,
 }: PageNameProps) => {
-
-  const navs = breadcrumbs
-  navs.pop()
+  const navs = breadcrumbs;
 
   return (
     <Breadcrumbs
       separator={<NavigateNextIcon fontSize="small" />}
       aria-label="breadcrumb"
     >
-      {breadcrumbs.map((nav) => (
+      {breadcrumbs.slice(0, -1).map((nav) => (
         <Link color="inherit" href={nav.href}>
           {nav.name}
         </Link>

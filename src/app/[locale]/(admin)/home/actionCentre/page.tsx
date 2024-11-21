@@ -2,13 +2,13 @@ import PageName from "@/components/ui/commons/PageName";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import React from "react";
-import ActionListComponent from './ActionListComponent';
+import ActionListComponent from "./ActionListComponent";
 
 // Define ActionItem type here
 type ActionItem = {
   id: number;
   vin: string;
-  severity: 'High' | 'Medium' | 'Low';
+  severity: "High" | "Medium" | "Low";
   description: string;
   bestPractice: string;
   actionToBeTaken: string;

@@ -109,8 +109,19 @@ export default function AppAppBar({ mode, toggleColorMode }) {
                <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
                 FAQ
               </Button> 
-               <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                Blog
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+              Blog
+              </Button> */}
+              {/* <Button
+                variant="text"
+                size="small"
+                sx={{ minWidth: 0 }}
+                sx={{
+                  fontWeight: "bold",
+                  letterSpacing: "1px",
+                }}
+              >
+                About Us
               </Button> */}
             </Box>
           </Box>
