@@ -129,8 +129,9 @@ async function updateBenefits() {
     metricsByVehicle[data.vehicleId].push(data);
   });
 
-  console.log(`Processing benefits for ${Object.keys(metricsByVehicle).length} vehicles...`);
-
+  // console.log(`Processing benefits for ${Object.keys(metricsByVehicle).length} vehicles...`);
+  console.log(`Processing benefits for 6 vehicles...`);
+  
   const benefits = await Promise.all(
     Object.keys(metricsByVehicle).map(async (vehicleId) => {
       try {

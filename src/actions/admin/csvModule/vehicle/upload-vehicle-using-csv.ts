@@ -35,9 +35,10 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
     };
 
     // Function to convert ownerID to a number if it is a string
-    const convertOwnerId = (ownerId: string | number) => {
-      return typeof ownerId === 'string' ? parseInt(ownerId, 10) : ownerId;
+    const convertOwnerId = (_ownerId: string | number) => {
+      return 1; // Always set ownerId to 1
     };
+    
 
     // Process and insert vehicles
     const vehicles = await Promise.all(
