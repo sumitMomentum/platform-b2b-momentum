@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import React from "react";
-
 
 // Define the interface for the Charging Session
 interface ChargingSession {

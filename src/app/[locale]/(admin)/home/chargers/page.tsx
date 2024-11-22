@@ -29,16 +29,6 @@ const Page = () => {
   const [chargerMasterData, setChargerMasterData] = useState<ChargerRow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 70 },
-    { field: "chargerId", headerName: "Charger ID", width: 130 },
-    { field: "chargerLocation", headerName: "Charger Location", width: 200 },
-    { field: "chargerStatus", headerName: "Charger Status", width: 130 },
-    { field: "dateJoining", headerName: "Date Joining", width: 130 },
-    { field: "chargeType", headerName: "Charge Type", width: 130 },
-    { field: "chargingPoint", headerName: "Charging Point", width: 130 },
-  ];
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -60,7 +50,8 @@ const Page = () => {
   }, []);
 
   const columns: GridColDef[] = [
-    { field: "chargerID", headerName: "Charger ID", minWidth: 200 },
+    { field: "id", headerName: "ID", width: 70 },
+    { field: "chargerId", headerName: "Charger ID", minWidth: 200 },
     {
       field: "chargerLocation",
       headerName: "Charger Location",
@@ -171,7 +162,7 @@ const Page = () => {
             rows={chargerMasterData}
             columns={columns}
             autosizeOnMount
-            getRowId={(row) => row.id}  // Ensure the row ID is unique
+            getRowId={(row) => row.id} // Ensure the row ID is unique
             loading={isLoading}
             autoHeight={true}
             disableColumnMenu
