@@ -29,8 +29,7 @@ interface ActionListComponentProps {
 }
 
 const ActionListComponent: React.FC = () => {
-  // const actionItems: ActionItem[] = await getAllVehicleActions();
-
+  // const actionItems: ActionItem[] = await getAllVehicleActions()
   const [actionItems, setActionItems] = useState<ActionItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -129,17 +128,15 @@ const ActionListComponent: React.FC = () => {
       <DataGrid
         rows={actionItems}
         columns={columns}
-        getRowId={(row) => row.vin}
-        loading={loading || actionItems.length == 0}
+        getRowId={(row) => row.id} // Use `id` for row identification
+        loading={loading}
         autoHeight
         // disableColumnMenu
         disableRowSelectionOnClick
         disableColumnSelector
         pageSizeOptions={[5, 10]}
         initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
-          },
+          pagination: { paginationModel: { page: 0, pageSize: 10 } },
         }}
         sx={{
           backgroundColor: "white",

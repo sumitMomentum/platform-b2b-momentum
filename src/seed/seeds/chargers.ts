@@ -1,6 +1,6 @@
 export const chargers = [
   {
-    chargerID: 315548,
+    chargerId: 315548,
     chargerLocation: "12.849405333907084,77.65953893520165",
     chargerStatus: "Inactive",
     dateJoining: new Date("2023-12-21"),
@@ -8,7 +8,7 @@ export const chargers = [
     chargingPoint: "Default",
   },
   {
-    chargerID: 352481,
+    chargerId: 352481,
     chargerLocation: "12.849405333907084,77.65953893520165",
     chargerStatus: "Inactive",
     dateJoining: new Date("2023-02-26"),
@@ -16,7 +16,7 @@ export const chargers = [
     chargingPoint: "CCS (50 kW DC)",
   },
   {
-    chargerID: 987512,
+    chargerId: 987512,
     chargerLocation: "12.864623665903554,77.67478018550992",
     chargerStatus: "Inactive",
     dateJoining: new Date("2023-11-25"),
@@ -24,7 +24,7 @@ export const chargers = [
     chargingPoint: "CCS (175 kW DC)",
   },
   {
-    chargerID: 357216,
+    chargerId: 357216,
     chargerLocation: "12.864623665903554,77.67478018550992",
     chargerStatus: "Active",
     dateJoining: new Date("2023-01-22"),
@@ -32,7 +32,7 @@ export const chargers = [
     chargingPoint: "CCS (50 kW DC)",
   },
   {
-    chargerID: 547954,
+    chargerId: 547954,
     chargerLocation: "12.864623665903554,77.67478018550992",
     chargerStatus: "Inactive",
     dateJoining: new Date("2023-11-29"),
@@ -40,7 +40,7 @@ export const chargers = [
     chargingPoint: "CCS (175 kW DC)",
   },
   {
-    chargerID: 984752,
+    chargerId: 984752,
     chargerLocation: "12.805095642820643,77.71314543947189",
     chargerStatus: "Active",
     dateJoining: new Date("2023-02-26"),
@@ -48,7 +48,7 @@ export const chargers = [
     chargingPoint: "CCS (175 kW DC)",
   },
   {
-    chargerID: 654812,
+    chargerId: 654812,
     chargerLocation: "12.805095642820643,77.71314543947189",
     chargerStatus: "Out of Service",
     dateJoining: new Date("2023-02-26"),
@@ -56,7 +56,7 @@ export const chargers = [
     chargingPoint: "BEVC-DC001",
   },
   {
-    chargerID: 518652,
+    chargerId: 518652,
     chargerLocation: "12.805095642820643,77.71314543947189",
     chargerStatus: "Active",
     dateJoining: new Date("2023-02-26"),
@@ -64,7 +64,7 @@ export const chargers = [
     chargingPoint: "BEVC-DC001",
   },
   {
-    chargerID: 974805,
+    chargerId: 974805,
     chargerLocation: "12.849417366020782,77.65964837014052",
     chargerStatus: "Inactive",
     dateJoining: new Date("2023-09-28"),
@@ -72,7 +72,7 @@ export const chargers = [
     chargingPoint: "BEVC-DC001",
   },
   {
-    chargerID: 221421,
+    chargerId: 221421,
     chargerLocation: "12.849417366020782,77.65964837014052",
     chargerStatus: "Inactive",
     dateJoining: new Date("2023-07-12"),
@@ -80,7 +80,7 @@ export const chargers = [
     chargingPoint: "BEVC-DC001",
   },
   {
-    chargerID: 304571,
+    chargerId: 304571,
     chargerLocation: "12.864623665903554,77.67478018550992",
     chargerStatus: "Active",
     dateJoining: new Date("2023-12-21"),
@@ -88,7 +88,7 @@ export const chargers = [
     chargingPoint: "BEVC-DC001",
   },
   {
-    chargerID: 621904,
+    chargerId: 621904,
     chargerLocation: "12.805095642820643,77.71314543947189",
     chargerStatus: "Active",
     dateJoining: new Date("2023-12-21"),

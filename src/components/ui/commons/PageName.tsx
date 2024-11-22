@@ -16,7 +16,7 @@ type BreadcrumbItem = {
 };
 
 type PageNameProps = {
-  name: string;
+  name?: string;
   btn1?: Btn;
   btn2?: ReactNode;
   breadcrumbs?: BreadcrumbItem[];

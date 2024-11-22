@@ -16,7 +16,8 @@ import FlashOnIcon from "@mui/icons-material/FlashOn";
 import FlashOffIcon from "@mui/icons-material/FlashOff";
 
 interface ChargerRow {
-  chargerID: string;
+  id: number;
+  chargerId: number;
   chargerLocation: string;
   chargerStatus: string;
   dateJoining: string;
@@ -24,29 +25,38 @@ interface ChargerRow {
   chargingPoint: string;
 }
 
-const page = () => {
-  // const [chargerMasterData, setChargerMasterData] = useState<ChargerRow[]>([]);
-  // const [isLoading, setIsLoading] = useState(true);
+const Page = () => {
+  const [chargerMasterData, setChargerMasterData] = useState<ChargerRow[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [chargerMasterData, setChargerMasterData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const columns: GridColDef[] = [
+    { field: "id", headerName: "ID", width: 70 },
+    { field: "chargerId", headerName: "Charger ID", width: 130 },
+    { field: "chargerLocation", headerName: "Charger Location", width: 200 },
+    { field: "chargerStatus", headerName: "Charger Status", width: 130 },
+    { field: "dateJoining", headerName: "Date Joining", width: 130 },
+    { field: "chargeType", headerName: "Charge Type", width: 130 },
+    { field: "chargingPoint", headerName: "Charging Point", width: 130 },
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getAllChargerMasterData();
-        console.log("Fetched Data:", data); // Log the fetched data
-        setChargerMasterData(data || []);
-        setLoading(false);
+        console.log("from the component:", data);
+        if (Array.isArray(data)) {
+          setChargerMasterData(data);
+        } else {
+          console.warn("Expected data to be an array:", data);
+        }
       } catch (error) {
         console.error("Error fetching charger master data:", error);
-        setLoading(false);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchData();
-    chargerMasterData.length && setLoading(false);
-    console.log(chargerMasterData);
   }, []);
 
   const columns: GridColDef[] = [
@@ -149,7 +159,7 @@ const page = () => {
   return (
     <Fragment>
       <PageName
-        name={"Chargers"}
+        // name={"Chargers"}
         breadcrumbs={[
           { name: "Home", href: "/home" },
           { name: "Chargers", href: "/home/chargers" },
@@ -160,9 +170,9 @@ const page = () => {
           <DataGrid
             rows={chargerMasterData}
             columns={columns}
-            getRowId={(row) => row.chargerID}
-            loading={loading}
             autosizeOnMount
+            getRowId={(row) => row.id}  // Ensure the row ID is unique
+            loading={isLoading}
             autoHeight={true}
             disableColumnMenu
             pageSizeOptions={[5, 10]}
@@ -187,4 +197,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

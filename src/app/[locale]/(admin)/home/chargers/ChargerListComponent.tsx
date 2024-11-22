@@ -6,7 +6,7 @@ import Paper from "@mui/material/Paper";
 
 // Define ChargerItem type here
 type ChargerItem = {
-  chargerID: string;
+  chargerId: string;
   chargerLocation: string;
   chargerStatus: string;
   dateJoining: string;

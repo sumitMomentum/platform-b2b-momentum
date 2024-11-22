@@ -1101,7 +1101,7 @@ export const handleEvent = async (event: any) => {
 
         const createdCharger = await prisma.chargerMaster.create({
           data: {
-            chargerID: charger.id,
+            chargerId: charger.id,
             chargerLocation: `${charger.location.latitude},${charger.location.longitude}`, // Ensure location is provided
             chargerStatus: charger.isReachable ? "Active" : "Inactive",
             dateJoining: new Date(), // Set the current date as the joining date
@@ -1121,7 +1121,7 @@ export const handleEvent = async (event: any) => {
         const charger = event.charger;
 
         const deletedCharger = await prisma.chargerMaster.delete({
-          where: { chargerID: charger.id },
+          where: { chargerId: charger.id },
         });
 
         console.log(chalk.green("✅ Charger deleted successfully"));

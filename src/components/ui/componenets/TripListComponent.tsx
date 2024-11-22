@@ -1,87 +1,80 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import React from "react";
 
-export interface TripSession {
-  chargeConsumed: number;
-  createdAt: Date;
-  distanceTravelled: number;
-  endSoc: number;
-  endTime: Date;
-  id: number;
-  odometerEnd: number;
-  odometerStart: number;
-  startSoc: number;
-  startTime: Date;
-  tripDuration: number;
-  updatedAt: Date;
-  vehicleId: string;
-}
-
+// Define the column configurations
 const columns = [
   {
-    field: "vehicle",
-    headerName: "Vehicle",
+    field: "TripID",  // TripID for the column
+    headerName: "Trip ID",
     flex: 1,
-    valueGetter: (value, row) => `${row.vehicleId}`,
-    // `${row.vehicle.make || ""} ${row.vehicle.model || ""}`,
   },
   {
-    field: "startTime",
-    headerName: "Start Time",
+    field: "DteStart",
+    headerName: "Dte Start",
     flex: 1,
-    valueFormatter: (value, row) => new Date(value).toLocaleString(),
+    valueFormatter: (params) => {
+      // const date = new Date(params); // Assuming DteStart is in Unix timestamp
+      // return date.toLocaleString();
+      return params;
+    },
   },
   {
-    field: "endTime",
-    headerName: "End Time",
+    field: "DteEnd",
+    headerName: "Dte End",
     flex: 1,
-    valueFormatter: (value, row) => new Date(value).toLocaleString(),
+    valueFormatter: (params) => {
+      // const date = new Date(params); // Assuming DteEnd is in Unix timestamp
+      // return date.toLocaleString();
+      return params;
+    },
   },
   {
-    field: "tripDuration",
-    headerName: "Duration",
+    field: "BatteryAtStart",
+    headerName: "Battery Start",
     flex: 1,
-    valueFormatter: (value, row) => `${Math.floor(value / 60)}h ${value % 60}m`,
   },
   {
-    field: "distanceTravelled",
-    headerName: "Distance",
+    field: "BatteryAtEnd",
+    headerName: "Battery End",
     flex: 1,
-    valueFormatter: (value, row) => `${value.toFixed(2)} km`,
   },
   {
-    field: "chargeConsumed",
-    headerName: "Energy Used",
+    field: "TripApprovedKilometer",
+    headerName: "Approved Kilometers",
     flex: 1,
-    valueFormatter: (value, row) => `${value.toFixed(2)} kWh`,
+    valueFormatter: (params) => `${params} km`,
   },
   {
-    field: "socChange",
-    headerName: "SoC Change",
+    field: "DiffInBat",
+    headerName: "Battery Diff",
     flex: 1,
-    valueGetter: (value, row) => `${row.startSoc}% → ${row.endSoc}%`,
+  },
+  {
+    field: "DiffInDte",
+    headerName: "Date Diff",
+    flex: 1,
+  },
+  {
+    field: "DwUpdated",
+    headerName: "Last Update",
+    flex: 1,
+    valueFormatter: (params) => new Date(params).toLocaleString(),
   },
 ];
 
-const paginationModel = { page: 0, pageSize: 10 };
+const TripListComponent = ({ tripSessions, loading }: { tripSessions: any[]; loading: boolean }) => {
+  const paginationModel = { page: 0, pageSize: 10 };
 
-const TripList = ({
-  tripSessions,
-  loading,
-}: {
-  tripSessions: TripSession[];
-  loading: boolean;
-}) => {
   return (
-    <Paper sx={{ height: 400, width: "100%" }}>
+    <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
         loading={loading}
-        rows={tripSessions}
+        rows={tripSessions}  // Use the tripSessions prop directly
         columns={columns}
+
         // initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10, 25]}
         sx={{
@@ -94,9 +87,12 @@ const TripList = ({
             fontWeight: "bold", // Ensures header titles specifically are bold
           },
         }}
+      getRowId={(row) => row.TripID} // Ensure TripID is unique for rows
+        
+
       />
     </Paper>
   );
 };
 
-export default TripList;
+export default TripListComponent;

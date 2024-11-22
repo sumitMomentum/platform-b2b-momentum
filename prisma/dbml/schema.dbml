@@ -454,7 +454,7 @@ Table Benefit {
 
 Table ChargerMaster {
   id Int [pk, increment]
-  chargerID Int [unique, not null]
+  chargerId Int [unique, not null]
   chargerLocation String [not null]
   chargerStatus String [not null]
   dateJoining DateTime [not null]
