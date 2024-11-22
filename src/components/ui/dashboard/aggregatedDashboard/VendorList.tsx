@@ -7,6 +7,7 @@ import useVehicleStore from "@/states/store";
 import {
   DataGrid,
   GridActionsCellItem,
+  GridColDef,
   GridToolbarContainer,
   GridToolbarExport,
 } from "@mui/x-data-grid";
@@ -26,6 +27,8 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { id } from "date-fns/locale";
 import { map } from "svix/dist/openapi/rxjsStub";
 import { title } from "process";
+import { type } from "os";
+
 
 const VendorList = () => {
   const [vendors, setVendors] = useState([]);
@@ -82,24 +85,28 @@ const VendorList = () => {
     setSelectedVendor(null);
   };
 
-  const columns = [
-    { field: "vendor", headerName: "Vendor", width: 200 },
-    {
-      field: "actions",
-      type: "actions",
-      headerName: "Actions",
-      width: 100,
-      getActions: (params) => [
-        // <Tooltip title="Delete Vendor" placement="right">
-        <GridActionsCellItem
-          icon={<Delete color="error" />}
-          label="Delete"
-          onClick={() => handleDeleteClick(params.row.vendor)}
-        />,
-        // </Tooltip>
-      ],
-    },
-  ];
+  const columns: GridColDef[] = [
+  { field: "vendor", headerName: "Vendor", width: 200 },
+  {
+    field: "actions",
+    type: "actions", // Ensure type is "actions"
+    headerName: "Actions",
+    width: 100,
+    getActions: (params) => [
+      <GridActionsCellItem
+        key="delete"
+        icon={<Delete color="error" />}
+        label="Delete"
+        onClick={() => handleDeleteClick(params.row.vendor)} // Call delete handler
+      />,
+    ],
+  },
+];
+
+  const paginationModel = {
+    page: 0,
+    pageSize: 3,
+  };
 
   // Custom Toolbar with Export button
   function CustomToolbar() {
@@ -117,13 +124,14 @@ const VendorList = () => {
       </Typography>
       <DataGrid
         rows={vendors}
+                getRowId={(row) => row.vendor}
+
         loading={loading}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+          initialState={{ pagination: {paginationModel} }} 
+        pageSizeOptions={[3, 5, 10]}
         checkboxSelection={false}
         disableRowSelectionOnClick
-        components={{ Toolbar: CustomToolbar }} // Add custom toolbar
         sx={{
           "& .MuiDataGrid-cell:focus-within": {
             outline: "none",

@@ -241,7 +241,7 @@ const VehiclePage = () => {
         </Box>
       </Box>
 
-      <div className="flex-grow flex flex-col space-y-4">
+      <Box className="flex-grow flex flex-col space-y-4">
         <Box
           className="flex flex-grow overflow-auto"
           sx={{ minHeight: "50vh" }}
@@ -251,7 +251,7 @@ const VehiclePage = () => {
         <Box className="flex-grow h-50vh overflow-auto">
           <VendorList />
         </Box>
-      </div>
+      </Box>
     </Box>
   );
 };
