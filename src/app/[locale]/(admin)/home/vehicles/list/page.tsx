@@ -174,7 +174,7 @@ const VehiclePage = () => {
                     <InputAdornment position="start">
                       <Tooltip
                         title={selectedFile ? "Change File" : "Browse"}
-                        placement="top"
+                        placement="bottom"
                         color="primary"
                         slotProps={{
                           tooltip: {
