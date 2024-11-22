@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
+import React from "react";
 
 // Define the column configurations
 const columns = [
@@ -73,9 +74,22 @@ const TripListComponent = ({ tripSessions, loading }: { tripSessions: any[]; loa
         loading={loading}
         rows={tripSessions}  // Use the tripSessions prop directly
         columns={columns}
-        pagination
-        getRowId={(row) => row.TripID} // Ensure TripID is unique for rows
-        sx={{ border: 0 }}
+
+        // initialState={{ pagination: { paginationModel } }}
+        pageSizeOptions={[5, 10, 25]}
+        sx={{
+          backgroundColor: "white",
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
+          },
+        }}
+      getRowId={(row) => row.TripID} // Ensure TripID is unique for rows
+        
+
       />
     </Paper>
   );

@@ -3,21 +3,33 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
-
+import GppGoodIcon from "@mui/icons-material/GppGood";
+import GppMaybeIcon from "@mui/icons-material/GppMaybe";
+import GppBadIcon from "@mui/icons-material/GppBad";
+import VerifiedIcon from "@mui/icons-material/Verified";
+// Define ActionItem type here
 type ActionItem = {
-  id: number; // Unique ID for each action
-  vehicleId: string; // ID of the vehicle associated with this action
-  severity: 'High' | 'Medium' | 'Low'; // Severity level (e.g., "Medium")
-  description: string; // Description of the action
-  bestPractice: string; // Best practice recommendation
-  actionToBeTaken: string; // Action to be taken
-  confirm: number; // Confirmation count (integer)
-  createdDateTime: string; // Date and time the action was created
-  closedDateTime?: string; // Date and time the action was closed
+  id: number;
+  vin: string;
+  severity: "High" | "Medium" | "Low";
+  description: string;
+  bestPractice: string;
+  actionToBeTaken: string;
+  confirm: boolean;
+  CreatedDateTime: string;
+  ClosedDateTime?: string;
 };
 
-const ActionListComponent = () => {
+// Import getAllVehicleActions
+import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
+import { Button, Chip } from "@mui/material";
+
+interface ActionListComponentProps {
+  initialActionItems: ActionItem[];
+}
+
+const ActionListComponent: React.FC = () => {
+  // const actionItems: ActionItem[] = await getAllVehicleActions()
   const [actionItems, setActionItems] = useState<ActionItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -34,45 +46,107 @@ const ActionListComponent = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array to fetch data on component mount
+    setLoading(false);
+  }, []);
 
   const columns: GridColDef[] = [
-    { field: 'vehicleId', headerName: 'Vehicle ID', flex: 1 },
-    { field: 'severity', headerName: 'Severity', flex: 1, renderCell: (params) => (
-        <div className={`${
-          params.value === 'High' ? 'bg-red-500 hover:bg-red-700 text-white' :
-          params.value === 'Medium' ? 'bg-yellow-400 hover:bg-yellow-600 text-gray-800' :
-          'bg-green-500 hover:bg-green-700 text-white'
-        } px-2 py-2`}>{params.value}</div>
-      )
+    { field: "vin", headerName: "VIN", flex: 1 },
+    {
+      field: "severity",
+      headerName: "Severity",
+      flex: 1,
+      renderCell: (params) => (
+        <Chip
+          variant="outlined"
+          label={params.value}
+          color={
+            params.value === "High"
+              ? "error"
+              : params.value === "Medium"
+              ? "warning"
+              : "success"
+          }
+          icon={
+            params.value === "High" ? (
+              <GppGoodIcon />
+            ) : params.value === "Medium" ? (
+              <GppMaybeIcon />
+            ) : (
+              <GppBadIcon />
+            )
+          }
+        />
+      ),
     },
-    { field: 'description', headerName: 'Description', flex: 2 },
-    { field: 'bestPractice', headerName: 'Best Practice', flex: 2 },
-    { field: 'actionToBeTaken', headerName: 'Action To be Taken', flex: 2 },
-    { field: 'confirm', headerName: 'Confirm', flex: 1, renderCell: (params) => (
-        <button className={`${
-          params.value ? 'bg-gray-500 hover:bg-gray-800' : 'bg-green-500 hover:bg-green-700'
-        } p-2 px-8 text-white`}>
-          {params.value ?  "Pending" : "Closed"}
-        </button>
-      )
+    { field: "description", headerName: "Description", flex: 1 },
+    { field: "bestPractice", headerName: "Best Practice", flex: 1 },
+    { field: "actionToBeTaken", headerName: "Action To be Taken", flex: 1 },
+    {
+      field: "confirm",
+      headerName: "Confirm",
+      flex: 1,
+      renderCell: (params) =>
+        params.value ? (
+          <Chip
+            label="Action Closed"
+            color="success"
+            variant="outlined"
+            icon={<VerifiedIcon />}
+          />
+        ) : (
+          <Button variant="contained" color="primary">
+            Take Action
+          </Button>
+        ),
     },
-    { field: 'createdDateTime', headerName: 'Created Date', flex: 1 },
-    { field: 'closedDateTime', headerName: 'Closed Date', flex: 1 },
+    {
+      field: "createdDateTime",
+      headerName: "Created Date",
+      flex: 1,
+      renderCell: (params) => {
+        const timestamp = Date.parse(params.value);
+        return isNaN(timestamp)
+          ? "Invalid Date"
+          : new Date(timestamp).toLocaleString();
+      },
+    },
+    {
+      field: "closedDateTime",
+      headerName: "Closed Date",
+      flex: 1,
+      renderCell: (params) => {
+        const timestamp = Date.parse(params.value);
+        return isNaN(timestamp)
+          ? "Invalid Date"
+          : new Date(timestamp).toLocaleString();
+      },
+    },
   ];
 
   return (
-    <Paper sx={{ height: 'auto', width: '100%' }}>
+    <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
         rows={actionItems}
         columns={columns}
         getRowId={(row) => row.id} // Use `id` for row identification
         loading={loading}
         autoHeight
-        disableColumnMenu
+        // disableColumnMenu
+        disableRowSelectionOnClick
+        disableColumnSelector
         pageSizeOptions={[5, 10]}
         initialState={{
           pagination: { paginationModel: { page: 0, pageSize: 10 } },
+        }}
+        sx={{
+          backgroundColor: "white",
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
+          },
         }}
       />
     </Paper>

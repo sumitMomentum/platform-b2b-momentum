@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
+import React from "react";
+
 
 // Define the interface for the Charging Session
 interface ChargingSession {
@@ -46,10 +48,29 @@ const ChargingList: React.FC<ChargingListProps> = ({ loading, chargingSessions }
         loading={loading}
         rows={chargingSessions}
         columns={columns}
+        // initialState={{ pagination: { paginationModel } }}
+          pageSizeOptions={[5, 10]}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 10 },
+          },
+        }}
+        // sx={{ border: 0 }}
+        sx={{
+                    backgroundColor: "white",
+
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
+          },
+        }}
+
         pagination
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
-        sx={{ border: 0 }}
       />
     </Paper>
   );

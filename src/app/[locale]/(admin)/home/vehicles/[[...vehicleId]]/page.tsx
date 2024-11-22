@@ -1,25 +1,18 @@
 "use client";
 import { getVehicleDashboardData } from "@/actions/admin/dashboardModule/get-vehicle-dashboard-data";
-// import { createEnodeWebhook } from "@/actions/admin/dashboardModule/create-enode-webhook";
-import InfoCard from "@/components/ui/dashboard/InfoCard";
 import VehicleBatteryHealth from "@/components/ui/dashboard/VehicleBatteryHealth";
 import VehicleChargePattern from "@/components/ui/dashboard/VehicleChargePattern";
 import VehicleDetails from "@/components/ui/dashboard/VehicleDetails";
 import VehicleUsage from "@/components/ui/dashboard/VehicleUsage";
 import useVehicleStore from "@/states/store";
-import {
-  ArrowPathIcon,
-  ArrowsPointingInIcon,
-  ArrowTrendingDownIcon,
-  LinkIcon,
-  MapPinIcon,
-} from "@heroicons/react/24/outline";
-import { log } from "console";
-import { useEffect, useState, use } from "react";
-// import { useRouter, useSearchParams } from "next/navigation";
-// import { useEffect } from "react";
 
-const VehicleDashboard = (props: { params: Promise<{ vehicleId: string }> }) => {
+import { useEffect, useState } from "react";
+import { Grid, Box, Typography } from "@mui/material";
+import PageName from "@/components/ui/commons/PageName";
+
+const VehicleDashboard = (props: {
+  params: Promise<{ vehicleId: string }>;
+}) => {
   const [vehicleId, setVehicleId] = useState<string | null>(null);
   const selectedVehicleId = useVehicleStore((state) => state.selectedVehicleId);
   const vehiclesFromStore = useVehicleStore((state) => state.vehicles);
@@ -58,106 +51,61 @@ const VehicleDashboard = (props: { params: Promise<{ vehicleId: string }> }) => 
 
   return (
     dashboardData && (
-      <div className="flex gap-6 w-full justify-center items-center">
-        {selectedVehicle ? (
-          <div className="flex w-full gap-6 flex-col">
-            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              <InfoCard
-                titleKey="Location"
-                descriptionKey={dashboardData.location}
-                icon={MapPinIcon}
-              />
-              {/* <InfoCard
-                titleKey="Date Of Connection"
-                descriptionKey={
-                  selectedVehicle.dateOfConnection
-                    ? new Date(
-                        selectedVehicle.dateOfConnection
-                      ).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "2-digit",
-                        year: "numeric",
-                      })
-                    : "N/A"
-                }
-                icon={LinkIcon}
-              /> */}
-              <InfoCard
-                titleKey="Data Points Collected"
-                descriptionKey={dashboardData.dataPointsCollected}
-                icon={ArrowsPointingInIcon}
-              />
-            </div>
-            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              {/* <VehicleDetails
-                year={selectedVehicle.year}
-                model={selectedVehicle.model}
-                make={selectedVehicle.make}
-                vin={selectedVehicle.vin}
-                batteryCapacity={selectedVehicle.batteryCapacity}
-                odometer={selectedVehicle.odometer}
-              /> */}
-              <VehicleDetails
-                year={dashboardData["year "]}
-                model={dashboardData.model}
-                make={dashboardData.make}
-                vin={dashboardData.vin}
-                batteryCapacity={dashboardData.batteryCapacity}
-                odometer={dashboardData.odometerFloat}
-              />
-              <VehicleChargePattern
-                soc={selectedVehicle.soc || 0}
-                totalEnergyConsumed={dashboardData.totalEnergyConsumed}
-                averageSoC={dashboardData.batteryHealthAverageSoC}
-                connectorType={dashboardData.connectorType}
-                totalChargingSessions={dashboardData.totalChargingSession}
-                averageChargingRate={dashboardData.averageChargingRate}
-                dashboardData={dashboardData}
-              />
-            </div>
-            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              <VehicleUsage
-                avgDailyKmDriven={dashboardData.avgDailyKmDriven}
-                temperatureLow={dashboardData.temperatureLow}
-                temperatureHigh={dashboardData.temperatureHigh}
-                socRangeMin={dashboardData.socRangeMin}
-                socRangeMax={dashboardData.socRangeMax}
-                rangeObservedMin={dashboardData.rangeObservedMin}
-                rangeObservedMax={dashboardData.rangeObservedMax}
-                realRangeObserved={dashboardData.realRangeObserved}
-                epaProvidedRange={dashboardData.epawltpProvidedRange}
-                dashboardData={dashboardData}
-              />
-              <VehicleBatteryHealth
-                batteryHealthSoH={dashboardData.batteryHealthSoH}
-                estimatedDegradation={dashboardData.estimatedDegradation}
-                batteryChemistry={dashboardData.batteryChemistry}
-                dashboardData={dashboardData}
-              />
-            </div>
-            <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              <InfoCard
-                titleKey="End Of Life"
-                // descriptionKey={dashboardData.endOfLife.toLocaleDateString(
-                //   "en-US",
-                //   { month: "short", day: "2-digit", year: "numeric" }
-                // )}
-                descriptionKey={dashboardData.endOfLife}
-                icon={ArrowTrendingDownIcon}
-              />
-              <InfoCard
-                titleKey="Remaining Useful Life"
-                descriptionKey={dashboardData.remainingUsefulLife}
-                icon={ArrowPathIcon}
-              />
-            </div>
-          </div>
-        ) : (
-          <div className="flex justify-center items-center w-full h-full">
-            Please select a vehicle
-          </div>
-        )}
-      </div>
+      <Box>
+        <div className="w-full">
+          <PageName
+            name={selectedVehicle ? vehicleId : ""}
+            breadcrumbs={[
+              { name: "Home", href: "/home" },
+              { name: "Vehicles", href: "/home/vehicles/list" },
+            ]}
+          />
+        </div>
+
+        <Box
+          sx={{
+            display: "flex",
+            gap: 6,
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          {selectedVehicle ? (
+            <Box
+              sx={{ display: "flex", flexDirection: "column", width: "100%" }}
+            >
+              <Grid container spacing={6} sx={{ width: "100%" }}>
+                <Grid item xs={12} md={12} lg={6}>
+                  <VehicleDetails dashboardData={dashboardData} />
+                </Grid>
+                <Grid item xs={12} md={12} lg={6}>
+                  <VehicleChargePattern dashboardData={dashboardData} />
+                </Grid>
+              </Grid>
+              <Grid container spacing={6} sx={{ width: "100%" }}>
+                <Grid item xs={12} md={12} lg={6}>
+                  <VehicleUsage dashboardData={dashboardData} />
+                </Grid>
+                <Grid item xs={12} md={12} lg={6}>
+                  <VehicleBatteryHealth dashboardData={dashboardData} />
+                </Grid>
+              </Grid>
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <Typography>Please select a vehicle</Typography>
+            </Box>
+          )}
+        </Box>
+      </Box>
     )
   );
 };

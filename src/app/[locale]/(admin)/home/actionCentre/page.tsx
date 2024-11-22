@@ -1,5 +1,8 @@
+
 "use client";
 
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import * as React from 'react';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/x-charts/themeAugmentation';
@@ -23,12 +26,26 @@ import Button from '@mui/material/Button';
 import ActionListComponent from './ActionListComponent';
 import Link from 'next/link';
 
+  type ActionItem = {
+  id: number;
+  vin: string;
+  severity: "High" | "Medium" | "Low";
+  description: string;
+  bestPractice: string;
+  actionToBeTaken: string;
+  confirm: boolean;
+  CreatedDateTime: string;
+  ClosedDateTime?: string;
+};
+  
+  // const actionItems: ActionItem[] = await getAllVehicleActions();
 const xThemeComponents = {
   ...chartsCustomizations,
   ...dataGridCustomizations,
   ...datePickersCustomizations,
   ...treeViewCustomizations,
 };
+
 
 export default function Page(props: { disableCustomTheme?: boolean }) {
   const [isTabular, setIsTabular] = React.useState<boolean>(false);

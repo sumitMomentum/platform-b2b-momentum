@@ -101,14 +101,14 @@ const AdminHeader = ({
               {/* {daktThemeSelector} */}
 
               {/* Notification button */}
-              <Link className="relative" href="/home/notifications">
+              {/* <Link className="relative" href="/home/notifications">
                 <BellIcon className="h-6 w-6 text" aria-hidden="true" />
                 {notificationsCount > 0 && (
                   <span className="bg-red-500 h-5 w-5 top-0 -mt-1 text-center -pt-7 absolute right-0  text-white rounded-full">
                     <p className="-mt-1 p-1">{notificationsCount}</p>
                   </span>
                 )}
-              </Link>
+              </Link> */}
 
               {/* Separator */}
               <div

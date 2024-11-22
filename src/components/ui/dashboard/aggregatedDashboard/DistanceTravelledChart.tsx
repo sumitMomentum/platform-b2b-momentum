@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import useVehicleStore from "@/states/store";
 import { BarChart } from "@mui/x-charts/BarChart";
+import { chartColorTheme } from "@/themes/ChartPalettes";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -67,6 +68,7 @@ const DistanceTravelledChart = () => {
       width={700}
       height={300}
       series={series}
+      colors={chartColorTheme}
       xAxis={[{ data: xLabels, scaleType: "band" }]}
     />
   );
