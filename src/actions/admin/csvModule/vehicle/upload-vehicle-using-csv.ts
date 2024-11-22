@@ -3,6 +3,8 @@ import prisma from "@/lib/db";
 import csv from 'csv-parser';
 import { Readable } from 'stream';
 import { updateBenefits } from "@/utils/calculateBenefits"; 
+import { insertSessions } from "@/utils/fetchSessions";
+import { getAggregatedActions } from "@/utils/actionCapture";
 
 export async function uploadVehiclesFromCSV(formData: FormData) {
   try {
@@ -123,11 +125,15 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
 
     // Update benefits for all vehicles
     const benefits = await updateBenefits();
+    const sessions = await insertSessions();
+    const actions = await getAggregatedActions();
 
     return {
       message: `Successfully uploaded ${vehicles.length} vehicles and updated benefits for ${benefits.length} vehicles`,
       vehicles,
       benefits,
+      sessions,
+      actions
     };
   } catch (error) {
     console.error('Error uploading vehicles:', error);

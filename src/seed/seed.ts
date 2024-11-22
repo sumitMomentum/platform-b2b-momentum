@@ -123,8 +123,8 @@ async function main() {
     }
     log.success("Seeded vehicles");
 
-    const createdBenefits = await prisma.benefit.createMany({ data: benefits });
-    log.success("Seeded benefits");
+    // const createdBenefits = await prisma.benefit.createMany({ data: benefits });
+    // log.success("Seeded benefits");
 
     const createdChargers = [];
     for (const charger of chargers) {
@@ -138,8 +138,8 @@ async function main() {
     const createdChargerTypes = await prisma.chargerType.createMany({ data: chargerTypes });
     log.success("Seeded charger types");
 
-    const createdActions = await prisma.action.createMany({ data: vehicleActions });
-    log.success("Seeded vehicle actions");
+    // const createdActions = await prisma.action.createMany({ data: vehicleActions });
+    // log.success("Seeded vehicle actions");
 
     await seedChargingSessions(createdChargers, createdVehicles);
     await seedVehicleTripSessions(createdVehicles);

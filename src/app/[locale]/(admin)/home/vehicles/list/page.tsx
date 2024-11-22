@@ -7,7 +7,7 @@ import VendorList from "@/components/ui/dashboard/aggregatedDashboard/VendorList
 import { useTranslations } from "next-intl";
 import React, { useRef, useState, useEffect } from "react";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
-import { deleteVehicleById } from "@/actions/admin/userModule/delete-vehicle";
+import { deleteAllVehiclesAndBenefits } from "@/actions/admin/userModule/delete-vehicle";
 import useVehicleStore from "@/states/store";
 import { Button, Typography } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -41,11 +41,11 @@ const VehiclePage = () => {
   };
 
   // Handle deletion of vehicles
-  const handleDelete = async (vehicleId: string) => {
+  const handleDelete = async () => {
     try {
-      const result = await deleteVehicleById(vehicleId);
+      const result = await deleteAllVehiclesAndBenefits();
       setIsSuccess(true);
-      alert(`Vehicle with ID ${vehicleId} deleted successfully`);
+      alert(`All Vehicles removed successfully`);
       getVehicles(); // Re-fetch vehicles after deletion
     } catch (error) {
       console.error("Error deleting vehicle:", error);
@@ -129,7 +129,7 @@ const VehiclePage = () => {
             startIcon={<DeleteForeverIcon />}
             onClick={() => {
               const vehicleId = "22";
-              handleDelete(vehicleId);
+              handleDelete();
             }}
           >
             Delete
