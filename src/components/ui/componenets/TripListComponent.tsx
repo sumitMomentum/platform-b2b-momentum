@@ -7,7 +7,12 @@ import React from "react";
 // Define the column configurations
 const columns = [
   {
-    field: "TripID",  // TripID for the column
+    field: "vehicleId", // Vehicle ID for the column
+    headerName: "Vehicle ID",
+    flex: 1,
+  },
+  {
+    field: "TripID", // TripID for the column
     headerName: "Trip ID",
     flex: 1,
   },
@@ -16,9 +21,7 @@ const columns = [
     headerName: "Dte Start",
     flex: 1,
     valueFormatter: (params) => {
-      // const date = new Date(params); // Assuming DteStart is in Unix timestamp
-      // return date.toLocaleString();
-      return params;
+      return params; // Customize date formatting if needed
     },
   },
   {
@@ -26,9 +29,7 @@ const columns = [
     headerName: "Dte End",
     flex: 1,
     valueFormatter: (params) => {
-      // const date = new Date(params); // Assuming DteEnd is in Unix timestamp
-      // return date.toLocaleString();
-      return params;
+      return params; // Customize date formatting if needed
     },
   },
   {
@@ -72,7 +73,7 @@ const TripListComponent = ({ tripSessions, loading }: { tripSessions: any[]; loa
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
         loading={loading}
-        rows={tripSessions}  // Use the tripSessions prop directly
+        rows={tripSessions} // Use the tripSessions prop directly
         columns={columns}
 
         // initialState={{ pagination: { paginationModel } }}

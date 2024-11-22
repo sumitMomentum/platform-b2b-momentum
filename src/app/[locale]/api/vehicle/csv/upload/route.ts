@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
-    
+
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
@@ -35,14 +35,48 @@ export async function POST(request: NextRequest) {
             model: row.model,
             year: parseInt(row.year),
             batteryCapacity: parseInt(row.batteryCapacity),
+            ownerID: row.ownerID,
             soc: parseInt(row.soc),
-            dateOfConnection: new Date(),
+            dateOfConnection: new Date(row.dateOfConnection),
+            odometerFloat: parseFloat(row.odometerFloat),
+            UsageAverageDailyKmDriven: parseFloat(row.UsageAverageDailyKmDriven),
+            MonthlyUsage: parseFloat(row.MonthlyUsage),
+            condition: row.condition,
+            status: row.status,
             make: row.make,
-            owner: {
-              connect: { id: parseInt(row.ownerId) }
-            }
-            // Add other fields as needed
-          }
+            batteryHealthSoH: parseFloat(row.batteryHealthSoH),
+            batteryHealthDegradation: parseFloat(row.batteryHealthDegradation),
+            location: row.location,
+            soh: parseFloat(row.soh),
+            BatteryHealthAverageEstimatedDegradation: parseFloat(row.BatteryHealthAverageEstimatedDegradation),
+            BatteryHealthAverageSoC: parseFloat(row.BatteryHealthAverageSoC),
+            BatteryHealthTotalBatteries: parseInt(row.BatteryHealthTotalBatteries),
+            ConnectorType: row.ConnectorType,
+            EndofLife: row.EndofLife,
+            RealRangeObserved: parseFloat(row.RealRangeObserved),
+            RemainingUsefulLife: parseFloat(row.RemainingUsefulLife),
+            TotalChargingSession: parseInt(row.TotalChargingSession),
+            TotalEnergyConsumed: parseFloat(row.TotalEnergyConsumed),
+            VehicleConditionCritical: parseInt(row.VehicleConditionCritical),
+            VehicleConditionGood: parseInt(row.VehicleConditionGood),
+            VehicleConditionSatisfactory: parseInt(row.VehicleConditionSatisfactory),
+            VehicleStatusActive: row.VehicleStatusActive,
+            VehicleStatusCharging: row.VehicleStatusCharging,
+            VehicleStatusInUse: row.VehicleStatusInUse,
+            VehicleStatusOutofService: row.VehicleStatusOutofService,
+            EPAWLTPProvidedRange: parseFloat(row.EPAWLTPProvidedRange),
+            UsageRangeObservedMax: parseFloat(row.UsageRangeObservedMax),
+            UsageRangeObservedMin: parseFloat(row.UsageRangeObservedMin),
+            UsageSoCRangeMax: parseFloat(row.UsageSoCRangeMax),
+            UsageSoCRangeMin: parseFloat(row.UsageSoCRangeMin),
+            UsageTemperatureHigh: parseFloat(row.UsageTemperatureHigh),
+            UsageTemperatureLow: parseFloat(row.UsageTemperatureLow),
+            batteryChemistry: row.batteryChemistry,
+            BatteryHealthAverageSoH: parseFloat(row.BatteryHealthAverageSoH),
+            DataPointsCollected: parseInt(row.DataPointsCollected),
+            averageMonthlyUsage: parseFloat(row.averageMonthlyUsage),
+            ownerId: row.ownerId,
+          },
         });
       })
     );
