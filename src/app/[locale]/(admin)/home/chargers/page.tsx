@@ -4,10 +4,7 @@ import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllCh
 import PageName from "@/components/ui/commons/PageName";
 import { Box, Chip } from "@mui/material";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { join, parse } from "path";
-import { split } from "postcss/lib/list";
-import React from "react";
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PowerIcon from "@mui/icons-material/Power";
 import PowerOffIcon from "@mui/icons-material/PowerOff";
 import InfoIcon from "@mui/icons-material/Info";
@@ -33,9 +30,63 @@ const Page = () => {
     { field: "id", headerName: "ID", width: 70 },
     { field: "chargerId", headerName: "Charger ID", width: 130 },
     { field: "chargerLocation", headerName: "Charger Location", width: 200 },
-    { field: "chargerStatus", headerName: "Charger Status", width: 130 },
-    { field: "dateJoining", headerName: "Date Joining", width: 130 },
-    { field: "chargeType", headerName: "Charge Type", width: 130 },
+    {
+      field: "chargerStatus",
+      headerName: "Charger Status",
+      width: 130,
+      renderCell: (params: GridRenderCellParams) => (
+        <Chip
+          label={params.value}
+          color={
+            params.value === "Active" ? "success" :
+            params.value === "Inactive" ? "error" :
+            "default"
+          }
+          icon={
+            params.value === "Active" ? <PowerIcon /> :
+            params.value === "Inactive" ? <PowerOffIcon /> :
+            <InfoIcon />
+          }
+        />
+      )
+    },
+    {
+      field: "dateJoining",
+      headerName: "Date Joining",
+      width: 130,
+      valueFormatter: (params) => {
+        const date = new Date(params);
+        return date.toLocaleDateString('en-GB', {
+          day: 'numeric', month: 'short', year: 'numeric'
+        });
+      }
+    },
+    {
+      field: "chargeType",
+      headerName: "Charge Type",
+      width: 130,
+      renderCell: (params: GridRenderCellParams) => {
+        const value = (params.value === "-" || !params.value) ? "Default" : params.value;
+        return (
+          <Chip
+            label={value}
+            color={
+              value === "DC Fast Charging" ? "primary" :
+              value === "Normal Charging" ? "info" :
+              "default"
+            }
+            icon={
+              value === "DC Fast Charging" ? <FlashAutoIcon /> :
+              value === "Normal Charging" ? <FlashOnIcon /> :
+              <FlashOffIcon />
+            }
+            sx={{
+              color: (value === "DC Fast Charging" || value === "Normal Charging") ? "black" : "inherit"
+            }}
+          />
+        );
+      }
+    },            
     { field: "chargingPoint", headerName: "Charging Point", width: 130 },
   ];
 
@@ -68,7 +119,7 @@ const Page = () => {
         ]}
       />
       <div className="container">
-        <Box style={{ display: "flex", width: "100%", height: "70vh" }}>
+        <Box style={{ display: "flex", width: "100%", height: "auto" }}>
           <DataGrid
             rows={chargerMasterData}
             columns={columns}
