@@ -15,7 +15,6 @@ import Battery4BarIcon from "@mui/icons-material/Battery4Bar";
 import Battery5BarIcon from "@mui/icons-material/Battery5Bar";
 import Battery6BarIcon from "@mui/icons-material/Battery6Bar";
 import BatteryStdIcon from "@mui/icons-material/BatteryStd";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import FlashOnIcon from "@mui/icons-material/FlashOn";
 import FlashOffIcon from "@mui/icons-material/FlashOff";
@@ -23,7 +22,9 @@ import ToggleOffIcon from "@mui/icons-material/ToggleOff";
 import ToggleOnIcon from "@mui/icons-material/ToggleOn";
 import ChargingStationIcon from "@mui/icons-material/ChargingStation";
 import InfoIcon from "@mui/icons-material/Info";
-import OfflineBoltIcon from "@mui/icons-material/OfflineBolt"; // Import statement added
+// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import SpeedIcon from '@mui/icons-material/Speed';
+
 
 // Function to get battery icon based on value
 const getBatteryIcon = (value) => {
@@ -125,7 +126,7 @@ const columns = [
         variant="outlined"
         label={`${params.value.toFixed(2)} km`}
         color={getKmColor(params.value)}
-        icon={<OfflineBoltIcon />}
+        icon={<SpeedIcon />}
       />
     ),
   },

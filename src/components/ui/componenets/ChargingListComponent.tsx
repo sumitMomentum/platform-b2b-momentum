@@ -6,8 +6,6 @@ import { Chip } from "@mui/material";
 import FlashAutoIcon from '@mui/icons-material/FlashAuto'; // Import for fast charging
 import BoltIcon from '@mui/icons-material/Bolt'; // Import for slow charging
 import BatteryAlertIcon from "@mui/icons-material/BatteryAlert";
-import BatteryFullIcon from "@mui/icons-material/BatteryFull";
-import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
 import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
 import Battery1BarIcon from "@mui/icons-material/Battery1Bar";
 import Battery2BarIcon from "@mui/icons-material/Battery2Bar";
@@ -16,7 +14,7 @@ import Battery4BarIcon from "@mui/icons-material/Battery4Bar";
 import Battery5BarIcon from "@mui/icons-material/Battery5Bar";
 import Battery6BarIcon from "@mui/icons-material/Battery6Bar";
 import BatteryStdIcon from "@mui/icons-material/BatteryStd";
-import BatterySaverIcon from '@mui/icons-material/BatterySaver'; // Import for charging percentage
+import BatteryChargingFull from '@mui/icons-material/BatteryChargingFull'; // Import for charging percentage
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 // Define the interface for the Charging Session
@@ -121,7 +119,7 @@ const columns: GridColDef[] = [
       <Chip
         label={`${params.value}%`}
         color={params.value < 20 ? "warning" : "default"}
-        icon={<BatterySaverIcon />}
+        icon={<BatteryChargingFull />}
       />
     ),
   },
