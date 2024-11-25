@@ -45,8 +45,12 @@ function generateTripID() {
 
 async function seedChargingSessions(createdChargers, createdVehicles) {
   for (const row of chargingSessions) {
-    const charger = createdChargers.find(charger => charger.chargerId === row.chargerId);
-    const vehicle = createdVehicles.find(vehicle => vehicle.vehicleId === row.vehicleId);
+    const charger = createdChargers.find(
+      (charger) => charger.chargerId === row.chargerId
+    );
+    const vehicle = createdVehicles.find(
+      (vehicle) => vehicle.vehicleId === row.vehicleId
+    );
     if (charger && vehicle) {
       await prisma.chargingSession.create({
         data: {
@@ -65,12 +69,14 @@ async function seedChargingSessions(createdChargers, createdVehicles) {
       });
     }
   }
-  log.success('Charging sessions seeded successfully.');
+  log.success("Charging sessions seeded successfully.");
 }
 
 async function seedVehicleTripSessions(createdVehicles) {
   for (const row of vehicleTripSessions) {
-    const vehicle = createdVehicles.find(vehicle => vehicle.vehicleId === row.vehicleId);
+    const vehicle = createdVehicles.find(
+      (vehicle) => vehicle.vehicleId === row.vehicleId
+    );
     if (vehicle) {
       await prisma.vehicleTripSession.create({
         data: {
@@ -88,7 +94,7 @@ async function seedVehicleTripSessions(createdVehicles) {
       });
     }
   }
-  log.success('Vehicle trip sessions seeded successfully.');
+  log.success("Vehicle trip sessions seeded successfully.");
 }
 
 async function main() {
@@ -106,7 +112,7 @@ async function main() {
       prisma.chargerMaster.deleteMany(),
       prisma.benefit.deleteMany(),
       prisma.vehicle.deleteMany(),
-      prisma.user.deleteMany(),
+      // prisma.user.deleteMany(),
     ]);
 
     log.subHeader("Starting Seeding Process");
@@ -117,7 +123,7 @@ async function main() {
     const createdVehicles = [];
     for (const vehicle of vehicleDetails) {
       const createdVehicle = await prisma.vehicle.create({
-        data: vehicle
+        data: vehicle,
       });
       createdVehicles.push(createdVehicle);
     }
@@ -129,16 +135,20 @@ async function main() {
     const createdChargers = [];
     for (const charger of chargers) {
       const createdCharger = await prisma.chargerMaster.create({
-        data: charger
+        data: charger,
       });
       createdChargers.push(createdCharger);
     }
     log.success("Seeded charger masters");
 
-    const createdChargerTypes = await prisma.chargerType.createMany({ data: chargerTypes });
+    const createdChargerTypes = await prisma.chargerType.createMany({
+      data: chargerTypes,
+    });
     log.success("Seeded charger types");
 
-    const createdActions = await prisma.action.createMany({ data: vehicleActions });
+    const createdActions = await prisma.action.createMany({
+      data: vehicleActions,
+    });
     log.success("Seeded vehicle actions");
 
     await seedChargingSessions(createdChargers, createdVehicles);
