@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import { map } from "svix/dist/openapi/rxjsStub";
 import { current } from "tailwindcss/colors";
+import { Box } from "@radix-ui/themes";
+import style from "styled-jsx/style";
 
 interface NavigationSection {
   sectionName: string;
@@ -53,27 +55,27 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
   };
 
   return (
-    <li>
-      <ul role="list">
-        {links.map((section) => (
-          <div key={section.sectionName}>
-            {/* <span className="text-xs font-semibold leading-6 text-primary">
+    <Box>
+      {links.map((section) => (
+        <div key={section.sectionName}>
+          {/* <span className="text-xs font-semibold leading-6 text-primary">
               {section.sectionName}
             </span> */}
-            <List sx={{ width: "100%", maxWidth: 360 }} component="nav">
-              {section.items.map((item) => (
+          <List sx={{ width: "100%", maxWidth: 360 }} component="nav">
+            {section.items.map((item) => (
+              <Link
+                href={item.href}
+                key={item.name}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <ListItemButton
                   selected={item.href === pathName.replace("/en", "")}
-                  key={item.name}
-                  onClick={(event) => handleListItemClick(item.href)}
                   sx={{
                     "&&.Mui-selected": {
-                      // Added this line to target the selected state
-                      backgroundColor: "primary.main", // Change to your desired darker color
+                      backgroundColor: "primary.main",
                       color: "white",
                       "& .MuiListItemIcon-root": {
-                        // Added this line to target the icon color
-                        color: "white", // Set icon color to white
+                        color: "white",
                       },
                     },
                   }}
@@ -86,12 +88,12 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
                     sx={{ paddingLeft: "10" }}
                   />
                 </ListItemButton>
-              ))}
-            </List>
-          </div>
-        ))}
-      </ul>
-    </li>
+              </Link>
+            ))}
+          </List>
+        </div>
+      ))}
+    </Box>
   );
 };
 
