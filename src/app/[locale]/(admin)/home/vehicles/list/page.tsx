@@ -9,13 +9,33 @@ import React, { useRef, useState, useEffect } from "react";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import { deleteAllVehiclesAndBenefits } from "@/actions/admin/userModule/delete-vehicle";
 import useVehicleStore from "@/states/store";
-import { Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Input,
+  InputAdornment,
+  TextField,
+  Tooltip,
+} from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
 import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import { type } from "os";
+import style from "styled-jsx/style";
+import { current } from "tailwindcss/colors";
+import {Typography} from "@mui/material";
 
+// const options = {
+//   apiKey: "free",
+//   maxFileCount: 1,
+// };
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { title } from "process";
 const VehiclePage = () => {
   const t = useTranslations("AdminLayout.pages.vehicles");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -85,30 +105,104 @@ const VehiclePage = () => {
     }
   };
 
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
   return (
-    <div>
-      <div className="flex">
-        <div className="w-full">
-          <PageName
-            // name={t("title")}
-            breadcrumbs={[
-              { name: "Home", href: "/home" },
-              { name: "Vehicles", href: "/home/vehicles/list" },
-            ]}
-          />
-        </div>
-        <div className="flex justify-center items-center gap-2">
-          <AddVehicle />
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            accept=".csv"
-          />
+    <Box>
+      <div className="w-full">
+        <PageName
+          name={t("title")}
+          breadcrumbs={[
+            { name: "Home", href: "/home" },
+            { name: "Vehicles", href: "/home/vehicles/list" },
+          ]}
+        />
+      </div>
+      <Box
+        sx={{
+          display: "flex", // Corrected spelling from "disply" to "display"
+          justifyContent: "space-between", // Space between AddVehicle and the right group
+          alignItems: "center", // Align all items vertically in the center
+          gap: 2, // Optional: Add gap between items if needed
+          margin: 2,
+        }}
+      >
+        <AddVehicle />
+        <Box
+          sx={{
+            display: "flex", // Corrected spelling from "disply" to "display"
+            gap: 2, // Adds spacing between buttons and input
+            alignItems: "center", // Align items vertically in the center
+          }}
+        >
+          <Box display="flex" alignItems="center" gap={2}>
+            <TextField
+              fullWidth
+              label="Choose a .csv File"
+              variant="outlined"
+              color="primary"
+              // placeholder="File name ..."
+              size="small"
+              sx={{
+                "& .MuiInputBase-input": {
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                },
+              }}
+              value={fileInputRef.current?.files?.[0]?.name || ""}
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="start">
+                      <Tooltip
+                        title={selectedFile ? "Change File" : "Browse"}
+                        placement="bottom"
+                        color="primary"
+                        slotProps={{
+                          tooltip: {
+                            sx: {
+                              bgcolor: "primary.main",
+                              "& .MuiTooltip-arrow": {
+                                color: "primary",
+                              },
+                            },
+                          },
+                        }}
+                      >
+                        <IconButton
+                          color="primary"
+                          onClick={handleButtonClick}
+                          size="small"
+                        >
+                          {selectedFile ? (
+                            <ChangeCircleIcon />
+                          ) : (
+                            <AddCircleIcon />
+                          )}
+                        </IconButton>
+                      </Tooltip>
+                    </InputAdornment>
+                  ),
+                  readOnly: true,
+                },
+              }}
+              // disabled
+            />
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept=".csv"
+              style={{ display: "none" }}
+            />
+          </Box>
           <Button
             startIcon={<FileUploadIcon />}
             variant="contained"
-            color="success"
+            color="primary"
             onClick={() => handleUpload(false)}
           >
             Onboard
@@ -116,35 +210,34 @@ const VehiclePage = () => {
           <Button
             startIcon={<PublishIcon />}
             variant="contained"
-            color="success"
-            onClick={() => {
-              handleUpload(true);
-            }}
+            color="primary"
+            onClick={() => handleUpload(true)}
           >
             Update
           </Button>
           <Button
             variant="outlined"
-            color="success"
+            color="error"
             startIcon={<DeleteForeverIcon />}
-            onClick={() => {
-              const vehicleId = "22";
-              handleDelete();
-            }}
+            onClick={() => handleDelete()}
           >
             Delete
           </Button>
-        </div>
-      </div>
-      <div className="flex-grow flex flex-col space-y-4">
-        <div className="flex-grow h-[calc(50%-1rem)] overflow-auto">
+        </Box>
+      </Box>
+
+      <Box className="flex-grow flex flex-col space-y-4">
+        <Box
+          className="flex flex-grow overflow-auto"
+          sx={{ minHeight: "50vh" }}
+        >
           <VehicleList />
-        </div>
-        <div className="flex-grow h-[calc(50%-1rem)] overflow-auto">
+        </Box>
+        <Box className="flex-grow h-50vh overflow-auto">
           <VendorList />
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

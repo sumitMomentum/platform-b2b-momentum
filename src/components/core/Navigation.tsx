@@ -54,37 +54,37 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
 
   return (
     <li>
-      <ul role="list" className="-mx-2 space-y-1">
+      <ul role="list">
         {links.map((section) => (
           <div key={section.sectionName}>
-            <span className="text-xs font-semibold leading-6 text-primary">
+            {/* <span className="text-xs font-semibold leading-6 text-primary">
               {section.sectionName}
-            </span>
-            <List>
+            </span> */}
+            <List sx={{ width: "100%", maxWidth: 360 }} component="nav">
               {section.items.map((item) => (
                 <ListItemButton
                   selected={item.href === pathName.replace("/en", "")}
                   key={item.name}
-                  component="div"
                   onClick={(event) => handleListItemClick(item.href)}
                   sx={{
-                    "&& .Mui-selected": {
-                      backgroundColor: "pink",
+                    "&&.Mui-selected": {
+                      // Added this line to target the selected state
+                      backgroundColor: "primary.main", // Change to your desired darker color
+                      color: "white",
+                      "& .MuiListItemIcon-root": {
+                        // Added this line to target the icon color
+                        color: "white", // Set icon color to white
+                      },
                     },
                   }}
                 >
-                  <ListItemIcon>
-                    <item.icon
-                      className={classNames(
-                        item.href === pathName
-                          ? "text-primary-selected"
-                          : "text-primary",
-                        "h-6 w-6 shrink-0 text-primary-hover"
-                      )}
-                      aria-hidden="true"
-                    />
+                  <ListItemIcon sx={{ marginRight: "5px" }}>
+                    {item.icon}
                   </ListItemIcon>
-                  <ListItemText primary={item.name} />
+                  <ListItemText
+                    primary={item.name}
+                    sx={{ paddingLeft: "10" }}
+                  />
                 </ListItemButton>
               ))}
             </List>
