@@ -4,7 +4,10 @@ import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllCh
 import PageName from "@/components/ui/commons/PageName";
 import { Box, Chip } from "@mui/material";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import React, { Fragment, useEffect, useState } from "react";
+import { join, parse } from "path";
+import { split } from "postcss/lib/list";
+import React from "react";
+import { Fragment, useEffect, useState } from "react";
 import PowerIcon from "@mui/icons-material/Power";
 import PowerOffIcon from "@mui/icons-material/PowerOff";
 import InfoIcon from "@mui/icons-material/Info";
@@ -26,69 +29,15 @@ const Page = () => {
   const [chargerMasterData, setChargerMasterData] = useState<ChargerRow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 70 },
-    { field: "chargerId", headerName: "Charger ID", width: 130 },
-    { field: "chargerLocation", headerName: "Charger Location", width: 200 },
-    {
-      field: "chargerStatus",
-      headerName: "Charger Status",
-      width: 130,
-      renderCell: (params: GridRenderCellParams) => (
-        <Chip
-          label={params.value}
-          color={
-            params.value === "Active" ? "success" :
-            params.value === "Inactive" ? "error" :
-            "default"
-          }
-          icon={
-            params.value === "Active" ? <PowerIcon /> :
-            params.value === "Inactive" ? <PowerOffIcon /> :
-            <InfoIcon />
-          }
-        />
-      )
-    },
-    {
-      field: "dateJoining",
-      headerName: "Date Joining",
-      width: 130,
-      valueFormatter: (params) => {
-        const date = new Date(params);
-        return date.toLocaleDateString('en-GB', {
-          day: 'numeric', month: 'short', year: 'numeric'
-        });
-      }
-    },
-    {
-      field: "chargeType",
-      headerName: "Charge Type",
-      width: 130,
-      renderCell: (params: GridRenderCellParams) => {
-        const value = (params.value === "-" || !params.value) ? "Default" : params.value;
-        return (
-          <Chip
-            label={value}
-            color={
-              value === "DC Fast Charging" ? "primary" :
-              value === "Normal Charging" ? "info" :
-              "default"
-            }
-            icon={
-              value === "DC Fast Charging" ? <FlashAutoIcon /> :
-              value === "Normal Charging" ? <FlashOnIcon /> :
-              <FlashOffIcon />
-            }
-            sx={{
-              color: (value === "DC Fast Charging" || value === "Normal Charging") ? "black" : "inherit"
-            }}
-          />
-        );
-      }
-    },            
-    { field: "chargingPoint", headerName: "Charging Point", width: 130 },
-  ];
+  // const columns: GridColDef[] = [
+  //   { field: "id", headerName: "ID", width: 70 },
+  //   { field: "chargerId", headerName: "Charger ID", width: 130 },
+  //   { field: "chargerLocation", headerName: "Charger Location", width: 200 },
+  //   { field: "chargerStatus", headerName: "Charger Status", width: 130 },
+  //   { field: "dateJoining", headerName: "Date Joining", width: 130 },
+  //   { field: "chargeType", headerName: "Charge Type", width: 130 },
+  //   { field: "chargingPoint", headerName: "Charging Point", width: 130 },
+  // ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -110,16 +59,114 @@ const Page = () => {
     fetchData();
   }, []);
 
+  const columns: GridColDef[] = [
+    { field: "chargerId", headerName: "Charger ID", minWidth: 200 },
+    {
+      field: "chargerLocation",
+      headerName: "Charger Location",
+      minWidth: 200,
+      valueFormatter: (value: any, row: any) =>
+        `${[
+          Number(value.toString().split(",")[0]).toFixed(2),
+          Number(value.toString().split(",")[1]).toFixed(2),
+        ].join(", ")}`,
+    },
+    {
+      field: "chargerStatus",
+      headerName: "Charger Status",
+      minWidth: 200,
+      renderCell: (params) => (
+        <Chip
+          variant="outlined"
+          label={params.value}
+          color={
+            params.value === "Active"
+              ? "success"
+              : params.value === "Charging"
+              ? "warning"
+              : params.value === "Inactive"
+              ? "error"
+              : "info"
+          }
+          icon={
+            params.value === "Active" ? (
+              <PowerIcon />
+            ) : params.value === "Inactive" ? (
+              <PowerOffIcon />
+            ) : (
+              <InfoIcon />
+            )
+          }
+        />
+      ),
+    },
+    {
+      field: "dateJoining",
+      headerName: "Date Joining",
+      minWidth: 200,
+      valueFormatter: (value, row) => new Date(value).toLocaleDateString(),
+    },
+    {
+      field: "chargeType",
+      headerName: "Charge Type",
+      minWidth: 200,
+      renderCell: (params) => (
+        <Chip
+          variant="outlined"
+          label={params.value}
+          // color={
+          //   params.value.toLowerCase().includes("fast")
+          //     ? "success"
+          //     : params.value.toLowerCase().includes("normal")
+          //     ? "warning"
+          //     : "info"
+          // }
+          icon={
+            params.value.toLowerCase().includes("fast") ? (
+              <FlashAutoIcon />
+            ) : params.value.toLowerCase().includes("normal") ? (
+              <FlashOnIcon />
+            ) : (
+              <FlashOffIcon />
+            )
+          }
+        />
+      ),
+    },
+    { field: "chargingPoint", headerName: "Charging Point", minWidth: 200 },
+  ];
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getAllChargerMasterData();
+  //       console.log("from the component:", data);
+  //       if (Array.isArray(data)) {
+  //         setChargerMasterData(data);
+  //       } else {
+  //         console.warn("Expected data to be an array:", data);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching charger master data:", error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
   return (
     <Fragment>
       <PageName
+        // name={"Chargers"}
         breadcrumbs={[
           { name: "Home", href: "/home" },
           { name: "Chargers", href: "/home/chargers" },
         ]}
       />
       <div className="container">
-        <Box style={{ display: "flex", width: "100%", height: "auto" }}>
+        <Box style={{ display: "flex", width: "100%", height: "70vh" }}>
           <DataGrid
             rows={chargerMasterData}
             columns={columns}
