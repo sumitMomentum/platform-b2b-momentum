@@ -23,6 +23,7 @@ import ToggleOffIcon from "@mui/icons-material/ToggleOff";
 import ToggleOnIcon from "@mui/icons-material/ToggleOn";
 import ChargingStationIcon from "@mui/icons-material/ChargingStation";
 import InfoIcon from "@mui/icons-material/Info";
+import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';  // Import statement added
 
 // Function to get battery icon based on value
 const getBatteryIcon = (value) => {
@@ -51,18 +52,11 @@ const getStatusIcon = (value) => {
   }
 };
 
-// Function to get status color based on value
-const getStatusColor = (value) => {
-  switch (value) {
-    case "Active":
-      return "success";
-    case "Charging":
-      return "warning";
-    case "Inactive":
-      return "error";
-    default:
-      return "info";
-  }
+// Function to get kilometer color based on value
+const getKmColor = (value) => {
+  if (value < 20) return "error";
+  if (value < 50) return "warning";
+  return "primary";
 };
 
 // Define the column configurations
@@ -124,8 +118,14 @@ const columns = [
     field: "TripApprovedKilometer",
     headerName: "Approved Kilometers",
     flex: 1,
-    valueFormatter: (params) =>
-     `${params.toFixed(2)} km`,
+    renderCell: (params) => (
+      <Chip
+        variant="outlined"
+        label={`${params.value.toFixed(2)} km`}
+        color={getKmColor(params.value)}
+        icon={<OfflineBoltIcon />}
+      />
+    ),
   },
   {
     field: "DiffInBat",
@@ -142,19 +142,6 @@ const columns = [
     headerName: "Last Update",
     flex: 1,
     valueFormatter: (params) => new Date(params).toLocaleString(),
-  },
-  {
-    field: "Status",
-    headerName: "Status",
-    flex: 1,
-    renderCell: (params) => (
-      <Chip
-        variant="outlined"
-        label={params.value}
-        color={getStatusColor(params.value)}
-        icon={getStatusIcon(params.value)}
-      />
-    ),
   },
 ];
 
