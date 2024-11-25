@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import React from "react";
 import { Chip } from "@mui/material";
 import FlashAutoIcon from '@mui/icons-material/FlashAuto'; // Import for fast charging
 import BoltIcon from '@mui/icons-material/Bolt'; // Import for slow charging
@@ -75,7 +74,7 @@ const columns: GridColDef[] = [
     headerName: "End DTE",
     flex: 1,
     valueFormatter: (params) => `${params} km`,
-  },  
+  },
   {
     field: "BatteryAtStart",
     headerName: "Battery Start (%)",
@@ -121,10 +120,12 @@ const columns: GridColDef[] = [
     renderCell: (params) => (
       <Chip
         label={`${params.value}%`}
+        color={params.value < 20 ? "warning" : "default"}
         icon={<BatterySaverIcon />}
       />
     ),
-  },  
+  },
+  // { field: "DiffInBat", headerName: "Charging (%)", flex: 1, valueFormatter: (params) => `${params}%`, },
   {
     field: "ChargingType",
     headerName: "Charging Type",
@@ -148,7 +149,8 @@ const columns: GridColDef[] = [
     renderCell: (params) => (
       <Chip
         label={`${params.value} km`}
-        icon={<ArrowOutwardIcon style={{ marginLeft: 'auto' }} />}
+        icon={<ArrowOutwardIcon />}
+        color="primary"
       />
     ),
   },  

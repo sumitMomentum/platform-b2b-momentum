@@ -23,7 +23,7 @@ import ToggleOffIcon from "@mui/icons-material/ToggleOff";
 import ToggleOnIcon from "@mui/icons-material/ToggleOn";
 import ChargingStationIcon from "@mui/icons-material/ChargingStation";
 import InfoIcon from "@mui/icons-material/Info";
-import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';  // Import statement added
+import OfflineBoltIcon from "@mui/icons-material/OfflineBolt"; // Import statement added
 
 // Function to get battery icon based on value
 const getBatteryIcon = (value) => {
@@ -68,13 +68,15 @@ const columns = [
   },
   {
     field: "DteStart",
-    headerName: "Dte Start",
+    headerName: "Start DTE",
     flex: 1,
+    valueFormatter: (params) => `${params} km`,
   },
   {
     field: "DteEnd",
-    headerName: "Dte End",
+    headerName: "End DTE",
     flex: 1,
+    valueFormatter: (params) => `${params} km`,
   },
   {
     field: "BatteryAtStart",
@@ -131,11 +133,13 @@ const columns = [
     field: "DiffInBat",
     headerName: "Battery Diff",
     flex: 1,
+    valueFormatter: (params) => `${params}%`,
   },
   {
     field: "DiffInDte",
     headerName: "Diff in Dte",
     flex: 1,
+    renderCell: (params) => <Chip label={`${params.value} km`} />,
   },
   {
     field: "DwUpdated",
