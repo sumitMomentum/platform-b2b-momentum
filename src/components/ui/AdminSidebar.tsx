@@ -69,6 +69,7 @@ const AdminSidebar = () => {
         sx={{
           display: { xs: "block", lg: "none" }, // Show on small screens, hide on large
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: 250 },
+          backgroundColor: "background.paper",
         }}
       >
         <Box
@@ -154,8 +155,12 @@ const AdminSidebar = () => {
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: "none", lg: "block" }, // Hide on small screens, show on large
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 256 },
+          display: { sm: "none", md: "block" }, // Hide on small screens, show on large
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: 256,
+            backgroundColor: "white",
+          },
         }}
         open
       >
@@ -164,7 +169,7 @@ const AdminSidebar = () => {
             display: "flex",
             flexDirection: "column",
             height: "100%",
-            backgroundColor: "background.paper",
+            // backgroundColor: "background.paper",
             flexGrow: "inherit",
           }}
         >

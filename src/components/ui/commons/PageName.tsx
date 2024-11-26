@@ -1,7 +1,20 @@
 import React, { ReactNode } from "react";
 import Link from "next/link";
-import { Breadcrumbs, Typography } from "@mui/material";
+import {
+  Breadcrumbs,
+  Chip,
+  emphasize,
+  styled,
+  Typography,
+} from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { GridEventListener } from "@mui/x-data-grid";
+import { useRouter } from "next/navigation";
+import { typography } from "@/app/[locale]/(admin)/home/actionCentre/shared-theme/themePrimitives";
+import shadows from "@mui/material/styles/shadows";
+import { grey } from "chalk";
+import { text } from "stream/consumers";
+import { HomeIcon } from "@radix-ui/react-icons";
 
 type Btn = {
   name: string;
@@ -23,6 +36,34 @@ type PageNameProps = {
   isSubPage?: boolean;
 };
 
+const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+  const backgroundColor = theme.palette.primary;
+  // const backgroundColor =
+  //   theme.palette.mode === "light"
+  //     ? theme.palette.grey[100]
+  //     : theme.palette.grey[800];
+  return {
+    // backgroundColor,
+    height: theme.spacing(3),
+    color: theme.palette.text.primary,
+    fontWeight: theme.typography.fontWeightRegular,
+    "&:hover, &:focus": {
+      backgroundColor,
+    },
+    "&:active": {
+      boxShadow: theme.shadows[1],
+      backgroundColor,
+    },
+    // "&:hover, &:focus": {
+    //   backgroundColor: emphasize(backgroundColor, 0.06),
+    // },
+    // "&:active": {
+    //   boxShadow: theme.shadows[1],
+    //   backgroundColor: emphasize(backgroundColor, 0.12),
+    // },
+  };
+}) as typeof Chip;
+
 const PageName = ({
   name,
   btn1,
@@ -31,6 +72,10 @@ const PageName = ({
   isSubPage,
 }: PageNameProps) => {
   const navs = breadcrumbs;
+  const router = useRouter();
+  const handleClick = (href: string) => {
+    router.push(href);
+  };
 
   return (
     <Breadcrumbs
@@ -38,17 +83,15 @@ const PageName = ({
       aria-label="breadcrumb"
     >
       {breadcrumbs.map((nav) => (
-        <Link color="inherit" href={nav.href} key={nav.name}>
-          {nav.name}
-        </Link>
+        <StyledBreadcrumb
+          component="a"
+          href={nav.href}
+          onClick={() => handleClick(nav.href)}
+          label={nav.name}
+          variant="outlined"
+        />
       ))}
-      <Typography
-        sx={{ color: "primary" }}
-        variant="subtitle1"
-        // fontWeight={"bold"}
-      >
-        {name}
-      </Typography>
+      <Chip color="primary" label={name} />
     </Breadcrumbs>
   );
 };
