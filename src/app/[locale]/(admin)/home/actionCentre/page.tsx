@@ -12,18 +12,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import MainGrid from "./components/MainGrid";
-import AppTheme from "./shared-theme/AppTheme";
-
-import {
-  chartsCustomizations,
-  dataGridCustomizations,
-  datePickersCustomizations,
-  treeViewCustomizations,
-} from "./theme/customizations";
 import PageName from "@/components/ui/commons/PageName";
 import Button from "@mui/material/Button";
 import ActionListComponent from "./ActionListComponent";
 import Link from "next/link";
+import { Container } from "@mui/material";
+import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 
 type ActionItem = {
   id: number;
@@ -37,82 +31,74 @@ type ActionItem = {
   ClosedDateTime?: string;
 };
 
-// const actionItems: ActionItem[] = await getAllVehicleActions();
-const xThemeComponents = {
-  ...chartsCustomizations,
-  ...dataGridCustomizations,
-  ...datePickersCustomizations,
-  ...treeViewCustomizations,
-};
-
 export default function Page(props: { disableCustomTheme?: boolean }) {
   const [isTabular, setIsTabular] = React.useState<boolean>(false);
+  const [actions, setActions] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch the actual vehicle actions data
+        const data = await getAllVehicleActions();
+
+        // If data is fetched successfully, calculate aggregates
+        if (data && Array.isArray(data)) {
+          setActions(data);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch vehicle data items", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
   const toggleIsTabular = () => {
     setIsTabular((prevState) => !prevState);
   };
   return (
-    <AppTheme {...props} themeComponents={xThemeComponents}>
-      <CssBaseline enableColorScheme />
-      <Box sx={{ display: "flex" }}>
-        <Box
-          component="main"
-          sx={(theme) => ({
-            flexGrow: 1,
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)`
-              : alpha(theme.palette.background.default, 1),
-            overflow: "auto",
-          })}
+    <Box sx={{ display: "flex" }}>
+      <Box
+        component="main"
+        sx={(theme) => ({
+          flexGrow: 1,
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)`
+            : alpha(theme.palette.background.default, 1),
+          overflow: "auto",
+        })}
+      >
+        <PageName
+          name={"Action Centre"}
+          breadcrumbs={[{ name: "Home", href: "/home" }]}
+        />
+        <Container sx={{ display: "flex", justifyContent: "right", mb: 2 }}>
+          <Button
+            // startIcon={<ScheduleIcon />}
+            variant="contained"
+            onClick={() => setIsTabular((prevState) => !prevState)}
+          >
+            {isTabular ? "View Graphically" : "View Tabular"}
+          </Button>
+        </Container>
+        <Stack
+          spacing={2}
+          sx={{
+            alignItems: "center",
+            mx: 3,
+            pb: 5,
+            mt: { xs: 8, md: 0 },
+          }}
         >
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{
-              alignItems: "center",
-              mx: 3,
-              mt: { xs: 8, md: 0 },
-              justifyContent: "space-between",
-            }}
-          >
-            <PageName
-              name={"Action Centre"}
-              breadcrumbs={[{ name: "Home", href: "/home" }]}
-            />
-            {isTabular ? (
-              <Button
-                variant="contained"
-                sx={{ backgroundColor: "grey" }}
-                onClick={() => {
-                  setIsTabular(false);
-                }}
-              >
-                View Graphically
-              </Button>
-            ) : (
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  setIsTabular(true);
-                }}
-              >
-                View Tabular
-              </Button>
-            )}
-          </Stack>
-          <Stack
-            spacing={2}
-            sx={{
-              alignItems: "center",
-              mx: 3,
-              pb: 5,
-              mt: { xs: 8, md: 0 },
-            }}
-          >
-            {isTabular ? <ActionListComponent /> : <MainGrid />}
-          </Stack>
-        </Box>
+          {isTabular ? (
+            <ActionListComponent actions={actions} loading={loading} />
+          ) : (
+            <MainGrid actions={actions} loading={loading} />
+          )}
+        </Stack>
       </Box>
-    </AppTheme>
+    </Box>
   );
 }

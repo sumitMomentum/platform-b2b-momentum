@@ -1,20 +1,8 @@
 import React, { ReactNode } from "react";
 import Link from "next/link";
-import {
-  Breadcrumbs,
-  Chip,
-  emphasize,
-  styled,
-  Typography,
-} from "@mui/material";
+import { Breadcrumbs, Chip, styled } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { GridEventListener } from "@mui/x-data-grid";
 import { useRouter } from "next/navigation";
-import { typography } from "@/app/[locale]/(admin)/home/actionCentre/shared-theme/themePrimitives";
-import shadows from "@mui/material/styles/shadows";
-import { grey } from "chalk";
-import { text } from "stream/consumers";
-import { HomeIcon } from "@radix-ui/react-icons";
 
 type Btn = {
   name: string;
@@ -47,20 +35,11 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     height: theme.spacing(3),
     color: theme.palette.text.primary,
     fontWeight: theme.typography.fontWeightRegular,
-    "&:hover, &:focus": {
-      backgroundColor,
+    "&:hover": {
+      boxShadow: theme.shadows[2],
+      shadowColor: theme.palette.primary[400],
+      color: theme.palette.primary[400],
     },
-    "&:active": {
-      boxShadow: theme.shadows[1],
-      backgroundColor,
-    },
-    // "&:hover, &:focus": {
-    //   backgroundColor: emphasize(backgroundColor, 0.06),
-    // },
-    // "&:active": {
-    //   boxShadow: theme.shadows[1],
-    //   backgroundColor: emphasize(backgroundColor, 0.12),
-    // },
   };
 }) as typeof Chip;
 

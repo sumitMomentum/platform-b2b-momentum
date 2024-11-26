@@ -55,33 +55,10 @@ const aggregateData = (data) => {
   };
 };
 
-export default function MainGrid() {
-  const [vehicleDataItems, setVehicleDataItems] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch the actual vehicle actions data
-        const data = await getAllVehicleActions();
-
-        // If data is fetched successfully, calculate aggregates
-        if (data && Array.isArray(data)) {
-          setVehicleDataItems(data);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch vehicle data items", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+export default function MainGrid({ actions, loading }) {
   // Aggregate the data for the stat cards
   const { totalActions, confirmedActions, avgSeverity, avgTimeToClose } =
-    aggregateData(vehicleDataItems);
+    aggregateData(actions);
 
   // Data for the Stat Cards
   const statCards: StatCardProps[] = [
@@ -141,7 +118,7 @@ export default function MainGrid() {
 
         {/* Severity Distribution Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <SeverityDistributionChart actionsData={vehicleDataItems} />
+          <SeverityDistributionChart actionsData={actions} />
         </Grid>
       </Grid>
 
