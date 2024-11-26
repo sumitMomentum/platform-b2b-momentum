@@ -9,6 +9,7 @@ import SeverityDistributionChart from "./SeverityDistributionChart";
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions"; // Ensure this is correct
 import CustomizedDataGrid from "./CustomizedDataGrid";
 import SuspenseDashboard from "@/components/suspenseSkeleton/SuspenseDashboard";
+import ActionListComponent from "../ActionListComponent";
 
 // Function to aggregate vehicle actions data
 const aggregateData = (data) => {
@@ -129,12 +130,10 @@ export default function MainGrid({ actions, loading }) {
       <Grid container spacing={2} columns={12}>
         {/* Data Grid Section */}
         <Grid item xs={12}>
-          <CustomizedDataGrid />
+          {/* <CustomizedDataGrid /> */}
+          <ActionListComponent actions={actions} loading={loading} />
         </Grid>
       </Grid>
-
-      {/* Footer */}
-      <Copyright sx={{ my: 4 }} />
     </Box>
   );
 }

@@ -30,7 +30,7 @@ interface ActionListComponentProps {
 }
 
 const columns: GridColDef[] = [
-  { field: "vin", headerName: "VIN", flex: 1 },
+  { field: "vehicleId", headerName: "Vehicle Id", flex: 1 },
   {
     field: "severity",
     headerName: "Severity",

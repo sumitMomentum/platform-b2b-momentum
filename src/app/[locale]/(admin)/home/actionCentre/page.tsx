@@ -31,7 +31,7 @@ type ActionItem = {
   ClosedDateTime?: string;
 };
 
-export default function Page(props: { disableCustomTheme?: boolean }) {
+export default function Page() {
   const [isTabular, setIsTabular] = React.useState<boolean>(false);
   const [actions, setActions] = React.useState([]);
   const [loading, setLoading] = React.useState(true);

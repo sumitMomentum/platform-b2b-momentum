@@ -1,77 +1,91 @@
-import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Copyright from '../internals/components/Copyright';
-import CustomizedDataGrid from './CustomizedDataGrid';
-import StatCard, { StatCardProps } from './StatCard';
-import SavingsOverTimeChart from './SavingsOverTimeChart';
-import SavingsDistributionChart from './SavingsDistributionChart';
+import * as React from "react";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Copyright from "../internals/components/Copyright";
+import StatCard, { StatCardProps } from "./StatCard";
+import SavingsOverTimeChart from "./SavingsOverTimeChart";
+import SavingsDistributionChart from "./SavingsDistributionChart";
 import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
+import BenefitsListComponent from "../BenefitsListComponent";
 
-const MainGrid = () => {
+export default function MainGrid({ benefits }) {
   const [statCardData, setStatCardData] = React.useState<StatCardProps[]>([]);
-  const [savingsOverTimeData, setSavingsOverTimeData] = React.useState<number[]>([]);
+  const [savingsOverTimeData, setSavingsOverTimeData] = React.useState<
+    number[]
+  >([]);
   const [vehicleBenefits, setVehicleBenefits] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       try {
-        const response = await getVehicleBenefits();
-
         // Calculate inferences for stat cards
-        const totalSavings = response.reduce((acc, item) => acc + item.costSavingChargingMonthly, 0);
-        const averageSavings = (totalSavings / response.length) || 0;
-        const totalRangeIncrease = response.reduce((acc, item) => acc + item.rangeIncreaseMonthly, 0);
+        const totalSavings = benefits.reduce(
+          (acc, item) => acc + item.costSavingChargingMonthly,
+          0
+        );
+        const averageSavings = totalSavings / benefits.length || 0;
+        const totalRangeIncrease = benefits.reduce(
+          (acc, item) => acc + item.rangeIncreaseMonthly,
+          0
+        );
 
         const formattedStatCardData: StatCardProps[] = [
           {
-            title: 'Total Savings',
+            title: "Total Savings",
             value: `${totalSavings.toFixed(2)} USD`,
-            interval: 'Last 30 days',
-            trend: 'up',
-            data: response.map(item => item.costSavingChargingMonthly)
+            interval: "Last 30 days",
+            trend: "up",
+            data: benefits.map((item) => item.costSavingChargingMonthly),
           },
           {
-            title: 'Average Savings',
+            title: "Average Savings",
             value: `${averageSavings.toFixed(2)} USD`,
-            interval: 'Last 30 days',
-            trend: 'neutral',
-            data: response.map(item => item.costSavingChargingMonthly)
+            interval: "Last 30 days",
+            trend: "neutral",
+            data: benefits.map((item) => item.costSavingChargingMonthly),
           },
           {
-            title: 'Total Range Increase',
+            title: "Total Range Increase",
             value: `${totalRangeIncrease.toFixed(2)} km`,
-            interval: 'Last 30 days',
-            trend: 'up',
-            data: response.map(item => item.rangeIncreaseMonthly)
-          }
+            interval: "Last 30 days",
+            trend: "up",
+            data: benefits.map((item) => item.rangeIncreaseMonthly),
+          },
         ];
 
         // Savings data over time for the chart
-        const savingsOverTime = response.map(item => item.costSavingChargingMonthly);
+        const savingsOverTime = benefits.map(
+          (item) => item.costSavingChargingMonthly
+        );
 
         setStatCardData(formattedStatCardData);
         setSavingsOverTimeData(savingsOverTime);
-        setVehicleBenefits(response);
+        setVehicleBenefits(benefits);
         setLoading(false);
       } catch (error) {
-        console.error('Failed to fetch data', error);
+        console.error("Failed to fetch data", error);
         setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [benefits]);
 
   return (
-    <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
+    <Box sx={{ width: "100%", maxWidth: { sm: "100%", md: "1700px" } }}>
       {/* Overview Section */}
       {/* <Typography component="h4" variant="h2" sx={{ mb: 2 }}>
         Benefits Overview
       </Typography> */}
-      <Grid container spacing={1} columns={12} sx={{ mb: (theme) => theme.spacing(2) }}>
+      <Grid
+        container
+        spacing={1}
+        columns={12}
+        sx={{ mb: (theme) => theme.spacing(2) }}
+      >
         {/* Stat Cards */}
         {statCardData.map((card, index) => (
           <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
@@ -89,20 +103,12 @@ const MainGrid = () => {
       </Grid>
 
       {/* Details Section */}
-      <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
-        Details
-      </Typography>
       <Grid container spacing={2} columns={12}>
         {/* Data Grid Section */}
         <Grid item xs={12}>
-          <CustomizedDataGrid vehicleBenefits={vehicleBenefits} />
+          <BenefitsListComponent benefits={benefits} loading={loading} />
         </Grid>
       </Grid>
-
-      {/* Footer */}
-      <Copyright sx={{ my: 4 }} />
     </Box>
   );
-};
-
-export default MainGrid;
+}

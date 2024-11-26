@@ -6,7 +6,7 @@ import Paper from "@mui/material/Paper";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 // Define BenefitItem type here
-type BenefitItem = {
+export type BenefitItem = {
   vin: string;
   vehicleId: string;
   batteryCycleSavingMonthly: number;
@@ -30,25 +30,7 @@ import { map } from "svix/dist/openapi/rxjsStub";
 import page from "../page";
 import style from "styled-jsx/style";
 
-const BenefitsListComponent: React.FC = () => {
-  const [vehicleBenefits, setVehicleBenefits] = useState<BenefitItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getVehicleBenefits();
-        setVehicleBenefits(data || []);
-      } catch (error) {
-        console.error("Error fetching vehicle benefits data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+export default function BenefitsListComponent({ benefits, loading }) {
   const columns: GridColDef[] = [
     {
       field: "vin",
@@ -150,14 +132,12 @@ const BenefitsListComponent: React.FC = () => {
   ];
 
   return (
-    <Paper
-      sx={{ height: "auto", width: "100%", p: 3, backgroundColor: "white" }}
-    >
+    <Paper sx={{ height: "auto", width: "100%", backgroundColor: "white" }}>
       <Typography variant="h5" sx={{ margin: 3, fontWeight: "bold" }}>
         Overall Profit and Loss
       </Typography>
       <DataGrid
-        rows={vehicleBenefits
+        rows={benefits
           .filter((vehicle) => vehicle.vehicleId === "xxxxxxxxxx")
           .sort((a, b) => {
             return a.vin > b.vin ? 1 : -1; // Sort by vin in ascending order
@@ -184,9 +164,7 @@ const BenefitsListComponent: React.FC = () => {
         Details:
       </Typography>
       <DataGrid
-        rows={vehicleBenefits.filter(
-          (vehicle) => vehicle.vehicleId !== "xxxxxxxxxx"
-        )}
+        rows={benefits.filter((vehicle) => vehicle.vehicleId !== "xxxxxxxxxx")}
         columns={columns}
         getRowId={(row) => row.vin}
         loading={loading}
@@ -211,6 +189,4 @@ const BenefitsListComponent: React.FC = () => {
       />
     </Paper>
   );
-};
-
-export default BenefitsListComponent;
+}
