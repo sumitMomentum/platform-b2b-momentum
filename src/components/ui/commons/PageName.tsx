@@ -37,15 +37,15 @@ const PageName = ({
       separator={<NavigateNextIcon fontSize="small" />}
       aria-label="breadcrumb"
     >
-      {breadcrumbs.slice(0, -1).map((nav) => (
-        <Link color="inherit" href={nav.href}>
+      {breadcrumbs.map((nav) => (
+        <Link color="inherit" href={nav.href} key={nav.name}>
           {nav.name}
         </Link>
       ))}
       <Typography
         sx={{ color: "primary" }}
         variant="subtitle1"
-        fontWeight={"bold"}
+        // fontWeight={"bold"}
       >
         {name}
       </Typography>

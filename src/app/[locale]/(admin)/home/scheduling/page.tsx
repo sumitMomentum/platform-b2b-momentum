@@ -72,7 +72,7 @@ const page = () => {
         name="Charge Scheduling"
         breadcrumbs={[
           { name: "Home", href: "/home" },
-          { name: "Scheduling", href: "/home/scheduling" },
+          // { name: "Scheduling", href: "/home/scheduling" },
         ]}
       />
       <Container sx={{ display: "flex", justifyContent: "right", mb: 2 }}>

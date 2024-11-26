@@ -11,7 +11,12 @@ import {
   Container,
   Divider,
 } from "@mui/material";
-import { SupportAgent, Group, Settings } from "@mui/icons-material";
+import {
+  SupportAgent,
+  Group,
+  Settings,
+  SafetyDividerOutlined,
+} from "@mui/icons-material";
 import { useSidebarState } from "@/states/ui/sidebarState";
 import Navigation from "../core/Navigation";
 import Link from "next/link";
@@ -108,14 +113,14 @@ const AdminSidebar = () => {
               afterLeaveOrganizationUrl={"/home"}
             />
           </Box>
-          <Divider color="primary" sx={{ borderBottomWidth: "2px" }} />
+          <Divider sx={{ borderBottomWidth: "0.5px" }} />
 
           {/* Navigation */}
           <Navigation navigation={adminNavigation} />
 
           {/* Help Navs */}
           <Box>
-            <Divider color="primary" sx={{ borderBottomWidth: "2px" }} />
+            <Divider sx={{ borderBottomWidth: "0.5px" }} />
 
             <List>
               {helpNavs.map((item) => (
@@ -182,7 +187,7 @@ const AdminSidebar = () => {
               />
             </Link>
           </Box>
-          <Divider color="primary" sx={{ borderBottomWidth: "2px" }} />
+          <Divider sx={{ borderBottomWidth: "0.5px" }} />
 
           <Box
             sx={{
@@ -198,7 +203,7 @@ const AdminSidebar = () => {
 
             {/* Help Navs */}
             <Box>
-              <Divider color="primary" sx={{ borderBottomWidth: "2px" }} />
+              <Divider sx={{ borderBottomWidth: "0.5px" }} />
               <List>
                 {helpNavs.map((item) => (
                   <ListItemButton

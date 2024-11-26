@@ -48,10 +48,9 @@ const ChargingSessionsPage: React.FC = () => {
   return (
     <Fragment>
       <PageName
-        // name="Charging Sessions"
+        name="Charging Sessions"
         breadcrumbs={[
           { name: "Home", href: "/home" },
-          { name: "Charging Sessions", href: "/home/chargingSessions" },
         ]}
       />
       <div className="container">

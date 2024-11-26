@@ -101,10 +101,7 @@ const SuperAdminDashboardPage = () => {
     <div>
       <PageName
         name={"Dashboard"}
-        breadcrumbs={[
-          { name: "Home", href: "/home" },
-          { name: "", href: "/home" },
-        ]}
+        breadcrumbs={[{ name: "Home", href: "/home" }]}
       />
       {/* <Suspense fallback={<PageLoader />}>
         <Card className=" my-7">

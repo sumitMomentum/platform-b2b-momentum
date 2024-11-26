@@ -35,9 +35,8 @@ export default function RootLayout(props: {
     // Check if there is a preferred mode in localStorage
     const savedMode = localStorage.getItem("themeMode") as PaletteMode | null;
 
-
     // Intentionally made dark mode permanant
-    
+
     // if (savedMode) {
     //   setMode(savedMode);
     // } else {
@@ -65,7 +64,7 @@ export default function RootLayout(props: {
   return (
     <ClerkProvider>
       <html lang={locale} className="antialiased">
-        <body className={inter.className}>
+        <body>
           {/* <ClerkLoading>
             <SuspenseClerk />
           </ClerkLoading>

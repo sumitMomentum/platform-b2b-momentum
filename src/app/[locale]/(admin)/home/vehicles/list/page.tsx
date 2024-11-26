@@ -28,7 +28,7 @@ import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import { type } from "os";
 import style from "styled-jsx/style";
 import { current } from "tailwindcss/colors";
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
 
 // const options = {
 //   apiKey: "free",
@@ -130,11 +130,8 @@ const VehiclePage = () => {
     <Box>
       <div className="w-full">
         <PageName
-          name={t("title")}
-          breadcrumbs={[
-            { name: "Home", href: "/home" },
-            { name: "Vehicles", href: "/home/vehicles/list" },
-          ]}
+          name={"Vehicles"}
+          breadcrumbs={[{ name: "Home", href: "/home" }]}
         />
       </div>
       <Box

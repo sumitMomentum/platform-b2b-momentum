@@ -18,10 +18,6 @@ const SettingRoot = ({ children }: { children: ReactNode }) => {
             name: t("dashboard"),
             href: "/home",
           },
-          {
-            name: t("settings"),
-            href: "/home/settings/profile",
-          },
         ]}
       />
       <SettingsTabs />

@@ -150,10 +150,10 @@ const Page = () => {
   return (
     <Fragment>
       <PageName
-        // name={"Chargers"}
+        name={"Chargers"}
         breadcrumbs={[
           { name: "Home", href: "/home" },
-          { name: "Chargers", href: "/home/chargers" },
+          // { name: "Chargers", href: "/home/chargers" },
         ]}
       />
       <div className="container">
