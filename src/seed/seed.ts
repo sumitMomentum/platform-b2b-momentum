@@ -106,7 +106,7 @@ async function main() {
       prisma.chargerMaster.deleteMany(),
       prisma.benefit.deleteMany(),
       prisma.vehicle.deleteMany(),
-      prisma.user.deleteMany(),
+      // prisma.user.deleteMany(),
     ]);
 
     log.subHeader("Starting Seeding Process");

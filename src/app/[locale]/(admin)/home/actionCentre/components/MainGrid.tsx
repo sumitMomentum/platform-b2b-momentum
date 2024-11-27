@@ -1,4 +1,6 @@
-import * as React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -6,7 +8,7 @@ import Copyright from "../internals/components/Copyright";
 import StatCard, { StatCardProps } from "./StatCard";
 import ActionsClosedOverTimeChart from "./ActionsOverTimeChart";
 import SeverityDistributionChart from "./SeverityDistributionChart";
-import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions"; // Ensure this is correct
+import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 import CustomizedDataGrid from "./CustomizedDataGrid";
 import SuspenseDashboard from "@/components/suspenseSkeleton/SuspenseDashboard";
 
@@ -25,6 +27,9 @@ const aggregateData = (data) => {
   };
 
   // Calculate aggregates
+  const monthlyClosedActions = {};
+  const monthlyOpenActions = {};
+  
   data.forEach((action) => {
     // Count confirmed actions
     if (action.confirm) {
@@ -39,8 +44,25 @@ const aggregateData = (data) => {
     const closedDate = new Date(action.closedDateTime);
     const timeToClose =
       (closedDate.getTime() - createdDate.getTime()) / (1000 * 60 * 60); // Convert ms to hours
-    // Convert ms to hours
     totalTimeToClose += timeToClose || 0;
+
+    // Count closed actions per month
+    const monthYearClosed = `${closedDate.getMonth() + 1}-${closedDate.getFullYear()}`;
+    if (!monthlyClosedActions[monthYearClosed]) {
+      monthlyClosedActions[monthYearClosed] = [];
+    }
+    if (action.confirm) {
+      monthlyClosedActions[monthYearClosed].push(closedDate.getDate());
+    }
+
+    // Count open actions per month
+    const monthYearOpen = `${createdDate.getMonth() + 1}-${createdDate.getFullYear()}`;
+    if (!monthlyOpenActions[monthYearOpen]) {
+      monthlyOpenActions[monthYearOpen] = [];
+    }
+    if (!action.confirm) {
+      monthlyOpenActions[monthYearOpen].push(createdDate.getDate());
+    }
   });
 
   // Calculate averages
@@ -52,14 +74,16 @@ const aggregateData = (data) => {
     confirmedActions,
     avgSeverity,
     avgTimeToClose,
+    monthlyClosedActions,
+    monthlyOpenActions,
   };
 };
 
 export default function MainGrid() {
-  const [vehicleDataItems, setVehicleDataItems] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  const [vehicleDataItems, setVehicleDataItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch the actual vehicle actions data
@@ -80,8 +104,14 @@ export default function MainGrid() {
   }, []);
 
   // Aggregate the data for the stat cards
-  const { totalActions, confirmedActions, avgSeverity, avgTimeToClose } =
-    aggregateData(vehicleDataItems);
+  const {
+    totalActions,
+    confirmedActions,
+    avgSeverity,
+    avgTimeToClose,
+    monthlyClosedActions,
+    monthlyOpenActions,
+  } = aggregateData(vehicleDataItems);
 
   // Data for the Stat Cards
   const statCards: StatCardProps[] = [
@@ -118,9 +148,6 @@ export default function MainGrid() {
   return (
     <Box sx={{ width: "100%", maxWidth: { sm: "100%", md: "1700px" } }}>
       {/* Overview Section */}
-      {/* <Typography component="h4" variant="h2" sx={{ mb: 2 }}>
-        Actions Overview
-      </Typography> */}
       <Grid
         container
         spacing={1}
@@ -136,7 +163,12 @@ export default function MainGrid() {
 
         {/* Actions Closed Over Time Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <ActionsClosedOverTimeChart month={4} year={2024} />
+          <ActionsClosedOverTimeChart 
+            data={{ 
+              closed: monthlyClosedActions, 
+              open: monthlyOpenActions 
+            }} 
+          />
         </Grid>
 
         {/* Severity Distribution Chart */}

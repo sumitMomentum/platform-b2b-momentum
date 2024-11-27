@@ -50,7 +50,7 @@ const ActionListComponent: React.FC = () => {
   }, []);
 
   const columns: GridColDef[] = [
-    { field: "vin", headerName: "VIN", flex: 1 },
+    { field: "vehicleId", headerName: "Vehicle ID", flex: 1 },
     {
       field: "severity",
       headerName: "Severity",

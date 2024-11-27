@@ -9,7 +9,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import { deleteAllVehiclesAndBenefits } from "@/actions/admin/userModule/delete-vehicle";
 import useVehicleStore from "@/states/store";
-import { useEffect } from "react"; // Import only useEffect
 import {
   Box,
   Button,
@@ -37,7 +36,6 @@ import {Typography} from "@mui/material";
 // };
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { title } from "process";
-
 const VehiclePage = () => {
   const t = useTranslations("AdminLayout.pages.vehicles");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -221,10 +219,7 @@ const VehiclePage = () => {
             variant="outlined"
             color="error"
             startIcon={<DeleteForeverIcon />}
-            onClick={() => {
-              const vehicleId = "22";
-              handleDelete();
-            }}
+            onClick={() => handleDelete()}
           >
             Delete
           </Button>
