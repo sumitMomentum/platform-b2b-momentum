@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 export const getChargingSchedule = async () => {
   try {
@@ -21,10 +21,9 @@ export const getChargingSchedule = async () => {
     const chargers = await chargersRes.json();
     const vehicles = await vehiclesRes.json();
 
-
-    // Sort vehicles by 'soc' (lowest first) and chargers by 'chargerID'
+    // Sort vehicles by 'soc' (lowest first) and chargers by 'chargerId'
     const sortedVehicles = vehicles.sort((a, b) => a.soc - b.soc);
-    const sortedChargers = chargers.sort((a, b) => a.chargerID - b.chargerID);
+    const sortedChargers = chargers.sort((a, b) => a.chargerId - b.chargerId);
 
     // Create pairs of vehicles and chargers
     const chargingSchedule = sortedVehicles.map((vehicle, index) => {

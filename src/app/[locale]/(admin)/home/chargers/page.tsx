@@ -50,7 +50,7 @@ const Page = () => {
   }, []);
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 70 },
+    // { field: "id", headerName: "ID", width: 70 },
     { field: "chargerId", headerName: "Charger ID", minWidth: 200 },
     {
       field: "chargerLocation",

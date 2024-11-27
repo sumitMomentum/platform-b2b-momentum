@@ -13,7 +13,8 @@ import BenefitsListComponent, { BenefitItem } from "./BenefitsListComponent";
 import { Container } from "@mui/material";
 import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
 import React, { useState, useEffect } from "react";
-
+import TableChartIcon from "@mui/icons-material/TableChart";
+import InsightsIcon from "@mui/icons-material/Insights";
 export default function Page() {
   const [isTabular, setIsTabular] = React.useState<boolean>(false);
   const [benefits, setBenefits] = useState<BenefitItem[]>([]);
@@ -42,11 +43,12 @@ export default function Page() {
       />
       <Container sx={{ display: "flex", justifyContent: "right", mb: 2 }}>
         <Button
-          // startIcon={<ScheduleIcon />}
+          startIcon={!isTabular ? <TableChartIcon /> : <InsightsIcon />}
           variant="contained"
           onClick={() => setIsTabular((prevState) => !prevState)}
+          size="medium"
         >
-          {isTabular ? "View Graphically" : "View Tabular"}
+          {isTabular ? "Graph View" : "Table View"}
         </Button>
       </Container>
       <Stack

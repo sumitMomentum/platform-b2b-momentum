@@ -59,46 +59,35 @@ export default function Page() {
     setIsTabular((prevState) => !prevState);
   };
   return (
-    <Box sx={{ display: "flex" }}>
-      <Box
-        component="main"
-        sx={(theme) => ({
-          flexGrow: 1,
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)`
-            : alpha(theme.palette.background.default, 1),
-          overflow: "auto",
-        })}
-      >
-        <PageName
-          name={"Action Centre"}
-          breadcrumbs={[{ name: "Home", href: "/home" }]}
-        />
-        <Container sx={{ display: "flex", justifyContent: "right", mb: 2 }}>
-          <Button
-            // startIcon={<ScheduleIcon />}
-            variant="contained"
-            onClick={() => setIsTabular((prevState) => !prevState)}
-          >
-            {isTabular ? "View Graphically" : "View Tabular"}
-          </Button>
-        </Container>
-        <Stack
-          spacing={2}
-          sx={{
-            alignItems: "center",
-            mx: 3,
-            pb: 5,
-            mt: { xs: 8, md: 0 },
-          }}
+    <Box>
+      <PageName
+        name={"Action Centre"}
+        breadcrumbs={[{ name: "Home", href: "/home" }]}
+      />
+      <Container sx={{ display: "flex", justifyContent: "right", mb: 2 }}>
+        <Button
+          // startIcon={<ScheduleIcon />}
+          variant="contained"
+          onClick={() => setIsTabular((prevState) => !prevState)}
         >
-          {isTabular ? (
-            <ActionListComponent actions={actions} loading={loading} />
-          ) : (
-            <MainGrid actions={actions} loading={loading} />
-          )}
-        </Stack>
-      </Box>
+          {isTabular ? "View Graphically" : "View Tabular"}
+        </Button>
+      </Container>
+      <Stack
+        spacing={2}
+        sx={{
+          alignItems: "center",
+          mx: 3,
+          pb: 5,
+          mt: { xs: 8, md: 0 },
+        }}
+      >
+        {isTabular ? (
+          <ActionListComponent actions={actions} loading={loading} />
+        ) : (
+          <MainGrid actions={actions} loading={loading} />
+        )}
+      </Stack>
     </Box>
   );
 }

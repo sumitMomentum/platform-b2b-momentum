@@ -42,10 +42,10 @@ const page = () => {
       valueGetter: (params, row) => row.vehicle.soc,
     },
     {
-      field: "chargerID",
+      field: "chargerId",
       headerName: "Charger ID",
       flex: 1,
-      valueGetter: (params, row) => row.charger.chargerID,
+      valueGetter: (params, row) => row.charger.chargerId,
     },
     {
       field: "chargerLocation",
@@ -85,7 +85,7 @@ const page = () => {
         </Button>
       </Container>
       {chargingSchedule.length > 0 ? (
-        <Box style={{ display: "flex", width: "100%", height: "70vh" }}>
+        <Box style={{ display: "flex", width: "100%", height: "80vh" }}>
           <DataGrid
             rows={chargingSchedule}
             columns={columns}

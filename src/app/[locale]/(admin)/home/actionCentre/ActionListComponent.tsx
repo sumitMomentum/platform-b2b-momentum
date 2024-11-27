@@ -48,11 +48,11 @@ const columns: GridColDef[] = [
         }
         icon={
           params.value === "High" ? (
-            <GppGoodIcon />
+            <GppBadIcon />
           ) : params.value === "Medium" ? (
             <GppMaybeIcon />
           ) : (
-            <GppBadIcon />
+            <GppGoodIcon />
           )
         }
       />
