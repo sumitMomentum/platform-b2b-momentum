@@ -16,7 +16,7 @@ const sevierityChartsPalette = {
   error: red[400],
   warning: orange[400],
   info: gray[300],
-  success: brand[500],
+  success: green[400],
 };
 
 export { chartColorTheme, sevierityChartsPalette };

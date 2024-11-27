@@ -18,6 +18,8 @@ import ActionListComponent from "./ActionListComponent";
 import Link from "next/link";
 import { Container } from "@mui/material";
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
+import TableChartIcon from "@mui/icons-material/TableChart";
+import InsightsIcon from "@mui/icons-material/Insights";
 
 type ActionItem = {
   id: number;
@@ -66,11 +68,11 @@ export default function Page() {
       />
       <Container sx={{ display: "flex", justifyContent: "right", mb: 2 }}>
         <Button
-          // startIcon={<ScheduleIcon />}
+          startIcon={!isTabular ? <TableChartIcon /> : <InsightsIcon />}
           variant="contained"
           onClick={() => setIsTabular((prevState) => !prevState)}
         >
-          {isTabular ? "View Graphically" : "View Tabular"}
+          {isTabular ? "Graph View" : "Table View"}
         </Button>
       </Container>
       <Stack

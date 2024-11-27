@@ -1,17 +1,17 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 export type StatCardProps = {
   title: string;
   value: string;
   interval: string;
-  trend: 'up' | 'down' | 'neutral';
+  trend: "up" | "down" | "neutral";
   data: number[]; // This will no longer be used for the chart
 };
 
@@ -26,49 +26,53 @@ export default function StatCard({
 
   const trendColors = {
     up:
-      theme.palette.mode === 'light'
+      theme.palette.mode === "light"
         ? theme.palette.success.main
         : theme.palette.success.dark,
     down:
-      theme.palette.mode === 'light'
+      theme.palette.mode === "light"
         ? theme.palette.error.main
         : theme.palette.error.dark,
     neutral:
-      theme.palette.mode === 'light'
+      theme.palette.mode === "light"
         ? theme.palette.grey[400]
         : theme.palette.grey[700],
   };
 
   const labelColors = {
-    up: 'success' as const,
-    down: 'error' as const,
-    neutral: 'default' as const,
+    up: "success" as const,
+    down: "error" as const,
+    neutral: "neutral" as const,
   };
 
-  const color = labelColors[trend];
-  const trendValues = { up: '+25%', down: '-25%', neutral: '+5%' };
+  const color: string = labelColors[trend];
+  const trendValues = { up: "+25%", down: "-25%", neutral: "+5%" };
 
   return (
-    <Card variant="outlined" sx={{ height: '100%', flexGrow: 1 }}>
+    <Card variant="outlined" sx={{ height: "100%", flexGrow: 1 }}>
       <CardContent>
         <Typography component="h2" variant="subtitle2" gutterBottom>
           {title}
         </Typography>
         <Stack
           direction="column"
-          sx={{ justifyContent: 'space-between', flexGrow: '1', gap: 1 }}
+          sx={{ justifyContent: "space-between", flexGrow: "1", gap: 1 }}
         >
-          <Stack sx={{ justifyContent: 'space-between' }}>
+          <Stack sx={{ justifyContent: "space-between" }}>
             <Stack
               direction="row"
-              sx={{ justifyContent: 'space-between', alignItems: 'center' }}
+              sx={{ justifyContent: "space-between", alignItems: "center" }}
             >
               <Typography variant="h4" component="p">
                 {value}
               </Typography>
-              <Chip size="small" color={color} label={trendValues[trend]} />
+              <Chip
+                size="small"
+                color={trendColors[trend]}
+                label={trendValues[trend]}
+              />
             </Stack>
-            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
               {interval}
             </Typography>
           </Stack>
