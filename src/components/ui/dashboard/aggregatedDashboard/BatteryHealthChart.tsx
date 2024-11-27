@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import useVehicleStore from "@/states/store";
 import { LineChart } from "@mui/x-charts/LineChart";
+import { chartColorTheme } from "@/themes/ChartPalettes";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -72,6 +73,7 @@ const BatteryHealthChart = () => {
       width={700}
       height={300}
       series={series}
+      colors={chartColorTheme}
       xAxis={[{ scaleType: "point", data: xLabels }]}
     />
   );

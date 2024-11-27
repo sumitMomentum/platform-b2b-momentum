@@ -15,10 +15,6 @@ type ChargerItem = {
 };
 
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
-import { join } from "path";
-import { split } from "postcss/lib/list";
-import { log } from "console";
-import page from "../page";
 
 // interface ChargerListComponentProps {
 //   initialChargerMasterData: ChargerItem[];
@@ -78,12 +74,20 @@ function ChargerListComponent() {
         columns={columns}
         getRowId={(row) => row.chargerID}
         loading={loading}
-        autoHeight={true}
         disableColumnMenu
         pageSizeOptions={[5, 10]}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 10 },
+          },
+        }}
+        sx={{
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
           },
         }}
       />

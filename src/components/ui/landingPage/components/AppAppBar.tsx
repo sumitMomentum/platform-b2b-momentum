@@ -109,8 +109,19 @@ export default function AppAppBar({ mode, toggleColorMode }) {
                <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
                 FAQ
               </Button> 
-               <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                Blog
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+              Blog
+              </Button> */}
+              {/* <Button
+                variant="text"
+                size="small"
+                sx={{ minWidth: 0 }}
+                sx={{
+                  fontWeight: "bold",
+                  letterSpacing: "1px",
+                }}
+              >
+                About Us
               </Button> */}
             </Box>
           </Box>
@@ -127,13 +138,11 @@ export default function AppAppBar({ mode, toggleColorMode }) {
               mode={mode}
               toggleColorMode={toggleColorMode}
             /> */}
-            <Link href={"/sign-in"} passHref>
-              {/* <SignInButton> */}
+            <SignInButton>
               <Button variant="contained" size="small">
-                Sign in
+                Sign In
               </Button>
-              {/* </SignInButton> */}
-            </Link>
+            </SignInButton>
             {/* <Button color="primary" variant="contained" size="small">
               Sign up
             </Button> */}
