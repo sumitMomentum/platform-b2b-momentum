@@ -135,7 +135,7 @@ const columns: GridColDef[] = [
           variant="outlined"
           label={params.value}
           icon={icon}
-          color={color}
+          // color={color}
         />
       );
     },

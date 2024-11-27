@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 import chalk from "chalk";
-import { chargingSessions } from "./seeds/chargingSessions";
-import { vehicleTripSessions } from "./seeds/vehicleTripSessions";
+import { data as chargingSessions } from "./seeds/chargingSessions";
+import { data as vehicleTripSessions } from "./seeds/vehicleTripSessions";
 import { benefits } from "./seeds/benefits";
 import { users } from "./seeds/users";
 import { vehicleDetails } from "./seeds/vehicleDetails";

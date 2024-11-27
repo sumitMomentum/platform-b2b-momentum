@@ -45,7 +45,7 @@ export default function SavingsDistributionChart() {
           xAxis={[
             {
               scaleType: 'band',
-              categoryGapRatio: 0.5,
+              // categoryGapRatio: 0.5,
               data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
             },
           ]}

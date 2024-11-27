@@ -1,24 +1,22 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from '@mui/x-charts';
+import { Grid, Card, Typography, Box } from '@mui/material';
 
 export default function BatteryCycleSavingsChart({ data }) {
-  const chartData = data.map(item => ({
-    name: item.vin,
-    Monthly: item.batteryCycleSavingMonthly,
-    Yearly: item.batteryCycleSavingYearly,
-    Lifetime: item.batteryCycleSavingLifetime,
-  }));
-
   return (
-    <ResponsiveContainer width="100%" height={300}>
-      <BarChart data={chartData}>
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="Monthly" fill="#8884d8" />
-        <Bar dataKey="Yearly" fill="#82ca9d" />
-        <Bar dataKey="Lifetime" fill="#ffc658" />
-      </BarChart>
-    </ResponsiveContainer>
+    <Grid container spacing={3}>
+      {data.map((item) => (
+        <Grid item xs={12} sm={6} md={4} key={item.vin}>
+          <Card sx={{ p: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              {item.vin}
+            </Typography>
+            <Box display="flex" flexDirection="column">
+              <Typography color="primary">Monthly: {item.batteryCycleSavingMonthly}</Typography>
+              <Typography color="secondary">Yearly: {item.batteryCycleSavingYearly}</Typography>
+              <Typography color="text.secondary">Lifetime: {item.batteryCycleSavingLifetime}</Typography>
+            </Box>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
   );
 }

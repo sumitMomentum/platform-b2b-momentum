@@ -2,15 +2,15 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Copyright from '../internals/components/Copyright';
+// import Copyright from '../internals/components/Copyright';
 import CustomizedDataGrid from './CustomizedDataGrid';
 import StatCard, { StatCardProps } from './StatCard';
 
 // Import the new chart components
-import {BatteryCycleSavingsChart} from './BatteryCycleSavingsChart';
-import {CostSavingsChart} from './CostSavingsChart';
-import {RangeIncreaseChart} from './RangeIncreaseChart';
-import {DegradationChart} from './DegradationChart';
+import BatteryCycleSavingsChart from './BatteryCycleSavingsChart';
+import CostSavingsChart from './CostSavingsChart';
+import RangeIncreaseChart from './RangeIncreaseChart';
+import DegradationChart from './DegradationChart';
 
 const data: StatCardProps[] = [
   {
@@ -112,7 +112,7 @@ export default function MainGrid() {
       </Grid>
 
       {/* Footer */}
-      <Copyright sx={{ my: 4 }} />
+      {/* <Copyright sx={{ my: 4 }} /> */}
     </Box>
   );
 }

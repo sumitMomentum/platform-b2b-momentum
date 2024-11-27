@@ -171,23 +171,23 @@ async function updateBenefits() {
 
     // Step 4: Process benefits for all vehicles in the vehicle table
     const benefits = await Promise.all(
-      [...vehicleIds].map(async (vehicleId) => {
+      Array.from(vehicleIds).map(async (vehicleId) => {
         try {
           const vehicleTimeSeries = metricsByVehicle[vehicleId] || [];
           if (vehicleTimeSeries.length === 0) {
             console.log(`No time series data found for vehicleId ${vehicleId}. Skipping...`);
             return null;
           }
-
+    
           // Calculate metrics and benefits
           const metrics = calculateMetrics(vehicleTimeSeries);
           const benefit = calculate_benefit(metrics);
-
+    
           // Insert benefits into the table
           await prisma.benefit.create({
             data: { ...benefit, vehicleId },
           });
-
+    
           console.log(`Successfully calculated and inserted benefits for vehicleId ${vehicleId}.`);
           return benefit;
         } catch (error) {
@@ -196,6 +196,7 @@ async function updateBenefits() {
         }
       })
     );
+    
 
     console.log("Full benefits recalculation completed.");
     return benefits.filter((b) => b !== null); // Return only successful benefit calculations

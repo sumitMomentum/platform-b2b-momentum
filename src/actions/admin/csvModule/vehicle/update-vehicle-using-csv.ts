@@ -43,8 +43,21 @@ export async function updateVehiclesFromCSV(formData: FormData) {
       }
 
       const dateParts = dateString.split("-");
-      const dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+      const dateObject = new Date(
+        parseInt(dateParts[2], 10), // Year
+        parseInt(dateParts[1], 10) - 1, // Month (0-based)
+        parseInt(dateParts[0], 10) // Day
+      );
       return isNaN(dateObject.getTime()) ? new Date("2000-01-01") : dateObject;
+    };
+
+    // Function to convert a comma-separated string to an array of numbers
+    const parseNumberArray = (numArrayString: string) => {
+      return numArrayString ? numArrayString.split(',').map(parseFloat) : [];
+    };
+
+    const convertOwnerId = (_ownerId: string | number) => {
+      return 1; // Always set ownerId to 1
     };
 
     // Process and update vehicles
@@ -55,52 +68,77 @@ export async function updateVehiclesFromCSV(formData: FormData) {
           const updatedVehicle = await prisma.vehicle.update({
             where: { id: row.id },
             data: {
+              id: row.id,
               vin: row.vin,
               vehicleId: row.vehicleId,
               model: row.model,
               year: parseInt(row.year),
               batteryCapacity: parseInt(row.batteryCapacity),
+              ownerID: convertOwnerId(row.ownerID),
               soc: parseInt(row.soc),
               dateOfConnection: parseDate(row.dateOfConnection),
-              make: row.make,
-              ownerID: row.ownerID,
-              odometerFloat: parseFloat(row.odometerFloat),
-              UsageAverageDailyKmDriven: parseFloat(row.UsageAverageDailyKmDriven),
-              MonthlyUsage: parseFloat(row.MonthlyUsage),
+              odometerReading: parseFloat(row.odometerReading),
+              avgDailyKmDriven: row.avgDailyKmDriven ? row.avgDailyKmDriven.split(',').map(parseFloat) : [],
+              monthlyUsage: row.monthlyUsage ? row.monthlyUsage.split(',').map(parseFloat) : [],
               condition: row.condition,
               status: row.status,
+              make: row.make,
               batteryHealthSoH: parseFloat(row.batteryHealthSoH),
               batteryHealthDegradation: parseFloat(row.batteryHealthDegradation),
               location: row.location,
-              soh: parseFloat(row.soh),
-              BatteryHealthAverageEstimatedDegradation: parseFloat(row.BatteryHealthAverageEstimatedDegradation),
-              BatteryHealthAverageSoC: parseFloat(row.BatteryHealthAverageSoC),
-              BatteryHealthTotalBatteries: parseInt(row.BatteryHealthTotalBatteries),
-              ConnectorType: row.ConnectorType,
-              EndofLife: row.EndofLife,
-              RealRangeObserved: parseFloat(row.RealRangeObserved),
-              RemainingUsefulLife: parseFloat(row.RemainingUsefulLife),
-              TotalChargingSession: parseInt(row.TotalChargingSession),
-              TotalEnergyConsumed: parseFloat(row.TotalEnergyConsumed),
-              VehicleConditionCritical: parseInt(row.VehicleConditionCritical),
-              VehicleConditionGood: parseInt(row.VehicleConditionGood),
-              VehicleConditionSatisfactory: parseInt(row.VehicleConditionSatisfactory),
-              VehicleStatusActive: row.VehicleStatusActive,
-              VehicleStatusCharging: row.VehicleStatusCharging,
-              VehicleStatusInUse: row.VehicleStatusInUse,
-              VehicleStatusOutofService: row.VehicleStatusOutofService,
-              EPAWLTPProvidedRange: parseFloat(row.EPAWLTPProvidedRange),
-              UsageRangeObservedMax: parseFloat(row.UsageRangeObservedMax),
-              UsageRangeObservedMin: parseFloat(row.UsageRangeObservedMin),
-              UsageSoCRangeMax: parseFloat(row.UsageSoCRangeMax),
-              UsageSoCRangeMin: parseFloat(row.UsageSoCRangeMin),
-              UsageTemperatureHigh: parseFloat(row.UsageTemperatureHigh),
-              UsageTemperatureLow: parseFloat(row.UsageTemperatureLow),
+              soh: row.soh ? row.soh.split(',').map(parseFloat) : [],
+              avgEstimatedDegradation: row.avgEstimatedDegradation ? row.avgEstimatedDegradation.split(',').map(parseFloat) : [],
+              avgSoC: parseFloat(row.avgSoC),
+              totalBatteries: parseInt(row.totalBatteries),
+              connectorType: row.connectorType,
+              endOfLifeEstimate: row.endOfLifeEstimate,
+              observedRange: parseInt(row.observedRange),
+              remainingUsefulLife: row.remainingUsefulLife,
+              totalChargingSessions: parseInt(row.totalChargingSessions),
+              totalEnergyConsumed: row.totalEnergyConsumed,
+              criticalConditionCount: parseInt(row.criticalConditionCount),
+              goodConditionCount: parseInt(row.goodConditionCount),
+              satisfactoryConditionCount: parseInt(row.satisfactoryConditionCount),
+              activeStatusCount: parseInt(row.activeStatusCount),
+              chargingStatusCount: parseInt(row.chargingStatusCount),
+              inUseStatusCount: parseInt(row.inUseStatusCount),
+              outOfServiceStatusCount: parseInt(row.outOfServiceStatusCount),
+              providedRangeEPAWLTP: parseInt(row.providedRangeEPAWLTP),
+              maxObservedRange: parseInt(row.maxObservedRange),
+              minObservedRange: parseInt(row.minObservedRange),
+              maxSoCRange: parseInt(row.maxSoCRange),
+              minSoCRange: parseInt(row.minSoCRange),
+              maxTemperature: parseInt(row.maxTemperature),
+              minTemperature: parseInt(row.minTemperature),
               batteryChemistry: row.batteryChemistry,
-              BatteryHealthAverageSoH: parseFloat(row.BatteryHealthAverageSoH),
-              DataPointsCollected: parseInt(row.DataPointsCollected),
+              avgBatteryHealthSoH: parseFloat(row.avgBatteryHealthSoH),
+              dataPointsCollected: parseInt(row.dataPointsCollected),
+              avgMonthlyUsage: parseFloat(row.avgMonthlyUsage),
+              vehicleConditionCritical: parseInt(row.vehicleConditionCritical),
+              vehicleConditionGood: parseInt(row.vehicleConditionGood),
+              vehicleConditionSatisfactory: parseInt(row.vehicleConditionSatisfactory),
+              vehicleStatusActive: parseInt(row.vehicleStatusActive),
+              vehicleStatusCharging: parseInt(row.vehicleStatusCharging),
+              vehicleStatusInUse: parseInt(row.vehicleStatusInUse),
+              vehicleStatusOutOfService: parseInt(row.vehicleStatusOutOfService),
               averageMonthlyUsage: parseFloat(row.averageMonthlyUsage),
-              ownerId: row.ownerId,
+              batteryHealthAverageEstimatedDegradation: row.batteryHealthAverageEstimatedDegradation ? row.batteryHealthAverageEstimatedDegradation.split(',').map(parseFloat) : [],
+              batteryHealthAverageSoC: parseFloat(row.batteryHealthAverageSoC),
+              batteryHealthAverageSoH: parseFloat(row.batteryHealthAverageSoH),
+              batteryHealthTotalBatteries: parseInt(row.batteryHealthTotalBatteries),
+              endOfLife: row.endOfLife,
+              epawltpProvidedRange: parseInt(row.epawltpProvidedRange),
+              odometerFloat: parseFloat(row.odometerFloat),
+              realRangeObserved: parseInt(row.realRangeObserved),
+              totalChargingSession: parseInt(row.totalChargingSession),
+              usageAverageDailyKmDriven: row.usageAverageDailyKmDriven ? row.usageAverageDailyKmDriven.split(',').map(parseFloat) : [],
+              usageRangeObservedMax: parseInt(row.usageRangeObservedMax),
+              usageRangeObservedMin: parseInt(row.usageRangeObservedMin),
+              usageSoCRangeMax: parseInt(row.usageSoCRangeMax),
+              usageSoCRangeMin: parseInt(row.usageSoCRangeMin),
+              usageTemperatureHigh: parseInt(row.usageTemperatureHigh),
+              usageTemperatureLow: parseInt(row.usageTemperatureLow),
+              ownerId: convertOwnerId(row.ownerId),
             },
           });
           console.log(`Vehicle updated successfully: ID = ${row.id}`);

@@ -30,7 +30,11 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
       }
 
       const dateParts = dateString.split("-");
-      const dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+      const dateObject = new Date(
+        parseInt(dateParts[2], 10), // Year
+        parseInt(dateParts[1], 10) - 1, // Month (0-based)
+        parseInt(dateParts[0], 10) // Day
+      );
       return isNaN(dateObject.getTime()) ? new Date("2000-01-01") : dateObject;
     };
 
@@ -128,8 +132,6 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
       message: `Successfully uploaded ${vehicles.length} vehicles and updated benefits for ${benefits.length} vehicles`,
       vehicles,
       benefits,
-      sessions,
-      actions
     };
   } catch (error) {
     console.error('Error uploading vehicles:', error);
