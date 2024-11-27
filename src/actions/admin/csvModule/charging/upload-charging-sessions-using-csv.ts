@@ -2,9 +2,9 @@
 import prisma from "@/lib/db";
 import csv from "csv-parser";
 import { Readable } from "stream";
-import { getAggregatedActions } from "@/utils/actionCapture"; // Make sure this import path is correct
+import { getAggregatedActions } from "@/utils/actionCapture"; // Adjust the import path if necessary
 
-export async function uploadTripsFromCSV(formData: FormData) {
+export async function uploadChargingSessionsFromCSV(formData: FormData) {
   try {
     const file = formData.get("file") as File;
     if (!file) {
@@ -39,29 +39,23 @@ export async function uploadTripsFromCSV(formData: FormData) {
       return isNaN(dateObject.getTime()) ? new Date("2000-01-01") : dateObject;
     };
 
-    // Process and insert trip sessions
-    const tripSessions = await Promise.all(
+    // Process and insert charging sessions
+    const chargingSessions = await Promise.all(
       results.map(async (row) => {
-        return await prisma.vehicleTripSession.create({
+        return await prisma.chargingSession.create({
           data: {
             TripID: row.TripID ? parseFloat(row.TripID) : undefined,
             DteStart: row.DteStart ? parseInt(row.DteStart) : undefined,
             DteEnd: row.DteEnd ? parseInt(row.DteEnd) : undefined,
-            BatteryAtStart: row.BatteryAtStart
-              ? parseInt(row.BatteryAtStart)
-              : undefined,
-            BatteryAtEnd: row.BatteryAtEnd
-              ? parseInt(row.BatteryAtEnd)
-              : undefined,
-            DwUpdated: row.DwUpdated ? parseDate(row.DwUpdated) : undefined,
-            TripApprovedKilometer: row.TripApprovedKilometer
-              ? parseFloat(row.TripApprovedKilometer)
-              : undefined,
+            BatteryAtStart: row.BatteryAtStart ? parseInt(row.BatteryAtStart) : undefined,
+            BatteryAtEnd: row.BatteryAtEnd ? parseInt(row.BatteryAtEnd) : undefined,
             DiffInBat: row.DiffInBat ? parseInt(row.DiffInBat) : undefined,
             DiffInDte: row.DiffInDte ? parseInt(row.DiffInDte) : undefined,
-            createdAt: row.createdAt ? parseDate(row.createdAt) : undefined,
+            DwUpdated: row.DwUpdated ? parseDate(row.DwUpdated) : undefined,
             updatedAt: row.updatedAt ? parseDate(row.updatedAt) : undefined,
+            ChargingType: row.ChargingType ? row.ChargingType : undefined,
             vehicleId: row.vehicleId ? row.vehicleId : null,
+            chargerId: row.chargerId ? parseInt(row.chargerId) : undefined,
           },
         });
       })
@@ -72,12 +66,12 @@ export async function uploadTripsFromCSV(formData: FormData) {
     console.log("[SERVER] Aggregated Actions:", actions);
 
     return {
-      message: `Successfully uploaded ${tripSessions.length} trip sessions and ran aggregated actions.`,
-      tripSessions,
-      actions
+      message: `Successfully uploaded ${chargingSessions.length} charging sessions and ran aggregated actions.`,
+      chargingSessions,
+      actions,
     };
   } catch (error) {
-    console.error("Error uploading trip sessions:", error);
-    throw new Error(error.message || "Failed to upload trip sessions");
+    console.error("Error uploading charging sessions:", error);
+    throw new Error(error.message || "Failed to upload charging sessions");
   }
 }

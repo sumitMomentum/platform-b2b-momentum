@@ -33,28 +33,28 @@ const Page = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getTripSessions();
+  const fetchTripSessions = async () => {
+    try {
+      const data = await getTripSessions();
 
-        if (!data || !data.sessions) {
-          console.error("[CLIENT] No sessions data received from server");
-          setError("No trip sessions available");
-          return;
-        }
-
-        setTripSessions(data.sessions);
-      } catch (error: any) {
-        console.error("[CLIENT] Error details:", {
-          message: error.message,
-          stack: error.stack,
-        });
-        setError("Failed to load trip sessions. Please try again later.");
+      if (!data || !data.sessions) {
+        console.error("[CLIENT] No sessions data received from server");
+        setError("No trip sessions available");
+        return;
       }
-    };
 
-    fetchData();
+      setTripSessions(data.sessions);
+    } catch (error: any) {
+      console.error("[CLIENT] Error details:", {
+        message: error.message,
+        stack: error.stack,
+      });
+      setError("Failed to load trip sessions. Please try again later.");
+    }
+  };
+
+  useEffect(() => {
+    fetchTripSessions();
   }, []);
 
   // Handle file input change
@@ -81,6 +81,9 @@ const Page = () => {
         fileInputRef.current.value = "";
       }
       window.alert(`Upload successful: ${result.message}`);
+
+      // Rerun getTripSessions to fetch updated data
+      fetchTripSessions();
     } catch (error) {
       console.error("Upload error:", error);
       window.alert(`Error: ${error instanceof Error ? error.message : "Something went wrong"}`);
