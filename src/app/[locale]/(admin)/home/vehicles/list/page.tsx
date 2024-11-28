@@ -16,6 +16,7 @@ import {
   IconButton,
   Input,
   InputAdornment,
+  Stack,
   TextField,
   Tooltip,
 } from "@mui/material";
@@ -28,7 +29,7 @@ import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import { type } from "os";
 import style from "styled-jsx/style";
 import { current } from "tailwindcss/colors";
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
 
 // const options = {
 //   apiKey: "free",
@@ -36,6 +37,7 @@ import {Typography} from "@mui/material";
 // };
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { title } from "process";
+import { Item } from "@radix-ui/themes/dist/esm/components/checkbox-group.primitive.js";
 const VehiclePage = () => {
   const t = useTranslations("AdminLayout.pages.vehicles");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -113,37 +115,34 @@ const VehiclePage = () => {
     <Box>
       <div className="w-full">
         <PageName
-          name={t("title")}
-          breadcrumbs={[
-            { name: "Home", href: "/home" },
-            { name: "Vehicles", href: "/home/vehicles/list" },
-          ]}
+          name={"Vehicles"}
+          breadcrumbs={[{ name: "Home", href: "/home" }]}
         />
       </div>
       <Box
         sx={{
-          display: "flex", // Corrected spelling from "disply" to "display"
-          justifyContent: "space-between", // Space between AddVehicle and the right group
-          alignItems: "center", // Align all items vertically in the center
-          gap: 2, // Optional: Add gap between items if needed
+          display: { xs: "block", sm: "flex" }, // Responsive display
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 2,
           margin: 2,
         }}
       >
         <AddVehicle />
         <Box
           sx={{
-            display: "flex", // Corrected spelling from "disply" to "display"
-            gap: 2, // Adds spacing between buttons and input
-            alignItems: "center", // Align items vertically in the center
+            display: "flex",
+            gap: 2,
+            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row" },
           }}
         >
-          <Box display="flex" alignItems="center" gap={2}>
+          <Box >
             <TextField
               fullWidth
               label="Choose a .csv File"
               variant="outlined"
               color="primary"
-              // placeholder="File name ..."
               size="small"
               sx={{
                 "& .MuiInputBase-input": {
@@ -189,7 +188,6 @@ const VehiclePage = () => {
                   readOnly: true,
                 },
               }}
-              // disabled
             />
             <input
               type="file"
@@ -199,30 +197,37 @@ const VehiclePage = () => {
               style={{ display: "none" }}
             />
           </Box>
-          <Button
-            startIcon={<FileUploadIcon />}
-            variant="contained"
-            color="primary"
-            onClick={() => handleUpload(false)}
+          <Stack
+            spacing={{ xs: 1, sm: 2 }}
+            direction="row"
+            useFlexGap
+            sx={{ flexWrap: "wrap" }}
           >
-            Onboard
-          </Button>
-          <Button
-            startIcon={<PublishIcon />}
-            variant="contained"
-            color="primary"
-            onClick={() => handleUpload(true)}
-          >
-            Update
-          </Button>
-          <Button
-            variant="outlined"
-            color="error"
-            startIcon={<DeleteForeverIcon />}
-            onClick={() => handleDelete()}
-          >
-            Delete
-          </Button>
+            <Button
+              startIcon={<FileUploadIcon />}
+              variant="contained"
+              color="primary"
+              onClick={() => handleUpload(false)}
+            >
+              Onboard
+            </Button>
+            <Button
+              startIcon={<PublishIcon />}
+              variant="contained"
+              color="primary"
+              onClick={() => handleUpload(true)}
+            >
+              Update
+            </Button>
+            <Button
+              variant="outlined"
+              color="error"
+              startIcon={<DeleteForeverIcon />}
+              onClick={() => handleDelete()}
+            >
+              Delete
+            </Button>
+          </Stack>
         </Box>
       </Box>
 

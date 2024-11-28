@@ -11,10 +11,6 @@ const SettingRoot = ({ children }: { children: ReactNode }) => {
           name: "Dashboard",
           href: "/admin",
         },
-        {
-          name: "Billing",
-          href: "/admin/billing/plans/plans",
-        },
       ]}
       />
       <SuperAdminBillingPlansTabs />

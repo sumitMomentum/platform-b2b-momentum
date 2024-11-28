@@ -116,9 +116,8 @@ export const surfacesCustomizations: Components<Theme> = {
     styleOverrides: {
       root: {
         fontSize: "0.8rem", // Increase text size
-        letterSpacing: "0.05em", // Add letter spacing
-        fontWeight: "bold",
-      },
+        letterSpacing: "0.05rem", // Add letter spacing
+        fontWeight: "medium",      },
     },
   },
 };

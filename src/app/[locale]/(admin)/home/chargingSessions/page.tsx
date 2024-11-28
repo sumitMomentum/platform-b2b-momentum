@@ -100,7 +100,6 @@ const ChargingSessionsPage: React.FC = () => {
         name="Charging Sessions"
         breadcrumbs={[
           { name: "Home", href: "/home" },
-          { name: "Charging Sessions", href: "/home/chargingSessions" },
         ]}
       />
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2, margin: 2 }}>
