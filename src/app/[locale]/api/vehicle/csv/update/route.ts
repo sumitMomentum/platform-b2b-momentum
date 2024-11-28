@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     const results: any[] = [];
 
     const parseNumberArray = (numArrayString: string) => {
-      return numArrayString ? numArrayString.split(',').map(parseFloat) : [];
+      return numArrayString ? numArrayString.split(",").map(parseFloat) : [];
     };
 
     const convertOwnerId = (_ownerId: string | number) => {
@@ -62,17 +62,23 @@ export async function POST(request: NextRequest) {
             ownerID: convertOwnerId(row.ownerID),
             soc: parseInt(row.soc),
             dateOfConnection: parseDate(row.dateOfConnection),
-            odometerReading: parseFloat(row.odometerReading),
-            avgDailyKmDriven: row.avgDailyKmDriven ? row.avgDailyKmDriven.split(',').map(parseFloat) : [],
-            monthlyUsage: row.monthlyUsage ? row.monthlyUsage.split(',').map(parseFloat) : [],
+            odometerFloat: parseFloat(row.odometerFloat),
+            usageAverageDailyKmDriven: row.usageAverageDailyKmDriven
+              ? row.usageAverageDailyKmDriven.split(",").map(parseFloat)
+              : [],
+            monthlyUsage: row.monthlyUsage
+              ? row.monthlyUsage.split(",").map(parseFloat)
+              : [],
             condition: row.condition,
             status: row.status,
             make: row.make,
             batteryHealthSoH: parseFloat(row.batteryHealthSoH),
             batteryHealthDegradation: parseFloat(row.batteryHealthDegradation),
             location: row.location,
-            soh: row.soh ? row.soh.split(',').map(parseFloat) : [],
-            avgEstimatedDegradation: row.avgEstimatedDegradation ? row.avgEstimatedDegradation.split(',').map(parseFloat) : [],
+            soh: row.soh ? row.soh.split(",").map(parseFloat) : [],
+            avgEstimatedDegradation: row.avgEstimatedDegradation
+              ? row.avgEstimatedDegradation.split(",").map(parseFloat)
+              : [],
             avgSoC: parseFloat(row.avgSoC),
             totalBatteries: parseInt(row.totalBatteries),
             connectorType: row.connectorType,
@@ -83,7 +89,9 @@ export async function POST(request: NextRequest) {
             totalEnergyConsumed: row.totalEnergyConsumed,
             criticalConditionCount: parseInt(row.criticalConditionCount),
             goodConditionCount: parseInt(row.goodConditionCount),
-            satisfactoryConditionCount: parseInt(row.satisfactoryConditionCount),
+            satisfactoryConditionCount: parseInt(
+              row.satisfactoryConditionCount
+            ),
             activeStatusCount: parseInt(row.activeStatusCount),
             chargingStatusCount: parseInt(row.chargingStatusCount),
             inUseStatusCount: parseInt(row.inUseStatusCount),
@@ -101,22 +109,33 @@ export async function POST(request: NextRequest) {
             avgMonthlyUsage: parseFloat(row.avgMonthlyUsage),
             vehicleConditionCritical: parseInt(row.vehicleConditionCritical),
             vehicleConditionGood: parseInt(row.vehicleConditionGood),
-            vehicleConditionSatisfactory: parseInt(row.vehicleConditionSatisfactory),
+            vehicleConditionSatisfactory: parseInt(
+              row.vehicleConditionSatisfactory
+            ),
             vehicleStatusActive: parseInt(row.vehicleStatusActive),
             vehicleStatusCharging: parseInt(row.vehicleStatusCharging),
             vehicleStatusInUse: parseInt(row.vehicleStatusInUse),
             vehicleStatusOutOfService: parseInt(row.vehicleStatusOutOfService),
             averageMonthlyUsage: parseFloat(row.averageMonthlyUsage),
-            batteryHealthAverageEstimatedDegradation: row.batteryHealthAverageEstimatedDegradation ? row.batteryHealthAverageEstimatedDegradation.split(',').map(parseFloat) : [],
+            batteryHealthAverageEstimatedDegradation:
+              row.batteryHealthAverageEstimatedDegradation
+                ? row.batteryHealthAverageEstimatedDegradation
+                    .split(",")
+                    .map(parseFloat)
+                : [],
             batteryHealthAverageSoC: parseFloat(row.batteryHealthAverageSoC),
             batteryHealthAverageSoH: parseFloat(row.batteryHealthAverageSoH),
-            batteryHealthTotalBatteries: parseInt(row.batteryHealthTotalBatteries),
+            batteryHealthTotalBatteries: parseInt(
+              row.batteryHealthTotalBatteries
+            ),
             endOfLife: row.endOfLife,
             epawltpProvidedRange: parseInt(row.epawltpProvidedRange),
             odometerFloat: parseFloat(row.odometerFloat),
             realRangeObserved: parseInt(row.realRangeObserved),
             totalChargingSession: parseInt(row.totalChargingSession),
-            usageAverageDailyKmDriven: row.usageAverageDailyKmDriven ? row.usageAverageDailyKmDriven.split(',').map(parseFloat) : [],
+            usageAverageDailyKmDriven: row.usageAverageDailyKmDriven
+              ? row.usageAverageDailyKmDriven.split(",").map(parseFloat)
+              : [],
             usageRangeObservedMax: parseInt(row.usageRangeObservedMax),
             usageRangeObservedMin: parseInt(row.usageRangeObservedMin),
             usageSoCRangeMax: parseInt(row.usageSoCRangeMax),

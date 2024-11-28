@@ -1,14 +1,14 @@
-'use server';
+"use server";
 import prisma from "@/lib/db";
-import csv from 'csv-parser';
-import { Readable } from 'stream';
-import { updateBenefits } from "@/utils/calculateBenefits"; 
+import csv from "csv-parser";
+import { Readable } from "stream";
+import { updateBenefits } from "@/utils/calculateBenefits";
 
 export async function uploadVehiclesFromCSV(formData: FormData) {
   try {
-    const file = formData.get('file') as File;
+    const file = formData.get("file") as File;
     if (!file) {
-      throw new Error('No file provided');
+      throw new Error("No file provided");
     }
 
     const fileBuffer = Buffer.from(await file.arrayBuffer());
@@ -18,9 +18,9 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
     await new Promise((resolve, reject) => {
       Readable.from(fileBuffer)
         .pipe(csv())
-        .on('data', (data) => results.push(data))
-        .on('end', resolve)
-        .on('error', reject);
+        .on("data", (data) => results.push(data))
+        .on("end", resolve)
+        .on("error", reject);
     });
 
     // Function to convert date string to Date object or set a default date
@@ -42,7 +42,6 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
     const convertOwnerId = (_ownerId: string | number) => {
       return 1; // Always set ownerId to 1
     };
-    
 
     // Process and insert vehicles
     const vehicles = await Promise.all(
@@ -58,17 +57,23 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
             ownerID: convertOwnerId(row.ownerID),
             soc: parseInt(row.soc),
             dateOfConnection: parseDate(row.dateOfConnection),
-            odometerReading: parseFloat(row.odometerReading),
-            avgDailyKmDriven: row.avgDailyKmDriven ? row.avgDailyKmDriven.split(',').map(parseFloat) : [],
-            monthlyUsage: row.monthlyUsage ? row.monthlyUsage.split(',').map(parseFloat) : [],
+            odometerFloat: parseFloat(row.odometerFloat),
+            usageAverageDailyKmDriven: row.usageAverageDailyKmDriven
+              ? row.usageAverageDailyKmDriven.split(",").map(parseFloat)
+              : [],
+            monthlyUsage: row.monthlyUsage
+              ? row.monthlyUsage.split(",").map(parseFloat)
+              : [],
             condition: row.condition,
             status: row.status,
             make: row.make,
             batteryHealthSoH: parseFloat(row.batteryHealthSoH),
             batteryHealthDegradation: parseFloat(row.batteryHealthDegradation),
             location: row.location,
-            soh: row.soh ? row.soh.split(',').map(parseFloat) : [],
-            avgEstimatedDegradation: row.avgEstimatedDegradation ? row.avgEstimatedDegradation.split(',').map(parseFloat) : [],
+            soh: row.soh ? row.soh.split(",").map(parseFloat) : [],
+            avgEstimatedDegradation: row.avgEstimatedDegradation
+              ? row.avgEstimatedDegradation.split(",").map(parseFloat)
+              : [],
             avgSoC: parseFloat(row.avgSoC),
             totalBatteries: parseInt(row.totalBatteries),
             connectorType: row.connectorType,
@@ -79,7 +84,9 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
             totalEnergyConsumed: row.totalEnergyConsumed,
             criticalConditionCount: parseInt(row.criticalConditionCount),
             goodConditionCount: parseInt(row.goodConditionCount),
-            satisfactoryConditionCount: parseInt(row.satisfactoryConditionCount),
+            satisfactoryConditionCount: parseInt(
+              row.satisfactoryConditionCount
+            ),
             activeStatusCount: parseInt(row.activeStatusCount),
             chargingStatusCount: parseInt(row.chargingStatusCount),
             inUseStatusCount: parseInt(row.inUseStatusCount),
@@ -97,22 +104,33 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
             avgMonthlyUsage: parseFloat(row.avgMonthlyUsage),
             vehicleConditionCritical: parseInt(row.vehicleConditionCritical),
             vehicleConditionGood: parseInt(row.vehicleConditionGood),
-            vehicleConditionSatisfactory: parseInt(row.vehicleConditionSatisfactory),
+            vehicleConditionSatisfactory: parseInt(
+              row.vehicleConditionSatisfactory
+            ),
             vehicleStatusActive: parseInt(row.vehicleStatusActive),
             vehicleStatusCharging: parseInt(row.vehicleStatusCharging),
             vehicleStatusInUse: parseInt(row.vehicleStatusInUse),
             vehicleStatusOutOfService: parseInt(row.vehicleStatusOutOfService),
             averageMonthlyUsage: parseFloat(row.averageMonthlyUsage),
-            batteryHealthAverageEstimatedDegradation: row.batteryHealthAverageEstimatedDegradation ? row.batteryHealthAverageEstimatedDegradation.split(',').map(parseFloat) : [],
+            batteryHealthAverageEstimatedDegradation:
+              row.batteryHealthAverageEstimatedDegradation
+                ? row.batteryHealthAverageEstimatedDegradation
+                    .split(",")
+                    .map(parseFloat)
+                : [],
             batteryHealthAverageSoC: parseFloat(row.batteryHealthAverageSoC),
             batteryHealthAverageSoH: parseFloat(row.batteryHealthAverageSoH),
-            batteryHealthTotalBatteries: parseInt(row.batteryHealthTotalBatteries),
+            batteryHealthTotalBatteries: parseInt(
+              row.batteryHealthTotalBatteries
+            ),
             endOfLife: row.endOfLife,
             epawltpProvidedRange: parseInt(row.epawltpProvidedRange),
             odometerFloat: parseFloat(row.odometerFloat),
             realRangeObserved: parseInt(row.realRangeObserved),
             totalChargingSession: parseInt(row.totalChargingSession),
-            usageAverageDailyKmDriven: row.usageAverageDailyKmDriven ? row.usageAverageDailyKmDriven.split(',').map(parseFloat) : [],
+            usageAverageDailyKmDriven: row.usageAverageDailyKmDriven
+              ? row.usageAverageDailyKmDriven.split(",").map(parseFloat)
+              : [],
             usageRangeObservedMax: parseInt(row.usageRangeObservedMax),
             usageRangeObservedMin: parseInt(row.usageRangeObservedMin),
             usageSoCRangeMax: parseInt(row.usageSoCRangeMax),
@@ -120,7 +138,7 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
             usageTemperatureHigh: parseInt(row.usageTemperatureHigh),
             usageTemperatureLow: parseInt(row.usageTemperatureLow),
             ownerId: convertOwnerId(row.ownerId),
-          }
+          },
         });
       })
     );
@@ -134,7 +152,9 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
       benefits,
     };
   } catch (error) {
-    console.error('Error uploading vehicles:', error);
-    throw new Error(error.message || 'Failed to upload vehicles and update benefits');
+    console.error("Error uploading vehicles:", error);
+    throw new Error(
+      error.message || "Failed to upload vehicles and update benefits"
+    );
   }
 }
