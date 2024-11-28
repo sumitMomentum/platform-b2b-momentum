@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 import chalk from "chalk";
-import { chargingSessions } from "./seeds/chargingSessions";
-import { vehicleTripSessions } from "./seeds/vehicleTripSessions";
+import { data as chargingSessions } from "./seeds/chargingSessions";
+import { data as vehicleTripSessions } from "./seeds/vehicleTripSessions";
 import { benefits } from "./seeds/benefits";
 import { users } from "./seeds/users";
 import { vehicleDetails } from "./seeds/vehicleDetails";
@@ -129,8 +129,8 @@ async function main() {
     }
     log.success("Seeded vehicles");
 
-    const createdBenefits = await prisma.benefit.createMany({ data: benefits });
-    log.success("Seeded benefits");
+    // const createdBenefits = await prisma.benefit.createMany({ data: benefits });
+    // log.success("Seeded benefits");
 
     const createdChargers = [];
     for (const charger of chargers) {
@@ -146,10 +146,8 @@ async function main() {
     });
     log.success("Seeded charger types");
 
-    const createdActions = await prisma.action.createMany({
-      data: vehicleActions,
-    });
-    log.success("Seeded vehicle actions");
+    // const createdActions = await prisma.action.createMany({ data: vehicleActions });
+    // log.success("Seeded vehicle actions");
 
     await seedChargingSessions(createdChargers, createdVehicles);
     await seedVehicleTripSessions(createdVehicles);

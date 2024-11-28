@@ -26,6 +26,8 @@ import InfoIcon from "@mui/icons-material/Info";
 import SpeedIcon from "@mui/icons-material/Speed";
 
 
+
+
 // Function to get battery icon based on value
 const getBatteryIcon = (value) => {
   if (value >= 100) return <BatteryStdIcon />;
@@ -69,23 +71,15 @@ const columns = [
   },
   {
     field: "DteStart",
-    headerName: "Dte Start",
+    headerName: "Start DTE",
     flex: 1,
-    valueFormatter: (params) => {
-      // const date = new Date(params); // Assuming DteStart is in Unix timestamp
-      // return date.toLocaleString();
-      return params;
-    },
+    valueFormatter: (params) => `${params} km`,
   },
   {
     field: "DteEnd",
-    headerName: "Dte End",
+    headerName: "End DTE",
     flex: 1,
-    valueFormatter: (params) => {
-      // const date = new Date(params); // Assuming DteEnd is in Unix timestamp
-      // return date.toLocaleString();
-      return params;
-    },
+    valueFormatter: (params) => `${params} km`,
   },
   {
     field: "BatteryAtStart",
@@ -95,6 +89,7 @@ const columns = [
       <Chip
         variant="outlined"
         label={`${params.value}`}
+        label={`${params.value}%`}
         color={
           params.value >= 70
             ? "success"
@@ -113,8 +108,8 @@ const columns = [
     renderCell: (params) => (
       <Chip
         variant="outlined"
-        label={`${params.value}`}
-      color={
+        label={`${params.value}%`}
+        color={
           params.value >= 70
             ? "success"
             : params.value >= 40
@@ -142,13 +137,13 @@ const columns = [
     field: "DiffInBat",
     headerName: "Battery Diff",
     flex: 1,
-    valueFormatter: (params) => `${params}`,
+    valueFormatter: (params) => `${params}%`,
   },
   {
     field: "DiffInDte",
     headerName: "Diff in Dte",
     flex: 1,
-    renderCell: (params) => <Chip label={`${params.value}`} />,
+    renderCell: (params) => <Chip label={`${params.value} km`} />,
   },
   {
     field: "DwUpdated",
@@ -157,6 +152,7 @@ const columns = [
     valueFormatter: (params) => new Date(params).toLocaleString(),
   },
 ];
+
 
 const TripListComponent = ({
   tripSessions,
@@ -183,6 +179,10 @@ const TripListComponent = ({
           },
           ".MuiDataGrid-columnHeaderTitle": {
             fontWeight: "bold", // Ensures header titles specifically are bold
+          },
+          ".MuiDataGrid-virtualScroller": {
+            overflowY: "auto",
+            maxHeight: "70vh", // Set a max height for the scrolling area of rows
           },
         }}
         getRowId={(row) => row.TripID} // Ensure TripID is unique for rows

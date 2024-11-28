@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import Card from "@mui/material/Card";
@@ -30,42 +32,43 @@ function getDaysInMonth(month: number, year: number) {
 }
 
 export default function ActionsClosedOverTimeChart({
-  month = 4,
-  year = 2024,
+  data,
 }: {
-  month: number;
-  year: number;
+  data: { closed: { [key: string]: number[] }; open: { [key: string]: number[] } };
 }) {
   const theme = useTheme();
-  const [loading, setLoading] = React.useState(false);
 
-  const daysInMonth = getDaysInMonth(month, year);
+  // Get the current month and year
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1;
+  const currentYear = currentDate.getFullYear();
+  const currentMonthYear = `${currentMonth}-${currentYear}`;
 
-  // Static data representing the number of actions closed each day (simulating the trend)
-  const actionsClosedData = [
-    5, 8, 4, 6, 7, 10, 9, 12, 14, 10, 15, 13, 18, 20, 17, 15, 19, 22, 25, 28,
-    30, 27, 25, 22, 20, 19, 18, 22, 25, 30,
-  ];
+  const daysInMonth = getDaysInMonth(currentMonth, currentYear);
 
-  // Calculate total and average actions closed
-  const totalActionsClosed = actionsClosedData.reduce(
-    (acc, val) => acc + val,
-    0
+  // Get data for current month and year
+  const closedActionsData = data.closed[currentMonthYear] || [];
+  const openActionsData = data.open[currentMonthYear] || [];
+
+  // Ensure arrays have the same length as the number of days in the month
+  const actionsClosed = daysInMonth.map(
+    (_, index) => closedActionsData[index] || 0
   );
-  const averageActionsClosed = totalActionsClosed / actionsClosedData.length;
+  const actionsOpen = daysInMonth.map(
+    (_, index) => openActionsData[index] || 0
+  );
 
-  // Updated color palette with green shades (to indicate actions being closed)
-  const colorPalette = [
-    theme.palette.success.light, // Light green
-    theme.palette.success.main, // Medium green
-    theme.palette.success.dark, // Dark green
-  ];
+  // Updated color palette with colors for closed and open actions
+  const colorPalette = {
+    closed: theme.palette.success.main,
+    open: theme.palette.warning.main,
+  };
 
   return (
     <Card variant="outlined" sx={{ width: "100%" }}>
       <CardContent>
         <Typography component="h2" variant="subtitle2" gutterBottom>
-          Actions Closed Over Time
+          Actions Closed and Open Over Time
         </Typography>
         <Stack sx={{ justifyContent: "space-between" }}>
           <Stack
@@ -77,20 +80,33 @@ export default function ActionsClosedOverTimeChart({
             }}
           >
             <Typography variant="h4" component="p">
-              {totalActionsClosed} Actions
+              {actionsClosed.reduce((acc, val) => acc + val, 0) +
+                actionsOpen.reduce((acc, val) => acc + val, 0)}{" "}
+              Actions
             </Typography>
             <Chip
               size="small"
               color="success"
-              label={`+${Math.round(averageActionsClosed)} avg`}
+              label={`Closed: +${Math.round(
+                actionsClosed.reduce((acc, val) => acc + val, 0) /
+                  actionsClosed.length
+              )} avg`}
+            />
+            <Chip
+              size="small"
+              color="warning"
+              label={`Open: +${Math.round(
+                actionsOpen.reduce((acc, val) => acc + val, 0) /
+                  actionsOpen.length
+              )} avg`}
             />
           </Stack>
           <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            Number of actions closed each day for the selected month
+            Number of actions closed and open each day for the selected month
           </Typography>
         </Stack>
         <LineChart
-          colors={colorPalette}
+          colors={[colorPalette.closed, colorPalette.open]}
           xAxis={[
             {
               scaleType: "point",
@@ -107,8 +123,19 @@ export default function ActionsClosedOverTimeChart({
               stack: "total",
               area: true,
               stackOrder: "ascending",
-              data: actionsClosedData, // Use the static data for actions closed
-              color: theme.palette.success.main, // Set the color to green
+              data: actionsClosed,
+              color: colorPalette.closed,
+            },
+            {
+              id: "actionsOpen",
+              label: "Actions Open",
+              showMark: false,
+              curve: "linear",
+              stack: "total",
+              area: true,
+              stackOrder: "ascending",
+              data: actionsOpen,
+              color: colorPalette.open,
             },
           ]}
           height={250}
@@ -116,7 +143,10 @@ export default function ActionsClosedOverTimeChart({
           grid={{ horizontal: true }}
           sx={{
             "& .MuiAreaElement-series-actionsClosed": {
-              fill: "url('#actionsClosed')", // Apply the green gradient
+              fill: "url('#actionsClosed')",
+            },
+            "& .MuiAreaElement-series-actionsOpen": {
+              fill: "url('#actionsOpen')",
             },
           }}
           slotProps={{
@@ -125,7 +155,8 @@ export default function ActionsClosedOverTimeChart({
             },
           }}
         >
-          <AreaGradient color={theme.palette.success.dark} id="actionsClosed" /> {/* Green gradient */}
+          <AreaGradient color={theme.palette.success.dark} id="actionsClosed" />
+          <AreaGradient color={theme.palette.warning.dark} id="actionsOpen" />
         </LineChart>
       </CardContent>
     </Card>

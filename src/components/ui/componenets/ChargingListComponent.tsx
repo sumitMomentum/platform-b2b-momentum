@@ -18,6 +18,7 @@ import BatteryChargingFull from "@mui/icons-material/BatteryChargingFull"; // Im
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import SpeedIcon from "@mui/icons-material/Speed";
 import FlashOnIcon from "@mui/icons-material/FlashOn";
+
 // Define the interface for the Charging Session
 interface ChargingSession {
   id: number;
@@ -153,6 +154,7 @@ const columns: GridColDef[] = [
       <Chip label={`${params.value} km`} icon={<SpeedIcon />} color="success" />
     ),
   },
+
   { field: "DwUpdated", headerName: "Last Updated", flex: 1 },
   { field: "chargerId", headerName: "Charger ID", flex: 1 },
 ];
