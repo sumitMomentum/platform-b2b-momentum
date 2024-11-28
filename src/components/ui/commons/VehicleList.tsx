@@ -24,6 +24,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import GppGoodIcon from "@mui/icons-material/GppGood";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import GppBadIcon from "@mui/icons-material/GppBad";
+import { rows } from "@/app/[locale]/(admin)/home/actionCentre/internals/data/gridData";
 
 // Get the current route using useRouter
 
@@ -188,7 +189,7 @@ const VehicleList = (props) => {
     <Box
       sx={
         pathName.replace("/en", "") === "/home/vehicles/list"
-          ? { display: "flex", width: "100%", height: "50vh" }
+          ? { width: "100%", height: "50vh" }
           : { height: "100%", width: "100%", minHeight: 300 }
       }
     >
@@ -205,7 +206,7 @@ const VehicleList = (props) => {
         sx={{
           border: 0,
           height: "100%",
-          overflow: "no-scroll", // Prevent the entire grid from scrolling
+          overflow: "hidden", // Prevent the entire grid from scrolling
           "& .MuiDataGrid-columnHeaders": {
             position: "sticky",
             top: 0,
@@ -221,7 +222,7 @@ const VehicleList = (props) => {
           },
           "& .MuiDataGrid-virtualScroller": {
             overflowY: "auto", // Enable vertical scrolling for rows
-            // maxHeight: "300px", // Set a max height for the scrolling area of rows
+            overflowX: { xs: "auto", md: "hidden" }, // Enable horizontal scrolling on small and medium screens
             minHeight: vehicles.length < 5 ? "300px" : "auto",
           },
           ".MuiDataGrid-columnHeaders": {

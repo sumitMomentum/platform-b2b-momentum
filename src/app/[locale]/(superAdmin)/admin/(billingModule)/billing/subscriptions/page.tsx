@@ -7,14 +7,12 @@ export const metadata: Metadata = {
   title: "Subscriptions",
 };
 
-const SuperAdminBillingSuscriptionsModule = async (
-  props: {
-    searchParams?: Promise<{
-      query?: string;
-      page?: string;
-    }>;
-  }
-) => {
+const SuperAdminBillingSuscriptionsModule = async (props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) => {
   const searchParams = await props.searchParams;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
@@ -30,7 +28,7 @@ const SuperAdminBillingSuscriptionsModule = async (
         }}
         breadcrumbs={[
           { name: "Dashboard", href: "/admin" },
-          { name: "Subscriptions", href: "/admin/billing/subscriptions" },
+          { name: "Billing", href: "/admin/billing" },
         ]}
       />
       <SubscriptionsList query={query} currentPage={currentPage} />

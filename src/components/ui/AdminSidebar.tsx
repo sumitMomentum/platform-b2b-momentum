@@ -11,7 +11,12 @@ import {
   Container,
   Divider,
 } from "@mui/material";
-import { SupportAgent, Group, Settings } from "@mui/icons-material";
+import {
+  SupportAgent,
+  Group,
+  Settings,
+  SafetyDividerOutlined,
+} from "@mui/icons-material";
 import { useSidebarState } from "@/states/ui/sidebarState";
 import Navigation from "../core/Navigation";
 import Link from "next/link";
@@ -62,8 +67,9 @@ const AdminSidebar = () => {
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: "block", lg: "none" }, // Show on small screens, hide on large
+          display: { md: "block", lg: "none" }, // Show on small screens, hide on large
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: 250 },
+          backgroundColor: "white",
         }}
       >
         <Box
@@ -71,7 +77,7 @@ const AdminSidebar = () => {
             display: "flex",
             flexDirection: "column",
             height: "100%",
-            backgroundColor: "background.paper",
+            backgroundColor: "white",
           }}
         >
           {/* Logo */}
@@ -108,14 +114,14 @@ const AdminSidebar = () => {
               afterLeaveOrganizationUrl={"/home"}
             />
           </Box>
-          <Divider color="primary" sx={{ borderBottomWidth: "2px" }} />
+          <Divider sx={{ borderBottomWidth: "0.5px" }} />
 
           {/* Navigation */}
           <Navigation navigation={adminNavigation} />
 
           {/* Help Navs */}
           <Box>
-            <Divider color="primary" sx={{ borderBottomWidth: "2px" }} />
+            <Divider sx={{ borderBottomWidth: "0.5px" }} />
 
             <List>
               {helpNavs.map((item) => (
@@ -150,7 +156,11 @@ const AdminSidebar = () => {
         variant="permanent"
         sx={{
           display: { xs: "none", lg: "block" }, // Hide on small screens, show on large
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 256 },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: 256,
+            backgroundColor: "white",
+          },
         }}
         open
       >
@@ -159,7 +169,7 @@ const AdminSidebar = () => {
             display: "flex",
             flexDirection: "column",
             height: "100%",
-            backgroundColor: "background.paper",
+            // backgroundColor: "background.paper",
             flexGrow: "inherit",
           }}
         >
@@ -182,7 +192,7 @@ const AdminSidebar = () => {
               />
             </Link>
           </Box>
-          <Divider color="primary" sx={{ borderBottomWidth: "2px" }} />
+          <Divider sx={{ borderBottomWidth: "0.5px" }} />
 
           <Box
             sx={{
@@ -198,7 +208,7 @@ const AdminSidebar = () => {
 
             {/* Help Navs */}
             <Box>
-              <Divider color="primary" sx={{ borderBottomWidth: "2px" }} />
+              <Divider sx={{ borderBottomWidth: "0.5px" }} />
               <List>
                 {helpNavs.map((item) => (
                   <ListItemButton

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import React from "react";
+import { Box } from "@mui/material";
 import { Chip } from "@mui/material";
 import BatteryAlertIcon from "@mui/icons-material/BatteryAlert";
 import BatteryFullIcon from "@mui/icons-material/BatteryFull";
@@ -22,8 +23,9 @@ import ToggleOffIcon from "@mui/icons-material/ToggleOff";
 import ToggleOnIcon from "@mui/icons-material/ToggleOn";
 import ChargingStationIcon from "@mui/icons-material/ChargingStation";
 import InfoIcon from "@mui/icons-material/Info";
-// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import SpeedIcon from '@mui/icons-material/Speed';
+import SpeedIcon from "@mui/icons-material/Speed";
+
+
 
 
 // Function to get battery icon based on value
@@ -63,7 +65,7 @@ const getKmColor = (value) => {
 // Define the column configurations
 const columns = [
   {
-    field: "TripID",
+    field: "TripID", // TripID for the column
     headerName: "Trip ID",
     flex: 1,
   },
@@ -86,6 +88,7 @@ const columns = [
     renderCell: (params) => (
       <Chip
         variant="outlined"
+        label={`${params.value}`}
         label={`${params.value}%`}
         color={
           params.value >= 70
@@ -124,7 +127,7 @@ const columns = [
     renderCell: (params) => (
       <Chip
         variant="outlined"
-        label={`${params.value.toFixed(2)} km`}
+        label={` ${(Math.round(params.value * 100) / 100).toFixed(2)}`}
         color={getKmColor(params.value)}
         icon={<SpeedIcon />}
       />
@@ -150,13 +153,23 @@ const columns = [
   },
 ];
 
-const TripListComponent = ({ tripSessions, loading }) => {
+
+const TripListComponent = ({
+  tripSessions,
+  loading,
+}: {
+  tripSessions: any[];
+  loading: boolean;
+}) => {
+  const paginationModel = { page: 0, pageSize: 10 };
+
   return (
-    <Paper sx={{ height: "auto", width: "100%", p: 2 }}>
+    <Box sx={{ width: "100%", height: "80vh" }}>
       <DataGrid
         loading={loading}
         rows={tripSessions} // Use the tripSessions prop directly
         columns={columns}
+        initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10, 25]}
         sx={{
           backgroundColor: "white",
@@ -174,7 +187,7 @@ const TripListComponent = ({ tripSessions, loading }) => {
         }}
         getRowId={(row) => row.TripID} // Ensure TripID is unique for rows
       />
-    </Paper>
+    </Box>
   );
 };
 

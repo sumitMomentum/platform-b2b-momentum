@@ -19,9 +19,68 @@ import BatterySaverIcon from "@mui/icons-material/BatterySaver";
 import BatteryAlertIcon from "@mui/icons-material/BatteryAlert";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ScatterPlotIcon from "@mui/icons-material/ScatterPlot";
+import { title } from "process";
+import { map } from "svix/dist/openapi/rxjsStub";
+import style from "styled-jsx/style";
 
 const VehicleDetails = ({ dashboardData }) => {
   const t = useTranslations("AdminLayout.pages.vehicleDashboard");
+
+  const firstSectionData = [
+    {
+      icon: <FactoryIcon color="primary" fontSize="medium" />,
+      label: t("manufacturer"),
+      value: dashboardData.make,
+    },
+    {
+      icon: <DirectionsCarIcon color="primary" fontSize="medium" />,
+      label: t("vehicleModel"),
+      value: dashboardData.model,
+    },
+    {
+      icon: <EventIcon color="primary" fontSize="medium" />,
+      label: t("modelYear"),
+      value: dashboardData.year,
+    },
+    {
+      icon: <BadgeIcon color="primary" fontSize="medium" />,
+      label: t("vin"),
+      value: dashboardData.vin,
+    },
+  ];
+
+  const secondSectionData = [
+    {
+      icon: <SpeedIcon color="primary" fontSize="medium" />,
+      label: t("odometer"),
+      value: dashboardData.odometerFloat,
+    },
+    {
+      icon: <BatteryUnknownIcon color="primary" fontSize="medium" />,
+      label: t("batteryCapacity"),
+      value: `${dashboardData.batteryCapacity} kWh`,
+    },
+    {
+      icon: <BatteryAlertIcon color="primary" fontSize="medium" />,
+      label: "End Of Life",
+      value: dashboardData.endOfLife,
+    },
+    {
+      icon: <BatterySaverIcon color="primary" fontSize="medium" />,
+      label: "Remaining Useful Life",
+      value: dashboardData.remainingUsefulLife,
+    },
+    {
+      icon: <ScatterPlotIcon color="primary" fontSize="medium" />,
+      label: "Data Points Collected",
+      value: dashboardData.dataPointsCollected,
+    },
+    {
+      icon: <LocationOnIcon color="primary" fontSize="medium" />,
+      label: "Location",
+      value: dashboardData.location,
+    },
+  ];
 
   return (
     <Card>
@@ -31,83 +90,34 @@ const VehicleDetails = ({ dashboardData }) => {
           {/* First Section */}
           <Grid item xs={12} sm={6}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              <Typography variant="body1">
-                <strong>
-                  {" "}
-                  <FactoryIcon color="primary" /> {t("manufacturer")}:
-                </strong>{" "}
-                {dashboardData.make}
-              </Typography>
-              <Typography variant="body1">
-                <strong>
-                  {" "}
-                  <DirectionsCarIcon color="primary" /> {t("vehicleModel")}:
-                </strong>{" "}
-                {dashboardData.model}
-              </Typography>
-              <Typography variant="body1">
-                <strong>
-                  {" "}
-                  <EventIcon color="primary" /> {t("modelYear")}:
-                </strong>{" "}
-                {dashboardData.year}
-              </Typography>
-              <Typography variant="body1">
-                <strong>
-                  {" "}
-                  <BadgeIcon color="primary" /> {t("vin")}:
-                </strong>{" "}
-                {dashboardData.vin}
-              </Typography>
+              {firstSectionData.map((item, index) => (
+                <Typography variant="body1" key={index}>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    {item.icon}
+                    <Box sx={{ display: "flex", gap: 1 }}>
+                      <strong style={{ marginLeft: 8 }}>{item.label} : </strong>
+                      {item.value}
+                    </Box>
+                  </Box>
+                </Typography>
+              ))}
             </Box>
           </Grid>
 
           {/* Second Section */}
           <Grid item xs={12} sm={6}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              <Typography variant="body1">
-                <strong>
-                  {" "}
-                  <SpeedIcon color="primary" /> {t("odometer")}:
-                </strong>{" "}
-                {dashboardData.odometerFloat}
-              </Typography>
-              <Typography variant="body1">
-                <strong>
-                  <BatteryUnknownIcon color="primary" /> {t("batteryCapacity")}:
-                </strong>{" "}
-                {dashboardData.batteryCapacity} kWh
-              </Typography>
-              <Typography variant="body1">
-                <strong>
-                  {" "}
-                  <BatteryAlertIcon color="primary" /> End Of Life:
-                </strong>{" "}
-                {dashboardData.endOfLife}
-              </Typography>
-              <Typography variant="body1">
-                <strong>
-                  {" "}
-                  <BatterySaverIcon color="primary" /> Remaining Useful Life:
-                </strong>{" "}
-                {dashboardData.remainingUsefulLife}
-              </Typography>
-              <Typography variant="body1">
-                <strong>
-                  {" "}
-                  <ScatterPlotIcon color="primary" />
-                  Data Points Collected: :
-                </strong>{" "}
-                {dashboardData.dataPointsCollected}
-              </Typography>
-              <Typography variant="body1">
-                <strong>
-                  {" "}
-                  <LocationOnIcon color="primary" />
-                  Location:
-                </strong>{" "}
-                {dashboardData.location}
-              </Typography>
+              {secondSectionData.map((item, index) => (
+                <Typography variant="body1" key={index}>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    {item.icon}
+                    <Box sx={{ display: "flex", gap: 1 }}>
+                      <strong style={{ marginLeft: 8 }}>{item.label}:</strong>
+                      {item.value}
+                    </Box>
+                  </Box>
+                </Typography>
+              ))}
             </Box>
           </Grid>
         </Grid>

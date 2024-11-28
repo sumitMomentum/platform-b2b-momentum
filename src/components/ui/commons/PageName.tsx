@@ -1,7 +1,10 @@
+"use client";
+
 import React, { ReactNode } from "react";
 import Link from "next/link";
-import { Breadcrumbs, Typography } from "@mui/material";
+import { Breadcrumbs, Chip, styled } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { useRouter } from "next/navigation";
 
 type Btn = {
   name: string;
@@ -23,6 +26,25 @@ type PageNameProps = {
   isSubPage?: boolean;
 };
 
+const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+  const backgroundColor = theme.palette.primary;
+  // const backgroundColor =
+  //   theme.palette.mode === "light"
+  //     ? theme.palette.grey[100]
+  //     : theme.palette.grey[800];
+  return {
+    // backgroundColor,
+    height: theme.spacing(3),
+    color: theme.palette.text.primary,
+    fontWeight: theme.typography.fontWeightRegular,
+    "&:hover": {
+      boxShadow: theme.shadows[2],
+      shadowColor: theme.palette.primary[400],
+      color: theme.palette.primary[400],
+    },
+  };
+}) as typeof Chip;
+
 const PageName = ({
   name,
   btn1,
@@ -30,25 +52,26 @@ const PageName = ({
   breadcrumbs,
   isSubPage,
 }: PageNameProps) => {
-  const navs = breadcrumbs;
+  const router = useRouter();
+  const handleClick = (href: string) => {
+    router.push(href);
+  };
 
   return (
     <Breadcrumbs
       separator={<NavigateNextIcon fontSize="small" />}
       aria-label="breadcrumb"
     >
-      {breadcrumbs.slice(0, -1).map((nav) => (
-        <Link color="inherit" href={nav.href}>
-          {nav.name}
-        </Link>
+      {breadcrumbs.map((nav) => (
+        <StyledBreadcrumb
+          component="a"
+          href={nav.href}
+          onClick={() => handleClick(nav.href)}
+          label={nav.name}
+          variant="outlined"
+        />
       ))}
-      <Typography
-        sx={{ color: "primary" }}
-        variant="subtitle1"
-        fontWeight={"bold"}
-      >
-        {name}
-      </Typography>
+      <Chip color="primary" label={name} />
     </Breadcrumbs>
   );
 };

@@ -11,6 +11,7 @@ import SeverityDistributionChart from "./SeverityDistributionChart";
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
 import CustomizedDataGrid from "./CustomizedDataGrid";
 import SuspenseDashboard from "@/components/suspenseSkeleton/SuspenseDashboard";
+import ActionListComponent from "../ActionListComponent";
 
 // Function to aggregate vehicle actions data
 const aggregateData = (data) => {
@@ -79,30 +80,7 @@ const aggregateData = (data) => {
   };
 };
 
-export default function MainGrid() {
-  const [vehicleDataItems, setVehicleDataItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch the actual vehicle actions data
-        const data = await getAllVehicleActions();
-
-        // If data is fetched successfully, calculate aggregates
-        if (data && Array.isArray(data)) {
-          setVehicleDataItems(data);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch vehicle data items", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+export default function MainGrid({ actions, loading }) {
   // Aggregate the data for the stat cards
   const {
     totalActions,
@@ -111,7 +89,7 @@ export default function MainGrid() {
     avgTimeToClose,
     monthlyClosedActions,
     monthlyOpenActions,
-  } = aggregateData(vehicleDataItems);
+  } = aggregateData(actions);
 
   // Data for the Stat Cards
   const statCards: StatCardProps[] = [
@@ -173,7 +151,7 @@ export default function MainGrid() {
 
         {/* Severity Distribution Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <SeverityDistributionChart actionsData={vehicleDataItems} />
+          <SeverityDistributionChart actionsData={actions} />
         </Grid>
       </Grid>
 
@@ -184,12 +162,10 @@ export default function MainGrid() {
       <Grid container spacing={2} columns={12}>
         {/* Data Grid Section */}
         <Grid item xs={12}>
-          <CustomizedDataGrid />
+          {/* <CustomizedDataGrid /> */}
+          <ActionListComponent actions={actions} loading={loading} />
         </Grid>
       </Grid>
-
-      {/* Footer */}
-      <Copyright sx={{ my: 4 }} />
     </Box>
   );
 }

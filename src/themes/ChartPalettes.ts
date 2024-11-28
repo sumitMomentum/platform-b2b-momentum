@@ -1,21 +1,22 @@
+import { brand, orange, red, green, gray } from "./themePrimitives";
+
 const chartColorTheme = [
-  "#66c2a5",
-  "#fc8d62",
-  "#8da0cb",
-  "#e78ac3",
-  "#a6d854",
-  "#ffd92f",
-  "#e5c494",
-  "#b3b3b3",
+  brand[500], // Main brand color - hsl(93, 50%, 49%)
+  orange[400], // Orange - for contrast
+  brand[700], // Darker brand - hsl(93, 50%, 30%)
+  red[400], // Red - for emphasis
+  brand[300], // Lighter brand - hsl(93, 50%, 70%)
+  green[400], // Green - for variety
+  gray[500], // Gray - for neutral
+  orange[600], // Darker orange - for depth
 ];
 
 const sevierityChartsPalette = {
-  primary: "#90caf9",
-  secondary: "#ce93d8",
-  error: "#f44336",
-  warning: "#ffa726",
-  info: "#29b6f6",
-  success: "#66bb6a",
+  primary: brand[500],
+  error: red[400],
+  warning: orange[400],
+  info: gray[300],
+  success: green[400],
 };
 
 export { chartColorTheme, sevierityChartsPalette };

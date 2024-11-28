@@ -171,7 +171,7 @@ const Page = () => {
         name={"Chargers"}
         breadcrumbs={[
           { name: "Home", href: "/home" },
-          { name: "Chargers", href: "/home/chargers" },
+          // { name: "Chargers", href: "/home/chargers" },
         ]}
       />
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2, margin: 2 }}>
