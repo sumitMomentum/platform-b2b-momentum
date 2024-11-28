@@ -66,7 +66,9 @@ export default function Page() {
         name={"Action Centre"}
         breadcrumbs={[{ name: "Home", href: "/home" }]}
       />
-      <Container sx={{ display: "flex", justifyContent: "right", mb: 2 }}>
+      <Container
+        sx={{ display: "flex", justifyContent: "right", mb: 2, width: "100%" }}
+      >
         <Button
           startIcon={!isTabular ? <TableChartIcon /> : <InsightsIcon />}
           variant="contained"

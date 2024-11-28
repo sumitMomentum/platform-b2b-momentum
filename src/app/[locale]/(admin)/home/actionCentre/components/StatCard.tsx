@@ -68,8 +68,10 @@ export default function StatCard({
               </Typography>
               <Chip
                 size="small"
-                color={trendColors[trend]}
+                // color={trendColors[trend]}
                 label={trendValues[trend]}
+                // temporary solution
+                color="success"
               />
             </Stack>
             <Typography variant="caption" sx={{ color: "text.secondary" }}>

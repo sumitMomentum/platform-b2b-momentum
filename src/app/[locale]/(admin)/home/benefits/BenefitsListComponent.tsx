@@ -39,10 +39,10 @@ export default function BenefitsListComponent({ benefits, loading }) {
       minWidth: 150,
       renderCell: (params) => (
         <>
-          {params.value === "Total Loss" && (
+          {params.value === "Total loss" && (
             <TrendingDownSharpIcon color="error" />
           )}
-          {params.value === "Total Gains" && (
+          {params.value === "Total gains" && (
             <TrendingUpSharpIcon color="success" />
           )}
           <span style={{ marginLeft: 8 }}>{params.value}</span>

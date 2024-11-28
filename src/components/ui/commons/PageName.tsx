@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode } from "react";
 import Link from "next/link";
 import { Breadcrumbs, Chip, styled } from "@mui/material";
@@ -50,7 +52,6 @@ const PageName = ({
   breadcrumbs,
   isSubPage,
 }: PageNameProps) => {
-  const navs = breadcrumbs;
   const router = useRouter();
   const handleClick = (href: string) => {
     router.push(href);

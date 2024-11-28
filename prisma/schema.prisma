@@ -441,8 +441,6 @@ model Vehicle {
   ownerID                                  Int?
   soc                                      Int?
   dateOfConnection                         DateTime @map("dateOfConnection")
-  odometerReading                          Float?
-  avgDailyKmDriven                         Float[]
   monthlyUsage                             Float[]
   condition                                String?
   status                                   String?
