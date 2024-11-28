@@ -88,7 +88,6 @@ const columns = [
     renderCell: (params) => (
       <Chip
         variant="outlined"
-        label={`${params.value}`}
         label={`${params.value}%`}
         color={
           params.value >= 70
