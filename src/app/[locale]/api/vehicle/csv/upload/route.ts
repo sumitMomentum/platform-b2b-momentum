@@ -60,13 +60,9 @@ export async function POST(request: NextRequest) {
             ownerID: convertOwnerId(row.ownerID),
             soc: parseInt(row.soc),
             dateOfConnection: parseDate(row.dateOfConnection),
-            odometerFloat: parseFloat(row.odometerFloat),
-            usageAverageDailyKmDriven: row.usageAverageDailyKmDriven
-              ? row.usageAverageDailyKmDriven.split(",").map(parseFloat)
-              : [],
-            monthlyUsage: row.monthlyUsage
-              ? row.monthlyUsage.split(",").map(parseFloat)
-              : [],
+            odometerFloat: parseFloat(row.odometerReading),
+            // avgDailyKmDriven: row.avgDailyKmDriven ? row.avgDailyKmDriven.split(',').map(parseFloat) : [],
+            monthlyUsage: row.monthlyUsage ? row.monthlyUsage.split(',').map(parseFloat) : [],
             condition: row.condition,
             status: row.status,
             make: row.make,
@@ -128,7 +124,7 @@ export async function POST(request: NextRequest) {
             ),
             endOfLife: row.endOfLife,
             epawltpProvidedRange: parseInt(row.epawltpProvidedRange),
-            odometerFloat: parseFloat(row.odometerFloat),
+            // odometerFloat: parseFloat(row.odometerFloat),
             realRangeObserved: parseInt(row.realRangeObserved),
             totalChargingSession: parseInt(row.totalChargingSession),
             usageAverageDailyKmDriven: row.usageAverageDailyKmDriven

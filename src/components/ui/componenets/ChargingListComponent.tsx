@@ -202,5 +202,5 @@ export default ChargingList;
 import { rows } from "@/app/[locale]/(admin)/home/actionCentre/internals/data/gridData";
 import page from "@/app/[locale]/(landing)/page";
 import loading from "@/components/suspenseSkeleton/loading";
-import { chargingSessions } from "@/seed/seeds/chargingSessions";
+import { data as chargingSessions } from "@/seed/seeds/chargingSessions";
 import { FC } from "react";
