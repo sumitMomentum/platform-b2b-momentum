@@ -1,5 +1,5 @@
 import PageName from "@/components/ui/commons/PageName";
-import React, { Suspense } from "react";
+import React, { Suspense, use } from "react";
 import Search from "@/components/ui/commons/Search";
 import TableLoaderSkeleton from "@/components/ui/loaders/TableLoaderSkeleton";
 import SupportTicketsList from "./ui/SupportTicketsList";
@@ -12,14 +12,15 @@ export const metadata: Metadata = {
   title: "Support",
 };
 
-const AdminSupportPage = ({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) => {
+const AdminSupportPage = (
+  props: {
+    searchParams?: Promise<{
+      query?: string;
+      page?: string;
+    }>;
+  }
+) => {
+  const searchParams = use(props.searchParams);
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
   const t = useTranslations("AdminLayout.pages.support");
@@ -43,12 +44,12 @@ const AdminSupportPage = ({
         }
       />
       <Search placeholder={t("searchTicketByID")} />
-      <Suspense
+      {/* <Suspense
         key={query + Math.random}
         fallback={<TableLoaderSkeleton count={10} />}
-      >
+      > */}
         <SupportTicketsList query={query} currentPage={currentPage} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

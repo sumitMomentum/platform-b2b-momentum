@@ -6,13 +6,14 @@ import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import UpsertCurrency from "../../ui/UpsertCurrency";
 
-const SuperAdminEditCurrency = async ({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) => {
+const SuperAdminEditCurrency = async (
+  props: {
+    params: Promise<{
+      id: string;
+    }>;
+  }
+) => {
+  const params = await props.params;
   const values = await getCurrencyDetails(Number(params.id));
 
   return (
@@ -25,9 +26,9 @@ const SuperAdminEditCurrency = async ({
           </button>
         </Link>
       </div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <UpsertCurrency planId={Number(params.id)} values={values} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

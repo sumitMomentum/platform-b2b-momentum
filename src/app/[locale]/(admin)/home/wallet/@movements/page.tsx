@@ -4,13 +4,14 @@ import TableLoaderSkeleton from "@/components/ui/loaders/TableLoaderSkeleton";
 import { MovementRow } from "../ui/MovementRow";
 import { getTranslations } from "next-intl/server";
 
-const AdminWalletMovements = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    currency?: string;
-  };
-}) => {
+const AdminWalletMovements = async (
+  props: {
+    searchParams?: Promise<{
+      currency?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const movements = await getAmountMovements(searchParams?.currency ?? "usd");
   const t = await getTranslations("AdminLayout.pages.wallet");
   return (
@@ -18,7 +19,7 @@ const AdminWalletMovements = async ({
       <h2 className="text-subtitle">
        {t("movementIn")} {searchParams?.currency?.toUpperCase() ?? "usd"}
       </h2>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <div>
           <ul role="list" className="divide-y divide-gray-100">
             {movements?.map((movement: any) => (
@@ -42,7 +43,7 @@ const AdminWalletMovements = async ({
             )}
           </ul>
         </div>
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

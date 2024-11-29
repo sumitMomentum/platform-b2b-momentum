@@ -57,13 +57,13 @@ const SupportTicketsList = async ({
 
   return (
     <div>
-      <Suspense
+      {/* <Suspense
         fallback={
           <div>
             <TableLoaderSkeleton count={10} />
           </div>
         }
-      >
+      > */}
         {data.length === 0 ? (
           <div className="flex justify-center items-center h-96">
             <NotFound message={t("notTicketFound")} />
@@ -125,7 +125,7 @@ const SupportTicketsList = async ({
             </div>
           </div>
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

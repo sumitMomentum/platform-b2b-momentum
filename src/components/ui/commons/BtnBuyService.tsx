@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { Button } from "@mui/material";
 import Link from "next/link";
 
@@ -6,7 +6,7 @@ async function BtnBuyService() {
   const user = await currentUser();
 
   return (
-     <Link href={user ? "/home" : "/home"} passHref>
+    <Link href={user ? "/home" : "/home"} passHref>
       <Button variant="contained" color="primary">
         Go to Home
       </Button>

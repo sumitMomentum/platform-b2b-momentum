@@ -1,4 +1,4 @@
-export const chargerTypes = [
+                                                              export const chargerTypes = [
   {
     evConnectorType: "SAE J1772 (Type 1)",
     outputCurrentType: "AC (Alternate Current)",

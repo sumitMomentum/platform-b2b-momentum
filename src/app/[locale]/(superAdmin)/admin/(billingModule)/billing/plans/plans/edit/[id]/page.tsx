@@ -12,20 +12,21 @@ export const metadata: Metadata = {
   title: "Edit Plan",
 };
 
-const SuperAdminBillingModuleEditPlanPage = async ({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) => {
+const SuperAdminBillingModuleEditPlanPage = async (
+  props: {
+    params: Promise<{
+      id: string;
+    }>;
+  }
+) => {
+  const params = await props.params;
   const plan = await getPlanDetails(Number(params.id));
   const capabilities = await getAllCapabilities();
 
   return (
     <div>
       <PageName name={"Edit Plan"} isSubPage={true} />
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <UpsertPlan planId={Number(params.id)} values={plan} />
         <UpsertPlanCapabilities planOnEdit={plan} capabilities={capabilities} />
         {plan && (
@@ -33,7 +34,7 @@ const SuperAdminBillingModuleEditPlanPage = async ({
             <PlanPricingSection plan={plan} pricings={plan?.pricing ?? []} />
           </div>
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

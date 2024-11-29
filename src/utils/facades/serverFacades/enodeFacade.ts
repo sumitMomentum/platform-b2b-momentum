@@ -19,7 +19,7 @@ import chalk, {
   redBright,
   yellow,
 } from "chalk";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { ok } from "assert";
 import { headers } from "next/headers";
 import { env } from "process";
@@ -46,7 +46,7 @@ export const generateEnodeToken = async () => {
     console.log(chalk.green("✅ Enode token generated successfully"));
     return accessToken;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error generating Enode token:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
@@ -104,11 +104,11 @@ export const getEnodeAccessToken = async () => {
 
     return accessToken;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error in getEnodeAccessToken:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
@@ -159,7 +159,7 @@ export const getEnodeAccessToken = async () => {
 //     console.log(data);
 //     return data.access_token;
 //   } catch (error) {
-//     console.error("Error generating access token:", error);
+//     console.warn("Error generating access token:", error);
 //     throw new Error("Failed to generate access token");
 //   }
 // };
@@ -175,12 +175,12 @@ export const generateAccessToken = async () => {
     // Validate environment variables
     console.log(chalk.blue("🔍 Validating environment variables..."));
     if (!clientId || !clientSecret || !tokenEndpoint) {
-      console.error(chalk.red("❌ Missing environment variables:"));
+      console.warn(chalk.red("❌ Missing environment variables:"));
       if (!clientId) console.error(chalk.red("  • ENODE_CLIENT_ID is missing"));
       if (!clientSecret)
-        console.error(chalk.red("  • ENODE_CLIENT_SECRET is missing"));
+        console.warn(chalk.red("  • ENODE_CLIENT_SECRET is missing"));
       if (!tokenEndpoint)
-        console.error(chalk.red("  • ENODE_OAUTH_URL is missing"));
+        console.warn(chalk.red("  • ENODE_OAUTH_URL is missing"));
       throw new Error(
         "Client ID, Client Secret, or Token Endpoint is not defined"
       );
@@ -193,13 +193,13 @@ export const generateAccessToken = async () => {
       typeof clientSecret !== "string" ||
       typeof tokenEndpoint !== "string"
     ) {
-      console.error(chalk.red("❌ Invalid credential types:"));
+      console.warn(chalk.red("❌ Invalid credential types:"));
       if (typeof clientId !== "string")
-        console.error(chalk.red("  • ENODE_CLIENT_ID is not a string"));
+        console.warn(chalk.red("  • ENODE_CLIENT_ID is not a string"));
       if (typeof clientSecret !== "string")
-        console.error(chalk.red("  • ENODE_CLIENT_SECRET is not a string"));
+        console.warn(chalk.red("  • ENODE_CLIENT_SECRET is not a string"));
       if (typeof tokenEndpoint !== "string")
-        console.error(chalk.red("  • ENODE_OAUTH_URL is not a string"));
+        console.warn(chalk.red("  • ENODE_OAUTH_URL is not a string"));
       throw new Error("Invalid Client ID, Client Secret, or Token Endpoint");
     }
 
@@ -216,7 +216,7 @@ export const generateAccessToken = async () => {
     });
 
     if (!response.ok) {
-      console.error(
+      console.warn(
         chalk.red(`❌ OAuth request failed with status: ${response.status}`)
       );
       throw new Error(`Failed to fetch access token: ${response.statusText}`);
@@ -226,18 +226,18 @@ export const generateAccessToken = async () => {
     console.log(chalk.cyan("📥 Received OAuth response:"), data);
 
     if (!data.access_token) {
-      console.error(chalk.red("❌ No access token in response"));
+      console.warn(chalk.red("❌ No access token in response"));
       throw new Error("Access token missing in response");
     }
 
     console.log(chalk.green("✅ Access token generated successfully"));
     return data.access_token;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error generating access token:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
@@ -272,11 +272,11 @@ export const isTokenExpired = async (createdAt: Date) => {
 
     return isExpired;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error checking token expiration:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
@@ -295,7 +295,7 @@ export const createLinkSession = async (userId: number) => {
 
     // Check if access token is missing
     if (!accessToken) {
-      console.error(chalk.red("❌ Access token is missing"));
+      console.warn(chalk.red("❌ Access token is missing"));
       throw new Error("Access token missing");
     }
     console.log(chalk.green("✅ Access token retrieved successfully"));
@@ -314,7 +314,7 @@ export const createLinkSession = async (userId: number) => {
     };
 
     if (!process.env.ENODE_VEHICLE_ADD_REDIRECT) {
-      console.error(
+      console.warn(
         chalk.red("❌ Missing ENODE_VEHICLE_ADD_REDIRECT environment variable")
       );
       throw new Error("Missing redirect URI configuration");
@@ -337,12 +337,12 @@ export const createLinkSession = async (userId: number) => {
     );
 
     if (!response.ok) {
-      console.error(
+      console.warn(
         chalk.red(
           `❌ Failed to create link session - Status: ${response.status}`
         )
       );
-      console.error(chalk.red(`📝 Response: ${await response.text()}`));
+      console.warn(chalk.red(`📝 Response: ${await response.text()}`));
       throw new Error(`Failed to create Link session: ${response.statusText}`);
     }
 
@@ -350,7 +350,7 @@ export const createLinkSession = async (userId: number) => {
     const responseData = await response.json();
 
     if (!responseData.linkUrl) {
-      console.error(chalk.red("❌ No linkUrl in response"));
+      console.warn(chalk.red("❌ No linkUrl in response"));
       throw new Error("Link URL missing in response");
     }
 
@@ -359,11 +359,11 @@ export const createLinkSession = async (userId: number) => {
 
     return responseData.linkUrl;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error creating link session:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
@@ -388,8 +388,8 @@ export const listWebhook = async () => {
     );
 
     if (!accessToken) {
-      console.error(chalk.redBright("❌ Access token is missing"));
-      console.error(
+      console.warn(chalk.redBright("❌ Access token is missing"));
+      console.warn(
         chalk.red("📝 Debug: getEnodeAccessToken returned:", accessToken)
       );
       throw new Error("Access token is required to list webhooks");
@@ -397,10 +397,10 @@ export const listWebhook = async () => {
     console.log(chalk.greenBright("✅ Access token successfully retrieved"));
 
     if (!process.env.ENODE_API_URL) {
-      console.error(
+      console.warn(
         chalk.redBright("❌ Missing ENODE_API_URL environment variable")
       );
-      console.error(
+      console.warn(
         chalk.red("📝 Available env vars:", Object.keys(process.env))
       );
       throw new Error("ENODE_API_URL environment variable is not configured");
@@ -431,12 +431,12 @@ export const listWebhook = async () => {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(
+      console.warn(
         chalk.redBright(
           `❌ Failed to fetch webhooks - Status: ${response.status}`
         )
       );
-      console.error(chalk.red(`📝 Response: ${errorText}`));
+      console.warn(chalk.red(`📝 Response: ${errorText}`));
       throw new Error(`Failed to fetch webhooks: ${response.statusText}`);
     }
 
@@ -450,11 +450,11 @@ export const listWebhook = async () => {
 
     return responseData;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error listing webhooks:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
@@ -477,7 +477,7 @@ export const runWebhook = async () => {
     const expectedUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/en/api/enode`;
 
     if (!process.env.NEXT_PUBLIC_BASE_URL) {
-      console.error(
+      console.warn(
         chalk.red("❌ Missing NEXT_PUBLIC_BASE_URL environment variable")
       );
       throw new Error(
@@ -517,18 +517,18 @@ export const runWebhook = async () => {
 
     return webhookList;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error in webhook setup:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
     if (process.env.ENODE_WEBHOOK_SECRET) {
       console.log(chalk.yellow("ℹ️ Webhook secret is configured"));
     } else {
-      console.error(chalk.red("❌ ENODE_WEBHOOK_SECRET is not configured"));
+      console.warn(chalk.red("❌ ENODE_WEBHOOK_SECRET is not configured"));
     }
     throw new Error(
       `Webhook setup failed: ${
@@ -546,25 +546,25 @@ export const createWebHook = async () => {
     const accessToken = await getEnodeAccessToken();
 
     if (!accessToken) {
-      console.error(chalk.red("❌ Access token is missing"));
+      console.warn(chalk.red("❌ Access token is missing"));
       throw new Error("Access token required for webhook creation");
     }
 
     // Validate environment variables
     console.log(chalk.blue("🔍 Validating environment variables..."));
     if (!process.env.ENODE_WEBHOOK_SECRET) {
-      console.error(chalk.red("❌ Missing ENODE_WEBHOOK_SECRET"));
+      console.warn(chalk.red("❌ Missing ENODE_WEBHOOK_SECRET"));
       throw new Error("Webhook secret is not configured");
     }
     if (!process.env.NEXT_PUBLIC_BASE_URL) {
-      console.error(chalk.red("❌ Missing NEXT_PUBLIC_BASE_URL"));
+      console.warn(chalk.red("❌ Missing NEXT_PUBLIC_BASE_URL"));
       throw new Error("Next public URL is not configured");
     }
     if (!process.env.ENODE_API_URL) {
-      console.error(chalk.red("❌ Missing ENODE_API_URL"));
+      console.warn(chalk.red("❌ Missing ENODE_API_URL"));
       throw new Error("Enode API URL is not configured");
     }
-    
+
     const webhookUrl = `https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/en/api/enode`;
     console.log(chalk.yellow("🔗 Generated webhook URL:"), webhookUrl);
     // console.log(chalk.magenta(`${process.env.NEXT_PUBLIC_BASE_URL}/en/api/enode`));
@@ -589,10 +589,10 @@ export const createWebHook = async () => {
     });
 
     if (!response.ok) {
-      console.error(
+      console.warn(
         chalk.red(`❌ Failed to create webhook - Status: ${response.status}`)
       );
-      console.error(chalk.red(`📝 Response: ${await response.text()}`));
+      console.warn(chalk.red(`📝 Response: ${await response.text()}`));
       throw new Error(`Failed to create webhook: ${response.statusText}`);
     }
 
@@ -602,11 +602,11 @@ export const createWebHook = async () => {
 
     return responseData;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error creating webhook:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
@@ -632,15 +632,15 @@ export const deleteAndRerunWebHook = async (id: string) => {
 
     return newWebhook;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error in deleting webhook and rerunning:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
-    console.error(chalk.red("🔍 Failed webhook ID:"), id);
+    console.warn(chalk.red("🔍 Failed webhook ID:"), id);
     throw new Error(
       `Failed to delete webhook and rerun: ${
         error instanceof Error ? error.message : "Unknown error"
@@ -657,29 +657,29 @@ export const updateWebhook = async (id: string) => {
     const accessToken = await getEnodeAccessToken();
 
     if (!accessToken) {
-      console.error(chalk.red("❌ Access token is missing"));
+      console.warn(chalk.red("❌ Access token is missing"));
       throw new Error("Access token required for webhook update");
     }
 
     // Validate environment variables
     console.log(chalk.blue("🔍 Validating environment variables..."));
     if (!process.env.ENODE_WEBHOOK_SECRET) {
-      console.error(chalk.red("❌ Missing ENODE_WEBHOOK_SECRET"));
+      console.warn(chalk.red("❌ Missing ENODE_WEBHOOK_SECRET"));
       throw new Error("Webhook secret is not configured");
     }
     if (!process.env.NEXT_PUBLIC_BASE_URL) {
-      console.error(chalk.red("❌ Missing NEXT_PUBLIC_BASE_URL"));
+      console.warn(chalk.red("❌ Missing NEXT_PUBLIC_BASE_URL"));
       throw new Error("Next public URL is not configured");
     }
     if (!process.env.ENODE_API_URL) {
-      console.error(chalk.red("❌ Missing ENODE_API_URL"));
+      console.warn(chalk.red("❌ Missing ENODE_API_URL"));
       throw new Error("Enode API URL is not configured");
     }
 
     console.log(chalk.blue("📝 Preparing webhook update configuration..."));
 
     if (!process.env.NEXT_PUBLIC_ROOT_DOMAIN) {
-      console.error(chalk.redBright("❌ Missing NEXT_PUBLIC_ROOT_DOMAIN"));
+      console.warn(chalk.redBright("❌ Missing NEXT_PUBLIC_ROOT_DOMAIN"));
       throw new Error("Root domain is not configured");
     }
 
@@ -717,10 +717,10 @@ export const updateWebhook = async (id: string) => {
     );
 
     if (!response.ok) {
-      console.error(
+      console.warn(
         chalk.red(`❌ Failed to update webhook - Status: ${response.status}`)
       );
-      console.error(chalk.red(`📝 Response: ${await response.text()}`));
+      console.warn(chalk.red(`📝 Response: ${await response.text()}`));
       throw new Error(`Failed to update webhook: ${response.statusText}`);
     }
 
@@ -737,15 +737,15 @@ export const updateWebhook = async (id: string) => {
 
     return responseData;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error updating webhook:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
-    console.error(chalk.red("🔍 Failed webhook ID:"), id);
+    console.warn(chalk.red("🔍 Failed webhook ID:"), id);
     throw new Error(
       `Failed to update webhook: ${
         error instanceof Error ? error.message : "Unknown error"
@@ -762,12 +762,12 @@ export const deleteWebhook = async (id: string) => {
     const accessToken = await getEnodeAccessToken();
 
     if (!accessToken) {
-      console.error(chalk.red("❌ Access token is missing"));
+      console.warn(chalk.red("❌ Access token is missing"));
       throw new Error("Access token required for webhook deletion");
     }
 
     if (!process.env.ENODE_API_URL) {
-      console.error(chalk.red("❌ Missing ENODE_API_URL environment variable"));
+      console.warn(chalk.red("❌ Missing ENODE_API_URL environment variable"));
       throw new Error("ENODE_API_URL is not configured");
     }
 
@@ -784,10 +784,10 @@ export const deleteWebhook = async (id: string) => {
     );
 
     if (!response.ok) {
-      console.error(
+      console.warn(
         chalk.red(`❌ Failed to delete webhook - Status: ${response.status}`)
       );
-      console.error(chalk.red(`📝 Response: ${await response.text()}`));
+      console.warn(chalk.red(`📝 Response: ${await response.text()}`));
       throw new Error(`Failed to delete webhook: ${response.statusText}`);
     }
 
@@ -800,15 +800,15 @@ export const deleteWebhook = async (id: string) => {
 
     return responseData;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error deleting webhook:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
-    console.error(chalk.red("🔍 Failed webhook ID:"), id);
+    console.warn(chalk.red("🔍 Failed webhook ID:"), id);
     throw new Error(
       `Failed to delete webhook: ${
         error instanceof Error ? error.message : "Unknown error"
@@ -827,7 +827,7 @@ export const handleWebhook = async (req: Request) => {
       | undefined;
 
     if (!signature) {
-      console.error(chalk.red("❌ Missing x-enode-signature header"));
+      console.warn(chalk.red("❌ Missing x-enode-signature header"));
       throw new Error("Missing webhook signature");
     }
     console.log(chalk.cyan("🔐 Received signature:", signature));
@@ -841,7 +841,7 @@ export const handleWebhook = async (req: Request) => {
 
     // Validate webhook secret
     if (!process.env.ENODE_WEBHOOK_SECRET) {
-      console.error(
+      console.warn(
         chalk.red("❌ Missing ENODE_WEBHOOK_SECRET environment variable")
       );
       throw new Error("Webhook secret is not configured");
@@ -862,7 +862,7 @@ export const handleWebhook = async (req: Request) => {
     );
 
     if (!isValidSignature) {
-      console.error(chalk.red("❌ Invalid webhook signature"));
+      console.warn(chalk.red("❌ Invalid webhook signature"));
       throw new Error("Invalid signature");
     }
     console.log(chalk.green("✅ Signature verified successfully"));
@@ -872,7 +872,7 @@ export const handleWebhook = async (req: Request) => {
     const events = body;
 
     if (!Array.isArray(events)) {
-      console.error(chalk.red("❌ Invalid event format - expected array"));
+      console.warn(chalk.red("❌ Invalid event format - expected array"));
       throw new Error("Invalid event format");
     }
 
@@ -884,11 +884,11 @@ export const handleWebhook = async (req: Request) => {
 
     console.log(chalk.green("✅ Webhook handled successfully"));
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error handling webhook:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
@@ -910,13 +910,13 @@ async function verifySignature(
 
   try {
     if (!signature) {
-      console.error(chalk.red("❌ No signature provided"));
+      console.warn(chalk.red("❌ No signature provided"));
       return false;
     }
     console.log(chalk.cyan("📥 Received signature:", signature));
 
     if (!secret) {
-      console.error(chalk.red("❌ No secret provided for verification"));
+      console.warn(chalk.red("❌ No secret provided for verification"));
       return false;
     }
     console.log(chalk.cyan("🔑 Secret available for verification"));
@@ -947,11 +947,11 @@ async function verifySignature(
 
     return isValid;
   } catch (error) {
-    console.error(
+    console.warn(
       chalk.red("❌ Error verifying signature:"),
       chalk.red(error instanceof Error ? error.message : "Unknown error")
     );
-    console.error(
+    console.warn(
       chalk.red("📋 Stack trace:"),
       error instanceof Error ? error.stack : "No stack trace"
     );
@@ -962,7 +962,7 @@ async function verifySignature(
 // Function to handle each event
 export const handleEvent = async (event: any) => {
   try {
-    const authobject = auth();
+    const authobject = await auth();
     console.log(chalk.magenta("👤 Auth object retrieved:", authobject));
 
     console.log(chalk.yellow("📥 Processing event:"));
@@ -1055,7 +1055,7 @@ export const handleEvent = async (event: any) => {
         });
 
         if (!existingVehicle) {
-          console.error(
+          console.warn(
             chalk.red(`❌ Vehicle not found in database: ${updatedVehicle.id}`)
           );
           return;
@@ -1161,7 +1161,7 @@ export const handleEvent = async (event: any) => {
         break;
     }
   } catch (error) {
-    console.error("Error handling events:", error);
+    console.warn("Error handling events:", error);
   }
 };
 
@@ -1228,7 +1228,7 @@ export const handleEvent = async (event: any) => {
 //       });
 
 //       if (!existingVehicle) {
-//         console.error("Vehicle not found in the database:", updatedVehicle.id);
+//         console.warn("Vehicle not found in the database:", updatedVehicle.id);
 //         return;
 //       }
 
@@ -1285,6 +1285,6 @@ export const handleEvent = async (event: any) => {
 //       console.log("Skipping event:", event.event);
 //     }
 //   } catch (error) {
-//     console.error("Error handling events:", error);
+//     console.warn("Error handling events:", error);
 //   }
 // };

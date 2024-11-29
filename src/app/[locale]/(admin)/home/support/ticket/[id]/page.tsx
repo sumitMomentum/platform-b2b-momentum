@@ -11,7 +11,8 @@ export const metadata: Metadata = {
   title: "View Ticket",
 };
 
-const ViewTicket = async ({ params }: { params: { id: string } }) => {
+const ViewTicket = async (props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   const ticketIdStr = params.id || "";
   const ticketId = parseInt(ticketIdStr);
   const ticket = await getSupportTicketById(ticketId);
@@ -19,7 +20,7 @@ const ViewTicket = async ({ params }: { params: { id: string } }) => {
   const t = await getTranslations("AdminLayout.pages.support");
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <PageName
           name={t("viewTicketDetails")}
           breadcrumbs={[
@@ -32,7 +33,7 @@ const ViewTicket = async ({ params }: { params: { id: string } }) => {
           ]}
         />
         <ViewSupportTicketDetailsPage user={userDB} ticket={ticket} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

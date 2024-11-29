@@ -9,21 +9,22 @@ export const metadata: Metadata = {
   title: "Edit Capabilitie",
 };
 
-const SuperAdminBillingModuleEditPlanPage = async ({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) => {
+const SuperAdminBillingModuleEditPlanPage = async (
+  props: {
+    params: Promise<{
+      id: string;
+    }>;
+  }
+) => {
+  const params = await props.params;
   const values = await getCapabilitieDetails(Number(params.id));
 
   return (
     <div>
       <PageName name={"Edit Capabilitie"} isSubPage={true} />
-      <Suspense fallback={<TableLoaderSkeleton count={10} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={10} />}> */}
         <UpsertCapabilitie capabilitieId={Number(params.id)} values={values} />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

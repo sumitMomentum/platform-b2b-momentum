@@ -2,7 +2,7 @@
 import React from "react";
 import { Fragment } from "react";
 import Image from "next/image";
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog, Transition, TransitionChild } from "@headlessui/react";
 import {
   Cog6ToothIcon,
   LifebuoyIcon,
@@ -36,13 +36,13 @@ const AdminSidebar = () => {
 
   return (
     <div>
-      <Transition.Root show={isSidebarMenuOpen} as={Fragment}>
+      <Transition show={isSidebarMenuOpen} as={Fragment}>
         <Dialog
           as="div"
           className="relative z-50 lg:hidden"
           onClose={toggleSidebarMenu}
         >
-          <Transition.Child
+          <TransitionChild
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
             enterFrom="opacity-0"
@@ -52,10 +52,10 @@ const AdminSidebar = () => {
             leaveTo="opacity-0"
           >
             <div className="fixed inset-0 bg-gray-900/80" />
-          </Transition.Child>
+          </TransitionChild>
 
           <div className="fixed inset-0 flex">
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
               enterFrom="-translate-x-full"
@@ -65,7 +65,7 @@ const AdminSidebar = () => {
               leaveTo="-translate-x-full"
             >
               <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
-                <Transition.Child
+                <TransitionChild
                   as={Fragment}
                   enter="ease-in-out duration-300"
                   enterFrom="opacity-0"
@@ -87,7 +87,7 @@ const AdminSidebar = () => {
                       />
                     </button>
                   </div>
-                </Transition.Child>
+                </TransitionChild>
                 {/* Sidebar component, swap this element with another sidebar if you like */}
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-main text-primary px-6 pb-4">
                   <div className="flex h-11 shrink-0 items-center justify-center">
@@ -125,7 +125,7 @@ const AdminSidebar = () => {
                           <Navigation navigation={adminNavigation} />
                         </ul>
                       </li>
-                      
+
                       {/* <div className="">
                         <hr></hr>
                         <div className="mt-2 w-full">
@@ -173,10 +173,10 @@ const AdminSidebar = () => {
                   </nav>
                 </div>
               </Dialog.Panel>
-            </Transition.Child>
+            </TransitionChild>
           </div>
         </Dialog>
-      </Transition.Root>
+      </Transition>
 
       {/* Static sidebar for desktop */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
@@ -222,7 +222,7 @@ const AdminSidebar = () => {
                   />
                   {t("affiliatePanel")}
                 </Link> */}
-                <Link
+                {/* <Link
                   onClick={() => toggleSidebarMenu()}
                   href="/home/support"
                   className="group -mx-4 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6   hover:bg-gray-50 hover:text-indigo-600"
@@ -232,7 +232,7 @@ const AdminSidebar = () => {
                     aria-hidden="true"
                   />
                   {t("support")}
-                </Link>
+                </Link> */}
                 <Link
                   onClick={() => toggleSidebarMenu()}
                   href="/home/settings/profile

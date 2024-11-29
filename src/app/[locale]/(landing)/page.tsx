@@ -2,21 +2,22 @@ import HeroLanding from "@/components/ui/commons/HeroLanding";
 import AffiliateHandler from "@/components/core/AffiliateHandler";
 import CTAOffer from "@/components/ui/commons/CTAOffer";
 import TestimonialMultiple from "./ui/TestimonialMultiple";
-import MarketingPage from "@/components/ui/landingPage/MarketingPage";
+import dynamic from "next/dynamic";
+import locale from "date-fns/locale/af";
+// import MarketingPage from "@/components/ui/landingPage/MarketingPage";
 
-export default function LandingPage({
-  searchParams,
-}: {
-  searchParams: {
-    aff: string;
-  };
-}) {
-  // return <HeroLanding />;
-  return <MarketingPage/>;
+const MarketingPage = dynamic(
+  () => import("@/components/ui/landingPage/MarketingPage"),
+  { ssr: false }
+);
+
+export default function LandingPage({ params }) {
+  return <MarketingPage />;
 }
 
 // old component
-{/* <div className="bg-sky-950">
+{
+  /* <div className="bg-sky-950">
       <HeroLanding />
       <div className="bg-white flex">
         <div className="hidden lg:flex   mx-auto">
@@ -29,4 +30,5 @@ export default function LandingPage({
         </div>
       </div>{" "} 
        <AffiliateHandler aff={searchParams.aff} currentUser={null} />
-    </div> */}
+    </div> */
+}

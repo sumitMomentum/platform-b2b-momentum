@@ -11,20 +11,21 @@ export const metadata: Metadata = {
   title: "Wallet",
 };
 
-const AdminWalletPage = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    currency?: string;
-  };
-}) => {
+const AdminWalletPage = async (
+  props: {
+    searchParams?: Promise<{
+      currency?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const user = await getUserDB();
   const currencySelected = searchParams?.currency;
   const t = await getTranslations("AdminLayout.pages.wallet");
 
   return (
     <div>
-      <Suspense fallback={<TableLoaderSkeleton count={5} />}>
+      {/* <Suspense fallback={<TableLoaderSkeleton count={5} />}> */}
         <div className="bg-main rounded-2xl p-3 border-2 ">
           <h2 className="text-subtitle">
             {t("yourWallet")}  
@@ -69,7 +70,7 @@ const AdminWalletPage = async ({
             })}
           </div>
         </div>
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

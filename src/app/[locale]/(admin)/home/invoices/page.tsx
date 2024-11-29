@@ -8,14 +8,15 @@ export const metadata: Metadata = {
   title: "Invoices",
 };
 
-const AdminBillingInvoicesModule = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) => {
+const AdminBillingInvoicesModule = async (
+  props: {
+    searchParams?: Promise<{
+      query?: string;
+      page?: string;
+    }>;
+  }
+) => {
+  const searchParams = await props.searchParams;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
   const t = await getTranslations("AdminLayout.pages.invoices");

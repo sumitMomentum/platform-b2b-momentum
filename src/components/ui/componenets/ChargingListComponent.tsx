@@ -33,8 +33,7 @@ const columns = [
     field: "vehicle",
     headerName: "Vehicle",
     flex: 1,
-    valueGetter: (value, row) =>
-      `${row.vehicleId}`,
+    valueGetter: (value, row) => `${row.vehicleId}`,
   },
   // {
   //   field: "chargerLocation",
@@ -107,5 +106,3 @@ const ChargingList = ({
 };
 
 export default ChargingList;
-import page from "@/app/[locale]/(landing)/page";import { TripSession } from "./TripListComponent";
-
