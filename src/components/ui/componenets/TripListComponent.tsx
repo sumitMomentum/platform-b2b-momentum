@@ -25,9 +25,6 @@ import ChargingStationIcon from "@mui/icons-material/ChargingStation";
 import InfoIcon from "@mui/icons-material/Info";
 import SpeedIcon from "@mui/icons-material/Speed";
 
-
-
-
 // Function to get battery icon based on value
 const getBatteryIcon = (value) => {
   if (value >= 100) return <BatteryStdIcon />;
@@ -152,7 +149,6 @@ const columns = [
   },
 ];
 
-
 const TripListComponent = ({
   tripSessions,
   loading,
@@ -165,6 +161,7 @@ const TripListComponent = ({
   return (
     <Box sx={{ width: "100%", height: "80vh" }}>
       <DataGrid
+        autoPageSize
         loading={loading}
         rows={tripSessions} // Use the tripSessions prop directly
         columns={columns}

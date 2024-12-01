@@ -29,7 +29,6 @@ import { map } from "svix/dist/openapi/rxjsStub";
 import { title } from "process";
 import { type } from "os";
 
-
 const VendorList = () => {
   const [vendors, setVendors] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -86,22 +85,22 @@ const VendorList = () => {
   };
 
   const columns: GridColDef[] = [
-  { field: "vendor", headerName: "Vendor", width: 200 },
-  {
-    field: "actions",
-    type: "actions", // Ensure type is "actions"
-    headerName: "Actions",
-    width: 100,
-    getActions: (params) => [
-      <GridActionsCellItem
-        key="delete"
-        icon={<Delete color="error" />}
-        label="Delete"
-        onClick={() => handleDeleteClick(params.row.vendor)} // Call delete handler
-      />,
-    ],
-  },
-];
+    { field: "vendor", headerName: "Vendor", width: 200 },
+    {
+      field: "actions",
+      type: "actions", // Ensure type is "actions"
+      headerName: "Actions",
+      width: 100,
+      getActions: (params) => [
+        <GridActionsCellItem
+          key="delete"
+          icon={<Delete color="error" />}
+          label="Delete"
+          onClick={() => handleDeleteClick(params.row.vendor)} // Call delete handler
+        />,
+      ],
+    },
+  ];
 
   const paginationModel = {
     page: 0,
@@ -123,12 +122,12 @@ const VendorList = () => {
         Vendors
       </Typography>
       <DataGrid
+        autoPageSize
         rows={vendors}
-                getRowId={(row) => row.vendor}
-
+        getRowId={(row) => row.vendor}
         loading={loading}
         columns={columns}
-          initialState={{ pagination: {paginationModel} }} 
+        initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[3, 5, 10]}
         checkboxSelection={false}
         disableRowSelectionOnClick

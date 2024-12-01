@@ -15,7 +15,7 @@ import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllV
 type ActionItem = {
   id: number;
   vin: string;
-  severity: 'High' | 'Medium' | 'Low';
+  severity: "High" | "Medium" | "Low";
   description: string;
   bestPractice: string;
   actionToBeTaken: string;
@@ -121,6 +121,7 @@ const CustomizedDataGrid: React.FC = () => {
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
+        autoPageSize
         rows={actionItems}
         columns={columns}
         getRowId={(row) => row.id} // Use `id` for row identification

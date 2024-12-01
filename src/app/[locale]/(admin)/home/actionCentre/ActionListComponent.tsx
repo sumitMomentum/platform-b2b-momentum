@@ -110,6 +110,7 @@ const ActionListComponent: React.FC<ActionListComponentProps> = ({
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
+        autoPageSize
         rows={actions}
         columns={columns}
         getRowId={(row) => row.id} // Use `id` for row identification
