@@ -7,20 +7,20 @@ const actionMapping = {
   "Charging Above 90% will lead to battery damage": {
     bestPractice: "Do not charge the vehicle above 90%",
     actionToBeTaken: "Reduce car battery capacity below 90%",
-    severity: "High",  // Example severity
-    description: "Charging above 90% can lead to battery damage"  // Example description
+    severity: "High",
+    description: "Charging above 90% can lead to battery damage"
   },
   "Frequent Charging less than 10% leads to wastage of operation time.": {
     bestPractice: "Avoid frequent short charging sessions",
     actionToBeTaken: "Avoid short charging sessions",
-    severity: "Medium",  // Example severity
-    description: "Frequent short charging wastes operation time"  // Example description
+    severity: "Medium",
+    description: "Frequent short charging wastes operation time"
   },
   "Discharging battery below 20% accelerates battery degradation": {
     bestPractice: "Maintain battery health above 20%",
     actionToBeTaken: "Charge the vehicle",
-    severity: "High",  // Example severity
-    description: "Discharging below 20% accelerates battery degradation"  // Example description
+    severity: "High",
+    description: "Discharging below 20% accelerates battery degradation"
   }
 };
 
@@ -28,7 +28,6 @@ const actionMapping = {
 async function fetchChargingSessions() {
   console.log("Fetching charging sessions...");
   const chargingSessions = await prisma.chargingSession.findMany();
-
   console.log(`Fetched ${chargingSessions.length} charging sessions.`);
   return chargingSessions.map(session => {
     const actions: string[] = [];
@@ -46,6 +45,7 @@ async function fetchChargingSessions() {
     }
     return {
       vehicleId: session.vehicleId,
+      TripID: session.TripID,
       actions
     };
   });
@@ -55,7 +55,6 @@ async function fetchChargingSessions() {
 async function fetchVehicleTripSessions() {
   console.log("Fetching vehicle trip sessions...");
   const vehicleTripSessions = await prisma.vehicleTripSession.findMany();
-
   console.log(`Fetched ${vehicleTripSessions.length} vehicle trip sessions.`);
   return vehicleTripSessions.map(session => {
     const actions: string[] = [];
@@ -69,43 +68,42 @@ async function fetchVehicleTripSessions() {
     }
     return {
       vehicleId: session.vehicleId,
+      TripID: session.TripID,
       actions
     };
   });
 }
 
 // Insert actions into the action table
-async function insertActions(actionsByVehicle: Record<string, string[]>) {
+async function insertActions(actionsByVehicle: Array<{ vehicleId: string, TripID: number, actions: string[] }>) {
   console.log("Preparing actions for insertion...");
   const actionInserts = [];
-  for (const [vehicleId, actions] of Object.entries(actionsByVehicle)) {
+  for (const { vehicleId, TripID, actions } of actionsByVehicle) {
     actions.forEach(action => {
-      // Check if action exists in actionMapping
       const actionDetails = actionMapping[action];
-    
       if (!actionDetails) {
         console.warn(`No action details found for action: ${action}`);
-        return;  // Skip to the next action if not found
+        return;
       }
-    
-      console.log(`Preparing action for vehicleId ${vehicleId}: ${actionDetails.actionToBeTaken}`);
+      const confirm = TripID % 2 === 0 ? 0 : 1;
+      console.log(`Preparing action for vehicleId ${vehicleId}, TripID ${TripID}: ${actionDetails.actionToBeTaken}, confirm: ${confirm}`);
       actionInserts.push({
         vehicleId,
-        severity: actionDetails.severity,  // Insert severity into the database
-        description: actionDetails.description,  // Insert description into the database
+        severity: actionDetails.severity,
+        description: actionDetails.description,
         bestPractice: actionDetails.bestPractice,
         actionToBeTaken: actionDetails.actionToBeTaken,
-        createdDateTime: new Date(),  // Set the current timestamp for creation
-        closedDateTime: new Date(),  // Placeholder, could be updated later if necessary
-        confirm: 0  // Placeholder, assuming "0" means unconfirmed
+        createdDateTime: new Date(),
+        closedDateTime: new Date(),
+        confirm: confirm
       });
-    });    
+    });
   }
 
   console.log(`Inserting ${actionInserts.length} actions into the database...`);
   await prisma.action.createMany({
     data: actionInserts,
-    skipDuplicates: true, // Avoid inserting duplicates if the table has unique constraints
+    skipDuplicates: true,
   });
 
   console.log(`Successfully inserted ${actionInserts.length} actions.`);
@@ -123,16 +121,20 @@ async function aggregateActions() {
   const allActions = [...chargingActions, ...vehicleTripActions];
 
   console.log(`Total number of action records: ${allActions.length}`);
-  const aggregatedActions = allActions.reduce((acc, { vehicleId, actions }) => {
-    if (!acc[vehicleId]) {
-      acc[vehicleId] = [];
+  const aggregatedActions = allActions.reduce((acc, { vehicleId, TripID, actions }) => {
+    const key = `${vehicleId}-${TripID}`;
+    if (!acc[key]) {
+      acc[key] = [];
     }
-    acc[vehicleId].push(...actions);
-    console.log(`Aggregated actions for vehicleId ${vehicleId}: ${acc[vehicleId].join(", ")}`);
+    acc[key].push(...actions);
+    console.log(`Aggregated actions for vehicleId ${vehicleId} and TripID ${TripID}: ${acc[key].join(", ")}`);
     return acc;
   }, {} as Record<string, string[]>);
 
-  return aggregatedActions;
+  return Object.entries(aggregatedActions).map(([key, actions]) => {
+    const [vehicleId, TripID] = key.split('-');
+    return { vehicleId, TripID: Number(TripID), actions };
+  });
 }
 
 // Server function to fetch and aggregate actions for all vehicles and save them in the database
