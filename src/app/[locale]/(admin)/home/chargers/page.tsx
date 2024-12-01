@@ -162,10 +162,17 @@ const Page = () => {
         <Chip
           variant="outlined"
           label={params.value}
+          color={
+            params.value.toLowerCase().includes("fast")
+              ? "success"
+              : params.value.toLowerCase().includes("slow")
+              ? "warning"
+              : "info"
+          }
           icon={
             params.value.toLowerCase().includes("fast") ? (
               <FlashAutoIcon />
-            ) : params.value.toLowerCase().includes("normal") ? (
+            ) : params.value.toLowerCase().includes("slow") ? (
               <FlashOnIcon />
             ) : (
               <FlashOffIcon />
