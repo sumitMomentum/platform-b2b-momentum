@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-// Define BenefitItem type here
-export type BenefitItem = {
+import TrendingUpSharpIcon from "@mui/icons-material/TrendingUpSharp";
+import TrendingDownSharpIcon from "@mui/icons-material/TrendingDownSharp";
+import { Typography } from "@mui/material";
+
+// Define BenefitItem type directly here
+type BenefitItem = {
   vin: string;
   vehicleId: string;
   batteryCycleSavingMonthly: number;
@@ -20,17 +22,21 @@ export type BenefitItem = {
   rangeIncreaseLifetimeEstimate: number;
   revenueIncreaseLifetime: number;
 };
-import TrendingUpSharpIcon from "@mui/icons-material/TrendingUpSharp";
-import TrendingDownSharpIcon from "@mui/icons-material/TrendingDownSharp";
-import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
-import { Typography } from "@mui/material";
-import ThumbDownAlt from "@mui/icons-material/ThumbDownAlt";
-import ThumbUpAlt from "@mui/icons-material/ThumbUpAlt";
-import { map } from "svix/dist/openapi/rxjsStub";
-import page from "../page";
-import style from "styled-jsx/style";
 
-export default function BenefitsListComponent({ benefits, loading }) {
+interface BenefitsListComponentProps {
+  benefits: BenefitItem[];
+  overall: {
+    overallProfit: BenefitItem;
+    overallLoss: BenefitItem;
+  };
+  loading: boolean;
+}
+
+export default function BenefitsListComponent({
+  benefits,
+  overall,
+  loading,
+}: BenefitsListComponentProps) {
   const columns: GridColDef[] = [
     {
       field: "vin",
@@ -39,12 +45,8 @@ export default function BenefitsListComponent({ benefits, loading }) {
       minWidth: 150,
       renderCell: (params) => (
         <>
-          {params.value === "Total loss" && (
-            <TrendingDownSharpIcon color="error" />
-          )}
-          {params.value === "Total gains" && (
-            <TrendingUpSharpIcon color="success" />
-          )}
+          {params.value === "Total loss" && <TrendingDownSharpIcon color="error" />}
+          {params.value === "Total gains" && <TrendingUpSharpIcon color="success" />}
           <span style={{ marginLeft: 8 }}>{params.value}</span>
         </>
       ),
@@ -54,83 +56,107 @@ export default function BenefitsListComponent({ benefits, loading }) {
       headerName: "Battery Cycle Saving (Monthly)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "batteryCycleSavingYearly",
       headerName: "Battery Cycle Saving (Yearly)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "batteryCycleSavingLifetime",
       headerName: "Battery Cycle Saving (Lifetime)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "costSavingChargingMonthly",
       headerName: "Cost Saving Charging (Monthly)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "costSavingChargingYearly",
       headerName: "Cost Saving Charging (Yearly)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "costSavingChargingLifeTimeEstimate",
       headerName: "Cost Saving Charging (Lifetime Estimate)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "rangeIncreaseMonthly",
       headerName: "Range Increase (Monthly)",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {params.value}
-        </div>
-      ),
+      renderCell: (params) =>
+        typeof params.value === "number" ? (
+          <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
+            {params.value.toFixed(2)}
+          </div>
+        ) : (
+          params.value
+        ),
     },
     {
       field: "rangeIncreaseYearly",
       headerName: "Range Increase (Yearly)",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {params.value}
-        </div>
-      ),
+      renderCell: (params) =>
+        typeof params.value === "number" ? (
+          <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
+            {params.value.toFixed(2)}
+          </div>
+        ) : (
+          params.value
+        ),
     },
     {
       field: "rangeIncreaseLifetimeEstimate",
       headerName: "Range Increase (Lifetime Estimate)",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {params.value}
-        </div>
-      ),
+      renderCell: (params) =>
+        typeof params.value === "number" ? (
+          <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
+            {params.value.toFixed(2)}
+          </div>
+        ) : (
+          params.value
+        ),
     },
     {
       field: "revenueIncreaseLifetime",
       headerName: "Revenue Increase (Lifetime)",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {params.value}
-        </div>
-      ),
+      renderCell: (params) =>
+        typeof params.value === "number" ? (
+          <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
+            {params.value.toFixed(2)}
+          </div>
+        ) : (
+          params.value
+        ),
     },
   ];
-
+  
   return (
     <Paper sx={{ height: "auto", width: "100%", backgroundColor: "white" }}>
       <Typography variant="h5" sx={{ margin: 3, fontWeight: "bold" }}>
@@ -143,11 +169,7 @@ export default function BenefitsListComponent({ benefits, loading }) {
             noRowsVariant: "skeleton",
           },
         }}
-        rows={benefits
-          .filter((vehicle) => vehicle.vehicleId === "xxxxxxxxxx")
-          .sort((a, b) => {
-            return a.vin > b.vin ? 1 : -1; // Sort by vin in ascending order
-          })}
+        rows={[overall.overallProfit, overall.overallLoss]}
         columns={columns}
         getRowId={(row) => row.vin}
         loading={loading}
@@ -176,7 +198,7 @@ export default function BenefitsListComponent({ benefits, loading }) {
             noRowsVariant: "skeleton",
           },
         }}
-        rows={benefits.filter((vehicle) => vehicle.vehicleId !== "xxxxxxxxxx")}
+        rows={benefits}
         columns={columns}
         getRowId={(row) => row.vin}
         loading={loading}
