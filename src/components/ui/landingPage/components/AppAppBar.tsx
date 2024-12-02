@@ -138,7 +138,7 @@ export default function AppAppBar({ mode, toggleColorMode }) {
               mode={mode}
               toggleColorMode={toggleColorMode}
             /> */}
-            <Link href={"/home"} passHref>
+            <Link href={"/sign-in"} passHref>
               <Button variant="contained" size="small">
                 Sign in
               </Button>
@@ -147,7 +147,7 @@ export default function AppAppBar({ mode, toggleColorMode }) {
               Sign up
             </Button> */}
           </Box>
-          {/* <Box sx={{ display: { sm: "flex", md: "none" } }}>
+          <Box sx={{ display: { sm: "flex", md: "none" } }}>
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
@@ -164,33 +164,33 @@ export default function AppAppBar({ mode, toggleColorMode }) {
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-                <Divider sx={{ my: 3 }} />
+                {/* <Divider sx={{ my: 3 }} />
                 <MenuItem>Features</MenuItem>
                 <MenuItem>Highlights</MenuItem>
                 <MenuItem>Testimonials</MenuItem>
                 <MenuItem>Pricing</MenuItem>
-                 <MenuItem>FAQ</MenuItem> 
-                 <MenuItem>Blog</MenuItem> 
-                 <MenuItem>
+                <MenuItem>FAQ</MenuItem>
+                <MenuItem>Blog</MenuItem>
+                <MenuItem>
                   <Button color="primary" variant="contained" fullWidth>
                     Sign up
                   </Button>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem>
-                  <Link href={"/home"} passHref>
+                  <Link href={"/sign-in"} passHref>
                     <Button color="primary" variant="contained" size="small">
                       Sign in
                     </Button>
                   </Link>
-                  <ToggleColorMode
+                  {/* <ToggleColorMode
               data-screenshot="toggle-mode"
               mode={mode}
               toggleColorMode={toggleColorMode}
-            />
+            /> */}
                 </MenuItem>
               </Box>
             </Drawer>
-          </Box> */}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

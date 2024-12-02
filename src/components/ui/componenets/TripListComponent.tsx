@@ -161,6 +161,12 @@ const TripListComponent = ({
   return (
     <Box sx={{ width: "100%", height: "80vh" }}>
       <DataGrid
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         loading={loading}
         rows={tripSessions} // Use the tripSessions prop directly
         columns={columns}
