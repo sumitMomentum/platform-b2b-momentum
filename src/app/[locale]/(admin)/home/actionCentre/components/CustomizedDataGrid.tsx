@@ -121,7 +121,12 @@ const CustomizedDataGrid: React.FC = () => {
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
-        autoPageSize
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         rows={actionItems}
         columns={columns}
         getRowId={(row) => row.id} // Use `id` for row identification

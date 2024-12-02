@@ -258,7 +258,12 @@ const Page = () => {
       <div className="container">
         <Box style={{ display: "flex", width: "100%", height: "70vh" }}>
           <DataGrid
-            autoPageSize
+            slotProps={{
+              loadingOverlay: {
+                variant: "skeleton",
+                noRowsVariant: "skeleton",
+              },
+            }}
             rows={chargerMasterData}
             columns={columns}
             autosizeOnMount

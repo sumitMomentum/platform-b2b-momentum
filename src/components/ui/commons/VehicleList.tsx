@@ -194,7 +194,12 @@ const VehicleList = (props) => {
       }
     >
       <DataGrid
-        autoPageSize
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         // loading={loading}
         onRowClick={handleRowClickEvent}
         getRowId={(row) => row.vehicleId}

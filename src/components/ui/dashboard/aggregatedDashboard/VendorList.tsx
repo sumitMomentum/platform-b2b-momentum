@@ -56,6 +56,7 @@ const VendorList = () => {
   useEffect(() => {
     setLoading(true);
     getVendors();
+    console.log(vendors);
     setLoading(false);
   }, []);
 
@@ -122,7 +123,12 @@ const VendorList = () => {
         Vendors
       </Typography>
       <DataGrid
-        autoPageSize
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         rows={vendors}
         getRowId={(row) => row.vendor}
         loading={loading}

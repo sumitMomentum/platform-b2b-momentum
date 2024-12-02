@@ -90,7 +90,12 @@ const page = () => {
       {chargingSchedule.length > 0 ? (
         <Box style={{ display: "flex", width: "100%", height: "80vh" }}>
           <DataGrid
-            autoPageSize
+            slotProps={{
+              loadingOverlay: {
+                variant: "skeleton",
+                noRowsVariant: "skeleton",
+              },
+            }}
             rows={chargingSchedule}
             columns={columns}
             loading={loading}

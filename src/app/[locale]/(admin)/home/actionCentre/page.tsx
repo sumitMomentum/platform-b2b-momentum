@@ -57,9 +57,11 @@ export default function Page() {
 
     fetchData();
   }, []);
+
   const toggleIsTabular = () => {
     setIsTabular((prevState) => !prevState);
   };
+  
   return (
     <Box>
       <PageName

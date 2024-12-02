@@ -70,7 +70,12 @@ function ChargerListComponent() {
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
-        autoPageSize
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         rows={chargerMasterData}
         columns={columns}
         getRowId={(row) => row.chargerID}

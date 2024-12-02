@@ -98,7 +98,12 @@ const CustomizedDataGrid: React.FC<VehicleDataListComponentProps> = ({
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
-        autoPageSize
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         rows={vehicleDataItems}
         columns={columns}
         getRowId={(row) => row.id} // Use `id` for row identification

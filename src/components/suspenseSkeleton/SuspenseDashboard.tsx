@@ -1,11 +1,11 @@
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
-import SuspenseHeader from "./SuspenseHeader";
+import SuspenseBreadCrumbs from "./SuspenseBreadCrumbs";
 
 export default function SuspenseDashboard() {
   return (
     <div>
-      <SuspenseHeader />
+      <SuspenseBreadCrumbs />
       <div className="flex gap-6 w-full justify-center items-center pt-2">
         <div className="flex gap-6 flex-col w-full">
           <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3">

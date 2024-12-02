@@ -3,7 +3,14 @@ import { useState, useEffect, useRef } from "react";
 import { getTripSessions } from "@/actions/admin/tripModule/getAllTripSessions";
 import PageName from "@/components/ui/commons/PageName";
 import TripList from "@/components/ui/componenets/TripListComponent";
-import { Box, Button, IconButton, InputAdornment, TextField, Tooltip } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Tooltip,
+} from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
@@ -32,6 +39,7 @@ const Page = () => {
   const [error, setError] = useState<string | null>(null); // Error state for better UX
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchTripSessions = async () => {
     try {
@@ -50,6 +58,8 @@ const Page = () => {
         stack: error.stack,
       });
       setError("Failed to load trip sessions. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -86,7 +96,11 @@ const Page = () => {
       fetchTripSessions();
     } catch (error) {
       console.error("Upload error:", error);
-      window.alert(`Error: ${error instanceof Error ? error.message : "Something went wrong"}`);
+      window.alert(
+        `Error: ${
+          error instanceof Error ? error.message : "Something went wrong"
+        }`
+      );
     }
   };
 
@@ -100,11 +114,17 @@ const Page = () => {
     <div>
       <PageName
         name={"Trip Sessions"}
-        breadcrumbs={[
-          { name: "Home", href: "/home" },
-        ]}
+        breadcrumbs={[{ name: "Home", href: "/home" }]}
       />
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2, margin: 2 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 2,
+          margin: 2,
+        }}
+      >
         <Box display="flex" alignItems="center" gap={2}>
           <TextField
             fullWidth
@@ -123,8 +143,16 @@ const Page = () => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
-                  <Tooltip title={selectedFile ? "Change File" : "Browse"} placement="bottom" color="primary">
-                    <IconButton color="primary" onClick={handleButtonClick} size="small">
+                  <Tooltip
+                    title={selectedFile ? "Change File" : "Browse"}
+                    placement="bottom"
+                    color="primary"
+                  >
+                    <IconButton
+                      color="primary"
+                      onClick={handleButtonClick}
+                      size="small"
+                    >
                       {selectedFile ? <ChangeCircleIcon /> : <AddCircleIcon />}
                     </IconButton>
                   </Tooltip>
@@ -141,7 +169,12 @@ const Page = () => {
             style={{ display: "none" }}
           />
         </Box>
-        <Button startIcon={<FileUploadIcon />} variant="contained" color="primary" onClick={handleUpload}>
+        <Button
+          startIcon={<FileUploadIcon />}
+          variant="contained"
+          color="primary"
+          onClick={handleUpload}
+        >
           Upload
         </Button>
       </Box>
@@ -150,7 +183,7 @@ const Page = () => {
           {error ? (
             <div>{error}</div> // Show error message if there is one
           ) : (
-            <TripList tripSessions={tripSessions} loading={false} />
+            <TripList tripSessions={tripSessions} loading={loading} />
           )}
         </div>
       </div>

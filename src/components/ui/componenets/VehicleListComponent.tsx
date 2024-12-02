@@ -109,7 +109,12 @@ const VehicleList = () => {
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
-        autoPageSize
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         loading={loading}
         onRowClick={handleRowClickEvent}
         getRowId={(row) => row.vehicleId}
