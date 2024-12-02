@@ -50,7 +50,7 @@ export default function SavingsDistributionChart({
             }}
           >
             <Typography variant="h4" component="p">
-              {loading ? (
+              {/* {loading ? (
                 0
               ) : (
                 <CountUp
@@ -60,7 +60,10 @@ export default function SavingsDistributionChart({
                       .toFixed(2)
                   )}
                 />
-              )}{" "}
+              )}{" "} */}
+              {vehicleData
+                .reduce((acc, item) => acc + item.value, 0)
+                .toFixed(2)}{" "}
               USD
             </Typography>
             <Chip size="small" color="error" label="-8%" />{" "}
