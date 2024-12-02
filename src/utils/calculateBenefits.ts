@@ -24,7 +24,11 @@ async function fetchAllVehicles(): Promise<{ id: number; vehicleId: string; vin:
       select: { id: true, vehicleId: true, vin: true },
     });
     console.log(`Fetched ${vehicles.length} vehicles.`);
-    return vehicles;
+    // Ensure id is cast to number
+    return vehicles.map(vehicle => ({
+      ...vehicle,
+      id: Number(vehicle.id)
+    }));
   } catch (error) {
     console.error("Error fetching vehicles:", error);
     throw new Error("Failed to fetch vehicles.");
