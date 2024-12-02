@@ -194,6 +194,7 @@ const VehicleList = (props) => {
       }
     >
       <DataGrid
+        autoPageSize
         // loading={loading}
         onRowClick={handleRowClickEvent}
         getRowId={(row) => row.vehicleId}

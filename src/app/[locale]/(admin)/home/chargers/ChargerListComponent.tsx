@@ -70,6 +70,7 @@ function ChargerListComponent() {
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
+        autoPageSize
         rows={chargerMasterData}
         columns={columns}
         getRowId={(row) => row.chargerID}

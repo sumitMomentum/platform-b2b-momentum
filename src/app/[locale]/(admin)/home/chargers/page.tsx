@@ -4,7 +4,15 @@ import { useState, useEffect, useRef } from "react";
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
 import { uploadChargerDataFromCSV } from "@/actions/admin/csvModule/charging/upload-charger-data-using-csv"; // Adjust the import path if necessary
 import PageName from "@/components/ui/commons/PageName";
-import { Box, Button, IconButton, InputAdornment, TextField, Tooltip, Chip } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Tooltip,
+  Chip,
+} from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import PowerIcon from "@mui/icons-material/Power";
 import PowerOffIcon from "@mui/icons-material/PowerOff";
@@ -85,7 +93,11 @@ const Page = () => {
       console.log("[CLIENT] Aggregated Actions:", result.actions);
     } catch (error) {
       console.error("Upload error:", error);
-      window.alert(`Error: ${error instanceof Error ? error.message : "Something went wrong"}`);
+      window.alert(
+        `Error: ${
+          error instanceof Error ? error.message : "Something went wrong"
+        }`
+      );
     }
   };
 
@@ -150,10 +162,17 @@ const Page = () => {
         <Chip
           variant="outlined"
           label={params.value}
+          color={
+            params.value.toLowerCase().includes("fast")
+              ? "success"
+              : params.value.toLowerCase().includes("slow")
+              ? "warning"
+              : "info"
+          }
           icon={
             params.value.toLowerCase().includes("fast") ? (
               <FlashAutoIcon />
-            ) : params.value.toLowerCase().includes("normal") ? (
+            ) : params.value.toLowerCase().includes("slow") ? (
               <FlashOnIcon />
             ) : (
               <FlashOffIcon />
@@ -174,7 +193,15 @@ const Page = () => {
           // { name: "Chargers", href: "/home/chargers" },
         ]}
       />
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2, margin: 2 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 2,
+          margin: 2,
+        }}
+      >
         <Box display="flex" alignItems="center" gap={2}>
           <TextField
             fullWidth
@@ -193,8 +220,16 @@ const Page = () => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
-                  <Tooltip title={selectedFile ? "Change File" : "Browse"} placement="bottom" color="primary">
-                    <IconButton color="primary" onClick={handleButtonClick} size="small">
+                  <Tooltip
+                    title={selectedFile ? "Change File" : "Browse"}
+                    placement="bottom"
+                    color="primary"
+                  >
+                    <IconButton
+                      color="primary"
+                      onClick={handleButtonClick}
+                      size="small"
+                    >
                       {selectedFile ? <ChangeCircleIcon /> : <AddCircleIcon />}
                     </IconButton>
                   </Tooltip>
@@ -211,13 +246,19 @@ const Page = () => {
             style={{ display: "none" }}
           />
         </Box>
-        <Button startIcon={<FileUploadIcon />} variant="contained" color="primary" onClick={handleUpload}>
+        <Button
+          startIcon={<FileUploadIcon />}
+          variant="contained"
+          color="primary"
+          onClick={handleUpload}
+        >
           Upload
         </Button>
       </Box>
       <div className="container">
         <Box style={{ display: "flex", width: "100%", height: "70vh" }}>
           <DataGrid
+            autoPageSize
             rows={chargerMasterData}
             columns={columns}
             autosizeOnMount

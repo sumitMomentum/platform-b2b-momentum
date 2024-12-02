@@ -51,12 +51,15 @@ const page = () => {
       field: "chargerLocation",
       headerName: "Charger Location",
       flex: 1,
-      valueGetter: (params, row) => {
-        const coords = row.charger.chargerLocation.split(",");
-        return `${Number(coords[0]).toFixed(6)}, ${Number(coords[1]).toFixed(
-          2
-        )}`;
-      },
+      valueFormatter: (params, row) =>
+        `${[
+          Number(row.charger.chargerLocation.toString().split(",")[0]).toFixed(
+            2
+          ),
+          Number(row.charger.chargerLocation.toString().split(",")[1]).toFixed(
+            2
+          ),
+        ].join(", ")}`,
     },
     {
       field: "scheduleDate",
@@ -87,6 +90,7 @@ const page = () => {
       {chargingSchedule.length > 0 ? (
         <Box style={{ display: "flex", width: "100%", height: "80vh" }}>
           <DataGrid
+            autoPageSize
             rows={chargingSchedule}
             columns={columns}
             loading={loading}

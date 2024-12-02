@@ -38,7 +38,9 @@ interface VehicleDataListComponentProps {
 const CustomizedDataGrid: React.FC<VehicleDataListComponentProps> = ({
   initialVehicleDataItems = [],
 }) => {
-  const [vehicleDataItems, setVehicleDataItems] = useState<VehicleDataItem[]>(initialVehicleDataItems);
+  const [vehicleDataItems, setVehicleDataItems] = useState<VehicleDataItem[]>(
+    initialVehicleDataItems
+  );
   const [loading, setLoading] = useState(initialVehicleDataItems.length === 0);
 
   useEffect(() => {
@@ -61,13 +63,33 @@ const CustomizedDataGrid: React.FC<VehicleDataListComponentProps> = ({
   const columns: GridColDef[] = [
     { field: "vin", headerName: "VIN", flex: 1 },
     { field: "vehicleId", headerName: "Vehicle ID", flex: 1 },
-    { field: "batteryCycleSavingMonthly", headerName: "Battery Cycle Saving (Monthly)", flex: 1 },
-    { field: "costSavingChargingMonthly", headerName: "Cost Saving (Monthly)", flex: 1 },
-    { field: "rangeIncreaseMonthly", headerName: "Range Increase (Monthly)", flex: 1 },
+    {
+      field: "batteryCycleSavingMonthly",
+      headerName: "Battery Cycle Saving (Monthly)",
+      flex: 1,
+    },
+    {
+      field: "costSavingChargingMonthly",
+      headerName: "Cost Saving (Monthly)",
+      flex: 1,
+    },
+    {
+      field: "rangeIncreaseMonthly",
+      headerName: "Range Increase (Monthly)",
+      flex: 1,
+    },
     { field: "initialSoH", headerName: "Initial SoH", flex: 1 },
     { field: "ageOfCar", headerName: "Car Age (Years)", flex: 1 },
-    { field: "estimatedDegradation", headerName: "Estimated Degradation (%)", flex: 1 },
-    { field: "actualDegradation", headerName: "Actual Degradation (%)", flex: 1 },
+    {
+      field: "estimatedDegradation",
+      headerName: "Estimated Degradation (%)",
+      flex: 1,
+    },
+    {
+      field: "actualDegradation",
+      headerName: "Actual Degradation (%)",
+      flex: 1,
+    },
     { field: "difference", headerName: "Difference (%)", flex: 1 },
     { field: "loss", headerName: "Loss", flex: 1 },
     { field: "carType", headerName: "Car Type", flex: 1 },
@@ -76,6 +98,7 @@ const CustomizedDataGrid: React.FC<VehicleDataListComponentProps> = ({
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
+        autoPageSize
         rows={vehicleDataItems}
         columns={columns}
         getRowId={(row) => row.id} // Use `id` for row identification

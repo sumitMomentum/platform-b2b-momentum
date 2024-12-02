@@ -137,6 +137,7 @@ export default function BenefitsListComponent({ benefits, loading }) {
         Overall Profit and Loss
       </Typography>
       <DataGrid
+        autoPageSize
         rows={benefits
           .filter((vehicle) => vehicle.vehicleId === "xxxxxxxxxx")
           .sort((a, b) => {
@@ -164,6 +165,7 @@ export default function BenefitsListComponent({ benefits, loading }) {
         Details:
       </Typography>
       <DataGrid
+        autoPageSize
         rows={benefits.filter((vehicle) => vehicle.vehicleId !== "xxxxxxxxxx")}
         columns={columns}
         getRowId={(row) => row.vin}

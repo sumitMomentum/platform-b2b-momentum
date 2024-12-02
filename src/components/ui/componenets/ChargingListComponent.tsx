@@ -171,6 +171,7 @@ const ChargingList: React.FC<ChargingListProps> = ({
   return (
     <Paper sx={{ height: 600, width: "100%" }}>
       <DataGrid
+        autoPageSize
         loading={loading}
         rows={chargingSessions}
         columns={columns}
