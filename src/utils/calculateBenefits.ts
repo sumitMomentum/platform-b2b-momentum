@@ -58,20 +58,36 @@ function calculateMetrics(vehicle: { id: number; vehicleId: string; vin: string 
 // Calculate benefits based on metrics
 function calculate_benefit(vehicle: { id: number; vehicleId: string; vin: string }, metrics: BenefitMetrics) {
   console.log(`Calculating benefits for vehicle ${metrics.vehicleId} (VIN: ${metrics.vin})...`);
-  const batteryCycleSavingMonthly = metrics.EnergyConsumedMonthly * 0.01; // Example calculation
-  const batteryCycleSavingYearly = batteryCycleSavingMonthly * 12;
-  const batteryCycleSavingLifetime = batteryCycleSavingMonthly * 60; // Assuming 5 years lifetime
-  const costSavingChargingMonthly = metrics.EnergyConsumedMonthly * (metrics.InitialEnergyPrice - metrics.CurrentEnergyPrice);
-  const costSavingChargingYearly = costSavingChargingMonthly * 12;
-  const costSavingChargingLifeTimeEstimate = costSavingChargingMonthly * 60; // Assuming 5 years lifetime
-  const rangeIncreaseYearly = metrics.RangeIncreaseMonthly * 12;
-  const rangeIncreaseLifetimeEstimate = metrics.RangeIncreaseMonthly * 60; // Assuming 5 years lifetime
-  const revenueIncreaseLifetime = metrics.RevenueIncreaseMonthly * 60; // Assuming 5 years lifetime
-  const difference = metrics.CurrentSoH - metrics.ActualDegradation;
-  const loss = Math.max(0, metrics.InitialSoH - metrics.CurrentSoH); // Example calculation for loss
-  const carType = "Sedan"; // Placeholder; dynamically calculate if needed
 
-  const factor = vehicle.id % 2 === 0 ? -1 : 1;
+  // Helper function to add randomness with bounds
+  const randomize = (base: number, percentage: number = 0.2) => {
+    const variation = base * percentage;
+    return base + (Math.random() * 2 - 1) * variation; // ± percentage of base value
+  };
+
+  const batteryCycleSavingMonthly = randomize(metrics.EnergyConsumedMonthly * 0.01);
+  const batteryCycleSavingYearly = randomize(batteryCycleSavingMonthly * 12);
+  const batteryCycleSavingLifetime = randomize(batteryCycleSavingMonthly * 60); // Assuming 5 years lifetime
+
+  const costSavingChargingMonthly = randomize(
+    metrics.EnergyConsumedMonthly * (metrics.InitialEnergyPrice - metrics.CurrentEnergyPrice)
+  );
+  const costSavingChargingYearly = randomize(costSavingChargingMonthly * 12);
+  const costSavingChargingLifeTimeEstimate = randomize(costSavingChargingMonthly * 60); // Assuming 5 years lifetime
+
+  const rangeIncreaseMonthly = randomize(metrics.RangeIncreaseMonthly);
+  const rangeIncreaseYearly = randomize(rangeIncreaseMonthly * 12);
+  const rangeIncreaseLifetimeEstimate = randomize(rangeIncreaseMonthly * 60); // Assuming 5 years lifetime
+
+  const revenueIncreaseLifetime = randomize(metrics.RevenueIncreaseMonthly * 60); // Assuming 5 years lifetime
+
+  const difference = randomize(metrics.CurrentSoH - metrics.ActualDegradation);
+  const loss = Math.max(0, randomize(metrics.InitialSoH - metrics.CurrentSoH));
+
+  const carTypes = ["Sedan", "SUV", "Truck", "Hatchback"];
+  const carType = carTypes[Math.floor(Math.random() * carTypes.length)]; // Randomly select car type
+
+  const factor = Math.random() < 0.5 ? -1 : 1; // Randomly flip sign for variety
 
   const benefit = {
     vin: metrics.vin,
@@ -82,14 +98,14 @@ function calculate_benefit(vehicle: { id: number; vehicleId: string; vin: string
     costSavingChargingMonthly: costSavingChargingMonthly * factor,
     costSavingChargingYearly: costSavingChargingYearly * factor,
     costSavingChargingLifeTimeEstimate: costSavingChargingLifeTimeEstimate * factor,
-    rangeIncreaseMonthly: metrics.RangeIncreaseMonthly * factor,
+    rangeIncreaseMonthly: rangeIncreaseMonthly * factor,
     rangeIncreaseYearly: rangeIncreaseYearly * factor,
     rangeIncreaseLifetimeEstimate: rangeIncreaseLifetimeEstimate * factor,
     revenueIncreaseLifetime: revenueIncreaseLifetime * factor,
-    initialSoH: metrics.InitialSoH,
-    ageOfCar: metrics.AgeofCar,
-    estimatedDegradation: 0, // Placeholder
-    actualDegradation: metrics.ActualDegradation,
+    initialSoH: randomize(metrics.InitialSoH),
+    ageOfCar: randomize(metrics.AgeofCar, 0.1), // Slight variation for age
+    estimatedDegradation: randomize(0.05, 0.05), // Placeholder with small variation
+    actualDegradation: randomize(metrics.ActualDegradation),
     difference,
     loss,
     carType,
