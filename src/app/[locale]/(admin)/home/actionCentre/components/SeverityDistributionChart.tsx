@@ -8,6 +8,7 @@ import { BarChart } from "@mui/x-charts/BarChart";
 import { useTheme } from "@mui/material/styles";
 import { ChartsClipPath } from "@mui/x-charts";
 import { sevierityChartsPalette } from "@/themes/ChartPalettes";
+import CountUp from "react-countup";
 
 function getSeverityData(data) {
   let low = 0,
@@ -69,7 +70,8 @@ export default function SeverityDistributionChart({
             }}
           >
             <Typography variant="h4" component="p">
-              {low + medium + high} Actions
+              {loading ? 0 : <CountUp end={Number(low + medium + high)} />}{" "}
+              Actions
             </Typography>
             <Chip
               size="small"

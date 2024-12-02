@@ -103,6 +103,7 @@ export default function MainGrid({ actions, loading }) {
       interval: "All Time",
       trend: totalActions > 50 ? "up" : "neutral",
       data: [totalActions],
+      loading: loading,
     },
     {
       title: "Confirmed Actions",
@@ -110,6 +111,7 @@ export default function MainGrid({ actions, loading }) {
       interval: "All Time",
       trend: confirmedActions > totalActions / 2 ? "up" : "neutral",
       data: [confirmedActions],
+      loading: loading,
     },
     {
       title: "Average Severity Level",
@@ -117,6 +119,7 @@ export default function MainGrid({ actions, loading }) {
       interval: "All Time",
       trend: avgSeverity > 2 ? "up" : "neutral", // Severity greater than 2 means high
       data: [avgSeverity],
+      loading: loading,
     },
     {
       title: "Average Time to Close (hrs)",
@@ -124,6 +127,7 @@ export default function MainGrid({ actions, loading }) {
       interval: "All Time",
       trend: avgTimeToClose < 24 ? "down" : "neutral", // Assuming actions closed in < 24hrs is good
       data: [avgTimeToClose],
+      loading: loading,
     },
   ];
 

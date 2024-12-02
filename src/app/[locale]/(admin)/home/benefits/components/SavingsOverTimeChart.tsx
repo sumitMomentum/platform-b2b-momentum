@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { sevierityChartsPalette } from "@/themes/ChartPalettes";
+import CountUp from "react-countup";
 
 function AreaGradient({ color, id }: { color: string; id: string }) {
   return (
@@ -43,7 +44,7 @@ export default function SavingsOverTimeChart({
   const theme = useTheme();
   const daysInMonth = 30; // For April, we have 30 days
   const data = getDaysInMonth(4, 2024, daysInMonth); // Adjusted to have 30 days for April
-  const isDataAvailable = savingsData.length
+  const isDataAvailable = savingsData.length;
   // // Updated color palette with green shades
   // const colorPalette = [
   //   theme.palette.primary.dark, // Light green
@@ -71,7 +72,8 @@ export default function SavingsOverTimeChart({
             }}
           >
             <Typography variant="h4" component="p">
-              {totalSavings.toFixed(2)} USD
+              {loading ? 0 : <CountUp end={Number(totalSavings.toFixed(2))} />}{" "}
+              USD
             </Typography>
             <Chip
               variant="outlined"
@@ -105,18 +107,22 @@ export default function SavingsOverTimeChart({
               },
             },
           ]}
-          series={isDataAvailable ? [
-            {
-              id: "savings",
-              label: "Savings",
-              showMark: false,
-              curve: "linear",
-              stack: "total",
-              area: true,
-              stackOrder: "ascending",
-              data: savingsData, // Use the real savings data
-            },
-          ] : []}
+          series={
+            isDataAvailable
+              ? [
+                  {
+                    id: "savings",
+                    label: "Savings",
+                    showMark: false,
+                    curve: "linear",
+                    stack: "total",
+                    area: true,
+                    stackOrder: "ascending",
+                    data: savingsData, // Use the real savings data
+                  },
+                ]
+              : []
+          }
           height={250}
           margin={{ left: 50, right: 20, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}

@@ -89,7 +89,7 @@ export default function MainGrid({ benefits, loading }) {
         {/* Stat Cards */}
         {statCardData.map((card, index) => (
           <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-            <StatCard {...card} />
+            <StatCard {...card} loading={loading} />
           </Grid>
         ))}
 

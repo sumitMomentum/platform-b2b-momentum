@@ -6,13 +6,14 @@ import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-
+import CountUp from "react-countup";
 export type StatCardProps = {
   title: string;
   value: string;
   interval: string;
   trend: "up" | "down" | "neutral";
-  data: number[]; // This will no longer be used for the chart
+  data: number[];
+  loading: boolean;
 };
 
 export default function StatCard({
@@ -20,7 +21,8 @@ export default function StatCard({
   value,
   interval,
   trend,
-  data, // This is no longer used for the chart
+  loading,
+  data,
 }: StatCardProps) {
   const theme = useTheme();
 
@@ -64,7 +66,7 @@ export default function StatCard({
               sx={{ justifyContent: "space-between", alignItems: "center" }}
             >
               <Typography variant="h4" component="p">
-                {value}
+                {loading ? 0 : <CountUp end={Number(value)} />}
               </Typography>
               <Chip
                 size="small"

@@ -8,6 +8,7 @@ import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { LineChart } from "@mui/x-charts/LineChart";
+import CountUp from "react-countup";
 
 function AreaGradient({ color, id }: { color: string; id: string }) {
   return (
@@ -85,9 +86,17 @@ export default function ActionsClosedOverTimeChart({
             }}
           >
             <Typography variant="h4" component="p">
-              {actionsClosed.reduce((acc, val) => acc + val, 0) +
-                actionsOpen.reduce((acc, val) => acc + val, 0)}{" "}
-              Actions
+              {loading ? (
+                0
+              ) : (
+                <CountUp
+                  end={
+                    actionsClosed.reduce((acc, val) => acc + val, 0) +
+                    actionsOpen.reduce((acc, val) => acc + val, 0)
+                  }
+                />
+              )}
+              {} Actions
             </Typography>
             <Chip
               size="small"
