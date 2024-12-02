@@ -21,6 +21,7 @@ import { headers } from "next/headers";
  * Handles locale detection, routing, and alternate language links
  * @see https://next-intl-docs.vercel.app/docs/routing/middleware
  */
+
 // const createLocaleRoutingMiddleware = createMiddleware(routing);
 const createLocaleRoutingMiddleware = createMiddleware({
   // Supported locales configuration
