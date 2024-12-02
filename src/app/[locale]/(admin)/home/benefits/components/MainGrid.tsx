@@ -9,16 +9,15 @@ import SavingsDistributionChart from "./SavingsDistributionChart";
 import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
 import BenefitsListComponent from "../BenefitsListComponent";
 
-export default function MainGrid({ benefits, loading }) {
+export default function MainGrid({ benefits, loading, setLoading }) {
   const [statCardData, setStatCardData] = React.useState<StatCardProps[]>([]);
   const [savingsOverTimeData, setSavingsOverTimeData] = React.useState<
     number[]
   >([]);
   const [vehicleBenefits, setVehicleBenefits] = React.useState([]);
-  // const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    // setLoading(true);
+    setLoading(true);
     const fetchData = async () => {
       try {
         // Calculate inferences for stat cards
@@ -64,10 +63,10 @@ export default function MainGrid({ benefits, loading }) {
         setStatCardData(formattedStatCardData);
         setSavingsOverTimeData(savingsOverTime);
         setVehicleBenefits(benefits);
-        // setLoading(false);
       } catch (error) {
         console.error("Failed to fetch data", error);
-        // setLoading(false);
+      } finally {
+        setLoading(false);
       }
     };
 

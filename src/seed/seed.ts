@@ -117,8 +117,8 @@ async function main() {
 
     log.subHeader("Starting Seeding Process");
 
-    const createdUsers = await prisma.user.createMany({ data: users });
-    log.success("Seeded users");
+    // const createdUsers = await prisma.user.createMany({ data: users });
+    // log.success("Seeded users");
 
     const createdVehicles = [];
     for (const vehicle of vehicleDetails) {
