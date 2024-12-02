@@ -61,13 +61,9 @@ export default function SavingsDistributionChart({
                   )}
                 />
               )}{" "} */}
-              <CountUp
-                end={Number(
-                  vehicleData
-                    .reduce((acc, item) => acc + item.value, 0)
-                    .toFixed(2)
-                )}
-              />{" "}
+              {vehicleData
+                .reduce((acc, item) => acc + item.value, 0)
+                .toFixed(2)}{" "}
               USD
             </Typography>
             <Chip size="small" color="error" label="-8%" />{" "}

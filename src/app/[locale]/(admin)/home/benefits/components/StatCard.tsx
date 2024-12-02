@@ -93,7 +93,8 @@ export default function StatCard({
               sx={{ justifyContent: "space-between", alignItems: "center" }}
             >
               <Typography variant="h4" component="p">
-                {<CountUp end={parseFloat(value)} />}
+                {/* {<CountUp end={parseFloat(value)} />} */}
+                {value}
               </Typography>
               <Chip size="small" color={color} label={trendValues[trend]} />
             </Stack>
