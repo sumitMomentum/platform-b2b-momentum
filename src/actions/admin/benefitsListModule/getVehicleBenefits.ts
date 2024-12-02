@@ -1,7 +1,32 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
-import { BenefitItem, Overall, VehicleBenefitsResponse } from "./types"; // Adjust the import path as needed
+
+// Define the required types directly here
+type BenefitItem = {
+  vin: string;
+  vehicleId: string;
+  batteryCycleSavingMonthly: number;
+  batteryCycleSavingYearly: number;
+  batteryCycleSavingLifetime: number;
+  costSavingChargingMonthly: number;
+  costSavingChargingYearly: number;
+  costSavingChargingLifeTimeEstimate: number;
+  rangeIncreaseMonthly: number;
+  rangeIncreaseYearly: number;
+  rangeIncreaseLifetimeEstimate: number;
+  revenueIncreaseLifetime: number;
+};
+
+type Overall = {
+  overallProfit: BenefitItem;
+  overallLoss: BenefitItem;
+};
+
+type VehicleBenefitsResponse = {
+  benefits: BenefitItem[];
+  overall: Overall;
+};
 
 export const getVehicleBenefits = async (): Promise<VehicleBenefitsResponse> => {
   const { userId } = await auth();
