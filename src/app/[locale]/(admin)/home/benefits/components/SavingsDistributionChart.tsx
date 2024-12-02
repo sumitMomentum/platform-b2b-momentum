@@ -12,10 +12,13 @@ import colors from "tailwindcss/colors";
 
 export default function SavingsDistributionChart({
   savingsData,
+  loading,
 }: {
   savingsData: any[];
+  loading: boolean;
 }) {
   const theme = useTheme();
+  const isDataAvailable = savingsData.length;
 
   const vehicleData = savingsData
     .filter((item) => item.vehicleId != "xxxxxxxxxx")
@@ -59,6 +62,7 @@ export default function SavingsDistributionChart({
           </Typography>
         </Stack>
         <BarChart
+          loading={loading}
           borderRadius={8}
           xAxis={[
             {
@@ -79,14 +83,18 @@ export default function SavingsDistributionChart({
               },
             },
           ]}
-          series={[
-            {
-              id: "savings",
-              label: "Savings",
-              data: vehicleData.map((item) => item.value),
-              stack: "A",
-            },
-          ]}
+          series={
+            isDataAvailable
+              ? [
+                  {
+                    id: "savings",
+                    label: "Savings",
+                    data: vehicleData.map((item) => item.value),
+                    stack: "A",
+                  },
+                ]
+              : []
+          }
           height={250}
           margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}

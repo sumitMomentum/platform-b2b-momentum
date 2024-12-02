@@ -43,8 +43,12 @@ function getSeverityData(data) {
   return { low, medium, high };
 }
 
-export default function SeverityDistributionChart({ actionsData = [] }) {
+export default function SeverityDistributionChart({
+  actionsData = [],
+  loading,
+}) {
   const theme = useTheme();
+  const dataAvailable = actionsData.length;
 
   // Get the severity data from the vehicle actions
   const { low, medium, high } = getSeverityData(actionsData);
@@ -81,6 +85,7 @@ export default function SeverityDistributionChart({ actionsData = [] }) {
           </Typography>
         </Stack>
         <BarChart
+          loading={loading}
           borderRadius={8}
           // colors={[
           //   sevierityChartsPalette.success,
@@ -102,14 +107,18 @@ export default function SeverityDistributionChart({ actionsData = [] }) {
               },
             },
           ]}
-          series={[
-            {
-              id: "severity",
-              label: "Severity",
-              data: [low, medium, high], // Data for severity counts
-              stack: "A",
-            },
-          ]}
+          series={
+            dataAvailable
+              ? [
+                  {
+                    id: "severity",
+                    label: "Severity",
+                    data: [low, medium, high], // Data for severity counts
+                    stack: "A",
+                  },
+                ]
+              : []
+          }
           height={250}
           margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}

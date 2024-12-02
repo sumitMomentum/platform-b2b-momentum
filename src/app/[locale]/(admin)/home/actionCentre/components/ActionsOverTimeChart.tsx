@@ -33,11 +33,16 @@ function getDaysInMonth(month: number, year: number) {
 
 export default function ActionsClosedOverTimeChart({
   data,
+  loading,
 }: {
-  data: { closed: { [key: string]: number[] }; open: { [key: string]: number[] } };
+  data: {
+    closed: { [key: string]: number[] };
+    open: { [key: string]: number[] };
+  };
+  loading: boolean;
 }) {
   const theme = useTheme();
-
+  const dataAvailable = data.closed.length || data.open.length;
   // Get the current month and year
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
@@ -106,6 +111,7 @@ export default function ActionsClosedOverTimeChart({
           </Typography>
         </Stack>
         <LineChart
+          loading={loading}
           colors={[colorPalette.closed, colorPalette.open]}
           xAxis={[
             {
@@ -114,30 +120,34 @@ export default function ActionsClosedOverTimeChart({
               tickInterval: (index, i) => (i + 1) % 5 === 0,
             },
           ]}
-          series={[
-            {
-              id: "actionsClosed",
-              label: "Actions Closed",
-              showMark: false,
-              curve: "linear",
-              stack: "total",
-              area: true,
-              stackOrder: "ascending",
-              data: actionsClosed,
-              color: colorPalette.closed,
-            },
-            {
-              id: "actionsOpen",
-              label: "Actions Open",
-              showMark: false,
-              curve: "linear",
-              stack: "total",
-              area: true,
-              stackOrder: "ascending",
-              data: actionsOpen,
-              color: colorPalette.open,
-            },
-          ]}
+          series={
+            dataAvailable
+              ? [
+                  {
+                    id: "actionsClosed",
+                    label: "Actions Closed",
+                    showMark: false,
+                    curve: "linear",
+                    stack: "total",
+                    area: true,
+                    stackOrder: "ascending",
+                    data: actionsClosed,
+                    color: colorPalette.closed,
+                  },
+                  {
+                    id: "actionsOpen",
+                    label: "Actions Open",
+                    showMark: false,
+                    curve: "linear",
+                    stack: "total",
+                    area: true,
+                    stackOrder: "ascending",
+                    data: actionsOpen,
+                    color: colorPalette.open,
+                  },
+                ]
+              : []
+          }
           height={250}
           margin={{ left: 50, right: 20, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}
@@ -155,8 +165,8 @@ export default function ActionsClosedOverTimeChart({
             },
           }}
         >
-          <AreaGradient color={theme.palette.success.dark} id="actionsClosed" />
-          <AreaGradient color={theme.palette.warning.dark} id="actionsOpen" />
+          <AreaGradient color={theme.palette.success.main} id="actionsClosed" />
+          <AreaGradient color={theme.palette.warning.main} id="actionsOpen" />
         </LineChart>
       </CardContent>
     </Card>

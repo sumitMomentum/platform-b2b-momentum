@@ -35,13 +35,15 @@ function getDaysInMonth(month: number, year: number, numOfDays: number) {
 
 export default function SavingsOverTimeChart({
   savingsData = [],
+  loading,
 }: {
   savingsData?: number[];
+  loading: boolean;
 }) {
   const theme = useTheme();
   const daysInMonth = 30; // For April, we have 30 days
   const data = getDaysInMonth(4, 2024, daysInMonth); // Adjusted to have 30 days for April
-
+  const isDataAvailable = savingsData.length
   // // Updated color palette with green shades
   // const colorPalette = [
   //   theme.palette.primary.dark, // Light green
@@ -83,6 +85,7 @@ export default function SavingsOverTimeChart({
           </Typography>
         </Stack>
         <LineChart
+          loading={loading}
           xAxis={[
             {
               scaleType: "point",
@@ -102,7 +105,7 @@ export default function SavingsOverTimeChart({
               },
             },
           ]}
-          series={[
+          series={isDataAvailable ? [
             {
               id: "savings",
               label: "Savings",
@@ -113,7 +116,7 @@ export default function SavingsOverTimeChart({
               stackOrder: "ascending",
               data: savingsData, // Use the real savings data
             },
-          ]}
+          ] : []}
           height={250}
           margin={{ left: 50, right: 20, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}

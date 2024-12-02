@@ -30,7 +30,7 @@ const aggregateData = (data) => {
   // Calculate aggregates
   const monthlyClosedActions = {};
   const monthlyOpenActions = {};
-  
+
   data.forEach((action) => {
     // Count confirmed actions
     if (action.confirm) {
@@ -48,7 +48,9 @@ const aggregateData = (data) => {
     totalTimeToClose += timeToClose || 0;
 
     // Count closed actions per month
-    const monthYearClosed = `${closedDate.getMonth() + 1}-${closedDate.getFullYear()}`;
+    const monthYearClosed = `${
+      closedDate.getMonth() + 1
+    }-${closedDate.getFullYear()}`;
     if (!monthlyClosedActions[monthYearClosed]) {
       monthlyClosedActions[monthYearClosed] = [];
     }
@@ -57,7 +59,9 @@ const aggregateData = (data) => {
     }
 
     // Count open actions per month
-    const monthYearOpen = `${createdDate.getMonth() + 1}-${createdDate.getFullYear()}`;
+    const monthYearOpen = `${
+      createdDate.getMonth() + 1
+    }-${createdDate.getFullYear()}`;
     if (!monthlyOpenActions[monthYearOpen]) {
       monthlyOpenActions[monthYearOpen] = [];
     }
@@ -141,17 +145,18 @@ export default function MainGrid({ actions, loading }) {
 
         {/* Actions Closed Over Time Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <ActionsClosedOverTimeChart 
-            data={{ 
-              closed: monthlyClosedActions, 
-              open: monthlyOpenActions 
-            }} 
+          <ActionsClosedOverTimeChart
+            data={{
+              closed: monthlyClosedActions,
+              open: monthlyOpenActions,
+            }}
+            loading={loading}
           />
         </Grid>
 
         {/* Severity Distribution Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <SeverityDistributionChart actionsData={actions} />
+          <SeverityDistributionChart actionsData={actions} loading={loading} />
         </Grid>
       </Grid>
 

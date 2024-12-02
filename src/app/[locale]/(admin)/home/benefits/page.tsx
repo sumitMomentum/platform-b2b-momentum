@@ -63,7 +63,7 @@ export default function Page() {
         {isTabular ? (
           <BenefitsListComponent benefits={benefits} loading={loading} />
         ) : (
-          <MainGrid benefits={benefits} />
+          <MainGrid benefits={benefits} loading={loading} />
         )}
       </Stack>
     </Box>

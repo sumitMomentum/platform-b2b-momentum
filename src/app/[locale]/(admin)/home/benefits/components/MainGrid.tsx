@@ -9,16 +9,16 @@ import SavingsDistributionChart from "./SavingsDistributionChart";
 import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
 import BenefitsListComponent from "../BenefitsListComponent";
 
-export default function MainGrid({ benefits }) {
+export default function MainGrid({ benefits, loading }) {
   const [statCardData, setStatCardData] = React.useState<StatCardProps[]>([]);
   const [savingsOverTimeData, setSavingsOverTimeData] = React.useState<
     number[]
   >([]);
   const [vehicleBenefits, setVehicleBenefits] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  // const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     const fetchData = async () => {
       try {
         // Calculate inferences for stat cards
@@ -64,10 +64,10 @@ export default function MainGrid({ benefits }) {
         setStatCardData(formattedStatCardData);
         setSavingsOverTimeData(savingsOverTime);
         setVehicleBenefits(benefits);
-        setLoading(false);
+        // setLoading(false);
       } catch (error) {
         console.error("Failed to fetch data", error);
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
@@ -95,10 +95,16 @@ export default function MainGrid({ benefits }) {
 
         {/* Savings Over Time Chart */}
         <Grid item xs={12} md={6} lg={6}>
-          <SavingsOverTimeChart savingsData={savingsOverTimeData} />
+          <SavingsOverTimeChart
+            savingsData={savingsOverTimeData}
+            loading={loading}
+          />
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
-          <SavingsDistributionChart savingsData={vehicleBenefits} />
+          <SavingsDistributionChart
+            savingsData={vehicleBenefits}
+            loading={loading}
+          />
         </Grid>
       </Grid>
 
