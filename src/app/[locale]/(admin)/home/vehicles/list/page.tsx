@@ -137,7 +137,7 @@ const VehiclePage = () => {
             flexDirection: { xs: "column", sm: "row" },
           }}
         >
-          <Box >
+          <Box>
             <TextField
               fullWidth
               label="Choose a .csv File"
@@ -155,7 +155,7 @@ const VehiclePage = () => {
               slotProps={{
                 input: {
                   endAdornment: (
-                    <InputAdornment position="start">
+                    <InputAdornment position="end">
                       <Tooltip
                         title={selectedFile ? "Change File" : "Browse"}
                         placement="bottom"
@@ -232,13 +232,10 @@ const VehiclePage = () => {
       </Box>
 
       <Box className="flex-grow flex flex-col space-y-4">
-        <Box
-          className="flex flex-grow overflow-auto"
-          sx={{ minHeight: "50vh" }}
-        >
+        <Box>
           <VehicleList />
         </Box>
-        <Box className="flex-grow h-50vh overflow-auto">
+        <Box>
           <VendorList />
         </Box>
       </Box>
