@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -8,20 +8,20 @@ const actionMapping = {
     bestPractice: "Do not charge the vehicle above 90%",
     actionToBeTaken: "Reduce car battery capacity below 90%",
     severity: "High",
-    description: "Charging above 90% can lead to battery damage"
+    description: "Charging above 90% can lead to battery damage",
   },
   "Frequent Charging less than 10% leads to wastage of operation time.": {
     bestPractice: "Avoid frequent short charging sessions",
     actionToBeTaken: "Avoid short charging sessions",
     severity: "Medium",
-    description: "Frequent short charging wastes operation time"
+    description: "Frequent short charging wastes operation time",
   },
   "Discharging battery below 20% accelerates battery degradation": {
     bestPractice: "Maintain battery health above 20%",
     actionToBeTaken: "Charge the vehicle",
     severity: "High",
-    description: "Discharging below 20% accelerates battery degradation"
-  }
+    description: "Discharging below 20% accelerates battery degradation",
+  },
 };
 
 // Fetch and process charging sessions
@@ -29,7 +29,7 @@ async function fetchChargingSessions() {
   console.log("Fetching charging sessions...");
   const chargingSessions = await prisma.chargingSession.findMany();
   console.log(`Fetched ${chargingSessions.length} charging sessions.`);
-  return chargingSessions.map(session => {
+  return chargingSessions.map((session) => {
     const actions: string[] = [];
     if (session.BatteryAtEnd >= 90) {
       console.log(`Vehicle ${session.vehicleId} has BatteryAtEnd >= 90.`);
@@ -46,7 +46,7 @@ async function fetchChargingSessions() {
     return {
       vehicleId: session.vehicleId,
       TripID: session.TripID,
-      actions
+      actions,
     };
   });
 }
@@ -56,7 +56,7 @@ async function fetchVehicleTripSessions() {
   console.log("Fetching vehicle trip sessions...");
   const vehicleTripSessions = await prisma.vehicleTripSession.findMany();
   console.log(`Fetched ${vehicleTripSessions.length} vehicle trip sessions.`);
-  return vehicleTripSessions.map(session => {
+  return vehicleTripSessions.map((session) => {
     const actions: string[] = [];
     if (session.BatteryAtEnd <= 20) {
       console.log(`Vehicle ${session.vehicleId} has BatteryAtEnd <= 20.`);
@@ -69,24 +69,32 @@ async function fetchVehicleTripSessions() {
     return {
       vehicleId: session.vehicleId,
       TripID: session.TripID,
-      actions
+      actions,
     };
   });
 }
 
 // Insert actions into the action table
-async function insertActions(actionsByVehicle: Array<{ vehicleId: string, TripID: number, actions: string[] }>) {
+async function insertActions(
+  actionsByVehicle: Array<{
+    vehicleId: string;
+    TripID: number;
+    actions: string[];
+  }>
+) {
   console.log("Preparing actions for insertion...");
   const actionInserts = [];
   for (const { vehicleId, TripID, actions } of actionsByVehicle) {
-    actions.forEach(action => {
+    actions.forEach((action) => {
       const actionDetails = actionMapping[action];
       if (!actionDetails) {
         console.warn(`No action details found for action: ${action}`);
         return;
       }
       const confirm = TripID % 2 === 0 ? 0 : 1;
-      console.log(`Preparing action for vehicleId ${vehicleId}, TripID ${TripID}: ${actionDetails.actionToBeTaken}, confirm: ${confirm}`);
+      console.log(
+        `Preparing action for vehicleId ${vehicleId}, TripID ${TripID}: ${actionDetails.actionToBeTaken}, confirm: ${confirm}`
+      );
       actionInserts.push({
         vehicleId,
         severity: actionDetails.severity,
@@ -95,7 +103,7 @@ async function insertActions(actionsByVehicle: Array<{ vehicleId: string, TripID
         actionToBeTaken: actionDetails.actionToBeTaken,
         createdDateTime: new Date(),
         closedDateTime: new Date(),
-        confirm: confirm
+        confirm: confirm,
       });
     });
   }
@@ -121,18 +129,25 @@ async function aggregateActions() {
   const allActions = [...chargingActions, ...vehicleTripActions];
 
   console.log(`Total number of action records: ${allActions.length}`);
-  const aggregatedActions = allActions.reduce((acc, { vehicleId, TripID, actions }) => {
-    const key = `${vehicleId}-${TripID}`;
-    if (!acc[key]) {
-      acc[key] = [];
-    }
-    acc[key].push(...actions);
-    console.log(`Aggregated actions for vehicleId ${vehicleId} and TripID ${TripID}: ${acc[key].join(", ")}`);
-    return acc;
-  }, {} as Record<string, string[]>);
+  const aggregatedActions = allActions.reduce(
+    (acc, { vehicleId, TripID, actions }) => {
+      const key = `${vehicleId}-${TripID}`;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(...actions);
+      console.log(
+        `Aggregated actions for vehicleId ${vehicleId} and TripID ${TripID}: ${acc[
+          key
+        ].join(", ")}`
+      );
+      return acc;
+    },
+    {} as Record<string, string[]>
+  );
 
   return Object.entries(aggregatedActions).map(([key, actions]) => {
-    const [vehicleId, TripID] = key.split('-');
+    const [vehicleId, TripID] = key.split("-");
     return { vehicleId, TripID: Number(TripID), actions };
   });
 }
@@ -149,8 +164,8 @@ export async function getAggregatedActions() {
     console.log("Action aggregation and saving completed successfully.");
     return aggregatedActions;
   } catch (error) {
-    console.error('Error fetching and saving aggregated actions:', error);
-    throw new Error('Failed to fetch and save aggregated actions');
+    console.error("Error fetching and saving aggregated actions:", error);
+    throw new Error("Failed to fetch and save aggregated actions");
   } finally {
     await prisma.$disconnect();
     console.log("Disconnected from the database.");

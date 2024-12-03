@@ -45,8 +45,8 @@ function calculateMetrics(vehicle: { id: number; vehicleId: string; vin: string 
     RangeIncreaseMonthly: 30,  // Placeholder
     InitialSoH: 100,
     AgeofCar: 3,
-    InitialEnergyPrice: 0.12,
-    CurrentEnergyPrice: 0.10,
+    InitialEnergyPrice: 40, // updated from 0.02
+    CurrentEnergyPrice: 20, // updated from 0.01
     ActualDegradation: 0.04,
     vin: vehicle.vin,
     vehicleId: vehicle.vehicleId,
