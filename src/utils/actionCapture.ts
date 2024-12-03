@@ -81,37 +81,21 @@ async function fetchVehicleTripSessions() {
   });
 }
 
-// Insert actions into the action table
-async function insertActions(
-  actionsByVehicle: Array<{
-    vehicleId: string;
-    TripID: number;
-    actions: string[];
-  }>
-) {
+async function insertActions(actions) {
   console.log("Preparing actions for insertion...");
   const actionInserts = [];
 
-  for (const { vehicleId, TripID, actions } of actionsByVehicle) {
-    // Check if actions already exist for the vehicle
+  for (const { vehicleId, description, action } of actions) {
     const existingActions = await prisma.action.findMany({
-      where: { vehicleId },
+      where: { vehicleId, description },
     });
 
-    if (existingActions.length > 0) {
-      console.log(`Skipping actions for vehicleId ${vehicleId} as they already exist.`);
-      continue; // Skip the rest of the loop
-    }
-
-    actions.forEach((action) => {
+    if (!existingActions.length) {
       const actionDetails = actionMapping[action];
-      if (!actionDetails) {
-        console.warn(`No action details found for action: ${action}`);
-        return;
-      }
-      const confirm = TripID % 2 === 0 ? 0 : 1;
+      const confirm = Math.random() < 0.5 ? 0 : 1; // Mock confirm logic
+
       console.log(
-        `Preparing action for vehicleId ${vehicleId}, TripID ${TripID}: ${actionDetails.actionToBeTaken}, confirm: ${confirm}`
+        `Preparing action for vehicleId ${vehicleId}, description: ${description}, confirm: ${confirm}`
       );
       actionInserts.push({
         vehicleId,
@@ -121,9 +105,9 @@ async function insertActions(
         actionToBeTaken: actionDetails.actionToBeTaken,
         createdDateTime: new Date(),
         closedDateTime: new Date(),
-        confirm: confirm,
+        confirm,
       });
-    });
+    }
   }
 
   if (actionInserts.length > 0) {
@@ -133,7 +117,7 @@ async function insertActions(
         data: actionInserts,
         skipDuplicates: true,
       });
-      console.log(`Successfully inserted actions:`, result);
+      console.log("Successfully inserted actions:", result);
     } catch (error) {
       console.error("Error inserting actions into the database:", error);
     }
@@ -154,40 +138,32 @@ async function aggregateActions() {
   const allActions = [...chargingActions, ...vehicleTripActions];
 
   console.log(`Total number of action records: ${allActions.length}`);
-  const aggregatedActions = allActions.reduce(
-    (acc, { vehicleId, TripID, actions }) => {
-      const key = `${vehicleId}-${TripID}`;
-      if (!acc[key]) {
-        acc[key] = [];
-      }
-      acc[key].push(...actions);
-      console.log(
-        `Aggregated actions for vehicleId ${vehicleId} and TripID ${TripID}: ${acc[
-          key
-        ].join(", ")}`
-      );
-      return acc;
-    },
-    {} as Record<string, string[]>
-  );
 
-  return Object.entries(aggregatedActions).map(([key, actions]) => {
-    const [vehicleId, TripID] = key.split("-");
-    return { vehicleId, TripID: Number(TripID), actions };
-  });
+  // Aggregate by vehicleId and action description
+  const aggregatedActions = allActions.reduce((acc, { vehicleId, actions }) => {
+    actions.forEach((action) => {
+      const description = actionMapping[action]?.description;
+      if (description) {
+        const key = `${vehicleId}-${description}`;
+        acc[key] = { vehicleId, description, action };
+      }
+    });
+    return acc;
+  }, {} as Record<string, { vehicleId: string; description: string; action: string }>);
+
+  return Object.values(aggregatedActions); // Return unique records
 }
 
-// Server function to fetch and aggregate actions for all vehicles and save them in the database
 export async function getAggregatedActions() {
   try {
     console.log("Starting action aggregation process...");
-    const aggregatedActions = await aggregateActions();
+    const uniqueActions = await aggregateActions();
 
-    console.log("Saving aggregated actions to the database...");
-    await insertActions(aggregatedActions);
+    console.log("Saving unique actions to the database...");
+    await insertActions(uniqueActions);
 
     console.log("Action aggregation and saving completed successfully.");
-    return aggregatedActions;
+    return uniqueActions;
   } catch (error) {
     console.error("Error fetching and saving aggregated actions:", error);
     throw new Error("Failed to fetch and save aggregated actions");
