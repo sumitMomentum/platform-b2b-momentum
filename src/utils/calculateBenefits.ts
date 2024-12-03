@@ -17,7 +17,9 @@ type BenefitMetrics = {
 };
 
 // Fetch all vehicles
-async function fetchAllVehicles(): Promise<{ id: number; vehicleId: string; vin: string }[]> {
+async function fetchAllVehicles(): Promise<
+  { id: number; vehicleId: string; vin: string }[]
+> {
   try {
     console.log("Fetching all vehicles...");
     const vehicles = await prisma.vehicle.findMany({
@@ -25,9 +27,9 @@ async function fetchAllVehicles(): Promise<{ id: number; vehicleId: string; vin:
     });
     console.log(`Fetched ${vehicles.length} vehicles.`);
     // Ensure id is cast to number
-    return vehicles.map(vehicle => ({
+    return vehicles.map((vehicle) => ({
       ...vehicle,
-      id: Number(vehicle.id)
+      id: Number(vehicle.id),
     }));
   } catch (error) {
     console.error("Error fetching vehicles:", error);
@@ -36,17 +38,21 @@ async function fetchAllVehicles(): Promise<{ id: number; vehicleId: string; vin:
 }
 
 // Calculate benefit metrics with placeholder values
-function calculateMetrics(vehicle: { id: number; vehicleId: string; vin: string }): BenefitMetrics {
+function calculateMetrics(vehicle: {
+  id: number;
+  vehicleId: string;
+  vin: string;
+}): BenefitMetrics {
   console.log(`Calculating metrics for vehicle ${vehicle.vehicleId}...`);
   const metrics: BenefitMetrics = {
-    CurrentSoH: 90,  // Placeholder
-    EnergyConsumedMonthly: 100,  // Placeholder
-    RevenueIncreaseMonthly: 50,  // Placeholder
-    RangeIncreaseMonthly: 30,  // Placeholder
+    CurrentSoH: 90, // Placeholder
+    EnergyConsumedMonthly: 100, // Placeholder
+    RevenueIncreaseMonthly: 50, // Placeholder
+    RangeIncreaseMonthly: 30, // Placeholder
     InitialSoH: 100,
     AgeofCar: 3,
-    InitialEnergyPrice: 40,
-    CurrentEnergyPrice: 20,
+    InitialEnergyPrice: 20, // updated from 0.02
+    CurrentEnergyPrice: 40, // updated from 0.01
     ActualDegradation: 0.04,
     vin: vehicle.vin,
     vehicleId: vehicle.vehicleId,
@@ -56,8 +62,13 @@ function calculateMetrics(vehicle: { id: number; vehicleId: string; vin: string 
 }
 
 // Calculate benefits based on metrics
-function calculate_benefit(vehicle: { id: number; vehicleId: string; vin: string }, metrics: BenefitMetrics) {
-  console.log(`Calculating benefits for vehicle ${metrics.vehicleId} (VIN: ${metrics.vin})...`);
+function calculate_benefit(
+  vehicle: { id: number; vehicleId: string; vin: string },
+  metrics: BenefitMetrics
+) {
+  console.log(
+    `Calculating benefits for vehicle ${metrics.vehicleId} (VIN: ${metrics.vin})...`
+  );
 
   // Helper function to add randomness with bounds
   const randomize = (base: number, percentage: number = 0.2) => {
@@ -65,21 +76,28 @@ function calculate_benefit(vehicle: { id: number; vehicleId: string; vin: string
     return base + (Math.random() * 2 - 1) * variation; // ± percentage of base value
   };
 
-  const batteryCycleSavingMonthly = randomize(metrics.EnergyConsumedMonthly * 0.01);
+  const batteryCycleSavingMonthly = randomize(
+    metrics.EnergyConsumedMonthly * 0.01
+  );
   const batteryCycleSavingYearly = randomize(batteryCycleSavingMonthly * 12);
   const batteryCycleSavingLifetime = randomize(batteryCycleSavingMonthly * 60); // Assuming 5 years lifetime
 
   const costSavingChargingMonthly = randomize(
-    metrics.EnergyConsumedMonthly * (metrics.InitialEnergyPrice - metrics.CurrentEnergyPrice)
+    metrics.EnergyConsumedMonthly *
+      (metrics.InitialEnergyPrice - metrics.CurrentEnergyPrice)
   );
   const costSavingChargingYearly = randomize(costSavingChargingMonthly * 12);
-  const costSavingChargingLifeTimeEstimate = randomize(costSavingChargingMonthly * 60); // Assuming 5 years lifetime
+  const costSavingChargingLifeTimeEstimate = randomize(
+    costSavingChargingMonthly * 60
+  ); // Assuming 5 years lifetime
 
   const rangeIncreaseMonthly = randomize(metrics.RangeIncreaseMonthly);
   const rangeIncreaseYearly = randomize(rangeIncreaseMonthly * 12);
   const rangeIncreaseLifetimeEstimate = randomize(rangeIncreaseMonthly * 60); // Assuming 5 years lifetime
 
-  const revenueIncreaseLifetime = randomize(metrics.RevenueIncreaseMonthly * 60); // Assuming 5 years lifetime
+  const revenueIncreaseLifetime = randomize(
+    metrics.RevenueIncreaseMonthly * 60
+  ); // Assuming 5 years lifetime
 
   const difference = randomize(metrics.CurrentSoH - metrics.ActualDegradation);
   const loss = Math.max(0, randomize(metrics.InitialSoH - metrics.CurrentSoH));
@@ -87,7 +105,7 @@ function calculate_benefit(vehicle: { id: number; vehicleId: string; vin: string
   const carTypes = ["Sedan", "SUV", "Truck", "Hatchback"];
   const carType = carTypes[Math.floor(Math.random() * carTypes.length)]; // Randomly select car type
 
-  const factor = vehicle.id % 2 === 1 ? 1 : -1; // Positive if id is odd, negative if id is even
+  const factor = Math.random() < 0.5 ? -1 : 1; // Randomly flip sign for variety
 
   const benefit = {
     vin: metrics.vin,
@@ -97,7 +115,8 @@ function calculate_benefit(vehicle: { id: number; vehicleId: string; vin: string
     batteryCycleSavingLifetime: batteryCycleSavingLifetime * factor,
     costSavingChargingMonthly: costSavingChargingMonthly * factor,
     costSavingChargingYearly: costSavingChargingYearly * factor,
-    costSavingChargingLifeTimeEstimate: costSavingChargingLifeTimeEstimate * factor,
+    costSavingChargingLifeTimeEstimate:
+      costSavingChargingLifeTimeEstimate * factor,
     rangeIncreaseMonthly: rangeIncreaseMonthly * factor,
     rangeIncreaseYearly: rangeIncreaseYearly * factor,
     rangeIncreaseLifetimeEstimate: rangeIncreaseLifetimeEstimate * factor,
@@ -134,16 +153,21 @@ async function updateBenefits() {
           // Calculate metrics and benefits
           const metrics = calculateMetrics(vehicle);
           const benefit = calculate_benefit(vehicle, metrics);
-    
+
           // Insert benefits into the table
           await prisma.benefit.create({
             data: benefit,
           });
-    
-          console.log(`Successfully calculated and inserted benefits for vehicleId ${vehicle.vehicleId}.`);
+
+          console.log(
+            `Successfully calculated and inserted benefits for vehicleId ${vehicle.vehicleId}.`
+          );
           return benefit;
         } catch (error) {
-          console.error(`Error calculating benefits for vehicleId ${vehicle.vehicleId}:`, error);
+          console.error(
+            `Error calculating benefits for vehicleId ${vehicle.vehicleId}:`,
+            error
+          );
           return null;
         }
       })
