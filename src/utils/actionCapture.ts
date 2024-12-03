@@ -2,7 +2,6 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Action Mapping based on Description
 const actionMapping = {
   "Charging Above 90% will lead to battery damage": {
     bestPractice: "Do not charge the vehicle above 90%",
@@ -10,17 +9,23 @@ const actionMapping = {
     severity: "High",
     description: "Charging above 90% can lead to battery damage",
   },
+  "Battery at end less than 20 percent": {
+    bestPractice: "Maintain battery health above 20%",
+    actionToBeTaken: "Charge the vehicle",
+    severity: "High",
+    description: "Battery at end less than 20 percent",
+  },
+  "Diff in bat less than or equal to 20": {
+    bestPractice: "Monitor battery health regularly",
+    actionToBeTaken: "Check battery for potential issues",
+    severity: "Medium",
+    description: "Diff in bat less than or equal to 20",
+  },
   "Frequent Charging less than 10% leads to wastage of operation time.": {
     bestPractice: "Avoid frequent short charging sessions",
     actionToBeTaken: "Avoid short charging sessions",
     severity: "Medium",
     description: "Frequent short charging wastes operation time",
-  },
-  "Discharging battery below 20% accelerates battery degradation": {
-    bestPractice: "Maintain battery health above 20%",
-    actionToBeTaken: "Charge the vehicle",
-    severity: "High",
-    description: "Discharging below 20% accelerates battery degradation",
   },
 };
 
@@ -43,6 +48,7 @@ async function fetchChargingSessions() {
       console.log(`Vehicle ${session.vehicleId} has DiffInBat <= 20.`);
       actions.push("Diff in bat less than or equal to 20");
     }
+    console.log(`Actions for vehicle ${session.vehicleId}, TripID ${session.TripID}: ${actions.join(", ")}`);
     return {
       vehicleId: session.vehicleId,
       TripID: session.TripID,
@@ -66,6 +72,7 @@ async function fetchVehicleTripSessions() {
       console.log(`Vehicle ${session.vehicleId} has DiffInBat <= 20.`);
       actions.push("Diff in bat less than or equal to 20");
     }
+    console.log(`Actions for vehicle ${session.vehicleId}, TripID ${session.TripID}: ${actions.join(", ")}`);
     return {
       vehicleId: session.vehicleId,
       TripID: session.TripID,
@@ -84,7 +91,18 @@ async function insertActions(
 ) {
   console.log("Preparing actions for insertion...");
   const actionInserts = [];
+
   for (const { vehicleId, TripID, actions } of actionsByVehicle) {
+    // Check if actions already exist for the vehicle
+    const existingActions = await prisma.action.findMany({
+      where: { vehicleId },
+    });
+
+    if (existingActions.length > 0) {
+      console.log(`Skipping actions for vehicleId ${vehicleId} as they already exist.`);
+      continue; // Skip the rest of the loop
+    }
+
     actions.forEach((action) => {
       const actionDetails = actionMapping[action];
       if (!actionDetails) {
@@ -108,13 +126,20 @@ async function insertActions(
     });
   }
 
-  console.log(`Inserting ${actionInserts.length} actions into the database...`);
-  await prisma.action.createMany({
-    data: actionInserts,
-    skipDuplicates: true,
-  });
-
-  console.log(`Successfully inserted ${actionInserts.length} actions.`);
+  if (actionInserts.length > 0) {
+    console.log(`Inserting ${actionInserts.length} actions into the database...`);
+    try {
+      const result = await prisma.action.createMany({
+        data: actionInserts,
+        skipDuplicates: true,
+      });
+      console.log(`Successfully inserted actions:`, result);
+    } catch (error) {
+      console.error("Error inserting actions into the database:", error);
+    }
+  } else {
+    console.log("No new actions to insert.");
+  }
 }
 
 // Aggregate actions for each vehicle
