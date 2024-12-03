@@ -45,8 +45,8 @@ function calculateMetrics(vehicle: { id: number; vehicleId: string; vin: string 
     RangeIncreaseMonthly: 30,  // Placeholder
     InitialSoH: 100,
     AgeofCar: 3,
-    InitialEnergyPrice: 0.12,
-    CurrentEnergyPrice: 0.10,
+    InitialEnergyPrice: 40,
+    CurrentEnergyPrice: 20,
     ActualDegradation: 0.04,
     vin: vehicle.vin,
     vehicleId: vehicle.vehicleId,
@@ -87,7 +87,7 @@ function calculate_benefit(vehicle: { id: number; vehicleId: string; vin: string
   const carTypes = ["Sedan", "SUV", "Truck", "Hatchback"];
   const carType = carTypes[Math.floor(Math.random() * carTypes.length)]; // Randomly select car type
 
-  const factor = Math.random() < 0.5 ? -1 : 1; // Randomly flip sign for variety
+  const factor = vehicle.id % 2 === 1 ? 1 : -1; // Positive if id is odd, negative if id is even
 
   const benefit = {
     vin: metrics.vin,
@@ -148,7 +148,6 @@ async function updateBenefits() {
         }
       })
     );
-    
 
     console.log("Full benefits recalculation completed.");
     return benefits.filter((b) => b !== null); // Return only successful benefit calculations
