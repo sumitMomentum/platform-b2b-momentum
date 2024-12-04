@@ -74,24 +74,20 @@ export async function updateVehiclesFromCSV(formData: FormData) {
               model: row.model,
               year: parseInt(row.year),
               batteryCapacity: parseInt(row.batteryCapacity),
-              ownerID: convertOwnerId(row.ownerID),
+              ownerId: convertOwnerId(row.ownerId), // Ensure correct field name
               soc: parseInt(row.soc),
               dateOfConnection: parseDate(row.dateOfConnection),
-              odometerFloat : parseFloat(row.odometerReading),
-              usageAverageDailyKmDriven: row.avgDailyKmDriven ? row.avgDailyKmDriven.split(',').map(parseFloat) : [],
-              monthlyUsage: row.monthlyUsage ? row.monthlyUsage.split(',').map(parseFloat) : [],
+              odometerReading: parseFloat(row.odometerReading), // Fixed typo from odometerFloat
+              usageAverageDailyKmDriven: parseNumberArray(row.avgDailyKmDriven),
+              monthlyUsage: parseNumberArray(row.monthlyUsage),
               condition: row.condition,
               status: row.status,
               make: row.make,
               batteryHealthSoH: parseFloat(row.batteryHealthSoH),
-              batteryHealthDegradation: parseFloat(
-                row.batteryHealthDegradation
-              ),
+              batteryHealthDegradation: parseFloat(row.batteryHealthDegradation),
               location: row.location,
-              soh: row.soh ? row.soh.split(",").map(parseFloat) : [],
-              avgEstimatedDegradation: row.avgEstimatedDegradation
-                ? row.avgEstimatedDegradation.split(",").map(parseFloat)
-                : [],
+              soh: parseNumberArray(row.soh),
+              avgEstimatedDegradation: parseNumberArray(row.avgEstimatedDegradation),
               avgSoC: parseFloat(row.avgSoC),
               totalBatteries: parseInt(row.totalBatteries),
               connectorType: row.connectorType,
@@ -99,12 +95,10 @@ export async function updateVehiclesFromCSV(formData: FormData) {
               observedRange: parseInt(row.observedRange),
               remainingUsefulLife: row.remainingUsefulLife,
               totalChargingSessions: parseInt(row.totalChargingSessions),
-              totalEnergyConsumed: row.totalEnergyConsumed,
+              totalEnergyConsumed: parseInt(row.totalEnergyConsumed),
               criticalConditionCount: parseInt(row.criticalConditionCount),
               goodConditionCount: parseInt(row.goodConditionCount),
-              satisfactoryConditionCount: parseInt(
-                row.satisfactoryConditionCount
-              ),
+              satisfactoryConditionCount: parseInt(row.satisfactoryConditionCount),
               activeStatusCount: parseInt(row.activeStatusCount),
               chargingStatusCount: parseInt(row.chargingStatusCount),
               inUseStatusCount: parseInt(row.inUseStatusCount),
@@ -122,40 +116,26 @@ export async function updateVehiclesFromCSV(formData: FormData) {
               avgMonthlyUsage: parseFloat(row.avgMonthlyUsage),
               vehicleConditionCritical: parseInt(row.vehicleConditionCritical),
               vehicleConditionGood: parseInt(row.vehicleConditionGood),
-              vehicleConditionSatisfactory: parseInt(
-                row.vehicleConditionSatisfactory
-              ),
+              vehicleConditionSatisfactory: parseInt(row.vehicleConditionSatisfactory),
               vehicleStatusActive: parseInt(row.vehicleStatusActive),
               vehicleStatusCharging: parseInt(row.vehicleStatusCharging),
               vehicleStatusInUse: parseInt(row.vehicleStatusInUse),
-              vehicleStatusOutOfService: parseInt(
-                row.vehicleStatusOutOfService
-              ),
+              vehicleStatusOutOfService: parseInt(row.vehicleStatusOutOfService),
               averageMonthlyUsage: parseFloat(row.averageMonthlyUsage),
-              batteryHealthAverageEstimatedDegradation:
-                row.batteryHealthAverageEstimatedDegradation
-                  ? row.batteryHealthAverageEstimatedDegradation
-                      .split(",")
-                      .map(parseFloat)
-                  : [],
+              batteryHealthAverageEstimatedDegradation: parseNumberArray(row.batteryHealthAverageEstimatedDegradation),
               batteryHealthAverageSoC: parseFloat(row.batteryHealthAverageSoC),
               batteryHealthAverageSoH: parseFloat(row.batteryHealthAverageSoH),
-              batteryHealthTotalBatteries: parseInt(
-                row.batteryHealthTotalBatteries
-              ),
+              batteryHealthTotalBatteries: parseInt(row.batteryHealthTotalBatteries),
               endOfLife: row.endOfLife,
               epawltpProvidedRange: parseInt(row.epawltpProvidedRange),
-              // odometerFloat: parseFloat(row.odometerFloat),
               realRangeObserved: parseInt(row.realRangeObserved),
               totalChargingSession: parseInt(row.totalChargingSession),
-              // usageAverageDailyKmDriven: row.usageAverageDailyKmDriven ? row.usageAverageDailyKmDriven.split(',').map(parseFloat) : [],
               usageRangeObservedMax: parseInt(row.usageRangeObservedMax),
               usageRangeObservedMin: parseInt(row.usageRangeObservedMin),
               usageSoCRangeMax: parseInt(row.usageSoCRangeMax),
               usageSoCRangeMin: parseInt(row.usageSoCRangeMin),
               usageTemperatureHigh: parseInt(row.usageTemperatureHigh),
               usageTemperatureLow: parseInt(row.usageTemperatureLow),
-              ownerId: convertOwnerId(row.ownerId),
             },
           });
           console.log(`Vehicle updated successfully: ID = ${row.id}`);

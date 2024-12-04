@@ -85,9 +85,10 @@ const VehiclePage = () => {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      const result = isUpdate
-        ? await updateVehiclesFromCSV(formData)
-        : await uploadVehiclesFromCSV(formData);
+      // const result = isUpdate
+      //   ? await updateVehiclesFromCSV(formData)
+      //   : await uploadVehiclesFromCSV(formData);
+      const result = await uploadVehiclesFromCSV(formData);
 
       setIsSuccess(true);
       setSelectedFile(null);
