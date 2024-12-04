@@ -43,6 +43,10 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
       return value !== null && !Array.isArray(value) ? [value] : value;
     };
 
+    const parseNumberArray = (numArrayString: string) => {
+      return numArrayString ? numArrayString.split(",").map(parseFloat) : [];
+    };
+
     const vehicles = await Promise.all(
       results.map(async (row) => {
         return await prisma.vehicle.create({
@@ -57,8 +61,8 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
             soc: row.soc ? parseInt(row.soc) : null,
             dateOfConnection: parseDate(row.dateOfConnection), // Ensure dateOfConnection is not null
             odometerFloat: row.odometerFloat ? parseFloat(row.odometerFloat) : null,
-            usageAverageDailyKmDriven: parseArrayOrSingleFloat(row.UsageAverageDailyKmDriven),
-            monthlyUsage: parseArrayOrSingleFloat(row.MonthlyUsage),
+            usageAverageDailyKmDriven: parseNumberArray(row.UsageAverageDailyKmDriven),
+            monthlyUsage: parseNumberArray(row.MonthlyUsage),
             condition: row.condition || "",
             status: row.status || "",
             make: row.make || "",

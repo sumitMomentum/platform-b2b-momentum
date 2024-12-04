@@ -77,7 +77,7 @@ export async function updateVehiclesFromCSV(formData: FormData) {
               ownerId: convertOwnerId(row.ownerId), // Ensure correct field name
               soc: parseInt(row.soc),
               dateOfConnection: parseDate(row.dateOfConnection),
-              odometerReading: parseFloat(row.odometerReading), // Fixed typo from odometerFloat
+              // odometerReading: parseFloat(row.odometerReading), // Fixed typo from odometerFloat
               usageAverageDailyKmDriven: parseNumberArray(row.avgDailyKmDriven),
               monthlyUsage: parseNumberArray(row.monthlyUsage),
               condition: row.condition,
@@ -95,7 +95,7 @@ export async function updateVehiclesFromCSV(formData: FormData) {
               observedRange: parseInt(row.observedRange),
               remainingUsefulLife: row.remainingUsefulLife,
               totalChargingSessions: parseInt(row.totalChargingSessions),
-              totalEnergyConsumed: parseInt(row.totalEnergyConsumed),
+              totalEnergyConsumed: row.totalEnergyConsumed,
               criticalConditionCount: parseInt(row.criticalConditionCount),
               goodConditionCount: parseInt(row.goodConditionCount),
               satisfactoryConditionCount: parseInt(row.satisfactoryConditionCount),
