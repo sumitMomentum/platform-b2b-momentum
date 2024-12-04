@@ -24,7 +24,7 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
     });
 
     const parseDate = (dateString: string) => {
-      return dateString ? new Date(dateString) : null;
+      return dateString ? new Date(dateString) : new Date(); // Default to current date if null
     };
 
     const parseArrayOrSingleFloat = (value: string) => {
@@ -43,9 +43,6 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
       return value !== null && !Array.isArray(value) ? [value] : value;
     };
 
-    // Set ownerId as 1 (fixed value)
-    const ownerId = 1;
-
     const vehicles = await Promise.all(
       results.map(async (row) => {
         return await prisma.vehicle.create({
@@ -56,9 +53,9 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
             model: row.model || "",
             year: row.year ? parseInt(row.year) : null,
             batteryCapacity: row.batteryCapacity ? parseInt(row.batteryCapacity) : null,
-            ownerId, // Fixed to 1
+            ownerID: row.ownerID ? parseInt(row.ownerID) : 1, // Default to 1 if ownerID is not provided
             soc: row.soc ? parseInt(row.soc) : null,
-            dateOfConnection: parseDate(row.dateOfConnection),
+            dateOfConnection: parseDate(row.dateOfConnection), // Ensure dateOfConnection is not null
             odometerFloat: row.odometerFloat ? parseFloat(row.odometerFloat) : null,
             usageAverageDailyKmDriven: parseArrayOrSingleFloat(row.UsageAverageDailyKmDriven),
             monthlyUsage: parseArrayOrSingleFloat(row.MonthlyUsage),
@@ -96,6 +93,12 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
             batteryHealthAverageSoH: row.BatteryHealthAverageSoH ? parseFloat(row.BatteryHealthAverageSoH) : null,
             dataPointsCollected: row.DataPointsCollected ? parseInt(row.DataPointsCollected) : null,
             averageMonthlyUsage: row.averageMonthlyUsage ? parseFloat(row.averageMonthlyUsage) : null,
+            owner: { // Associate with the owner
+              connectOrCreate: {
+                where: { id: row.ownerID ? parseInt(row.ownerID) : 1 },
+                create: { id: row.ownerID ? parseInt(row.ownerID) : 1 }
+              }
+            }
           },
         });
       })

@@ -76,7 +76,7 @@ export default function Page() {
           variant="contained"
           onClick={() => setIsTabular((prevState) => !prevState)}
         >
-          {isTabular ? "Graph View" : "Table View"}
+          {isTabular ? "Graph View" : " Table View"}
         </Button>
       </Container>
       <Stack
