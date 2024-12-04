@@ -74,7 +74,7 @@ const columns: GridColDef[] = [
           icon={<VerifiedIcon />}
         />
       ) : (
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" style={{ textTransform: 'none' }}>
           Take Action
         </Button>
       ),

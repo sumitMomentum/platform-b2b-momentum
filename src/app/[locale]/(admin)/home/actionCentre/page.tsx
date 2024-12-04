@@ -75,6 +75,7 @@ export default function Page() {
           startIcon={!isTabular ? <TableChartIcon /> : <InsightsIcon />}
           variant="contained"
           onClick={() => setIsTabular((prevState) => !prevState)}
+          style={{ textTransform: 'none' }}
         >
           {isTabular ? "Graph View" : " Table View"}
         </Button>
