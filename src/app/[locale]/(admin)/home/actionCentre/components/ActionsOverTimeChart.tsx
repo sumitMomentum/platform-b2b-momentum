@@ -43,7 +43,8 @@ export default function ActionsClosedOverTimeChart({
   loading: boolean;
 }) {
   const theme = useTheme();
-  const dataAvailable = data.closed.length || data.open.length;
+  const dataAvailable = Object.keys(data.closed).length || Object.keys(data.open).length;
+  
   // Get the current month and year
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
@@ -103,7 +104,7 @@ export default function ActionsClosedOverTimeChart({
               color="success"
               label={`Closed: +${Math.round(
                 actionsClosed.reduce((acc, val) => acc + val, 0) /
-                  actionsClosed.length
+                  (actionsClosed.length || 1) // Prevent division by zero
               )} avg`}
             />
             <Chip
@@ -111,7 +112,7 @@ export default function ActionsClosedOverTimeChart({
               color="warning"
               label={`Open: +${Math.round(
                 actionsOpen.reduce((acc, val) => acc + val, 0) /
-                  actionsOpen.length
+                  (actionsOpen.length || 1) // Prevent division by zero
               )} avg`}
             />
           </Stack>

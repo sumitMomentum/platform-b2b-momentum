@@ -14,14 +14,14 @@ export async function uploadChargingSessionsFromCSV(formData: FormData) {
     const fileBuffer = Buffer.from(await file.arrayBuffer());
     const results: any[] = [];
 
-    // Convert the file buffer into a readable stream correctly
+    // Convert the file buffer into a readable stream
     const readableStream = new Readable();
-    readableStream._read = () => {}; // _read is required but you can noop it
+    readableStream._read = () => {};
     readableStream.push(fileBuffer);
     readableStream.push(null);
 
     // Parse CSV
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       readableStream
         .pipe(csv())
         .on("data", (data) => results.push(data))
@@ -32,9 +32,8 @@ export async function uploadChargingSessionsFromCSV(formData: FormData) {
     // Function to convert date string to Date object or set a default date
     const parseDate = (dateString: string) => {
       if (!dateString) {
-        return new Date("2000-01-01"); // Default date if dateString is undefined
+        return new Date("2000-01-01");
       }
-
       const dateObject = new Date(dateString);
       return isNaN(dateObject.getTime()) ? new Date("2000-01-01") : dateObject;
     };

@@ -31,7 +31,7 @@ const VehicleStatus = () => {
     { label: "Active", color: "success", status: "Active" },
     { label: "Inactive", color: "error", status: "Inactive" },
     { label: "Charging", color: "warning", status: "Charging" },
-    { label: "Out Of Service", color: "info", status: "Out of Service" }, // Changed "grey" to "default"
+    { label: "Out Of Service", color: "info", status: "Out Of Service" }, // Changed "grey" to "default"
   ];
 
   return (
