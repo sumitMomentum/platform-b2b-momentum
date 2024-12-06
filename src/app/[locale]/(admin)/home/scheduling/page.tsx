@@ -83,6 +83,7 @@ const page = () => {
           startIcon={<ScheduleIcon />}
           variant="contained"
           onClick={handleCreateSchedule}
+          style={{ textTransform: 'none' }}
         >
           Create Schedule
         </Button>

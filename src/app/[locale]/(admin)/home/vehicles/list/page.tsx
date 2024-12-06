@@ -208,7 +208,8 @@ const VehiclePage = () => {
               startIcon={<FileUploadIcon />}
               variant="contained"
               color="primary"
-              onClick={() => handleUpload(false)}
+          style={{ textTransform: 'none' }}
+          onClick={() => handleUpload(false)}
             >
               Onboard
             </Button>
@@ -216,14 +217,16 @@ const VehiclePage = () => {
               startIcon={<PublishIcon />}
               variant="contained"
               color="primary"
-              onClick={() => handleUpload(true)}
+          style={{ textTransform: 'none' }}
+          onClick={() => handleUpload(true)}
             >
               Update
             </Button>
             <Button
               variant="outlined"
               color="error"
-              startIcon={<DeleteForeverIcon />}
+          style={{ textTransform: 'none' }}
+          startIcon={<DeleteForeverIcon />}
               onClick={() => handleDelete()}
             >
               Delete
