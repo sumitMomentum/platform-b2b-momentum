@@ -35,7 +35,10 @@ type BenefitItem = {
 export default function Page() {
   const [isTabular, setIsTabular] = useState<boolean>(false);
   const [benefits, setBenefits] = useState<BenefitItem[]>([]);
-  const [overall, setOverall] = useState<{ overallProfit: BenefitItem; overallLoss: BenefitItem } | null>(null);
+  const [overall, setOverall] = useState<{
+    overallProfit: BenefitItem;
+    overallLoss: BenefitItem;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -66,7 +69,7 @@ export default function Page() {
           variant="contained"
           onClick={() => setIsTabular((prevState) => !prevState)}
           size="medium"
-          style={{ textTransform: 'none' }}
+          style={{ textTransform: "none" }}
         >
           {isTabular ? "Graph View" : "Table View"}
         </Button>
@@ -80,11 +83,22 @@ export default function Page() {
           mt: { xs: 8, md: 0 },
         }}
       >
-        {isTabular ? (
-          overall && <BenefitsListComponent benefits={benefits} overall={overall} loading={loading} />
-        ) : (
-          overall && <MainGrid benefits={benefits} overall={overall} loading={loading} setLoading={setLoading} />
-        )}
+        {isTabular
+          ? overall && (
+              <BenefitsListComponent
+                benefits={benefits}
+                overall={overall}
+                loading={loading}
+              />
+            )
+          : overall && (
+              <MainGrid
+                benefits={benefits}
+                overall={overall}
+                loading={loading}
+                setLoading={setLoading}
+              />
+            )}
       </Stack>
     </Box>
   );
