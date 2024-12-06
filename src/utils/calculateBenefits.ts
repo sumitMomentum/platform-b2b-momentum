@@ -37,7 +37,7 @@ function calculateMetrics(vehicle: { id: number; vehicleId: string; vin: string 
   const currentEnergyPrice = vehicle.id % 2 === 0 ? 25 : 15; // USD per kWh (higher for even IDs)
   const energyConsumedMonthly = 120; // kWh (average for EVs)
   const revenueIncreaseMonthly = 60; // USD (estimated monthly revenue increase)
-  const rangeIncreaseMonthly = 25; // km (average range improvement per month)
+  const rangeIncreaseMonthly = vehicle.id % 2 === 0 ? -25 : 25; // km (average range improvement per month)
   const currentSoH = 88; // % (current battery state of health)
   const initialSoH = 100; // % (initial battery state of health)
   const ageOfCar = 4; // years
@@ -69,7 +69,7 @@ function calculateBenefit(metrics: BenefitMetrics) {
   const costSavingChargingYearly = Math.max(costSavingChargingMonthly * 12, 0);
   const costSavingChargingLifeTimeEstimate = Math.max(costSavingChargingMonthly * 60, 0); // 5 years
 
-  const rangeIncreaseMonthly = metrics.rangeIncreaseMonthly * Math.random();
+  const rangeIncreaseMonthly = metrics.rangeIncreaseMonthly;
   const rangeIncreaseYearly = rangeIncreaseMonthly * 12;
   const rangeIncreaseLifetimeEstimate = rangeIncreaseMonthly * 60; // 5 years
 
