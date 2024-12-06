@@ -1,8 +1,6 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Copyright from "../internals/components/Copyright";
 import StatCard, { StatCardProps } from "./StatCard";
 import SavingsOverTimeChart from "./SavingsOverTimeChart";
 import SavingsDistributionChart from "./SavingsDistributionChart";
@@ -19,12 +17,12 @@ export default function MainGrid({ benefits, overall, loading, setLoading }) {
     const fetchData = async () => {
       try {
         const totalSavings = benefits.reduce(
-          (acc, item) => acc + item.costSavingChargingMonthly,
+          (acc, item) => acc + (item.costSavingChargingMonthly || 0),
           0
         );
-        const averageSavings = totalSavings / benefits.length || 0;
+        const averageSavings = totalSavings / (benefits.length || 1);
         const totalRangeIncrease = benefits.reduce(
-          (acc, item) => acc + item.rangeIncreaseMonthly,
+          (acc, item) => acc + (item.rangeIncreaseMonthly || 0),
           0
         );
 
@@ -33,27 +31,27 @@ export default function MainGrid({ benefits, overall, loading, setLoading }) {
             title: "Total Savings",
             value: `${totalSavings.toFixed(2)} USD`,
             interval: "Last 30 days",
-            trend: "up",
-            data: benefits.map((item) => item.costSavingChargingMonthly),
+            trend: totalSavings >= 0 ? "up" : "down",
+            data: benefits.map((item) => item.costSavingChargingMonthly || 0),
           },
           {
             title: "Average Savings",
             value: `${averageSavings.toFixed(2)} USD`,
             interval: "Last 30 days",
-            trend: "neutral",
-            data: benefits.map((item) => item.costSavingChargingMonthly),
+            trend: averageSavings >= 0 ? "up" : "down",
+            data: benefits.map((item) => item.costSavingChargingMonthly || 0),
           },
           {
             title: "Total Range Increase",
             value: `${totalRangeIncrease.toFixed(2)} km`,
             interval: "Last 30 days",
-            trend: "up",
-            data: benefits.map((item) => item.rangeIncreaseMonthly),
+            trend: totalRangeIncrease >= 0 ? "up" : "down",
+            data: benefits.map((item) => item.rangeIncreaseMonthly || 0),
           },
         ];
 
         const savingsOverTime = benefits.map(
-          (item) => item.costSavingChargingMonthly
+          (item) => item.costSavingChargingMonthly || 0
         );
 
         setStatCardData(formattedStatCardData);

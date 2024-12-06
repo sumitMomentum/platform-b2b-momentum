@@ -11,7 +11,7 @@ type BenefitItem = {
   batteryCycleSavingLifetime: number;
   costSavingChargingMonthly: number;
   costSavingChargingYearly: number;
-  costSavingChargingLifeTimeEstimate: number;
+  costSavingChargingLifetimeEstimate: number;
   rangeIncreaseMonthly: number;
   rangeIncreaseYearly: number;
   rangeIncreaseLifetimeEstimate: number;
@@ -36,9 +36,7 @@ export const getVehicleBenefits = async (): Promise<VehicleBenefitsResponse> => 
   }
 
   // Fetch the benefits data from the API
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/benefits`
-  );
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/benefits`);
 
   console.log(response);
 
@@ -56,7 +54,7 @@ export const getVehicleBenefits = async (): Promise<VehicleBenefitsResponse> => 
     batteryCycleSavingLifetime: 0,
     costSavingChargingMonthly: 0,
     costSavingChargingYearly: 0,
-    costSavingChargingLifeTimeEstimate: 0,
+    costSavingChargingLifetimeEstimate: 0,
     rangeIncreaseMonthly: 0,
     rangeIncreaseYearly: 0,
     rangeIncreaseLifetimeEstimate: 0,
@@ -71,7 +69,7 @@ export const getVehicleBenefits = async (): Promise<VehicleBenefitsResponse> => 
     batteryCycleSavingLifetime: 0,
     costSavingChargingMonthly: 0,
     costSavingChargingYearly: 0,
-    costSavingChargingLifeTimeEstimate: 0,
+    costSavingChargingLifetimeEstimate: 0,
     rangeIncreaseMonthly: 0,
     rangeIncreaseYearly: 0,
     rangeIncreaseLifetimeEstimate: 0,
@@ -79,7 +77,7 @@ export const getVehicleBenefits = async (): Promise<VehicleBenefitsResponse> => 
   };
 
   benefits.forEach((benefit) => {
-    if (benefit.batteryCycleSavingMonthly > 0) {
+    if (benefit.costSavingChargingMonthly > 0) {
       Object.keys(overallProfit).forEach((key) => {
         if (key !== "vin" && key !== "vehicleId") {
           overallProfit[key] += benefit[key];
