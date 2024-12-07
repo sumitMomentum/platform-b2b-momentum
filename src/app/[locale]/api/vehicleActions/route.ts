@@ -11,4 +11,3 @@ export async function GET() {
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }
-import { json } from "stream/consumers";

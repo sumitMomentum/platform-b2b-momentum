@@ -60,7 +60,7 @@ function calculateMetrics(vehicle: { id: number; vehicleId: string; vin: string 
 
 function calculateBenefit(metrics: BenefitMetrics) {
   const batteryCycleCostPerKWh = 0.4; // USD per kWh cycle
-  const batteryCycleSavingMonthly = Math.max(metrics.energyConsumedMonthly * batteryCycleCostPerKWh, 0);
+  const batteryCycleSavingMonthly = Math.max(metrics.energyConsumedMonthly * Math.random() * batteryCycleCostPerKWh, 0);
   const batteryCycleSavingYearly = batteryCycleSavingMonthly * 12;
   const batteryCycleSavingLifetime = batteryCycleSavingMonthly * 60; // 5 years
 

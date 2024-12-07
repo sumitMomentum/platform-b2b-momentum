@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -7,13 +6,15 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import CountUp from "react-countup";
+
 export type StatCardProps = {
   title: string;
   value: string;
   interval: string;
-  trend: "up" | "down" | "neutral";
+  trend: "success" | "error" | "neutral";
   data: number[];
   loading: boolean;
+  chipLabel: string; // New property for the chip label
 };
 
 export default function StatCard({
@@ -22,34 +23,8 @@ export default function StatCard({
   interval,
   trend,
   loading,
-  data,
+  chipLabel,
 }: StatCardProps) {
-  const theme = useTheme();
-
-  const trendColors = {
-    up:
-      theme.palette.mode === "light"
-        ? theme.palette.success.main
-        : theme.palette.success.dark,
-    down:
-      theme.palette.mode === "light"
-        ? theme.palette.error.main
-        : theme.palette.error.dark,
-    neutral:
-      theme.palette.mode === "light"
-        ? theme.palette.grey[400]
-        : theme.palette.grey[700],
-  };
-
-  const labelColors = {
-    up: "success" as const,
-    down: "error" as const,
-    neutral: "neutral" as const,
-  };
-
-  const color: string = labelColors[trend];
-  const trendValues = { up: "+25%", down: "-25%", neutral: "+5%" };
-
   return (
     <Card variant="outlined" sx={{ height: "100%", flexGrow: 1 }}>
       <CardContent>
@@ -68,13 +43,7 @@ export default function StatCard({
               <Typography variant="h4" component="p">
                 {loading ? 0 : <CountUp end={Number(value)} />}
               </Typography>
-              <Chip
-                size="small"
-                // color={trendColors[trend]}
-                label={trendValues[trend]}
-                // temporary solution
-                color="success"
-              />
+              <Chip size="small" color={trend} label={chipLabel} />
             </Stack>
             <Typography variant="caption" sx={{ color: "text.secondary" }}>
               {interval}

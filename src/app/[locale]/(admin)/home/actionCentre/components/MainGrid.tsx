@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Copyright from "../internals/components/Copyright";
 import StatCard, { StatCardProps } from "./StatCard";
 import ActionsClosedOverTimeChart from "./ActionsOverTimeChart";
 import SeverityDistributionChart from "./SeverityDistributionChart";
@@ -71,8 +70,14 @@ const aggregateData = (data) => {
   });
 
   // Calculate averages
-  const avgSeverity = totalSeverityValue / totalActions || 0;
-  const avgTimeToClose = totalTimeToClose / totalActions || 0;
+  const avgSeverity = totalActions ? totalSeverityValue / totalActions : 0;
+  const avgTimeToClose = totalActions ? totalTimeToClose / totalActions : 0;
+
+  // Calculate metrics for chips with handling for no data cases
+  const totalActionsTrend = totalActions ? ((totalActions - 50) / 50) * 100 : 0;
+  const confirmedActionsRate = totalActions ? (confirmedActions / totalActions) * 100 : 0;
+  const avgSeverityTrend = avgSeverity ? ((avgSeverity - 2) / 2) * 100 : 0;
+  const avgTimeToCloseTrend = avgTimeToClose ? ((24 - avgTimeToClose) / 24) * 100 : 0;
 
   return {
     totalActions,
@@ -81,8 +86,13 @@ const aggregateData = (data) => {
     avgTimeToClose,
     monthlyClosedActions,
     monthlyOpenActions,
+    totalActionsTrend,
+    confirmedActionsRate,
+    avgSeverityTrend,
+    avgTimeToCloseTrend,
   };
 };
+
 
 export default function MainGrid({ actions, loading }) {
   // Aggregate the data for the stat cards
@@ -93,6 +103,10 @@ export default function MainGrid({ actions, loading }) {
     avgTimeToClose,
     monthlyClosedActions,
     monthlyOpenActions,
+    totalActionsTrend,
+    confirmedActionsRate,
+    avgSeverityTrend,
+    avgTimeToCloseTrend,
   } = aggregateData(actions);
 
   // Data for the Stat Cards
@@ -101,45 +115,44 @@ export default function MainGrid({ actions, loading }) {
       title: "Total Actions Taken",
       value: `${totalActions}`,
       interval: "All Time",
-      trend: totalActions > 50 ? "up" : "neutral",
+      trend: totalActions > 50 ? "success" : "error",
       data: [totalActions],
       loading: loading,
+      chipLabel: `${totalActionsTrend.toFixed(2)}%`, // Use the calculated trend value
     },
     {
       title: "Confirmed Actions",
       value: `${confirmedActions}`,
       interval: "All Time",
-      trend: confirmedActions > totalActions / 2 ? "up" : "neutral",
+      trend: confirmedActions > totalActions / 2 ? "success" : "error",
       data: [confirmedActions],
       loading: loading,
+      chipLabel: `${confirmedActionsRate.toFixed(2)}%`, // Use the confirmation rate
     },
     {
       title: "Average Severity Level",
       value: `${avgSeverity.toFixed(2)}`, // Severity level as a decimal
       interval: "All Time",
-      trend: avgSeverity > 2 ? "up" : "neutral", // Severity greater than 2 means high
+      trend: avgSeverity > 2 ? "success" : "error", // Severity greater than 2 means high
       data: [avgSeverity],
       loading: loading,
+      chipLabel: `${avgSeverityTrend.toFixed(2)}%`, // Use the calculated severity trend
     },
     {
       title: "Average Time to Close (hrs)",
       value: `${avgTimeToClose.toFixed(2)} hrs`,
       interval: "All Time",
-      trend: avgTimeToClose < 24 ? "down" : "neutral", // Assuming actions closed in < 24hrs is good
+      trend: avgTimeToClose < 24 ? "success" : "error", // Assuming actions closed in < 24hrs is good
       data: [avgTimeToClose],
       loading: loading,
+      chipLabel: `${avgTimeToCloseTrend.toFixed(2)}%`, // Use the calculated time to close trend
     },
   ];
 
   return (
     <Box sx={{ width: "100%", maxWidth: { sm: "100%", md: "1700px" } }}>
       {/* Overview Section */}
-      <Grid
-        container
-        spacing={1}
-        columns={12}
-        sx={{ mb: (theme) => theme.spacing(2) }}
-      >
+      <Grid container spacing={1} columns={12} sx={{ mb: (theme) => theme.spacing(2) }}>
         {/* Stat Cards */}
         {statCards.map((card, index) => (
           <Grid key={index} item xs={12} sm={6} md={4} lg={3}>

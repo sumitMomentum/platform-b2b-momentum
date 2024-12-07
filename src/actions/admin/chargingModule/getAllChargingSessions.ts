@@ -22,7 +22,7 @@ export async function getChargingSessions(vehicleId?: string): Promise<any> {
 
     // Log response details
     console.log(chalk.blue("API Response Status:"), response.status);
-    console.log(chalk.blue("Final Response Data:"), JSON.stringify(finalResponse, null, 2));
+    // console.log(chalk.blue("Final Response Data:"), JSON.stringify(finalResponse, null, 2));
     console.log(chalk.blue("Returning Charging Sessions to UI : "), {
       success: true,
       sessions: finalResponse,

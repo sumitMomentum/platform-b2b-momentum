@@ -108,12 +108,12 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
       })
     );
 
-    const benefits = await updateBenefits();
+    // const benefits = await updateBenefits();
 
     return {
-      message: `Successfully uploaded ${vehicles.length} vehicles and updated benefits for ${benefits.length} vehicles.`,
+      message: `Successfully uploaded ${vehicles.length} vehicles.`,
       vehicles,
-      benefits,
+      // benefits,
     };
   } catch (error) {
     console.error("Error uploading vehicles:", error);
