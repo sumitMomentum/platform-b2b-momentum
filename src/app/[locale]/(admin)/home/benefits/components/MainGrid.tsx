@@ -48,6 +48,7 @@ export default function MainGrid({ benefits, overall, loading, setLoading }: Mai
             interval: "Last 30 days",
             trend: savingsChange >= 0 ? "up" : "down",
             data: benefits.map((item) => item.costSavingChargingMonthly || 0),
+            loading: loading,
             chip: {
               label: `${savingsChange.toFixed(2)}%`,
               color: savingsChange >= 0 ? "success" : "error",
@@ -59,6 +60,7 @@ export default function MainGrid({ benefits, overall, loading, setLoading }: Mai
             interval: "Last 30 days",
             trend: averageSavingsChange >= 0 ? "up" : "down",
             data: benefits.map((item) => item.costSavingChargingMonthly || 0),
+            loading: loading,
             chip: {
               label: `${averageSavingsChange.toFixed(2)}%`,
               color: averageSavingsChange >= 0 ? "success" : "error",
@@ -70,6 +72,7 @@ export default function MainGrid({ benefits, overall, loading, setLoading }: Mai
             interval: "Last 30 days",
             trend: rangeIncreaseChange >= 0 ? "up" : "down",
             data: benefits.map((item) => item.rangeIncreaseMonthly || 0),
+            loading: loading,
             chip: {
               label: `${rangeIncreaseChange.toFixed(2)}%`,
               color: rangeIncreaseChange >= 0 ? "success" : "error",
@@ -99,7 +102,7 @@ export default function MainGrid({ benefits, overall, loading, setLoading }: Mai
       <Grid container spacing={1} columns={12} sx={{ mb: (theme) => theme.spacing(2) }}>
         {statCardData.map((card, index) => (
           <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-            <StatCard {...card} loading={loading} />
+            <StatCard {...card} />
           </Grid>
         ))}
         <Grid item xs={12} md={6} lg={6}>

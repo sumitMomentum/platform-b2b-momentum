@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { useTheme } from "@mui/material/styles";
-import { ChartsClipPath } from "@mui/x-charts";
 import { sevierityChartsPalette } from "@/themes/ChartPalettes";
 import CountUp from "react-countup";
 
@@ -70,30 +69,23 @@ export default function SeverityDistributionChart({
             }}
           >
             <Typography variant="h4" component="p">
-              {loading ? 0 : <CountUp end={Number(low + medium + high)} />}{" "}
-              Actions
+              {loading ? 0 : <CountUp end={Number(low + medium + high)} />} Actions
+            </Typography>
+          </Stack>
+          <Stack direction="row" sx={{ justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              Distribution of severity levels in the actions
             </Typography>
             <Chip
               size="small"
               color="success"
-              label={`+${Math.round(
-                ((medium + high) / (low + medium + high)) * 100
-              )}%`}
-            />{" "}
-            {/* Change Chip color to green */}
+              label={`+${Math.round(((medium + high) / (low + medium + high)) * 100)}%`}
+            />
           </Stack>
-          <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            Distribution of severity levels in the actions
-          </Typography>
         </Stack>
         <BarChart
           loading={loading}
           borderRadius={8}
-          // colors={[
-          //   sevierityChartsPalette.success,
-          //   sevierityChartsPalette.warning,
-          //   sevierityChartsPalette.warning,
-          // ]}
           xAxis={[
             {
               scaleType: "band",

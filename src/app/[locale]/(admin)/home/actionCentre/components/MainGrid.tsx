@@ -93,7 +93,6 @@ const aggregateData = (data) => {
   };
 };
 
-
 export default function MainGrid({ actions, loading }) {
   // Aggregate the data for the stat cards
   const {
@@ -109,13 +108,22 @@ export default function MainGrid({ actions, loading }) {
     avgTimeToCloseTrend,
   } = aggregateData(actions);
 
+  // Map success and error to up and down for trend
+  const getTrend = (value, threshold, higherBetter = true) => {
+    if (higherBetter) {
+      return value > threshold ? "up" : "down";
+    } else {
+      return value < threshold ? "up" : "down";
+    }
+  };
+
   // Data for the Stat Cards
   const statCards: StatCardProps[] = [
     {
       title: "Total Actions Taken",
       value: `${totalActions}`,
       interval: "All Time",
-      trend: totalActions > 50 ? "success" : "error",
+      trend: getTrend(totalActions, 50),
       data: [totalActions],
       loading: loading,
       chipLabel: `${totalActionsTrend.toFixed(2)}%`, // Use the calculated trend value
@@ -124,7 +132,7 @@ export default function MainGrid({ actions, loading }) {
       title: "Confirmed Actions",
       value: `${confirmedActions}`,
       interval: "All Time",
-      trend: confirmedActions > totalActions / 2 ? "success" : "error",
+      trend: getTrend(confirmedActions, totalActions / 2),
       data: [confirmedActions],
       loading: loading,
       chipLabel: `${confirmedActionsRate.toFixed(2)}%`, // Use the confirmation rate
@@ -133,7 +141,7 @@ export default function MainGrid({ actions, loading }) {
       title: "Average Severity Level",
       value: `${avgSeverity.toFixed(2)}`, // Severity level as a decimal
       interval: "All Time",
-      trend: avgSeverity > 2 ? "success" : "error", // Severity greater than 2 means high
+      trend: getTrend(avgSeverity, 2, false), // Lower severity is better
       data: [avgSeverity],
       loading: loading,
       chipLabel: `${avgSeverityTrend.toFixed(2)}%`, // Use the calculated severity trend
@@ -142,7 +150,7 @@ export default function MainGrid({ actions, loading }) {
       title: "Average Time to Close (hrs)",
       value: `${avgTimeToClose.toFixed(2)} hrs`,
       interval: "All Time",
-      trend: avgTimeToClose < 24 ? "success" : "error", // Assuming actions closed in < 24hrs is good
+      trend: getTrend(avgTimeToClose, 24, false), // Assuming actions closed in < 24hrs is good
       data: [avgTimeToClose],
       loading: loading,
       chipLabel: `${avgTimeToCloseTrend.toFixed(2)}%`, // Use the calculated time to close trend

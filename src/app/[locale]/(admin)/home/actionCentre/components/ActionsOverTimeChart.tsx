@@ -99,6 +99,11 @@ export default function ActionsClosedOverTimeChart({
               )}
               {} Actions
             </Typography>
+          </Stack>
+          <Stack direction="row" sx={{ justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              Number of actions closed and open each day for the selected month
+            </Typography>
             <Chip
               size="small"
               color="success"
@@ -116,9 +121,6 @@ export default function ActionsClosedOverTimeChart({
               )} avg`}
             />
           </Stack>
-          <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            Number of actions closed and open each day for the selected month
-          </Typography>
         </Stack>
         <LineChart
           loading={loading}

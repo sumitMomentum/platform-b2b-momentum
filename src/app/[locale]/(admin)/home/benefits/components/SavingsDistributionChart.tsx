@@ -52,11 +52,13 @@ export default function SavingsDistributionChart({
             <Typography variant="h4" component="p">
               {currentSavings.toLocaleString()} USD
             </Typography>
+          </Stack>
+          <Stack direction="row" sx={{ justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              Savings distribution for vehicles in the last 30 days
+            </Typography>
             <Chip size="small" color={chipColor} label={savingsChangeLabel} />
           </Stack>
-          <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            Savings distribution for vehicles in the last 30 days
-          </Typography>
         </Stack>
         <div style={{ width: '100%', overflowX: 'auto' }}>
           <div style={{ width: '150%' }}> {/* Increase the width to enable horizontal scroll */}
