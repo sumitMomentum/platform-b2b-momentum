@@ -151,7 +151,7 @@ const columns: GridColDef[] = [
     headerName: "Range Added",
     flex: 1,
     renderCell: (params) => (
-      <Chip label={`${params.value} km`} icon={<SpeedIcon />} color="success" />
+      <Chip variant="outlined" label={`${params.value} km`} icon={<SpeedIcon />} color="success" />
     ),
   },
 

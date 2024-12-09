@@ -77,6 +77,7 @@ const columns: GridColDef[] = [
       ) : (
           <Chip
             label="Take Action"
+            variant="outlined"
             color="info" // Sets the color to info
             onClick={()=>{console.log("hello")}} 
             style={{ textTransform: 'none' }} // Optional: to keep text styling consistent
