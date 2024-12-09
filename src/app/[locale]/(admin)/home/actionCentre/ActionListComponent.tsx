@@ -7,6 +7,7 @@ import GppGoodIcon from "@mui/icons-material/GppGood";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import GppBadIcon from "@mui/icons-material/GppBad";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import Box from '@mui/material/Box';
 // Define ActionItem type here
 type ActionItem = {
   id: number;
@@ -74,9 +75,12 @@ const columns: GridColDef[] = [
           icon={<VerifiedIcon />}
         />
       ) : (
-        <Button variant="contained" color="primary" style={{ textTransform: 'none' }}>
-          Take Action
-        </Button>
+          <Chip
+            label="Take Action"
+            color="info" // Sets the color to info
+            onClick={()=>{console.log("hello")}} 
+            style={{ textTransform: 'none' }} // Optional: to keep text styling consistent
+          />
       ),
   },
   {

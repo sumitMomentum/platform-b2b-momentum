@@ -104,7 +104,7 @@ export default function StatCard({
               <Typography variant="caption" sx={{ color: "text.secondary" }}>
                 {interval}
               </Typography>
-              <Chip size="small" color={color} label={trendValues[trend]} />
+              <Chip variant="outlined" size="small" color={color} label={trendValues[trend]} />
             </Stack>
           </Stack>
         </Stack>

@@ -62,7 +62,7 @@ const DegradationChart: React.FC<DegradationChartProps> = ({
             <Typography variant="caption" color="text.secondary">
               Comparison of degradation across vehicles
             </Typography>
-            <Chip size="small" color={chipColor} label={differenceLabel} />
+            <Chip size="small" variant="outlined" color={chipColor} label={differenceLabel} />
           </Stack>
         </Stack>
 
