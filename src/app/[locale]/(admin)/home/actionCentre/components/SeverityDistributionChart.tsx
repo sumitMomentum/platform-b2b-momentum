@@ -67,19 +67,21 @@ export default function SeverityDistributionChart({
             }}
           >
             <Typography variant="h4" component="p">
-              {loading ? 0 : <CountUp end={Number(low + medium + high)} />} Actions
-            </Typography>
-          </Stack>
-          <Stack direction="row" sx={{ justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
-              Distribution of severity levels in the actions
+              {loading ? 0 : <CountUp end={Number(low + medium + high)} />}{" "}
+              Actions
             </Typography>
             <Chip
               size="small"
               color="success"
-              label={`${Math.round(((medium + high) / (low + medium + high)) * 100)}%`}
-            />
+              label={`+${Math.round(
+                ((medium + high) / (low + medium + high)) * 100
+              )}%`}
+            />{" "}
+            {/* Change Chip color to green */}
           </Stack>
+          <Typography variant="caption" sx={{ color: "text.secondary" }}>
+            Distribution of severity levels in the actions
+          </Typography>
         </Stack>
         <BarChart
           loading={loading}
@@ -87,29 +89,33 @@ export default function SeverityDistributionChart({
           xAxis={[
             {
               scaleType: "band",
-              data: ["Severity Levels"],
+              data: ["Low", "Medium", "High"],
             },
           ]}
-          series={[
-            {
-              id: "low",
-              label: "Low",
-              data: [low],
-              color: sevierityChartsPalette.success,
-            },
-            {
-              id: "medium",
-              label: "Medium",
-              data: [medium],
-              color: sevierityChartsPalette.warning,
-            },
-            {
-              id: "high",
-              label: "High",
-              data: [high],
-              color: sevierityChartsPalette.error,
-            },
-          ]}
+          series={
+            dataAvailable
+              ? [
+                  {
+                    id: "low",
+                    label: "Low",
+                    data: [low,0,0],
+                    color: sevierityChartsPalette.success,
+                  },
+                  {
+                    id: "medium",
+                    label: "Medium",
+                    data: [0,medium,0],
+                    color: sevierityChartsPalette.warning,
+                  },
+                  {
+                    id: "high",
+                    label: "High",
+                    data: [0,0,high],
+                    color: sevierityChartsPalette.error,
+                  },
+                ]
+              : []
+          }
           height={250}
           margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}
