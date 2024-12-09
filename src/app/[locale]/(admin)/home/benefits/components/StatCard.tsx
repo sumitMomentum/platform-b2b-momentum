@@ -20,7 +20,6 @@ export type StatCardProps = {
   };
 };
 
-
 function getDaysInMonth(month: number, year: number) {
   const date = new Date(year, month, 0);
   const monthName = date.toLocaleDateString("en-US", {
@@ -80,7 +79,7 @@ export default function StatCard({
   };
 
   const color = labelColors[trend];
-  const trendValues = { up: "+25%", down: "-25%", neutral: "+5%" };
+  const trendValues = { up: "25%", down: "25%", neutral: "5%" };
 
   return (
     <Card variant="outlined" sx={{ height: "100%", flexGrow: 1 }}>

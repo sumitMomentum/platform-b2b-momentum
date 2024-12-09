@@ -107,6 +107,7 @@ export default function ActionsClosedOverTimeChart({
             <Chip
               size="small"
               color="success"
+              variant="outlined"
               label={`Closed: ${Math.round(
                 actionsClosed.reduce((acc, val) => acc + val, 0) /
                   (actionsClosed.length || 1) // Prevent division by zero
@@ -115,6 +116,7 @@ export default function ActionsClosedOverTimeChart({
             <Chip
               size="small"
               color="warning"
+              variant="outlined"
               label={`Open: ${Math.round(
                 actionsOpen.reduce((acc, val) => acc + val, 0) /
                   (actionsOpen.length || 1) // Prevent division by zero

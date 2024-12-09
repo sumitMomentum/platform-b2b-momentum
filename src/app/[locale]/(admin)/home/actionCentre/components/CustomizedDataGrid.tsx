@@ -7,7 +7,7 @@ import GppGoodIcon from "@mui/icons-material/GppGood";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import GppBadIcon from "@mui/icons-material/GppBad";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import { Chip, Button } from "@mui/material";
+import { Chip, Button, Stack } from "@mui/material";
 
 // Import the getAllVehicleActions function correctly
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
@@ -45,7 +45,7 @@ const CustomizedDataGrid: React.FC = () => {
   }, []);
 
   const columns: GridColDef[] = [
-    { field: "vehicleId", headerName: "Vehicle ID", flex: 1 },
+    { field: "vin", headerName: "Vehicle ID", flex: 1 },
     {
       field: "severity",
       headerName: "Severity",
@@ -89,13 +89,21 @@ const CustomizedDataGrid: React.FC = () => {
             icon={<VerifiedIcon />}
           />
         ) : (
-          <Button variant="contained" color="primary">
-            Take Action
-          </Button>
+          <Chip
+            label={
+              <Stack direction="row" alignItems="center" spacing={1}>
+                Take Action
+                <Button variant="contained" color="primary" size="small">
+                  Go
+                </Button>
+              </Stack>
+            }
+            variant="outlined"
+          />
         ),
     },
     {
-      field: "createdDateTime",
+      field: "CreatedDateTime",
       headerName: "Created Date",
       flex: 1,
       renderCell: (params) => {
@@ -106,7 +114,7 @@ const CustomizedDataGrid: React.FC = () => {
       },
     },
     {
-      field: "closedDateTime",
+      field: "ClosedDateTime",
       headerName: "Closed Date",
       flex: 1,
       renderCell: (params) => {

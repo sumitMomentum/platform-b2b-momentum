@@ -54,9 +54,15 @@ export default function SeverityDistributionChart({
   return (
     <Card variant="outlined" sx={{ width: "100%" }}>
       <CardContent>
-        <Typography component="h2" variant="subtitle2" gutterBottom>
-          Severity Distribution of Actions
-        </Typography>
+        <Stack
+          direction="row"
+          alignItems="center"
+          sx={{ justifyContent: "space-between" }}
+        >
+          <Typography component="h2" variant="subtitle2" gutterBottom>
+            Severity Distribution of Actions
+          </Typography>
+        </Stack>
         <Stack sx={{ justifyContent: "space-between" }}>
           <Stack
             direction="row"
@@ -70,17 +76,17 @@ export default function SeverityDistributionChart({
               {loading ? 0 : <CountUp end={Number(low + medium + high)} />}{" "}
               Actions
             </Typography>
-            <Chip
-              size="small"
-              color="success"
-              label={`+${Math.round(
-                ((medium + high) / (low + medium + high)) * 100
-              )}%`}
-            />{" "}
-            {/* Change Chip color to green */}
           </Stack>
           <Typography variant="caption" sx={{ color: "text.secondary" }}>
             Distribution of severity levels in the actions
+            <Chip
+              size="small"
+              variant="outlined"
+              sx={{ ml: 1 }}
+              label={`${Math.round(
+                ((medium + high) / (low + medium + high)) * 100
+              )}%`}
+            />
           </Typography>
         </Stack>
         <BarChart
@@ -98,19 +104,19 @@ export default function SeverityDistributionChart({
                   {
                     id: "low",
                     label: "Low",
-                    data: [low,0,0],
+                    data: [low, 0, 0],
                     color: sevierityChartsPalette.success,
                   },
                   {
                     id: "medium",
                     label: "Medium",
-                    data: [0,medium,0],
+                    data: [0, medium, 0],
                     color: sevierityChartsPalette.warning,
                   },
                   {
                     id: "high",
                     label: "High",
-                    data: [0,0,high],
+                    data: [0, 0, high],
                     color: sevierityChartsPalette.error,
                   },
                 ]

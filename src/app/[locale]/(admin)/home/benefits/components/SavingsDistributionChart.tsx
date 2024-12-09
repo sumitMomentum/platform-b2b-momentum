@@ -29,7 +29,7 @@ export default function SavingsDistributionChart({
   const previousSavings = 5000; // Placeholder for previous period savings, replace with actual data
   
   const savingsChange = ((currentSavings - previousSavings) / previousSavings) * 100;
-  const savingsChangeLabel = `${savingsChange >= 0 ? "+" : ""}${savingsChange.toFixed(2)}%`;
+  const savingsChangeLabel = `${Math.abs(savingsChange.toFixed(2))}%`;
 
   // Determine the chip color based on the change
   const chipColor = savingsChange >= 0 ? 'success' : 'error';
@@ -57,7 +57,7 @@ export default function SavingsDistributionChart({
             <Typography variant="caption" sx={{ color: "text.secondary" }}>
               Savings distribution for vehicles in the last 30 days
             </Typography>
-            <Chip size="small" color={chipColor} label={savingsChangeLabel} />
+            <Chip size="small" variant="outlined" color={chipColor} label={savingsChangeLabel} />
           </Stack>
         </Stack>
         <div style={{ width: '100%', overflowX: 'auto' }}>

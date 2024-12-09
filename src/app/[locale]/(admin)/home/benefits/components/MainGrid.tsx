@@ -50,7 +50,7 @@ export default function MainGrid({ benefits, overall, loading, setLoading }: Mai
             data: benefits.map((item) => item.costSavingChargingMonthly || 0),
             loading: loading,
             chip: {
-              label: `${savingsChange.toFixed(2)}%`,
+              label: `${Math.abs(savingsChange).toFixed(2)}%`,
               color: savingsChange >= 0 ? "success" : "error",
             },
           },
@@ -62,7 +62,7 @@ export default function MainGrid({ benefits, overall, loading, setLoading }: Mai
             data: benefits.map((item) => item.costSavingChargingMonthly || 0),
             loading: loading,
             chip: {
-              label: `${averageSavingsChange.toFixed(2)}%`,
+              label: `${Math.abs(averageSavingsChange).toFixed(2)}%`,
               color: averageSavingsChange >= 0 ? "success" : "error",
             },
           },
@@ -74,7 +74,7 @@ export default function MainGrid({ benefits, overall, loading, setLoading }: Mai
             data: benefits.map((item) => item.rangeIncreaseMonthly || 0),
             loading: loading,
             chip: {
-              label: `${rangeIncreaseChange.toFixed(2)}%`,
+              label: `${Math.abs(rangeIncreaseChange).toFixed(2)}%`,
               color: rangeIncreaseChange >= 0 ? "success" : "error",
             },
           },
