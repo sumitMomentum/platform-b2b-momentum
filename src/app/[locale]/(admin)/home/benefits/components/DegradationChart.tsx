@@ -31,18 +31,18 @@ const DegradationChart: React.FC<DegradationChartProps> = ({
   // Merge data into a single dataset
   const dataset = vehicleIds.map((id, index) => ({
     vehicleId: id,
-    actualDegradation: actualDegradation[index],
-    estimatedDegradation: estimatedDegradation[index],
+    actualDegradation: actualDegradation[index] * 100, // Multiply by 100 to show percentage
+    estimatedDegradation: estimatedDegradation[index] * 100, // Multiply by 100 to show percentage
   }));
 
   // Calculate the total difference and percentage
-  const totalActual = actualDegradation.reduce((sum, value) => sum + value, 0);
-  const totalEstimated = estimatedDegradation.reduce((sum, value) => sum + value, 0);
+  const totalActual = actualDegradation.reduce((sum, value) => sum + value, 0); // Keep as original
+  const totalEstimated = estimatedDegradation.reduce((sum, value) => sum + value, 0); // Keep as original
   const degradationDifference = totalEstimated - totalActual;
   const totalDegradation = totalEstimated + totalActual;
   const percentageDifference = ((degradationDifference / totalDegradation) * 100).toFixed(2);
 
-  const differenceLabel = `Reduced by ${degradationDifference.toFixed(2)} (${percentageDifference}%)`;
+  const differenceLabel = `Reduced by ${percentageDifference}%`;
   const chipColor = degradationDifference >= 0 ? "success" : "error";
 
   return (
@@ -78,6 +78,17 @@ const DegradationChart: React.FC<DegradationChartProps> = ({
                     dataKey: "vehicleId",
                     scaleType: "point",
                     valueFormatter: (id) => id,
+                    tickLabelStyle: {
+                      angle: -45, // Rotate labels for better visibility
+                      fontSize: 12,
+                      textAnchor: 'end',
+                    },
+                  },
+                ]}
+                yAxis={[
+                  {
+                    id: "Degradation",
+                    valueFormatter: (value) => `${value.toFixed(2)}%`, // Show percentage with % sign
                   },
                 ]}
                 series={[
@@ -85,22 +96,22 @@ const DegradationChart: React.FC<DegradationChartProps> = ({
                     id: "estimated",
                     label: "Estimated Degradation",
                     dataKey: "estimatedDegradation",
-                    area: true,
                     showMark: false,
                     color: "#388e3c", // Green for estimated degradation
+                    valueFormatter: (value) => `${value.toFixed(2)}%`, // Show percentage with % sign on hover
                   },
                   {
                     id: "actual",
                     label: "Actual Degradation",
                     dataKey: "actualDegradation",
-                    area: true,
                     showMark: false,
                     color: "#ff9800", // Orange for actual degradation
+                    valueFormatter: (value) => `${value.toFixed(2)}%`, // Show percentage with % sign on hover
                   },
                 ]}
+                height={300}  // Increase the height to ensure labels are fully visible
                 width={1000}  // Increase the width to enable horizontal scroll
-                height={235}
-                margin={{ left: 70 }}
+                margin={{ left: 70, bottom: 100 }}  // Increase bottom margin for label visibility
                 loading={loading}
               />
             </Box>

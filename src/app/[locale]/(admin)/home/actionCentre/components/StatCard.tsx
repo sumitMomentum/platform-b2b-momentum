@@ -58,7 +58,6 @@ export default function StatCard({
   };
 
   const color = trendColors[trend];
-  const trendValues = { up: "+25%", down: "-25%", neutral: "+5%" };
 
   return (
     <Card variant="outlined" sx={{ height: "100%", flexGrow: 1 }}>
@@ -78,11 +77,13 @@ export default function StatCard({
               <Typography variant="h4" component="p">
                 {loading ? 0 : <CountUp end={parseFloat(value)} />}
               </Typography>
+            </Stack>
+            <Stack direction="row" sx={{ alignItems: "center", gap: 1 }}>
+              <Typography variant="caption" sx={{ color: "text.secondary", mr: 1 }}>
+                {interval}
+              </Typography>
               <Chip size="small" color={color} label={chipLabel} />
             </Stack>
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
-              {interval}
-            </Typography>
           </Stack>
         </Stack>
       </CardContent>

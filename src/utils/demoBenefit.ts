@@ -130,7 +130,7 @@ async function calculateBenefit(metrics: BenefitMetrics) {
 
   const revenueIncreaseLifetime = metrics.revenueIncreaseMonthly * 60; // 5 years
 
-  const estimatedDegradation = metrics.actualDegradation + 0.02; // Adding a 2% buffer for uncertainty
+  const estimatedDegradation = metrics.actualDegradation + 0.09 * Math.random(); // Adding a 2% buffer for uncertainty
   const difference = Math.max(metrics.currentSoH - estimatedDegradation, 0);
   const loss = Math.max(0, metrics.initialSoH - metrics.currentSoH);
 

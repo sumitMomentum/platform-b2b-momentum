@@ -126,7 +126,7 @@ export default function MainGrid({ actions, loading }) {
       trend: getTrend(totalActions, 50),
       data: [totalActions],
       loading: loading,
-      chipLabel: `${totalActionsTrend.toFixed(2)}%`, // Use the calculated trend value
+      chipLabel: `${Math.abs(totalActionsTrend.toFixed(2))}%`, // Use the calculated trend value without sign
     },
     {
       title: "Confirmed Actions",
@@ -135,7 +135,7 @@ export default function MainGrid({ actions, loading }) {
       trend: getTrend(confirmedActions, totalActions / 2),
       data: [confirmedActions],
       loading: loading,
-      chipLabel: `${confirmedActionsRate.toFixed(2)}%`, // Use the confirmation rate
+      chipLabel: `${Math.abs(confirmedActionsRate.toFixed(2))}%`, // Use the confirmation rate without sign
     },
     {
       title: "Average Severity Level",
@@ -144,7 +144,7 @@ export default function MainGrid({ actions, loading }) {
       trend: getTrend(avgSeverity, 2, false), // Lower severity is better
       data: [avgSeverity],
       loading: loading,
-      chipLabel: `${avgSeverityTrend.toFixed(2)}%`, // Use the calculated severity trend
+      chipLabel: `${Math.abs(avgSeverityTrend.toFixed(2))}%`, // Use the calculated severity trend without sign
     },
     {
       title: "Average Time to Close (hrs)",
@@ -153,7 +153,7 @@ export default function MainGrid({ actions, loading }) {
       trend: getTrend(avgTimeToClose, 24, false), // Assuming actions closed in < 24hrs is good
       data: [avgTimeToClose],
       loading: loading,
-      chipLabel: `${avgTimeToCloseTrend.toFixed(2)}%`, // Use the calculated time to close trend
+      chipLabel: `${Math.abs(avgTimeToCloseTrend.toFixed(2))}%`, // Use the calculated time to close trend without sign
     },
   ];
 

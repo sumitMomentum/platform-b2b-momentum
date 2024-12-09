@@ -100,7 +100,7 @@ export default function SavingsDistributionChart({
                     ]
                   : []
               }
-              height={250}
+              height={315}
               margin={{ left: 50, right: 0, top: 20, bottom: 70 }}
               grid={{ horizontal: true }}
               slotProps={{

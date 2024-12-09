@@ -5,7 +5,6 @@ import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { useTheme } from "@mui/material/styles";
 import { sevierityChartsPalette } from "@/themes/ChartPalettes";
 import CountUp from "react-countup";
 
@@ -47,7 +46,6 @@ export default function SeverityDistributionChart({
   actionsData = [],
   loading,
 }) {
-  const theme = useTheme();
   const dataAvailable = actionsData.length;
 
   // Get the severity data from the vehicle actions
@@ -79,7 +77,7 @@ export default function SeverityDistributionChart({
             <Chip
               size="small"
               color="success"
-              label={`+${Math.round(((medium + high) / (low + medium + high)) * 100)}%`}
+              label={`${Math.round(((medium + high) / (low + medium + high)) * 100)}%`}
             />
           </Stack>
         </Stack>
@@ -89,30 +87,29 @@ export default function SeverityDistributionChart({
           xAxis={[
             {
               scaleType: "band",
-              data: ["Low", "Medium", "High"],
-              colorMap: {
-                type: "piecewise",
-                thresholds: [1, 2],
-                colors: [
-                  sevierityChartsPalette.success,
-                  sevierityChartsPalette.warning,
-                  sevierityChartsPalette.warning,
-                ],
-              },
+              data: ["Severity Levels"],
             },
           ]}
-          series={
-            dataAvailable
-              ? [
-                  {
-                    id: "severity",
-                    label: "Severity",
-                    data: [low, medium, high], // Data for severity counts
-                    stack: "A",
-                  },
-                ]
-              : []
-          }
+          series={[
+            {
+              id: "low",
+              label: "Low",
+              data: [low],
+              color: sevierityChartsPalette.success,
+            },
+            {
+              id: "medium",
+              label: "Medium",
+              data: [medium],
+              color: sevierityChartsPalette.warning,
+            },
+            {
+              id: "high",
+              label: "High",
+              data: [high],
+              color: sevierityChartsPalette.error,
+            },
+          ]}
           height={250}
           margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}
