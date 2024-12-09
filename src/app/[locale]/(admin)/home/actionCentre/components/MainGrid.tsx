@@ -8,7 +8,6 @@ import StatCard, { StatCardProps } from "./StatCard";
 import ActionsClosedOverTimeChart from "./ActionsOverTimeChart";
 import SeverityDistributionChart from "./SeverityDistributionChart";
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
-import CustomizedDataGrid from "./CustomizedDataGrid";
 import SuspenseDashboard from "@/components/suspenseSkeleton/SuspenseDashboard";
 import ActionListComponent from "../ActionListComponent";
 
@@ -126,7 +125,7 @@ export default function MainGrid({ actions, loading }) {
       trend: getTrend(totalActions, 50),
       data: [totalActions],
       loading: loading,
-      chipLabel: `${Math.abs(totalActionsTrend.toFixed(2))}%`, // Use the calculated trend value without sign
+      chipLabel: `${Math.abs(Number(totalActionsTrend.toFixed(2)))}%`, // Use the calculated trend value without sign
     },
     {
       title: "Confirmed Actions",
@@ -135,7 +134,7 @@ export default function MainGrid({ actions, loading }) {
       trend: getTrend(confirmedActions, totalActions / 2),
       data: [confirmedActions],
       loading: loading,
-      chipLabel: `${Math.abs(confirmedActionsRate.toFixed(2))}%`, // Use the confirmation rate without sign
+      chipLabel: `${Math.abs(Number(confirmedActionsRate.toFixed(2)))}%`, // Use the confirmation rate without sign
     },
     {
       title: "Average Severity Level",
@@ -144,7 +143,7 @@ export default function MainGrid({ actions, loading }) {
       trend: getTrend(avgSeverity, 2, false), // Lower severity is better
       data: [avgSeverity],
       loading: loading,
-      chipLabel: `${Math.abs(avgSeverityTrend.toFixed(2))}%`, // Use the calculated severity trend without sign
+      chipLabel: `${Math.abs(Number(avgSeverityTrend.toFixed(2)))}%`, // Use the calculated severity trend without sign
     },
     {
       title: "Average Time to Close (hrs)",
@@ -153,7 +152,7 @@ export default function MainGrid({ actions, loading }) {
       trend: getTrend(avgTimeToClose, 24, false), // Assuming actions closed in < 24hrs is good
       data: [avgTimeToClose],
       loading: loading,
-      chipLabel: `${Math.abs(avgTimeToCloseTrend.toFixed(2))}%`, // Use the calculated time to close trend without sign
+      chipLabel: `${Math.abs(Number(avgTimeToCloseTrend.toFixed(2)))}%`, // Use the calculated time to close trend without sign
     },
   ];
 

@@ -27,9 +27,9 @@ export default function SavingsDistributionChart({
   // Example savings data (current and previous period)
   const currentSavings = vehicleData.reduce((acc, item) => acc + item.value, 0);
   const previousSavings = 5000; // Placeholder for previous period savings, replace with actual data
-  
+
   const savingsChange = ((currentSavings - previousSavings) / previousSavings) * 100;
-  const savingsChangeLabel = `${Math.abs(savingsChange.toFixed(2))}%`;
+  const savingsChangeLabel = `${Math.abs(Number(savingsChange.toFixed(2)))}%`;
 
   // Determine the chip color based on the change
   const chipColor = savingsChange >= 0 ? 'success' : 'error';
