@@ -251,6 +251,7 @@ const Page = () => {
           variant="contained"
           color="primary"
           onClick={handleUpload}
+          style={{ textTransform: 'none' }}
         >
           Upload
         </Button>

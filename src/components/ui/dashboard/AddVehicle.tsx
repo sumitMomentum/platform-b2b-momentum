@@ -31,6 +31,7 @@ const AddVehicle = () => {
       color="primary"
       startIcon={<AddBoxIcon />}
       onClick={handleAddVehicle}
+      style={{ textTransform: 'none' }}
     >
       Add
     </LoadingButton>

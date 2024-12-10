@@ -23,129 +23,97 @@ export async function uploadVehiclesFromCSV(formData: FormData) {
         .on("error", reject);
     });
 
-    // Function to convert date string to Date object or set a default date
     const parseDate = (dateString: string) => {
-      if (!dateString) {
-        return new Date("2000-01-01"); // Default date if dateString is undefined
+      return dateString ? new Date(dateString) : new Date(); // Default to current date if null
+    };
+
+    const parseArrayOrSingleFloat = (value: string) => {
+      if (!value) {
+        return [];
       }
-
-      const dateParts = dateString.split("-");
-      const dateObject = new Date(
-        parseInt(dateParts[2], 10), // Year
-        parseInt(dateParts[1], 10) - 1, // Month (0-based)
-        parseInt(dateParts[0], 10) // Day
-      );
-      return isNaN(dateObject.getTime()) ? new Date("2000-01-01") : dateObject;
+      const values = value.split(",").map((item) => parseFloat(item.trim()));
+      return values.length === 1 ? values[0] : values;
     };
 
-    // Function to convert ownerID to a number if it is a string
-    const convertOwnerId = (_ownerId: string | number) => {
-      return 1; // Always set ownerId to 1
+    const parseSingleFloat = (value: string) => {
+      return value ? parseFloat(value) : null;
     };
 
-    // Process and insert vehicles
+    const ensureArray = (value: any) => {
+      return value !== null && !Array.isArray(value) ? [value] : value;
+    };
+
+    const parseNumberArray = (numArrayString: string) => {
+      return numArrayString ? numArrayString.split(",").map(parseFloat) : [];
+    };
+
     const vehicles = await Promise.all(
       results.map(async (row) => {
         return await prisma.vehicle.create({
           data: {
-            id: row.id,
-            vin: row.vin,
-            vehicleId: row.vehicleId,
-            model: row.model,
-            year: parseInt(row.year),
-            batteryCapacity: parseInt(row.batteryCapacity),
-            ownerID: convertOwnerId(row.ownerID),
-            soc: parseInt(row.soc),
-            dateOfConnection: parseDate(row.dateOfConnection),
-            odometerFloat: parseFloat(row.odometerReading),
-            // avgDailyKmDriven: row.avgDailyKmDriven ? row.avgDailyKmDriven.split(',').map(parseFloat) : [],
-            monthlyUsage: row.monthlyUsage ? row.monthlyUsage.split(',').map(parseFloat) : [],
-            condition: row.condition,
-            status: row.status,
-            make: row.make,
-            batteryHealthSoH: parseFloat(row.batteryHealthSoH),
-            batteryHealthDegradation: parseFloat(row.batteryHealthDegradation),
-            location: row.location,
-            soh: row.soh ? row.soh.split(",").map(parseFloat) : [],
-            avgEstimatedDegradation: row.avgEstimatedDegradation
-              ? row.avgEstimatedDegradation.split(",").map(parseFloat)
-              : [],
-            avgSoC: parseFloat(row.avgSoC),
-            totalBatteries: parseInt(row.totalBatteries),
-            connectorType: row.connectorType,
-            endOfLifeEstimate: row.endOfLifeEstimate,
-            observedRange: parseInt(row.observedRange),
-            remainingUsefulLife: row.remainingUsefulLife,
-            totalChargingSessions: parseInt(row.totalChargingSessions),
-            totalEnergyConsumed: row.totalEnergyConsumed,
-            criticalConditionCount: parseInt(row.criticalConditionCount),
-            goodConditionCount: parseInt(row.goodConditionCount),
-            satisfactoryConditionCount: parseInt(
-              row.satisfactoryConditionCount
-            ),
-            activeStatusCount: parseInt(row.activeStatusCount),
-            chargingStatusCount: parseInt(row.chargingStatusCount),
-            inUseStatusCount: parseInt(row.inUseStatusCount),
-            outOfServiceStatusCount: parseInt(row.outOfServiceStatusCount),
-            providedRangeEPAWLTP: parseInt(row.providedRangeEPAWLTP),
-            maxObservedRange: parseInt(row.maxObservedRange),
-            minObservedRange: parseInt(row.minObservedRange),
-            maxSoCRange: parseInt(row.maxSoCRange),
-            minSoCRange: parseInt(row.minSoCRange),
-            maxTemperature: parseInt(row.maxTemperature),
-            minTemperature: parseInt(row.minTemperature),
-            batteryChemistry: row.batteryChemistry,
-            avgBatteryHealthSoH: parseFloat(row.avgBatteryHealthSoH),
-            dataPointsCollected: parseInt(row.dataPointsCollected),
-            avgMonthlyUsage: parseFloat(row.avgMonthlyUsage),
-            vehicleConditionCritical: parseInt(row.vehicleConditionCritical),
-            vehicleConditionGood: parseInt(row.vehicleConditionGood),
-            vehicleConditionSatisfactory: parseInt(
-              row.vehicleConditionSatisfactory
-            ),
-            vehicleStatusActive: parseInt(row.vehicleStatusActive),
-            vehicleStatusCharging: parseInt(row.vehicleStatusCharging),
-            vehicleStatusInUse: parseInt(row.vehicleStatusInUse),
-            vehicleStatusOutOfService: parseInt(row.vehicleStatusOutOfService),
-            averageMonthlyUsage: parseFloat(row.averageMonthlyUsage),
-            batteryHealthAverageEstimatedDegradation:
-              row.batteryHealthAverageEstimatedDegradation
-                ? row.batteryHealthAverageEstimatedDegradation
-                    .split(",")
-                    .map(parseFloat)
-                : [],
-            batteryHealthAverageSoC: parseFloat(row.batteryHealthAverageSoC),
-            batteryHealthAverageSoH: parseFloat(row.batteryHealthAverageSoH),
-            batteryHealthTotalBatteries: parseInt(
-              row.batteryHealthTotalBatteries
-            ),
-            endOfLife: row.endOfLife,
-            epawltpProvidedRange: parseInt(row.epawltpProvidedRange),
-            // odometerFloat: parseFloat(row.odometerFloat),
-            realRangeObserved: parseInt(row.realRangeObserved),
-            totalChargingSession: parseInt(row.totalChargingSession),
-            usageAverageDailyKmDriven: row.usageAverageDailyKmDriven
-              ? row.usageAverageDailyKmDriven.split(",").map(parseFloat)
-              : [],
-            usageRangeObservedMax: parseInt(row.usageRangeObservedMax),
-            usageRangeObservedMin: parseInt(row.usageRangeObservedMin),
-            usageSoCRangeMax: parseInt(row.usageSoCRangeMax),
-            usageSoCRangeMin: parseInt(row.usageSoCRangeMin),
-            usageTemperatureHigh: parseInt(row.usageTemperatureHigh),
-            usageTemperatureLow: parseInt(row.usageTemperatureLow),
-            ownerId: convertOwnerId(row.ownerId),
+            id: row.id || "",
+            vin: row.vin || "",
+            vehicleId: row.vehicleId || "",
+            model: row.model || "",
+            year: row.year ? parseInt(row.year) : null,
+            batteryCapacity: row.batteryCapacity ? parseInt(row.batteryCapacity) : null,
+            ownerID: row.ownerID ? parseInt(row.ownerID) : 1, // Default to 1 if ownerID is not provided
+            soc: row.soc ? parseInt(row.soc) : null,
+            dateOfConnection: parseDate(row.dateOfConnection), // Ensure dateOfConnection is not null
+            odometerFloat: row.odometerFloat ? parseFloat(row.odometerFloat) : null,
+            usageAverageDailyKmDriven: parseNumberArray(row.UsageAverageDailyKmDriven),
+            monthlyUsage: parseNumberArray(row.MonthlyUsage),
+            condition: row.condition || "",
+            status: row.status || "",
+            make: row.make || "",
+            batteryHealthSoH: row.batteryHealthSoH ? parseFloat(row.batteryHealthSoH) : null,
+            batteryHealthDegradation: row.batteryHealthDegradation ? parseFloat(row.batteryHealthDegradation) : null,
+            location: row.location || "",
+            soh: ensureArray(parseArrayOrSingleFloat(row.soh)),
+            batteryHealthAverageEstimatedDegradation: ensureArray(parseArrayOrSingleFloat(row.BatteryHealthAverageEstimatedDegradation)),
+            batteryHealthAverageSoC: parseSingleFloat(row.BatteryHealthAverageSoC),
+            batteryHealthTotalBatteries: row.BatteryHealthTotalBatteries ? parseInt(row.BatteryHealthTotalBatteries) : null,
+            connectorType: row.ConnectorType || "",
+            endOfLife: row.EndofLife || "",
+            realRangeObserved: row.RealRangeObserved ? parseFloat(row.RealRangeObserved) : null,
+            remainingUsefulLife: row.RemainingUsefulLife ? row.RemainingUsefulLife.toString() : null, // Ensuring string type
+            totalChargingSession: row.TotalChargingSession ? parseInt(row.TotalChargingSession) : null,
+            totalEnergyConsumed: row.TotalEnergyConsumed || "",
+            vehicleConditionCritical: row.VehicleConditionCritical ? parseInt(row.VehicleConditionCritical) : null,
+            vehicleConditionGood: row.VehicleConditionGood ? parseInt(row.VehicleConditionGood) : null,
+            vehicleConditionSatisfactory: row.VehicleConditionSatisfactory ? parseInt(row.VehicleConditionSatisfactory) : null,
+            vehicleStatusActive: row.VehicleStatusActive ? parseInt(row.VehicleStatusActive) : null,
+            vehicleStatusCharging: row.VehicleStatusCharging ? parseInt(row.VehicleStatusCharging) : null,
+            vehicleStatusInUse: row.VehicleStatusInUse ? parseInt(row.VehicleStatusInUse) : null,
+            vehicleStatusOutOfService: row.VehicleStatusOutofService ? parseInt(row.VehicleStatusOutofService) : null,
+            epawltpProvidedRange: row.EPAWLTPProvidedRange ? parseInt(row.EPAWLTPProvidedRange) : null,
+            usageRangeObservedMax: row.UsageRangeObservedMax ? parseInt(row.UsageRangeObservedMax) : null,
+            usageRangeObservedMin: row.UsageRangeObservedMin ? parseInt(row.UsageRangeObservedMin) : null,
+            usageSoCRangeMax: row.UsageSoCRangeMax ? parseInt(row.UsageSoCRangeMax) : null,
+            usageSoCRangeMin: row.UsageSoCRangeMin ? parseInt(row.UsageSoCRangeMin) : null,
+            usageTemperatureHigh: row.UsageTemperatureHigh ? parseInt(row.UsageTemperatureHigh) : null,
+            usageTemperatureLow: row.UsageTemperatureLow ? parseInt(row.UsageTemperatureLow) : null,
+            batteryChemistry: row.batteryChemistry || "",
+            batteryHealthAverageSoH: row.BatteryHealthAverageSoH ? parseFloat(row.BatteryHealthAverageSoH) : null,
+            dataPointsCollected: row.DataPointsCollected ? parseInt(row.DataPointsCollected) : null,
+            averageMonthlyUsage: row.averageMonthlyUsage ? parseFloat(row.averageMonthlyUsage) : null,
+            owner: { // Associate with the owner
+              connectOrCreate: {
+                where: { id: row.ownerID ? parseInt(row.ownerID) : 1 },
+                create: { id: row.ownerID ? parseInt(row.ownerID) : 1 }
+              }
+            }
           },
         });
       })
     );
 
-    // Update benefits for all vehicles
-    const benefits = await updateBenefits();
+    // const benefits = await updateBenefits();
 
     return {
-      message: `Successfully uploaded ${vehicles.length} vehicles and updated benefits for ${benefits.length} vehicles`,
+      message: `Successfully uploaded ${vehicles.length} vehicles.`,
       vehicles,
-      benefits,
+      // benefits,
     };
   } catch (error) {
     console.error("Error uploading vehicles:", error);

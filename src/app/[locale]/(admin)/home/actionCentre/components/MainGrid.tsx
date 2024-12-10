@@ -4,12 +4,10 @@ import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Copyright from "../internals/components/Copyright";
 import StatCard, { StatCardProps } from "./StatCard";
 import ActionsClosedOverTimeChart from "./ActionsOverTimeChart";
 import SeverityDistributionChart from "./SeverityDistributionChart";
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
-import CustomizedDataGrid from "./CustomizedDataGrid";
 import SuspenseDashboard from "@/components/suspenseSkeleton/SuspenseDashboard";
 import ActionListComponent from "../ActionListComponent";
 
@@ -18,7 +16,6 @@ const aggregateData = (data) => {
   const totalActions = data.length;
   let confirmedActions = 0;
   let totalSeverityValue = 0;
-  let totalTimeToClose = 0;
 
   // Define severity mapping for numerical calculation
   const severityMapping = {
@@ -40,39 +37,38 @@ const aggregateData = (data) => {
     // Calculate total severity score
     totalSeverityValue += severityMapping[action.severity] || 0;
 
-    // Calculate time to close (in hours)
-    const createdDate = new Date(action.createdDateTime);
-    const closedDate = new Date(action.closedDateTime);
-    const timeToClose =
-      (closedDate.getTime() - createdDate.getTime()) / (1000 * 60 * 60); // Convert ms to hours
-    totalTimeToClose += timeToClose || 0;
-
     // Count closed actions per month
     const monthYearClosed = `${
-      closedDate.getMonth() + 1
-    }-${closedDate.getFullYear()}`;
+      new Date(action.closedDateTime).getMonth() + 1
+    }-${new Date(action.closedDateTime).getFullYear()}`;
     if (!monthlyClosedActions[monthYearClosed]) {
       monthlyClosedActions[monthYearClosed] = [];
     }
     if (action.confirm) {
-      monthlyClosedActions[monthYearClosed].push(closedDate.getDate());
+      monthlyClosedActions[monthYearClosed].push(new Date(action.closedDateTime).getDate());
     }
 
     // Count open actions per month
     const monthYearOpen = `${
-      createdDate.getMonth() + 1
-    }-${createdDate.getFullYear()}`;
+      new Date(action.createdDateTime).getMonth() + 1
+    }-${new Date(action.createdDateTime).getFullYear()}`;
     if (!monthlyOpenActions[monthYearOpen]) {
       monthlyOpenActions[monthYearOpen] = [];
     }
     if (!action.confirm) {
-      monthlyOpenActions[monthYearOpen].push(createdDate.getDate());
+      monthlyOpenActions[monthYearOpen].push(new Date(action.createdDateTime).getDate());
     }
   });
 
   // Calculate averages
-  const avgSeverity = totalSeverityValue / totalActions || 0;
-  const avgTimeToClose = totalTimeToClose / totalActions || 0;
+  const avgSeverity = totalActions ? totalSeverityValue / totalActions : 0;
+  const avgTimeToClose = confirmedActions ? totalActions / confirmedActions : 0; // Divide total actions by confirmed actions
+
+  // Calculate metrics for chips with handling for no data cases
+  const totalActionsTrend = totalActions ? ((totalActions - 50) / 50) * 100 : 0;
+  const confirmedActionsRate = totalActions ? (confirmedActions / totalActions) * 100 : 0;
+  const avgSeverityTrend = avgSeverity ? ((avgSeverity - 2) / 2) * 100 : 0;
+  const avgTimeToCloseTrend = avgTimeToClose ? ((24 - avgTimeToClose) / 24) * 100 : 0;
 
   return {
     totalActions,
@@ -81,6 +77,10 @@ const aggregateData = (data) => {
     avgTimeToClose,
     monthlyClosedActions,
     monthlyOpenActions,
+    totalActionsTrend,
+    confirmedActionsRate,
+    avgSeverityTrend,
+    avgTimeToCloseTrend,
   };
 };
 
@@ -93,7 +93,20 @@ export default function MainGrid({ actions, loading }) {
     avgTimeToClose,
     monthlyClosedActions,
     monthlyOpenActions,
+    totalActionsTrend,
+    confirmedActionsRate,
+    avgSeverityTrend,
+    avgTimeToCloseTrend,
   } = aggregateData(actions);
+
+  // Map success and error to up and down for trend
+  const getTrend = (value, threshold, higherBetter = true) => {
+    if (higherBetter) {
+      return value > threshold ? "up" : "down";
+    } else {
+      return value < threshold ? "up" : "down";
+    }
+  };
 
   // Data for the Stat Cards
   const statCards: StatCardProps[] = [
@@ -101,45 +114,44 @@ export default function MainGrid({ actions, loading }) {
       title: "Total Actions Taken",
       value: `${totalActions}`,
       interval: "All Time",
-      trend: totalActions > 50 ? "up" : "neutral",
+      trend: getTrend(totalActions, 50),
       data: [totalActions],
       loading: loading,
+      chipLabel: `${Math.abs(Number(totalActionsTrend.toFixed(2)))}%`, // Use the calculated trend value without sign
     },
     {
       title: "Confirmed Actions",
       value: `${confirmedActions}`,
       interval: "All Time",
-      trend: confirmedActions > totalActions / 2 ? "up" : "neutral",
+      trend: getTrend(confirmedActions, totalActions / 2),
       data: [confirmedActions],
       loading: loading,
+      chipLabel: `${Math.abs(Number(confirmedActionsRate.toFixed(2)))}%`, // Use the confirmation rate without sign
     },
     {
       title: "Average Severity Level",
       value: `${avgSeverity.toFixed(2)}`, // Severity level as a decimal
       interval: "All Time",
-      trend: avgSeverity > 2 ? "up" : "neutral", // Severity greater than 2 means high
+      trend: getTrend(avgSeverity, 2, false), // Lower severity is better
       data: [avgSeverity],
       loading: loading,
+      chipLabel: `${Math.abs(Number(avgSeverityTrend.toFixed(2)))}%`, // Use the calculated severity trend without sign
     },
     {
-      title: "Average Time to Close (hrs)",
-      value: `${avgTimeToClose.toFixed(2)} hrs`,
+      title: "Average Time to Close (days)",
+      value: `${  avgTimeToClose} days`, // Display average time to close in days
       interval: "All Time",
-      trend: avgTimeToClose < 24 ? "down" : "neutral", // Assuming actions closed in < 24hrs is good
+      trend: getTrend(avgTimeToClose, 24, false), // Assuming actions closed in < 24hrs is good
       data: [avgTimeToClose],
       loading: loading,
-    },
+      chipLabel: `${Math.abs(Number(avgTimeToCloseTrend.toFixed(2)))}%`, // Use the calculated time to close trend without sign
+    },    
   ];
 
   return (
     <Box sx={{ width: "100%", maxWidth: { sm: "100%", md: "1700px" } }}>
       {/* Overview Section */}
-      <Grid
-        container
-        spacing={1}
-        columns={12}
-        sx={{ mb: (theme) => theme.spacing(2) }}
-      >
+      <Grid container spacing={1} columns={12} sx={{ mb: (theme) => theme.spacing(2) }}>
         {/* Stat Cards */}
         {statCards.map((card, index) => (
           <Grid key={index} item xs={12} sm={6} md={4} lg={3}>

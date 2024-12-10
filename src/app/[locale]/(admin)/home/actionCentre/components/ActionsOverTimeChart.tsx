@@ -43,7 +43,8 @@ export default function ActionsClosedOverTimeChart({
   loading: boolean;
 }) {
   const theme = useTheme();
-  const dataAvailable = data.closed.length || data.open.length;
+  const dataAvailable = Object.keys(data.closed).length || Object.keys(data.open).length;
+  
   // Get the current month and year
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
@@ -98,26 +99,30 @@ export default function ActionsClosedOverTimeChart({
               )}
               {} Actions
             </Typography>
+          </Stack>
+          <Stack direction="row" sx={{ justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              Number of actions closed and open each day for the selected month
+            </Typography>
             <Chip
               size="small"
               color="success"
-              label={`Closed: +${Math.round(
+              variant="outlined"
+              label={`Closed: ${Math.round(
                 actionsClosed.reduce((acc, val) => acc + val, 0) /
-                  actionsClosed.length
+                  (actionsClosed.length || 1) // Prevent division by zero
               )} avg`}
             />
             <Chip
               size="small"
               color="warning"
-              label={`Open: +${Math.round(
+              variant="outlined"
+              label={`Open: ${Math.round(
                 actionsOpen.reduce((acc, val) => acc + val, 0) /
-                  actionsOpen.length
+                  (actionsOpen.length || 1) // Prevent division by zero
               )} avg`}
             />
           </Stack>
-          <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            Number of actions closed and open each day for the selected month
-          </Typography>
         </Stack>
         <LineChart
           loading={loading}

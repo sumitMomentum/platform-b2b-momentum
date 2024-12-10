@@ -173,6 +173,7 @@ const Page = () => {
           startIcon={<FileUploadIcon />}
           variant="contained"
           color="primary"
+          style={{ textTransform: 'none' }}
           onClick={handleUpload}
         >
           Upload

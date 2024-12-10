@@ -85,9 +85,10 @@ const VehiclePage = () => {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      const result = isUpdate
-        ? await updateVehiclesFromCSV(formData)
-        : await uploadVehiclesFromCSV(formData);
+      // const result = isUpdate
+      //   ? await updateVehiclesFromCSV(formData)
+      //   : await uploadVehiclesFromCSV(formData);
+      const result = await uploadVehiclesFromCSV(formData);
 
       setIsSuccess(true);
       setSelectedFile(null);
@@ -207,7 +208,8 @@ const VehiclePage = () => {
               startIcon={<FileUploadIcon />}
               variant="contained"
               color="primary"
-              onClick={() => handleUpload(false)}
+          style={{ textTransform: 'none' }}
+          onClick={() => handleUpload(false)}
             >
               Onboard
             </Button>
@@ -215,14 +217,16 @@ const VehiclePage = () => {
               startIcon={<PublishIcon />}
               variant="contained"
               color="primary"
-              onClick={() => handleUpload(true)}
+          style={{ textTransform: 'none' }}
+          onClick={() => handleUpload(true)}
             >
               Update
             </Button>
             <Button
               variant="outlined"
               color="error"
-              startIcon={<DeleteForeverIcon />}
+          style={{ textTransform: 'none' }}
+          startIcon={<DeleteForeverIcon />}
               onClick={() => handleDelete()}
             >
               Delete

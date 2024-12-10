@@ -139,7 +139,9 @@ const ChargingSessionsPage: React.FC = () => {
             style={{ display: "none" }}
           />
         </Box>
-        <Button startIcon={<FileUploadIcon />} variant="contained" color="primary" onClick={handleUpload}>
+        <Button startIcon={<FileUploadIcon />} variant="contained" color="primary" onClick={handleUpload} 
+          style={{ textTransform: 'none' }}
+        >
           Upload
         </Button>
       </Box>
