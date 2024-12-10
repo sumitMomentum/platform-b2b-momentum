@@ -78,9 +78,17 @@ const columns: GridColDef[] = [
         <Chip
           label="Take Action"
           variant="outlined"
-          color="info" // Sets the color to info
-          onClick={() => { console.log("hello") }}
-          style={{ textTransform: 'none' }} // Optional: to keep text styling consistent
+          color="info"
+          onClick={() => {
+            console.log("hello");
+          }}
+          style={{ textTransform: "none" }}
+          sx={{
+            "&:hover": {
+              shadowColor: "primary",
+              // color: "primary",
+            },
+          }}
         />
       ),
   },
@@ -110,7 +118,7 @@ const columns: GridColDef[] = [
       date.setDate(date.getDate() + randomDaysToAdd);
       return date.toLocaleString();
     },
-  }  
+  },
 ];
 
 const ActionListComponent: React.FC<ActionListComponentProps> = ({
