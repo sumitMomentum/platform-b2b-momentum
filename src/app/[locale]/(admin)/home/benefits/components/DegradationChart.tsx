@@ -55,7 +55,8 @@ const DegradationChart: React.FC<DegradationChartProps> = ({
           {/* Total Degradation Reduced By and Percentage Difference */}
           <Stack direction="row" alignItems="center" spacing={1}>
             <Typography variant="h4" component="p">
-              Degradation Reduced by {degradationDifference.toFixed(2)}
+              {/* Degradation Reduced by {degradationDifference.toFixed(2)} */}
+              Degradation Reduced
             </Typography>
           </Stack>
           <Stack direction="row" sx={{ justifyContent: "flex-start", alignItems: "center", gap: 1 }}>

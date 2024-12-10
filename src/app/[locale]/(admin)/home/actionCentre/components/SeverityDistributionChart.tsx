@@ -79,14 +79,6 @@ export default function SeverityDistributionChart({
           </Stack>
           <Typography variant="caption" sx={{ color: "text.secondary" }}>
             Distribution of severity levels in the actions
-            <Chip
-              size="small"
-              variant="outlined"
-              sx={{ ml: 1 }}
-              label={`${Math.round(
-                ((medium + high) / (low + medium + high)) * 100
-              )}%`}
-            />
           </Typography>
         </Stack>
         <BarChart

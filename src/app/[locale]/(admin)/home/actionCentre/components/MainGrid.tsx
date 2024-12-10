@@ -16,7 +16,6 @@ const aggregateData = (data) => {
   const totalActions = data.length;
   let confirmedActions = 0;
   let totalSeverityValue = 0;
-  let totalTimeToClose = 0;
 
   // Define severity mapping for numerical calculation
   const severityMapping = {
@@ -38,39 +37,32 @@ const aggregateData = (data) => {
     // Calculate total severity score
     totalSeverityValue += severityMapping[action.severity] || 0;
 
-    // Calculate time to close (in hours)
-    const createdDate = new Date(action.createdDateTime);
-    const closedDate = new Date(action.closedDateTime);
-    const timeToClose =
-      (closedDate.getTime() - createdDate.getTime()) / (1000 * 60 * 60); // Convert ms to hours
-    totalTimeToClose += timeToClose || 0;
-
     // Count closed actions per month
     const monthYearClosed = `${
-      closedDate.getMonth() + 1
-    }-${closedDate.getFullYear()}`;
+      new Date(action.closedDateTime).getMonth() + 1
+    }-${new Date(action.closedDateTime).getFullYear()}`;
     if (!monthlyClosedActions[monthYearClosed]) {
       monthlyClosedActions[monthYearClosed] = [];
     }
     if (action.confirm) {
-      monthlyClosedActions[monthYearClosed].push(closedDate.getDate());
+      monthlyClosedActions[monthYearClosed].push(new Date(action.closedDateTime).getDate());
     }
 
     // Count open actions per month
     const monthYearOpen = `${
-      createdDate.getMonth() + 1
-    }-${createdDate.getFullYear()}`;
+      new Date(action.createdDateTime).getMonth() + 1
+    }-${new Date(action.createdDateTime).getFullYear()}`;
     if (!monthlyOpenActions[monthYearOpen]) {
       monthlyOpenActions[monthYearOpen] = [];
     }
     if (!action.confirm) {
-      monthlyOpenActions[monthYearOpen].push(createdDate.getDate());
+      monthlyOpenActions[monthYearOpen].push(new Date(action.createdDateTime).getDate());
     }
   });
 
   // Calculate averages
   const avgSeverity = totalActions ? totalSeverityValue / totalActions : 0;
-  const avgTimeToClose = totalActions ? totalTimeToClose / totalActions : 0;
+  const avgTimeToClose = confirmedActions ? totalActions / confirmedActions : 0; // Divide total actions by confirmed actions
 
   // Calculate metrics for chips with handling for no data cases
   const totalActionsTrend = totalActions ? ((totalActions - 50) / 50) * 100 : 0;
@@ -146,14 +138,14 @@ export default function MainGrid({ actions, loading }) {
       chipLabel: `${Math.abs(Number(avgSeverityTrend.toFixed(2)))}%`, // Use the calculated severity trend without sign
     },
     {
-      title: "Average Time to Close (hrs)",
-      value: `${avgTimeToClose.toFixed(2)} hrs`,
+      title: "Average Time to Close (days)",
+      value: `${  avgTimeToClose} days`, // Display average time to close in days
       interval: "All Time",
       trend: getTrend(avgTimeToClose, 24, false), // Assuming actions closed in < 24hrs is good
       data: [avgTimeToClose],
       loading: loading,
       chipLabel: `${Math.abs(Number(avgTimeToCloseTrend.toFixed(2)))}%`, // Use the calculated time to close trend without sign
-    },
+    },    
   ];
 
   return (
