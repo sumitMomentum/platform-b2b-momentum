@@ -11,41 +11,31 @@ import { deleteAllVehiclesAndBenefits } from "@/actions/admin/userModule/delete-
 import useVehicleStore from "@/states/store";
 import {
   Box,
-  Button,
-  Container,
   IconButton,
-  Input,
   InputAdornment,
   Stack,
   TextField,
   Tooltip,
+  Typography,
+  Button
 } from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
 import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
-import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
-import { type } from "os";
-import style from "styled-jsx/style";
-import { current } from "tailwindcss/colors";
-import { Typography } from "@mui/material";
 
-// const options = {
-//   apiKey: "free",
-//   maxFileCount: 1,
-// };
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { title } from "process";
-import { Item } from "@radix-ui/themes/dist/esm/components/checkbox-group.primitive.js";
 const VehiclePage = () => {
   const t = useTranslations("AdminLayout.pages.vehicles");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [loading, setLoading] = useState({ onboard: false, update: false });
   const vehicles = useVehicleStore((state) => state.vehicles);
   const setVehicles = useVehicleStore((state) => state.setVehicles);
   const fileInputRef = useRef(null);
-
   // Fetch user vehicles if necessary
   const getVehicles = async () => {
     const userVehiclesFromDB = await getUserVehicles();
@@ -82,13 +72,14 @@ const VehiclePage = () => {
         throw new Error("Please select a file to upload.");
       }
 
+      setLoading((prev) => ({ ...prev, [isUpdate ? 'update' : 'onboard']: true }));
+
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      // const result = isUpdate
-      //   ? await updateVehiclesFromCSV(formData)
-      //   : await uploadVehiclesFromCSV(formData);
-      const result = await uploadVehiclesFromCSV(formData);
+      const result = isUpdate
+        ? await updateVehiclesFromCSV(formData)
+        : await uploadVehiclesFromCSV(formData);
 
       setIsSuccess(true);
       setSelectedFile(null);
@@ -105,6 +96,8 @@ const VehiclePage = () => {
           error instanceof Error ? error.message : "Something went wrong"
         }`
       );
+    } finally {
+      setLoading((prev) => ({ ...prev, [isUpdate ? 'update' : 'onboard']: false }));
     }
   };
 
@@ -204,29 +197,33 @@ const VehiclePage = () => {
             useFlexGap
             sx={{ flexWrap: "wrap" }}
           >
-            <Button
+            <LoadingButton
               startIcon={<FileUploadIcon />}
+              loading={loading.onboard}
+              loadingPosition="start"
               variant="contained"
               color="primary"
-          style={{ textTransform: 'none' }}
-          onClick={() => handleUpload(false)}
+              style={{ textTransform: 'none' }}
+              onClick={() => handleUpload(false)}
             >
               Onboard
-            </Button>
-            <Button
+            </LoadingButton>
+            <LoadingButton
               startIcon={<PublishIcon />}
+              loading={loading.update}
+              loadingPosition="start"
               variant="contained"
               color="primary"
-          style={{ textTransform: 'none' }}
-          onClick={() => handleUpload(true)}
+              style={{ textTransform: 'none' }}
+              onClick={() => handleUpload(true)}
             >
               Update
-            </Button>
+            </LoadingButton>
             <Button
               variant="outlined"
               color="error"
-          style={{ textTransform: 'none' }}
-          startIcon={<DeleteForeverIcon />}
+              style={{ textTransform: 'none' }}
+              startIcon={<DeleteForeverIcon />}
               onClick={() => handleDelete()}
             >
               Delete

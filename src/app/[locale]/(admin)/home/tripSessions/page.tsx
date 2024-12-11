@@ -3,18 +3,12 @@ import { useState, useEffect, useRef } from "react";
 import { getTripSessions } from "@/actions/admin/tripModule/getAllTripSessions";
 import PageName from "@/components/ui/commons/PageName";
 import TripList from "@/components/ui/componenets/TripListComponent";
-import {
-  Box,
-  Button,
-  IconButton,
-  InputAdornment,
-  TextField,
-  Tooltip,
-} from "@mui/material";
+import { Box, IconButton, InputAdornment, TextField, Tooltip } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import LoadingButton from '@mui/lab/LoadingButton';
 import { uploadTripsFromCSV } from "@/actions/admin/csvModule/trip/upload-trip-using-csv";
 
 interface TripSession {
@@ -40,6 +34,7 @@ const Page = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
 
   const fetchTripSessions = async () => {
     try {
@@ -81,6 +76,8 @@ const Page = () => {
         throw new Error("Please select a file to upload.");
       }
 
+      setUploading(true);
+
       const formData = new FormData();
       formData.append("file", selectedFile);
 
@@ -101,6 +98,8 @@ const Page = () => {
           error instanceof Error ? error.message : "Something went wrong"
         }`
       );
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -169,15 +168,17 @@ const Page = () => {
             style={{ display: "none" }}
           />
         </Box>
-        <Button
+        <LoadingButton
           startIcon={<FileUploadIcon />}
           variant="contained"
           color="primary"
           style={{ textTransform: 'none' }}
           onClick={handleUpload}
+          loading={uploading}
+          loadingPosition="start"
         >
           Upload
-        </Button>
+        </LoadingButton>
       </Box>
       <div className="container">
         <div className="max-h-screen overflow-y-auto p-4">
