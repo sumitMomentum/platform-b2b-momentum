@@ -59,46 +59,46 @@ export default function Hero() {
     return emailRegex.test(email);
   };
 
-  const sendEmail = () => {
-    if (!email) {
-      toast.error("Please enter a email address.");
-      return;
-    }
+  // const sendEmail = () => {
+  //   if (!email) {
+  //     toast.error("Please enter a email address.");
+  //     return;
+  //   }
 
-    if (!isValidEmail(email)) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
+  //   if (!isValidEmail(email)) {
+  //     toast.error("Please enter a valid email address.");
+  //     return;
+  //   }
 
-    setIsSending(true);
-    // EmailJS parameters
-    const templateParams = {
-      user_email: email,
-    };
+  //   setIsSending(true);
+  //   // EmailJS parameters
+  //   const templateParams = {
+  //     user_email: email,
+  //   };
 
-    // Sending email using EmailJS
-    emailjs
-      .send(
-        process.env.EMAILJS_SERVICE_ID!,
-        process.env.EMAILJS_TEMPLATE_ID!,
-        templateParams,
-        process.env.EMAILJS_PUBLIC_KEY!
-      )
-      .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
-          toast.success("Email sent successfully!"); // Show success toast
-          setEmail(""); // Clear the email field after sending
-        },
-        (err) => {
-          console.error("FAILED...", err);
-          toast.error("Failed to send email. Please try again."); // Show error toast
-        }
-      )
-      .finally(() => {
-        setIsSending(false); // Re-enable button after operation
-      });
-  };
+  //   // Sending email using EmailJS
+  //   emailjs
+  //     .send(
+  //       process.env.EMAILJS_SERVICE_ID!,
+  //       process.env.EMAILJS_TEMPLATE_ID!,
+  //       templateParams,
+  //       process.env.EMAILJS_PUBLIC_KEY!
+  //     )
+  //     .then(
+  //       (response) => {
+  //         console.log("SUCCESS!", response.status, response.text);
+  //         toast.success("Email sent successfully!"); // Show success toast
+  //         setEmail(""); // Clear the email field after sending
+  //       },
+  //       (err) => {
+  //         console.error("FAILED...", err);
+  //         toast.error("Failed to send email. Please try again."); // Show error toast
+  //       }
+  //     )
+  //     .finally(() => {
+  //       setIsSending(false); // Re-enable button after operation
+  //     });
+  // };
 
   return (
     <Box
@@ -196,20 +196,20 @@ export default function Hero() {
                 aria-label="Enter your email address"
                 placeholder="Your email address"
                 fullWidth
-                slotProps={{
-                  htmlInput: {
-                    autoComplete: "off",
-                    "aria-label": "Enter your email address",
-                  },
-                }}
+                // slotProps={{
+                //   htmlInput: {
+                //     autoComplete: "off",
+                //     "aria-label": "Enter your email address",
+                //   },
+                // }}
                 value={email} // Set the email value from state
-                onChange={(e) => setEmail(e.target.value)}
+                // onChange={(e) => setEmail(e.target.value)}
               />
               <Button
                 variant="contained"
                 size="small"
                 sx={{ minWidth: "fit-content" }}
-                onClick={sendEmail}
+                // onClick={sendEmail}
                 disabled={isSending}
               >
                 Request a Demo
