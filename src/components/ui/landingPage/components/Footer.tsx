@@ -143,12 +143,6 @@ export default function Footer({ mode }) {
                 fullWidth
                 aria-label="Enter your email address"
                 placeholder="Your email address"
-                slotProps={{
-                  htmlInput: {
-                    autoComplete: "off",
-                    "aria-label": "Enter your email address",
-                  },
-                }}
                 sx={{ width: "250px" }}
                 value={email} // Set the email value from state
                 onChange={(e) => setEmail(e.target.value)}

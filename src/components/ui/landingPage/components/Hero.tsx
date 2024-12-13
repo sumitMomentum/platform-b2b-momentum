@@ -195,12 +195,6 @@ export default function Hero() {
                 aria-label="Enter your email address"
                 placeholder="Your email address"
                 fullWidth
-                slotProps={{
-                  htmlInput: {
-                    autoComplete: "off",
-                    "aria-label": "Enter your email address",
-                  },
-                }}
                 value={email} // Set the email value from state
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -220,9 +214,7 @@ export default function Hero() {
               sx={{ textAlign: "center" }}
             >
               By clicking &quot;Request a Demo&quot; you agree to our&nbsp;
-              <Link href="#" color="primary">
-                Terms & Conditions
-              </Link>
+              <Link color="primary">Terms & Conditions</Link>
             </Typography>
           </Fade>
         </Stack>

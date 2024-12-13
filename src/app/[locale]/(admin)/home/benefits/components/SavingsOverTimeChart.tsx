@@ -72,8 +72,9 @@ export default function SavingsOverTimeChart({
             }}
           >
             <Typography variant="h4" component="p">
-              {/* {loading ? 0 : <CountUp end={Number(totalSavings.toFixed(2))} />}{" "} */}
-              {totalSavings.toFixed(2)}{" "} USD
+              {loading ? 0 : <CountUp end={Number(totalSavings.toFixed(2))} />}{" "}
+              {/* {totalSavings.toFixed(2)}{" "}  */}
+              USD
             </Typography>
             <Chip
               variant="outlined"
