@@ -16,6 +16,19 @@ import {
 
 import { useTranslations } from "next-intl";
 
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ElectricCarIcon from "@mui/icons-material/ElectricCar";
+import EvStationIcon from "@mui/icons-material/EvStation";
+import SmartButtonIcon from "@mui/icons-material/SmartButton";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import ModeOfTravelIcon from "@mui/icons-material/ModeOfTravel";
+import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
+import CardMembershipIcon from "@mui/icons-material/CardMembership";
+import GroupIcon from "@mui/icons-material/Group";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
+
 export const useNavigation = () => {
   const t = useTranslations("AdminLayout.navigation");
   const tSuperAmin = useTranslations("SuperAdminLayout.navigation");
@@ -24,47 +37,52 @@ export const useNavigation = () => {
     {
       sectionName: t("general"),
       items: [
-        { name: t("dashboard"), href: "/home", icon: HomeIcon, current: false },
+        {
+          name: t("dashboard"),
+          href: "/home",
+          icon: <DashboardIcon />,
+          current: false,
+        },
         {
           name: t("vehicles"),
           href: "/home/vehicles/list",
-          icon: TruckIcon,
+          icon: <ElectricCarIcon />,
           current: false,
         },
         {
           name: t("actionCentre"),
           href: "/home/actionCentre",
-          icon: TicketIcon,
+          icon: <SmartButtonIcon />,
           current: false,
         },
         {
           name: t("benefits"),
           href: "/home/benefits",
-          icon: StarIcon,
+          icon: <MonetizationOnIcon />,
           current: false,
         },
         {
           name: t("chargers"),
           href: "/home/chargers",
-          icon: BoltIcon,
+          icon: <EvStationIcon />,
           current: false,
         },
         {
           name: t("scheduling"),
           href: "/home/scheduling",
-          icon: CalendarDateRangeIcon,
+          icon: <DateRangeIcon />,
           current: false,
         },
         {
           name: "Charging Sessions",
           href: "/home/chargingSessions",
-          icon: Battery50Icon,
+          icon: <ElectricalServicesIcon />,
           current: false,
         },
         {
           name: "Trip Sessions",
           href: "/home/tripSessions",
-          icon: RocketLaunchIcon,
+          icon: <ModeOfTravelIcon />,
           current: false,
         },
       ],
@@ -75,7 +93,7 @@ export const useNavigation = () => {
     //     {
     //       name: t("exampleOne"),
     //       href: "/home/examples",
-    //       icon: ShoppingBagIcon,
+    //       icon: <ShoppingBagIcon/>,
     //       current: false,
     //     },
     //   ],
@@ -86,13 +104,13 @@ export const useNavigation = () => {
     //     {
     //       name: t("wallet"),
     //       href: "/home/wallet?currency=usd",
-    //       icon: CreditCardIcon,
+    //       icon: <CreditCardIcon/>,
     //       current: true,
     //     },
     //     {
     //       name: t("invoices"),
     //       href: "/home/invoices",
-    //       icon: DocumentTextIcon,
+    //       icon: <DocumentTextIcon/>,
     //       current: true,
     //     },
     //   ],
@@ -105,13 +123,13 @@ export const useNavigation = () => {
         {
           name: tSuperAmin("dashboard"),
           href: "/admin",
-          icon: HomeIcon,
+          icon: <DashboardIcon />,
           current: true,
         },
         {
           name: tSuperAmin("users"),
           href: "/admin/users",
-          icon: UsersIcon,
+          icon: <GroupIcon />,
           current: false,
         },
       ],
@@ -122,25 +140,25 @@ export const useNavigation = () => {
     //     {
     //       name: tSuperAmin("plans"),
     //       href: "/admin/billing/plans/plans",
-    //       icon: CreditCardIcon,
+    //       icon: <CreditCardIcon/>,
     //       current: true,
     //     },
     //     {
     //       name: tSuperAmin("suscriptions"),
     //       href: "/admin/billing/subscriptions",
-    //       icon: BuildingLibraryIcon,
+    //       icon: <CardMembershipIcon/>,
     //       current: false,
     //     },
     //     {
     //       name: tSuperAmin("invoices"),
     //       href: "/admin/billing/invoices",
-    //       icon: DocumentTextIcon,
+    //       icon: <ConfirmationNumberIcon/>,
     //       current: false,
     //     },
     //     {
     //       name: tSuperAmin("coupons"),
     //       href: "/admin/billing/coupons",
-    //       icon: TicketIcon,
+    //       icon: <TicketIcon/>,
     //       current: false,
     //     },
     //   ],

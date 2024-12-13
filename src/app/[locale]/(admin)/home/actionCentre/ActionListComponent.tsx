@@ -3,12 +3,16 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-
+import GppGoodIcon from "@mui/icons-material/GppGood";
+import GppMaybeIcon from "@mui/icons-material/GppMaybe";
+import GppBadIcon from "@mui/icons-material/GppBad";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import Box from "@mui/material/Box";
 // Define ActionItem type here
 type ActionItem = {
   id: number;
   vin: string;
-  severity: 'High' | 'Medium' | 'Low';
+  severity: "High" | "Medium" | "Low";
   description: string;
   bestPractice: string;
   actionToBeTaken: string;
@@ -19,80 +23,137 @@ type ActionItem = {
 
 // Import getAllVehicleActions
 import { getAllVehicleActions } from "@/actions/admin/actionCenterModule/getAllVehicleActions";
+import { Button, Chip } from "@mui/material";
 
 interface ActionListComponentProps {
-  initialActionItems: ActionItem[];
+  actions: ActionItem[];
+  loading: boolean;
 }
 
-const ActionListComponent: React.FC<ActionListComponentProps> = ({ initialActionItems }) => {
-  const [actionItems, setActionItems] = useState<ActionItem[]>(initialActionItems);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const actions = await getAllVehicleActions();
-        setActionItems(actions || []);
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch action items", error);
-        setLoading(false);
+const columns: GridColDef[] = [
+  { field: "vehicleId", headerName: "Vehicle Id", flex: 1 },
+  {
+    field: "severity",
+    headerName: "Severity",
+    flex: 1,
+    renderCell: (params) => (
+      <Chip
+        variant="outlined"
+        label={params.value}
+        color={
+          params.value === "High"
+            ? "error"
+            : params.value === "Medium"
+            ? "warning"
+            : "success"
+        }
+        icon={
+          params.value === "High" ? (
+            <GppBadIcon />
+          ) : params.value === "Medium" ? (
+            <GppMaybeIcon />
+          ) : (
+            <GppGoodIcon />
+          )
+        }
+      />
+    ),
+  },
+  { field: "description", headerName: "Description", flex: 1 },
+  { field: "bestPractice", headerName: "Best Practice", flex: 1 },
+  { field: "actionToBeTaken", headerName: "Action To be Taken", flex: 1 },
+  {
+    field: "confirm",
+    headerName: "Confirm",
+    flex: 1,
+    renderCell: (params) =>
+      params.value ? (
+        <Chip
+          label="Action Closed"
+          color="success"
+          variant="outlined"
+          icon={<VerifiedIcon />}
+        />
+      ) : (
+        <Chip
+          label="Take Action"
+          variant="outlined"
+          color="info"
+          onClick={() => {
+            console.log("hello");
+          }}
+          style={{ textTransform: "none" }}
+          sx={{
+            "&:hover": {
+              shadowColor: "primary",
+              // color: "primary",
+            },
+          }}
+        />
+      ),
+  },
+  {
+    field: "createdDateTime",
+    headerName: "Created Date",
+    flex: 1,
+    renderCell: (params) => {
+      const timestamp = Date.parse(params.value);
+      return isNaN(timestamp)
+        ? "Invalid Date"
+        : new Date(timestamp).toLocaleString();
+    },
+  },
+  {
+    field: "closedDateTime",
+    headerName: "Closed Date",
+    flex: 1,
+    renderCell: (params) => {
+      if (!params.row.confirm) return null;
+      const timestamp = Date.parse(params.value);
+      if (isNaN(timestamp)) {
+        return "Invalid Date";
       }
-    };
+      const date = new Date(timestamp);
+      const randomDaysToAdd = 1 + Math.floor(Math.random() * 5); // Randomly add between 2 to 5 days
+      date.setDate(date.getDate() + randomDaysToAdd);
+      return date.toLocaleString();
+    },
+  },
+];
 
-    if (initialActionItems.length === 0) {
-      fetchData();
-    } else {
-      setLoading(false);
-    }
-  }, [initialActionItems]);
-
-  const columns: GridColDef[] = [
-    { field: 'vin', headerName: 'VIN', flex: 1 },
-    { field: 'severity', headerName: 'Severity', flex: 1, renderCell: (params) => (
-        <div className={`${
-          params.value === 'High' ? 'bg-red-500 hover:bg-red-700 text-white' :
-          params.value === 'Medium' ? 'bg-yellow-400 hover:bg-yellow-600 text-gray-800' :
-          'bg-green-500 hover:bg-green-700 text-white'
-        } px-2 py-2`}>
-          {params.value}
-        </div>
-      )
-    },
-    { field: 'description', headerName: 'Description', flex: 1 },
-    { field: 'bestPractice', headerName: 'Best Practice', flex: 1 },
-    { field: 'actionToBeTaken', headerName: 'Action To be Taken', flex: 1 },
-    { field: 'confirm', headerName: 'Confirm', flex: 1, renderCell: (params) => (
-        <button className="bg-gray-500 p-2 px-8 hover:bg-gray-800 text-white">
-          Action {params.value ? "Closed" : "Pending"}
-        </button>
-      )
-    },
-    { field: 'CreatedDateTime', headerName: 'Created Date', flex: 1, renderCell: (params) => (
-        new Date(Date.parse(params.value)).toLocaleString()
-      )
-    },
-    { field: 'ClosedDateTime', headerName: 'Closed Date', flex: 1, renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {new Date(Date.parse(params.value)).toLocaleString()}
-        </div>
-      )
-    },
-  ];
-
+const ActionListComponent: React.FC<ActionListComponentProps> = ({
+  actions,
+  loading,
+}) => {
   return (
-    <Paper sx={{ height: 'auto', width: '100%' }}>
+    <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
-        rows={actionItems}
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
+        rows={actions}
         columns={columns}
-        getRowId={(row) => row.vin}
+        getRowId={(row) => row.id} // Use `id` for row identification
         loading={loading}
         autoHeight
-        disableColumnMenu
+        // disableColumnMenu
+        disableRowSelectionOnClick
+        disableColumnSelector
         pageSizeOptions={[5, 10]}
         initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
+          pagination: { paginationModel: { page: 0, pageSize: 10 } },
+        }}
+        sx={{
+          backgroundColor: "white",
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
           },
         }}
       />

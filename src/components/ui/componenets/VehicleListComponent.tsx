@@ -63,9 +63,9 @@ const VehicleList = () => {
       // console.log("[...enodeVehicles]", [...enodeVehicles]);
       // //  console.log("combinedVehicles", combinedVehicles);
       // setFinalVehicles(combinedVehicles);
-       await getVehicles();
-       setFinalVehicles(vehicles);
-       setLoading(false);
+      await getVehicles();
+      setFinalVehicles(vehicles);
+      setLoading(false);
     };
 
     initializeData();
@@ -109,6 +109,12 @@ const VehicleList = () => {
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         loading={loading}
         onRowClick={handleRowClickEvent}
         getRowId={(row) => row.vehicleId}

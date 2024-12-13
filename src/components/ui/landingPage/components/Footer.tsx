@@ -167,6 +167,7 @@ export default function Footer({ mode }) {
                   },
                 })}
                 // onClick={sendEmail}
+                // sx={{ minWidth: "fit-content" }}
                 disabled={isSending}
               >
                 Request a Demo

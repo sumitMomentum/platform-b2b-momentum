@@ -6,7 +6,7 @@ import Paper from "@mui/material/Paper";
 
 // Define ChargerItem type here
 type ChargerItem = {
-  chargerID: string;
+  chargerId: string;
   chargerLocation: string;
   chargerStatus: string;
   dateJoining: string;
@@ -15,10 +15,6 @@ type ChargerItem = {
 };
 
 import { getAllChargerMasterData } from "@/actions/admin/chargingModule/getAllChargerMasterData";
-import { join } from "path";
-import { split } from "postcss/lib/list";
-import { log } from "console";
-import page from "../page";
 
 // interface ChargerListComponentProps {
 //   initialChargerMasterData: ChargerItem[];
@@ -74,16 +70,30 @@ function ChargerListComponent() {
   return (
     <Paper sx={{ height: "auto", width: "100%" }}>
       <DataGrid
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         rows={chargerMasterData}
         columns={columns}
         getRowId={(row) => row.chargerID}
         loading={loading}
-        autoHeight={true}
         disableColumnMenu
         pageSizeOptions={[5, 10]}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 10 },
+          },
+        }}
+        sx={{
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
           },
         }}
       />

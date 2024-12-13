@@ -1,10 +1,7 @@
 "use server";
 
 import chalk from "chalk";
-import { log } from "console";
 import { headers } from "next/headers";
-import { stringify } from "querystring";
-import { blue } from "tailwindcss/colors";
 
 export async function getTripSessions(
   params: {
@@ -13,23 +10,21 @@ export async function getTripSessions(
     limit?: number;
   } = {}
 ): Promise<any> {
-  // const { vehicleId, page = 1, limit = 10 } = params;
+  const { vehicleId, page = 1, limit = 10 } = params;
 
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle/trips`
-    );
-    // const response = await fetch(
-    //   `/api/vehicle/trips?vehicleId=${
-    //     vehicleId || ""
-    //   }&page=${page}&limit=${limit}`,
-    //   {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // );
+    // Construct query parameters if available
+    const queryParams: any = {};
+    if (vehicleId) queryParams.vehicleId = vehicleId;
+    if (page) queryParams.page = page;
+    if (limit) queryParams.limit = limit;
+
+    const queryString = new URLSearchParams(queryParams).toString();
+
+    // Construct the API URL with query parameters
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle/trips?${queryString}`;
+
+    const response = await fetch(url);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -39,15 +34,15 @@ export async function getTripSessions(
     console.log(chalk.blue("API Response Status:"), response.status);
     console.log(chalk.blue("API Response Headers:"), response.headers);
     console.log(chalk.blue("Final Response Data:"), JSON.stringify(finalResponse, null, 2));
-    console.log(chalk.blue("Returning Vehicle Trip Sessions to UI : "));
-    console.log(finalResponse);
-     return {
-       success: true,
-       sessions: finalResponse,
-       timestamp: new Date().toISOString(),
-     };
+    console.log(chalk.blue("Returning Vehicle Trip Sessions to UI: "), finalResponse);
+
+    return {
+      success: true,
+      sessions: finalResponse,
+      timestamp: new Date().toISOString(),
+    };
   } catch (error) {
-    console.error("Error fetching trip sessions:", error);
+    console.error(chalk.red("Error fetching trip sessions:"), error);
     throw new Error("Failed to fetch trip sessions");
   }
 }
