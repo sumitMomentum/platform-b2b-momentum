@@ -1,4 +1,0 @@
-yellow - #fafb63
-green - #77bc3f
-black - #000000
-cyan - #6afef6

@@ -17,10 +17,6 @@ const SuperAdminBillingCouponModuleAddPage = () => {
             name: "Coupons",
             href: "/admin/billing/coupons",
           },
-          {
-            name: "New Coupon",
-            href: "",
-          },
         ]}
       />
       <UpsertCoupon />

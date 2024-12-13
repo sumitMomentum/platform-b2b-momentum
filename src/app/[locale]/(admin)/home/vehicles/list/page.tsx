@@ -5,36 +5,42 @@ import VehicleList from "@/components/ui/commons/VehicleList";
 import AddVehicle from "@/components/ui/dashboard/AddVehicle";
 import VendorList from "@/components/ui/dashboard/aggregatedDashboard/VendorList";
 import { useTranslations } from "next-intl";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
+import { deleteAllVehiclesAndBenefits } from "@/actions/admin/userModule/delete-vehicle";
 import useVehicleStore from "@/states/store";
-import { useEffect } from "react"; // Import only useEffect
-import { Button } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  InputAdornment,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
+  Button
+} from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import PublishIcon from "@mui/icons-material/Publish";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { updateVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/update-vehicle-using-csv";
 import { uploadVehiclesFromCSV } from "@/actions/admin/csvModule/vehicle/upload-vehicle-using-csv";
-// const options = {
-//   apiKey: "free",
-//   maxFileCount: 1,
-// };
 
 const VehiclePage = () => {
   const t = useTranslations("AdminLayout.pages.vehicles");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [isSuccess, setIsSuccess] = useState(false); // To track successful operations
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [loading, setLoading] = useState({ onboard: false, update: false });
   const vehicles = useVehicleStore((state) => state.vehicles);
   const setVehicles = useVehicleStore((state) => state.setVehicles);
   const fileInputRef = useRef(null);
-
   // Fetch user vehicles if necessary
   const getVehicles = async () => {
-    if (!vehicles || vehicles.length === 0 || isSuccess) {
-      const userVehiclesFromDB = await getUserVehicles();
-      setVehicles(userVehiclesFromDB);
-      setIsSuccess(false);
-    }
+    const userVehiclesFromDB = await getUserVehicles();
+    setVehicles(userVehiclesFromDB);
+    setIsSuccess(false);
   };
 
   useEffect(() => {
@@ -49,37 +55,24 @@ const VehiclePage = () => {
   // Handle deletion of vehicles
   const handleDelete = async () => {
     try {
-      const response = await fetch(
-        `https://demoapi-9d35.onrender.com/api/vehicles/tempDelete`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        setIsSuccess(true);
-        alert(`Vehicle with ID ${data.vehicleId} deleted successfully`);
-      } else {
-        const errorData = await response.json();
-        console.error("Error deleting vehicle:", errorData);
-        alert("Error deleting vehicle");
-      }
+      const result = await deleteAllVehiclesAndBenefits();
+      setIsSuccess(true);
+      alert(`All Vehicles removed successfully`);
+      getVehicles(); // Re-fetch vehicles after deletion
     } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong.");
+      console.error("Error deleting vehicle:", error);
+      alert("Error deleting vehicle");
     }
   };
 
   // Handle file upload (for onboarding or updating vehicles)
-  const handleUpload = async (isUpdate: boolean) => {
+  const handleUpload = async (isUpdate) => {
     try {
       if (!selectedFile) {
         throw new Error("Please select a file to upload.");
       }
+
+      setLoading((prev) => ({ ...prev, [isUpdate ? 'update' : 'onboard']: true }));
 
       const formData = new FormData();
       formData.append("file", selectedFile);
@@ -91,7 +84,7 @@ const VehiclePage = () => {
       setIsSuccess(true);
       setSelectedFile(null);
       if (fileInputRef.current) {
-        (fileInputRef.current as HTMLInputElement).value = "";
+        fileInputRef.current.value = "";
       }
       window.alert(
         `${isUpdate ? "Update" : "Upload"} successful: ${result.message}`
@@ -103,81 +96,151 @@ const VehiclePage = () => {
           error instanceof Error ? error.message : "Something went wrong"
         }`
       );
+    } finally {
+      setLoading((prev) => ({ ...prev, [isUpdate ? 'update' : 'onboard']: false }));
     }
   };
 
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
   return (
-    <div>
-      <div className="flex">
-        <div className="w-full">
-          <PageName
-            name={t("title")}
-            breadcrumbs={[
-              { name: "Home", href: "/home" },
-              { name: "Vehicles", href: "/home/vehicles/list" },
-            ]}
-          />
-        </div>
-        <div className="flex justify-center items-center gap-2">
-          <AddVehicle />
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            accept=".csv"
-          />
-          <Button
-            startIcon={<FileUploadIcon />}
-            variant="contained"
-            color="success"
-            // className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
-            onClick={() => handleUpload(false)}
-          >
-            Onboard
-          </Button>
-          <Button
-            startIcon={<PublishIcon />}
-            variant="contained"
-            color="success"
-            // className="bg-blue-500 w-full p-2 hover:bg-blue-700 hover:text-white rounded-md"
-            onClick={() => {
-              handleUpload(true);
-            }}
-          >
-            Update
-          </Button>
-          <Button
-            variant="outlined"
-            color="success"
-            startIcon={<DeleteForeverIcon />}
-            // className="bg-red-500 w-full p-2 hover:bg-red-700 text-white rounded-md"
-            onClick={() => {
-              handleDelete();
-            }}
-          >
-            Delete
-          </Button>
-          {/* <UploadButton
-            options={options}
-            onComplete={(files) =>
-              alert(files.map((x) => x.fileUrl).join("\n"))
-            }
-          >
-            {({ onClick }) => (
-              <button onClick={onClick}>Upload a file...</button>
-            )}
-          </UploadButton>*/}
-        </div>
+    <Box>
+      <div className="w-full">
+        <PageName
+          name={"Vehicles"}
+          breadcrumbs={[{ name: "Home", href: "/home" }]}
+        />
       </div>
-      <div className="flex-grow flex flex-col space-y-4">
-        <div className="flex-grow h-[calc(50%-1rem)] overflow-auto">
+      <Box
+        sx={{
+          display: { xs: "block", sm: "flex" }, // Responsive display
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 2,
+          margin: 2,
+        }}
+      >
+        <AddVehicle />
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
+          <Box>
+            <TextField
+              fullWidth
+              label="Choose a .csv File"
+              variant="outlined"
+              color="primary"
+              size="small"
+              sx={{
+                "& .MuiInputBase-input": {
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                },
+              }}
+              value={fileInputRef.current?.files?.[0]?.name || ""}
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Tooltip
+                        title={selectedFile ? "Change File" : "Browse"}
+                        placement="bottom"
+                        color="primary"
+                        slotProps={{
+                          tooltip: {
+                            sx: {
+                              bgcolor: "primary.main",
+                              "& .MuiTooltip-arrow": {
+                                color: "primary",
+                              },
+                            },
+                          },
+                        }}
+                      >
+                        <IconButton
+                          color="primary"
+                          onClick={handleButtonClick}
+                          size="small"
+                        >
+                          {selectedFile ? (
+                            <ChangeCircleIcon />
+                          ) : (
+                            <AddCircleIcon />
+                          )}
+                        </IconButton>
+                      </Tooltip>
+                    </InputAdornment>
+                  ),
+                  readOnly: true,
+                },
+              }}
+            />
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept=".csv"
+              style={{ display: "none" }}
+            />
+          </Box>
+          <Stack
+            spacing={{ xs: 1, sm: 2 }}
+            direction="row"
+            useFlexGap
+            sx={{ flexWrap: "wrap" }}
+          >
+            <LoadingButton
+              startIcon={<FileUploadIcon />}
+              loading={loading.onboard}
+              loadingPosition="start"
+              variant="contained"
+              color="primary"
+              style={{ textTransform: 'none' }}
+              onClick={() => handleUpload(false)}
+            >
+              Onboard
+            </LoadingButton>
+            <LoadingButton
+              startIcon={<PublishIcon />}
+              loading={loading.update}
+              loadingPosition="start"
+              variant="contained"
+              color="primary"
+              style={{ textTransform: 'none' }}
+              onClick={() => handleUpload(true)}
+            >
+              Update
+            </LoadingButton>
+            <Button
+              variant="outlined"
+              color="error"
+              style={{ textTransform: 'none' }}
+              startIcon={<DeleteForeverIcon />}
+              onClick={() => handleDelete()}
+            >
+              Delete
+            </Button>
+          </Stack>
+        </Box>
+      </Box>
+
+      <Box className="flex-grow flex flex-col space-y-4">
+        <Box>
           <VehicleList />
-        </div>
-        <div className="flex-grow h-[calc(50%-1rem)] overflow-auto">
+        </Box>
+        <Box>
           <VendorList />
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

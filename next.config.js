@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
-const createNextIntlPlugin = require("next-intl/plugin");
 const { hostname } = require("os");
 
-const withNextIntl = createNextIntlPlugin();
+const createNextIntlPlugin = require("next-intl/plugin");
 
-/** @type {import('next').NextConfig} */
+const withNextIntl = createNextIntlPlugin("./src/i18n.ts");
 
 const nextConfig = {
   reactStrictMode: true,

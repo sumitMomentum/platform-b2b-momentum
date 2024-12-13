@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import { map } from "svix/dist/openapi/rxjsStub";
 import { current } from "tailwindcss/colors";
+import { Box } from "@radix-ui/themes";
+import style from "styled-jsx/style";
 
 interface NavigationSection {
   sectionName: string;
@@ -53,45 +55,45 @@ const Navigation = ({ navigation }: { navigation: NavigationSection[] }) => {
   };
 
   return (
-    <li>
-      <ul role="list" className="-mx-2 space-y-1">
-        {links.map((section) => (
-          <div key={section.sectionName}>
-            <span className="text-xs font-semibold leading-6 text-primary">
+    <Box>
+      {links.map((section) => (
+        <div key={section.sectionName}>
+          {/* <span className="text-xs font-semibold leading-6 text-primary">
               {section.sectionName}
-            </span>
-            <List>
-              {section.items.map((item) => (
+            </span> */}
+          <List sx={{ width: "100%", maxWidth: 360 }} component="nav">
+            {section.items.map((item) => (
+              <Link
+                href={item.href}
+                key={item.name}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <ListItemButton
                   selected={item.href === pathName.replace("/en", "")}
-                  key={item.name}
-                  component="div"
-                  onClick={(event) => handleListItemClick(item.href)}
                   sx={{
-                    "&& .Mui-selected": {
-                      backgroundColor: "pink",
+                    "&&.Mui-selected": {
+                      backgroundColor: "primary.main",
+                      color: "white",
+                      "& .MuiListItemIcon-root": {
+                        color: "white",
+                      },
                     },
                   }}
                 >
-                  <ListItemIcon>
-                    <item.icon
-                      className={classNames(
-                        item.href === pathName
-                          ? "text-primary-selected"
-                          : "text-primary",
-                        "h-6 w-6 shrink-0 text-primary-hover"
-                      )}
-                      aria-hidden="true"
-                    />
+                  <ListItemIcon sx={{ marginRight: "5px" }}>
+                    {item.icon}
                   </ListItemIcon>
-                  <ListItemText primary={item.name} />
+                  <ListItemText
+                    primary={item.name}
+                    sx={{ paddingLeft: "10" }}
+                  />
                 </ListItemButton>
-              ))}
-            </List>
-          </div>
-        ))}
-      </ul>
-    </li>
+              </Link>
+            ))}
+          </List>
+        </div>
+      ))}
+    </Box>
   );
 };
 

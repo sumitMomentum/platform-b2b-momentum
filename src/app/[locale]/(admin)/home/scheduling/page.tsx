@@ -2,77 +2,125 @@
 
 import { getChargingSchedule } from "@/actions/admin/chargingSchedule/getChargingSchedule";
 import PageName from "@/components/ui/commons/PageName";
-import { Button, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
+import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
 import { Fragment, useEffect, useState } from "react";
 import ScheduleIcon from "@mui/icons-material/Schedule";
+import React from "react";
+
 const page = () => {
   const [chargingSchedule, setChargingSchedule] = useState([]);
-
+  const [loading, setLoading] = useState(true);
+  const paginationModel = {
+    page: 0,
+    pageSize: 10,
+  };
   const handleCreateSchedule = async () => {
     try {
       const data = await getChargingSchedule();
       setChargingSchedule(data);
     } catch (error) {
-      console.error("Error fetching charger master data:", error);
+      console.error("Error fetching charging schedule data:", error);
       // Handle the error appropriately (e.g., show an error message)
+    } finally {
+      setLoading(false);
     }
   };
+
+  // Define columns for DataGrid
+  const columns = [
+    {
+      field: "vin",
+      headerName: "Vehicle VIN",
+      flex: 1,
+      valueGetter: (params, row) => row.vehicle.vin,
+    },
+    {
+      field: "soc",
+      headerName: "Vehicle SOC",
+      flex: 1,
+      valueGetter: (params, row) => row.vehicle.soc,
+    },
+    {
+      field: "chargerId",
+      headerName: "Charger ID",
+      flex: 1,
+      valueGetter: (params, row) => row.charger.chargerId,
+    },
+    {
+      field: "chargerLocation",
+      headerName: "Charger Location",
+      flex: 1,
+      valueFormatter: (params, row) =>
+        `${[
+          Number(row.charger.chargerLocation.toString().split(",")[0]).toFixed(
+            2
+          ),
+          Number(row.charger.chargerLocation.toString().split(",")[1]).toFixed(
+            2
+          ),
+        ].join(", ")}`,
+    },
+    {
+      field: "scheduleDate",
+      headerName: "Schedule Date",
+      flex: 1,
+      valueFormatter: (value, row) => new Date(value).toLocaleDateString(),
+    },
+  ];
 
   return (
     <Fragment>
       <PageName
-        // name={t("title")}
-        name={"Charge Scheduling"}
+        name="Charge Scheduling"
         breadcrumbs={[
           { name: "Home", href: "/home" },
-          { name: "Scheduling", href: "/home/scheduling" },
+          // { name: "Scheduling", href: "/home/scheduling" },
         ]}
       />
-      <Container sx={{ display: "flex", justifyContent: "right" }}>
+      <Container sx={{ display: "flex", justifyContent: "right", mb: 2 }}>
         <Button
           startIcon={<ScheduleIcon />}
           variant="contained"
-          sx={{ m: 1 }}
           onClick={handleCreateSchedule}
+          style={{ textTransform: 'none' }}
         >
           Create Schedule
         </Button>
       </Container>
-      {chargingSchedule && chargingSchedule.length > 0 && (
-        <div className="container">
-          <div className="max-h-screen overflow-y-auto">
-            {/* <h2>Charger Master Data</h2> */}
-            <table className="table-auto w-full">
-              <thead className="bg-gray-100 sticky top-0">
-                <tr>
-                  <th className="border px-2 py-2">Vehicle VIN</th>
-                  <th className="border px-2 py-2">Vehicle SOC</th>
-                  <th className="border px-2 py-2">Charger ID</th>
-                  <th className="border px-2 py-2">Charger Location</th>
-                  <th className="border px-2 py-2">Schedule Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {chargingSchedule.map((schedule) => (
-                  <tr key={schedule.vehicle.vin} className="text-sm">
-                    <td className="border px-4 py-2">{schedule.vehicle.vin}</td>
-                    <td className="border px-4 py-2">{schedule.vehicle.soc}</td>
-                    <td className="border px-4 py-2">
-                      {schedule.charger.chargerID}
-                    </td>
-                    {/* Format the date */}
-                    <td className="border px-4 py-2">
-                      {schedule.charger.chargerLocation}
-                    </td>
-                    <td className="border px-4 py-2">
-                      {new Date(schedule.scheduleDate).toLocaleDateString()}
-                    </td>{" "}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      {chargingSchedule.length > 0 ? (
+        <Box style={{ display: "flex", width: "100%", height: "80vh" }}>
+          <DataGrid
+            slotProps={{
+              loadingOverlay: {
+                variant: "skeleton",
+                noRowsVariant: "skeleton",
+              },
+            }}
+            rows={chargingSchedule}
+            columns={columns}
+            loading={loading}
+            getRowId={(row) => row.vehicle.vin}
+            pageSizeOptions={[5, 10, 25]}
+            initialState={{ pagination: { paginationModel } }}
+            disableRowSelectionOnClick
+            sx={{
+              border: 1,
+              borderColor: "divider",
+              ".MuiDataGrid-columnHeaders": {
+                fontWeight: "bold",
+                fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+              },
+              ".MuiDataGrid-columnHeaderTitle": {
+                fontWeight: "bold", // Ensures header titles specifically are bold
+              },
+            }}
+          />
+        </Box>
+      ) : (
+        <Container sx={{ textAlign: "center", mt: 4 }}>
+          No schedule data available.
+        </Container>
       )}
     </Fragment>
   );

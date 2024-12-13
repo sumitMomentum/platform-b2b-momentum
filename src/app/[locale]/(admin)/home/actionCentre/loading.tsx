@@ -1,13 +1,17 @@
-import PageLoader from "@/components/ui/loaders/PageLoader";
+import SuspenseBreadCrumbs from "@/components/suspenseSkeleton/SuspenseBreadCrumbs";
+import SuspenseChartGrid from "@/components/suspenseSkeleton/SuspenseChartGrid";
 import SuspenseTable from "@/components/suspenseSkeleton/SuspenseTable";
-import SuspenseHeader from "@/components/suspenseSkeleton/SuspenseHeader";
+import SuspenseViewChange from "@/components/suspenseSkeleton/SuspenseViewChange";
+import React from "react";
 
-export default function Loading() {
-  // Or a custom loading skeleton component
-  // return <PageLoader />;
+function loading() {
   return (
     <>
-      <SuspenseHeader /> <SuspenseTable />
+      <SuspenseBreadCrumbs />
+      <SuspenseViewChange />
+      <SuspenseChartGrid />
     </>
   );
 }
+
+export default loading;

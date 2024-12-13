@@ -8,7 +8,6 @@ const prisma = new PrismaClient();
 
 async function main() {
   // const count = await prisma.vehicleDashboardData.count();
-
   // if (count === 0) {
   //   await prisma.vehicleDashboardData.createMany({
   //     data: [
@@ -18,7 +17,7 @@ async function main() {
   //         connectorType: "Type 2",
   //         totalChargingSessions: 30,
   //         averageChargingRate: 9.3,
-  //         avgDailyKmDriven: 50,
+  //         usageAverageDailyKmDriven: 50,
   //         temperatureLow: -5,
   //         temperatureHigh: 30,
   //         socRangeMin: 80,
@@ -39,7 +38,7 @@ async function main() {
   //         connectorType: "CCS Combo",
   //         totalChargingSessions: 25,
   //         averageChargingRate: 11.2,
-  //         avgDailyKmDriven: 65,
+  //         usageAverageDailyKmDriven: 65,
   //         temperatureLow: -3,
   //         temperatureHigh: 32,
   //         socRangeMin: 75,
@@ -60,7 +59,7 @@ async function main() {
   //         connectorType: "CHAdeMO",
   //         totalChargingSessions: 28,
   //         averageChargingRate: 10.5,
-  //         avgDailyKmDriven: 55,
+  //         usageAverageDailyKmDriven: 55,
   //         temperatureLow: 0,
   //         temperatureHigh: 28,
   //         socRangeMin: 78,
@@ -81,7 +80,7 @@ async function main() {
   //         connectorType: "Type 1",
   //         totalChargingSessions: 24,
   //         averageChargingRate: 13.3,
-  //         avgDailyKmDriven: 70,
+  //         usageAverageDailyKmDriven: 70,
   //         temperatureLow: -2,
   //         temperatureHigh: 35,
   //         socRangeMin: 70,
@@ -102,7 +101,7 @@ async function main() {
   //         connectorType: "Tesla Supercharger",
   //         totalChargingSessions: 27,
   //         averageChargingRate: 10.0,
-  //         avgDailyKmDriven: 60,
+  //         usageAverageDailyKmDriven: 60,
   //         temperatureLow: -1,
   //         temperatureHigh: 29,
   //         socRangeMin: 75,
@@ -123,7 +122,7 @@ async function main() {
   //         connectorType: "Type 2",
   //         totalChargingSessions: 26,
   //         averageChargingRate: 12.1,
-  //         avgDailyKmDriven: 58,
+  //         usageAverageDailyKmDriven: 58,
   //         temperatureLow: -4,
   //         temperatureHigh: 31,
   //         socRangeMin: 77,
@@ -144,7 +143,7 @@ async function main() {
   //         connectorType: "CCS Combo",
   //         totalChargingSessions: 29,
   //         averageChargingRate: 9.8,
-  //         avgDailyKmDriven: 63,
+  //         usageAverageDailyKmDriven: 63,
   //         temperatureLow: -3,
   //         temperatureHigh: 33,
   //         socRangeMin: 72,
@@ -165,7 +164,7 @@ async function main() {
   //         connectorType: "CHAdeMO",
   //         totalChargingSessions: 22,
   //         averageChargingRate: 10.9,
-  //         avgDailyKmDriven: 56,
+  //         usageAverageDailyKmDriven: 56,
   //         temperatureLow: 1,
   //         temperatureHigh: 27,
   //         socRangeMin: 76,
@@ -186,7 +185,7 @@ async function main() {
   //         connectorType: "Type 1",
   //         totalChargingSessions: 31,
   //         averageChargingRate: 12.7,
-  //         avgDailyKmDriven: 68,
+  //         usageAverageDailyKmDriven: 68,
   //         temperatureLow: -5,
   //         temperatureHigh: 36,
   //         socRangeMin: 68,
@@ -207,7 +206,7 @@ async function main() {
   //         connectorType: "Tesla Supercharger",
   //         totalChargingSessions: 28,
   //         averageChargingRate: 10.5,
-  //         avgDailyKmDriven: 62,
+  //         usageAverageDailyKmDriven: 62,
   //         temperatureLow: -2,
   //         temperatureHigh: 30,
   //         socRangeMin: 73,
@@ -240,4 +239,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
-  })
+  });

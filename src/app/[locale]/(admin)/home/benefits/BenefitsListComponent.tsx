@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-// Define BenefitItem type here
+import TrendingUpSharpIcon from "@mui/icons-material/TrendingUpSharp";
+import TrendingDownSharpIcon from "@mui/icons-material/TrendingDownSharp";
+import { Typography } from "@mui/material";
+
+// Define BenefitItem type directly here
 type BenefitItem = {
   vin: string;
   vehicleId: string;
@@ -21,162 +23,182 @@ type BenefitItem = {
   revenueIncreaseLifetime: number;
 };
 
-import { getVehicleBenefits } from "@/actions/admin/benefitsListModule/getVehicleBenefits";
-import { Typography } from "@mui/material";
-import ThumbDownAlt from "@mui/icons-material/ThumbDownAlt";
-import ThumbUpAlt from "@mui/icons-material/ThumbUpAlt";
-import { map } from "svix/dist/openapi/rxjsStub";
-import page from "../page";
+interface BenefitsListComponentProps {
+  benefits: BenefitItem[];
+  overall: {
+    overallProfit: BenefitItem;
+    overallLoss: BenefitItem;
+  };
+  loading: boolean;
+}
 
-const BenefitsListComponent: React.FC = () => {
-  const [vehicleBenefits, setVehicleBenefits] = useState<BenefitItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getVehicleBenefits();
-        setVehicleBenefits(data || []);
-      } catch (error) {
-        console.error("Error fetching vehicle benefits data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+export default function BenefitsListComponent({
+  benefits,
+  overall,
+  loading,
+}: BenefitsListComponentProps) {
   const columns: GridColDef[] = [
     {
       field: "vin",
       headerName: "VIN",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => <div>{params.value}</div>,
+      renderCell: (params) => (
+        <>
+          {params.value === "Total loss" && <TrendingDownSharpIcon color="error" />}
+          {params.value === "Total gains" && <TrendingUpSharpIcon color="success" />}
+          <span style={{ marginLeft: 8 }}>{params.value}</span>
+        </>
+      ),
     },
     {
       field: "batteryCycleSavingMonthly",
       headerName: "Battery Cycle Saving (Monthly)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "batteryCycleSavingYearly",
       headerName: "Battery Cycle Saving (Yearly)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "batteryCycleSavingLifetime",
       headerName: "Battery Cycle Saving (Lifetime)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "costSavingChargingMonthly",
       headerName: "Cost Saving Charging (Monthly)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "costSavingChargingYearly",
       headerName: "Cost Saving Charging (Yearly)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "costSavingChargingLifeTimeEstimate",
       headerName: "Cost Saving Charging (Lifetime Estimate)",
       flex: 1,
       minWidth: 150,
+      renderCell: (params) =>
+        typeof params.value === "number" ? params.value.toFixed(2) : params.value,
     },
     {
       field: "rangeIncreaseMonthly",
       headerName: "Range Increase (Monthly)",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {params.value}
-        </div>
-      ),
+      renderCell: (params) =>
+        typeof params.value === "number" ? (
+          <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
+            {params.value.toFixed(2)}
+          </div>
+        ) : (
+          params.value
+        ),
     },
     {
       field: "rangeIncreaseYearly",
       headerName: "Range Increase (Yearly)",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {params.value}
-        </div>
-      ),
+      renderCell: (params) =>
+        typeof params.value === "number" ? (
+          <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
+            {params.value.toFixed(2)}
+          </div>
+        ) : (
+          params.value
+        ),
     },
     {
       field: "rangeIncreaseLifetimeEstimate",
       headerName: "Range Increase (Lifetime Estimate)",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {params.value}
-        </div>
-      ),
+      renderCell: (params) =>
+        typeof params.value === "number" ? (
+          <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
+            {params.value.toFixed(2)}
+          </div>
+        ) : (
+          params.value
+        ),
     },
     {
       field: "revenueIncreaseLifetime",
       headerName: "Revenue Increase (Lifetime)",
       flex: 1,
       minWidth: 150,
-      renderCell: (params) => (
-        <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
-          {params.value}
-        </div>
-      ),
+      renderCell: (params) =>
+        typeof params.value === "number" ? (
+          <div className="bg-green-600 hover:bg-green-800 text-white px-2 py-2">
+            {params.value.toFixed(2)}
+          </div>
+        ) : (
+          params.value
+        ),
     },
   ];
-
+  
   return (
-    <Paper sx={{ height: "auto", width: "100%", p: 3 }}>
+    <Paper sx={{ height: "auto", width: "100%", backgroundColor: "white" }}>
       <Typography variant="h5" sx={{ margin: 3, fontWeight: "bold" }}>
         Overall Profit and Loss
       </Typography>
       <DataGrid
-        rows={
-          vehicleBenefits.filter(
-            (vehicle) => vehicle.vehicleId === "xxxxxxxxxx"
-          )
-          // .map((vehicle) => ({
-          //   ...vehicle,
-          //   vin:
-          //     vehicle.vin == "Total Loss" ? (
-          //       <>
-          //         <ThumbDownAlt color="error" /> Total Loss
-          //       </>
-          //     ) : vehicle.vin == "Total gains" ? (
-          //       <>
-          //         <ThumbUpAlt color="success" /> Total Profit
-          //       </>
-          //     ) : (
-          //       vehicle.vin // This handles cases where vin is neither "Total Loss" nor "Total gains"
-          //     ),
-          // }))
-        }
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
+        rows={[overall.overallProfit, overall.overallLoss]}
         columns={columns}
         getRowId={(row) => row.vin}
         loading={loading}
         autoHeight
         disableColumnMenu
+        hideFooterPagination
+        sx={{
+          backgroundColor: "white",
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
+          },
+        }}
       />
 
       <Typography variant="h5" sx={{ margin: 3, fontWeight: "bold" }}>
         Details:
       </Typography>
       <DataGrid
-        rows={vehicleBenefits.filter(
-          (vehicle) => vehicle.vehicleId !== "xxxxxxxxxx"
-        )}
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
+        rows={benefits}
         columns={columns}
         getRowId={(row) => row.vin}
         loading={loading}
@@ -188,9 +210,17 @@ const BenefitsListComponent: React.FC = () => {
             paginationModel: { page: 0, pageSize: 5 },
           },
         }}
+        sx={{
+          backgroundColor: "white",
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
+          },
+        }}
       />
     </Paper>
   );
-};
-
-export default BenefitsListComponent;
+}

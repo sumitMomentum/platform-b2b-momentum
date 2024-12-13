@@ -143,12 +143,6 @@ export default function Footer({ mode }) {
                 fullWidth
                 aria-label="Enter your email address"
                 placeholder="Your email address"
-                slotProps={{
-                  htmlInput: {
-                    autoComplete: "off",
-                    "aria-label": "Enter your email address",
-                  },
-                }}
                 sx={{ width: "250px" }}
                 value={email} // Set the email value from state
                 onChange={(e) => setEmail(e.target.value)}
@@ -156,16 +150,7 @@ export default function Footer({ mode }) {
               <Button
                 variant="contained"
                 size="small"
-                sx={(theme) => ({
-                  fontWeight: "medium",
-                  color: "black",
-                  flexShrink: 0,
-                  letterSpacing: 1,
-                  "&:hover": {
-                    color: "white",
-                    backgroundColor: theme.palette.primary.dark,
-                  },
-                })}
+                sx={{ minWidth: "fit-content" }}
                 onClick={sendEmail}
                 disabled={isSending}
               >

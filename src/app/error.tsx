@@ -13,7 +13,7 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-     if (error) {
+    if (error) {
       // Log detailed error information with colors and emojis
       console.log(chalk.red("🚨 Error message:"), chalk.yellow(error.message));
       console.log(chalk.red("🆔 Error name:"), chalk.yellow(error.name));

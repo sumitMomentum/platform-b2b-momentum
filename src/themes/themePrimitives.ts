@@ -32,17 +32,17 @@ const defaultTheme = createTheme();
 const customShadows: Shadows = [...defaultTheme.shadows];
 
 export const brand = {
-  main: "hsl(93, 50%, 49%)",
-  50: "hsl(210, 100%, 95%)",
-  100: "hsl(210, 100%, 92%)",
-  200: "hsl(210, 100%, 80%)",
-  300: "hsl(210, 100%, 65%)",
-  400: "hsl(210, 98%, 48%)",
-  500: "hsl(210, 98%, 42%)",
-  600: "hsl(210, 98%, 55%)",
-  700: "hsl(210, 100%, 35%)",
-  800: "hsl(210, 100%, 16%)",
-  900: "hsl(210, 100%, 21%)",
+  main: "hsl(93, 50%, 49%)", // Base color
+  50: "hsl(93, 50%, 95%)", // Lightest
+  100: "hsl(93, 50%, 90%)",
+  200: "hsl(93, 50%, 80%)",
+  300: "hsl(93, 50%, 70%)",
+  400: "hsl(93, 50%, 60%)",
+  500: "hsl(93, 50%, 49%)", // Main color
+  600: "hsl(93, 50%, 40%)",
+  700: "hsl(93, 50%, 30%)",
+  800: "hsl(93, 50%, 20%)",
+  900: "hsl(93, 50%, 10%)", // Darkest
 };
 
 export const gray = {
@@ -107,31 +107,27 @@ export const getDesignTokens = (mode: PaletteMode) => {
     palette: {
       mode,
       primary: {
-        main: brand["main"],
-        contrastText: brand[50],
+        light: brand[300], // hsl(93, 50%, 70%) - Light variant
+        main: brand["main"], // hsl(93, 50%, 49%) - Main color
+        dark: brand[700], // hsl(93, 50%, 30%) - Dark variant
+        contrastText: brand[50], // hsl(93, 50%, 95%) - Text color
+        ...(mode === "dark" && {
+          contrastText: brand[50], // hsl(93, 50%, 95%) - Dark mode text
+          light: brand[400], // hsl(93, 50%, 60%) - Dark mode light variant
+          main: brand[500], // hsl(93, 50%, 49%) - Dark mode main
+          dark: brand[700], // hsl(93, 50%, 30%) - Dark mode dark variant
+        }),
       },
-      // primary: {
-      //   light: brand[200],
-      //   main: brand[400],
-      //   dark: brand[700],
-      //   contrastText: brand[50],
-      //   ...(mode === 'dark' && {
-      //     contrastText: brand[50],
-      //     light: brand[300],
-      //     main: brand[400],
-      //     dark: brand[700],
-      //   }),
-      // },
       info: {
-        light: brand[100],
-        main: brand[300],
-        dark: brand[600],
+        light: gray[300],
+        main: gray[500],
+        dark: gray[700],
         contrastText: gray[50],
         ...(mode === "dark" && {
-          contrastText: brand[300],
-          light: brand[500],
-          main: brand[700],
-          dark: brand[900],
+          contrastText: gray[300],
+          light: gray[500],
+          main: gray[700],
+          dark: gray[900],
         }),
       },
       warning: {
@@ -190,11 +186,11 @@ export const getDesignTokens = (mode: PaletteMode) => {
         }),
       },
       action: {
-        hover: alpha(gray[200], 0.2),
-        selected: `${alpha(gray[200], 0.3)}`,
+        hover: alpha(brand["main"], 0.3),
+        selected: `${alpha(brand[200], 0.3)}`,
         ...(mode === "dark" && {
-          hover: alpha(gray[600], 0.2),
-          selected: alpha(gray[600], 0.3),
+          hover: alpha(brand[600], 0.2),
+          selected: alpha(brand[600], 0.3),
         }),
       },
     },

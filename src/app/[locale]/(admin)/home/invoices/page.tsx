@@ -8,14 +8,12 @@ export const metadata: Metadata = {
   title: "Invoices",
 };
 
-const AdminBillingInvoicesModule = async (
-  props: {
-    searchParams?: Promise<{
-      query?: string;
-      page?: string;
-    }>;
-  }
-) => {
+const AdminBillingInvoicesModule = async (props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) => {
   const searchParams = await props.searchParams;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
@@ -23,10 +21,13 @@ const AdminBillingInvoicesModule = async (
 
   return (
     <div>
-      <PageName name={t("invoices")} breadcrumbs={[
+      <PageName
+        name={t("invoices")}
+        breadcrumbs={[
           { name: "Home", href: "/home" },
-          { name: "Invoices", href: "/home/invoices" },
-        ]}/>
+          // { name: "Invoices", href: "/home/invoices" },
+        ]}
+      />
       <InvoicesList query={query} currentPage={currentPage} />
     </div>
   );

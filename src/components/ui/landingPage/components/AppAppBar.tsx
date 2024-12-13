@@ -76,11 +76,12 @@ export default function AppAppBar({ mode, toggleColorMode }) {
           >
             {/* <Sitemark /> */}
             <img
-              src={
-                mode === "light"
-                  ? "/assets/img/logo_black_nocap.png"
-                  : "/assets/img/logo_white_nocap.png"
-              }
+              src={"/assets/img/logo_black_nocap.png"}
+              // src={
+              //   mode === "light"
+              //     ? "/assets/img/logo_black_nocap.png"
+              //     : "/assets/img/logo_white_nocap.png"
+              // }
               alt="Logo"
               loading="lazy" // Lazy load the image
               style={{
@@ -108,8 +109,19 @@ export default function AppAppBar({ mode, toggleColorMode }) {
                <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
                 FAQ
               </Button> 
-               <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                Blog
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+              Blog
+              </Button> */}
+              {/* <Button
+                variant="text"
+                size="small"
+                sx={{ minWidth: 0 }}
+                sx={{
+                  fontWeight: "bold",
+                  letterSpacing: "1px",
+                }}
+              >
+                About Us
               </Button> */}
             </Box>
           </Box>
@@ -121,23 +133,21 @@ export default function AppAppBar({ mode, toggleColorMode }) {
               alignItems: "center",
             }}
           >
-            <ToggleColorMode
+            {/* <ToggleColorMode
               data-screenshot="toggle-mode"
               mode={mode}
               toggleColorMode={toggleColorMode}
-            />
+            /> */}
             <Link href={"/sign-in"} passHref>
-              {/* <SignInButton> */}
               <Button variant="contained" size="small">
                 Sign in
               </Button>
-              {/* </SignInButton> */}
             </Link>
             {/* <Button color="primary" variant="contained" size="small">
               Sign up
             </Button> */}
           </Box>
-          {/* <Box sx={{ display: { sm: "flex", md: "none" } }}>
+          <Box sx={{ display: { sm: "flex", md: "none" } }}>
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
@@ -154,33 +164,33 @@ export default function AppAppBar({ mode, toggleColorMode }) {
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-                <Divider sx={{ my: 3 }} />
+                {/* <Divider sx={{ my: 3 }} />
                 <MenuItem>Features</MenuItem>
                 <MenuItem>Highlights</MenuItem>
                 <MenuItem>Testimonials</MenuItem>
                 <MenuItem>Pricing</MenuItem>
-                 <MenuItem>FAQ</MenuItem> 
-                 <MenuItem>Blog</MenuItem> 
-                 <MenuItem>
+                <MenuItem>FAQ</MenuItem>
+                <MenuItem>Blog</MenuItem>
+                <MenuItem>
                   <Button color="primary" variant="contained" fullWidth>
                     Sign up
                   </Button>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem>
-                  <Link href={"/home"} passHref>
+                  <Link href={"/sign-in"} passHref>
                     <Button color="primary" variant="contained" size="small">
                       Sign in
                     </Button>
                   </Link>
-                  <ToggleColorMode
+                  {/* <ToggleColorMode
               data-screenshot="toggle-mode"
               mode={mode}
               toggleColorMode={toggleColorMode}
-            />
+            /> */}
                 </MenuItem>
               </Box>
             </Drawer>
-          </Box> */}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

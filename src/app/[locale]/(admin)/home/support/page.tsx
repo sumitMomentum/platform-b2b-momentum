@@ -12,14 +12,12 @@ export const metadata: Metadata = {
   title: "Support",
 };
 
-const AdminSupportPage = (
-  props: {
-    searchParams?: Promise<{
-      query?: string;
-      page?: string;
-    }>;
-  }
-) => {
+const AdminSupportPage = (props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) => {
   const searchParams = use(props.searchParams);
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
@@ -29,10 +27,7 @@ const AdminSupportPage = (
     <div>
       <PageName
         name={t("support")}
-        breadcrumbs={[
-          { name: t("dashboard"), href: "/home" },
-          { name: t("support"), href: "/home/support" },
-        ]}
+        breadcrumbs={[{ name: t("dashboard"), href: "/home" }]}
         btn2={
           <SlideOver
             button={{
@@ -48,7 +43,7 @@ const AdminSupportPage = (
         key={query + Math.random}
         fallback={<TableLoaderSkeleton count={10} />}
       > */}
-        <SupportTicketsList query={query} currentPage={currentPage} />
+      <SupportTicketsList query={query} currentPage={currentPage} />
       {/* </Suspense> */}
     </div>
   );

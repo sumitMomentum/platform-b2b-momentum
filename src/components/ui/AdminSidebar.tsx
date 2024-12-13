@@ -1,16 +1,22 @@
 "use client";
-import React from "react";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import Image from "next/image";
-import { Dialog, Transition, TransitionChild } from "@headlessui/react";
 import {
-  Cog6ToothIcon,
-  LifebuoyIcon,
-  UsersIcon,
-  XMarkIcon,
-  PlusIcon,
-  PlusCircleIcon,
-} from "@heroicons/react/24/outline";
+  Drawer,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Box,
+  Container,
+  Divider,
+} from "@mui/material";
+import {
+  SupportAgent,
+  Group,
+  Settings,
+  SafetyDividerOutlined,
+} from "@mui/icons-material";
 import { useSidebarState } from "@/states/ui/sidebarState";
 import Navigation from "../core/Navigation";
 import Link from "next/link";
@@ -19,238 +25,227 @@ import { dark } from "@clerk/themes";
 import useDarkTheme from "@/app/hooks/useDarkTheme";
 import { constants } from "@/lib/constants";
 import { useNavigation } from "../layouts/useNavigation";
-import { useTranslations } from "next-intl";
-import UploadCSV from "./UploadCSV";
+import { useRouter } from "next/navigation";
+
+const helpNavs = [
+  // {
+  //   name: "Support",
+  //   icon: <SupportAgent />,
+  //   href: "/home/support",
+  // },
+  // {
+  //   name: "Affiliates",
+  //   icon: <Group />,
+  //   href: "/home/affiliates/link",
+  // },
+  {
+    name: "Settings",
+    icon: <Settings />,
+    href: "/home/settings/profile",
+  },
+];
 
 const AdminSidebar = () => {
   const { isDarkTheme } = useDarkTheme();
-  const { toggleSidebarMenu, isSidebarMenuOpen } = useSidebarState(
-    ({ toggleSidebarMenu, isSidebarMenuOpen }) => ({
-      toggleSidebarMenu,
+  const { isSidebarMenuOpen, toggleSidebarMenu } = useSidebarState(
+    ({ isSidebarMenuOpen, toggleSidebarMenu }) => ({
       isSidebarMenuOpen,
+      toggleSidebarMenu,
     })
   );
 
   const { adminNavigation } = useNavigation();
-  const t = useTranslations("AdminLayout.navigation");
+  const router = useRouter();
 
   return (
-    <div>
-      <Transition show={isSidebarMenuOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-50 lg:hidden"
-          onClose={toggleSidebarMenu}
+    <Box>
+      {/* Mobile Sidebar (Drawer) */}
+      <Drawer
+        open={isSidebarMenuOpen}
+        onClose={toggleSidebarMenu}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { md: "block", lg: "none" }, // Show on small screens, hide on large
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 250 },
+          backgroundColor: "white",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            backgroundColor: "white",
+          }}
         >
-          <TransitionChild
-            as={Fragment}
-            enter="transition-opacity ease-linear duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+          {/* Logo */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: 64,
+              padding: 2,
+            }}
           >
-            <div className="fixed inset-0 bg-gray-900/80" />
-          </TransitionChild>
-
-          <div className="fixed inset-0 flex">
-            <TransitionChild
-              as={Fragment}
-              enter="transition ease-in-out duration-300 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in-out duration-300 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
-            >
-              <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
-                <TransitionChild
-                  as={Fragment}
-                  enter="ease-in-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in-out duration-300"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                    <button
-                      type="button"
-                      className="-m-2.5 p-2.5"
-                      onClick={() => toggleSidebarMenu()}
-                    >
-                      <span className="sr-only">Close sidebar</span>
-                      <XMarkIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </button>
-                  </div>
-                </TransitionChild>
-                {/* Sidebar component, swap this element with another sidebar if you like */}
-                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-main text-primary px-6 pb-4">
-                  <div className="flex h-11 shrink-0 items-center justify-center">
-                    <Link href={"/"}>
-                      <Image
-                        height={145}
-                        width={145}
-                        className="pt-5"
-                        src={
-                          isDarkTheme
-                            ? constants.logoUrl
-                            : constants.logoDarkUrl
-                        }
-                        alt="Boilerplate"
-                      />
-                    </Link>
-                  </div>
-                  <hr></hr>
-                  <div className="relative">
-                    <OrganizationSwitcher
-                      appearance={{
-                        baseTheme: isDarkTheme ? dark : undefined,
-                      }}
-                      hidePersonal={true}
-                      afterSelectPersonalUrl={"/home"}
-                      afterSelectOrganizationUrl={"/home"}
-                      afterCreateOrganizationUrl={"/home"}
-                      afterLeaveOrganizationUrl={"/home"}
-                    />
-                  </div>
-                  <nav className="flex flex-1 flex-col">
-                    <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                      <li>
-                        <ul role="list" className=" space-y-1">
-                          <Navigation navigation={adminNavigation} />
-                        </ul>
-                      </li>
-
-                      {/* <div className="">
-                        <hr></hr>
-                        <div className="mt-2 w-full">
-                          <UploadCSV />
-                        </div>
-                      </div> */}
-
-                      <li className="mt-auto -mx-2">
-                        {/* <Link
-                          onClick={() => toggleSidebarMenu()}
-                          href="/home/affiliates/link"
-                          className="bg-main group flex gap-x-3 rounded-md p-2  text-primary"
-                        >
-                          <UsersIcon
-                            className="h-6 w-6 shrink-0 text-primary "
-                            aria-hidden="true"
-                          />
-                          {t("affiliatePanel")}
-                        </Link> */}
-                        <Link
-                          onClick={() => toggleSidebarMenu()}
-                          href="/home/support"
-                          className="bg-main group flex gap-x-3 rounded-md p-2  text-primary"
-                        >
-                          <LifebuoyIcon
-                            className="h-6 w-6 shrink-0 text-primary "
-                            aria-hidden="true"
-                          />
-                          {t("support")}
-                        </Link>
-                        <Link
-                          onClick={() => toggleSidebarMenu()}
-                          href="/home/settings/profile
-"
-                          className="bg-main group flex gap-x-3 rounded-md p-2  text-primary"
-                        >
-                          <Cog6ToothIcon
-                            className="h-6 w-6 shrink-0 text-primary "
-                            aria-hidden="true"
-                          />
-                          {t("settings")}
-                        </Link>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </Dialog.Panel>
-            </TransitionChild>
-          </div>
-        </Dialog>
-      </Transition>
-
-      {/* Static sidebar for desktop */}
-      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-        {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-main text-primary px-6 pb-4">
-          <div className="flex h-11 shrink-0 items-center justify-center">
             <Link href={"/"}>
-              {" "}
               <Image
-                width={145}
                 height={145}
-                className="pt-5"
+                width={145}
                 src={isDarkTheme ? constants.logoUrl : constants.logoDarkUrl}
                 alt="Boilerplate"
               />
             </Link>
-          </div>
-          <hr></hr>
-          <nav className="flex flex-1 flex-col">
-            <ul role="list" className="flex flex-1 flex-col gap-y-7">
-              <li>
-                <ul role="list" className=" space-y-1">
-                  <Navigation navigation={adminNavigation} />
-                </ul>
-              </li>
+          </Box>
+          <Divider />
 
-              {/* <div className="">
-                <hr></hr>
-                <div className="mt-2 w-full">
-                  <UploadCSV />
-                </div>
-              </div> */}
+          {/* Organization Switcher */}
+          <Box sx={{ padding: 2 }}>
+            <OrganizationSwitcher
+              appearance={{
+                baseTheme: isDarkTheme ? dark : undefined,
+              }}
+              hidePersonal={true}
+              afterSelectPersonalUrl={"/home"}
+              afterSelectOrganizationUrl={"/home"}
+              afterCreateOrganizationUrl={"/home"}
+              afterLeaveOrganizationUrl={"/home"}
+            />
+          </Box>
+          <Divider sx={{ borderBottomWidth: "0.5px" }} />
 
-              <li className="mt-auto">
-                {/* <Link
-                  onClick={() => toggleSidebarMenu()}
-                  href="/home/affiliates/link"
-                  className="group -mx-4 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6   hover:bg-gray-50 hover:text-indigo-600"
+          {/* Navigation */}
+          <Navigation navigation={adminNavigation} />
+
+          {/* Help Navs */}
+          <Box>
+            <Divider sx={{ borderBottomWidth: "0.5px" }} />
+
+            <List>
+              {helpNavs.map((item) => (
+                <ListItemButton
+                  key={item.name}
+                  // selected={item.href === router.pathname}
+                  onClick={() => {
+                    router.push(item.href);
+                    toggleSidebarMenu(); // Close drawer after navigation on mobile
+                  }}
+                  sx={{
+                    "&&.Mui-selected": {
+                      backgroundColor: "primary.main",
+                      color: "white",
+                      "& .MuiListItemIcon-root": {
+                        color: "white",
+                      },
+                    },
+                  }}
                 >
-                  <UsersIcon
-                    className="h-6 w-6 shrink-0 text-primary "
-                    aria-hidden="true"
-                  />
-                  {t("affiliatePanel")}
-                </Link> */}
-                {/* <Link
-                  onClick={() => toggleSidebarMenu()}
-                  href="/home/support"
-                  className="group -mx-4 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6   hover:bg-gray-50 hover:text-indigo-600"
-                >
-                  <LifebuoyIcon
-                    className="h-6 w-6 shrink-0 text-primary "
-                    aria-hidden="true"
-                  />
-                  {t("support")}
-                </Link> */}
-                <Link
-                  onClick={() => toggleSidebarMenu()}
-                  href="/home/settings/profile
-"
-                  className="group -mx-4 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6   hover:bg-gray-50 hover:text-indigo-600"
-                >
-                  <Cog6ToothIcon
-                    className="h-6 w-6 shrink-0 text-primary "
-                    aria-hidden="true"
-                  />
-                  {t("settings")}
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
+              ))}
+            </List>
+          </Box>
+        </Box>
+      </Drawer>
+
+      {/* Desktop Sidebar */}
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: "none", lg: "block" }, // Hide on small screens, show on large
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: 256,
+            backgroundColor: "white",
+          },
+        }}
+        open
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            // backgroundColor: "background.paper",
+            flexGrow: "inherit",
+          }}
+        >
+          {/* Logo */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: 64,
+              padding: 2,
+            }}
+          >
+            <Link href={"/"}>
+              <Image
+                height={145}
+                width={145}
+                src={isDarkTheme ? constants.logoUrl : constants.logoDarkUrl}
+                alt="Boilerplate"
+              />
+            </Link>
+          </Box>
+          <Divider sx={{ borderBottomWidth: "0.5px" }} />
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
+              justifyContent: "space-between",
+              flexGrow: "initial",
+            }}
+          >
+            {/* Navigation */}
+            <Navigation navigation={adminNavigation} />
+
+            {/* Help Navs */}
+            <Box>
+              <Divider sx={{ borderBottomWidth: "0.5px" }} />
+              <List>
+                {helpNavs.map((item) => (
+                  <ListItemButton
+                    key={item.name}
+                    // selected={item.href === router.pathname}
+                    onClick={() => router.push(item.href)}
+                    sx={{
+                      "&&.Mui-selected": {
+                        backgroundColor: "primary.main",
+                        color: "white",
+                        "& .MuiListItemIcon-root": {
+                          color: "white",
+                        },
+                      },
+                    }}
+                  >
+                    <ListItemIcon sx={{ marginRight: "5px" }}>
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item.name}
+                      sx={{ paddingLeft: "10" }}
+                    />
+                  </ListItemButton>
+                ))}
+              </List>
+            </Box>
+          </Box>
+        </Box>
+      </Drawer>
+
+      {/* Main Content Area */}
+      {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}> */}
+      {/* Use Container for content with margins */}
+      {/* <Container>Your main content goes here</Container> */}
+      {/* </Box> */}
+    </Box>
   );
 };
 

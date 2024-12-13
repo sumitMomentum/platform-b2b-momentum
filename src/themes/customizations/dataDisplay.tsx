@@ -230,4 +230,5 @@ export const dataDisplayCustomizations: Components<Theme> = {
       },
     },
   },
+  
 };

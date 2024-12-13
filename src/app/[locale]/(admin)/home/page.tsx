@@ -22,10 +22,8 @@ import { createEnodeWebhook } from "@/actions/admin/dashboardModule/create-enode
 import { getUserVehicleEnode } from "@/actions/admin/userModule/get-user-vehicle-enode";
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import useVehicleStore from "@/states/store";
-import loading from "./actionCentre/loading";
+// import loading from "./actionCentre/loading";
 import SuspenseDashboard from "@/components/suspenseSkeleton/SuspenseDashboard";
-
-
 
 const SuperAdminDashboardPage = () => {
   // const t = await getTranslations("AdminLayout.pages.dashboard");
@@ -103,10 +101,7 @@ const SuperAdminDashboardPage = () => {
     <div>
       <PageName
         name={"Dashboard"}
-        breadcrumbs={[
-          { name: "Home", href: "/home" },
-          { name: "", href: "/home" },
-        ]}
+        breadcrumbs={[{ name: "Home", href: "/home" }]}
       />
       {/* <Suspense fallback={<PageLoader />}>
         <Card className=" my-7">
@@ -218,7 +213,6 @@ const SuperAdminDashboardPage = () => {
               <Condition />
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-              {/* Second row with 2 columns */}
               <DistanceTravelled />
               <BatteryHealth />
             </div>
