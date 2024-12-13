@@ -50,8 +50,7 @@ export default function SavingsDistributionChart({
             }}
           >
             <Typography variant="h4" component="p">
-<<<<<<< HEAD
-              {loading ? (
+              {/* {loading ? (
                 0
               ) : (
                 <CountUp
@@ -62,13 +61,12 @@ export default function SavingsDistributionChart({
                   )}
                 />
               )}{" "}
-              {/* {vehicleData
+              {vehicleData
                 .reduce((acc, item) => acc + item.value, 0)
-                .toFixed(2)}{" "} */}
-              USD
-=======
+                .toFixed(2)}{" "}
+              USD 
+              */}
               {currentSavings.toLocaleString()} USD
->>>>>>> e66c4b3a3958ea79a09e10b5b234728315858da7
             </Typography>
           </Stack>
           <Stack direction="row" sx={{ justifyContent: "flex-start", alignItems: "center", gap: 1 }}>

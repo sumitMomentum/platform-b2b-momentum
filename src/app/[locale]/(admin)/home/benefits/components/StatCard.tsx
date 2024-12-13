@@ -97,12 +97,9 @@ export default function StatCard({
               sx={{ justifyContent: "space-between", alignItems: "center" }}
             >
               <Typography variant="h4" component="p">
-<<<<<<< HEAD
-                {<CountUp end={parseFloat(value)} />}
+                {/* {<CountUp end={parseFloat(value)} />} */}
                 {/* {value} */}
-=======
                 {value}
->>>>>>> e66c4b3a3958ea79a09e10b5b234728315858da7
               </Typography>
             </Stack>
             <Stack direction="row" sx={{ justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
