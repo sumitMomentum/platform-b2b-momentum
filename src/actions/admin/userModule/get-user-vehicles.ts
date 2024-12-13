@@ -28,7 +28,7 @@ export const getUserVehicles = async () => {
 // import { getUser } from "@/utils/facades/serverFacades/userFacade";
 
 // export const getUserVehicles = async () => {
-//   const userClerk = auth();
+//   const userClerk = await auth();
 
 //   if (!userClerk) throw new Error("client clerk not found");
 

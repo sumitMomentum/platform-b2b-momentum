@@ -2,6 +2,7 @@
 
 import { getUserVehicles } from "@/actions/admin/userModule/get-user-vehicles";
 import useVehicleStore from "@/states/store";
+import { sevierityChartsPalette } from "@/themes/ChartPalettes";
 import { PieChart } from "@mui/x-charts";
 import { log } from "console";
 import dynamic from "next/dynamic";
@@ -39,9 +40,9 @@ const ConditionChart = () => {
 
       // Create series data from the conditionCounts object
       setSeries([
-        { label: "Critical", value: conditionCounts.Critical },
-        { label: "Satisfactory", value: conditionCounts.Satisfactory },
         { label: "Good", value: conditionCounts.Good },
+        { label: "Satisfactory", value: conditionCounts.Satisfactory },
+        { label: "Critical", value: conditionCounts.Critical },
       ]);
       vehicles && setLoading(false);
     }
@@ -50,24 +51,25 @@ const ConditionChart = () => {
     console.log(series);
   }, [vehicles]);
 
-  const options = {
-    labels: ["Critical", "Satisfactory", "Good"],
-    colors: ["#e74c3c", "#f1c40f", "#2ecc71"],
-    dataLabels: {
-      enabled: true,
-      formatter: function (val, opts) {
-        return opts.w.config.series[opts.seriesIndex];
-      },
-    },
-  };
-
   return (
     <PieChart
       loading={loading}
       series={[{ data: series }]}
-      colors={["#e74c3c", "#f1c40f", "#2ecc71"]}
+      colors={[
+        sevierityChartsPalette.success,
+        sevierityChartsPalette.warning,
+        sevierityChartsPalette.error,
+      ]}
       width={400}
-      height={200}
+      height={250}
+      margin={{ top: 50 }}
+      slotProps={{
+        legend: {
+          direction: "row",
+          position: { vertical: "top", horizontal: "middle" },
+          padding: 0,
+        },
+      }}
     />
   );
 };

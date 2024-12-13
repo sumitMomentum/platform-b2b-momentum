@@ -8,13 +8,7 @@ export default function AdminWalletLayout(props: {
 }) {
   return (
     <>
-      <PageName
-        name="Wallet"
-        breadcrumbs={[
-          { name: "Home", href: "/home" },
-          { name: "Wallet", href: "/home/wallet" },
-        ]}
-      />
+      <PageName name="Wallet" breadcrumbs={[{ name: "Home", href: "/home" }]} />
       <div className="flex w-full">
         <div className="w-full lg:max-w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-7 gap-7 my-7">
           <div className="col-span-1 lg:col-span-3 ">{props.balance}</div>

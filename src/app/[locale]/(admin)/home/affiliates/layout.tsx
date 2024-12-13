@@ -12,12 +12,8 @@ const SettingRoot = ({ children }: { children: ReactNode }) => {
         name={t("affiliatePanel")}
         breadcrumbs={[
           {
-            name:  t("dashboard"),
+            name: t("dashboard"),
             href: "/home",
-          },
-          {
-            name: t("refferals"),
-            href: "/home/affiliates",
           },
         ]}
       />

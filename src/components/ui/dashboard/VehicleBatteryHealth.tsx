@@ -1,60 +1,51 @@
 import { useTranslations } from "next-intl";
-import Card from "../commons/Card";
 import SohChart from "./SohChart";
-import { Box, Container } from "@mui/material";
+import {
+  Box,
+  CardContent,
+  CardHeader,
+  Grid,
+  Typography,
+  Card,
+  Container,
+} from "@mui/material";
+import React from "react";
 
-const VehicleBatteryHealth = ({
-  batteryHealthSoH,
-  estimatedDegradation,
-  batteryChemistry,
-  dashboardData,
-}) => {
+const VehicleBatteryHealth = ({ dashboardData }) => {
   const t = useTranslations("AdminLayout.pages.vehicleDashboard");
 
   return (
     <Card>
-      <Card.Body>
-        <Card.Header>
-          <div className="flex justify-between">
-            <div className="flex items-start">
-              <Card.Title>{t("batteryHealth")}</Card.Title>
-            </div>
-            {/* <div className="border p-1 flex flex-col justify-center items-center">
-              <Card.Description>{t('State Of Health')}</Card.Description>
-              <Card.Description>{t('100%')}</Card.Description>
-            </div> */}
-          </div>
-        </Card.Header>
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            mb: 2,
-          }}
-        >
+      <CardHeader title="Battery Health of Fleet" sx={{ margin: 2 }} />
+      <CardContent>
+        <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
           <SohChart dashboardData={dashboardData} />
-        </Container>
-        <div className="flex justify-between">
-          <div className="flex flex-col justify-evenly">
-            <Card.Description>{t("soh")}</Card.Description>
-            {/* <Card.Description>{`${batteryHealthSoH}%`}</Card.Description> */}
-            <Card.Description>{`${dashboardData.batteryHealthSoH}%`}</Card.Description>
-          </div>
-          <div className="flex flex-col justify-evenly ">
-            <Card.Description>{t("estimatedDegradation")}</Card.Description>
-            <Card.Description>{`${dashboardData.batteryHealthDegradation}%`}</Card.Description>
-          </div>
-          <div className="flex flex-col justify-evenly ">
-            <Card.Description>{t("batteryChemistry")}</Card.Description>
-            <Card.Description>
-              1';'
-              
-              
-              '
-            </Card.Description>
-          </div>
-        </div>
-      </Card.Body>
+        </Box>
+        <Grid container spacing={2} sx={{ padding: 2 }}>
+          <Grid item xs={4}>
+            <Typography variant="subtitle2" fontWeight="bold">
+              {t("soh")}
+            </Typography>
+            <Typography>{`${dashboardData.batteryHealthSoH}%`} %</Typography>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Typography variant="subtitle2" fontWeight="bold">
+              {t("estimatedDegradation")}
+            </Typography>
+            <Typography>
+              {`${dashboardData.batteryHealthDegradation}%`} %
+            </Typography>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Typography variant="subtitle2" fontWeight="bold">
+              {t("batteryChemistry")}
+            </Typography>
+            <Typography>{dashboardData.batteryChemistry}</Typography>
+          </Grid>
+        </Grid>
+      </CardContent>
     </Card>
   );
 };

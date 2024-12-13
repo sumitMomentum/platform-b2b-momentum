@@ -3,34 +3,38 @@ import { createEnodeLinkSession } from "@/actions/admin/dashboardModule/create-e
 import { Box, Button, Container } from "@mui/material";
 import { handleEvent } from "@/utils/facades/serverFacades/enodeFacade";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import HubIcon from "@mui/icons-material/Hub";
+import LoadingButton from "@mui/lab/LoadingButton";
 const AddVehicle = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleAddVehicle = async () => {
+    setLoading(true);
     const url = await createEnodeLinkSession();
     handleEvent("user:vehicle:discovered");
     console.log("session url", url);
     router.push(url);
   };
 
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   return (
-    <Box>
-    <Button
+    <LoadingButton
+      loading={loading}
+      loadingPosition="start"
       variant="contained"
-      color="success"
+      color="primary"
       startIcon={<AddBoxIcon />}
-      sx={{
-        width: "150px",
-        // padding: "8px 16px",
-      }}
-      // className="bg-green-500 w-full p-2 hover:bg-green-700 hover:text-white rounded-md"
       onClick={handleAddVehicle}
+      style={{ textTransform: 'none' }}
     >
-      Vehicle
-    </Button>
-  </Box>
+      Add
+    </LoadingButton>
   );
 };
 

@@ -1,92 +1,195 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
+import React from "react";
+import { Box } from "@mui/material";
+import { Chip } from "@mui/material";
+import BatteryAlertIcon from "@mui/icons-material/BatteryAlert";
+import BatteryFullIcon from "@mui/icons-material/BatteryFull";
+import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
+import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
+import Battery1BarIcon from "@mui/icons-material/Battery1Bar";
+import Battery2BarIcon from "@mui/icons-material/Battery2Bar";
+import Battery3BarIcon from "@mui/icons-material/Battery3Bar";
+import Battery4BarIcon from "@mui/icons-material/Battery4Bar";
+import Battery5BarIcon from "@mui/icons-material/Battery5Bar";
+import Battery6BarIcon from "@mui/icons-material/Battery6Bar";
+import BatteryStdIcon from "@mui/icons-material/BatteryStd";
+import CancelIcon from "@mui/icons-material/Cancel";
+import FlashOnIcon from "@mui/icons-material/FlashOn";
+import FlashOffIcon from "@mui/icons-material/FlashOff";
+import ToggleOffIcon from "@mui/icons-material/ToggleOff";
+import ToggleOnIcon from "@mui/icons-material/ToggleOn";
+import ChargingStationIcon from "@mui/icons-material/ChargingStation";
+import InfoIcon from "@mui/icons-material/Info";
+import SpeedIcon from "@mui/icons-material/Speed";
 
-export interface TripSession {
-  chargeConsumed: number;
-  createdAt: Date;
-  distanceTravelled: number;
-  endSoc: number;
-  endTime: Date;
-  id: number;
-  odometerEnd: number;
-  odometerStart: number;
-  startSoc: number;
-  startTime: Date;
-  tripDuration: number;
-  updatedAt: Date;
-  vehicleId: string;
-}
+// Function to get battery icon based on value
+const getBatteryIcon = (value) => {
+  if (value >= 100) return <BatteryStdIcon />;
+  if (value >= 85) return <Battery6BarIcon />;
+  if (value >= 65) return <Battery5BarIcon />;
+  if (value >= 50) return <Battery4BarIcon />;
+  if (value >= 40) return <Battery3BarIcon />;
+  if (value >= 30) return <Battery2BarIcon />;
+  if (value >= 20) return <Battery1BarIcon />;
+  if (value >= 10) return <Battery0BarIcon />;
+  return <BatteryAlertIcon />;
+};
 
+// Function to get status icon based on value
+const getStatusIcon = (value) => {
+  switch (value) {
+    case "Active":
+      return <ToggleOnIcon />;
+    case "Charging":
+      return <ChargingStationIcon />;
+    case "Inactive":
+      return <ToggleOffIcon />;
+    default:
+      return <InfoIcon />;
+  }
+};
+
+// Function to get kilometer color based on value
+const getKmColor = (value) => {
+  if (value < 20) return "error";
+  if (value < 50) return "warning";
+  return "primary";
+};
+
+// Define the column configurations
 const columns = [
   {
-    field: "vehicle",
-    headerName: "Vehicle",
+    field: "TripID", // TripID for the column
+    headerName: "Trip ID",
     flex: 1,
-    valueGetter: (value, row) => `${row.vehicleId}`,
-    // `${row.vehicle.make || ""} ${row.vehicle.model || ""}`,
   },
   {
-    field: "startTime",
-    headerName: "Start Time",
+    field: "DteStart",
+    headerName: "Start DTE",
     flex: 1,
-    valueFormatter: (value, row) => new Date(value).toLocaleString(),
+    valueFormatter: (params) => `${params} km`,
   },
   {
-    field: "endTime",
-    headerName: "End Time",
+    field: "DteEnd",
+    headerName: "End DTE",
     flex: 1,
-    valueFormatter: (value, row) => new Date(value).toLocaleString(),
+    valueFormatter: (params) => `${params} km`,
   },
   {
-    field: "tripDuration",
-    headerName: "Duration",
+    field: "BatteryAtStart",
+    headerName: "Battery Start",
     flex: 1,
-    valueFormatter: (value, row) => `${Math.floor(value / 60)}h ${value % 60}m`,
+    renderCell: (params) => (
+      <Chip
+        variant="outlined"
+        label={`${params.value}%`}
+        color={
+          params.value >= 70
+            ? "success"
+            : params.value >= 40
+            ? "warning"
+            : "error"
+        }
+        icon={getBatteryIcon(params.value)}
+      />
+    ),
   },
   {
-    field: "distanceTravelled",
-    headerName: "Distance",
+    field: "BatteryAtEnd",
+    headerName: "Battery End",
     flex: 1,
-    valueFormatter: (value, row) => `${value.toFixed(2)} km`,
+    renderCell: (params) => (
+      <Chip
+        variant="outlined"
+        label={`${params.value}%`}
+        color={
+          params.value >= 70
+            ? "success"
+            : params.value >= 40
+            ? "warning"
+            : "error"
+        }
+        icon={getBatteryIcon(params.value)}
+      />
+    ),
   },
   {
-    field: "chargeConsumed",
-    headerName: "Energy Used",
+    field: "TripApprovedKilometer",
+    headerName: "Approved Kilometers",
     flex: 1,
-    valueFormatter: (value, row) => `${value.toFixed(2)} kWh`,
+    renderCell: (params) => (
+      <Chip
+        variant="outlined"
+        label={` ${(Math.round(params.value * 100) / 100).toFixed(2)}`}
+        color={getKmColor(params.value)}
+        icon={<SpeedIcon />}
+      />
+    ),
   },
   {
-    field: "socChange",
-    headerName: "SoC Change",
+    field: "DiffInBat",
+    headerName: "Battery Diff",
     flex: 1,
-    valueGetter: (value, row) => `${row.startSoc}% → ${row.endSoc}%`,
+    valueFormatter: (params) => `${params}%`,
+  },
+  {
+    field: "DiffInDte",
+    headerName: "Diff in Dte",
+    flex: 1,
+    renderCell: (params) => <Chip variant="outlined" label={`${params.value} km`} />,
+  },
+  {
+    field: "DwUpdated",
+    headerName: "Last Update",
+    flex: 1,
+    valueFormatter: (params) => new Date(params).toLocaleString(),
   },
 ];
 
-const paginationModel = { page: 0, pageSize: 10 };
-
-const TripList = ({
+const TripListComponent = ({
   tripSessions,
   loading,
 }: {
-  tripSessions: TripSession[];
+  tripSessions: any[];
   loading: boolean;
 }) => {
+  const paginationModel = { page: 0, pageSize: 10 };
+
   return (
-    <Paper sx={{ height: 400, width: "100%" }}>
+    <Box sx={{ width: "100%", height: "80vh" }}>
       <DataGrid
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         loading={loading}
-        rows={tripSessions}
+        rows={tripSessions} // Use the tripSessions prop directly
         columns={columns}
-        // initialState={{ pagination: { paginationModel } }}
+        initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10, 25]}
-        sx={{ border: 0 }}
+        sx={{
+          backgroundColor: "white",
+          ".MuiDataGrid-columnHeaders": {
+            fontWeight: "bold",
+            fontSize: "0.9rem", // Optional: Adjust font size for better visibility
+          },
+          ".MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold", // Ensures header titles specifically are bold
+          },
+          ".MuiDataGrid-virtualScroller": {
+            overflowY: "auto",
+            maxHeight: "70vh", // Set a max height for the scrolling area of rows
+          },
+        }}
+        getRowId={(row) => row.TripID} // Ensure TripID is unique for rows
       />
-    </Paper>
+    </Box>
   );
 };
 
-export default TripList;
+export default TripListComponent;

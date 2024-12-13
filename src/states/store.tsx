@@ -1,5 +1,5 @@
-import { chargingSessions } from "@/seed/seeds/chargingSession";
-import { tripSessions } from "@/seed/seeds/tripSession";
+// import { chargingSessions } from "@/seed/seeds/chargingSession";
+// import { vehicleTripSessions } from "@/seed/seeds/tripSession";
 import { ChargingSession, VehicleTripSession, User } from "@prisma/client";
 import { id } from "date-fns/locale";
 import { create } from "zustand";
