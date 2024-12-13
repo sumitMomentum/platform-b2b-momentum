@@ -139,7 +139,7 @@ const columns = [
     field: "DiffInDte",
     headerName: "Diff in Dte",
     flex: 1,
-    renderCell: (params) => <Chip label={`${params.value} km`} />,
+    renderCell: (params) => <Chip variant="outlined" label={`${params.value} km`} />,
   },
   {
     field: "DwUpdated",

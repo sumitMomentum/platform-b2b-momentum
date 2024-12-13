@@ -5,8 +5,6 @@ import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { useTheme } from "@mui/material/styles";
-import { ChartsClipPath } from "@mui/x-charts";
 import { sevierityChartsPalette } from "@/themes/ChartPalettes";
 import CountUp from "react-countup";
 
@@ -48,7 +46,6 @@ export default function SeverityDistributionChart({
   actionsData = [],
   loading,
 }) {
-  const theme = useTheme();
   const dataAvailable = actionsData.length;
 
   // Get the severity data from the vehicle actions
@@ -57,9 +54,15 @@ export default function SeverityDistributionChart({
   return (
     <Card variant="outlined" sx={{ width: "100%" }}>
       <CardContent>
-        <Typography component="h2" variant="subtitle2" gutterBottom>
-          Severity Distribution of Actions
-        </Typography>
+        <Stack
+          direction="row"
+          alignItems="center"
+          sx={{ justifyContent: "space-between" }}
+        >
+          <Typography component="h2" variant="subtitle2" gutterBottom>
+            Severity Distribution of Actions
+          </Typography>
+        </Stack>
         <Stack sx={{ justifyContent: "space-between" }}>
           <Stack
             direction="row"
@@ -73,14 +76,6 @@ export default function SeverityDistributionChart({
               {loading ? 0 : <CountUp end={Number(low + medium + high)} />}{" "}
               Actions
             </Typography>
-            <Chip
-              size="small"
-              color="success"
-              label={`+${Math.round(
-                ((medium + high) / (low + medium + high)) * 100
-              )}%`}
-            />{" "}
-            {/* Change Chip color to green */}
           </Stack>
           <Typography variant="caption" sx={{ color: "text.secondary" }}>
             Distribution of severity levels in the actions
@@ -89,34 +84,32 @@ export default function SeverityDistributionChart({
         <BarChart
           loading={loading}
           borderRadius={8}
-          // colors={[
-          //   sevierityChartsPalette.success,
-          //   sevierityChartsPalette.warning,
-          //   sevierityChartsPalette.warning,
-          // ]}
           xAxis={[
             {
               scaleType: "band",
               data: ["Low", "Medium", "High"],
-              colorMap: {
-                type: "piecewise",
-                thresholds: [1, 2],
-                colors: [
-                  sevierityChartsPalette.success,
-                  sevierityChartsPalette.warning,
-                  sevierityChartsPalette.warning,
-                ],
-              },
             },
           ]}
           series={
             dataAvailable
               ? [
                   {
-                    id: "severity",
-                    label: "Severity",
-                    data: [low, medium, high], // Data for severity counts
-                    stack: "A",
+                    id: "low",
+                    label: "Low",
+                    data: [low, 0, 0],
+                    color: sevierityChartsPalette.success,
+                  },
+                  {
+                    id: "medium",
+                    label: "Medium",
+                    data: [0, medium, 0],
+                    color: sevierityChartsPalette.warning,
+                  },
+                  {
+                    id: "high",
+                    label: "High",
+                    data: [0, 0, high],
+                    color: sevierityChartsPalette.error,
                   },
                 ]
               : []

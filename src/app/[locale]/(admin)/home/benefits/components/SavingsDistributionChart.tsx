@@ -5,10 +5,7 @@ import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { useTheme } from "@mui/material/styles";
 import { sevierityChartsPalette } from "@/themes/ChartPalettes";
-import { type } from "os";
-import colors from "tailwindcss/colors";
 import CountUp from "react-countup";
 
 export default function SavingsDistributionChart({
@@ -18,21 +15,24 @@ export default function SavingsDistributionChart({
   savingsData: any[];
   loading: boolean;
 }) {
-  const theme = useTheme();
   const isDataAvailable = savingsData.length;
 
   const vehicleData = savingsData
-    .filter((item) => item.vehicleId != "xxxxxxxxxx")
+    .filter((item) => item.vehicleId !== "xxxxxxxxxx")
     .map((item) => ({
       label: item.vehicleId,
       value: item.costSavingChargingMonthly,
     }));
 
-  const colorPalette = [
-    (theme.vars || theme).palette.success.dark, // Dark green
-    (theme.vars || theme).palette.success.main, // Medium green
-    (theme.vars || theme).palette.success.light, // Light green
-  ];
+  // Example savings data (current and previous period)
+  const currentSavings = vehicleData.reduce((acc, item) => acc + item.value, 0);
+  const previousSavings = 5000; // Placeholder for previous period savings, replace with actual data
+
+  const savingsChange = ((currentSavings - previousSavings) / previousSavings) * 100;
+  const savingsChangeLabel = `${Math.abs(Number(savingsChange.toFixed(2)))}%`;
+
+  // Determine the chip color based on the change
+  const chipColor = savingsChange >= 0 ? 'success' : 'error';
 
   return (
     <Card variant="outlined" sx={{ width: "100%" }}>
@@ -50,6 +50,7 @@ export default function SavingsDistributionChart({
             }}
           >
             <Typography variant="h4" component="p">
+<<<<<<< HEAD
               {loading ? (
                 0
               ) : (
@@ -65,57 +66,69 @@ export default function SavingsDistributionChart({
                 .reduce((acc, item) => acc + item.value, 0)
                 .toFixed(2)}{" "} */}
               USD
+=======
+              {currentSavings.toLocaleString()} USD
+>>>>>>> e66c4b3a3958ea79a09e10b5b234728315858da7
             </Typography>
-            <Chip size="small" color="error" label="-8%" />{" "}
-            {/* Example label, update as needed */}
           </Stack>
-          <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            Savings distribution for the last 6 months
-          </Typography>
+          <Stack direction="row" sx={{ justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              Savings distribution for vehicles in the last 30 days
+            </Typography>
+            <Chip size="small" variant="outlined" color={chipColor} label={savingsChangeLabel} />
+          </Stack>
         </Stack>
-        <BarChart
-          loading={loading}
-          borderRadius={8}
-          xAxis={[
-            {
-              scaleType: "band",
-              // categoryGapRatio: 0.5,
-              data: vehicleData.map((item) => item.label),
-            },
-          ]}
-          yAxis={[
-            {
-              colorMap: {
-                type: "piecewise",
-                thresholds: [0],
-                colors: [
-                  sevierityChartsPalette.error,
-                  sevierityChartsPalette.success,
-                ],
-              },
-            },
-          ]}
-          series={
-            isDataAvailable
-              ? [
-                  {
-                    id: "savings",
-                    label: "Savings",
-                    data: vehicleData.map((item) => item.value),
-                    stack: "A",
+        <div style={{ width: '100%', overflowX: 'auto' }}>
+          <div style={{ width: '150%' }}> {/* Increase the width to enable horizontal scroll */}
+            <BarChart
+              loading={loading}
+              borderRadius={8}
+              xAxis={[
+                {
+                  scaleType: "band",
+                  data: vehicleData.map((item) => item.label),
+                  tickLabelStyle: {
+                    angle: -45, // Rotate labels for better visibility
+                    fontSize: 12,
+                    textAnchor: 'end',
                   },
-                ]
-              : []
-          }
-          height={250}
-          margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
-          grid={{ horizontal: true }}
-          slotProps={{
-            legend: {
-              hidden: true,
-            },
-          }}
-        />
+                },
+              ]}
+              yAxis={[
+                {
+                  colorMap: {
+                    type: "piecewise",
+                    thresholds: [0],
+                    colors: [
+                      sevierityChartsPalette.error,
+                      sevierityChartsPalette.success,
+                    ],
+                  },
+                },
+              ]}
+              series={
+                isDataAvailable
+                  ? [
+                      {
+                        id: "savings",
+                        label: "Savings",
+                        data: vehicleData.map((item) => item.value),
+                        stack: "A",
+                      },
+                    ]
+                  : []
+              }
+              height={315}
+              margin={{ left: 50, right: 0, top: 20, bottom: 70 }}
+              grid={{ horizontal: true }}
+              slotProps={{
+                legend: {
+                  hidden: true,
+                },
+              }}
+            />
+          </div>
+        </div>
       </CardContent>
     </Card>
   );

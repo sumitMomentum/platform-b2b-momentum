@@ -6,7 +6,6 @@ import { uploadChargerDataFromCSV } from "@/actions/admin/csvModule/charging/upl
 import PageName from "@/components/ui/commons/PageName";
 import {
   Box,
-  Button,
   IconButton,
   InputAdornment,
   TextField,
@@ -23,6 +22,7 @@ import FlashOffIcon from "@mui/icons-material/FlashOff";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import LoadingButton from '@mui/lab/LoadingButton';
 import { Fragment } from "react";
 
 interface ChargerRow {
@@ -38,6 +38,7 @@ interface ChargerRow {
 const Page = () => {
   const [chargerMasterData, setChargerMasterData] = useState<ChargerRow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -75,6 +76,8 @@ const Page = () => {
         throw new Error("Please select a file to upload.");
       }
 
+      setUploading(true);
+
       const formData = new FormData();
       formData.append("file", selectedFile);
 
@@ -98,6 +101,8 @@ const Page = () => {
           error instanceof Error ? error.message : "Something went wrong"
         }`
       );
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -246,14 +251,17 @@ const Page = () => {
             style={{ display: "none" }}
           />
         </Box>
-        <Button
+        <LoadingButton
           startIcon={<FileUploadIcon />}
           variant="contained"
           color="primary"
           onClick={handleUpload}
+          style={{ textTransform: 'none' }}
+          loading={uploading}
+          loadingPosition="start"
         >
           Upload
-        </Button>
+        </LoadingButton>
       </Box>
       <div className="container">
         <Box style={{ display: "flex", width: "100%", height: "70vh" }}>

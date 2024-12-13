@@ -3,6 +3,7 @@ import prisma from "@/lib/db";
 import csv from "csv-parser";
 import { Readable } from "stream";
 import { getAggregatedActions } from "@/utils/actionCapture"; // Adjust the import path if necessary
+import { updateBenefits } from "@/utils/demoBenefit"; // Adjust the import path as needed
 
 export async function uploadChargingSessionsFromCSV(formData: FormData) {
   try {
@@ -14,14 +15,14 @@ export async function uploadChargingSessionsFromCSV(formData: FormData) {
     const fileBuffer = Buffer.from(await file.arrayBuffer());
     const results: any[] = [];
 
-    // Convert the file buffer into a readable stream correctly
+    // Convert the file buffer into a readable stream
     const readableStream = new Readable();
-    readableStream._read = () => {}; // _read is required but you can noop it
+    readableStream._read = () => {};
     readableStream.push(fileBuffer);
     readableStream.push(null);
 
     // Parse CSV
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       readableStream
         .pipe(csv())
         .on("data", (data) => results.push(data))
@@ -32,15 +33,13 @@ export async function uploadChargingSessionsFromCSV(formData: FormData) {
     // Function to convert date string to Date object or set a default date
     const parseDate = (dateString: string) => {
       if (!dateString) {
-        return new Date("2000-01-01"); // Default date if dateString is undefined
+        return new Date("2000-01-01");
       }
-
       const dateObject = new Date(dateString);
       return isNaN(dateObject.getTime()) ? new Date("2000-01-01") : dateObject;
     };
 
-    // Process and insert charging sessions
-    const chargingSessions = await Promise.all(
+    const demoChargingSessions = await Promise.all(
       results.map(async (row) => {
         return await prisma.chargingSession.create({
           data: {
@@ -63,15 +62,20 @@ export async function uploadChargingSessionsFromCSV(formData: FormData) {
 
     // Run getAggregatedActions
     const actions = await getAggregatedActions();
-    console.log("[SERVER] Aggregated Actions:", actions);
+    // console.log("[SERVER] Aggregated Actions:", actions);
+
+    // Run updateBenefits function
+    const benefitResults = await updateBenefits(demoChargingSessions);
+    console.log("[SERVER] Benefit Results:", benefitResults);
 
     return {
-      message: `Successfully uploaded ${chargingSessions.length} charging sessions and ran aggregated actions.`,
-      chargingSessions,
+      message: `Successfully uploaded ${demoChargingSessions.length} demo charging sessions, ran aggregated actions, and calculated benefits.`,
+      demoChargingSessions,
       actions,
+      benefitResults,
     };
   } catch (error) {
-    console.error("Error uploading charging sessions:", error);
-    throw new Error(error.message || "Failed to upload charging sessions");
+    console.error("Error uploading demo charging sessions:", error);
+    throw new Error(error.message || "Failed to upload demo charging sessions");
   }
 }

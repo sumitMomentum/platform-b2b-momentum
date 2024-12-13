@@ -42,7 +42,6 @@ async function clearData() {
       await tx.chargerMaster.deleteMany({});
       await tx.chargerType.deleteMany({});
       await tx.action.deleteMany({});
-      await tx.user.deleteMany({});
     });
 
     log.header("Data Clearance Completed Successfully! 🎉");

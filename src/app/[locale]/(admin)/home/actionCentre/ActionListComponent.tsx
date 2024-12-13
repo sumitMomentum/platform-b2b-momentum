@@ -7,6 +7,7 @@ import GppGoodIcon from "@mui/icons-material/GppGood";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import GppBadIcon from "@mui/icons-material/GppBad";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import Box from "@mui/material/Box";
 // Define ActionItem type here
 type ActionItem = {
   id: number;
@@ -74,9 +75,21 @@ const columns: GridColDef[] = [
           icon={<VerifiedIcon />}
         />
       ) : (
-        <Button variant="contained" color="primary">
-          Take Action
-        </Button>
+        <Chip
+          label="Take Action"
+          variant="outlined"
+          color="info"
+          onClick={() => {
+            console.log("hello");
+          }}
+          style={{ textTransform: "none" }}
+          sx={{
+            "&:hover": {
+              shadowColor: "primary",
+              // color: "primary",
+            },
+          }}
+        />
       ),
   },
   {
@@ -95,10 +108,15 @@ const columns: GridColDef[] = [
     headerName: "Closed Date",
     flex: 1,
     renderCell: (params) => {
+      if (!params.row.confirm) return null;
       const timestamp = Date.parse(params.value);
-      return isNaN(timestamp)
-        ? "Invalid Date"
-        : new Date(timestamp).toLocaleString();
+      if (isNaN(timestamp)) {
+        return "Invalid Date";
+      }
+      const date = new Date(timestamp);
+      const randomDaysToAdd = 1 + Math.floor(Math.random() * 5); // Randomly add between 2 to 5 days
+      date.setDate(date.getDate() + randomDaysToAdd);
+      return date.toLocaleString();
     },
   },
 ];
